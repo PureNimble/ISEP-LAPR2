@@ -1,6 +1,6 @@
 # ESOFT TP Classes Support
 
-This project has the design and code contents for the ESOFT's TP classes.
+This project has the design and code contents for ESOFT's TP classes.
 
 This project used Java and Maven.
 
@@ -17,7 +17,11 @@ If we want to run tests that use JUnit 5, we have to declare the junit-jupiter-e
 * JUnit Annotation
     - https://junit.org/junit5/docs/current/user-guide/#writing-tests-annotations
 
-  
+## Who do I talk to about this project
+
+Nuno Bettencourt
+nmb@isep.ipp.pt
+
 ## Maven goals
 ### Run the unit tests
 ```
