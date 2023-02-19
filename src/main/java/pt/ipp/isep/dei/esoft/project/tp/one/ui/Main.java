@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.esoft.project.ui;
+package pt.ipp.isep.dei.esoft.project.tp.one.ui;
 
 import pt.ipp.isep.dei.esoft.project.domain.Calculator;
 
