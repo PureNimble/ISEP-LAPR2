@@ -8,9 +8,13 @@ import pt.ipp.isep.dei.esoft.project.tp.one.repository.OrganizationRepository;
 import pt.ipp.isep.dei.esoft.project.tp.one.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.tp.one.repository.TaskCategoryRepository;
 
+import java.util.Optional;
+
 public class CreateTaskController {
 
-    public Task createTask(String reference, String designation, String informalDescription, String technicalDescription, Integer duration, Double Cost, String taskCategoryDescription) {
+    public Optional<Task> createTask(String reference, String designation, String informalDescription,
+                                     String technicalDescription, Integer duration, Double Cost,
+                                     String taskCategoryDescription) {
 
         TaskCategory taskCategory = getTaskCategoryByDescription(taskCategoryDescription);
 
@@ -20,7 +24,9 @@ public class CreateTaskController {
         Employee employee = getEmployeeFromSession();
         Organization organization = organizationRepository.getOrganizationByEmployee(employee);
 
-        Task newTask = organization.createTask(reference, designation, informalDescription, technicalDescription, duration, Cost, taskCategory, employee);
+        Optional<Task> newTask =
+                organization.createTask(reference, designation, informalDescription, technicalDescription, duration,
+                        Cost, taskCategory, employee);
 
         return newTask;
     }
@@ -37,7 +43,8 @@ public class CreateTaskController {
         TaskCategoryRepository taskCategoryRepository = repositories.getTaskCategoryRepository();
 
         //Get the TaskCategory by its description
-        TaskCategory taskCategoryByDescription = taskCategoryRepository.getTaskCategoryByDescription(taskCategoryDescription);
+        TaskCategory taskCategoryByDescription =
+                taskCategoryRepository.getTaskCategoryByDescription(taskCategoryDescription);
         return taskCategoryByDescription;
 
     }

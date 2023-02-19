@@ -23,7 +23,8 @@ public class TaskCategoryRepository {
             taskCategory = taskCategoryList.get(taskCategoryList.indexOf(newTaskCategory));
         }
         if (taskCategory == null) {
-            throw new IllegalArgumentException("Task Category requested for [" + taskCategoryDescription + "] does not exist.");
+            throw new IllegalArgumentException(
+                    "Task Category requested for [" + taskCategoryDescription + "] does not exist.");
         }
         return taskCategory;
     }

@@ -15,7 +15,8 @@ public class Task {
 
     private final Employee employee;
 
-    public Task(String reference, String description, String informalDescription, String technicalDescription, Integer duration, Double cost, TaskCategory taskCategory, Employee employee) {
+    public Task(String reference, String description, String informalDescription, String technicalDescription,
+                Integer duration, Double cost, TaskCategory taskCategory, Employee employee) {
         this.description = description;
         this.informalDescription = informalDescription;
         this.reference = reference;
@@ -26,16 +27,18 @@ public class Task {
         this.employee = employee;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Task)) return false;
+    @Override public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Task)) {
+            return false;
+        }
         Task task = (Task) o;
         return reference.equals(task.reference) && employee.equals(task.employee);
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         return Objects.hash(reference, employee);
     }
 }

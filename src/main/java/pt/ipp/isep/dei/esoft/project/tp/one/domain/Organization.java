@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.tp.one.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Organization {
     private final String vatNumber;
@@ -21,13 +22,18 @@ public class Organization {
         return employeeList.contains(employee);
     }
 
-    public Task createTask(String reference, String designation, String informalDescription, String technicalDescription, Integer duration, Double cost, TaskCategory taskCategory, Employee employee) {
-        Task task = new Task(reference, designation, informalDescription, technicalDescription, duration, cost, taskCategory, employee);
+    public Optional<Task> createTask(String reference, String description, String informalDescription,
+                                     String technicalDescription, Integer duration, Double cost,
+                                     TaskCategory taskCategory, Employee employee) {
+        Optional<Task> optionalValue = Optional.empty();
 
-        if (addTask(task))
-            return task;
-        else
-            throw new IllegalArgumentException("Task already exists for [" + reference + "].");
+        Task task = new Task(reference, description, informalDescription, technicalDescription, duration, cost,
+                taskCategory, employee);
+
+        if (addTask(task)) {
+            optionalValue = Optional.of(task);
+        }
+        return optionalValue;
     }
 
     private boolean addTask(Task task) {
@@ -61,16 +67,18 @@ public class Organization {
         return result;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Organization)) return false;
+    @Override public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Organization)) {
+            return false;
+        }
         Organization that = (Organization) o;
         return vatNumber.equals(that.vatNumber);
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         return Objects.hash(vatNumber);
     }
 
