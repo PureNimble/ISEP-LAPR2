@@ -1,7 +1,10 @@
 package pt.ipp.isep.dei.esoft.project.tp.one.domain;
 
+import java.util.Objects;
+
 public class Task {
-    private final String designation;
+    //TODO: refactor on diagrams from designation to description
+    private final String description;
     private final String informalDescription;
     private final String reference;
     private final String technicalDescription;
@@ -12,8 +15,8 @@ public class Task {
 
     private final Employee employee;
 
-    public Task(String reference, String designation, String informalDescription, String technicalDescription, Integer duration, Double cost, TaskCategory taskCategory, Employee employee) {
-        this.designation = designation;
+    public Task(String reference, String description, String informalDescription, String technicalDescription, Integer duration, Double cost, TaskCategory taskCategory, Employee employee) {
+        this.description = description;
         this.informalDescription = informalDescription;
         this.reference = reference;
         this.technicalDescription = technicalDescription;
@@ -21,5 +24,18 @@ public class Task {
         this.cost = cost;
         this.taskCategory = taskCategory;
         this.employee = employee;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Task)) return false;
+        Task task = (Task) o;
+        return reference.equals(task.reference) && employee.equals(task.employee);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(reference, employee);
     }
 }

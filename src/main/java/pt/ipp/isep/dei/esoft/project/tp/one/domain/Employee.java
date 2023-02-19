@@ -24,4 +24,8 @@ public class Employee {
     public int hashCode() {
         return Objects.hash(email);
     }
+
+    public boolean hasEmail(String email) {
+        return this.email.equals(email);
+    }
 }

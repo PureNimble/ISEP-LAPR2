@@ -2,8 +2,7 @@ package pt.ipp.isep.dei.esoft.project.tp.one.domain;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class EmployeeTest {
 
@@ -54,4 +53,21 @@ class EmployeeTest {
         Employee employee2 = new Employee("jane.doe@this.company.org");
         assertNotEquals(employee1.hashCode(), employee2.hashCode());
     }
+
+    @Test
+    void ensureHasEmailWorksForTheSameEmail() {
+        String email = "john.doe@this.compay.org";
+        Employee employee = new Employee(email);
+        assertTrue(employee.hasEmail(email));
+
+    }
+
+    @Test
+    void ensureHasEmailFailsForDifferentEmails() {
+        String email = "john.doe@this.company.org";
+        Employee employee = new Employee(email);
+        assertFalse(employee.hasEmail("jane.doe@this.company.org"));
+
+    }
+
 }
