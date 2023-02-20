@@ -29,12 +29,12 @@ public class CreateTaskUI {
 
         taskCategoryDescription = displayAndSelectTaskCategory();
 
-        requestInformation();
+        requestData();
 
-        submitInformation();
+        submitData();
     }
 
-    private void submitInformation() {
+    private void submitData() {
         Optional<Task> task = getController().createTask(taskReference, taskDescription, taskInformalDescription,
                 taskTechnicalDescription, taskDuration, taskCost, taskCategoryDescription);
 
@@ -45,7 +45,7 @@ public class CreateTaskUI {
         }
     }
 
-    private void requestInformation() {
+    private void requestData() {
 
         //Request the Task Reference from the console
         taskReference = requestTaskReference();
@@ -64,13 +64,6 @@ public class CreateTaskUI {
 
         //Request the Task Cost from the console
         taskCost = requestTaskCost();
-
-        //Request the Task Category from the console
-        String taskCategoryDescription = requestTaskCategory();
-
-        //Request the Task Employee from the console
-        String empployeeEmail = requestTaskEmployee();
-
     }
 
     private String requestTaskEmployee() {
