@@ -6,7 +6,8 @@ On project root folder, run the following script:
 
 ```shell
 $ bin/generate-plantuml-diagrams.sh
-````
+```
+
 
 # How to generate publich contents to public repository
 
@@ -16,7 +17,8 @@ On project root folder, run the following script:
 
 ```shell
 $ bin/publish-to-public-version.sh
-````
+```
+
 
 # How the project is organised
 
