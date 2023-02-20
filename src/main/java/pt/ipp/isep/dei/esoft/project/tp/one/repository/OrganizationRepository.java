@@ -5,42 +5,59 @@ import pt.ipp.isep.dei.esoft.project.tp.one.domain.Organization;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class OrganizationRepository {
 
+    List<Organization> organizations = new ArrayList<>();
 
-    List<Organization> organizationList = new ArrayList<>();
+    public Optional<Organization> getOrganizationByEmployee(Employee employee) {
 
-    public Organization getOrganizationByEmployee(Employee employee) {
+        Optional<Organization> returnOrganization = Optional.empty();
 
-        Organization returnOrganization = null;
-
-        for (Organization organization : organizationList) {
+        for (Organization organization : organizations) {
             if (organization.employs(employee)) {
-                returnOrganization = organization;
+                returnOrganization = Optional.of(organization);
             }
         }
 
-        if (returnOrganization == null) {
-            throw new IllegalArgumentException("Organization requested for [" + employee + "] does not exist.");
-        }
         return returnOrganization;
     }
 
-    public Organization getOrganizationByEmail(String email) {
+    public Optional<Organization> getOrganizationByEmployeeEmail(String email) {
 
-        Organization returnOrganization = null;
+        Optional<Organization> returnOrganization = Optional.empty();
 
-        for (Organization organization : organizationList) {
+        for (Organization organization : organizations) {
             if (organization.anyEmployeeHasEmail(email)) {
-                returnOrganization = organization;
+                returnOrganization = Optional.of(organization);
             }
         }
 
-        if (returnOrganization == null) {
-            throw new IllegalArgumentException("Organization requested for [" + email + "] does not exist.");
-        }
         return returnOrganization;
     }
 
+    public Optional<Organization> add(Organization organization) {
+
+        Optional<Organization> newOrganization = Optional.empty();
+        boolean operationSuccess = false;
+
+        if (validateOrganization(organization)) {
+            newOrganization = Optional.of(organization.clone());
+            operationSuccess = organizations.add(newOrganization.get());
+        }
+
+        if (!operationSuccess) {
+            newOrganization = Optional.empty();
+        }
+
+        return newOrganization;
+
+    }
+
+    private boolean validateOrganization(Organization organization) {
+        boolean isValid = !organizations.contains(organization);
+
+        return isValid;
+    }
 }

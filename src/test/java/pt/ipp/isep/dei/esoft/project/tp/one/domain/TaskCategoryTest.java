@@ -2,8 +2,7 @@ package pt.ipp.isep.dei.esoft.project.tp.one.domain;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class TaskCategoryTest {
 
@@ -67,6 +66,20 @@ class TaskCategoryTest {
     @Test void testEqualsForDifferentObjectType() {
         TaskCategory taskCategory = new TaskCategory("Task Category Description");
         assertNotEquals(taskCategory, new Object());
+    }
+
+    @Test void ensureGetDescriptionWorks() {
+        TaskCategory taskCategory = new TaskCategory("Task Category Description");
+
+        assertEquals("Task Category Description", taskCategory.getDescription());
+    }
+
+
+    @Test
+    void ensureCloneWorks(){
+        TaskCategory taskCategory = new TaskCategory("Task Category Description");
+        TaskCategory clone = taskCategory.clone();
+        assertEquals(taskCategory, clone);
     }
 
 

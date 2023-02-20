@@ -24,4 +24,22 @@ public class TaskCategory {
     @Override public int hashCode() {
         return Objects.hash(description);
     }
+
+    /**
+     * This method returns the description of the task category.
+     *
+     * @return The description of the task category.
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Clone method.
+     *
+     * @return A clone of the current task.
+     */
+    public TaskCategory clone() {
+        return new TaskCategory(this.description);
+    }
 }

@@ -2,13 +2,28 @@ package pt.ipp.isep.dei.esoft.project.tp.one.domain;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class TaskTest {
 
+    @Test void ensureTaskIsCreatedSuccessfully() {
+        Employee employee = new Employee("john.doe@this.company.com");
+        TaskCategory taskCategory = new TaskCategory("Task Category Description");
+        Task task = new Task("reference", "description", "informal description", "technical description", 1, 1d,
+                taskCategory, employee);
+    }
+
+    @Test void ensureTaskReferenceIsNotNull() {
+        Employee employee = new Employee("john.doe@this.company.com");
+        TaskCategory taskCategory = new TaskCategory("Task Category Description");
+
+        assertThrows(IllegalArgumentException.class,
+                () -> new Task(null, "description", "informal description", "technical description", 1, 1d,
+                        taskCategory, employee));
+    }
+
     @Test void testEqualsSameObject() {
-        Employee employee = new Employee("john.doe@this.company.org");
+        Employee employee = new Employee("john.doe@this.company.com");
         TaskCategory taskCategory = new TaskCategory("Task Category Description");
         Task task = new Task("reference", "description", "informal description", "technical description", 1, 1d,
                 taskCategory, employee);
@@ -18,7 +33,7 @@ class TaskTest {
     }
 
     @Test void testEqualsDifferentClass() {
-        Employee employee = new Employee("john.doe@this.company.org");
+        Employee employee = new Employee("john.doe@this.company.com");
         TaskCategory taskCategory = new TaskCategory("Task Category Description");
         Task task = new Task("reference", "description", "informal description", "technical description", 1, 1d,
                 taskCategory, employee);
@@ -27,7 +42,7 @@ class TaskTest {
     }
 
     @Test void testEqualsNull() {
-        Employee employee = new Employee("john.doe@this.company.org");
+        Employee employee = new Employee("john.doe@this.company.com");
         TaskCategory taskCategory = new TaskCategory("Task Category Description");
         Task task = new Task("reference", "description", "informal description", "technical description", 1, 1d,
                 taskCategory, employee);
@@ -36,7 +51,7 @@ class TaskTest {
     }
 
     @Test void testEqualsDifferentObject() {
-        Employee employee = new Employee("john.doe@this.company.org");
+        Employee employee = new Employee("john.doe@this.company.com");
         TaskCategory taskCategory = new TaskCategory("Task Category Description");
         Task task = new Task("reference", "description", "informal description", "technical description", 1, 1d,
                 taskCategory, employee);
@@ -47,7 +62,7 @@ class TaskTest {
     }
 
     @Test void testEqualsSameObjectDifferentDescription() {
-        Employee employee = new Employee("john.doe@this.company.org");
+        Employee employee = new Employee("john.doe@this.company.com");
         TaskCategory taskCategory = new TaskCategory("Task Category Description");
         Task task = new Task("reference", "description", "informal description", "technical description", 1, 1d,
                 taskCategory, employee);
@@ -58,7 +73,7 @@ class TaskTest {
     }
 
     @Test void testEqualsSameObjectSameDescription() {
-        Employee employee = new Employee("john.doe@this.company.org");
+        Employee employee = new Employee("john.doe@this.company.com");
         TaskCategory taskCategory = new TaskCategory("Task Category Description");
         Task task = new Task("reference", "description", "informal description", "technical description", 1, 1d,
                 taskCategory, employee);
@@ -69,7 +84,7 @@ class TaskTest {
     }
 
     @Test void testHashCodeSameObject() {
-        Employee employee = new Employee("john.doe@this.company.org");
+        Employee employee = new Employee("john.doe@this.company.com");
         TaskCategory taskCategory = new TaskCategory("Task Category Description");
         Task task = new Task("reference", "description", "informal description", "technical description", 1, 1d,
                 taskCategory, employee);
@@ -79,7 +94,7 @@ class TaskTest {
     }
 
     @Test void testHashCodeDifferentObject() {
-        Employee employee = new Employee("john.doe@this.company.org");
+        Employee employee = new Employee("john.doe@this.company.com");
         TaskCategory taskCategory = new TaskCategory("Task Category Description");
         Task task = new Task("reference", "description", "informal description", "technical description", 1, 1d,
                 taskCategory, employee);
@@ -91,4 +106,14 @@ class TaskTest {
     }
 
 
+
+    @Test
+    void ensureCloneWorks() {
+        Employee employee = new Employee("john.doe@this.company.org");
+        TaskCategory taskCategory = new TaskCategory("Task Category Description");
+        Task task = new Task("reference", "description", "informal description", "technical description", 1, 1d,
+                taskCategory, employee);
+        Task clone = task.clone();
+        assertEquals(task, clone);
+    }
 }

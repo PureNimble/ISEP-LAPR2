@@ -1,4 +1,150 @@
 package pt.ipp.isep.dei.esoft.project.tp.one.ui;
 
+import pt.ipp.isep.dei.esoft.project.tp.one.application.controller.CreateTaskController;
+import pt.ipp.isep.dei.esoft.project.tp.one.domain.Task;
+import pt.ipp.isep.dei.esoft.project.tp.one.domain.TaskCategory;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.Scanner;
+
 public class CreateTaskUI {
+
+    private final CreateTaskController controller = new CreateTaskController();
+    private String taskReference;
+    private String taskDescription;
+    private String taskInformalDescription;
+    private String taskTechnicalDescription;
+    private Integer taskDuration;
+    private Double taskCost;
+    private String taskCategoryDescription;
+    private String empployeeEmail;
+
+    private CreateTaskController getController() {
+        return controller;
+    }
+
+    public void run() {
+        System.out.println("Create Task");
+
+        taskCategoryDescription = displayAndSelectTaskCategory();
+
+        requestInformation();
+
+        submitInformation();
+    }
+
+    private void submitInformation() {
+        Optional<Task> task = getController().createTask(taskReference, taskDescription, taskInformalDescription,
+                taskTechnicalDescription, taskDuration, taskCost, taskCategoryDescription);
+
+        if (task.isPresent()) {
+            System.out.println("Task successfully created!");
+        } else {
+            System.out.println("Task not created!");
+        }
+    }
+
+    private void requestInformation() {
+
+        //Request the Task Reference from the console
+        taskReference = requestTaskReference();
+
+        //Request the Task Description from the console
+        taskDescription = requestTaskDescription();
+
+        //Request the Task Informal Description from the console
+        taskInformalDescription = requestTaskInformalDescription();
+
+        //Request the Task Technical Description from the console
+        taskTechnicalDescription = requestTaskTechnicalDescription();
+
+        //Request the Task Duration from the console
+        taskDuration = requestTaskDuration();
+
+        //Request the Task Cost from the console
+        taskCost = requestTaskCost();
+
+        //Request the Task Category from the console
+        String taskCategoryDescription = requestTaskCategory();
+
+        //Request the Task Employee from the console
+        String empployeeEmail = requestTaskEmployee();
+
+    }
+
+    private String requestTaskEmployee() {
+        //TODO: this method is hard-code and no authentication is being used
+        return "john.doe@this.company.com";
+    }
+
+    private String requestTaskCategory() {
+        return taskCategoryDescription;
+    }
+
+    private Double requestTaskCost() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Task Cost:");
+        return input.nextDouble();
+
+    }
+
+    private Integer requestTaskDuration() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Task Duration:");
+        return input.nextInt();
+    }
+
+    private String requestTaskTechnicalDescription() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Task Technical Description:");
+        return input.nextLine();
+    }
+
+    private String requestTaskInformalDescription() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Task Informal Description:");
+        return input.nextLine();
+    }
+
+    private String requestTaskDescription() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Task Description:");
+        return input.nextLine();
+    }
+
+    private String requestTaskReference() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Task Reference:");
+        return input.nextLine();
+    }
+
+    private String displayAndSelectTaskCategory() {
+        //Display the list of task categories
+        List<TaskCategory> taskCategories = controller.getTaskCategories();
+
+        int listSize = taskCategories.size();
+        int answer = -1;
+
+        Scanner input = new Scanner(System.in);
+
+        while (answer < 1 || answer > listSize) {
+            displayTaskCategoryOptions(taskCategories);
+            System.out.println("Select a task category:");
+            answer = input.nextInt();
+        }
+
+        String description = taskCategories.get(answer - 1).getDescription();
+        return description;
+
+    }
+
+    private void displayTaskCategoryOptions(List<TaskCategory> taskCategories) {
+        //display the task categories as a menu with number options to select
+        int i = 1;
+        for (TaskCategory taskCategory : taskCategories) {
+            System.out.println(i + " - " + taskCategory.getDescription());
+            i++;
+        }
+    }
 }

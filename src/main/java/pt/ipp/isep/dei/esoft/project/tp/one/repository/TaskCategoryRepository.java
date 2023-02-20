@@ -7,7 +7,7 @@ import java.util.List;
 
 public class TaskCategoryRepository {
 
-    private final List<TaskCategory> taskCategoryList = new ArrayList<>();
+    private final List<TaskCategory> taskCategories = new ArrayList<>();
 
     /**
      * This method returns an exsiting Task Category by its description.
@@ -19,8 +19,8 @@ public class TaskCategoryRepository {
     public TaskCategory getTaskCategoryByDescription(String taskCategoryDescription) {
         TaskCategory newTaskCategory = new TaskCategory(taskCategoryDescription);
         TaskCategory taskCategory = null;
-        if (taskCategoryList.contains(newTaskCategory)) {
-            taskCategory = taskCategoryList.get(taskCategoryList.indexOf(newTaskCategory));
+        if (taskCategories.contains(newTaskCategory)) {
+            taskCategory = taskCategories.get(taskCategories.indexOf(newTaskCategory));
         }
         if (taskCategory == null) {
             throw new IllegalArgumentException(
@@ -30,9 +30,18 @@ public class TaskCategoryRepository {
     }
 
     public void add(TaskCategory taskCategory) {
-        if (taskCategoryList.contains(taskCategory)) {
+        if (taskCategories.contains(taskCategory)) {
             throw new IllegalArgumentException("Task Category [" + taskCategory + " alreday exists.");
         }
-        taskCategoryList.add(taskCategory);
+        taskCategories.add(taskCategory);
+    }
+
+    /**
+     * This method returns a defensive (immutable) copy of the list of task categories.
+     * @return  The list of task categories.
+     */
+    public List<TaskCategory> getTaskCategories() {
+        //This is a defensive copy, so that the repository cannot be modified from the outside.
+        return List.copyOf(taskCategories);
     }
 }

@@ -63,4 +63,31 @@ class TaskCategoryRepositoryTest {
                 () -> taskCategoryRepository.getTaskCategoryByDescription(taskCategoryDescription1));
 
     }
+
+    @Test void ensureGetTaskCategoriesReturnsAnImmutableList() {
+        TaskCategoryRepository taskCategoryRepository = new TaskCategoryRepository();
+        String taskCategoryDescription = "Task Category Description";
+        TaskCategory taskCategory = new TaskCategory(taskCategoryDescription);
+        taskCategoryRepository.add(taskCategory);
+
+        assertThrows(UnsupportedOperationException.class,
+                () -> taskCategoryRepository.getTaskCategories().add(new TaskCategory("Task Category Description 1")));
+
+    }
+
+    @Test void ensureGetTaskCategoriesReturnsTheCorrectList() {
+        //Arrange
+        TaskCategoryRepository taskCategoryRepository = new TaskCategoryRepository();
+        String taskCategoryDescription = "Task Category Description";
+        TaskCategory taskCategory = new TaskCategory(taskCategoryDescription);
+        taskCategoryRepository.add(taskCategory);
+        int expectedSize = 1;
+
+        //Act
+        int size = taskCategoryRepository.getTaskCategories().size();
+
+        //Assert
+        assertEquals(expectedSize, size);
+        assertEquals(taskCategory, taskCategoryRepository.getTaskCategories().get(size - 1));
+    }
 }
