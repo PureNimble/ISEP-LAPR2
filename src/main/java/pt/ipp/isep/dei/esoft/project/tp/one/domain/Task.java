@@ -36,7 +36,8 @@ public class Task {
         }
     }
 
-    @Override public boolean equals(Object o) {
+    @Override
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
@@ -47,13 +48,15 @@ public class Task {
         return reference.equals(task.reference) && employee.equals(task.employee);
     }
 
-    @Override public int hashCode() {
+    @Override
+    public int hashCode() {
         return Objects.hash(reference, employee);
     }
 
 
     /**
      * Clone method.
+     *
      * @return A clone of the current instance.
      */
     public Task clone() {

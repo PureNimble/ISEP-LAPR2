@@ -38,7 +38,8 @@ public class TaskCategoryRepository {
 
     /**
      * This method returns a defensive (immutable) copy of the list of task categories.
-     * @return  The list of task categories.
+     *
+     * @return The list of task categories.
      */
     public List<TaskCategory> getTaskCategories() {
         //This is a defensive copy, so that the repository cannot be modified from the outside.

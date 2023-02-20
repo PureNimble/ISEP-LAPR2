@@ -12,7 +12,8 @@ public class Employee {
         this.email = email;
     }
 
-    @Override public boolean equals(Object o) {
+    @Override
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
@@ -23,7 +24,8 @@ public class Employee {
         return email.equals(employee.email);
     }
 
-    @Override public int hashCode() {
+    @Override
+    public int hashCode() {
         return Objects.hash(email);
     }
 

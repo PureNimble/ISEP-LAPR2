@@ -121,7 +121,8 @@ public class Organization {
         return result;
     }
 
-    @Override public boolean equals(Object o) {
+    @Override
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
@@ -132,7 +133,8 @@ public class Organization {
         return vatNumber.equals(that.vatNumber);
     }
 
-    @Override public int hashCode() {
+    @Override
+    public int hashCode() {
         return Objects.hash(vatNumber);
     }
 

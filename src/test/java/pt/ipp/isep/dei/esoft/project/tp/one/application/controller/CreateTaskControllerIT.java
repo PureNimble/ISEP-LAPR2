@@ -1,8 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.tp.one.application.controller;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
 import pt.ipp.isep.dei.esoft.project.tp.one.domain.Employee;
 import pt.ipp.isep.dei.esoft.project.tp.one.domain.Organization;
 import pt.ipp.isep.dei.esoft.project.tp.one.domain.Task;
@@ -16,8 +14,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
 
 
 /**
