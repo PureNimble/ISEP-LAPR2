@@ -66,15 +66,6 @@ public class CreateTaskUI {
         taskCost = requestTaskCost();
     }
 
-    private String requestTaskEmployee() {
-        //TODO: this method is hard-code and no authentication is being used
-        return "john.doe@this.company.com";
-    }
-
-    private String requestTaskCategory() {
-        return taskCategoryDescription;
-    }
-
     private Double requestTaskCost() {
         Scanner input = new Scanner(System.in);
         System.out.println("Task Cost:");

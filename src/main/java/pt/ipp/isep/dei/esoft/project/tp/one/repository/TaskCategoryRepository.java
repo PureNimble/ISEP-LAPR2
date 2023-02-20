@@ -4,6 +4,7 @@ import pt.ipp.isep.dei.esoft.project.tp.one.domain.TaskCategory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class TaskCategoryRepository {
 
@@ -29,11 +30,26 @@ public class TaskCategoryRepository {
         return taskCategory;
     }
 
-    public void add(TaskCategory taskCategory) {
-        if (taskCategories.contains(taskCategory)) {
-            throw new IllegalArgumentException("Task Category [" + taskCategory + " alreday exists.");
+    public Optional<TaskCategory> add(TaskCategory taskCategory) {
+
+        Optional<TaskCategory> newTaskCategory = Optional.empty();
+        boolean operationSuccess = false;
+
+        if (validateTaskCategory(taskCategory)) {
+            newTaskCategory = Optional.of(taskCategory.clone());
+            operationSuccess = taskCategories.add(newTaskCategory.get());
         }
-        taskCategories.add(taskCategory);
+
+        if (!operationSuccess) {
+            newTaskCategory = Optional.empty();
+        }
+
+        return newTaskCategory;
+    }
+
+    private boolean validateTaskCategory(TaskCategory taskCategory) {
+        boolean isValid = !taskCategories.contains(taskCategory);
+        return isValid;
     }
 
     /**

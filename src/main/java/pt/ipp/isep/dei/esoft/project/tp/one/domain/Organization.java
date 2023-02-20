@@ -90,7 +90,6 @@ public class Organization {
      * @return True if the task is valid.
      */
     private boolean validate(Task task) {
-
         return tasksDoNotContain(task);
     }
 
@@ -111,7 +110,6 @@ public class Organization {
      * @return True if the organization has an employee with the given email.
      */
     public boolean anyEmployeeHasEmail(String email) {
-        //TODO: this method is missing from the diagrams
         boolean result = false;
         for (Employee employee : employees) {
             if (employee.hasEmail(email)) {

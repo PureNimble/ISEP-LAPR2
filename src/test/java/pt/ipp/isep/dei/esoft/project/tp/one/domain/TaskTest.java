@@ -6,23 +6,28 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TaskTest {
 
-    @Test void ensureTaskIsCreatedSuccessfully() {
+    @Test
+    void ensureTaskIsCreatedSuccessfully() {
         Employee employee = new Employee("john.doe@this.company.com");
         TaskCategory taskCategory = new TaskCategory("Task Category Description");
         Task task = new Task("reference", "description", "informal description", "technical description", 1, 1d,
                 taskCategory, employee);
     }
 
-    @Test void ensureTaskReferenceIsNotNull() {
+    @Test
+    void ensureTaskReferenceIsNotNull() {
+        //Arrange
         Employee employee = new Employee("john.doe@this.company.com");
         TaskCategory taskCategory = new TaskCategory("Task Category Description");
 
+        //Act and Assert
         assertThrows(IllegalArgumentException.class,
                 () -> new Task(null, "description", "informal description", "technical description", 1, 1d,
                         taskCategory, employee));
     }
 
-    @Test void testEqualsSameObject() {
+    @Test
+    void testEqualsSameObject() {
         Employee employee = new Employee("john.doe@this.company.com");
         TaskCategory taskCategory = new TaskCategory("Task Category Description");
         Task task = new Task("reference", "description", "informal description", "technical description", 1, 1d,
@@ -32,7 +37,8 @@ class TaskTest {
 
     }
 
-    @Test void testEqualsDifferentClass() {
+    @Test
+    void testEqualsDifferentClass() {
         Employee employee = new Employee("john.doe@this.company.com");
         TaskCategory taskCategory = new TaskCategory("Task Category Description");
         Task task = new Task("reference", "description", "informal description", "technical description", 1, 1d,
@@ -41,7 +47,8 @@ class TaskTest {
         assertNotEquals(task, new Object());
     }
 
-    @Test void testEqualsNull() {
+    @Test
+    void testEqualsNull() {
         Employee employee = new Employee("john.doe@this.company.com");
         TaskCategory taskCategory = new TaskCategory("Task Category Description");
         Task task = new Task("reference", "description", "informal description", "technical description", 1, 1d,
@@ -50,7 +57,8 @@ class TaskTest {
         assertNotEquals(task, null);
     }
 
-    @Test void testEqualsDifferentObject() {
+    @Test
+    void testEqualsDifferentObject() {
         Employee employee = new Employee("john.doe@this.company.com");
         TaskCategory taskCategory = new TaskCategory("Task Category Description");
         Task task = new Task("reference", "description", "informal description", "technical description", 1, 1d,
@@ -61,7 +69,8 @@ class TaskTest {
         assertNotEquals(task, task1);
     }
 
-    @Test void testEqualsSameObjectDifferentDescription() {
+    @Test
+    void testEqualsSameObjectDifferentDescription() {
         Employee employee = new Employee("john.doe@this.company.com");
         TaskCategory taskCategory = new TaskCategory("Task Category Description");
         Task task = new Task("reference", "description", "informal description", "technical description", 1, 1d,
@@ -72,7 +81,8 @@ class TaskTest {
         assertNotEquals(task, task1);
     }
 
-    @Test void testEqualsSameObjectSameDescription() {
+    @Test
+    void testEqualsSameObjectSameDescription() {
         Employee employee = new Employee("john.doe@this.company.com");
         TaskCategory taskCategory = new TaskCategory("Task Category Description");
         Task task = new Task("reference", "description", "informal description", "technical description", 1, 1d,
@@ -83,7 +93,8 @@ class TaskTest {
         assertEquals(task, task1);
     }
 
-    @Test void testHashCodeSameObject() {
+    @Test
+    void testHashCodeSameObject() {
         Employee employee = new Employee("john.doe@this.company.com");
         TaskCategory taskCategory = new TaskCategory("Task Category Description");
         Task task = new Task("reference", "description", "informal description", "technical description", 1, 1d,
@@ -93,7 +104,8 @@ class TaskTest {
 
     }
 
-    @Test void testHashCodeDifferentObject() {
+    @Test
+    void testHashCodeDifferentObject() {
         Employee employee = new Employee("john.doe@this.company.com");
         TaskCategory taskCategory = new TaskCategory("Task Category Description");
         Task task = new Task("reference", "description", "informal description", "technical description", 1, 1d,
@@ -104,7 +116,6 @@ class TaskTest {
         assertNotEquals(task.hashCode(), task1.hashCode());
 
     }
-
 
 
     @Test

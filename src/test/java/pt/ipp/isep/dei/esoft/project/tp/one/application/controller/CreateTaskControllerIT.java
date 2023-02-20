@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -97,7 +97,8 @@ class CreateTaskControllerIT {
         OrganizationRepository organizationRepository = repositories.getOrganizationRepository();
 
         //Fill Task Category Repository
-        taskCategoryRepository.add(new TaskCategory("Task Category Description"));
+        TaskCategory taskCategory = new TaskCategory("Task Category Description");
+        taskCategoryRepository.add(taskCategory);
 
         //Fill Organization Repository
         Organization organization = new Organization("123456789");
@@ -105,14 +106,54 @@ class CreateTaskControllerIT {
         organization.addEmployee(employee);
         organizationRepository.add(organization);
 
+        Task expected = new Task("reference", "description", "informal description", "tecnical " + "description", 1, 1d,
+                taskCategory, employee);
 
         CreateTaskController controller = new CreateTaskController();
 
         //Act
         Optional<Task> newTask =
                 controller.createTask("reference", "description", "informal description", "tecnical " + "description",
-                        1, 1d, "Task" + " Category Description");
+                        1, 1d, "Task Category Description");
+
+        //Assert
+        assertEquals(expected, newTask.get());
+
     }
 
     //TODO: test the controller createTask using mockito to mock the repositories.
+
+    @Test
+    void ensureCreateTaskForNonExistingOrganizationFails() {
+        //Arrange
+        //Get Repositories
+        Repositories repositories = Repositories.getInstance();
+        TaskCategoryRepository taskCategoryRepository = new TaskCategoryRepository();
+        OrganizationRepository organizationRepository = new OrganizationRepository();
+
+        //Fill Task Category Repository
+        TaskCategory taskCategoryOne = new TaskCategory("Task Category Description");
+        taskCategoryRepository.add(taskCategoryOne);
+
+        TaskCategory taskCategoryTwo = new TaskCategory("Task Category Description Two");
+        taskCategoryRepository.add(taskCategoryTwo);
+
+        ArrayList<TaskCategory> expected = new ArrayList<TaskCategory>();
+        expected.add(taskCategoryOne);
+        expected.add(taskCategoryTwo);
+
+        //Fill Organization Repository
+        Organization organization = new Organization("123456789");
+        Employee employee = new Employee("jane.doe@this.company.com");
+        organization.addEmployee(employee);
+        organizationRepository.add(organization);
+        CreateTaskController controller = new CreateTaskController(organizationRepository, taskCategoryRepository);
+
+        //Act
+        Optional<Task> result =
+                controller.createTask("reference", "description", "informal description", "tecnical " + "description",
+                        1, 1d, "Task Category Description");
+
+        assertTrue(result.isEmpty());
+    }
 }

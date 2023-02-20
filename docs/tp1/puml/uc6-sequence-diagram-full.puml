@@ -16,7 +16,7 @@ participant ":ApplicationSession" as _APP
 participant "appSession\n:ApplicationSession" as APP
 participant "currentSession\n:UserSession" as SESSAO
 participant "organizationRepository:\nOrganizationRepository" as OrganizationRepository
-participant "org\n:Organization" as ORG
+participant "organization\n:Organization" as ORG
 participant "task\n:Task" as TAREFA
 
 activate ADM
@@ -127,9 +127,16 @@ activate ADM
                 deactivate PLAT
 
 
-                CTRL -> OrganizationRepository: getOrganizationByUserEmail(email)
+                CTRL -> OrganizationRepository: getOrganizationByEmployeeEmail(email)
                 activate OrganizationRepository
 
+                    loop [for each organization
+                        OrganizationRepository -> ORG : anyEmployeeHasEmail(email)
+                        activate ORG
+
+                             ORG --> OrganizationRepository : true/false
+                        deactivate ORG
+                    end
                     OrganizationRepository --> CTRL : organization
                 deactivate OrganizationRepository
 
@@ -143,10 +150,10 @@ activate ADM
             deactivate CTRL
 
             |||
-            CTRL -> ORG: createTask(employee, reference, designation,\ninformalDescription, technicalDescription,\nduration, cost, employee, taskCategory)
+            CTRL -> ORG: createTask(employee, reference, designation,\ninformalDescription, technicalDescription,\nduration, cost, , taskCategory, employee)
             activate ORG
 
-                ORG -> TAREFA**: create(employee, reference, designation,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory)
+                ORG -> TAREFA**: create(employee, reference, designation,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee)
                 ORG -> ORG: addTask (task)
 
 

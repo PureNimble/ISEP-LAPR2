@@ -47,7 +47,16 @@ activate CTRL
         CTRL -> OrganizationRepository: getOrganizationByUserEmail(email)
         activate OrganizationRepository
 
+            loop [for each organization
+                OrganizationRepository -> ORG : anyEmployeeHasEmail(email)
+                activate ORG
+
+                     ORG --> OrganizationRepository : true/false
+                deactivate ORG
+            end
+
             OrganizationRepository --> CTRL : organization
+
         deactivate OrganizationRepository
 
         CTRL -> ORG: getEmployeeByEmail(email)

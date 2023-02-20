@@ -65,9 +65,7 @@ public class CreateTaskController {
             newTask = organization.get()
                     .createTask(reference, description, informalDescription, technicalDescription, duration, cost,
                             taskCategory, employee);
-
         }
-
         return newTask;
     }
 

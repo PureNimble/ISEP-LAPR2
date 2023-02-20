@@ -75,7 +75,7 @@ activate ADM
             deactivate CTRL
 
             |||
-            CTRL -> ORG: createTask(reference, designation, informalDescription,\ntechnicalDescription, duration, cost, employee, taskCategory)
+            CTRL -> ORG: createTask(reference, designation, informalDescription,\ntechnicalDescription, duration, cost, taskCategory, employee)
             activate ORG
 
                 ref over ORG

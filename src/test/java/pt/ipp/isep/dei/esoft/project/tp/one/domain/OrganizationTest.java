@@ -8,34 +8,40 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class OrganizationTest {
 
-    @Test void testEqualsSameObject() {
+    @Test
+    void testEqualsSameObject() {
         Organization organization = new Organization("123456789");
         assertEquals(organization, organization);
     }
 
-    @Test void testEqualsDifferentClass() {
+    @Test
+    void testEqualsDifferentClass() {
         Organization organization = new Organization("123456789");
         assertNotEquals("", organization);
     }
 
-    @Test void testEqualsNull() {
+    @Test
+    void testEqualsNull() {
         Organization organization = new Organization("123456789");
         assertNotEquals(null, organization);
     }
 
-    @Test void testEqualsDifferentObject() {
+    @Test
+    void testEqualsDifferentObject() {
         Organization organization = new Organization("123456789");
         Organization organization1 = new Organization("123456789");
         assertEquals(organization, organization1);
     }
 
 
-    @Test void testHashCodeSameObject() {
+    @Test
+    void testHashCodeSameObject() {
         Organization organization = new Organization("123456789");
         assertEquals(organization.hashCode(), organization.hashCode());
     }
 
-    @Test void testHashCodeDifferentObject() {
+    @Test
+    void testHashCodeDifferentObject() {
         Organization organization = new Organization("123456789");
         Organization organization1 = new Organization("123456789");
         assertEquals(organization.hashCode(), organization1.hashCode());
@@ -49,29 +55,34 @@ class OrganizationTest {
         assertEquals(organization.hashCode(), organization1.hashCode());
     }
 
-    @Test void ensureHashCodeFailsForDifferentVatNumbers() {
+    @Test
+    void ensureHashCodeFailsForDifferentVatNumbers() {
         Organization organization = new Organization("123456789");
         Organization organization1 = new Organization("123456788");
         assertNotEquals(organization.hashCode(), organization1.hashCode());
     }
 
-    @Test void ensureEqualsFailsForDifferentObjectType() {
+    @Test
+    void ensureEqualsFailsForDifferentObjectType() {
         Organization organization = new Organization("123456789");
         Organization organization1 = new Organization("123456788");
         assertNotEquals(organization, organization1);
     }
 
-    @Test void ensureEqualsFailsWhenComparingNull() {
+    @Test
+    void ensureEqualsFailsWhenComparingNull() {
         Organization organization = new Organization("123456789");
         assertNotEquals(organization, null);
     }
 
-    @Test void ensureEqualsSuccessWhenComparingSameObject() {
+    @Test
+    void ensureEqualsSuccessWhenComparingSameObject() {
         Organization organization = new Organization("123456789");
         assertEquals(organization, organization);
     }
 
-    @Test void testThatCreateTaskWorks() {
+    @Test
+    void testThatCreateTaskWorks() {
         Organization organization = new Organization("123456789");
 
         Employee employee = new Employee("john.doe@this.company.com");
@@ -89,7 +100,8 @@ class OrganizationTest {
         assertEquals(expected, task.get());
     }
 
-    @Test void ensureAddingDuplicateTaskFails() {
+    @Test
+    void ensureAddingDuplicateTaskFails() {
         //Arrange
         Organization organization = new Organization("123456789");
         Employee employee = new Employee("john.doe@this.company.com");
@@ -109,7 +121,8 @@ class OrganizationTest {
     }
 
 
-    @Test void ensureEmploysFails() {
+    @Test
+    void ensureEmploysFails() {
         Organization organization = new Organization("123456789");
         Employee employee = new Employee("john.doe@this.company.com");
 
@@ -117,14 +130,16 @@ class OrganizationTest {
 
     }
 
-    @Test void ensureEmploysSuccess() {
+    @Test
+    void ensureEmploysSuccess() {
         Organization organization = new Organization("123456789");
         Employee employee = new Employee("john.doe@this.company.com");
         organization.addEmployee(employee);
         assertTrue(organization.employs(employee));
     }
 
-    @Test void ensureAnyEmployeeHasEmailFails() {
+    @Test
+    void ensureAnyEmployeeHasEmailFails() {
         Organization organization = new Organization("123456789");
         Employee employee = new Employee("john.doe@this.company.com");
         organization.addEmployee(employee);
@@ -133,33 +148,36 @@ class OrganizationTest {
 
     }
 
-    @Test void ensureAnyEmployeeHasEmailWorks() {
+    @Test
+    void ensureAnyEmployeeHasEmailWorks() {
         Organization organization = new Organization("123456789");
         Employee employee = new Employee("john.doe@this.company.com");
         organization.addEmployee(employee);
         assertTrue(organization.anyEmployeeHasEmail("john.doe@this.company.com"));
     }
 
-    @Test void ensureAddDuplicateEmployeeFails() {
+    @Test
+    void ensureAddDuplicateEmployeeFails() {
         Organization organization = new Organization("123456789");
         Employee employee = new Employee("john.doe@this.company.com");
         assertTrue(organization.addEmployee(employee));
         assertFalse(organization.addEmployee(employee));
     }
 
-    @Test void ensureAddEmployeeWorks() {
+    @Test
+    void ensureAddEmployeeWorks() {
         Organization organization = new Organization("123456789");
         Employee employee = new Employee("john.doe@this.company.com");
         assertTrue(organization.addEmployee(employee));
     }
 
     @Test
-    void ensureCloneWorks(){
+    void ensureCloneWorks() {
         Organization organization = new Organization("123456789");
         Employee employee = new Employee("john.doe@this.company.com");
         organization.addEmployee(employee);
         organization.createTask("Task Description", "Task Category Description", "informal description",
-                "technical description", 1, 1d, new TaskCategory("Task Category Description"), employee );
+                "technical description", 1, 1d, new TaskCategory("Task Category Description"), employee);
 
         Organization clone = organization.clone();
         assertEquals(organization, clone);

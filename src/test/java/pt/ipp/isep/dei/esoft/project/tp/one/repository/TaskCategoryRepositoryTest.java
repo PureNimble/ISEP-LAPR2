@@ -1,50 +1,43 @@
 package pt.ipp.isep.dei.esoft.project.tp.one.repository;
 
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.esoft.project.tp.one.domain.Employee;
+import pt.ipp.isep.dei.esoft.project.tp.one.domain.Organization;
+import pt.ipp.isep.dei.esoft.project.tp.one.domain.Task;
 import pt.ipp.isep.dei.esoft.project.tp.one.domain.TaskCategory;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class TaskCategoryRepositoryTest {
 
-    @Test void getTaskCategoryByDescription() {
-    }
-
-    //Test Task Category Repository for empty list
-    @Test void getTaskCategoryByDescriptionEmptyList() {
+    @Test
+    void getTaskCategoryByDescriptionEmptyList() {
         TaskCategoryRepository taskCategoryRepository = new TaskCategoryRepository();
         String taskCategoryDescription = "Task Category Description";
         assertThrows(IllegalArgumentException.class,
                 () -> taskCategoryRepository.getTaskCategoryByDescription(taskCategoryDescription));
     }
 
-    //test Task Category Repository for null list
-    @Test void getTaskCategoryByDescriptionNullList() {
+    @Test
+    void getTaskCategoryByDescriptionNullList() {
         TaskCategoryRepository taskCategoryRepository = new TaskCategoryRepository();
         String taskCategoryDescription = "Task Category Description";
         assertThrows(IllegalArgumentException.class,
                 () -> taskCategoryRepository.getTaskCategoryByDescription(taskCategoryDescription));
     }
 
-    //test Task Category Repository for adding existing Task Category
-    @Test void ensureTaskCategoryDoesNotAcceptDuplicates() {
-        TaskCategoryRepository taskCategoryRepository = new TaskCategoryRepository();
-        String taskCategoryDescription = "Task Category Description";
-        TaskCategory taskCategory = new TaskCategory(taskCategoryDescription);
-        taskCategoryRepository.add(taskCategory);
-
-        assertThrows(IllegalArgumentException.class, () -> taskCategoryRepository.add(taskCategory));
-    }
-
-    @Test void ensureNewTaskCategorySuccessfullyAdded() {
+    @Test
+    void ensureNewTaskCategorySuccessfullyAdded() {
         TaskCategoryRepository taskCategoryRepository = new TaskCategoryRepository();
         String taskCategoryDescription = "Task Category Description";
         TaskCategory taskCategory = new TaskCategory(taskCategoryDescription);
         taskCategoryRepository.add(taskCategory);
     }
 
-    @Test void ensureGetTaskCategoryForExistingTaskCategory() {
+    @Test
+    void ensureGetTaskCategoryForExistingTaskCategory() {
         TaskCategoryRepository taskCategoryRepository = new TaskCategoryRepository();
         String taskCategoryDescription = "Task Category Description";
         TaskCategory taskCategory = new TaskCategory(taskCategoryDescription);
@@ -53,7 +46,8 @@ class TaskCategoryRepositoryTest {
         assertEquals(taskCategory, taskCategory1);
     }
 
-    @Test void ensureGetTaskCategoryFailsForNonExistingTaskCategory() {
+    @Test
+    void ensureGetTaskCategoryFailsForNonExistingTaskCategory() {
         TaskCategoryRepository taskCategoryRepository = new TaskCategoryRepository();
         String taskCategoryDescription = "Task Category Description";
         TaskCategory taskCategory = new TaskCategory(taskCategoryDescription);
@@ -64,7 +58,8 @@ class TaskCategoryRepositoryTest {
 
     }
 
-    @Test void ensureGetTaskCategoriesReturnsAnImmutableList() {
+    @Test
+    void ensureGetTaskCategoriesReturnsAnImmutableList() {
         TaskCategoryRepository taskCategoryRepository = new TaskCategoryRepository();
         String taskCategoryDescription = "Task Category Description";
         TaskCategory taskCategory = new TaskCategory(taskCategoryDescription);
@@ -75,7 +70,8 @@ class TaskCategoryRepositoryTest {
 
     }
 
-    @Test void ensureGetTaskCategoriesReturnsTheCorrectList() {
+    @Test
+    void ensureGetTaskCategoriesReturnsTheCorrectList() {
         //Arrange
         TaskCategoryRepository taskCategoryRepository = new TaskCategoryRepository();
         String taskCategoryDescription = "Task Category Description";
@@ -89,5 +85,36 @@ class TaskCategoryRepositoryTest {
         //Assert
         assertEquals(expectedSize, size);
         assertEquals(taskCategory, taskCategoryRepository.getTaskCategories().get(size - 1));
+    }
+
+    @Test
+    void ensureAddingDuplicateTaskCategoryFails() {
+        //Arrange
+        TaskCategoryRepository taskCategoryRepository = new TaskCategoryRepository();
+        TaskCategory taskCategory = new TaskCategory("Task Category Description");
+        //Add the first task
+        taskCategoryRepository.add(taskCategory);
+
+        //Act
+        Optional<TaskCategory> duplicateTaskCategory = taskCategoryRepository.add(taskCategory);
+
+        //Assert
+        assertTrue(duplicateTaskCategory.isEmpty());
+    }
+
+    @Test
+    void ensureAddingDifferentTaskCategoriesWorks() {
+        //Arrange
+        TaskCategoryRepository taskCategoryRepository = new TaskCategoryRepository();
+        TaskCategory taskCategoryOne = new TaskCategory("Task Category Description One");
+        TaskCategory taskCategoryTwo = new TaskCategory("Task Category Description Two");
+        //Add the first task
+        taskCategoryRepository.add(taskCategoryOne);
+
+        //Act
+        Optional<TaskCategory> result = taskCategoryRepository.add(taskCategoryTwo);
+
+        //Assert
+        assertEquals(taskCategoryTwo, result.get());
     }
 }

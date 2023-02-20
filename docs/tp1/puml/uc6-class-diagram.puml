@@ -53,9 +53,11 @@ class Organization {
 
     - addTask(task)
     - validateTask(task)
+    + anyEmployeeHasEmail(email)
     + Organization(name, vatNumber, webSite, phone, email, postalAddress, manager)
     + createTask(reference, designation, informalDesccription,\ntechnicalDescription, duration, cost, taskCategoryDescription)
     - getEmployeeByEmail(email)
+
 '  +saveTask(task)
 }
 
@@ -64,7 +66,7 @@ class TaskCategoryRepository {
 }
 
 class OrganizationRepository {
-    + getOrganizationByUserEmail(email)
+    + getOrganizationByEmployeeEmail(email)
 }
 
 class Repositories {
