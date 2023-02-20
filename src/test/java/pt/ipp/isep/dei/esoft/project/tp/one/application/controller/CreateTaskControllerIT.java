@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.esoft.project.tp.one.application.controller;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 import pt.ipp.isep.dei.esoft.project.tp.one.domain.Employee;
 import pt.ipp.isep.dei.esoft.project.tp.one.domain.Organization;
 import pt.ipp.isep.dei.esoft.project.tp.one.domain.Task;
@@ -14,8 +16,17 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
 
-class CreateTaskControllerTest {
+
+/**
+ * The Create Task Controller Integration Tests.
+ * <p>
+ * The class CreateTaskController does not perform anything by itself and relies on other classes to work. Therefore,
+ * all these tests are integration tests and not unit tests. That is why this class is named IT from Integration Tests.
+ */
+class CreateTaskControllerIT {
 
     @Test
     void ensureCreateTaskWorks() {
@@ -77,9 +88,12 @@ class CreateTaskControllerTest {
         assertArrayEquals(expected.toArray(), taskCategories.toArray());
     }
 
+    /**
+     * This test ensures that the CreateTaskController works with the singleton Repositories class.
+     * This type of tests should be avoided because they share the Repositories state with other tests.
+     */
     @Test
     void ensureCreateTaskWorksWithSingleton() {
-
         //Arrange
         //Get Repositories
         Repositories repositories = Repositories.getInstance();
@@ -104,4 +118,5 @@ class CreateTaskControllerTest {
                         1, 1d, "Task" + " Category Description");
     }
 
+    //TODO: test the controller createTask using mockito to mock the repositories.
 }
