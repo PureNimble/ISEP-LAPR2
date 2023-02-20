@@ -1,5 +1,25 @@
 # ESOFT TP Classes Support
 
+# How to generate the svg files
+
+On project root folder, run the following script:
+
+```shell
+$ bin/generate-plantuml-diagrams.sh
+````
+
+# How to generate publich contents to public repository
+
+Assuming that the public repository is at the same folder as this one.
+
+On project root folder, run the following script:
+
+```shell
+$ bin/publish-to-public-version.sh
+````
+
+# How the project is organised
+
 This project has the design and code contents for ESOFT's TP classes.
 
 This project used Java and Maven.

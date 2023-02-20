@@ -21,11 +21,11 @@ exportFormat="svg"
 #	java -jar ../libs/plantuml-1.2023.1.jar -t$exportFormat $plantuml_file -o "../svg"
 #done
 
-for folder in `find ../docs -name "puml" -type d`;
+for folder in `find docs -name "puml" -type d`;
 do
   #-Smonochrome=$monochrome
   echo "Processing folder: $folder"
-	java -jar ../libs/plantuml-1.2023.1.jar -t$exportFormat $folder -o "../svg"
+	java -jar libs/plantuml-1.2023.1.jar -t$exportFormat $folder -o "../svg"
 done
 
 echo "Finished"
