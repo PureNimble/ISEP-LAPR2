@@ -3,6 +3,7 @@
 echo "LOG: Generate Plantuml Diagrams"
 exportFormat="svg"
 #monochrome="true"
+extra="-SdefaultFontSize=20"
 #extra="-SdefaultFontName=Times New Roman -SdefaultFontSize=10"
 
 #processing single files
@@ -25,7 +26,7 @@ for folder in `find docs -name "puml" -type d`;
 do
   #-Smonochrome=$monochrome
   echo "Processing folder: $folder"
-	java -jar libs/plantuml-1.2023.1.jar -t$exportFormat $folder -o "../svg"
+	java -jar libs/plantuml-1.2023.1.jar $extra -t$exportFormat $folder -o "../svg"
 done
 
 echo "Finished"
