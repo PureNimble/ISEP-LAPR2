@@ -25,7 +25,7 @@ activate ADM
 
         activate UI
 
-'            UI --> ADM : requests data (reference, designation,  informal \n description, technical description, duration, cost)
+'            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
             'create CTRL
             UI -> CTRL** : create
 
@@ -62,7 +62,7 @@ activate ADM
         UI --> ADM : requests data
     deactivate UI
 
-    ADM -> UI : types requested data (reference, designation, \ninformal description, technical description,\nduration, cost)
+    ADM -> UI : types requested data (reference, description, \ninformal description, technical description,\nduration, cost)
     activate UI
 
         UI --> ADM : shows selected category and requested data
@@ -71,7 +71,7 @@ activate ADM
     ADM -> UI : submits data
     activate UI
 
-        UI -> CTRL : createTask(reference,\ndesignation,\ninformalDescription,\ntechnicalDescription,\nduration, cost,\ntaskCategoryDescription)
+        UI -> CTRL : createTask(reference,\ndescription,\ninformalDescription,\ntechnicalDescription,\nduration, cost,\ntaskCategoryDescription)
         activate CTRL
 
             CTRL -> CTRL : getTaskCategoryByDescription(taskCategoryDescription)
@@ -150,10 +150,10 @@ activate ADM
             deactivate CTRL
 
             |||
-            CTRL -> ORG: createTask(employee, reference, designation,\ninformalDescription, technicalDescription,\nduration, cost, , taskCategory, employee)
+            CTRL -> ORG: createTask(employee, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, , taskCategory, employee)
             activate ORG
 
-                ORG -> TAREFA**: create(employee, reference, designation,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee)
+                ORG -> TAREFA**: create(employee, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee)
                 ORG -> ORG: addTask (task)
 
 

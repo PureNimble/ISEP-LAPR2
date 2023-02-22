@@ -29,13 +29,13 @@ class Employee {
 
 class Task {
     - String reference
-    - String designation
+    - String description
     - String informalDescription
     - String technicalDescription
     - Integer duration
     - Double cost
 
-    + Task(reference, designation,\ninformalDescription, technicalDescription,\nduration, cost, createdBy, taskCategory)
+    + Task(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, createdBy, taskCategory)
 }
 
 class TaskCategory {
@@ -55,7 +55,7 @@ class Organization {
     - validateTask(task)
     + anyEmployeeHasEmail(email)
     + Organization(name, vatNumber, webSite, phone, email, postalAddress, manager)
-    + createTask(reference, designation, informalDesccription,\ntechnicalDescription, duration, cost, taskCategoryDescription)
+    + createTask(reference, description, informalDesccription,\ntechnicalDescription, duration, cost, taskCategoryDescription)
     - getEmployeeByEmail(email)
 
 '  +saveTask(task)
@@ -79,7 +79,7 @@ class Repositories {
 class CreateTaskController {
     + CreateTaskController(organizationRepository, taskCategoryRepository)
     + getTaskCategories()
-    + createTask(userEmail, reference, designation,\ninformalDescription, technicalDescription,\nduration, cost, categoryDescription)
+    + createTask(userEmail, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, categoryDescription)
     - getTaskCategoryByDescription(taskCategoryDescription)
     - getEmployeeFromSession()
 }

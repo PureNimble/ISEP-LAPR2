@@ -3,7 +3,6 @@ package pt.ipp.isep.dei.esoft.project.tp.one.domain;
 import java.util.Objects;
 
 public class Task {
-    //TODO: refactor on diagrams from designation to description
     private final String reference;
     private final String description;
     private final String informalDescription;

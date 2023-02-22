@@ -12,44 +12,42 @@ participant ":CreateTaskController" as CTRL
 participant "organization\n:Organization" as ORG
 
 activate ADM
-        ADM -> UI : asks to create a new task
 
-        activate UI
+    ADM -> UI : asks to create a new task
 
-            UI -> CTRL** : create
-            UI -> CTRL : getTaskCategories()
-            ref over CTRL
-                Get Task Category List
+    activate UI
 
-            end ref
+        UI -> CTRL** : create
+        UI -> CTRL : getTaskCategories()
+        ref over CTRL
+            Get Task Category List
 
-            activate CTRL
+        end ref
 
-                CTRL --> UI : taskCategoryList
-            deactivate CTRL
+        activate CTRL
 
-            UI --> ADM : shows task category list and asks to sleect one
-        deactivate UI
+            CTRL --> UI : taskCategoryList
+        deactivate CTRL
 
-      |||
+        UI --> ADM : shows task category list and asks to sleect one
+    deactivate UI
+
     ADM -> UI : selects a task category
     activate UI
 
         UI --> ADM : requests data
     deactivate UI
 
-    |||
-    ADM -> UI : types requested data (reference, designation,  informal description, technical description, duration, cost)
+    ADM -> UI : types requested data (reference, description,\ninformal description, technical description,\nduration, cost)
     activate UI
 
         UI --> ADM : shows selected category and requested data
     deactivate UI
 
-    |||
     ADM -> UI : submits data
     activate UI
 
-        UI -> CTRL : createTask(reference, designation, informalDescription,\ntechnicalDescription,duration, cost, taskCategoryDescription)
+        UI -> CTRL : createTask(reference, description, informalDescription,\ntechnicalDescription,duration, cost, taskCategoryDescription)
         activate CTRL
 
             CTRL -> CTRL : getTaskCategoryByDescription(taskCategoryDescription)
@@ -63,7 +61,6 @@ activate ADM
                 CTRL --> CTRL : taskCategory
             deactivate CTRL
 
-            |||
             CTRL -> CTRL : getEmployeeFromSession()
             activate CTRL
 
@@ -74,8 +71,7 @@ activate ADM
                 CTRL -> CTRL : employee
             deactivate CTRL
 
-            |||
-            CTRL -> ORG: createTask(reference, designation, informalDescription,\ntechnicalDescription, duration, cost, taskCategory, employee)
+            CTRL -> ORG: createTask(reference, description, informalDescription,\ntechnicalDescription, duration, cost, taskCategory, employee)
             activate ORG
 
                 ref over ORG

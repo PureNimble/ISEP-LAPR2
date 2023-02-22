@@ -11,7 +11,7 @@ hide methods
 'title Domain Model
 
 'class Platform {
-'  -designation
+'  -description
 '}
 
 class Organization {
@@ -24,7 +24,7 @@ class Organization {
 
 class Task {
     reference
-    designation
+    description
     informalDesc
     technicalDesc
     duration

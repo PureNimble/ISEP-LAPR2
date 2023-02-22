@@ -16,7 +16,7 @@ activate Employee
     activate System
 
         System --> Employee : shows task category list and asks to select one
-        'System --> Employee : shows task categories list\n and requests data (reference,\ndesignation,\ninformation description,\ntechnical description,\nduration, cost)
+        'System --> Employee : shows task categories list\n and requests data (reference,\ndescription,\ninformation description,\ntechnical description,\nduration, cost)
     deactivate System
 
     Employee -> System : selects a task category
@@ -25,7 +25,7 @@ activate Employee
         System --> Employee : requests data
     deactivate System
 
-    Employee -> System : types requested data (reference, designation, \ninformal description, technical description,\nduration, cost)
+    Employee -> System : types requested data (reference, description, \ninformal description, technical description,\nduration, cost)
     activate System
 
         System --> Employee : shows selected category and requested data
