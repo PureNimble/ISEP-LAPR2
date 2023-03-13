@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * @author Paulo Maio <pam@isep.ipp.pt>
+ * @author Paulo Maio pam@isep.ipp.pt
  */
 
 public class AuthenticationUI implements Runnable {

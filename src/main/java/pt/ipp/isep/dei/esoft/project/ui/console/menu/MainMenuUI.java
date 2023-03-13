@@ -9,7 +9,7 @@ import java.util.List;
 
 
 /**
- * @author Paulo Maio <pam@isep.ipp.pt>
+ * @author Paulo Maio pam@isep.ipp.pt
  */
 public class MainMenuUI implements Runnable {
 

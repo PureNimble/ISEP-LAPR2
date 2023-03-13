@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * @author Paulo Maio <pam@isep.ipp.pt>
+ * @author Paulo Maio pam@isep.ipp.pt
  */
 public class Utils {
 

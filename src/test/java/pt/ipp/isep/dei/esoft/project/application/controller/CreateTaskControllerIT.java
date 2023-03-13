@@ -91,6 +91,8 @@ class CreateTaskControllerIT {
         authenticationRepository.addUserWithRole("Main Administrator", "john.doe@this.company.com", "admin",
                 AuthenticationController.ROLE_ADMIN);
 
+        authenticationRepository.doLogin("john.doe@this.company.com", "admin");
+
         CreateTaskController controller =
                 new CreateTaskController(organizationRepository, taskCategoryRepository, authenticationRepository);
 
@@ -131,6 +133,7 @@ class CreateTaskControllerIT {
         authenticationRepository.addUserWithRole("Main Administrator", "john.doe@this.company.com", "admin",
                 AuthenticationController.ROLE_ADMIN);
 
+        authenticationRepository.doLogin("john.doe@this.company.com", "admin");
 
         CreateTaskController controller = new CreateTaskController();
 
@@ -177,6 +180,7 @@ class CreateTaskControllerIT {
         authenticationRepository.addUserWithRole("Main Administrator", "john.doe@this.company.com", "admin",
                 AuthenticationController.ROLE_ADMIN);
 
+        authenticationRepository.doLogin("john.doe@this.company.com", "admin");
 
         CreateTaskController controller =
                 new CreateTaskController(organizationRepository, taskCategoryRepository, authenticationRepository);
