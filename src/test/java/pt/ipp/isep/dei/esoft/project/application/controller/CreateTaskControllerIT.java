@@ -1,10 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.Employee;
 import pt.ipp.isep.dei.esoft.project.domain.Organization;
 import pt.ipp.isep.dei.esoft.project.domain.Task;
 import pt.ipp.isep.dei.esoft.project.domain.TaskCategory;
+import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
 import pt.ipp.isep.dei.esoft.project.repository.OrganizationRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.TaskCategoryRepository;
@@ -32,6 +34,7 @@ class CreateTaskControllerIT {
         Repositories repositories = Repositories.getInstance();
         TaskCategoryRepository taskCategoryRepository = new TaskCategoryRepository();
         OrganizationRepository organizationRepository = new OrganizationRepository();
+        AuthenticationRepository authenticationRepository = new AuthenticationRepository();
 
         //Fill Task Category Repository
         taskCategoryRepository.add(new TaskCategory("Task Category Description"));
@@ -42,8 +45,14 @@ class CreateTaskControllerIT {
         organization.addEmployee(employee);
         organizationRepository.add(organization);
 
+        //Add authentication for user john.doe@this.company.com
+        authenticationRepository.addUserRole(AuthenticationController.ROLE_ADMIN, AuthenticationController.ROLE_ADMIN);
+        authenticationRepository.addUserWithRole("Main Administrator", "john.doe@this.company.com", "admin",
+                AuthenticationController.ROLE_ADMIN);
 
-        CreateTaskController controller = new CreateTaskController(organizationRepository, taskCategoryRepository);
+
+        CreateTaskController controller =
+                new CreateTaskController(organizationRepository, taskCategoryRepository, authenticationRepository);
 
         //Act
         Optional<Task> newTask =
@@ -58,6 +67,7 @@ class CreateTaskControllerIT {
         Repositories repositories = Repositories.getInstance();
         TaskCategoryRepository taskCategoryRepository = new TaskCategoryRepository();
         OrganizationRepository organizationRepository = new OrganizationRepository();
+        AuthenticationRepository authenticationRepository = new AuthenticationRepository();
 
         //Fill Task Category Repository
         TaskCategory taskCategoryOne = new TaskCategory("Task Category Description One");
@@ -76,7 +86,13 @@ class CreateTaskControllerIT {
         organization.addEmployee(employee);
         organizationRepository.add(organization);
 
-        CreateTaskController controller = new CreateTaskController(organizationRepository, taskCategoryRepository);
+        //Add authentication for user john.doe@this.company.com
+        authenticationRepository.addUserRole(AuthenticationController.ROLE_ADMIN, AuthenticationController.ROLE_ADMIN);
+        authenticationRepository.addUserWithRole("Main Administrator", "john.doe@this.company.com", "admin",
+                AuthenticationController.ROLE_ADMIN);
+
+        CreateTaskController controller =
+                new CreateTaskController(organizationRepository, taskCategoryRepository, authenticationRepository);
 
         //Act
         List<TaskCategory> taskCategories = controller.getTaskCategories();
@@ -95,6 +111,7 @@ class CreateTaskControllerIT {
         Repositories repositories = Repositories.getInstance();
         TaskCategoryRepository taskCategoryRepository = repositories.getTaskCategoryRepository();
         OrganizationRepository organizationRepository = repositories.getOrganizationRepository();
+        AuthenticationRepository authenticationRepository = repositories.getAuthenticationRepository();
 
         //Fill Task Category Repository
         TaskCategory taskCategory = new TaskCategory("Task Category Description");
@@ -108,6 +125,12 @@ class CreateTaskControllerIT {
 
         Task expected = new Task("reference", "description", "informal description", "tecnical " + "description", 1, 1d,
                 taskCategory, employee);
+
+        //Add authentication for user john.doe@this.company.com
+        authenticationRepository.addUserRole(AuthenticationController.ROLE_ADMIN, AuthenticationController.ROLE_ADMIN);
+        authenticationRepository.addUserWithRole("Main Administrator", "john.doe@this.company.com", "admin",
+                AuthenticationController.ROLE_ADMIN);
+
 
         CreateTaskController controller = new CreateTaskController();
 
@@ -130,6 +153,7 @@ class CreateTaskControllerIT {
         Repositories repositories = Repositories.getInstance();
         TaskCategoryRepository taskCategoryRepository = new TaskCategoryRepository();
         OrganizationRepository organizationRepository = new OrganizationRepository();
+        AuthenticationRepository authenticationRepository = new AuthenticationRepository();
 
         //Fill Task Category Repository
         TaskCategory taskCategoryOne = new TaskCategory("Task Category Description");
@@ -147,7 +171,15 @@ class CreateTaskControllerIT {
         Employee employee = new Employee("jane.doe@this.company.com");
         organization.addEmployee(employee);
         organizationRepository.add(organization);
-        CreateTaskController controller = new CreateTaskController(organizationRepository, taskCategoryRepository);
+
+        //Add authentication for user john.doe@this.company.com
+        authenticationRepository.addUserRole(AuthenticationController.ROLE_ADMIN, AuthenticationController.ROLE_ADMIN);
+        authenticationRepository.addUserWithRole("Main Administrator", "john.doe@this.company.com", "admin",
+                AuthenticationController.ROLE_ADMIN);
+
+
+        CreateTaskController controller =
+                new CreateTaskController(organizationRepository, taskCategoryRepository, authenticationRepository);
 
         //Act
         Optional<Task> result =

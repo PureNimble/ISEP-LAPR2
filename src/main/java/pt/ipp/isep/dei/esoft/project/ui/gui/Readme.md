@@ -1,0 +1,1 @@
+In this package, the team can provide an alternative GUI based, for instance, in JavaFX.

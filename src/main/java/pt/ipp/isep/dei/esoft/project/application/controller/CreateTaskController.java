@@ -4,9 +4,11 @@ import pt.ipp.isep.dei.esoft.project.domain.Employee;
 import pt.ipp.isep.dei.esoft.project.domain.Organization;
 import pt.ipp.isep.dei.esoft.project.domain.Task;
 import pt.ipp.isep.dei.esoft.project.domain.TaskCategory;
+import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
 import pt.ipp.isep.dei.esoft.project.repository.OrganizationRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.TaskCategoryRepository;
+import pt.isep.lei.esoft.auth.domain.model.Email;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,18 +18,23 @@ public class CreateTaskController {
     private OrganizationRepository organizationRepository = null;
     private TaskCategoryRepository taskCategoryRepository = null;
 
+    private AuthenticationRepository authenticationRepository = null;
+
 
     //Repository instances are obtained from the Repositories class
     public CreateTaskController() {
         getOrganizationRepository();
         getTaskCategoryRepository();
+        getAuthenticationRepository();
     }
 
     //Allows receiving the repositories as parameters for testing purposes
     public CreateTaskController(OrganizationRepository organizationRepository,
-                                TaskCategoryRepository taskCategoryRepository) {
+                                TaskCategoryRepository taskCategoryRepository,
+                                AuthenticationRepository authenticationRepository) {
         this.organizationRepository = organizationRepository;
         this.taskCategoryRepository = taskCategoryRepository;
+        this.authenticationRepository = this.authenticationRepository;
     }
 
     private TaskCategoryRepository getTaskCategoryRepository() {
@@ -50,6 +57,17 @@ public class CreateTaskController {
 
     }
 
+    private AuthenticationRepository getAuthenticationRepository() {
+        if (authenticationRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+
+            //Get the AuthenticationRepository
+            authenticationRepository = repositories.getAuthenticationRepository();
+        }
+        return authenticationRepository;
+    }
+
+
     public Optional<Task> createTask(String reference, String description, String informalDescription,
                                      String technicalDescription, Integer duration, Double cost,
                                      String taskCategoryDescription) {
@@ -70,8 +88,8 @@ public class CreateTaskController {
     }
 
     private Employee getEmployeeFromSession() {
-        //TODO: this is a fake employee, replace it with the employee from the session
-        return new Employee("john.doe@this.company.com");
+        Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
+        return new Employee(email.getEmail());
     }
 
     private TaskCategory getTaskCategoryByDescription(String taskCategoryDescription) {

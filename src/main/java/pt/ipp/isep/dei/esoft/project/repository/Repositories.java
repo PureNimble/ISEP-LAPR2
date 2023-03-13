@@ -5,6 +5,7 @@ public class Repositories {
     private static final Repositories instance = new Repositories();
     TaskCategoryRepository taskCategoryRepository = new TaskCategoryRepository();
     OrganizationRepository organizationRepository = new OrganizationRepository();
+    AuthenticationRepository authenticationRepository = new AuthenticationRepository();
 
     private Repositories() {
     }
@@ -20,5 +21,10 @@ public class Repositories {
     public TaskCategoryRepository getTaskCategoryRepository() {
         return taskCategoryRepository;
     }
+
+    public AuthenticationRepository getAuthenticationRepository() {
+        return authenticationRepository;
+    }
+
 
 }
