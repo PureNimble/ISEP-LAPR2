@@ -1,35 +1,31 @@
 @startuml
-'skinparam monochrome true
-skinparam packageStyle rectangle
-'skinparam shadowing false
-
-skinparam rectangle{
-    BorderColor yellow
-}
-
-'title Use Case Diagram Example
 
 left to right direction
 
-rectangle "System Actors" as actors {
-    actor Freelancer
-    actor "Organization\nEmployee" as Employee
-}
+ :System Administrator: as admin
+ :Agent: as agent
+ :Unregistered user: as user
+ :Owner: as owner
 
 
-note right of Freelancer
-    Actor identified but still
-    no concrete use cases
-end note
+ package System {
 
-rectangle "Use Cases" as usecases{
-    usecase "UC6 - Create a Task" as UC6
-    Employee --> UC6
-}
-note right of actors
-    Rectangles and Titles are for
-    demonstration purposes only.
-    Omitt on your diagrams.
-end note
+    usecase "UC01: Display a listed properties" as UC1
+    usecase "UC02: Publish any sale announcement on the system" as UC2
+    usecase "UC03: Add an employee" as UC3
+    usecase "UC04: Sell or rent properties of a company" as UC4
+    usecase "UC05: Register a new store" as UC5
+
+ }
+
+ admin --> UC5
+ admin --> UC3
+
+ user --> UC1
+
+ agent --> UC2
+
+ owner --> UC4
+
 
 @enduml
