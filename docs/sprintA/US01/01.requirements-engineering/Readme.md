@@ -1,4 +1,4 @@
-# US 006 - To create a Task
+# US 01 - Display listed properties
 
 ## 1. Requirements Engineering
 
@@ -6,7 +6,7 @@
 ### 1.1. User Story Description
 
 
-As an organization employee, I want to create a new task in order to be further published.
+As an unregistered user, I want to display listed properties.
 
 
 
