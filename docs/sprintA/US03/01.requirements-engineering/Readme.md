@@ -1,13 +1,15 @@
-# US 006 - To create a Task
+# US 03 - Register an employee
 
 ## 1. Requirements Engineering
+
+The company´s system administrator will be responsible for registering 
+all employees(specifiying the name, the citizen´s card number,the tax number,the adress,
+the email adress, the contact telefone number and the agency to which it is assigned).
 
 
 ### 1.1. User Story Description
 
-
-As an organization employee, I want to create a new task in order to be further published.
-
+As a system administrator, I want to register a new employee.
 
 
 ### 1.2. Customer Specifications and Clarifications
@@ -28,10 +30,34 @@ As an organization employee, I want to create a new task in order to be further 
 >
 > **Answer:** Duration is estimated in days.
 
-
-> **Question:** Monetary data is expressed in any particular currency?
+> **Question:** How many alphabetic characters the name of the employee must have?
 >
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POTs (virtual currency internal to the platform).
+> **Answer:** 
+
+> **Question:** How many digits does the citizen's card number the employee need to have?
+>
+> **Answer:**
+
+> **Question:** How many digits does the tax number for the employee need to have?
+>
+> **Answer:**
+
+> **Question:** Could you give an example of how the address should be written? How many alphanumeric characters should it have?
+>
+> **Answer:** 
+
+> **Question:** How many alphanumeric characters does the email address need to have? Are there any restrictions?
+> 
+> **Answer:**
+
+> **Question:** How many digits does the contact telephone number for the employee need to have?
+>
+> **Answer:**
+
+> **Question:** How many alphabetic characters does the agency name need to have?
+>
+> **Answer:**
+
 
 
 ### 1.3. Acceptance Criteria
@@ -45,7 +71,7 @@ As an organization employee, I want to create a new task in order to be further 
 ### 1.4. Found out Dependencies
 
 
-* There is a dependency to "US003 Create a task category" since at least a task category must exist to classify the task being created.
+* There might be a dependency to “US5 register a store” since the employee might be one working in one.
 
 
 ### 1.5 Input and Output Data
@@ -54,18 +80,15 @@ As an organization employee, I want to create a new task in order to be further 
 **Input Data:**
 
 * Typed data:
-    * a reference,
-    * a designation,
-    * an informal description
-    * a technical description
-    * an estimated duration
-    * an estimated cost
-
-* Selected data:
-    * Classifying task category
-
+    * a name,
+    * a citizen´s card number,,
+    * a tax number,
+    * an adress,
+    * an email adress,
+    * a telefone number,
+    * an agency,
 
 **Output Data:**
 
-* List of existing task categories
+* Registered a new employee
 * (In)Success of the operation
