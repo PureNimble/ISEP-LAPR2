@@ -149,4 +149,5 @@ SunExposure "*" --- "1" House : part of >
 
 SortingCriteria "*" --- "1" Client : attributes (?) >
 
+
 @enduml
