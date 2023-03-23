@@ -2,18 +2,22 @@
 
 **Terms, Expressions and Acronyms (TEA) must be organized alphabetically.**
 
-(To complete according the provided example)
 
-| **_TEA_** (EN) | **_Description_** (EN)                                                                    |                                       
-|:---------------|:------------------------------------------------------------------------------------------|
-| **Clerk**      | Person responsible for carrying out various business supporting activities on the system. |
-| **CLK**        | Acronym for _Clerk_.                                                                      |
-| **...**        | ...                                                                                       |
-
-
-
-
-
-
-
+| **_TEA_** (EN)            | **_Description_** (EN)                                                                                                                                                   |                                       
+|:--------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **System Administrator**  | Person responsible for carrying out various business supporting activities on the system.                                                                                |
+| **Agent**                 | Person responsible to sell or rent one or more properties.                                                                                                               |
+| **Apartment**             | It refers to a type of property.                                                                                                                                         |
+| **Basement**              | It refers to a division of a house.                                                                                                                                      |
+| **Buyer**                 | Person who is interested in buying one or more properties from the ones available.                                                                                       |
+| **Employee**              | Person who carries out a set of operations related to the real estate business.                                                                                          |
+| **House**                 | It refers to a type of property.                                                                                                                                         |
+| **Inhabitable loft**      | It refers to a division of a house.                                                                                                                                      |
+| **Land**                  | It refers to a type of property.                                                                                                                                         |
+| **Parish**                | (...)                                                                                                                                                                    |
+| **Property Owner**        | Person who contacts Real Estate USA to sell or rent properties.                                                                                                          |                          |                                                                                                                                                                          |
+| **Store Manager**         | Person who monitors and streamlines the branch with the aim of getting to know better the business carried out and to analyze and evaluate the performance of employees. |
+| **Store Network Manager** | Person responsible for registering all employees and branches of the network as well as preparing the system to facilitate the use of the application.                   |
+| **Sun Exposure**          | (...)                                                                                                                                                                    |
+| **Type of property**      | Related to the variety of proprieties that the Real Estate USA possess, such as apartment, house or land.                                                                ||                                                                                                                                                                          ||                                                                                                                                                                          ||                                                                                                                                                                          |                           |                                                                                                                                                                          |                       |                                                                                                                                                                                                   |                                                                                                                                                                        |                                                                                                                                                                          |
 
