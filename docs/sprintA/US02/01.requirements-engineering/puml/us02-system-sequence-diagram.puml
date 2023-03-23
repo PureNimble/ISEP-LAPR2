@@ -1,0 +1,38 @@
+@startuml
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - Alternative One
+
+autonumber
+
+actor "Agent" as Agent
+participant ":System" as System
+
+activate Agent
+
+    Agent -> System : asks to publish any sale annoucement
+    activate System
+
+        System --> Agent : requests data
+    deactivate System
+
+    Agent -> System : types requested data (area in m^2, location, distance from city center, price, \nnumber of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning), the existence of a basement \nand/or inhabitable loft, sun exposure)
+
+    activate System
+
+        System --> Agent : allocate data
+    deactivate System
+
+    Agent -> System :  demand to publish the offer
+    activate System
+
+        System --> Agent : publishes the offer
+    deactivate System
+
+    Agent -> System : submits data
+    activate System
+
+        System --> Agent : displays operation success
+    deactivate System
+@enduml
