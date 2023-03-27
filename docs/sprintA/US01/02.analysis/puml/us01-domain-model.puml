@@ -1,27 +1,79 @@
 @startuml
-'https://plantuml.com/class-diagram
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
+left to right direction
 
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+class Client {
+- name
+- type of property
+- type of business
+- number of rooms
+- sorting criteria(price and/or parish)
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+class Property {
+- area
+- location
+- photos
+- distance from the city center
+- the requested price
 }
+
+Client "*" --- "1" Property: consults >
+
+class Residence {
+-number of bedrooms
+ - number of bathrooms
+ - number of parking spaces
+ - AvailableEquipment
+ }
+
+class Apartment {
+}
+
+class House {
+- basement
+- inhabitable loft
+- SunExposure
+}
+
+class Land {
+
+}
+
+class SunExposure {
+- direction
+}
+
+'perguntar'
+
+'/class LocationOrAdress {
+  '- adressExtension
+  '- zip code
+  '}
+
+
+class LocationOrAddress {
+- street
+- city
+- county
+- state
+- zip code
+}
+
+class AvailableEquipment {
+- central heating
+- airconditioning
+}
+
+
+Land "*" --- "1" Property: is a >
+Residence "*" --- "1" Property: is a >
+
+SunExposure "*" --- "1" House : part of >
+LocationOrAddress "*" --- "1" Property : part of >
+
+AvailableEquipment "*" --- "1" Residence : part of >
+Apartment "*" --- "1" Residence : is a >
+House "*" --- "1" Residence : is a >
 
 @enduml
