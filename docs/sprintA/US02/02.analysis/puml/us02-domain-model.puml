@@ -1,0 +1,97 @@
+@startuml
+
+left to right direction
+
+class Property
+
+class Apartment
+
+class AvailableEquipment
+
+class House
+
+class Residence
+
+class LocationOrAdress
+
+class Land
+
+class Agent
+
+class SunExposure
+
+class Agent {
+- name
+- id
+- phone number
+- agency
+- tax number
+- LocationOrAdress
+}
+
+class Residence{
+-number of bedrooms
+ - number of bathrooms
+ - number of parking spaces
+ - AvailableEquipment
+ }
+
+
+class Property {
+- area
+- photos
+- LocationOrAdress
+- distance from the city center
+- the requested price
+}
+
+class Apartment {
+}
+
+class House {
+- basement
+- inhabitable loft
+- SunExposure
+}
+
+class Land {
+
+}
+
+class SunExposure {
+- direction
+}
+
+'perguntar'
+
+'/class LocationOrAdress {
+  '- adressExtension
+  '- zip code
+  '}
+
+
+class LocationOrAdress {
+- street
+- city
+- county
+- state
+- zip code
+}
+
+class AvailableEquipment {
+- central heating
+- airconditioning
+}
+
+Property "1" --- "1" Agent: publishes <
+Land "*" --- "1" Property: is a >
+Residence "*" --- "1" Property: isa >
+
+SunExposure "*" --- "1" House : part of >
+LocationOrAdress "*" --- "1" Property : part of >
+LocationOrAdress "*" --- "1" Agent : part of >
+AvailableEquipment "*" --- "1" Residence : part of >
+Apartment "*" --- "1" Residence : is a >
+House "*" --- "1" Residence : is a >
+
+@enduml
