@@ -1,4 +1,5 @@
 @startuml
+skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
@@ -17,22 +18,30 @@ activate Agent
         System --> Agent : requests data
     deactivate System
 
-    Agent -> System : types requested data (area in m^2, location, distance from city center, price, \nnumber of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning), the existence of a basement \nand/or inhabitable loft, sun exposure)
+    alt house, apartment or land
+
+    Agent -> System : types requested data (area in m^2, location, photos, distance from city center and the requested price)
 
     activate System
 
-        System --> Agent : allocate data
-    deactivate System
+    else house or apartment
 
-    Agent -> System :  demand to publish the offer
-    activate System
+    Agent -> System : types requested data (number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning))
 
-        System --> Agent : publishes the offer
+    else house
+
+    Agent -> System : types requested data (the existence of a basement and/or inhabitable loft, sun exposure \n(North, South, East, West))
+
+    end
+
+    System --> Agent : publishes the offer
     deactivate System
 
     Agent -> System : submits data
     activate System
 
-        System --> Agent : displays operation success
+    System --> Agent : displays operation success
     deactivate System
+
+
 @enduml
