@@ -7,7 +7,7 @@ N **and/or** N to 1 relationship between US and UC.
 
 **Insert below the Use Case Diagram in a SVG format**
 
-![Use Case Diagram](svg/use-case-diagram.svg)
+![Use Case Diagram](svg/use-case-diagram1.svg)
 
 **For each UC/US, it must be provided evidences of applying main activities of the software development process (
 requirements, analysis, design, tests and code). Gather those evidences on a separate file for each UC/US and set up a

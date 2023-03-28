@@ -1,0 +1,45 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+
+class SystemAdministrator
+
+class Employee
+
+class Store
+
+class SystemAdministrator{
+}
+
+class Employee{
+-name
+-id
+-number
+-agency
+-tax number
+-role
+}
+
+class Store{
+-designation
+-location
+-email-adress
+-telephone number
+}
+
+
+SystemAdministrator "1" - "*" Store : register >
+
+Store "1" -- "*" Employee : has >
+
+SystemAdministrator "1" - "*" Employee: registers >
+
+
+
+
+
+@enduml
