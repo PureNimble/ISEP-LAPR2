@@ -15,9 +15,9 @@ link as suggested below.**
 
 # Use Cases / User Stories
 
-| UC/US  | Description                                   |                   
-|:-------|:----------------------------------------------|
-| US 001 | [Short Name for US001](../../us001/Readme.md) |
-| ...    | ...                                           |
-| US 006 | [Create Task](../../us006/Readme.md)          |
-| ...    | ...                                           |
+| UC/US  | Description                                                                            |                   
+|:-------|:---------------------------------------------------------------------------------------|
+| US 001 | [Display a listed properties](docs/sprintA/US01/01.requirements-engineering/Readme.md) |
+| ...    | ...                                                                                    |
+| US 006 | [Create Task](../../us006/Readme.md)                                                   |
+| ...    | ...                                                                                    |

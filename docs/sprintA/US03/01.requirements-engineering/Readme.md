@@ -96,3 +96,4 @@ As a system administrator, I want to register a new employee.
 ### 1.6. System Sequence Diagram (SSD)
 
 ![System Sequence Diagram - Alternative One](svg/us03-system-sequence-diagram.svg)
+
