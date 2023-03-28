@@ -92,3 +92,7 @@ telephone number. The Agent is an employee of the company.
 **Output Data:**
 
 * (In)Successfully published sale annoucement.
+
+### 1.6. System Sequence Diagram (SSD)
+
+![System Sequence Diagram - Alternative One](svg/us02-system-sequence-diagram.svg)
