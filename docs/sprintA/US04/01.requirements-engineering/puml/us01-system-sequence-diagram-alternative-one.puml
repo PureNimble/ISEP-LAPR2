@@ -1,11 +1,54 @@
 @startuml
-'https://plantuml.com/sequence-diagram
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD)
 
 autonumber
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+actor "Property owner" as Owner
+participant ":System" as sys
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+activate Owner
+
+    Owner -> sys : chooses the agency
+    activate sys
+
+    sys -> Owner : gives the chosen agency to the owner
+    deactivate sys
+
+    Owner -> sys : chooses the responsible agent
+    activate sys
+
+    sys -> Owner : gives the chosen agent to the owner
+    deactivate sys
+
+    Owner -> sys : contacts agent to sell or rent a property
+    activate sys
+
+    sys --> Owner : requests data
+    deactivate sys
+
+    alt house, apartment or land
+
+    autonumber 7
+    Owner -> sys : types requested data [area in m^2, location, photos, distance from city center and the requested price]
+    activate sys
+
+    else house or apartment
+
+    autonumber 7
+    Owner -> sys : types requested data [number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning)]
+
+    else house
+
+    autonumber 7
+    Owner -> sys : types requested data [the existence of a basement and/or inhabitable loft, sun exposure \n(North, South, East, West)]
+
+    end
+
+    sys --> Owner : displays operation success
+    deactivate sys
+
 @enduml
