@@ -26,47 +26,47 @@ As a system administrator, I want to register a new employee.
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** When registering a new employee, all the required data (name, citizen's card number, etc...) have to be filled or exists not mandatory data?
 >
-> **Answer:** Duration is estimated in days.
+> **Answer:** Required/Mandatory data that should be filled when registering an employee: name, the citizen's card number, the tax number, the email address, the contact telephone number and the agency to which it is assigned.
 
-> **Question:** How many alphabetic characters the name of the employee must have?
+> **Question:** The system administrator cannot add an agent that already exists, the agent has two unique numbers that identify him (Tax number and Citizen's card number) which one should be used to identify the agent?
 >
-> **Answer:** 
-
-> **Question:** How many digits does the citizen's card number the employee need to have?
->
-> **Answer:**
-
-> **Question:** How many digits does the tax number for the employee need to have?
->
-> **Answer:**
+> **Answer:** The tax number.
 
 > **Question:** Could you give an example of how the address should be written? How many alphanumeric characters should it have?
 >
-> **Answer:** 
+> **Answer:** "71 ST. NICHOLAS DRIVE, NORTH POLE, FAIRBANKS NORTH STAR, AK, 99705".\
+> Street: 71 ST. NICHOLAS DRIVE;\
+> City: NORTH POLE;\
+>District: Fairbanks North Star (this is opcional); \
+> State: AK;\
+> Zipcode:99705;
 
-> **Question:** How many alphanumeric characters does the email address need to have? Are there any restrictions?
+> **Question:** Must the Tax number and Citizen's card number follow any convention? If so, which?
 > 
-> **Answer:**
+> **Answer:** You should use the tax identification number used for tax purposes in the US.
 
 > **Question:** How many digits does the contact telephone number for the employee need to have?
 >
-> **Answer:**
+> **Answer:** An example phone number is (907) 488-6419
 
-> **Question:** How many alphabetic characters does the agency name need to have?
+> **Question:** How many digits should we go forward for password length validation in your software? And please confirm required special characters, etc.
 >
-> **Answer:**
+> **Answer:** The password should have seven characters in length including three capital letters and two digits and should be generated automatically
+
+
 
 
 
 ### 1.3. Acceptance Criteria
 
 
-* **AC1:** All required fiels must be filled in.
-* **AC2:** Task reference must have at least 5 alphanumeric chars.
-* **AC3:** When creating a task with an already existing reference, the system must reject such operation and the user must have the change to modify the typed reference.
-
+* **AC1:** Required/Mandatory data that should be filled when registering an employee: name, the citizen's card number, the tax number, the email address, the contact telephone number and the agency to which it is assigned.
+* **AC2:** The tax identification number should be the one used for tax purposes in the US .
+* **AC3:** The tax number should be used to identify an Employee.
+* **AC4:** The ID is an integer number.
+* **AC5:** The password should have seven characters in length including three capital letters and two digits and should be generated automatically 
 
 ### 1.4. Found out Dependencies
 
