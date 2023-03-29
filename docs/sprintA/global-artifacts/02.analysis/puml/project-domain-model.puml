@@ -30,8 +30,6 @@ class House
 
 class Land
 
-class AvailableEquipment
-
 class SunExposure
 
 class LocationOrAdress
@@ -92,9 +90,6 @@ class ListOfProprieties{
 }
 
 class Apartment{
-
--central heating
--air conditioning
 }
 
 class House{
@@ -105,10 +100,6 @@ class House{
 class Land{
 }
 
-class AvailableEquipment{
--central heating
--air conditioning
-}
 
 class SunExposure{
 -regions
@@ -133,6 +124,8 @@ class Residences{
 -number of bedrooms
 -number of bathrooms
 -number of parking spaces
+-central heating
+-air conditioning
 }
 
 class UnregisteredUser{
@@ -149,7 +142,7 @@ Properties "1" -- "*" Residences : part of <
 Residences "1" -- "*" House : part of <
 Residences "1" -- "*" Apartment : part of <
 House "1" -- "1" SunExposure : contains >
-Apartment "1" -- "1" AvailableEquipment : contains >
+
 
 Properties"1" - "1" LocationOrAdress : Located at >
 
