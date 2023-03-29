@@ -17,7 +17,7 @@ link as suggested below.**
 
 | UC/US  | Description                                                                                                                                                        |                   
 |:-------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| US 001 | [Display a listed properties](C:\Users\Utilizador\IdeaProjects\lei-23-s2-1dh-g37\docs\sprintA\US01\01.requirements-engineering\Readme.md)                          |
+| US 001 | [Display a listed properties](docs/sprintA/US01/01.requirements-engineering/Readme.md)                                             |
 | US 002 | [Publish an announcement](C:\Users\Utilizador\IdeaProjects\lei-23-s2-1dh-g37\docs\sprintA\US02\01.requirements-engineering\Readme.md)                              |
 | US 003 | [Register an employee](C:\Users\Utilizador\IdeaProjects\lei-23-s2-1dh-g37\docs\sprintA\US03\01.requirements-engineering\Readme.md)                                 |                                                                                         |
 | US 004 | [Submit a request for listing a property sale or rent](C:\Users\Utilizador\IdeaProjects\lei-23-s2-1dh-g37\docs\sprintA\US04\01.requirements-engineering\Readme.md) |
