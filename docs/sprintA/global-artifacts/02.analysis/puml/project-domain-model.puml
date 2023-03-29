@@ -1,6 +1,12 @@
 @startuml
 
-left to right direction
+skinparam group 3.0
+hide empty members
+skinparam ClassFontSize 17
+scale 4.0
+
+
+class UnregisteredUser
 
 class SystemAdministrator
 
@@ -10,15 +16,13 @@ class Store
 
 class StoreManager
 
-class StoreNetworkManager
-
 class Owner
 
-class Client
-
-class Customer
+class StoreNetworkManager
 
 class ListOfProprieties
+
+class Client
 
 class Apartment
 
@@ -26,128 +30,156 @@ class House
 
 class Land
 
+class AvailableEquipment
+
 class SunExposure
 
-class SortingCriteria
+class LocationOrAdress
 
-class SystemAdministrator {
+class Employee
+
+class Properties
+
+class Residences
+
+
+class SystemAdministrator{
 }
 
-class Agent {
-- name
-- id
-- number
-- agency
-- tax number
+class Employee{
+-name
+-id
+-number
+-agency
+-tax number
+-role
 }
 
-class Store {
-- name
-- location
-- email
-- number
+class Agent{
+
 }
 
-class StoreManager {
-- name
-- id
-- number
-- agency
-- tax number
+class Store{
+-designation
+-location
+-email
+-contact number
 }
 
-class StoreNetworkManager {
+class StoreManager{
+
 }
 
-class Owner {
-- property characteristics
-- requested price
+
+class Owner{
+-property characteristics
+-requested price
 }
 
-class Client {
-- name
-- type of property
-- type of business
-- number of rooms
-- sorting criteria(price and/or parish)
+class StoreNetworkManager{
 }
 
-class Customer {
-- name
+class Client{
+-name
+-type of property
+-type of business
+-number of rooms
+-sorting criteria(price and/or parish)
 }
 
-class ListOfProprieties {
-- area
-- location
-- photos
-- distance from the city center
-- the requested price
+
+class ListOfProprieties{
 }
 
-class Apartment {
-- number of bedrooms
-- number of bathrooms
-- number of parking spaces
-- central heating
-- air conditioning
+class Apartment{
+
+-central heating
+-air conditioning
 }
 
-class House {
-- basement
-- inhabitable loft
-- sun exposure (North, South, East, West)
+class House{
+-basement
+-inhabitable loft
 }
 
-class Land {
+class Land{
 }
 
-class SortingCriteria {
-- price
-- parish
+class AvailableEquipment{
+-central heating
+-air conditioning
 }
 
-class SunExposure {
-- north
-- south
-- east
-- west
+class SunExposure{
+-regions
 }
 
-SystemAdministrator "1" --- "*" Agent : registers >
 
-SystemAdministrator "1" --- "*" Store: registers >
+class LocationOrAdress{
+-street
+-adressExtension
+-zipCode
+}
 
-SystemAdministrator "1" --- "*" StoreManager: registers >
+class Properties{
+-area
+-location
+-photos
+-distance from the city center
+-the requested price
+}
 
-Agent "*" ---- "1" Store : works in >
+class Residences{
+-number of bedrooms
+-number of bathrooms
+-number of parking spaces
+}
 
-Store "1" --- "1" StoreManager: is managed >
+class UnregisteredUser{
+-type of property
+-type of business
+-number of rooms
+}
 
-Store "*" --- "1" StoreNetworkManager:  manages <
+'Properties
+ListOfProprieties "1" -- "*" Properties: contains >
 
-Owner "*" --- "1" Store: visit >
+Properties "1" -- "*" Land : part of <
+Properties "1" -- "*" Residences : part of <
+Residences "1" -- "*" House : part of <
+Residences "1" -- "*" Apartment : part of <
+House "1" -- "1" SunExposure : contains >
+Apartment "1" -- "1" AvailableEquipment : contains >
 
-Owner "*" -up-- "1" Agent: assigned >
+Properties"1" - "1" LocationOrAdress : Located at >
 
-ListOfProprieties "1" --- "1" Agent: publishes <
+Agent"1" - "1" LocationOrAdress : has >
 
-Client "*" --- "1" ListOfProprieties: consults >
+Agent"1" ---- "1" Employee : is an >
 
-Client "*" --- "1" Agent: requests to schedule visit >
+Employee"1" -- "1" LocationOrAdress: has >
 
-Land "*" --- "1" ListOfProprieties: part of >
+StoreNetworkManager"1" -- "1" Employee: is a >
 
-House "*" --- "1" ListOfProprieties: part of >
+Employee"*" -- "1" StoreManager: manages <
 
-Apartment "*" --- "1" ListOfProprieties: part of >
+SystemAdministrator"1" - "*" Store: registers >
 
-Agent "1" --- "1" Customer :  accepts offer <
+Store"1" - "*" Employee: works in <
 
-StoreManager "1" --- "*" Agent : evaluates >
+SystemAdministrator"1" - "*" Employee: registers >
 
-SunExposure "*" --- "1" House : part of >
+StoreNetworkManager"1" -- "*" Store: manages >
 
-SortingCriteria "*" --- "1" Client : attributes (?) >
+ListOfProprieties "*" - "*" Agent: publishes <
+
+Agent"1" - "1" Owner : requests to sell or rent >
+
+Client"1" -- "1" Agent : requests to schedule a visit >
+
+Client"1" -- "1" ListOfProprieties : display/consults >
+
+UnregisteredUser"1" -- "1" ListOfProprieties : display >
 
 
 @enduml

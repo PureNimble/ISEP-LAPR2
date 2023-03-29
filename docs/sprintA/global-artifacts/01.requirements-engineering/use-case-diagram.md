@@ -17,7 +17,7 @@ link as suggested below.**
 
 | UC/US  | Description                                                                                              |                   
 |:-------|:---------------------------------------------------------------------------------------------------------|
-| US 001 | [Display a listed properties](../../US01/01.requirements-engineering/Readme.md)                          |
+| US 001 | [Display listed properties](../../US01/01.requirements-engineering/Readme.md)                            |
 | US 002 | [Publish an announcement](../../US02/01.requirements-engineering/Readme.md)                              |
 | US 003 | [Register an employee](../../US03/01.requirements-engineering/Readme.md)                                 |                                                                                         |
 | US 004 | [Submit a request for listing a property sale or rent](../../US04/01.requirements-engineering/Readme.md) |
