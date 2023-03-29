@@ -18,21 +18,52 @@ activate Agent
         System --> Agent : requests data
     deactivate System
 
-    alt house, apartment or land
+    opt house, apartment or land
 
-    Agent -> System : types requested data (area in m^2, location, photos, distance from city center and the requested price)
+        Agent -> System : types requested data (area in m^2, location, photos, distance from city center and the requested price)
 
-    activate System
+        activate System
 
-    else house or apartment
+        else house or apartment
 
-    Agent -> System : types requested data (number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning))
+            alt with Bathrooms
 
-    else house
+                Agent -> System : types requested data (number of bedrooms, number of bathrooms, number of parking spaces)
 
-    Agent -> System : types requested data (the existence of a basement and/or inhabitable loft, sun exposure \n(North, South, East, West))
 
-    end
+             else with Available Equipment
+
+                Agent -> System : types requested data (number of bedrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning))
+
+
+             else with Bathrooms and Available Equipment
+
+                Agent -> System : types requested data (number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning))
+
+
+             else without Bathrooms or Available Equipment
+
+                 Agent -> System : types requested data (number of bedrooms,  number of parking spaces)
+
+            end
+
+
+        else house
+
+            alt with Sun Exposure
+
+                Agent -> System : types requested data (the existence of a basement and/or inhabitable loft, sun exposure \n(North, South, East, West))
+
+
+            else without Sun Exposure
+
+                Agent -> System : types requested data (the existence of a basement and/or inhabitable loft)
+
+
+             end
+
+     end
+
 
     System --> Agent : publishes the offer
     deactivate System
