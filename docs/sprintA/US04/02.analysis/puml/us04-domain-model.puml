@@ -9,6 +9,8 @@ class Residence
 
 class LocationOrAdress
 
+class Contacts
+
 class Owner
 
 class Comission
@@ -29,21 +31,25 @@ class AvailableEquipment{
 - equipment
 }
 
+Class Contacts{
+- Phone number
+- Email adress 
+}
+
 class Owner {
 Name
 Citizens card number
 Tax number
-Email adress
-Phone number
 }
 
 class Rent{
--duration of contract
+- duration of contract
+- price per month
 }
 
 
 class Business{
-- Price
+- Total Price
 }
 
 class Residence{
@@ -54,15 +60,12 @@ class Residence{
 
 class Store{
 - Designation
-- Email adress
-- Phone number
 
 }
 
 class Property {
 - Area
 - Photos
-- LocationOrAdress
 - Distance from the city center
 }
 
@@ -101,6 +104,9 @@ Comission "1" -up-- "1" Property: contains <
 Owner "1" -up-- "1" Business: defines >
 AvailableEquipment "*" -left-- "1" Residence: contains <
 Business <|-right- Rent
+Owner "1" -right-- "1" Contacts: has >
+Store "1" -right-- "1" Contacts: has >
+Agent "1" -up-- "1" Contacts: has >
 
 
 @enduml
