@@ -1,10 +1,7 @@
 @startuml
-
-left to right direction
+skinparam groupInheritance 2
 
 class Property
-
-class Apartment
 
 class House
 
@@ -12,69 +9,98 @@ class Residence
 
 class LocationOrAdress
 
-class Land
-
 class Owner
+
+class Comission
 
 class Agent
 
+class Business
+
+class AvailableEquipment
+
+class Rent
+
 class SunExposure
 
+class Store
+
+class AvailableEquipment{
+- equipment
+}
+
 class Owner {
--property characteristics
--requested price
+Name
+Citizens card number
+Tax number
+Email adress
+Phone number
+}
+
+class Rent{
+-duration of contract
+}
+
+
+class Business{
+- Price
 }
 
 class Residence{
--number of bedrooms
- - number of bathrooms
- - number of parking spaces
- - AvailableEquipment
- - central heating
- - airconditioning
+- number of bedrooms
+- Number of bathrooms
+- Number of parking spaces
  }
 
+class Store{
+- Designation
+- Email adress
+- Phone number
 
-class Property {
-- area
-- photos
-- LocationOrAdress
-- distance from the city center
-- the requested price
 }
 
-class Apartment {
+class Property {
+- Area
+- Photos
+- LocationOrAdress
+- Distance from the city center
 }
 
 class House {
-- basement
-- inhabitable loft
-- SunExposure
-}
-
-class Land {
-
+- Basement
+- Inhabitable loft
 }
 
 class SunExposure {
-- direction
+- Direction
 }
 
 class LocationOrAdress {
-- street
-- city
-- county
-- state
-- zip code
+- Street
+- City
+- County
+- State
+- Zip code
 }
 
-Property "1" --- "1" Owner: Owns <
-Owner "1" --- "1" Agent: Requests to sell/rent  >
-Land "*" --- "1" Property: is a >
-Residence "*" --- "1" Property: is a >
-SunExposure "*" --- "1" House : part of >
-LocationOrAdress "*" --- "1" Property : part of >
-Apartment "*" --- "1" Residence : is a >
-House "*" --- "1" Residence : is a >
+class Comission{
+-Type
+-Value
+}
+
+Residence <|-- House
+Property <|-- Residence
+SunExposure "1" -up-- "1" House: contains <
+LocationOrAdress "1" -right-- "1" Property: has <
+LocationOrAdress "1" -right-- "1" Owner: has <
+Owner "1" -left-- "*" Property: has >
+Owner "1" -- "1" Store: contacts >
+Agent "*" -up-- "1" Store: has <
+Comission "1" -down-- "1" Agent: defines <
+Comission "1" -up-- "1" Property: contains <
+Owner "1" -up-- "1" Business: defines >
+AvailableEquipment "*" -left-- "1" Residence: contains <
+Business <|-right- Rent
+
 
 @enduml

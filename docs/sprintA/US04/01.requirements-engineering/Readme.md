@@ -1,13 +1,13 @@
-# US 006 - To create a Task
+# US 04 - Submit a request for listing a property sale or rent
 
 ## 1. Requirements Engineering
+
+The owner will contact Real Estate USA, to sell or rent their properties. From time to time, property owners contact Real Estate USA to sell or rent their properties. The owner provides property characteristics and the requested price and sends the request to an agent. 
 
 
 ### 1.1. User Story Description
 
-
-As an organization employee, I want to create a new task in order to be further published.
-
+As an owner, I intend to submit a request for listing a property sale or rent,choosing the responsible agent.
 
 
 ### 1.2. Customer Specifications and Clarifications
@@ -24,28 +24,20 @@ As an organization employee, I want to create a new task in order to be further 
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** 
 >
-> **Answer:** Duration is estimated in days.
+> **Answer:** 
 
-
-> **Question:** Monetary data is expressed in any particular currency?
->
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POTs (virtual currency internal to the platform).
 
 
 ### 1.3. Acceptance Criteria
 
 
-* **AC1:** All required fiels must be filled in.
-* **AC2:** Task reference must have at least 5 alphanumeric chars.
-* **AC3:** When creating a task with an already existing reference, the system must reject such operation and the user must have the change to modify the typed reference.
+* **AC1:**  Real Estate USA needs to sell or rent the property for the price requested or as close to it as possible, within a specific timeframe. 
 
 
 ### 1.4. Found out Dependencies
 
-
-* There is a dependency to "US003 Create a task category" since at least a task category must exist to classify the task being created.
 
 
 ### 1.5 Input and Output Data
@@ -54,18 +46,20 @@ As an organization employee, I want to create a new task in order to be further 
 **Input Data:**
 
 * Typed data:
-    * a reference,
-    * a designation,
-    * an informal description
-    * a technical description
-    * an estimated duration
-    * an estimated cost
-
-* Selected data:
-    * Classifying task category
-
+    * a name,
+    * a citizen´s card number,,
+    * a tax number,
+    * an adress,
+    * an email adress,
+    * a telefone number,
+    * an agency,
 
 **Output Data:**
 
-* List of existing task categories
+* Registered a new employee
 * (In)Success of the operation
+
+### 1.6. System Sequence Diagram (SSD)
+
+![System Sequence Diagram - Alternative One](svg/us03-system-sequence-diagram.svg)
+
