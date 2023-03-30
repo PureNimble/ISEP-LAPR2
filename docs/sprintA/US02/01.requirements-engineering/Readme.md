@@ -52,9 +52,33 @@ telephone number. The Agent is an employee of the company.
 > **Answer:** Yes.
 
 
-> **Question:**
+> **Question:**  Is it necessary to publish the owner atributes on the sale announcement?
 >
->  **Answer:**
+>  **Answer:** No.
+
+> **Question:** If the comission is percentage[/value] what is the value? Is it the same for all agents?
+> 
+> **Answer:** There is no maximum and the minimum is 0. The commission is for the agency and for that given property.
+
+> **Question:** If it's a property for lease is the comission value adjusted for the monthly value and contract duration? What is the value or method for calculating the comission?
+>
+> **Answer:** The commission is one value/percentage paid when the transaction is made.
+
+> **Question:** Is it mandatory for the agent to input the commission value before publishing an announcement?
+>
+> **Answer:** Yes.
+
+> **Question:** Are there only 2 types of commission or can the Administrator define more types of commission?
+> 
+>  **Answer:** For now we only have two types of commissions.
+
+> **Question:** Another doubt that has emmerged is related to the identification of the owner of the property, isn't it required that the owner identifies themselves in the announcement ?
+>
+>  **Answer:** Info about the owner is not published.
+
+> **Question:** In USS02 are all the criteria for publishing the sale of a property in the system mandatory, or is there any data that the owner can choose not to give? such as not saying the direction of sun exposure in the case of a house.
+>
+>  **Answer:** The number of bathrooms, the available equipment and the sun exposure are not mandatory. At least one photograph is required.
 
 
 ### 1.3. Acceptance Criteria

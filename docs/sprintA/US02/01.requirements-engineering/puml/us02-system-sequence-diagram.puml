@@ -64,6 +64,11 @@ activate Agent
 
      end
 
+    System --> Agent : saves the given data
+        deactivate System
+
+    Agent -> System : defines the agency commission type and value
+        activate System
 
     System --> Agent : publishes the offer
     deactivate System
