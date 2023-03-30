@@ -2,8 +2,6 @@
 
 skinparam groupInheritance 2
 
-left to right direction
-
 class UnregisteredUser {
 }
 
@@ -50,14 +48,14 @@ class AvailableEquipment {
 }
 
 
-UnregisteredUser "*" - "*" Property: consults >
+UnregisteredUser "*" -- "*" Property: consults >
 
-Residence "*" --- "1" Property: is a >
-Address "*" --- "1" Property : part of >
+Property "*" --- "1" Residence: is a <
+Property "*" --- "1" Address : part of <
 
-AvailableEquipment "*" --- "1" Residence : part of >
-House "*" --- "1" Residence : is a >
+Residence "*" --- "1" AvailableEquipment : part of <
+Residence "*" --- "1" House : is a <
 
-SunExposure "*" --- "1" House : part of >
+House "*" --- "1" SunExposure : part of <
 
 @enduml
