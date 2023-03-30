@@ -30,23 +30,8 @@ activate Owner
     sys --> Owner : requests data
     deactivate sys
 
-    alt house, apartment or land
-
-    autonumber 7
-    Owner -> sys : types requested data [area in m^2, location, photos, distance from city center and the requested price]
+    Owner -> sys :  types requested data (area in m^2, location, photos, distance from city center, \nthe requested price, number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning, \nthe existence of a basement and/or inhabitable loft, sun exposure)
     activate sys
-
-    else house or apartment
-
-    autonumber 7
-    Owner -> sys : types requested data [number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning)]
-
-    else house
-
-    autonumber 7
-    Owner -> sys : types requested data [the existence of a basement and/or inhabitable loft, sun exposure \n(North, South, East, West)]
-
-    end
 
     sys --> Owner : displays operation success
     deactivate sys
