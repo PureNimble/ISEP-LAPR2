@@ -140,10 +140,10 @@ An association is a relationship between instances of objects that indicates a r
 
 
 
-| Concept (A) 		|  Association   	|  Concept (B) |
-|----------	   		|:-------------:		|------:       |
-| C1  	| verb1    		 	| C2  |
-| ...  	| ...    		 	| ...  |
+| Concept (A) 		 |  Association   	|  Concept (B) |
+|----------------|:-------------:		|------:       |
+| Owner  	       | verb1    		 	| C2  |
+| ...  	         | ...    		 	| ...  |
 
 
 
