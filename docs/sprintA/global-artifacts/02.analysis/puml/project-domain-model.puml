@@ -1,10 +1,20 @@
 @startuml
 
-skinparam group 3.0
-hide empty members
-skinparam ClassFontSize 17
-scale 2.5
+skinparam groupInheritance 2
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+'skinparam linetype ortho
+'left to right direction
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
 
+class Announcement
+
+class AvailableEquipment
+
+class Business
 
 class UnregisteredUser
 
@@ -30,20 +40,23 @@ class LocationOrAdress
 
 class Employee
 
-class Properties
+class Property
 
 class Residences
 
+class Role
+
+class Comission
 
 class SystemAdministrator{
 }
 
 class Employee{
--name
--id
--number
--tax number
--role
+name
+id
+number
+tax number
+role
 }
 
 class Agent{
@@ -51,10 +64,9 @@ class Agent{
 }
 
 class Store{
--designation
--location
--email
--contact number
+designation
+email
+contact number
 }
 
 class StoreManager{
@@ -63,66 +75,123 @@ class StoreManager{
 
 
 class Owner{
--name
--id
--number
--tax number
--email
+name
+id
+number
+tax number
+email
 }
 
 class StoreNetworkManager{
 }
 
 class Client{
--name
--type of property
--type of business
--number of rooms
-}
-
-class Apartment{
+name
+type of property
+type of business
+number of rooms
 }
 
 class House{
--basement
--inhabitable loft
+basement
+inhabitable loft
 }
 
 
 class SunExposure{
--regions
+regions
 }
 
 
 class LocationOrAdress{
--street
--adressExtension
--zipCode
+street
+zipCode
+City
+Country
+State
 }
 
-class Properties{
--area
--location
--photos
--distance from the city center
--the requested price
+class Property {
+   area
+   photos
+   LocationOrAdress
+   distance from the city center
+   the requested price
 }
 
 class Residences{
--number of bedrooms
--number of bathrooms
--number of parking spaces
--central heating
--air conditioning
+number of bedrooms
+number of bathrooms
+number of parking spaces
+central heating
+air conditioning
 }
 
 class UnregisteredUser{
--type of property
--type of business
--number of rooms
+type of property
+type of business
+number of rooms
+}
+
+class Role{
+role
+}
+
+class AvailableEquipment{
+equipment
+}
+
+class Business{
+sale
+rent
+}
+
+class Announcement{
+date
+}
+
+class Comission{
+    type
+    value
 }
 
 'Properties
+SystemAdministrator "1" - "*" Store : registers >
+
+LocationOrAdress "*" --- "1" Store : located at <
+
+Store "1" - "*" Employee : works in <
+
+SystemAdministrator "1" - "*" Employee : registers >
+
+Employee "1" - "1" Role : has >
+
+Employee <|--  StoreNetworkManager
+
+Employee <|--  StoreManager
+
+Employee <|-- Agent
+
+Residences <|--- House
+Property <|-- Residences
+
+Property "*" --- "1" Agent: publishes <
+
+AvailableEquipment "*" --- "1" Residences: has >
+
+Business  <|---  Announcement
+
+Business "1" --- "1" Property : have a >
+
+Business "*" --- "1" Comission : contains >
+
+Agent "1" - "1" Comission : defines >
+
+House "*" --- "1" SunExposure : contains >
+
+LocationOrAdress "*" --- "1" Property : located at <
+
+UnregisteredUser "*" --- "*" Property: wants to see >
 
 
 @enduml
