@@ -3,7 +3,7 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-title System Sequence Diagram (SSD) - Alternative One
+title System Sequence Diagram (SSD) - US002
 
 autonumber
 
@@ -18,66 +18,22 @@ activate Agent
         System --> Agent : requests data
     deactivate System
 
-    opt house, apartment or land
-
-        Agent -> System : types requested data (area in m^2, location, photos, distance from city center and the requested price)
-
-        activate System
-
-        else house or apartment
-
-            alt with Bathrooms
-
-                Agent -> System : types requested data (number of bedrooms, number of bathrooms, number of parking spaces)
+        Agent -> System : types requested data (area in m^2, location, photos, distance from city center, \nthe requested price, number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning, \nthe existence of a basement and/or inhabitable loft, sun exposure)
 
 
-             else with Available Equipment
+     System --> Agent : saves the given data
+            deactivate System
 
-                Agent -> System : types requested data (number of bedrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning))
+        Agent -> System : defines the agency commission type and value
+            activate System
 
-
-             else with Bathrooms and Available Equipment
-
-                Agent -> System : types requested data (number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning))
-
-
-             else without Bathrooms or Available Equipment
-
-                 Agent -> System : types requested data (number of bedrooms,  number of parking spaces)
-
-            end
-
-
-        else house
-
-            alt with Sun Exposure
-
-                Agent -> System : types requested data (the existence of a basement and/or inhabitable loft, sun exposure \n(North, South, East, West))
-
-
-            else without Sun Exposure
-
-                Agent -> System : types requested data (the existence of a basement and/or inhabitable loft)
-
-
-             end
-
-     end
-
-    System --> Agent : saves the given data
+        System --> Agent : publishes the offer
         deactivate System
 
-    Agent -> System : defines the agency commission type and value
+        Agent -> System : submits data
         activate System
 
-    System --> Agent : publishes the offer
-    deactivate System
-
-    Agent -> System : submits data
-    activate System
-
-    System --> Agent : displays operation success
-    deactivate System
-
+        System --> Agent : displays operation success
+        deactivate System
 
 @enduml
