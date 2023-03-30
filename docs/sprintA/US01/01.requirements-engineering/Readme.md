@@ -1,10 +1,10 @@
 # US 001 - Display listed properties
 
+
 ## 1. Requirements Engineering
 
 
 ### 1.1. User Story Description
-
 
 As an unregistered user, I want to display listed properties.
 
@@ -17,7 +17,6 @@ As an unregistered user, I want to display listed properties.
 >	All registered information, except the agency comission, can be acessed by the client who intends to buy or rent the property.
 
 >	The client is responsible for being able to consult the properties by type, number of rooms, and sort by criteria such as price or the parish where the property is located.
-
 
 
 **From the client clarifications:**
@@ -60,19 +59,17 @@ If the client does not select the type of business, the type of property and the
 
 ### 1.3. Acceptance Criteria
 
-
 * **AC1:** The unregistered user can be filter the list of properties by type of business, type of property and number of rooms.
 * **AC2:** The unregistered user can sort the list of properties by price or the parish where the property is located.
   hen creating a task with an already existing reference, the system must reject such operation and the user must have the change to modify the typed reference.
 
-### 1.4. Found out Dependencies
 
+### 1.4. Found out Dependencies
 
 * There's no dependencies.
 
 
 ### 1.5 Input and Output Data
-
 
 **Input Data:**
 
@@ -89,9 +86,11 @@ If the client does not select the type of business, the type of property and the
 * List of existing task categories
 * (In)Success of the operation
 
+
 ### 1.6. System Sequence Diagram (SSD)
 
 **Other alternatives might exist.**
+
 
 #### Alternative One
 
