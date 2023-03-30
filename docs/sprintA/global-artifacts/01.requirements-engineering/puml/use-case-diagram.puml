@@ -12,7 +12,7 @@ left to right direction
     usecase "UC03: Add an employee" as UC3
     usecase "UC04: Sell or rent properties of a company" as UC4
     usecase "UC05: Register a new store" as UC5
-    usecase "UC06: Specify districts, municipalities, and parishes in the system distrits" as UC6
+    usecase "UC06: Specify states, districts, and states in the system" as UC6
 
  admin --> UC5
  admin --> UC3

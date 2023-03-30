@@ -1,6 +1,16 @@
 @startuml
 
 skinparam groupInheritance 2
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+'skinparam linetype ortho
+'left to right direction
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+title US002 - Domain Model
 
 class Property
 
@@ -31,70 +41,76 @@ class Agent {
 }
 
 class Residence{
-    -number of bedrooms
-    - number of bathrooms
-    - number of parking spaces
+    number of bedrooms
+    number of bathrooms
+    number of parking spaces
  }
 
 
 class Property {
-    - area
-    - photos
-    - LocationOrAdress
-    - distance from the city center
-    - the requested price
+    area
+    photos
+    LocationOrAdress
+    distance from the city center
 }
 
 
 class House {
-    - basement
-    - inhabitable loft
-    - SunExposure
+    basement
+    inhabitable loft
+    SunExposure
 }
 
 
 class SunExposure {
-    - regions
+    direction
 }
 
 class LocationOrAdress {
-    -street
-    -adressExtension
-    -zipCode
+    street
+    city
+    county
+    state
+    zipCode
 }
 
 class Employee{
-    -name
-    -id
-    -number
-    -agency
-    -tax number
+    name
+    id
+    number
+    agency
+    tax number
 }
 
 class Comission{
-    -type
-    -value
+    type
+    value
 }
 
 class AvailableEquipment{
--equipment
+equipment
 }
 
 class Business{
--sale
--rent
+    total price
 }
 
 class Announcement{
--date
+    date
 }
 
 class Role{
--role
+    role
+}
+
+class Rent{
+    duration of contract
+    price per month
 }
 
 Residence <|--- House
 Property <|--- Residence
+Business <|--- Rent
 
 Business "*" --- "1" Comission : contains >
 Business "1" --- "1" Property : have a >
