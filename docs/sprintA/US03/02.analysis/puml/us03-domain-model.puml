@@ -1,11 +1,14 @@
 @startuml
 'https://plantuml.com/class-diagram
 
+title US003 - Domain Model
+
 skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 hide empty members
 skinparam groupInheritance 3
+hide circle
 
 class SystemAdministrator
 
@@ -69,6 +72,6 @@ Employee <|--  StoreManager
 
 Employee <|-- Agent
 
-
+StoreNetworkManager "1" - "*" Store : manages >
 
 @enduml
