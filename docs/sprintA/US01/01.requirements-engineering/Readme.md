@@ -70,6 +70,7 @@ If the client does not select the type of business, the type of property and the
 
 * There's no dependencies.
 
+
 ### 1.5 Input and Output Data
 
 
