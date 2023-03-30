@@ -10,6 +10,10 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
+class Contacts
+
+class Rent
+
 class Announcement
 
 class AvailableEquipment
@@ -30,8 +34,6 @@ class Owner
 
 class StoreNetworkManager
 
-class Client
-
 class House
 
 class SunExposure
@@ -48,13 +50,17 @@ class Role
 
 class Comission
 
+class Rent{
+duration of contract
+price per month
+}
+
 class SystemAdministrator{
 }
 
 class Employee{
 name
 id
-number
 tax number
 role
 }
@@ -65,8 +71,6 @@ class Agent{
 
 class Store{
 designation
-email
-contact number
 }
 
 class StoreManager{
@@ -83,13 +87,6 @@ email
 }
 
 class StoreNetworkManager{
-}
-
-class Client{
-name
-type of property
-type of business
-number of rooms
 }
 
 class House{
@@ -128,9 +125,6 @@ air conditioning
 }
 
 class UnregisteredUser{
-type of property
-type of business
-number of rooms
 }
 
 class Role{
@@ -154,6 +148,12 @@ class Comission{
     type
     value
 }
+
+class Contacts{
+ Phone number
+ Email adress
+}
+
 
 'Properties
 SystemAdministrator "1" - "*" Store : registers >
@@ -179,7 +179,7 @@ Property "*" --- "1" Agent: publishes <
 
 AvailableEquipment "*" --- "1" Residences: has >
 
-Business  <|---  Announcement
+Business  <|--  Announcement
 
 Business "1" --- "1" Property : have a >
 
@@ -193,5 +193,18 @@ LocationOrAdress "*" --- "1" Property : located at <
 
 UnregisteredUser "*" --- "*" Property: wants to see >
 
+Business <|-- Rent
+
+Owner "1" ---- "1" Store: contacts >
+
+Owner "1" - "1" LocationOrAdress: has >
+
+Owner "1" -- "1" Contacts: has >
+
+Contacts "1" ----- "1" Store: has <
+
+Employee "1" -- "1" Contacts: has >
+
+Store "*" - "1" StoreNetworkManager  : manages <
 
 @enduml
