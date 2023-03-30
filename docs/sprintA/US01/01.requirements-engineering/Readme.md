@@ -60,8 +60,7 @@ If the client does not select the type of business, the type of property and the
 ### 1.3. Acceptance Criteria
 
 * **AC1:** The unregistered user can be filter the list of properties by type of business, type of property and number of rooms.
-* **AC2:** The unregistered user can sort the list of properties by price or the parish where the property is located.
-  hen creating a task with an already existing reference, the system must reject such operation and the user must have the change to modify the typed reference.
+* **AC2:** The unregistered user can sort the list of properties by price, by city and/or stae where the property is located.
 
 
 ### 1.4. Found out Dependencies

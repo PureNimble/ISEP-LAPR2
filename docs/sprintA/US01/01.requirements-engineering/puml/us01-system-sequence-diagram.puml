@@ -23,7 +23,7 @@ activate User
     User -> System : types requested data
     activate System
 
-    System --> User : shows listed properties and asks to sort it by price and/or by parish
+        System --> User : shows listed properties and asks to sort it by price, city and/or by state.
     deactivate System
 
     User -> System : selects sorting criteria
