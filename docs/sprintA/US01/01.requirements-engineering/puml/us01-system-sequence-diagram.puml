@@ -28,49 +28,49 @@ activate User
             System -> User : display all the properties available
             deactivate System
 
-        end
 
-        alt  Only selects type of business
+
+        else  Only selects type of business
 
             System -> User : shows all the types of properties with any number of rooms \naccording to the type of business selected
             deactivate System
 
-        end
 
-        alt  Only selects type of business and type of property
+
+        else  Only selects type of business and type of property
 
             System -> User : Shows the type of business and property selected with \nany number of rooms
             deactivate System
 
-        end
 
-        alt  Only selects type of business and number of rooms
+
+        else  Only selects type of business and number of rooms
 
             System -> User : Shows the type of business and number of rooms selected with \nany type of property
             deactivate System
 
-        end
 
-        alt  Only selects type of property
+
+        else  Only selects type of property
 
             System -> User : shows all the types of business with any number of rooms \naccording to the type of property selected
             deactivate System
 
-        end
 
-        alt  Only selects type of property and number of rooms
+
+        else  Only selects type of property and number of rooms
 
             System -> User : Shows the type of property and number of rooms selected with \nany type of business
             deactivate System
 
-        end
 
-        alt  Only selects number of rooms
+
+        else  Only selects number of rooms
 
             System -> User : shows all the types of properties and business according to \nthe type of business selected
             deactivate System
 
-        end
+
 
 end
 
