@@ -1,79 +1,69 @@
 @startuml
 
-left to right direction
+title US001 - Domain Model
 
-class Client {
-- name
-- type of property
-- type of business
-- number of rooms
-- sorting criteria(price and/or parish)
+skinparam groupInheritance 2
+skinparam monochrome true
+skinparam linetype ortho
+hide circle
+
+
+
+class UnregisteredUser {
 }
+
 
 class Property {
-- area
-- location
-- photos
-- distance from the city center
-- the requested price
+- Area
+- Photos
+- Distance from the city center
+- The requested price
+- Address
 }
 
-Client "*" --- "1" Property: consults >
 
 class Residence {
--number of bedrooms
- - number of bathrooms
- - number of parking spaces
- - AvailableEquipment
+- Number of Bedrooms
+- Number of Bathrooms
+- Number of Parking Spaces
+- AvailableEquipment
  }
 
-class Apartment {
-}
 
 class House {
-- basement
-- inhabitable loft
+- Basement
+- Inhabitable Loft
 - SunExposure
 }
 
-class Land {
-
-}
 
 class SunExposure {
-- direction
+- Direction
 }
 
-'perguntar'
 
-'/class LocationOrAdress {
-  '- adressExtension
-  '- zip code
-  '}
-
-
-class LocationOrAddress {
-- street
-- city
-- county
-- state
-- zip code
+class Address {
+- Street
+- City
+- County
+- State
+- Zip Code
 }
+
 
 class AvailableEquipment {
-- central heating
-- airconditioning
+- Equipment
 }
 
 
-Land "*" --- "1" Property: is a >
-Residence "*" --- "1" Property: is a >
+UnregisteredUser "*" --- "*" Property: wants to see >
 
-SunExposure "*" --- "1" House : part of >
-LocationOrAddress "*" --- "1" Property : part of >
+Property <|--- Residence
+Property "*" --- "1" Address : has <
 
-AvailableEquipment "*" --- "1" Residence : part of >
-Apartment "*" --- "1" Residence : is a >
-House "*" --- "1" Residence : is a >
+Residence "*" --- "1" AvailableEquipment : has <
+Residence <|--- House
+
+House "*" --- "1" SunExposure : has <
 
 @enduml
