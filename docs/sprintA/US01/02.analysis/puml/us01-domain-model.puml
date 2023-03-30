@@ -1,9 +1,17 @@
 @startuml
 
+title US001 - Domain Model
+
 skinparam groupInheritance 2
+skinparam monochrome true
+skinparam linetype ortho
+hide circle
+
+
 
 class UnregisteredUser {
 }
+
 
 class Property {
 - Area
@@ -48,14 +56,14 @@ class AvailableEquipment {
 }
 
 
-UnregisteredUser "*" -- "*" Property: consults >
+UnregisteredUser "*" --- "*" Property: wants to see >
 
-Property "*" --- "1" Residence: is a <
-Property "*" --- "1" Address : part of <
+Property <|--- Residence
+Property "*" --- "1" Address : has <
 
-Residence "*" --- "1" AvailableEquipment : part of <
-Residence "*" --- "1" House : is a <
+Residence "*" --- "1" AvailableEquipment : has <
+Residence <|--- House
 
-House "*" --- "1" SunExposure : part of <
+House "*" --- "1" SunExposure : has <
 
 @enduml
