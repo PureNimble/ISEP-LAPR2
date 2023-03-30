@@ -15,7 +15,7 @@ As an unregistered user, I want to display listed properties.
 
 **From the specifications document:**
 
->	the client is, then, responsible for being able to consult the properties by type, number of rooms, and sort by criteria such as price or the parish where the property is located.
+>	The client is, then, responsible for being able to consult the properties by type, number of rooms, and sort by criteria such as price or the parish where the property is located.
 
 >	As long as it is not published, access to the task is exclusive to the employees of the respective organization.
 
