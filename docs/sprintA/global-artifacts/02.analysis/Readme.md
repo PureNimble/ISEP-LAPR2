@@ -168,6 +168,8 @@ An association is a relationship between instances of objects that indicates a r
 | SystemAdministrator | registers         |             Store |
 | SystemAdministrator | resgisters        |          Employee |
 | UnregisteredUser    | wants to see      |          Property |
+|                     |                   |                   |                                                                                                                                                                         |                                                                                                                                                                          |
+
 
 
 
