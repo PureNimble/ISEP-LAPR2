@@ -4,10 +4,44 @@
 skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
+hide empty members
+skinparam groupInheritance 3
 
 class SystemAdministrator
 
 class Employee
+
+class Role
+
+class SystemAdministrator
+
+class Agent
+
+class StoreManager
+
+class StoreNetworkManager
+
+class Store
+
+class LocationOrAdress
+
+class Role{
+-role
+}
+
+class Store{
+-designation
+-email
+-contact number
+}
+
+class LocationOrAdress{
+-street
+-zipCode
+-City
+-Country
+-State
+}
 
 class SystemAdministrator{
 }
@@ -16,11 +50,25 @@ class Employee{
 -name
 -id
 -number
--agency
 -tax number
--role
 }
 
-SystemAdministrator "1" - "*" Employee: registers >
+SystemAdministrator "1" - "*" Store : registers >
+
+Store "*" -- "1" LocationOrAdress : located at >
+
+Store "1" - "*" Employee : works in <
+
+SystemAdministrator "1" - "*" Employee : registers >
+
+Employee "1" - "1" Role : has >
+
+Employee <|--  StoreNetworkManager
+
+Employee <|--  StoreManager
+
+Employee <|-- Agent
+
+
 
 @enduml

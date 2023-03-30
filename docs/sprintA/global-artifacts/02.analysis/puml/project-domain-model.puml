@@ -3,7 +3,7 @@
 skinparam group 3.0
 hide empty members
 skinparam ClassFontSize 17
-scale 4.0
+scale 2.5
 
 
 class UnregisteredUser
@@ -20,15 +20,9 @@ class Owner
 
 class StoreNetworkManager
 
-class ListOfProprieties
-
 class Client
 
-class Apartment
-
 class House
-
-class Land
 
 class SunExposure
 
@@ -48,7 +42,6 @@ class Employee{
 -name
 -id
 -number
--agency
 -tax number
 -role
 }
@@ -70,8 +63,11 @@ class StoreManager{
 
 
 class Owner{
--property characteristics
--requested price
+-name
+-id
+-number
+-tax number
+-email
 }
 
 class StoreNetworkManager{
@@ -82,11 +78,6 @@ class Client{
 -type of property
 -type of business
 -number of rooms
--sorting criteria(price and/or parish)
-}
-
-
-class ListOfProprieties{
 }
 
 class Apartment{
@@ -95,9 +86,6 @@ class Apartment{
 class House{
 -basement
 -inhabitable loft
-}
-
-class Land{
 }
 
 
@@ -135,44 +123,6 @@ class UnregisteredUser{
 }
 
 'Properties
-ListOfProprieties "1" -- "*" Properties: contains >
-
-Properties "1" -- "*" Land : part of <
-Properties "1" -- "*" Residences : part of <
-Residences "1" -- "*" House : part of <
-Residences "1" -- "*" Apartment : part of <
-House "1" -- "1" SunExposure : contains >
-
-
-Properties"1" - "1" LocationOrAdress : Located at >
-
-Agent"1" - "1" LocationOrAdress : has >
-
-Agent"1" ---- "1" Employee : is an >
-
-Employee"1" -- "1" LocationOrAdress: has >
-
-StoreNetworkManager"1" -- "1" Employee: is a >
-
-Employee"*" -- "1" StoreManager: manages <
-
-SystemAdministrator"1" - "*" Store: registers >
-
-Store"1" - "*" Employee: works in <
-
-SystemAdministrator"1" - "*" Employee: registers >
-
-StoreNetworkManager"1" -- "*" Store: manages >
-
-ListOfProprieties "*" - "*" Agent: publishes <
-
-Agent"1" - "1" Owner : requests to sell or rent >
-
-Client"1" -- "1" Agent : requests to schedule a visit >
-
-Client"1" -- "1" ListOfProprieties : display/consults >
-
-UnregisteredUser"1" -- "1" ListOfProprieties : display >
 
 
 @enduml

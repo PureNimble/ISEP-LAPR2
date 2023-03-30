@@ -15,20 +15,19 @@ activate Admin
     Admin -> System : asks to register an employee
     activate System
 
-        System --> Admin : requests data(name,citizen´s card number,tax number \nadress,email adress,telephone number,agency).
-    deactivate System
+   System --> Admin :  requested data(name,citizen´s card number,tax number \n,adress,email adress,telephone number,agency\n role).
+     deactivate System
 
     Admin -> System : types requested data
     activate System
 
-        System --> Admin : displays operation success
-        deactivate System
+     System --> Admin : shows the information
+            deactivate System
 
     Admin -> System : submits data
     activate System
 
         System --> Admin : displays operation success
     deactivate System
-
 
 @enduml
