@@ -1,4 +1,4 @@
-# US 01 - Display listed properties
+# US 001 - Display listed properties
 
 ## 1. Requirements Engineering
 
@@ -9,15 +9,14 @@
 As an unregistered user, I want to display listed properties.
 
 
-
 ### 1.2. Customer Specifications and Clarifications
 
 
 **From the specifications document:**
 
->	The client is, then, responsible for being able to consult the properties by type, number of rooms, and sort by criteria such as price or the parish where the property is located.
+>	All registered information, except the agency comission, can be acessed by the client who intends to buy or rent the property.
 
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization.
+>	The client is responsible for being able to consult the properties by type, number of rooms, and sort by criteria such as price or the parish where the property is located.
 
 
 
@@ -62,35 +61,40 @@ If the client does not select the type of business, the type of property and the
 ### 1.3. Acceptance Criteria
 
 
-* **AC1:** All required fiels must be filled in.
-* **AC2:** Task reference must have at least 5 alphanumeric chars.
-* **AC3:** When creating a task with an already existing reference, the system must reject such operation and the user must have the change to modify the typed reference.
-
+* **AC1:** The unregistered user can be filter the list of properties by type of business, type of property and number of rooms.
+* **AC2:** The unregistered user can sort the list of properties by price or the parish where the property is located.
+  hen creating a task with an already existing reference, the system must reject such operation and the user must have the change to modify the typed reference.
 
 ### 1.4. Found out Dependencies
 
 
-* There is a dependency to "US003 Create a task category" since at least a task category must exist to classify the task being created.
-
+* There's no dependencies.
 
 ### 1.5 Input and Output Data
 
 
 **Input Data:**
 
-* Typed data:
-    * a reference,
-    * a designation,
-    * an informal description
-    * a technical description
-    * an estimated duration
-    * an estimated cost
-
 * Selected data:
-    * Classifying task category
+  * type of bussiness
+  * type of property
+  * number of rooms
+  * an estimated cost
+  * a location of the property
 
 
 **Output Data:**
 
 * List of existing task categories
 * (In)Success of the operation
+
+### 1.6. System Sequence Diagram (SSD)
+
+**Other alternatives might exist.**
+
+#### Alternative One
+
+![System Sequence Diagram](svg/us01-system-sequence-diagram-System_Sequence_Diagram__SSD_.svg)
+
+
+### 1.7 Other Relevant Remarks
