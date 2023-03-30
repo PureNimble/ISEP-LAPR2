@@ -21,7 +21,7 @@ activate Admin
     Admin -> System : types requested data
     activate System
 
-     System --> Admin : shows the information
+     System --> Admin : shows the information of an employee
             deactivate System
 
     Admin -> System : submits data
