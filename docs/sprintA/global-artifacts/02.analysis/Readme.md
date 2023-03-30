@@ -140,10 +140,39 @@ An association is a relationship between instances of objects that indicates a r
 
 
 
-| Concept (A) 		 |  Association   	|  Concept (B) |
-|----------------|:-------------:		|------:       |
-| Owner  	       | verb1    		 	| C2  |
-| ...  	         | ...    		 	| ...  |
+| **_Concept (A)_**   | **_Association_** | **_Concept (B)_** |                                       
+|:--------------------|:------------------|------------------:|
+| Agent               | is a              |          Employee |
+| Agent               | publishes         |          Property |
+| Agent               | defines           |         Comission |
+| Announcement        | is a              |          Business |
+| AvailableEquipment  | has               |        Residences |
+| Business            | have a            |          Property |
+| Business            | contains          |         Comission |
+| Employee            | works in          |             Store |
+| Employee            | has               |              Role |
+| Employee            | has               |          Contacts |
+| House               | is a              |        Residences |
+| House               | contains          |       SunExposure |
+| Owner               | contacts          |             Store |
+| Owner               | has               |          Location |
+| Owner               | has               |          Contacts |
+| Property            | located at        |          Location |
+| Rent                | is a              |          Business |
+| Residences          | is a              |          Property |
+| Store               | located at        |          Location |
+| Store               | has               |          Contacts |
+| StoreManager        | is a              |          Employee |
+| StoreNetworkManager | is a              |          Employee |
+| StoreNetworkManager | manages           |             Store |
+| SystemAdministrator | registers         |             Store |
+| SystemAdministrator | resgisters        |          Employee |
+| UnregisteredUser    | wants to see      |          Property |
+
+
+
+
+
 
 
 
