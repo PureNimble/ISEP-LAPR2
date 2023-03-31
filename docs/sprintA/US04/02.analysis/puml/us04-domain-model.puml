@@ -13,7 +13,7 @@ class House
 
 class Residence
 
-class LocationOrAdress
+class Adress
 
 class Contacts
 
@@ -84,7 +84,7 @@ class SunExposure {
 - Direction
 }
 
-class LocationOrAdress {
+class Adress {
 - Street
 - City
 - County
@@ -100,8 +100,8 @@ class Comission{
 Residence <|-- House
 Property <|-- Residence
 SunExposure "1" -up-- "1" House: contains <
-LocationOrAdress "1" -right-- "1" Property: has <
-LocationOrAdress "1" -right-- "1" Owner: has <
+Adress "1" -right-- "1" Property: has <
+Adress "1" -right-- "1" Owner: has <
 Owner "1" -left-- "*" Property: has >
 Owner "1" -- "1" Store: contacts >
 Agent "*" -up-- "1" Store: has <
