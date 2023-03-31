@@ -104,7 +104,6 @@ Inhabitable Loft
 class Owner {
 Name
 ID
-Number
 Tax Number
 Email
 }
@@ -130,7 +129,7 @@ class Residences {
 Number of Bedrooms
 Number of Bathrooms
 Number of Parking Spaces
-AvailableEquipment
+
 }
 
 class Role {
