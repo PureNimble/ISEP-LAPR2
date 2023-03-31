@@ -36,7 +36,13 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Roles of People or Organizations**
 
-* 
+* Agent
+* Employee
+* StoreManager
+* StoreNetworkManager
+* System Administrator
+* Owner
+* Unregistered User
 
 
 ---
@@ -44,13 +50,17 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Places**
 
-*  
+* Location
+* Store
+* Residence
+* Property
+* House
 
 ---
 
 ** Noteworthy Events**
 
-* 
+* Rent
 
 ---
 
@@ -79,14 +89,14 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Containers**
 
-*  
+*  Employee
 
 ---
 
 
 **Elements of Containers**
 
-*  
+* Agent
 
 ---
 

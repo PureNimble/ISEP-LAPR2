@@ -29,31 +29,31 @@ class Store
 class LocationOrAdress
 
 class Role{
--role
+role
 }
 
 class Store{
--designation
--email
--contact number
+designation
+email
+contact number
 }
 
 class LocationOrAdress{
--street
--zipCode
--City
--Country
--State
+street
+zipCode
+City
+Country
+State
 }
 
 class SystemAdministrator{
 }
 
 class Employee{
--name
--id
--number
--tax number
+name
+id
+number
+tax number
 }
 
 SystemAdministrator "1" - "*" Store : registers >
