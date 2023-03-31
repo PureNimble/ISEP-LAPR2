@@ -11,6 +11,7 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
+title Project Domain Model
 
 
 class Address
