@@ -14,16 +14,6 @@ As a system administrator, I want to register a new employee.
 
 ### 1.2. Customer Specifications and Clarifications
 
-
-**From the specifications document:**
-
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost as well as the its classifying task category.
-
-
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization.
-
-
-
 **From the client clarifications:**
 
 > **Question:** When registering a new employee, all the required data (name, citizen's card number, etc...) have to be filled or exists not mandatory data?
@@ -56,9 +46,6 @@ As a system administrator, I want to register a new employee.
 > **Answer:** The password should have seven characters in length including three capital letters and two digits and should be generated automatically
 
 
-
-
-
 ### 1.3. Acceptance Criteria
 
 
@@ -71,7 +58,7 @@ As a system administrator, I want to register a new employee.
 ### 1.4. Found out Dependencies
 
 
-* There might be a dependency to “US5 register a store” since the employee might be one working in one.
+* There is a dependency to “US5 register a store” since the employee might be one working in one.
 
 
 ### 1.5 Input and Output Data
