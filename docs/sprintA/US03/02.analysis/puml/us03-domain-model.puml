@@ -26,7 +26,7 @@ class StoreNetworkManager
 
 class Store
 
-class LocationOrAdress
+class Adress
 
 class Role{
 role
@@ -38,7 +38,7 @@ email
 contact number
 }
 
-class LocationOrAdress{
+class Adress{
 street
 zipCode
 City
@@ -58,7 +58,7 @@ tax number
 
 SystemAdministrator "1" - "*" Store : registers >
 
-Store "*" -- "1" LocationOrAdress : located at >
+Store "*" -- "1" Adress : located at >
 
 Store "1" - "*" Employee : works in <
 
