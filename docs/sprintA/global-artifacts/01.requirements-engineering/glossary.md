@@ -24,7 +24,7 @@
 | **Real Estate USA**       | A fiction United States of America company that has a network of real estate agencies.                                                                                   |
 | **Rent**                  | A periodic payment made to the owner for the use of the owner's property.                                                                                                |
 | **Role**                  | The function or position of an employee.                                                                                                                                 |
-| **Store**                 | (...)                                                                                                                                                                    |
+| **Store**                 | Place where you can buy or rent properties.                                                                                                                              |
 | **Store Manager**         | Person who monitors and streamlines the branch with the aim of getting to know better the business carried out and to analyze and evaluate the performance of employees. |
 | **Store Network Manager** | Person responsible for registering all employees and branches of the network as well as preparing the system to facilitate the use of the application.                   |
 | **System Administrator**  | Person responsible for carrying out various business supporting activities on the system.                                                                                |
@@ -32,6 +32,5 @@
 | **Tax Number**            | It is the contribution number of the person.                                                                                                                             |
 | **Type of property**      | Related to the variety of proprieties that the Real Estate USA possess, such as apartment, house or land.                                                                |
 | **Unregistered User**     | A person who is not registered or logged in to a particular website or online platform.                                                                                  |
-|                           |                                                                                                                                                                          | 
-|                           |                                                                                                                                                                          |                                                                                                                                                                        |                                                                                                                                                                          |
+                                                                                                                                                                                                                                                                                                                                           |
 
