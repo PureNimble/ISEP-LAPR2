@@ -10,6 +10,8 @@ hide empty members
 skinparam groupInheritance 3
 hide circle
 
+class Contacts
+
 class SystemAdministrator
 
 class Employee
@@ -34,8 +36,7 @@ Role
 
 class Store {
 Designation
-Email
-Contact Number
+
 }
 
 class Address {
@@ -56,6 +57,11 @@ Number
 Tax Number
 }
 
+class Contacts {
+Phone number
+Email adress
+}
+
 SystemAdministrator "1" - "*" Store : registers >
 
 Store "*" -- "1" Address : located at >
@@ -73,5 +79,7 @@ Employee <|--  StoreManager
 Employee <|-- Agent
 
 StoreNetworkManager "1" - "*" Store : manages >
+
+Store "1" -- "1" Contacts: has >
 
 @enduml
