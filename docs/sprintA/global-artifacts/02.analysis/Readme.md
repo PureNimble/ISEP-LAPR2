@@ -196,14 +196,6 @@ An association is a relationship between instances of objects that indicates a r
 | UnregisteredUser    | wants to see      |          Property |
 |                     |                   |                   |                                                                                                                                                                         |                                                                                                                                                                          |
 
-
-
-
-
-
-
-
-
 ## Domain Model
 
 **Do NOT forget to identify concepts atributes too.**
