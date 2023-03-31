@@ -1,4 +1,7 @@
 @startuml
+
+title US004 - Domain Model
+
 skinparam groupInheritance 2
 skinparam monochrome true
 skinparam packageStyle rectangle
@@ -13,7 +16,7 @@ class House
 
 class Residence
 
-class Adress
+class Address
 
 class Contacts
 
@@ -33,13 +36,13 @@ class SunExposure
 
 class Store
 
-class AvailableEquipment{
-- equipment
+class AvailableEquipment {
+Equipment
 }
 
-Class Contacts{
-- Phone number
-- Email adress 
+class Contacts {
+Phone number
+Email adress
 }
 
 class Owner {
@@ -48,60 +51,60 @@ Citizens card number
 Tax number
 }
 
-class Rent{
-- duration of contract
-- price per month
+class Rent {
+Duration of contract
+Price per month
 }
 
 
-class Business{
-- Total Price
+class Business {
+Total Price
 }
 
-class Residence{
-- number of bedrooms
-- Number of bathrooms
-- Number of parking spaces
+class Residence {
+Number of Bedrooms
+Number of Bathrooms
+Number of Parking Spaces
  }
 
-class Store{
-- Designation
+class Store {
+Designation
 
 }
 
 class Property {
-- Area
-- Photos
-- Distance from the city center
+Area
+Photos
+Distance from the city center
 }
 
 class House {
-- Basement
-- Inhabitable loft
+Basement
+Inhabitable loft
 }
 
 class SunExposure {
-- Direction
+Direction
 }
 
-class Adress {
-- Street
-- City
-- County
-- State
-- Zip code
+class Address {
+Street
+City
+County
+State
+Zip Code
 }
 
-class Comission{
--Type
--Value
+class Comission {
+Type
+Value
 }
 
 Residence <|-- House
 Property <|-- Residence
 SunExposure "1" -up-- "1" House: contains <
-Adress "1" -right-- "1" Property: has <
-Adress "1" -right-- "1" Owner: has <
+Address "1" -right-- "1" Property: has <
+Address "1" -right-- "1" Owner: has <
 Owner "1" -left-- "*" Property: has >
 Owner "1" -- "1" Store: contacts >
 Agent "*" -up-- "1" Store: has <

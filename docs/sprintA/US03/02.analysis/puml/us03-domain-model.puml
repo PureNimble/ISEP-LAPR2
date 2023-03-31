@@ -26,39 +26,39 @@ class StoreNetworkManager
 
 class Store
 
-class Adress
+class Address
 
-class Role{
-role
+class Role {
+Role
 }
 
-class Store{
-designation
-email
-contact number
+class Store {
+Designation
+Email
+Contact Number
 }
 
-class Adress{
-street
-zipCode
+class Address {
+Street
+Zip Code
 City
 Country
 State
 }
 
-class SystemAdministrator{
+class SystemAdministrator {
 }
 
-class Employee{
-name
-id
-number
-tax number
+class Employee {
+Name
+ID
+Number
+Tax Number
 }
 
 SystemAdministrator "1" - "*" Store : registers >
 
-Store "*" -- "1" Adress : located at >
+Store "*" -- "1" Address : located at >
 
 Store "1" - "*" Employee : works in <
 
