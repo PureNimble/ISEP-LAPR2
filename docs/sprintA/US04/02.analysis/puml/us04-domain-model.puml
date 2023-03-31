@@ -1,5 +1,11 @@
 @startuml
 skinparam groupInheritance 2
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
 
 class Property
 
