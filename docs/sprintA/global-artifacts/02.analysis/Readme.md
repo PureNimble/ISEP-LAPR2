@@ -10,19 +10,27 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Business Transactions**
 
-*
+* Business
+* Rent
+* Comission
+* Announcement
 
 ---
 
 **Transaction Line Itemss**
 
-*
+* Property
+* Business
+* Comission
+
 
 ---
 
 **Product/Service related to a Transaction or Transaction Line Item**
 
-*  
+* Property
+* Announcement
+
 
 ---
 
@@ -52,29 +60,36 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 * Location
 * Store
-* Residence
+* Residences
 * Property
 * House
 
 ---
 
-** Noteworthy Events**
+**Noteworthy Events**
 
 * Rent
+* Business
 
 ---
 
 
 **Physical Objects**
 
-*
+* House
+* Residence
+* Store
+* Property
+
 
 ---
 
 
 **Descriptions of Things**
 
-*  
+*  Sun Exposure
+* AvailableEquipment
+* Address
 
 
 ---
@@ -90,20 +105,21 @@ To identify domain conceptual classes, start by making a list of candidate conce
 **Containers**
 
 *  Employee
+*  Residence
 
 ---
 
 
 **Elements of Containers**
 
-* Agent
+* 
 
 ---
 
 
 **Organizations**
 
-*  
+*  Real Estate USA (Company)
 
 ---
 
@@ -124,14 +140,14 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Financial Instruments**
 
-*  
+*  Comission
 
 ---
 
 
 **Documents mentioned/used to perform some work/**
 
-* 
+* Contacts
 ---
 
 
@@ -165,12 +181,12 @@ An association is a relationship between instances of objects that indicates a r
 | House               | is a              |        Residences |
 | House               | contains          |       SunExposure |
 | Owner               | contacts          |             Store |
-| Owner               | has               |          Location |
+| Owner               | has               |           Address |
 | Owner               | has               |          Contacts |
-| Property            | located at        |          Location |
+| Property            | located at        |           Address |
 | Rent                | is a              |          Business |
 | Residences          | is a              |          Property |
-| Store               | located at        |          Location |
+| Store               | located at        |           Address |
 | Store               | has               |          Contacts |
 | StoreManager        | is a              |          Employee |
 | StoreNetworkManager | is a              |          Employee |
