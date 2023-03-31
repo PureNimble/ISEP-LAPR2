@@ -26,7 +26,7 @@ class Role
 
 class Residence
 
-class LocationOrAdress
+class Address
 
 class AvailableEquipment
 
@@ -41,71 +41,69 @@ class Agent {
 }
 
 class Residence{
-    number of bedrooms
-    number of bathrooms
-    number of parking spaces
+Number of Bedrooms
+Number of Bathrooms
+Number of Parking Spaces
  }
 
 
 class Property {
-    area
-    photos
-    LocationOrAdress
-    distance from the city center
+Area
+Photos
+Distance from the city center
 }
 
 
 class House {
-    basement
-    inhabitable loft
-    SunExposure
+Basement
+Inhabitable loft
 }
 
 
 class SunExposure {
-    direction
+Direction
 }
 
-class LocationOrAdress {
-    street
-    city
-    county
-    state
-    zipCode
+class Address {
+Street
+City
+County
+State
+Zip Code
 }
 
-class Employee{
-    name
-    id
-    number
-    agency
-    tax number
+class Employee {
+Name
+ID
+Number
+Agency
+Tax Number
 }
 
-class Comission{
-    type
-    value
+class Comission {
+Type
+Value
 }
 
-class AvailableEquipment{
-equipment
+class AvailableEquipment {
+Equipment
 }
 
-class Business{
-    total price
+class Business {
+Total Price
 }
 
-class Announcement{
-    date
+class Announcement {
+Date
 }
 
-class Role{
-    role
+class Role {
+Role
 }
 
-class Rent{
-    duration of contract
-    price per month
+class Rent {
+Duration of contract
+Price per month
 }
 
 Residence <|--- House
@@ -118,7 +116,7 @@ Business "1" --- "1" Property : have a >
 Business  <|---  Announcement
 
 Property "*" --- "1" Agent: publishes <
-Property "*" --- "1" LocationOrAdress : located at >
+Property "*" --- "1" Address : located at >
 
 House "*" --- "1" SunExposure : contains >
 
@@ -126,7 +124,7 @@ AvailableEquipment "*" --- "1" Residence: has >
 
 Role "1" --- "*" Employee : has <
 
-Agent "*" --- "1" LocationOrAdress : has >
+Agent "*" --- "1" Address : has >
 Agent <|---- Employee
 Agent "1" --- "1" Comission : defines >
 
