@@ -62,24 +62,21 @@ Phone number
 Email adress
 }
 
-SystemAdministrator "1" - "*" Store : registers >
-
-Store "*" -- "1" Address : located at >
-
-Store "1" - "*" Employee : works in <
-
-SystemAdministrator "1" - "*" Employee : registers >
-
-Employee "1" - "1" Role : has >
-
-Employee <|--  StoreNetworkManager
-
-Employee <|--  StoreManager
-
 Employee <|-- Agent
+Employee <|-- StoreNetworkManager
+Employee <|-- StoreManager
+Employee <|-- SystemAdministrator
 
-StoreNetworkManager "1" - "*" Store : manages >
+SystemAdministrator "1" -left- "*" Store : registers >
 
+Store "*" - "1" Address : located at >
+Employee "1" - "*" Store : works in >
 Store "1" -- "1" Contacts: has >
+
+Employee "1" -left "1" Role : has >
+
+Store "1" -- "*" StoreNetworkManager : manages <
+
+
 
 @enduml
