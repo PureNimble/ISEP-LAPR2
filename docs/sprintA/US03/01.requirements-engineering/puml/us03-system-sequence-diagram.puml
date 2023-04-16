@@ -15,7 +15,19 @@ activate Admin
     Admin -> System : asks to register an employee
     activate System
 
-   System --> Admin :  requested data(name,citizen´s card number,tax number \n,adress,email adress,telephone number,agency\n role).
+    System --> Admin : shows list of roles and asks to select one
+    deactivate System
+
+        Admin -> System : selects one
+        activate System
+
+         System --> Admin : shows list of stores and asks to select one
+            deactivate System
+
+                Admin -> System : selects one
+                activate System
+
+   System --> Admin :  requested data(name,citizen´s card number,tax number \n,adress,email adress,telephone number).
      deactivate System
 
     Admin -> System : types requested data
