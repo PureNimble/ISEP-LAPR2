@@ -10,6 +10,7 @@ The teams consists of students identified in the following table.
 | **1221184**    | Luna Silva     |
 | **1221014**    | Diogo Moutinho |
 | **1221700**    | Vasco Sousa    |
+| **1201804**    | Rafael Araújo  |
 
 # 2. Task Distribution ###
 
@@ -28,7 +29,7 @@ was carried out as described in the following table.
 | US 002 (SDP Activities)     | [1221184](sprintA/US02/Readme.md)                                                          |                                                                                            |                                                                                            |                                                                                            |
 | US 003 (SDP Activities)     | [1221014](sprintA/US03/Readme.md)                                                          |                                                                                            |                                                                                            |                                                                                            |
 | US 004 (SDP Activities)     | [1221700](sprintA/US04/Readme.md)                                                          |                                                                                            |                                                                                            |                                                                                            |
-| US 005 (SDP Activities)     | [1XXXXXX](sprintA/US05/Readme.md)                                                          |                                                                                            |                                                                                            |                                                                                            |
+| US 005 (SDP Activities)     | [1201804](sprintA/US05/Readme.md)                                                          |                                                                                            |                                                                                            |                                                                                            |
 | US 006 (SDP Activities)     | [1XXXXXX](sprintA/us00Example/Readme.md)                                                         |                                                                                            |                                                                                            |                                                                                            |
 | ...                         | ...                                                                                        | ...                                                                                        | ...                                                                                        | ...                                                                                        |
 
