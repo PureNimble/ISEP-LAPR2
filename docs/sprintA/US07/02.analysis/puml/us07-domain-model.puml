@@ -1,0 +1,55 @@
+@startuml
+
+title US05 - Domain Model
+
+skinparam groupInheritance 2
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+class SystemAdministrator
+
+class Address
+
+class Contacts
+
+class Store
+
+class SystemAdministrator{
+
+}
+
+class Employee{
+    Name
+    ID
+    Tax Number
+    Role
+}
+
+class Contacts {
+    Phone Number
+    Email Adress
+}
+
+class Store {
+    ID
+    Designation
+}
+
+class Address {
+    Street
+    City
+    Country
+    State
+    Zip Code
+}
+
+Store "1" -down-- "1" Address: located at >
+Store "1" -right-- "1" Contacts: has >
+SystemAdministrator "1" -right-- "*" Store: registers >
+Employee <|--- SystemAdministrator
+
+@enduml
