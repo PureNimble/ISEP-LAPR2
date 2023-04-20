@@ -1,0 +1,34 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant "organization\n:Organization" as ORG
+participant "task\n:Task" as TAREFA
+
+autonumber 16
+-> ORG: createTask(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee )
+
+autonumber 16.1
+activate ORG
+    group Create Task
+
+        ORG -> TAREFA**: create(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee)
+        ORG -> ORG: addTask (task)
+
+        activate ORG
+            ORG -> ORG: validateTask(task)
+            activate ORG
+                ORG --> ORG
+            deactivate ORG
+
+            ORG --> ORG
+        deactivate ORG
+    end
+
+    autonumber 17
+    <-- ORG : task
+deactivate ORG
+
+
+@enduml

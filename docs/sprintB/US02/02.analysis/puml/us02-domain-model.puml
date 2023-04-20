@@ -1,0 +1,134 @@
+@startuml
+
+skinparam groupInheritance 2
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+'skinparam linetype ortho
+'left to right direction
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+title US002 - Domain Model
+
+class Property
+
+class Comission
+
+class Announcement
+
+class Business
+
+class House
+
+class Role
+
+class Residence
+
+class Address
+
+class AvailableEquipment
+
+class Agent
+
+class SunExposure
+
+class Employee
+
+
+class Agent {
+}
+
+class Residence{
+Number of Bedrooms
+Number of Bathrooms
+Number of Parking Spaces
+ }
+
+
+class Property {
+Area
+Photos
+Distance from the city center
+}
+
+
+class House {
+Basement
+Inhabitable loft
+}
+
+
+class SunExposure {
+Direction
+}
+
+class Address {
+Street
+City
+County
+State
+Zip Code
+}
+
+class Employee {
+Name
+ID
+Number
+Agency
+Tax Number
+}
+
+class Comission {
+Type
+Value
+}
+
+class AvailableEquipment {
+Equipment
+}
+
+class Business {
+Total Price
+}
+
+class Announcement {
+Date
+}
+
+class Role {
+Role
+}
+
+class Rent {
+Duration of contract
+Price per month
+}
+
+Residence <|--- House
+Property <|--- Residence
+Business <|--- Rent
+
+Business "*" --- "1" Comission : contains >
+Business "1" --- "1" Property : have a >
+
+Business  <|---  Announcement
+
+Property "*" --- "1" Agent: publishes <
+Property "*" --- "1" Address : located at >
+
+House "*" --- "1" SunExposure : contains >
+
+AvailableEquipment "*" --- "1" Residence: has >
+
+Role "1" --- "*" Employee : has <
+
+Agent "*" --- "1" Address : has >
+Agent <|---- Employee
+Agent "1" --- "1" Comission : defines >
+
+
+
+
+@enduml

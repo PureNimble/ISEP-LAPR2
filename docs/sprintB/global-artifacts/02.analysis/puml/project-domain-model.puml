@@ -1,0 +1,202 @@
+@startuml
+
+skinparam groupInheritance 2
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+
+
+
+hide circle
+hide methods
+
+title Project Domain Model
+
+
+class Address
+class Agent
+class Announcement
+class AvailableEquipment
+
+class Business
+
+class Comission
+class Contacts
+
+class Employee
+
+class House
+
+class Owner
+
+class Property
+
+class Rent
+class Residences
+class Role
+
+class Store
+class StoreManager
+class StoreNetworkManager
+class SunExposure
+class SystemAdministrator
+
+class UnregisteredUser
+
+
+
+class Address {
+Street
+Zip Code
+City
+Country
+State
+}
+
+class Agent {
+}
+
+class Announcement {
+Date
+}
+
+class AvailableEquipment {
+Equipment
+}
+
+
+
+class Business {
+Total Price
+}
+
+
+
+class Comission {
+Type
+Value
+}
+
+class Contacts {
+Phone Number
+Email Address
+}
+
+
+
+class Employee {
+Name
+ID
+Tax Number
+Role
+}
+
+
+
+class House {
+Basement
+Inhabitable Loft
+}
+
+
+
+class Owner {
+Name
+ID
+Tax Number
+Email
+}
+
+
+
+class Property {
+Area
+Photos
+Address
+Distance from the city center
+The requested price
+}
+
+
+
+class Rent {
+Duration of Contract
+Price per month
+}
+
+class Residences {
+Number of Bedrooms
+Number of Bathrooms
+Number of Parking Spaces
+
+}
+
+class Role {
+Role
+}
+
+
+
+class Store {
+Designation
+}
+
+class StoreManager {
+}
+
+class StoreNetworkManager {
+}
+
+class SunExposure {
+Direction
+}
+
+class SystemAdministrator {
+}
+
+
+
+class UnregisteredUser {
+}
+
+
+
+Address "*" --- "1" Store : located at <
+Address "*" --- "1" Property : located at <
+Agent "1" - "1" Comission : defines >
+AvailableEquipment "*" --- "1" Residences: has >
+
+Business  <|--  Announcement
+Business "1" --- "1" Property : have a >
+Business "*" --- "1" Comission : contains >
+Business <|-- Rent
+
+Contacts "1" ----- "1" Store: has <
+
+Employee "1" - "1" Role : has >
+Employee <|--  StoreNetworkManager
+Employee <|--  StoreManager
+Employee <|-- Agent
+Employee "1" -- "1" Contacts: has >
+
+House "*" --- "1" SunExposure : contains >
+
+Owner "1" ---- "1" Store: contacts >
+Owner "1" - "1" Address: has >
+Owner "1" -- "1" Contacts: has >
+
+Property <|-- Residences
+Property "*" --- "1" Agent: publishes <
+
+Residences <|--- House
+
+Store "1" - "*" Employee : works in <
+Store "*" - "1" StoreNetworkManager  : manages <
+SystemAdministrator "1" - "*" Store : registers >
+SystemAdministrator "1" - "*" Employee : registers >
+
+UnregisteredUser "*" --- "*" Property: wants to see >
+
+
+@enduml
