@@ -10,8 +10,6 @@ hide empty members
 skinparam groupInheritance 3
 hide circle
 
-class Contacts
-
 class SystemAdministrator
 
 class Employee
@@ -42,8 +40,17 @@ Designation
 class Address {
 Street
 Zip Code
-City
-Country
+}
+
+class District{
+Name
+}
+
+class City{
+Name
+}
+
+class State{
 State
 }
 
@@ -52,15 +59,13 @@ class SystemAdministrator {
 
 class Employee {
 Name
-ID
-Number
+Email
+Phone Number
 Tax Number
 }
 
-class Contacts {
-Phone number
-Email adress
-}
+
+
 
 Employee <|-- Agent
 Employee <|-- StoreNetworkManager
@@ -71,12 +76,16 @@ SystemAdministrator "1" -left- "*" Store : registers >
 
 Store "*" - "1" Address : located at >
 Employee "1" - "*" Store : works in >
-Store "1" -- "1" Contacts: has >
 
 Employee "1" -left "1" Role : has >
 
 Store "1" -- "*" StoreNetworkManager : manages <
 
+City "1" -- "*" Address : is in <
+
+District "1" -- "*" City : is in <
+
+State "1" -- "*" District :is in <
 
 
 @enduml
