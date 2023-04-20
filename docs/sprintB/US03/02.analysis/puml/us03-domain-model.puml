@@ -87,6 +87,5 @@ District "1" -- "*" City : is in <
 
 State "1" -- "*" District :is in <
 
-Employee "*" - Address: located at >
 
 @enduml
