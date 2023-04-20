@@ -27,13 +27,41 @@ activate Owner
     Owner -> sys : contacts agent to sell or rent a property
     activate sys
 
-    sys --> Owner : requests data
+    sys -> Owner : asks for data
     deactivate sys
 
-    Owner -> sys :  types requested data (area in m^2, location, photos, distance from city center, \nthe requested price, number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning, \nthe existence of a basement and/or inhabitable loft, sun exposure)
+    Owner -> sys : types requested data [area in m^2, location, distance from city center and the requested price]
     activate sys
 
-    sys --> Owner : displays operation success
+    opt house, apartment
+        Owner -> sys : types requested data [number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning)]
+        opt house
+            Owner -> sys : types requested data [the existence of a basement and/or inhabitable loft, sun exposure \n(North, South, East, West)]
+        end
+    end
+
+    sys ---> Owner : saves all data and asks for photos of the property
     deactivate sys
 
+    loop Sends photos (from 1 up to 30 pictures)
+
+        Owner -> sys : sends photos of the property
+        activate sys
+
+    end
+
+    sys ---> Owner : saves the photos and asks for the type of business and neeeded data
+    deactivate sys
+
+    alt sale
+            Owner ---> sys : types the requested data [Requested price]
+            activate sys
+        
+        else lease
+
+            Owner ---> sys : types the requested data [Requested fee and contract duration]
+
+    end
+
+    sys --> Owner : retrieves the received data and returns operation success
 @enduml
