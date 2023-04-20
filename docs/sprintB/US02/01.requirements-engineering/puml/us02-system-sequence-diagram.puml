@@ -1,39 +1,69 @@
 @startuml
+'https://plantuml.com/sequence-diagram
 skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-title System Sequence Diagram (SSD) - US002
+title System Sequence Diagram (SSD)
 
-autonumber
-
+ autonumber
 actor "Agent" as Agent
 participant ":System" as System
 
 activate Agent
 
-    Agent -> System : asks to publish any sale annoucement
-    activate System
-
-        System --> Agent : requests data
-    deactivate System
-
-        Agent -> System : types requested data (area in m^2, location, photos, distance from city center, \nthe requested price, number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning, \nthe existence of a basement and/or inhabitable loft, sun exposure)
-
-
-     System --> Agent : saves the given data
-            deactivate System
-
-        Agent -> System : defines the agency commission type and value
-            activate System
-
-        System --> Agent : publishes the offer
-        deactivate System
-
-        Agent -> System : submits data
+    Agent -> System : asks to create an annoucement to publish
         activate System
 
-        System --> Agent : displays operation success
+    System --> Agent : requests data
         deactivate System
 
-@enduml
+    Agent -> System : types requested data [area in m^2, location, photos, distance from city center and the requested price]
+        activate System
+
+    opt house, apartment
+        autonumber 4
+        Agent -> System : types requested data [number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning)]
+
+        opt house
+            autonumber 5
+            Agent -> System : types requested data [the existence of a basement and/or inhabitable loft, sun exposure \n(North, South, East, West)]
+        end
+    end
+
+    System ---> Agent : saves all data and asks the type of business
+
+    alt sale
+
+        autonumber 7
+
+        Agent ---> System : types the requested data [Requested price]
+
+        else lease
+
+            Agent ---> System : types the requested data [Requested fee and contract duration]
+
+    end
+
+    System --> Agent : save all data and requests the comission type
+        deactivate System
+
+    Agent -> System : inserts the type comission
+        activate System
+
+    System --> Agent : requests the comission value
+        deactivate System
+
+    Agent -> System : inserts the comission value
+        activate System
+
+    System --> Agent : publishes the annoucement
+        deactivate System
+
+    Agent -> System : submits data
+        activate System
+
+    System --> Agent : displays operation success
+        deactivate System
+
+ @enduml

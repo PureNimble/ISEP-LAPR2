@@ -12,123 +12,128 @@ hide methods
 
 title US002 - Domain Model
 
-class Property
-
-class Comission
-
-class Announcement
-
-class Business
-
-class House
-
-class Role
-
-class Residence
-
-class Address
-
-class AvailableEquipment
-
-class Agent
-
-class SunExposure
-
-class Employee
-
-
-class Agent {
+class Address{
+Street
+Zip Code
 }
 
-class Residence{
+class City{
+Name
+}
+
+class District{
+Name
+}
+
+class State{
+Name
+}
+
+
+State "1"-- "*" District: is in <
+District "1"-- "*" City: is in <
+City "1"-- "*" Address: is in <
+
+
+class Contacts {
+Phone number
+Email adress
+}
+
+class Business {
+}
+
+class Store {
+Designation
+}
+
+class Owner {
+Name
+Tax number
+}
+
+Owner "1" -down-- "1" Contacts: has >
+Store "1" -right-- "1" Contacts: has >
+Address "1" -left-- "1" Owner: has <
+Owner "1" -down-- "1" Store: contacts >
+Agent "*" -up-- "1" Store: has <
+
+
+class Residence {
 Number of Bedrooms
 Number of Bathrooms
 Number of Parking Spaces
  }
 
-
 class Property {
 Area
-Photos
 Distance from the city center
 }
 
+class Photos{
+URI
+}
 
 class House {
 Basement
 Inhabitable loft
 }
 
-
 class SunExposure {
 Direction
-}
-
-class Address {
-Street
-City
-County
-State
-Zip Code
-}
-
-class Employee {
-Name
-ID
-Number
-Agency
-Tax Number
-}
-
-class Comission {
-Type
-Value
 }
 
 class AvailableEquipment {
 Equipment
 }
 
-class Business {
-Total Price
+Residence <|-down- House
+Property <|-down- Residence
+Property "1" -left-- "1...*" Photos: has >
+SunExposure "1" -up-- "*" House: contains <
+Address "1" -up-- "1" Property: has <
+Owner "1" -down-- "*" Property: has >
+AvailableEquipment "*" -up-- "1" Residence: contains <
+
+
+class Comission{
+Comission value
+Type of comission
 }
 
-class Announcement {
-Date
+
+class Sale{
+Requested price
 }
 
-class Role {
-Role
-}
-
-class Rent {
+class Lease {
+Requested fee
 Duration of contract
-Price per month
 }
 
-Residence <|--- House
-Property <|--- Residence
-Business <|--- Rent
+class AnnouncementRequest{
+Initial date
+Final date
+Contract type
+}
 
-Business "*" --- "1" Comission : contains >
-Business "1" --- "1" Property : have a >
+class PublishedAnnouncement {
+Initial date
+Final date
+Contract type
+}
 
-Business  <|---  Announcement
-
-Property "*" --- "1" Agent: publishes <
-Property "*" --- "1" Address : located at >
-
-House "*" --- "1" SunExposure : contains >
-
-AvailableEquipment "*" --- "1" Residence: has >
-
-Role "1" --- "*" Employee : has <
-
-Agent "*" --- "1" Address : has >
-Agent <|---- Employee
-Agent "1" --- "1" Comission : defines >
-
-
-
+Comission "1" -right-- "1" Agent: defines <
+Comission "1" --- "1" Business: contains <
+Owner "1" --- "1" Business: requests >
+Property "1" --- "1" Business: has a <
+AnnouncementRequest "1" --- "1" Business: has >
+Agent "1" --- "1" AnnouncementRequest : reviews >
+AnnouncementRequest "1" --- "1" Property: has a >
+AnnouncementRequest "1" --- "1" PublishedAnnouncement: has a >
+PublishedAnnouncement "*" --- "1" Agent: publishes <
+PublishedAnnouncement "1" --- "1" Business: has a <
+Business <|--- Lease
+Business <|--- Sale
 
 @enduml
