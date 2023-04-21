@@ -12,11 +12,20 @@ hide circle
 class UnregisteredUser {
 }
 
+class PublishedAnnouncement {
+Initial Date
+Final Date
+Contract Type
+}
 
 class Property {
 Area
 Photos
 Distance from the city center
+}
+
+class Photos {
+URI
 }
 
 class Business {
@@ -56,11 +65,13 @@ Equipment
 }
 
 
-UnregisteredUser "*" --- "*" Property: wants to see >
+UnregisteredUser "*" --- "*" PublishedAnnouncement: displays >
+PublishedAnnouncement "*" --- "*" Property: advertises >
 
 Property <|--- Residence
 Property "*" --- "1" Address : has <
 Property "1" --- "1" Business : has <
+Property "1" - "*" Photos : has >
 
 Residence "*" --- "1" AvailableEquipment : has <
 Residence <|--- House
