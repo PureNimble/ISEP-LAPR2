@@ -1,0 +1,158 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+
+skinparam classAttributeIconSize 0
+
+'left to right direction
+
+class Address {
+    -String streetName
+    -int zipCode : 0
+
+    +verifyZipCode()
+}
+
+class City {
+    - String cityName
+}
+
+class District {
+    - String districtName
+}
+
+class State {
+    - String stateName
+}
+
+
+
+
+class Contacts {
+    - int phoneNumber : 0
+    - String email
+
+    +verifyPhoneNumber()
+}
+
+class Business {
+    -double priceWithComission
+
+    +calculatePriceWithComission()
+}
+
+class Store {
+    - String designation
+}
+
+class Owner {
+    - String name
+    - int taxNumber : 0
+
+    +verifyTaxNumber()
+}
+
+
+
+
+class Residence {
+    - int numberOfBedrooms : 0
+    - int numberOfBathrooms : 0
+    - int numberOfParkingSpaces : 0
+}
+
+class Property {
+    - double area : 0
+    - int distanceFromTheCityCenter : 0
+}
+
+class Photos{
+    - String URI
+}
+
+class House {
+    - Boolean existenceOfBasement : false
+    - Boolean existenceOfInhabitableLoft : false
+}
+
+class SunExposure {
+    - String direction
+}
+
+class AvailableEquipment {
+    - String typeOfEquipment
+}
+
+
+
+class Comission{
+    - double finalComission : 0
+
+    + calculateFinalComission ()
+}
+
+class ComissionValue {
+    - double percentage : 0
+    - double staticValue : 0
+}
+
+class Sale{
+    - double requestedPrice : 0
+}
+
+class Lease {
+    - double requestedFee : 0
+    - int durationOfContract: 0
+    - double totalPrice : 0
+
+    +calculateTotalPrice ()
+}
+
+class AnnouncementRequest {
+    - String contractType
+}
+
+class PublishedAnnouncement {
+    - String initialDate
+    - String finalDate
+}
+
+City "1"-- "*" Address: is in <
+District "1"-- "*" City: is in <
+State "1"-- "*" District: is in <
+
+
+Owner "1" -down-- "1" Contacts: has >
+Store "1" -right-- "1" Contacts: has >
+Address "1" -left-- "1" Owner: has <
+Owner "1" -down-- "1" Store: contacts >
+Agent "*" -up-- "1" Store: has <
+
+
+Residence <|-down- House
+Property <|-down- Residence
+Property "1" -left-- "1...*" Photos: has >
+SunExposure "1" -up-- "*" House: contains <
+Address "1" -up-- "1" Property: has <
+Owner "1" -down-- "*" Property: has >
+AvailableEquipment "*" -up-- "1" Residence: contains <
+
+
+ComissionValue "1" -right-- "1" Agent: defines <
+Comission "1" --- "1" Business: contains <
+ComissionValue "1" --- "*" Comission : has a >
+Owner "1" --- "1" Business: requests >
+Property "1" --- "1" Business: has a <
+AnnouncementRequest "1" --- "1" Business: has >
+Agent "1" --- "1" AnnouncementRequest : reviews >
+AnnouncementRequest "1" --- "1" Property: has a >
+AnnouncementRequest  <|---  PublishedAnnouncement
+PublishedAnnouncement "*" --- "1" Agent: publishes <
+PublishedAnnouncement "1" --- "1" Business: has a <
+Business <|--- Lease
+Business <|--- Sale
+
+@enduml

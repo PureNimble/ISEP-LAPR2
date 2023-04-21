@@ -186,3 +186,6 @@ telephone number. The Agent is an employee of the company.
 * List of agent requests.
 * List of comissions.
 * (In)Successfully published sale annoucement.
+
+### 1.6. System Sequence Diagram (SSD)
+

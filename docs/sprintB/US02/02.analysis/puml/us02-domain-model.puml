@@ -41,6 +41,7 @@ Email adress
 }
 
 class Business {
+Price with comission
 }
 
 class Store {
@@ -96,11 +97,15 @@ Owner "1" -down-- "*" Property: has >
 AvailableEquipment "*" -up-- "1" Residence: contains <
 
 
+
 class Comission{
-Comission value
-Type of comission
+Final Comission
 }
 
+class ComissionValue {
+Percentage
+Static Value
+}
 
 class Sale{
 Requested price
@@ -118,19 +123,18 @@ Contract type
 }
 
 class PublishedAnnouncement {
-Initial date
-Final date
 Contract type
 }
 
-Comission "1" -right-- "1" Agent: defines <
+ComissionValue "1" -right-- "1" Agent: defines <
 Comission "1" --- "1" Business: contains <
+ComissionValue "1" --- "*" Comission : has a >
 Owner "1" --- "1" Business: requests >
 Property "1" --- "1" Business: has a <
 AnnouncementRequest "1" --- "1" Business: has >
 Agent "1" --- "1" AnnouncementRequest : reviews >
 AnnouncementRequest "1" --- "1" Property: has a >
-AnnouncementRequest "1" --- "1" PublishedAnnouncement: has a >
+AnnouncementRequest  <|---  PublishedAnnouncement
 PublishedAnnouncement "*" --- "1" Agent: publishes <
 PublishedAnnouncement "1" --- "1" Business: has a <
 Business <|--- Lease

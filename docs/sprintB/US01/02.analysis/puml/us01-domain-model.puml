@@ -12,11 +12,20 @@ hide circle
 class UnregisteredUser {
 }
 
+class PublishedAnnouncement {
+Initial Date
+Final Date
+Contract Type
+}
 
 class Property {
 Area
 Photos
 Distance from the city center
+}
+
+class Photos {
+URI
 }
 
 class Business {
@@ -42,29 +51,44 @@ Direction
 }
 
 
-class Address {
-Street
-City
-County
+class State {
 State
-Zip Code
 }
 
+class District {
+District
+}
+
+class City {
+City
+}
+
+class Address {
+Street
+Zip Code
+}
 
 class AvailableEquipment {
 Equipment
 }
 
 
-UnregisteredUser "*" --- "*" Property: wants to see >
+
+UnregisteredUser "*" --- "*" PublishedAnnouncement: displays >
+PublishedAnnouncement "*" --- "*" Property: advertises >
 
 Property <|--- Residence
 Property "*" --- "1" Address : has <
 Property "1" --- "1" Business : has <
+Property "1" - "*" Photos : has >
 
 Residence "*" --- "1" AvailableEquipment : has <
 Residence <|--- House
 
 House "*" --- "1" SunExposure : has <
+
+State "1" --- "*" District : is in <
+District "1" --- "*" City : is in <
+City "1" --- "*" Address : is in <
 
 @enduml
