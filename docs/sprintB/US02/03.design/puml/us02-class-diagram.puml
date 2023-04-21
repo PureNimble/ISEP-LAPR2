@@ -65,7 +65,7 @@ class Residence {
 }
 
 class Property {
-    - int Area : 0
+    - double area : 0
     - int distanceFromTheCityCenter : 0
 }
 
@@ -89,11 +89,15 @@ class AvailableEquipment {
 
 
 class Comission{
-    - Boolean comissionValue : false
+    - double finalComission : 0
 
-    +verifyComission ()
+    + calculateFinalComission ()
 }
 
+class ComissionValue {
+    - double percentage : 0
+    - double staticValue : 0
+}
 
 class Sale{
     - double requestedPrice : 0
@@ -101,7 +105,7 @@ class Sale{
 
 class Lease {
     - double requestedFee : 0
-    - int durationOfContract
+    - int durationOfContract: 0
     - double totalPrice : 0
 
     +calculateTotalPrice ()
@@ -137,8 +141,9 @@ Owner "1" -down-- "*" Property: has >
 AvailableEquipment "*" -up-- "1" Residence: contains <
 
 
-Comission "1" -right-- "1" Agent: defines <
+ComissionValue "1" -right-- "1" Agent: defines <
 Comission "1" --- "1" Business: contains <
+ComissionValue "1" --- "*" Comission : has a >
 Owner "1" --- "1" Business: requests >
 Property "1" --- "1" Business: has a <
 AnnouncementRequest "1" --- "1" Business: has >
@@ -149,119 +154,5 @@ PublishedAnnouncement "*" --- "1" Agent: publishes <
 PublishedAnnouncement "1" --- "1" Business: has a <
 Business <|--- Lease
 Business <|--- Sale
-
-
-
-'class UserSession
-'{
-'    + getUserEmail()
-'}
-'
-'class Employee {
-'    - name
-'    - email
-'    - position
-'    - phone
-'}
-'
-'class Task {
-'    - String reference
-'    - String description
-'    - String informalDescription
-'    - String technicalDescription
-'    - Integer duration
-'    - Double cost
-'
-'    + Task(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, createdBy, taskCategory)
-'}
-'
-'class TaskCategory {
-'    - String description
-'
-'    + TaskCategory(description)
-'}
-'
-'class Organization {
-'    - String name
-'    - String vatNumber
-'    - String website
-'    - String phone
-'    - String email
-'
-'    - addTask(task)
-'    - validateTask(task)
-'    + anyEmployeeHasEmail(email)
-'    + Organization(name, vatNumber, webSite, phone, email, postalAddress, manager)
-'    + createTask(reference, description, informalDesccription,\ntechnicalDescription, duration, cost, taskCategoryDescription)
-'    - getEmployeeByEmail(email)
-'
-''  +saveTask(task)
-'}
-'
-'class TaskCategoryRepository {
-'    + getTaskCategoryByDescription(description)
-'}
-'
-'class OrganizationRepository {
-'    + getOrganizationByEmployeeEmail(email)
-'}
-'
-'class Repositories {
-'    - Repositories()
-'    + getInstance() : Repositories
-'    + getTaskCategoryRepository()
-'    + getOrganizationRepository()
-'}
-'
-'class CreateTaskController {
-'    + CreateTaskController(organizationRepository, taskCategoryRepository)
-'    + getTaskCategories()
-'    + createTask(userEmail, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, categoryDescription)
-'    - getTaskCategoryByDescription(taskCategoryDescription)
-'    - getEmployeeFromSession()
-'}
-'
-'note right of CreateTaskController
-'    - userEmail is obtained
-'    from the user session
-'    - categoryDescription
-'    is retrieved from selected data
-'end note
-'
-'note bottom of TaskCategoryRepository
-'    - used for displaying
-'    the category list
-'end note
-'
-'class CreateTaskUI {
-'}
-'
-'Repositories -> Repositories : instance
-'ApplicationSession -> ApplicationSession : instance
-'
-'CreateTaskUI .> CreateTaskController
-'
-'CreateTaskController .> Repositories : repositories
-'
-'Repositories -> "1" TaskCategoryRepository
-'
-'CreateTaskController ..> TaskCategory
-'CreateTaskController ..> OrganizationRepository : organizationRepository
-'CreateTaskController ..> TaskCategoryRepository : TaskCategoryRepository
-'
-'Repositories --> "1" OrganizationRepository
-'
-'OrganizationRepository --> "*" Organization
-'ApplicationSession --> "1" UserSession : userSession
-'
-'CreateTaskController ..> "1" Organization : organization
-'CreateTaskController ..> ApplicationSession
-'CreateTaskController ..> UserSession
-'Task "*" --> "1" TaskCategory : taskCategory
-'TaskCategoryRepository "1" --> "*" TaskCategory : taskCategory
-'Organization "1" --> "*" Task : tasks
-'Task --> Employee : createdBy
-'
-'Organization --> "*" Employee : employs
 
 @enduml

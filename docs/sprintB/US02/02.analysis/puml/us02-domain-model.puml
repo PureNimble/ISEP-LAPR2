@@ -102,9 +102,9 @@ class Comission{
 Final Comission
 }
 
-class TypeComission {
-Static Value
+class ComissionValue {
 Percentage
+Static Value
 }
 
 class Sale{
@@ -126,9 +126,9 @@ class PublishedAnnouncement {
 Contract type
 }
 
-TypeComission "1" -right-- "1" Agent: defines <
+ComissionValue "1" -right-- "1" Agent: defines <
 Comission "1" --- "1" Business: contains <
-TypeComission "1" --- "*" Comission : has a >
+ComissionValue "1" --- "*" Comission : has a >
 Owner "1" --- "1" Business: requests >
 Property "1" --- "1" Business: has a <
 AnnouncementRequest "1" --- "1" Business: has >
