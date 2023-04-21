@@ -51,18 +51,27 @@ Direction
 }
 
 
-class Address {
-Street
-City
-County
+class State {
 State
-Zip Code
 }
 
+class District {
+District
+}
+
+class City {
+City
+}
+
+class Address {
+Street
+Zip Code
+}
 
 class AvailableEquipment {
 Equipment
 }
+
 
 
 UnregisteredUser "*" --- "*" PublishedAnnouncement: displays >
@@ -77,5 +86,9 @@ Residence "*" --- "1" AvailableEquipment : has <
 Residence <|--- House
 
 House "*" --- "1" SunExposure : has <
+
+State "1" --- "*" District : is in <
+District "1" --- "*" City : is in <
+City "1" --- "*" Address : is in <
 
 @enduml
