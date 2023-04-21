@@ -1,0 +1,267 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+
+skinparam classAttributeIconSize 0
+
+'left to right direction
+
+class Address {
+    -String streetName
+    -int zipCode : 0
+
+    +verifyZipCode()
+}
+
+class City {
+    - String cityName
+}
+
+class District {
+    - String districtName
+}
+
+class State {
+    - String stateName
+}
+
+
+
+
+class Contacts {
+    - int phoneNumber : 0
+    - String email
+
+    +verifyPhoneNumber()
+}
+
+class Business {
+    -double priceWithComission
+
+    +calculatePriceWithComission()
+}
+
+class Store {
+    - String designation
+}
+
+class Owner {
+    - String name
+    - int taxNumber : 0
+
+    +verifyTaxNumber()
+}
+
+
+
+
+class Residence {
+    - int numberOfBedrooms : 0
+    - int numberOfBathrooms : 0
+    - int numberOfParkingSpaces : 0
+}
+
+class Property {
+    - int Area : 0
+    - int distanceFromTheCityCenter : 0
+}
+
+class Photos{
+    - String URI
+}
+
+class House {
+    - Boolean existenceOfBasement : false
+    - Boolean existenceOfInhabitableLoft : false
+}
+
+class SunExposure {
+    - String direction
+}
+
+class AvailableEquipment {
+    - String typeOfEquipment
+}
+
+
+
+class Comission{
+    - Boolean comissionValue : false
+
+    +verifyComission ()
+}
+
+
+class Sale{
+    - double requestedPrice : 0
+}
+
+class Lease {
+    - double requestedFee : 0
+    - int durationOfContract
+    - double totalPrice : 0
+
+    +calculateTotalPrice ()
+}
+
+class AnnouncementRequest {
+    - String contractType
+}
+
+class PublishedAnnouncement {
+    - String initialDate
+    - String finalDate
+}
+
+City "1"-- "*" Address: is in <
+District "1"-- "*" City: is in <
+State "1"-- "*" District: is in <
+
+
+Owner "1" -down-- "1" Contacts: has >
+Store "1" -right-- "1" Contacts: has >
+Address "1" -left-- "1" Owner: has <
+Owner "1" -down-- "1" Store: contacts >
+Agent "*" -up-- "1" Store: has <
+
+
+Residence <|-down- House
+Property <|-down- Residence
+Property "1" -left-- "1...*" Photos: has >
+SunExposure "1" -up-- "*" House: contains <
+Address "1" -up-- "1" Property: has <
+Owner "1" -down-- "*" Property: has >
+AvailableEquipment "*" -up-- "1" Residence: contains <
+
+
+Comission "1" -right-- "1" Agent: defines <
+Comission "1" --- "1" Business: contains <
+Owner "1" --- "1" Business: requests >
+Property "1" --- "1" Business: has a <
+AnnouncementRequest "1" --- "1" Business: has >
+Agent "1" --- "1" AnnouncementRequest : reviews >
+AnnouncementRequest "1" --- "1" Property: has a >
+AnnouncementRequest  <|---  PublishedAnnouncement
+PublishedAnnouncement "*" --- "1" Agent: publishes <
+PublishedAnnouncement "1" --- "1" Business: has a <
+Business <|--- Lease
+Business <|--- Sale
+
+
+
+'class UserSession
+'{
+'    + getUserEmail()
+'}
+'
+'class Employee {
+'    - name
+'    - email
+'    - position
+'    - phone
+'}
+'
+'class Task {
+'    - String reference
+'    - String description
+'    - String informalDescription
+'    - String technicalDescription
+'    - Integer duration
+'    - Double cost
+'
+'    + Task(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, createdBy, taskCategory)
+'}
+'
+'class TaskCategory {
+'    - String description
+'
+'    + TaskCategory(description)
+'}
+'
+'class Organization {
+'    - String name
+'    - String vatNumber
+'    - String website
+'    - String phone
+'    - String email
+'
+'    - addTask(task)
+'    - validateTask(task)
+'    + anyEmployeeHasEmail(email)
+'    + Organization(name, vatNumber, webSite, phone, email, postalAddress, manager)
+'    + createTask(reference, description, informalDesccription,\ntechnicalDescription, duration, cost, taskCategoryDescription)
+'    - getEmployeeByEmail(email)
+'
+''  +saveTask(task)
+'}
+'
+'class TaskCategoryRepository {
+'    + getTaskCategoryByDescription(description)
+'}
+'
+'class OrganizationRepository {
+'    + getOrganizationByEmployeeEmail(email)
+'}
+'
+'class Repositories {
+'    - Repositories()
+'    + getInstance() : Repositories
+'    + getTaskCategoryRepository()
+'    + getOrganizationRepository()
+'}
+'
+'class CreateTaskController {
+'    + CreateTaskController(organizationRepository, taskCategoryRepository)
+'    + getTaskCategories()
+'    + createTask(userEmail, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, categoryDescription)
+'    - getTaskCategoryByDescription(taskCategoryDescription)
+'    - getEmployeeFromSession()
+'}
+'
+'note right of CreateTaskController
+'    - userEmail is obtained
+'    from the user session
+'    - categoryDescription
+'    is retrieved from selected data
+'end note
+'
+'note bottom of TaskCategoryRepository
+'    - used for displaying
+'    the category list
+'end note
+'
+'class CreateTaskUI {
+'}
+'
+'Repositories -> Repositories : instance
+'ApplicationSession -> ApplicationSession : instance
+'
+'CreateTaskUI .> CreateTaskController
+'
+'CreateTaskController .> Repositories : repositories
+'
+'Repositories -> "1" TaskCategoryRepository
+'
+'CreateTaskController ..> TaskCategory
+'CreateTaskController ..> OrganizationRepository : organizationRepository
+'CreateTaskController ..> TaskCategoryRepository : TaskCategoryRepository
+'
+'Repositories --> "1" OrganizationRepository
+'
+'OrganizationRepository --> "*" Organization
+'ApplicationSession --> "1" UserSession : userSession
+'
+'CreateTaskController ..> "1" Organization : organization
+'CreateTaskController ..> ApplicationSession
+'CreateTaskController ..> UserSession
+'Task "*" --> "1" TaskCategory : taskCategory
+'TaskCategoryRepository "1" --> "*" TaskCategory : taskCategory
+'Organization "1" --> "*" Task : tasks
+'Task --> Employee : createdBy
+'
+'Organization --> "*" Employee : employs
+
+@enduml
