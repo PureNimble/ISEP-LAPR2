@@ -63,7 +63,6 @@ Contract Type
 
 
 class Rent {
-Fee
 Duration of the contract
 }
 

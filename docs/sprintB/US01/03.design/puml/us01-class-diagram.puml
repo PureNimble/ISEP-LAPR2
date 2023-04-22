@@ -1,85 +1,114 @@
 @startuml
 
-title US001 - Domain Model
+title US001 - Class Diagram
 
-skinparam groupInheritance 2
-skinparam monochrome true
+
+skinparam packageStyle rectangle
+skinparam shadowing false
 skinparam linetype polyline
+skinparam classAttributeIconSize 0
 
+'skinparam linetype orto
+'skinparam monochrome true
+'left to right direction
 
 
 class Address {
-Street
-Zip Code
+    - String streetName
+    - int zipCode : 0
+
+    +verifyZipCode()
+    +getCity()
+    +getDistrict()
+    +getState()
+    +Address(state, district, city, street, zipCode)
 }
 
 class AvailableEquipment {
-Equipment
+    - String typeOfEquipment
+
+    +AvailableEquipment(typeOfEquipment)
 }
 
 
 class Business {
-Requested price
+    - double requestedPrice : 0
+
+    +getFinalComission()
+    +calculatePriceWithComission()
 }
 
 
 class City {
-Name
+    - String cityName
 }
 
 class Comission {
-Percentage
-Static Value
+    - double percentage : 0
+    - double staticValue : 0
+
+    + calculateFinalComission()
 }
 
 
 class District {
-Name
+    - String districtName
 }
 
 
 class House {
-Basement
-Inhabitable Loft
+    - Boolean existenceOfBasement : false
+    - Boolean existenceOfInhabitableLoft : false
+
+    +House(existenceOfBasement, existenceOfInhabitableLoft)
 }
 
 
 class Photos {
-URI
+    - String URI
 }
 
 class Property {
-Area
-Photos
-Distance from the city center
+    - double area : 0
+    - int distanceFromTheCityCenter : 0
+
+    +Property(area, distanceFromTheCityCenter)
 }
 
 class PublishedAnnouncement {
-Initial Date
-Final Date
-Contract Type
+    - String initialDate
+    - String finalDate
+
+    +getAnnouncementRequest()
+    +PublishedAnnouncement(initialDate, finalDate, AnnouncementRequest)
 }
 
 
 class Rent {
-Fee
-Duration of the contract
+    - int durationOfContract: 0
+
+    +getFinalComission()
+    +calculateTotalPrice()
 }
 
 
 class Residence {
-Number of Bedrooms
-Number of Bathrooms
-Number of Parking Spaces
+    - int numberOfBedrooms : 0
+    - int numberOfBathrooms : 0
+    - int numberOfParkingSpaces : 0
+
+    +Residence(numberOfBedrooms, numberOfBathrooms, numberOfParkingSpaces)
 }
 
 
 class State {
-Name
+    - String stateName
 }
 
 class SunExposure {
-Direction
+    - String direction
+
+    +SunExposure(direction)
 }
 
 
