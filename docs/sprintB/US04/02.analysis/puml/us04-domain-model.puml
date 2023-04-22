@@ -32,7 +32,7 @@ class Business
 
 class AvailableEquipment
 
-class Lease
+class Rent
 
 class SunExposure
 
@@ -84,13 +84,12 @@ class Owner {
     Tax number
 }
 
-class Lease {
+class Rent {
     Duration of contract
 }
 
 class AnnouncementRequest {
     Initial date
-    Final date
 }
 
 class Business {
@@ -104,6 +103,7 @@ class Residence {
 }
 
 class Store {
+    ID
     Designation
 }
 
@@ -150,7 +150,7 @@ Agent "1" -up-- "1" Contacts: has >
 Comission "1" -down-- "1" Agent: defines <
 Comission "1" -up-- "1" Business: contains <
 Comission <|-- ComissionPercentage
-Business <|-- Lease
+Business <|-- Rent
 Property "1" -right-- "1..30" Photos: has >
 Owner "1" -up-- "1" AnnouncementRequest: makes >
 Business "1" -right-- "1" AnnouncementRequest: gets <
