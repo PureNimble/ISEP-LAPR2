@@ -41,7 +41,7 @@ Email adress
 }
 
 class Business {
-Price with comission
+Requested price
 }
 
 class Store {
@@ -103,12 +103,7 @@ Percentage
 Static Value
 }
 
-class Sale{
-Requested price
-}
-
-class Lease {
-Requested fee
+class Rent {
 Duration of contract
 }
 
@@ -132,7 +127,7 @@ AnnouncementRequest "1" --- "1" Property: has a >
 AnnouncementRequest  <|---  PublishedAnnouncement
 PublishedAnnouncement "*" --- "1" Agent: publishes <
 PublishedAnnouncement "1" --- "1" Business: has a <
-Business <|--- Lease
-Business <|--- Sale
+Business <|--- Rent
+
 
 @enduml

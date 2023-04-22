@@ -46,9 +46,9 @@ class Contacts {
 }
 
 class Business {
-    -double priceWithComission
+    - double requestedPrice : 0
 
-    +getComission()
+    +getFinalComission()
     +calculatePriceWithComission()
 }
 
@@ -112,19 +112,15 @@ class Comission{
      - double percentage : 0
      - double staticValue : 0
 
-    + calculateFinalComission ()
+    + calculateFinalComission()
 }
 
-class Sale{
-    - double requestedPrice : 0
-}
 
-class Lease {
-    - double requestedFee : 0
+class Rent {
     - int durationOfContract: 0
-    - double totalPrice : 0
 
-    +calculateTotalPrice ()
+    +getFinalComission()
+    +calculateTotalPrice()
 }
 
 class AnnouncementRequest {
@@ -174,7 +170,7 @@ AnnouncementRequest "1" --- "1" Property: has a >
 AnnouncementRequest  <|---  PublishedAnnouncement
 PublishedAnnouncement "*" --- "1" Agent: publishes <
 PublishedAnnouncement "1" --- "1" Business: has a <
-Business <|--- Lease
-Business <|--- Sale
+Business <|--- Rent
+
 
 @enduml
