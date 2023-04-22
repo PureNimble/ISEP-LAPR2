@@ -140,8 +140,8 @@ Owner "1" -down-- "*" Property: has >
 Owner "1" -right- "1" Store: contacts >
 Agent "*" -left-- "1" Store: has <
 Address "*" -down-- "1" City: has <
-District "1" -up-- "*" State: has >
-State "1" -up-- "*" City: has >
+State "1" -up-- "*" District: has >
+District "1" -up-- "*" City: has >
 AvailableEquipment "*" -left-- "1" Residence: contains <
 Owner "1" -up-- "1" Business: defines >
 Owner "1" -down-- "1" Contacts: has >
