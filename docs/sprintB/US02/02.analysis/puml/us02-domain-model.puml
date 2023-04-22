@@ -90,7 +90,7 @@ Equipment
 
 Residence <|-down- House
 Property <|-down- Residence
-Property "1" -left-- "1...*" Photos: has >
+Property "1" -left-- "1..30" Photos: has >
 SunExposure "1" -up-- "*" House: contains <
 Address "1" -up-- "1" Property: has <
 Owner "1" -down-- "*" Property: has >
@@ -99,10 +99,6 @@ AvailableEquipment "*" -up-- "1" Residence: contains <
 
 
 class Comission{
-Final Comission
-}
-
-class ComissionValue {
 Percentage
 Static Value
 }
@@ -126,9 +122,8 @@ class PublishedAnnouncement {
 Contract type
 }
 
-ComissionValue "1" -right-- "1" Agent: defines <
+Comission "1" -right-- "1" Agent: defines <
 Comission "1" --- "1" Business: contains <
-ComissionValue "1" --- "*" Comission : has a >
 Owner "1" --- "1" Business: requests >
 Property "1" --- "1" Business: has a <
 AnnouncementRequest "1" --- "1" Business: has >
