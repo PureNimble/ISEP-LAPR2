@@ -26,78 +26,109 @@ class Comission
 
 class Agent
 
+class Photos
+
 class Business
 
 class AvailableEquipment
 
-class Rent
+class Lease
 
 class SunExposure
 
 class Store
 
-class AvailableEquipment {
-Equipment
+class City
+
+class District
+
+class State
+
+class ComissionPercentage
+
+class AnnouncementRequest
+
+class City {
+    City name
 }
 
+class District {
+    District name
+}
+
+class Photos {
+    URI
+}
+
+class State {
+    State name
+}
+
+class AvailableEquipment {
+    Equipment
+}
+
+class ComissionPercentage {
+    Percentage value
+}
+
+
 class Contacts {
-Phone number
-Email adress
+    Phone number
+    Email adress
 }
 
 class Owner {
-Name
-Citizens card number
-Tax number
+    Name
+    Passport number
+    Tax number
 }
 
-class Rent {
-Duration of contract
-Price per month
+class Lease {
+    Duration of contract
 }
 
+class AnnouncementRequest {
+    Initial date
+    Final date
+}
 
 class Business {
-Total Price
+    Total Price
 }
 
 class Residence {
-Number of Bedrooms
-Number of Bathrooms
-Number of Parking Spaces
- }
+    Number of Bedrooms
+    Number of Bathrooms
+    Number of Parking Spaces
+}
 
 class Store {
-Designation
-
+    Designation
 }
 
 class Property {
-Area
-Photos
-Distance from the city center
+    Area
+    Photos
+    Distance from the city center
 }
 
 class House {
-Basement
-Inhabitable loft
+    Basement
+    Inhabitable loft
 }
 
 class SunExposure {
-Direction
+    Direction
 }
 
 class Address {
-Street
-City
-County
-State
-Zip Code
+    Street
+    Zip Code
 }
 
 class Comission {
-Type
-Value
+    Value
 }
 
 Residence <|-- House
@@ -105,17 +136,23 @@ Property <|-- Residence
 SunExposure "1" -up-- "1" House: contains <
 Address "1" -right-- "1" Property: has <
 Address "1" -right-- "1" Owner: has <
-Owner "1" -left-- "*" Property: has >
-Owner "1" -- "1" Store: contacts >
-Agent "*" -up-- "1" Store: has <
-Comission "1" -down-- "1" Agent: defines <
-Comission "1" -up-- "1" Property: contains <
-Owner "1" -up-- "1" Business: defines >
+Owner "1" -down-- "*" Property: has >
+Owner "1" -right- "1" Store: contacts >
+Agent "*" -left-- "1" Store: has <
+Address "*" -down-- "1" City: has <
+District "1" -up-- "*" State: has >
+State "1" -up-- "*" City: has >
 AvailableEquipment "*" -left-- "1" Residence: contains <
-Business <|-right- Rent
-Owner "1" -right-- "1" Contacts: has >
+Owner "1" -up-- "1" Business: defines >
+Owner "1" -down-- "1" Contacts: has >
 Store "1" -right-- "1" Contacts: has >
 Agent "1" -up-- "1" Contacts: has >
-
+Comission "1" -down-- "1" Agent: defines <
+Comission "1" -up-- "1" Business: contains <
+Comission <|-- ComissionPercentage
+Business <|-- Lease
+Property "1" -right-- "1..30" Photos: has >
+Owner "1" -up-- "1" AnnouncementRequest: makes >
+Business "1" -right-- "1" AnnouncementRequest: gets <
 
 @enduml
