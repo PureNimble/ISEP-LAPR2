@@ -15,7 +15,7 @@ activate Admin
     Admin -> System : asks to register a store
     activate System
 
-        System --> Admin : requests the necessary data (id, designation/name, location, \nemail address and phone number)
+        System --> Admin : requests the necessary data (id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
     deactivate System
 
     Admin -> System : types requested data
