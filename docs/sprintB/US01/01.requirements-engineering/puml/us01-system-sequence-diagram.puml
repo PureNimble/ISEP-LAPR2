@@ -10,26 +10,93 @@ autonumber
 actor "Unregistered user" as User
 participant ":System" as System
 
-opt Optimal Case
 
 activate User
 
-    User -> System : asks to display a list of properties to filter the results
+    User -> System : asks to display a list of properties
     activate System
 
-    System --> User : request data [business (buying, renting), \nproperty (house, apartment, land), number of rooms]
+    System --> User : displays the list of properties
     deactivate System
 
-    User -> System : types requested data
+    User -> System : asks to filter the results
     activate System
 
-        System --> User : shows listed properties and asks to sort it by price, city and/or by state.
+    System --> User : gives the options to filter [type of business (buying or renting), \ntype of property (house, apartment or land) and the number of rooms]
     deactivate System
 
-    User -> System : selects sorting criteria
+    alt Filters by type of business, type of property and number of rooms
+
+        User -> System : selects all the options to filter (type of business, type of property \nand number of rooms)
+        activate System
+
+    else Filters by type of business
+
+        User -> System : selects only the type of business
+
+    else Filters by type of property
+
+        User -> System : selects only the type of property
+
+    else Filters by number of rooms
+
+        User -> System : selects only the number of rooms
+
+    else Filters by type of business and type of property
+
+        User -> System : selects the type of business and the type of property
+
+    else Filters by type of business and number of rooms
+
+        User -> System : selects the type of business and the number of rooms
+
+    else Filters by type of property and number of rooms
+
+        User -> System : selects the type of property and the number of rooms
+
+    else Doesn't filter
+
+        User -> System : doesn't select anything
+
+    end
+
+    System --> User : displays the list of properties
+    deactivate System
+
+    User -> System : asks to order the list of properties
     activate System
 
-    System --> User : shows selected properties by selected criteria
+    System --> User : gives the options to order (price, city or state)
+    deactivate System
+
+    alt Sorts by ascending price
+
+        User -> System : selects sorting by ascending price
+        activate System
+
+    else Sorts by descending price
+
+        User -> System : selects sorting by descending price
+
+    else Sorts by "ascending" city
+
+        User -> System : selects sorting by "ascending" city
+
+    else Sorts by "descending" city
+
+        User -> System : selects sorting by "descending" city
+
+    else Sorts by "ascending" state
+
+        User -> System : selects sorting by "ascending" state
+
+    else Sorts by "descending" state
+
+        User -> System : selects sorting by "descending" state
+
+    end
+
+    System --> User : displays the list of properties with the sorting method selected
     deactivate System
 
     User -> System : submits data
