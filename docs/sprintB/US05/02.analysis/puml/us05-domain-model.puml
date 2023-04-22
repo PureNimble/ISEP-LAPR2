@@ -14,15 +14,21 @@ class SystemAdministrator
 
 class Address
 
+class State
+
+class District
+
+class City
+
 class Contacts
 
 class Store
 
-class SystemAdministrator{
+class SystemAdministrator {
 
 }
 
-class Employee{
+class Employee {
     Name
     ID
     Tax Number
@@ -39,17 +45,30 @@ class Store {
     Designation
 }
 
+class State {
+    State name
+}
+
+class District {
+    District name
+}
+
+class City {
+    City name
+}
+
 class Address {
     Street
-    City
-    Country
-    State
     Zip Code
 }
 
-Store "1" -down-- "1" Address: located at >
-Store "1" -right-- "1" Contacts: has >
+Store "*" -up-- "1" Address: is located at >
+Store "*" -right-- "1" Contacts: has >
 SystemAdministrator "1" -right-- "*" Store: registers >
+District "1" -left-- "*" State : has >
+State "1" -left-- "*" City : has >
+City "1" -left-- "*" Address : has >
+
 Employee <|--- SystemAdministrator
 
 @enduml

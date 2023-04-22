@@ -12,25 +12,26 @@ participant ":System" as sys
 
 activate Owner
 
+
+    Owner -> sys : asks to create a new request for an owned property
+    activate sys
+
+    sys -> Owner : accepts the request and gives a list of possible agencies
+    deactivate sys
+
     Owner -> sys : chooses the agency
     activate sys
 
-    sys -> Owner : gives the chosen agency to the owner
+    sys -> Owner : gives the chosen agency to the owner and provides a list of agents from that agency
     deactivate sys
 
     Owner -> sys : chooses the responsible agent
     activate sys
 
-    sys -> Owner : gives the chosen agent to the owner
+    sys -> Owner : gives the chosen agent to the owner and asks the type of property as well as the data from that property
     deactivate sys
 
-    Owner -> sys : contacts agent to sell or rent a property
-    activate sys
-
-    sys -> Owner : asks for data
-    deactivate sys
-
-    Owner -> sys : types requested data [area in m^2, location, distance from city center and the requested price]
+    Owner -> sys : types the type of property and requested data [area in m^2, state, district, city, street, zip code and distance from city center]
     activate sys
 
     opt house, apartment
@@ -63,5 +64,12 @@ activate Owner
 
     end
 
-    sys --> Owner : retrieves the received data and returns operation success
-@enduml
+    sys --> Owner : retrieves the received data, displays all the information that was sent and asks to confirm the operation
+    deactivate sys
+
+    Owner -> sys : confirms the operation
+    activate sys
+
+    sys --> Owner : displays operation success
+    
+    @enduml
