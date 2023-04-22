@@ -1,6 +1,6 @@
 @startuml
 
-title US05 - Domain Model
+title US06 - Domain Model
 
 skinparam groupInheritance 2
 skinparam monochrome true
@@ -9,6 +9,18 @@ skinparam shadowing false
 skinparam classAttributeIconSize 0
 hide circle
 hide methods
+
+class SystemAdministrator
+
+class State
+
+class District
+
+class City
+
+class Employee
+
+class Role
 
 class SystemAdministrator {
 
@@ -24,17 +36,6 @@ class Role {
     Role
 }
 
-
-class Contacts {
-    Phone Number
-    Email Adress
-}
-
-class Store {
-    ID
-    Designation
-}
-
 class State {
     State name
 }
@@ -47,18 +48,12 @@ class City {
     City name
 }
 
-class Address {
-    Street
-    Zip Code
-}
-
-Store "1" -up-- "1" Address: is located at >
-Store "1" -right-- "1" Contacts: has >
-SystemAdministrator "1" -right-- "*" Store: registers >
-State "1" -left-- "*" District : has >
-District "1" -left-- "*" City : has >
-City "1" -left-- "*" Address : has >
+State "1" -down-- "*" District : has >
+District "1" -down-- "*" City : has >
 Employee "*" -left-- "1" Role : has >
+City "1" -up-- "1" SystemAdministrator: adds <
+District "1" -left-- "1" SystemAdministrator: adds <
+State "1" -down-- "1" SystemAdministrator: adds <
 
 Employee <|--- SystemAdministrator
 

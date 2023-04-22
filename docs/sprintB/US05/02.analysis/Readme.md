@@ -1,4 +1,4 @@
-# US 05 - To register a store
+# US 005 - To register a store
 
 ## 2. Analysis
 

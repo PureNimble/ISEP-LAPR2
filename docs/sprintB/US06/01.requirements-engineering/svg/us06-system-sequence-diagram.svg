@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="526px" preserveAspectRatio="none" style="width:474px;height:526px;background:#FFFFFF;" version="1.1" viewBox="0 0 474 526" width="474px" zoomAndPan="magnify"><defs/><g><rect fill="none" height="27.6094" id="_title" style="stroke:none;stroke-width:1.0;" width="238" x="117.25" y="10"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="228" x="122.25" y="29.5332">System Sequence Diagram (SSD)</text><rect fill="#FFFFFF" height="304.5156" style="stroke:#181818;stroke-width:1.0;" width="10" x="69.5" y="131.2188"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="431.5" y="153.5703"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="431.5" y="214.2734"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="431.5" y="274.9766"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="431.5" y="335.6797"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="431.5" y="396.3828"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="74" x2="74" y1="121.2188" y2="444.7344"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="436.5" x2="436.5" y1="121.2188" y2="444.7344"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="133" x="5" y="118.1426">System Administrator</text><ellipse cx="74.5" cy="52.1094" fill="#E3E3E3" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M74.5,60.1094 L74.5,87.1094 M61.5,68.1094 L87.5,68.1094 M74.5,87.1094 L61.5,102.1094 M74.5,87.1094 L87.5,102.1094 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="133" x="5" y="458.2676">System Administrator</text><ellipse cx="74.5" cy="469.8438" fill="#E3E3E3" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M74.5,477.8438 L74.5,504.8438 M61.5,485.8438 L87.5,485.8438 M74.5,504.8438 L61.5,519.8438 M74.5,504.8438 L87.5,519.8438 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><rect fill="#E3E3E3" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="64" x="404.5" y="88.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="50" x="411.5" y="110.1426">:System</text><rect fill="#E3E3E3" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="64" x="404.5" y="443.7344"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="50" x="411.5" y="465.2676">:System</text><rect fill="#FFFFFF" height="304.5156" style="stroke:#181818;stroke-width:1.0;" width="10" x="69.5" y="131.2188"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="431.5" y="153.5703"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="431.5" y="214.2734"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="431.5" y="274.9766"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="431.5" y="335.6797"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="431.5" y="396.3828"/><polygon fill="#181818" points="419.5,149.5703,429.5,153.5703,419.5,157.5703,423.5,153.5703" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="79.5" x2="425.5" y1="153.5703" y2="153.5703"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="86.5" y="148.7139">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="177" x="97.5" y="148.7139">asks to register a new location</text><polygon fill="#181818" points="90.5,179.9219,80.5,183.9219,90.5,187.9219,86.5,183.9219" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="84.5" x2="435.5" y1="183.9219" y2="183.9219"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="96.5" y="179.0654">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="120" x="107.5" y="179.0654">requests data (state)</text><polygon fill="#181818" points="419.5,210.2734,429.5,214.2734,419.5,218.2734,423.5,214.2734" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="79.5" x2="425.5" y1="214.2734" y2="214.2734"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="86.5" y="209.417">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="122" x="97.5" y="209.417">types requested data</text><polygon fill="#181818" points="90.5,240.625,80.5,244.625,90.5,248.625,86.5,244.625" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="84.5" x2="435.5" y1="244.625" y2="244.625"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="96.5" y="239.7686">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="317" x="107.5" y="239.7686">requests data (district associated to the state inserted)</text><polygon fill="#181818" points="419.5,270.9766,429.5,274.9766,419.5,278.9766,423.5,274.9766" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="79.5" x2="425.5" y1="274.9766" y2="274.9766"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="86.5" y="270.1201">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="122" x="97.5" y="270.1201">types requested data</text><polygon fill="#181818" points="90.5,301.3281,80.5,305.3281,90.5,309.3281,86.5,305.3281" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="84.5" x2="435.5" y1="305.3281" y2="305.3281"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="96.5" y="300.4717">6</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="309" x="107.5" y="300.4717">requests data (city associated to the district inserted)</text><polygon fill="#181818" points="419.5,331.6797,429.5,335.6797,419.5,339.6797,423.5,335.6797" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="79.5" x2="425.5" y1="335.6797" y2="335.6797"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="86.5" y="330.8232">7</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="122" x="97.5" y="330.8232">types requested data</text><polygon fill="#181818" points="90.5,362.0313,80.5,366.0313,90.5,370.0313,86.5,366.0313" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="84.5" x2="435.5" y1="366.0313" y2="366.0313"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="96.5" y="361.1748">8</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="207" x="107.5" y="361.1748">requests to confirm all data inserted</text><polygon fill="#181818" points="419.5,392.3828,429.5,396.3828,419.5,400.3828,423.5,396.3828" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="79.5" x2="425.5" y1="396.3828" y2="396.3828"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="86.5" y="391.5264">9</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="49" x="97.5" y="391.5264">confirms</text><polygon fill="#181818" points="90.5,422.7344,80.5,426.7344,90.5,430.7344,86.5,426.7344" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="84.5" x2="435.5" y1="426.7344" y2="426.7344"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="96.5" y="421.8779">10</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="158" x="114.5" y="421.8779">displays operation success</text><!--MD5=[dd225c1583a77ada0fde942bcb374e87]
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD)
+
+autonumber
+
+actor "System Administrator" as Admin
+participant ":System" as System
+
+activate Admin
+
+    Admin -> System : asks to register a new location
+    activate System
+
+        System - -> Admin : requests data (state)
+    deactivate System
+
+    Admin -> System : types requested data
+    activate System
+
+        System - -> Admin : requests data (district associated to the state inserted)
+    deactivate System
+
+    Admin -> System : types requested data
+    activate System
+
+        System - -> Admin : requests data (city associated to the district inserted)
+    deactivate System
+
+    Admin -> System : types requested data
+    activate System
+
+        System - -> Admin : requests to confirm all data inserted
+    deactivate System
+
+    Admin -> System : confirms
+    activate System
+
+        System - -> Admin : displays operation success
+    deactivate System
+
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 18:01:30 WEST 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>
