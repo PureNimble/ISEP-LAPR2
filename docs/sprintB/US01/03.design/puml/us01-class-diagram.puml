@@ -1,130 +1,142 @@
 @startuml
-'skinparam monochrome true
+
+title US001 - Class Diagram
+
+
 skinparam packageStyle rectangle
 skinparam shadowing false
 skinparam linetype polyline
-'skinparam linetype orto
-
 skinparam classAttributeIconSize 0
 
+'skinparam linetype orto
+'skinparam monochrome true
 'left to right direction
 
-class ApplicationSession
-{
-    + static getInstance()
-    + getCurrentSession()
+
+class Address {
+    - String streetName
+    - int zipCode : 0
+
+    +verifyZipCode()
+    +getCity()
+    +getDistrict()
+    +getState()
+    +Address(state, district, city, street, zipCode)
 }
 
-class UserSession
-{
-    + getUserEmail()
+class AvailableEquipment {
+    - String typeOfEquipment
+
+    +AvailableEquipment(typeOfEquipment)
 }
 
-class Employee {
-    - name
-    - email
-    - position
-    - phone
+
+class Business {
+    - double requestedPrice : 0
+
+    +getFinalComission()
+    +calculatePriceWithComission()
 }
 
-class Task {
-    - String reference
-    - String description
-    - String informalDescription
-    - String technicalDescription
-    - Integer duration
-    - Double cost
 
-    + Task(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, createdBy, taskCategory)
+class City {
+    - String cityName
 }
 
-class TaskCategory {
-    - String description
+class Comission {
+    - double percentage : 0
+    - double staticValue : 0
 
-    + TaskCategory(description)
+    + calculateFinalComission()
 }
 
-class Organization {
-    - String name
-    - String vatNumber
-    - String website
-    - String phone
-    - String email
 
-    - addTask(task)
-    - validateTask(task)
-    + anyEmployeeHasEmail(email)
-    + Organization(name, vatNumber, webSite, phone, email, postalAddress, manager)
-    + createTask(reference, description, informalDesccription,\ntechnicalDescription, duration, cost, taskCategoryDescription)
-    - getEmployeeByEmail(email)
-
-'  +saveTask(task)
+class District {
+    - String districtName
 }
 
-class TaskCategoryRepository {
-    + getTaskCategoryByDescription(description)
+
+class House {
+    - Boolean existenceOfBasement : false
+    - Boolean existenceOfInhabitableLoft : false
+
+    +House(existenceOfBasement, existenceOfInhabitableLoft)
 }
 
-class OrganizationRepository {
-    + getOrganizationByEmployeeEmail(email)
+
+class Photos {
+    - String URI
 }
 
-class Repositories {
-    - Repositories()
-    + getInstance() : Repositories
-    + getTaskCategoryRepository()
-    + getOrganizationRepository()
+class Property {
+    - double area : 0
+    - int distanceFromTheCityCenter : 0
+
+    +Property(area, distanceFromTheCityCenter)
 }
 
-class CreateTaskController {
-    + CreateTaskController(organizationRepository, taskCategoryRepository)
-    + getTaskCategories()
-    + createTask(userEmail, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, categoryDescription)
-    - getTaskCategoryByDescription(taskCategoryDescription)
-    - getEmployeeFromSession()
+class PublishedAnnouncement {
+    - String initialDate
+    - String finalDate
+
+    +getAnnouncementRequest()
+    +PublishedAnnouncement(initialDate, finalDate, AnnouncementRequest)
 }
 
-note right of CreateTaskController
-    - userEmail is obtained
-    from the user session
-    - categoryDescription
-    is retrieved from selected data
-end note
 
-note bottom of TaskCategoryRepository
-    - used for displaying
-    the category list
-end note
+class Rent {
+    - int durationOfContract: 0
 
-class CreateTaskUI {
+    +getFinalComission()
+    +calculateTotalPrice()
 }
 
-Repositories -> Repositories : instance
-ApplicationSession -> ApplicationSession : instance
 
-CreateTaskUI .> CreateTaskController
+class Residence {
+    - int numberOfBedrooms : 0
+    - int numberOfBathrooms : 0
+    - int numberOfParkingSpaces : 0
 
-CreateTaskController .> Repositories : repositories
+    +Residence(numberOfBedrooms, numberOfBathrooms, numberOfParkingSpaces)
+}
 
-Repositories -> "1" TaskCategoryRepository
 
-CreateTaskController ..> TaskCategory
-CreateTaskController ..> OrganizationRepository : organizationRepository
-CreateTaskController ..> TaskCategoryRepository : TaskCategoryRepository
+class State {
+    - String stateName
+}
 
-Repositories --> "1" OrganizationRepository
+class SunExposure {
+    - String direction
 
-OrganizationRepository --> "*" Organization
-ApplicationSession --> "1" UserSession : userSession
+    +SunExposure(direction)
+}
 
-CreateTaskController ..> "1" Organization : organization
-CreateTaskController ..> ApplicationSession
-CreateTaskController ..> UserSession
-Task "*" --> "1" TaskCategory : taskCategory
-TaskCategoryRepository "1" --> "*" TaskCategory : taskCategory
-Organization "1" --> "*" Task : tasks
-Task --> Employee : createdBy
 
-Organization --> "*" Employee : employs
+class UnregisteredUser {
+}
+
+
+
+Business <|-- Rent
+
+City "1" --- "*" Address : is in <
+Comission "1" -right- "1" Business : contains <
+
+District "1" --- "*" City : is in <
+
+House "*" --- "1" SunExposure : has <
+
+Property <|--- Residence
+Property "*" -left- "1" Address : has <
+Property "1" --- "1" Business : has <
+Property "1" -right- "*" Photos : has >
+PublishedAnnouncement "*" --- "*" Property: advertises >
+
+Residence "*" --- "1" AvailableEquipment : has <
+Residence <|--- House
+
+State "1" --- "*" District : is in <
+
+UnregisteredUser "*" --- "*" PublishedAnnouncement: displays >
 
 @enduml

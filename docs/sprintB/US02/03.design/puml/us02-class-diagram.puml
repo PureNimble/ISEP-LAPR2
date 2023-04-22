@@ -14,6 +14,11 @@ class Address {
     -int zipCode : 0
 
     +verifyZipCode()
+    +getCity()
+    +getDistrict()
+    +getState()
+    +Address(state, district, city, street, zipCode)
+
 }
 
 class City {
@@ -36,11 +41,14 @@ class Contacts {
     - String email
 
     +verifyPhoneNumber()
+    +getStore()
+    +getOwner()
 }
 
 class Business {
-    -double priceWithComission
+    - double requestedPrice : 0
 
+    +getFinalComission()
     +calculatePriceWithComission()
 }
 
@@ -53,6 +61,8 @@ class Owner {
     - int taxNumber : 0
 
     +verifyTaxNumber()
+    +getEmail()
+    +getPhoneNumber()
 }
 
 
@@ -62,11 +72,15 @@ class Residence {
     - int numberOfBedrooms : 0
     - int numberOfBathrooms : 0
     - int numberOfParkingSpaces : 0
+
+    +Residence(numberOfBedrooms, numberOfBathrooms, numberOfParkingSpaces)
 }
 
 class Property {
     - double area : 0
     - int distanceFromTheCityCenter : 0
+
+    +Property(area, distanceFromTheCityCenter)
 }
 
 class Photos{
@@ -76,48 +90,53 @@ class Photos{
 class House {
     - Boolean existenceOfBasement : false
     - Boolean existenceOfInhabitableLoft : false
+
+    +House(existenceOfBasement, existenceOfInhabitableLoft)
 }
 
 class SunExposure {
     - String direction
+
+    +SunExposure(direction)
 }
 
 class AvailableEquipment {
     - String typeOfEquipment
+
+    +AvailableEquipment(typeOfEquipment)
 }
 
 
 
 class Comission{
-    - double finalComission : 0
+     - double percentage : 0
+     - double staticValue : 0
 
-    + calculateFinalComission ()
+    + calculateFinalComission()
 }
 
-class ComissionValue {
-    - double percentage : 0
-    - double staticValue : 0
-}
 
-class Sale{
-    - double requestedPrice : 0
-}
-
-class Lease {
-    - double requestedFee : 0
+class Rent {
     - int durationOfContract: 0
-    - double totalPrice : 0
 
-    +calculateTotalPrice ()
+    +getFinalComission()
+    +calculateTotalPrice()
 }
 
 class AnnouncementRequest {
     - String contractType
+
+    +getBusiness()
+    +getOwner()
+    +AnnouncementRequest(contractType, Business)
 }
 
 class PublishedAnnouncement {
     - String initialDate
     - String finalDate
+
+    +getAnnouncementRequest()
+    +PublishedAnnouncement(initialDate, finalDate, AnnouncementRequest)
 }
 
 City "1"-- "*" Address: is in <
@@ -141,9 +160,8 @@ Owner "1" -down-- "*" Property: has >
 AvailableEquipment "*" -up-- "1" Residence: contains <
 
 
-ComissionValue "1" -right-- "1" Agent: defines <
+Comission "1" -right-- "1" Agent: defines <
 Comission "1" --- "1" Business: contains <
-ComissionValue "1" --- "*" Comission : has a >
 Owner "1" --- "1" Business: requests >
 Property "1" --- "1" Business: has a <
 AnnouncementRequest "1" --- "1" Business: has >
@@ -152,7 +170,7 @@ AnnouncementRequest "1" --- "1" Property: has a >
 AnnouncementRequest  <|---  PublishedAnnouncement
 PublishedAnnouncement "*" --- "1" Agent: publishes <
 PublishedAnnouncement "1" --- "1" Business: has a <
-Business <|--- Lease
-Business <|--- Sale
+Business <|--- Rent
+
 
 @enduml

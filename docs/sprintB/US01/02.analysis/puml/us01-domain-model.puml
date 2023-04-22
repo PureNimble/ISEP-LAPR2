@@ -4,64 +4,10 @@ title US001 - Domain Model
 
 skinparam groupInheritance 2
 skinparam monochrome true
-skinparam linetype ortho
+skinparam linetype polyline
+hide methods
 hide circle
 
-
-
-class UnregisteredUser {
-}
-
-class PublishedAnnouncement {
-Initial Date
-Final Date
-Contract Type
-}
-
-class Property {
-Area
-Photos
-Distance from the city center
-}
-
-class Photos {
-URI
-}
-
-class Business {
-Total price
-}
-
-
-class Residence {
-Number of Bedrooms
-Number of Bathrooms
-Number of Parking Spaces
- }
-
-
-class House {
-Basement
-Inhabitable Loft
-}
-
-
-class SunExposure {
-Direction
-}
-
-
-class State {
-State
-}
-
-class District {
-District
-}
-
-class City {
-City
-}
 
 class Address {
 Street
@@ -73,22 +19,95 @@ Equipment
 }
 
 
+class Business {
+Requested price
+}
 
-UnregisteredUser "*" --- "*" PublishedAnnouncement: displays >
-PublishedAnnouncement "*" --- "*" Property: advertises >
+
+class City {
+Name
+}
+
+class Comission {
+Percentage
+Static Value
+}
+
+
+class District {
+Name
+}
+
+
+class House {
+Basement
+Inhabitable Loft
+}
+
+
+class Photos {
+URI
+}
+
+class Property {
+Area
+Photos
+Distance from the city center
+}
+
+class PublishedAnnouncement {
+Initial Date
+Final Date
+Contract Type
+}
+
+
+class Rent {
+Duration of the contract
+}
+
+
+class Residence {
+Number of Bedrooms
+Number of Bathrooms
+Number of Parking Spaces
+}
+
+
+class State {
+Name
+}
+
+class SunExposure {
+Direction
+}
+
+
+class UnregisteredUser {
+}
+
+
+
+Business <|-- Rent
+
+City "1" --- "*" Address : is in <
+Comission "1" -right- "1" Business : contains <
+
+District "1" --- "*" City : is in <
+
+House "*" --- "1" SunExposure : has <
 
 Property <|--- Residence
-Property "*" --- "1" Address : has <
+Property "*" -left- "1" Address : has <
 Property "1" --- "1" Business : has <
-Property "1" - "*" Photos : has >
+Property "1" -right- "*" Photos : has >
+PublishedAnnouncement "*" --- "*" Property: advertises >
 
 Residence "*" --- "1" AvailableEquipment : has <
 Residence <|--- House
 
-House "*" --- "1" SunExposure : has <
-
 State "1" --- "*" District : is in <
-District "1" --- "*" City : is in <
-City "1" --- "*" Address : is in <
+
+UnregisteredUser "*" --- "*" PublishedAnnouncement: displays >
 
 @enduml
