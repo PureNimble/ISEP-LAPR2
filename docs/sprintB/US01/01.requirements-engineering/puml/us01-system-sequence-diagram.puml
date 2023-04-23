@@ -16,7 +16,7 @@ activate User
     User -> System : asks to display a list of properties
     activate System
 
-    System --> User : displays the list of properties
+    System --> User : displays the list of properties from the most recent uploaded
     deactivate System
 
     User -> System : asks to filter the results
