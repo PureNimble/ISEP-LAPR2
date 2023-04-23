@@ -1,130 +1,132 @@
 @startuml
-'skinparam monochrome true
-skinparam packageStyle rectangle
-skinparam shadowing false
-skinparam linetype polyline
-'skinparam linetype orto
 
-skinparam classAttributeIconSize 0
 
-'left to right direction
+'https://plantuml.com/class-diagram
 
-class ApplicationSession
-{
-    + static getInstance()
-    + getCurrentSession()
+class AddEmployeeUI
+
+class Adress
+
+class Contacts
+
+class AddEmployeeController
+
+class Repositories
+
+class Employee
+
+class Store
+
+class Role
+
+class SystemAdministrator
+
+class StoresRepository
+
+class EmployeeListOfRolesRepository
+
+
+class Adress{
+-String street
+-int zipCode
+-String city
+-String country
+-String state
 }
 
-class UserSession
-{
-    + getUserEmail()
+
+class Contacts{
+-email
+-phone number
 }
 
-class Employee {
-    - name
-    - email
-    - position
-    - phone
+class Role{
+-String role
++Role(role)
 }
 
-class Task {
-    - String reference
-    - String description
-    - String informalDescription
-    - String technicalDescription
-    - Integer duration
-    - Double cost
-
-    + Task(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, createdBy, taskCategory)
+class SystemAdministrator{
 }
 
-class TaskCategory {
-    - String description
-
-    + TaskCategory(description)
+class Employee{
+-String name
+-Passport passport
+-int Tax Number
++Employee(name,citizen´s card number,tax number ,adress,email adress,telephone number,agency  role,createdBy)
 }
 
-class Organization {
-    - String name
-    - String vatNumber
-    - String website
-    - String phone
-    - String email
+class StoresRepository{
++getStores()
 
-    - addTask(task)
-    - validateTask(task)
-    + anyEmployeeHasEmail(email)
-    + Organization(name, vatNumber, webSite, phone, email, postalAddress, manager)
-    + createTask(reference, description, informalDesccription,\ntechnicalDescription, duration, cost, taskCategoryDescription)
-    - getEmployeeByEmail(email)
-
-'  +saveTask(task)
 }
 
-class TaskCategoryRepository {
-    + getTaskCategoryByDescription(description)
+class EmployeeListOfRolesRepository{
++getRolesEmployee()
+
 }
 
-class OrganizationRepository {
-    + getOrganizationByEmployeeEmail(email)
+class AddEmployeeUI{
 }
 
-class Repositories {
-    - Repositories()
-    + getInstance() : Repositories
-    + getTaskCategoryRepository()
-    + getOrganizationRepository()
+class AddEmployeeController{
++AddEmployeeController(employeeRoleListRepository,StoresRepository)
++getRolesEmployee()
++getStores()
++addEmployee(name,citizen´s card number,tax number ,adress,email adress,telephone number,store, role)
+-getRolesEmployeeByDescription(roleEmployeeDescription)
 }
 
-class CreateTaskController {
-    + CreateTaskController(organizationRepository, taskCategoryRepository)
-    + getTaskCategories()
-    + createTask(userEmail, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, categoryDescription)
-    - getTaskCategoryByDescription(taskCategoryDescription)
-    - getEmployeeFromSession()
+class Repositories{
+-Repositories()
++getInstance():Repositories
++getRolesEmployeeRepository()
++getStoresRepository()
 }
 
-note right of CreateTaskController
-    - userEmail is obtained
-    from the user session
-    - categoryDescription
-    is retrieved from selected data
-end note
-
-note bottom of TaskCategoryRepository
-    - used for displaying
-    the category list
-end note
-
-class CreateTaskUI {
+class Store{
+-String name
+-Adress adress
+-Contacts contact
+-ArrayList<Empregados> contentorEmpregados
+-addEmployee(employee)
+-validateTask(employee)
++Store(name,adress,contact)
++addEmployee(name,citizen´s card number,tax number ,adress,email adress,telephone number,agency  role)
 }
 
-Repositories -> Repositories : instance
-ApplicationSession -> ApplicationSession : instance
 
-CreateTaskUI .> CreateTaskController
+AddEmployeeUI .> AddEmployeeController
 
-CreateTaskController .> Repositories : repositories
+AddEmployeeController ..> "1" Store : store
 
-Repositories -> "1" TaskCategoryRepository
+AddEmployeeController ...> EmployeeListOfRolesRepository :EmployeeListOfRolesRepository
 
-CreateTaskController ..> TaskCategory
-CreateTaskController ..> OrganizationRepository : organizationRepository
-CreateTaskController ..> TaskCategoryRepository : TaskCategoryRepository
+AddEmployeeController ..> StoresRepository : StoresRepository
 
-Repositories --> "1" OrganizationRepository
+Store "1" ---> "*" Employee : employee
 
-OrganizationRepository --> "*" Organization
-ApplicationSession --> "1" UserSession : userSession
+Repositories -> Repositories:intance
 
-CreateTaskController ..> "1" Organization : organization
-CreateTaskController ..> ApplicationSession
-CreateTaskController ..> UserSession
-Task "*" --> "1" TaskCategory : taskCategory
-TaskCategoryRepository "1" --> "*" TaskCategory : taskCategory
-Organization "1" --> "*" Task : tasks
-Task --> Employee : createdBy
+Repositories ---> StoresRepository: storeRepository
 
-Organization --> "*" Employee : employs
+Repositories ----> EmployeeListOfRolesRepository:roleEmployee
+
+AddEmployeeController .>  Repositories : repositories
+
+StoresRepository --> "*" Store
+
+Employee <|-- SystemAdministrator
+
+Store <- "*" SystemAdministrator : registers
+
+EmployeeListOfRolesRepository ---> Role
+
+Employee "1" -> "1" Role : role
+
+Employee "1" --> "1" Contacts
+
+Adress "1" -> "*"  Store
+
+Adress "1" --> "*" Employee
 
 @enduml
