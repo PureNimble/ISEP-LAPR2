@@ -6,175 +6,353 @@ skinparam shadowing false
 autonumber
 
 'hide footbox
-actor "Organization Employee" as ADM
+actor "Agent" as agent
 participant ":CreateTaskUI" as UI
-participant ":CreateTaskController" as CTRL
+participant ":AnnouncementToPublishController" as publish
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
-participant "taskCategoryRepository:\nTaskCategoryRepository" as TaskCategoryRepository
-participant ":ApplicationSession" as _APP
-participant "appSession\n:ApplicationSession" as APP
-participant "currentSession\n:UserSession" as SESSAO
-participant "organizationRepository:\nOrganizationRepository" as OrganizationRepository
-participant "organization\n:Organization" as ORG
-participant "task\n:Task" as TAREFA
+participant "announcementRepository:\nAnnouncementRepository" as AnnouncementRepository
+participant "PropertyRepository\n:PropertyRepository" as Pr
+participant "Announcement\n:Announcement" as Announcement
 
-activate ADM
+        activate agent
 
-        ADM -> UI : asks to create a new task
+    agent -> UI : asks to publish an annoucement to publish
 
         activate UI
 
-'            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
-            'create CTRL
-            UI -> CTRL** : create
+    UI -> publish** : create
 
-            UI -> CTRL : getTaskCategories()
-            activate CTRL
+    UI -> publish : getAnnouncement()
 
-                CTRL -> RepositorySingleton : getInstance()
-                activate RepositorySingleton
+        activate publish
 
-                    RepositorySingleton --> CTRL: repositories
-                deactivate RepositorySingleton
+    publish -> RepositorySingleton : getInstance()
 
-                CTRL -> PLAT : getTaskCategoryRepository()
-                activate PLAT
+        activate RepositorySingleton
 
-                    PLAT --> CTRL: taskCategoryRepository
-                deactivate PLAT
+    RepositorySingleton --> publish: repositories
 
-                CTRL -> TaskCategoryRepository : getTaskCategories()
-                activate TaskCategoryRepository
+        deactivate RepositorySingleton
 
-                    TaskCategoryRepository --> CTRL : taskCategoryList
-                deactivate TaskCategoryRepository
+    publish -> PLAT : getAnnouncementRepository()
 
-                CTRL --> UI : taskCategoryList
-            deactivate CTRL
+        activate PLAT
 
-            UI --> ADM : shows task category list\n and asks to sleect one
+    PLAT --> publish: announcementRepository
+
+        deactivate PLAT
+
+    publish -> AnnouncementRepository : getAnnouncement()
+
+        activate AnnouncementRepository
+
+    AnnouncementRepository --> publish : Announcement
+
+        deactivate AnnouncementRepository
+
+    publish --> UI : Announcement
+
+        deactivate publish
+
+    UI --> agent : shows announcements list\n and asks to sleect one of them
+
         deactivate UI
 
-    ADM -> UI : selects a task category
-    activate UI
+    agent -> UI : selects an announcement to publish
 
-        UI --> ADM : requests data
-    deactivate UI
+        activate UI
 
-    ADM -> UI : types requested data (reference, description, \ninformal description, technical description,\nduration, cost)
-    activate UI
+    UI --> agent : requests data
 
-        UI --> ADM : shows selected category and requested data
-    deactivate UI
+        deactivate UI
 
-    ADM -> UI : submits data
-    activate UI
+    agent -> UI : types requested data [area in m^2, state, district, city\n, street, zip code and distance from city center]
 
-        UI -> CTRL : createTask(reference,\ndescription,\ninformalDescription,\ntechnicalDescription,\nduration, cost,\ntaskCategoryDescription)
-        activate CTRL
+        activate UI
 
-            CTRL -> CTRL : getTaskCategoryByDescription(taskCategoryDescription)
-            activate CTRL
+    opt house, apartment
 
-                CTRL -> RepositorySingleton : getInstance()
-                activate RepositorySingleton
+        autonumber 15
 
-                    RepositorySingleton --> CTRL: repositories
-                deactivate RepositorySingleton
+        agent -> UI : types requested data [number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning)]
 
-                CTRL -> PLAT : getTaskCategoryRepository()
-                activate PLAT
+            opt house
 
-                    PLAT -> CTRL : taskCategoryRepository
-                deactivate PLAT
+                autonumber 16
 
-                CTRL -> TaskCategoryRepository : getTaskCategoryByDescription(taskCategoryDescription)
-                activate TaskCategoryRepository
+                agent -> UI : types requested data [the existence of a basement and/or inhabitable loft, sun exposure \n(North, South, East, West)]
 
-                    TaskCategoryRepository --> CTRL : taskCategory
-                deactivate TaskCategoryRepository
-                    CTRL --> CTRL : taskCategory
-            deactivate CTRL
+            end
+    end
 
-            |||
-            CTRL -> CTRL : getEmployeeFromSession()
-            activate CTRL
+    UI -> UI : savesData [area in m^2, state, district, city, street, zip code and distance from city center]
 
-                CTRL -> _APP: getInstance()
-                activate _APP
-                    _APP -> CTRL: appSession
-                deactivate _APP
+    opt  house, apartment
 
+        autonumber 18
 
-                CTRL -> APP: getCurrentSession()
-                activate APP
+        UI -> UI : savesData(number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning))
 
-                    APP --> CTRL: currentSession
-                deactivate APP
+            opt house
 
-                CTRL -> SESSAO: email = getUserEmail()
-                activate SESSAO
+                autonumber 19
 
-                    SESSAO --> CTRL: email
-                deactivate SESSAO
+                UI -> UI : savesData(the existence of a basement and/or inhabitable loft, sun exposure \n(North, South, East, West))
 
+            end
 
-                CTRL -> PLAT: getOrganizationRepository(email)
-                activate PLAT
+    end
 
-                    PLAT --> CTRL: organizationRepository
-                deactivate PLAT
+    UI --> agent : shows requested data
 
+        deactivate UI
 
-                CTRL -> OrganizationRepository: getOrganizationByEmployeeEmail(email)
-                activate OrganizationRepository
+    agent -> UI : submits data
 
-                    loop [for each organization
-                        OrganizationRepository -> ORG : anyEmployeeHasEmail(email)
-                        activate ORG
+        activate UI
 
-                             ORG --> OrganizationRepository : true/false
-                        deactivate ORG
-                    end
-                    OrganizationRepository --> CTRL : organization
-                deactivate OrganizationRepository
+    UI -> publish : publishAnnouncement(area in m^2, state, district, city, street, zip code and distance from city center)
 
-                CTRL -> ORG: getEmployeeByEmail(email)
-                activate ORG
+        activate publish
 
-                    ORG --> CTRL : employee
-                deactivate ORG
+    opt  house, apartment
 
-                CTRL --> CTRL : employee
-            deactivate CTRL
+        autonumber 23
 
-            |||
-            CTRL -> ORG: createTask(employee, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, , taskCategory, employee)
-            activate ORG
+        UI -> publish : publishAnnouncement(number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning))
 
-                ORG -> TAREFA**: create(employee, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee)
-                ORG -> ORG: addTask (task)
+        opt house
 
+            autonumber 24
 
-                activate ORG
-                    ORG -> ORG: validateTask(task)
-                    activate ORG
-                        ORG --> ORG
-                    deactivate ORG
+            UI -> publish : publishAnnouncement(the existence of a basement and/or inhabitable loft, sun exposure \n(North, South, East, West))
 
-                    ORG --> ORG
-                deactivate ORG
+        end
 
-                ORG --> CTRL : task
+    end
 
-            deactivate ORG
+    publish -> Pr : publishAnnouncement(area in m^2, state, district, city, street, zip code and distance from city center)
 
-            CTRL --> UI: task
-            deactivate CTRL
-            UI --> ADM: displays operation success
-    deactivate UI
+        activate Pr
 
-deactivate ADM
+    opt  house, apartment
 
+        autonumber 26
+
+        publish -> Pr : publishAnnouncement(number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning))
+
+        opt house
+
+            autonumber 27
+
+            publish -> Pr : publishAnnouncement(the existence of a basement and/or inhabitable loft, sun exposure \n(North, South, East, West))
+
+        end
+
+    end
+
+    Pr -> Announcement : publishAnnouncement(area in m^2, state, district, city, street, zip code and distance from city center)
+
+            activate Announcement
+
+        opt  house, apartment
+
+            autonumber 29
+
+            Pr -> Announcement : publishAnnouncement(number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning))
+
+            opt house
+
+                autonumber 30
+
+                Pr -> Announcement : publishAnnouncement(the existence of a basement and/or inhabitable loft, sun exposure \n(North, South, East, West))
+
+            end
+
+        end
+
+            deactivate Announcement
+
+        Pr -> Pr: Announcement(announcement)
+
+            activate Pr
+
+            deactivate Pr
+
+        Pr -> Pr : ValidadeAnnouncement(annoucement)
+
+            activate Pr
+
+            deactivate Pr
+
+        Pr -> Pr : AskForPhotos(annoucement)
+
+            activate Pr
+
+            deactivate Pr
+
+        Pr -->  publish : Photos
+
+            deactivate Pr
+
+        publish --> UI: Photos
+
+            deactivate publish
+
+        UI --> agent : ask to submit photos
+
+            deactivate UI
+
+        loop Sends photos (from 1 up to 30 pictures)
+
+            agent -> UI : sends photos of the property
+
+                activate UI
+
+        end
+
+        loop Sends photos (from 1 up to 30 pictures)
+
+            UI -> publish : sends photos of the property
+
+                activate publish
+
+        end
+
+        loop Sends photos (from 1 up to 30 pictures)
+
+            publish -> Pr : sends photos of the property
+
+                activate Pr
+
+        end
+
+        loop Sends photos (from 1 up to 30 pictures)
+
+            Pr -> Announcement : sends photos of the property
+
+                activate Announcement
+
+        end
+
+            deactivate Announcement
+
+        Pr -> Pr: Announcement(announcement)
+
+            activate Pr
+
+            deactivate Pr
+
+        Pr -> Pr : ValidadeAnnouncement(annoucement)
+
+            activate Pr
+
+            deactivate Pr
+
+        Pr -> Pr : AskForComission(annoucement)
+
+            activate Pr
+
+            deactivate Pr
+
+        Pr -->  publish : Comission
+
+            deactivate Pr
+
+        publish --> UI: Comission
+
+            deactivate publish
+
+        UI --> agent : ask agent to submit the comission type and the needed data
+
+            deactivate UI
+
+        alt percentage
+
+            agent -> UI : inserts the percentage comission
+
+                activate UI
+
+            else value
+
+                agent -> UI: inserts the comission value
+
+        end
+
+        alt percentage
+
+            UI -> publish : inserts the percentage comission
+
+                activate publish
+
+            else value
+
+                UI -> publish: inserts the comission value
+
+        end
+
+        alt percentage
+
+            publish -> Pr : inserts the percentage comission
+
+                activate Pr
+
+            else value
+
+                publish -> Pr: inserts the comission value
+
+        end
+
+        alt percentage
+
+            Pr -> Announcement : inserts the percentage comission
+
+                activate Announcement
+
+            else value
+
+                Pr -> Announcement: inserts the comission value
+
+        end
+
+            deactivate Announcement
+
+        Pr -> Pr: Announcement(announcement)
+
+            activate Pr
+
+            deactivate Pr
+
+        Pr -> Pr : ValidadeAnnouncement(annoucement)
+
+            activate Pr
+
+            deactivate Pr
+
+        Pr -> Pr : AskToValidateTheOperation(annoucement)
+
+            activate Pr
+
+            deactivate Pr
+
+        Pr -->  publish : Validate the Operation
+
+            deactivate Pr
+
+        publish --> UI: Validate the Operation
+
+            deactivate publish
+
+        UI --> agent : ask agent to validate the operation
+
+            deactivate UI
+
+        agent -> UI : validates the operation
+
+            activate UI
+
+        UI --> agent : displays operation success
+
+            deactivate UI
 @enduml
