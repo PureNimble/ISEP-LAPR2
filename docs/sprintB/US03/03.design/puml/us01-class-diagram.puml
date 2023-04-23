@@ -87,7 +87,6 @@ class Store{
 -String name
 -Adress adress
 -Contacts contact
--ArrayList<Empregados> contentorEmpregados
 -addEmployee(employee)
 -validateTask(employee)
 +Store(name,adress,contact)
