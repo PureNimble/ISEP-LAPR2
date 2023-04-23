@@ -20,41 +20,37 @@ activate User
     System --> User : displays a list of properties from the most recent uploaded to the oldest
             deactivate System
 
-            alt Filters by type of business, type of property and number of rooms
+    User -> System : asks to filter the list of properties
+            activate System
 
-            User -> System : asks to filter the list of properties
-                    activate System
+    System --> User : displays the options to filter [type of business (buying or renting), \ntype of property (house, apartment or land) and the number of rooms]
+             deactivate System
 
-                System --> User : displays the options to filter [type of business (buying or renting), \ntype of property (house, apartment or land) and the number of rooms]
-                    deactivate System
+             alt Selects options to filter
 
-                    alt Selects options to filter
+             User -> System : selects the options to filter the list of properties
+                     activate System
 
-                    User -> System : selects the options to filter the list of properties
-                        activate System
+             else Doesn't select options to filter
 
-                    else Doesn't select options to filter
+             User -> System : doesn't select any option to filter the list of properties
 
-                    User -> System : doesn't select any option to filter the list of properties
+             end
 
-                    end
+    System --> User : displays the list of properties
+             deactivate System
 
-                System --> User : displays the list of properties
-                    deactivate System
+    User -> System : asks to order the filtered list of properties
+             activate System
 
-            end
+    System --> User : displays the options to order (price, city or state) and (ascending or descending)
+             deactivate System
 
-            User -> System : asks to order the filtered list of properties
-                    activate System
+    User -> System : selects the options to order the filtered list of properties
+             activate System
 
-                System --> User : displays the options to order (price, city or state) and (ascending or descending)
-                    deactivate System
-
-                User -> System : selects the options to order the filtered list of properties
-                    activate System
-
-                System --> User : display the filtered list of properties with the ordering method selected
-                    deactivate System
+    System --> User : display the filtered list of properties with the ordering method selected
+             deactivate System
 
     else List without Properties
 
