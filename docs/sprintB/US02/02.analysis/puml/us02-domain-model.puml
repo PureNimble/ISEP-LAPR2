@@ -109,7 +109,6 @@ Duration of contract
 
 class AnnouncementRequest{
 Initial date
-Final date
 Contract type
 }
 

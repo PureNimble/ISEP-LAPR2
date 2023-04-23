@@ -18,7 +18,7 @@ activate Agent
     System --> Agent : requests data
         deactivate System
 
-    Agent -> System : types requested data [area in m^2, location, photos, distance from city center and the requested price]
+    Agent -> System : types requested data [area in m^2, state, district, city, street, zip code and distance from city center]
         activate System
 
     opt house, apartment
@@ -58,6 +58,12 @@ activate Agent
             Agent -> System : types the requested data [Requested fee and contract duration]
 
     end
+'
+'    System --> Agent : save all data and requests the owner personal information
+'        deactivate System
+'
+'    Agent --> System : types the requested data [name, tax number, phone number, email, state, district, city, street and zip code]
+'        activate System
 
     System --> Agent : save all data and requests the comission type and needed data
         deactivate System
