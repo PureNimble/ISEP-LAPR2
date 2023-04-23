@@ -1,4 +1,4 @@
-# US 05 - To register a Store
+# US 007 - To register in the system to buy, sell or rent properties
 
 [Requirements Engineering](01.requirements-engineering/Readme.md)
 

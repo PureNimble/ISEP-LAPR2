@@ -1,6 +1,6 @@
 @startuml
 
-title US05 - Domain Model
+title US07 - Domain Model
 
 skinparam groupInheritance 2
 skinparam monochrome true
@@ -10,46 +10,50 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
-class SystemAdministrator
-
-class Address
-
-class Contacts
-
-class Store
-
-class SystemAdministrator{
-
+class UnregisteredUser {
+    Cookies
 }
 
-class Employee{
-    Name
-    ID
-    Tax Number
-    Role
+class Client {
+    
 }
 
 class Contacts {
     Phone Number
-    Email Adress
+    Email Address
 }
 
-class Store {
-    ID
-    Designation
+class State {
+    State name
+}
+
+class RegisteredUser {
+    Username
+    Password
+    Name
+    Passport Card Number
+    Tax Number
+}
+
+class District {
+    District name
+}
+
+class City {
+    City name
 }
 
 class Address {
     Street
-    City
-    Country
-    State
     Zip Code
 }
 
-Store "1" -down-- "1" Address: located at >
-Store "1" -right-- "1" Contacts: has >
-SystemAdministrator "1" -right-- "*" Store: registers >
-Employee <|--- SystemAdministrator
+UnregisteredUser "1" -right-- "1" RegisteredUser : can register as >
+State "1" -left-- "*" District : has >
+District "1" -left-- "*" City : has >
+City "1" -left-- "*" Address : has >
+RegisteredUser "1" -right-- "1" Address : can have >
+RegisteredUser "1" -up-- "1" Contacts : has >
+RegisteredUser <|-- Client
 
 @enduml

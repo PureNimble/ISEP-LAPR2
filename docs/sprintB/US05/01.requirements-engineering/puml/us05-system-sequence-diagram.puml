@@ -18,13 +18,13 @@ activate Admin
         System --> Admin : requests the necessary data (id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
     deactivate System
 
-    Admin -> System : types requested data
+    Admin -> System : types and selects requested data
     activate System
 
         System --> Admin : shows inserted data and asks for confirmation
     deactivate System
 
-    Admin -> System : confirms
+    Admin -> System : confirms data
     activate System
 
         System --> Admin : displays operation success

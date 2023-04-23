@@ -15,7 +15,7 @@ activate unregUser
     unregUser -> System : asks to create an account
     activate System
 
-        System --> unregUser : requests data (name, passport number, tax number, \naddress (not mandatory), email address and phone number)
+        System --> unregUser : requests data (name, passport card number, tax number, \naddress (not mandatory), email address and phone number)
     deactivate System
 
     alt enters Address
@@ -23,18 +23,14 @@ activate unregUser
     unregUser -> System : types all requested data
     activate System
 
-        System --> unregUser : shows inserted data and asks for confirmation
-    deactivate System
-
     else does not enter Address
 
     unregUser -> System : types requested data except the address
-    activate System
-    
-        System --> unregUser : shows inserted data and asks for confirmation
-    deactivate System
 
     end
+
+        System --> unregUser : shows inserted data and asks for confirmation
+    deactivate System
 
     unregUser -> System : confirms
     activate System

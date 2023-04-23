@@ -78,9 +78,15 @@ As a system administrator, I want to register a store.
 * Typed data:
 	* an id, 
 	* a designation/name, 
-	* a location,
+	* a street,
+	* a zip code,
 	* an email address,
 	* a phone number
+
+* Selected data:
+	* a state, 
+	* a district, 
+	* a city
 
 **Output Data:**
 
@@ -90,6 +96,6 @@ As a system administrator, I want to register a store.
 ### 1.6. System Sequence Diagram (SSD)
 
 
-![System Sequence Diagram - Alternative One](svg/us05-system-sequence-diagram.svg)
+![System Sequence Diagram](svg/us05-system-sequence-diagram.svg)
 
 ### 1.7 Other Relevant Remarks

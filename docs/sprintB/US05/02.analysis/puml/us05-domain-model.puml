@@ -14,17 +14,6 @@ class SystemAdministrator {
 
 }
 
-class Employee {
-    Name
-    ID
-    Tax Number
-}
-
-class Role {
-    Role
-}
-
-
 class Contacts {
     Phone Number
     Email Adress
@@ -58,8 +47,5 @@ SystemAdministrator "1" -right-- "*" Store: registers >
 State "1" -left-- "*" District : has >
 District "1" -left-- "*" City : has >
 City "1" -left-- "*" Address : has >
-Employee "*" -left-- "1" Role : has >
-
-Employee <|--- SystemAdministrator
 
 @enduml

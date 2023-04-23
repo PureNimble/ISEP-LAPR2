@@ -14,16 +14,22 @@ As a system administrator, I want to specify states, districts and cities in the
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost as well as the its classifying task category. 
+>	N/A.
 
 
 **From the client clarifications:**
 
-> **Question:** As System Administrator, who wants to specify districts, municipalities and parishes, what specifically he wants to do? Create new locations? Control existent locations? **Asked Thursday, March 23 of 2023 at 17:35**
->  
-> **Note:** The addresses/locations that will be registered in our system do not include municipalities and parishes. Therefore, we rewrote US6. Please check the pdf file, available in moodle, that introduces the requirements for sprints A and B. Municipalities and parishes could be replaced by states and cicties.
+> **Note:** The addresses/locations that will be registered in our system do not include municipalities and parishes. Therefore, we rewrote US6. Please check the pdf file, available in moodle, that introduces the requirements for sprints A and B. Municipalities and parishes could be replaced by states and cities. **Thursday, March 30 of 2023 at 16:16**
+
+
+> **Question:** As System Administrator, who wants to specify districts, municipalities and parishes, what specifically he wants to do? Create new locations? Control existent locations? **Asked Wednesday, March 22 of 2023 at 11:06**
 > 
 > **Answer:** The System Administrator wants to specify information in the system that can be used/selected to introduce the location. Remember that this is an extra US.
+
+
+> **Question:** In user story 006, it says "As a system administrator, I want to specify districts, municipalities, and parishes in the system." What is the purpose of this function, how does the system administrator intend to use the ability to specify different locations? **Asked Thursday, March 23 of 2023 at 11:54**
+>  
+> **Answer:** The goal is to specify in the system information that can be used/selected to fill the location of the property. An example of the store location is: 71 ST. NICHOLAS DRIVE, NORTH POLE, FAIRBANKS NORTH STAR, AK, 99705. For instance, if the information about the existing US states is specified in the system, then the user only selects AK and does not need to write this information.
 
 
 ### 1.3. Acceptance Criteria
@@ -32,7 +38,7 @@ As a system administrator, I want to specify states, districts and cities in the
 * **AC1:** All required fiels must be filled in.
 * **AC2:** The district must be part of the state.
 * **AC3:** The city must be a part of the district.
-* **AC4:** The city, district and state cant already exist in the system.
+* **AC4:** The state, district and city cant already exist in the system.
 
 
 ### 1.4. Found out Dependencies
@@ -57,10 +63,7 @@ As a system administrator, I want to specify states, districts and cities in the
 
 ### 1.6. System Sequence Diagram (SSD)
 
-**Other alternatives might exist.**
 
-#### Alternative One
-
-![System Sequence Diagram - Alternative One](svg/us06-system-sequence.svg)
+![System Sequence Diagram](svg/us06-system-sequence-diagram.svg)
 
 ### 1.7 Other Relevant Remarks
