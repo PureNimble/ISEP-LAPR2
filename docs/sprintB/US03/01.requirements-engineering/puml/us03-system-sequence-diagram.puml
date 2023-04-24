@@ -18,16 +18,16 @@ activate Admin
     System --> Admin : shows list of roles and asks to select one
     deactivate System
 
-        Admin -> System : selects one
+        Admin -> System : selects a user role
         activate System
 
          System --> Admin : shows list of stores and asks to select one
             deactivate System
 
-                Admin -> System : selects one
+                Admin -> System : selects a user role
                 activate System
 
-   System --> Admin :  requested data(name,citizen´s card number,tax number \n,adress,email adress,telephone number).
+   System --> Admin :  requested data(name,passport,tax number \n,adress,email adress,telephone number).
      deactivate System
 
     Admin -> System : types requested data
