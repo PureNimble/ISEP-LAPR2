@@ -120,44 +120,47 @@ class Comission {
     Value
 }
 
-UnregisteredUser "1" -right-- "1" RegisteredUser : can register as >
-State "1" -left-- "*" District : has >
-District "1" -left-- "*" City : has >
-City "1" -left-- "*" Address : has >
-RegisteredUser "1" -right-- "1" Address : can have >
-RegisteredUser "1" -up-- "1" Contacts : has >
-Employee "*" -left-- "1" Role : has >
-City "1" -up-- "1" SystemAdministrator: adds <
-District "1" -left-- "1" SystemAdministrator: adds <
-Store "1" -up-- "1" Address: is located at >
-Store "1" -right-- "1" Contacts: has >
-SystemAdministrator "1" -right-- "*" Store: registers >
-State "1" -down-- "1" SystemAdministrator: adds <
-SunExposure "1" -up-- "1" House: contains <
-Address "1" -right-- "1" Property: has <
-User "1" -down-- "*" Property: has >
-User "1" -right- "1" Store: contacts >
-Agent "*" -left-- "1" Store: has <
-AvailableEquipment "*" -left-- "1" Residence: contains <
-User "1" -up-- "1" Business: defines >
-Comission "1" -down-- "1" Agent: defines <
-Comission "1" -up-- "1" Business: contains <
-Comission <|-- ComissionPercentage
-Business <|-- Rent
-Property "1" -right-- "1..30" Photos: has >
-User "1" -left-- "1" AnnouncementRequest: makes >
-Business "1" -right-- "1" AnnouncementRequest: gets <
-Employee "1" - "*" Store : works in >
-Store "1" -- "*" StoreNetworkManager : manages <
+UnregisteredUser "1" --- "1" RegisteredUser : can register as >
+UnregisteredUser "*" --- "*" PublishedAnnouncement: sees >
 PublishedAnnouncement "*" --- "1" Agent: publishes <
 PublishedAnnouncement "1" --- "1" Business: has a <
-UnregisteredUser "*" --- "*" PublishedAnnouncement: sees >
+RegisteredUser "1" --- "1" Address : can have >
+RegisteredUser "1" --- "1" Contacts : has >
+Comission "1" --- "1" Agent: defines <
+Comission "1" --- "1" Business: contains <
+Store "1" --- "1" Address: is located at >
+Store "1" --- "1" Contacts: has >
+Store "1" --- "*" StoreNetworkManager : manages <
+State "1" --- "*" District : has >
+State "1" --- "1" SystemAdministrator: adds <
+City "1" --- "1" SystemAdministrator: adds <
+District "1" --- "1" SystemAdministrator: adds <
+SystemAdministrator "1" --- "*" Store: registers >
+Employee "*" --- "1" Role : has >
+Employee "1" -- "*" Store : works in >
+User "1" --- "*" Property: has >
+User "1" --- "1" Store: contacts >
+User "1" --- "1" Business: defines >
+User "1" --- "1" AnnouncementRequest: makes >
+District "1" --- "*" City : has >
+City "1" --- "*" Address : has >
+SunExposure "1" --- "1" House: contains <
+Address "1" --- "1" Property: has <
+Agent "*" --- "1" Store: has <
+AvailableEquipment "*" --- "1" Residence: contains <
+Property "1" --- "1..30" Photos: has >
+Business "1" --- "1" AnnouncementRequest: gets <
 
+
+Comission <|-- ComissionPercentage
+Business <|-- Rent
 Employee <|-- Agent
 Employee <|-- StoreNetworkManager
 Employee <|-- StoreManager
 Residence <|-- House
 Property <|-- Residence
+RegisteredUser <|-- Employee
+RegisteredUser <|-- SystemAdministrator
 RegisteredUser <|-- User
 AnnouncementRequest  <|---  PublishedAnnouncement
 
