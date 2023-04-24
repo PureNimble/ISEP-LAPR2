@@ -29,6 +29,23 @@ class District
 
 class StateRepository
 
+class DistrictRepository
+
+class CityRepository
+
+class StateRepository{
++getState()
+}
+
+class DistrictRepository{
++getDistrict()
+}
+
+
+class CityRepository{
++getCity()
+}
+
 class State{
  - String stateName
 
@@ -90,8 +107,15 @@ class AddEmployeeController{
 +AddEmployeeController(employeeRoleListRepository,StoresRepository)
 +getRolesEmployee()
 +getStores()
++getDistrict()
++getCity()
++getState()
 +addEmployee(name,citizen´s card number,tax number ,adress,email adress,telephone number,store, role)
 -getRolesEmployeeByDescription(roleEmployeeDescription)
+-getStoresEmployeeByDescription(storeDescription)
+-getRolesEmployeeByDescription(stateDescription)
+-getRolesEmployeeByDescription(cityDescription)
+-getRolesEmployeeByDescription(districtDescription)
 }
 
 class Repositories{
@@ -117,6 +141,12 @@ AddEmployeeController ..> "1" Store : store
 AddEmployeeController ...> EmployeeListOfRolesRepository :EmployeeListOfRolesRepository
 
 AddEmployeeController ..> StoresRepository : StoresRepository
+
+AddEmployeeController ...> StateRepository : StateRepository
+
+AddEmployeeController ...> CityRepository : CityRepository
+
+AddEmployeeController ...> DistrictRepository : DistrictRepository
 
 Store "1" ---> "*" Employee : employee
 
@@ -148,9 +178,19 @@ City "*" -left- "1" District : is in >
 
 District "*" -left- "1" State : is in >
 
-AddEmployeeController ..> "1" StateRepository : StateRepository
 
-Repositories -> StateRepository: storeRepository
+
+Repositories -> StateRepository: stateRepository
+
+Repositories -----> CityRepository : stateRepository
+
+Repositories -----> DistrictRepository: stateRepository
+
+StateRepository --------> "*" State : stateRepository
+
+DistrictRepository ------> "*" District : stateRepository
+
+CityRepository ------> "*" City : stateRepository
 
 StateRepository -left[hidden].> StateRepository
 
