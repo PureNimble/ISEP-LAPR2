@@ -163,11 +163,11 @@ opt List with Properties
                     'Property --> PublishedAnnouncement : Property
                     'deactivate Property
 
-                    PublishedAnnouncement -> BusinessRepository : getBusinessRepository()
-                    activate BusinessRepository
+                    'PublishedAnnouncement -> BusinessRepository : getBusinessRepository()
+                    'activate BusinessRepository
 
-                    BusinessRepository --> PublishedAnnouncement : BusinessRepository
-                    deactivate BusinessRepository
+                    'BusinessRepository --> PublishedAnnouncement : BusinessRepository
+                    'deactivate BusinessRepository
 
                     PublishedAnnouncement -> Business : getBusiness()
                     activate Business

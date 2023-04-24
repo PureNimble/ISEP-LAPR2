@@ -20,22 +20,28 @@ Equipment
 
 
 class Business {
-Requested price
+Type of Business
+Total price
 }
 
 
 class City {
-Name
+City Name
 }
 
-class Comission {
-Percentage
+/'class Comission {
 Static Value
 }
+'/
+
+/'class ComissionPercentage {
+Percentage Value
+}
+'/
 
 
 class District {
-Name
+District Name
 }
 
 
@@ -46,19 +52,19 @@ Inhabitable Loft
 
 
 class Photos {
+Description
 URI
 }
 
 class Property {
 Area
-Photos
 Distance from the city center
 }
 
 class PublishedAnnouncement {
 Initial Date
 Final Date
-Contract Type
+
 }
 
 
@@ -75,7 +81,7 @@ Number of Parking Spaces
 
 
 class State {
-Name
+State Name
 }
 
 class SunExposure {
@@ -91,7 +97,7 @@ class UnregisteredUser {
 Business <|-- Rent
 
 City "1" --- "*" Address : is in <
-Comission "1" -right- "1" Business : contains <
+'Comission "1" -right- "1" Business : contains <
 
 District "1" --- "*" City : is in <
 

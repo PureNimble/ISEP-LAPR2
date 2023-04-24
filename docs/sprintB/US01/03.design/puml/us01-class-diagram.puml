@@ -15,10 +15,10 @@ skinparam linetype polyline
 
 
 class Address {
-    '- String streetName
-    '- int zipCode : 0
-     - String CityName
-     - String StateName
+    - String streetName
+    - int zipCode : 0
+    '- String CityName
+    '- String StateName
 
     '+verifyZipCode()
     +getCity()
@@ -35,13 +35,15 @@ class Address {
 '/
 
 
-/'class Business {
-    - double requestedPrice : 0
+class Business {
+    '- double requestedPrice : 0
+     - boolean typeOfBusiness
 
-    +getFinalComission()
-    +calculatePriceWithComission()
+    '+getFinalComission()
+    '+calculatePriceWithComission()
+     +getPrice()
 }
-'/
+
 
 
 /'class City {
@@ -68,7 +70,6 @@ class DisplayPropertiesController {
 }
 
 class DisplayPropertiesUI {
-
 }
 
 /'class District {
@@ -93,24 +94,24 @@ class Photos {
 '/
 
 class Property {
-    '- double area : 0
-    '- int distanceFromTheCityCenter : 0
-     - float price
+    - double area : 0
+    - int distanceFromTheCityCenter : 0
+    '- float price
 
     '+ Property(area, distanceFromTheCityCenter)
-     +getPrice()
+     +getAddress()
 }
 
 class PublishedAnnouncement {
     - String initialDate
     - String finalDate
 
-    + getAnnouncementRequest()
-    + PublishedAnnouncement(initialDate, finalDate, AnnouncementRequest)
+    + getBusiness()
+    + compare(announcement1, announcement2)
 }
 
 class PublishedAnnouncementRepository {
-    + getPublishedAnnouncement()
+    + getPublishedAnnouncement(type of property, type of business, number of rooms)
 
 }
 
@@ -177,6 +178,7 @@ Property "*" -- "1" Address : has <
 'Property "1" -right- "*" Photos : has >
 PublishedAnnouncement "*" --- "*" Property: advertises >
 PublishedAnnouncementRepository "1" --> "*" PublishedAnnouncement
+PublishedAnnouncement "1" --- "1" Business
 
 Repositories --> "1" PublishedAnnouncementRepository
 Repositories -> Repositories : instance
