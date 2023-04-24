@@ -14,10 +14,6 @@ class UnregisteredUser {
     Cookies
 }
 
-class Client {
-    
-}
-
 class Contacts {
     Phone Number
     Email Address
@@ -54,6 +50,5 @@ District "1" -left-- "*" City : has >
 City "1" -left-- "*" Address : has >
 RegisteredUser "1" -right-- "1" Address : can have >
 RegisteredUser "1" -up-- "1" Contacts : has >
-RegisteredUser <|-- Client
-
+RegisteredUser <|-- User
 @enduml

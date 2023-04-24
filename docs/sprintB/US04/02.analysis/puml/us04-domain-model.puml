@@ -20,7 +20,7 @@ class Address
 
 class Contacts
 
-class Owner
+class User
 
 class Comission
 
@@ -57,6 +57,7 @@ class District {
 }
 
 class Photos {
+    Description
     URI
 }
 
@@ -78,10 +79,8 @@ class Contacts {
     Email adress
 }
 
-class Owner {
-    Name
-    Passport number
-    Tax number
+class User {
+
 }
 
 class Rent {
@@ -93,6 +92,7 @@ class AnnouncementRequest {
 }
 
 class Business {
+    Type of Business
     Total Price
 }
 
@@ -135,24 +135,21 @@ Residence <|-- House
 Property <|-- Residence
 SunExposure "1" -up-- "1" House: contains <
 Address "1" -right-- "1" Property: has <
-Address "1" -right-- "1" Owner: has <
-Owner "1" -down-- "*" Property: has >
-Owner "1" -right- "1" Store: contacts >
+User "1" -down-- "*" Property: has >
+User "1" -right- "1" Store: contacts >
 Agent "*" -left-- "1" Store: has <
-Address "*" -down-- "1" City: has <
-State "1" -up-- "*" District: has >
-District "1" -up-- "*" City: has >
+Address "*" -left-- "1" City: has <
+State "1" -right-- "*" District: has >
+District "1" -right-- "*" City: has >
 AvailableEquipment "*" -left-- "1" Residence: contains <
-Owner "1" -up-- "1" Business: defines >
-Owner "1" -down-- "1" Contacts: has >
+User "1" -up-- "1" Business: defines >
 Store "1" -right-- "1" Contacts: has >
-Agent "1" -up-- "1" Contacts: has >
 Comission "1" -down-- "1" Agent: defines <
 Comission "1" -up-- "1" Business: contains <
 Comission <|-- ComissionPercentage
 Business <|-- Rent
 Property "1" -right-- "1..30" Photos: has >
-Owner "1" -up-- "1" AnnouncementRequest: makes >
+User "1" -left-- "1" AnnouncementRequest: makes >
 Business "1" -right-- "1" AnnouncementRequest: gets <
 
 @enduml
