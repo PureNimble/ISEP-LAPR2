@@ -1,13 +1,9 @@
 @startuml
-
-
 'https://plantuml.com/class-diagram
 
 class AddEmployeeUI
 
 class Adress
-
-class Contacts
 
 class AddEmployeeController
 
@@ -25,19 +21,41 @@ class StoresRepository
 
 class EmployeeListOfRolesRepository
 
+class State
 
-class Adress{
--String street
--int zipCode
--String city
--String country
--String state
+class City
+
+class District
+
+class StateRepository
+
+class State{
+ - String stateName
+
+    +getStateName()
 }
 
+class District{
+- String districtName
 
-class Contacts{
--email
--phone number
+    +getDistrictName()
+}
+
+class City{
+- String cityName
+
+    +getCityName()
+}
+
+class Adress{
+ -String streetName
+    -int zipCode
+
+    +verifyZipCode()
+    +getCity()
+    +getDistrict()
+    +getState()
+    +Address(state, district, city, street, zipCode)
 }
 
 class Role{
@@ -85,10 +103,8 @@ class Repositories{
 
 class Store{
 -String name
--Adress adress
--Contacts contact
 -addEmployee(employee)
--validateTask(employee)
+-validateEmployee(employee)
 +Store(name,adress,contact)
 +addEmployee(name,citizen´s card number,tax number ,adress,email adress,telephone number,agency  role)
 }
@@ -122,10 +138,20 @@ EmployeeListOfRolesRepository ---> Role
 
 Employee "1" -> "1" Role : role
 
-Employee "1" --> "1" Contacts
-
 Adress "1" -> "*"  Store
 
 Adress "1" --> "*" Employee
+
+Adress "*" -left- "1" City:is in >
+
+City "*" -left- "1" District : is in >
+
+District "*" -left- "1" State : is in >
+
+AddEmployeeController ..> "1" StateRepository : StateRepository
+
+Repositories -> StateRepository: storeRepository
+
+StateRepository -left[hidden].> StateRepository
 
 @enduml
