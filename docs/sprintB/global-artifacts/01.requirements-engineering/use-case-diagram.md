@@ -19,8 +19,9 @@ link as suggested below.**
 |:-------|:---------------------------------------------------------------------------------------------------------|
 | US 001 | [Display listed properties](../../US01/01.requirements-engineering/Readme.md)                            |
 | US 002 | [Publish an announcement](../../US02/01.requirements-engineering/Readme.md)                              |
-| US 003 | [Register an employee](../../US03/01.requirements-engineering/Readme.md)                                 |                                                                                         |
+| US 003 | [Register an employee](../../US03/01.requirements-engineering/Readme.md)                                 |              
 | US 004 | [Submit a request for listing a property sale or rent](../../US04/01.requirements-engineering/Readme.md) |
-| US 005 | Register a new store                                                                                     |
-| US 006 | Specify states, districts, and cities in the system                                                      |
+| US 005 | [Register a Store](../../US05/01.requirements-engineering/Readme.md)                                                                                      |
+| US 006 | [Specify states, districts, and cities in the system](../../US06/01.requirements-engineering/Readme.md)                                                      |
+| US 007 | [Register in the system to buy, sell or rent properties](../../US07/01.requirements-engineering/Readme.md)                                                      |
 
