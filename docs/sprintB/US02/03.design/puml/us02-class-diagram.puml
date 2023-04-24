@@ -4,10 +4,10 @@ skinparam packageStyle rectangle
 skinparam shadowing false
 skinparam linetype polyline
 'skinparam linetype orto
-
-skinparam classAttributeIconSize 0
-
+'skinparam classAttributeIconSize 0
 'left to right direction
+
+title US002 - Class Diagram
 
 
 class PublishAnnouncementUI
@@ -27,7 +27,7 @@ class Repositories {
 +getInstance():Repositories
 +getAnnouncementRepository()
 +getPropertyRepository()
-+getOwnerIdentityRepository
++getUserIdentityRepository
 +getTypeComissionRepository
 
 }
@@ -40,8 +40,8 @@ class PropertyTypeRepository{
     + getPropertyType()
 }
 
-class OwnerIdentityRepository{
-+getOwnerIdentity()
+class UserIdentityRepository{
++getUserIdentity()
 }
 
 class TypeComissionRepository{
@@ -94,7 +94,7 @@ class AvailableEquipment {
 
 
 
-class Owner{
+class User{
 +String name
 +int tax number
 +int phone number
@@ -161,15 +161,17 @@ class Announcement {
     - String finalDate
     - String contractType
 
-    +getOwner()
+    +getUser()
     +PublishedAnnouncement(initialDate, finalDate, AnnouncementRequest)
 }
 
 class Business {
     - double requestedPrice
+    -String typeOfBusiness
 
     +getFinalComission()
     +calculatePriceWithComission()
+    +getTypeOfBusiness()
 }
 
 class Repositories
@@ -181,7 +183,7 @@ class Repositories
 
 PublishAnnouncementController .> Repositories : repositories
 Repositories --> Repositories :instance
-Repositories ..> OwnerIdentityRepository : ownerIdentity
+Repositories ..> UserIdentityRepository : UserIdentity
 Repositories ..> TypeComissionRepository : comission
 Repositories ..> AnnouncementRepository : announcement
 Repositories ..> PropertyTypeRepository : propertyType
@@ -201,9 +203,9 @@ AvailableEquipment "*" -right- "1" Residence: contains <
 City "1"-left- "*" Address: is in <
 District "1"-left- "*" City: is in <
 State "1"-left- "*" District: is in <
-Owner "1" --- "1" Address: has >
-OwnerIdentityRepository ..> Owner
-Owner --> Property
+User "1" --- "1" Address: has >
+UserIdentityRepository ..> User
+User --> Property
 
 
 
