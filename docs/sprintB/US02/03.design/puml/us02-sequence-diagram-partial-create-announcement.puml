@@ -1,0 +1,31 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant "announcementRepository\n:Announcement Repository" as announcementRepository
+participant "announcement\n:Announcement" as Announcement
+
+autonumber 38
+-> announcementRepository: createAnnouncement(propertyData)
+
+
+activate announcementRepository
+    group Create Announcement
+
+        announcementRepository -> Announcement**: createAnnouncement(propertyData)
+        announcementRepository -> announcementRepository: addAnnouncement (announcement)
+
+        activate announcementRepository
+            announcementRepository -> announcementRepository: validateAnnouncement(announcement)
+            activate announcementRepository
+
+            deactivate announcementRepository
+    end
+
+
+    <-- announcementRepository : announcement
+deactivate announcementRepository
+
+
+@enduml

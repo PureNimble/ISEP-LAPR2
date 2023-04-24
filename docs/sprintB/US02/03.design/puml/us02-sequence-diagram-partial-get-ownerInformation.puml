@@ -1,0 +1,47 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+
+
+'hide footbox
+
+participant ":PublishController" as CTRL
+participant ":Repositories" as Repository
+participant "repositories\n:Repositories" as Repository2
+participant "ownerIdentityRepository:\n Owner Identity Repository" as OwnerIdentity
+
+
+autonumber 5
+-> CTRL : getOwnerInformation()
+
+    activate CTRL
+        group Get Task Category
+
+        CTRL -> Repository : getInstance()
+        activate Repository
+
+        Repository --> CTRL : repositories
+        deactivate Repository
+
+        CTRL -> Repository2 : getOwnerInformationRepository()
+        activate Repository2
+
+        Repository2 --> CTRL : ownerInformationRepository
+        deactivate Repository2
+
+        CTRL -> OwnerRepository : getOwnerInformation()
+
+        activate OwnerRepository
+
+        OwnerRepository --> CTRL : Owner Information
+
+        deactivate OwnerRepository
+
+end
+<-- CTRL : Owner Information
+deactivate CTRL
+
+
+@enduml

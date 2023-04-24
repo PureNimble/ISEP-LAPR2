@@ -131,9 +131,39 @@ telephone number. The Agent is an employee of the company.
 
 > **Question:** Can the contract duration be defined as double or float, for example, 1.5 months?
 >
->  **Answer:**
+>  **Answer:** The contract duration is an integer number.
 >
 > **Date:** 19 de April de 2023
+
+> **Question:** It has been discussed previously that the passport number should be used as person identification, can we assume that everyone has one? If not can we use the social security number instead?
+>
+>  **Answer:** You can assume that everyone has one.
+>
+> **Date:** 19 de April de 2023
+
+> **Question:** Can an Announcement have the submit Date and time?
+>
+>  **Answer:** The Announcement should show the publication date. I already answered this question.
+>
+> **Date:** 19 de April de 2023
+
+> **Question:** Is the owner able to edit an already active listing of a property? If so, do the edits need to be accepted by the agent before being published?
+>
+>  **Answer:** No.
+>
+> **Date:**  21 de April de 2023
+
+> **Question:**  In US002, does the agent only register the request in the system that he receives from the owner in a phone call, or can he (the agent) also accept/reject requests that the owner registers in the system (without a phone call)?
+>
+>  **Answer:**  The agent only register the request in the system that he receives from the owner in a phone call.
+>
+> **Date:** 21 de April de 2023
+
+> **Question:** What should we use to distinguish property requests made by the owner, the location of said property?
+>
+>  **Answer:** Each request is a single order.
+>
+> **Date:** 21 de April de 2023
 
 > **Question:**
 >
@@ -141,6 +171,23 @@ telephone number. The Agent is an employee of the company.
 >
 > **Date:**
 
+> **Question:**
+>
+>  **Answer:**
+>
+> **Date:**
+
+> **Question:**
+>
+>  **Answer:**
+>
+> **Date:**
+
+> **Question:**
+>
+>  **Answer:**
+>
+> **Date:**
 
 ### 1.3. Acceptance Criteria
 
