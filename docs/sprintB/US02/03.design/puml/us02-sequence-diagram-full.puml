@@ -122,7 +122,7 @@ UI ---> Agent : saves all data and asks for photos of the property
 
     alt sale
 
-            autonumber 7
+            autonumber 30
 
             Agent -> UI : types the requested data [Requested price]
                 activate UI
