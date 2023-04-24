@@ -9,11 +9,11 @@ autonumber
 actor "Agent" as Agent
 participant ":PublishUI" as UI
 participant ":PublishController" as CTRL
+participant ":Repositories" as Repository
+participant "repositories\n:Repositories" as Repository2
 participant "ownerIdentityRepository:\nOwner Identity Repository" as OwnerRepository
 participant "propertyTypesRepository:\nProperty Type Repository" as PropertyTypeRepository
 participant "typesComissionRepository:\n Types Commission Repository" as typesComissionRepository
-participant ":Repositories" as Repository
-participant "repositories\n:Repositories" as Repository2
 participant "announcementRepository\n:Announcement Repository" as announcementRepository
 participant "announcement:\nAnnouncement" as announcement
 
@@ -36,6 +36,18 @@ activate Agent
 
                 activate CTRL
 
+                    CTRL -> Repository : getInstance()
+                    activate Repository
+
+                    Repository --> CTRL : repositories
+                    deactivate Repository
+
+                    CTRL -> Repository2 : getOwnerInformationRepository()
+                    activate Repository2
+
+                    Repository2 --> CTRL : ownerInformationRepository
+                    deactivate Repository2
+
                     CTRL -> OwnerRepository : getOwnerInformation()
 
                         activate OwnerRepository
@@ -55,8 +67,21 @@ activate Agent
     Agent -> UI : confirms owner identity
         activate UI
 
-            UI --> CTRL : getPropertyType()
-            activate CTRL
+         UI --> CTRL : getPropertyType()
+         activate CTRL
+
+        CTRL -> Repository : getInstance()
+        activate Repository
+
+        Repository --> CTRL : repositories
+        deactivate Repository
+
+        CTRL -> Repository2 : getPropertyTypeRepository()
+        activate Repository2
+
+        Repository2 --> CTRL : propertyTypeRepository
+        deactivate Repository2
+
 
                 CTRL -> PropertyTypeRepository : getPropertyType()
                 activate PropertyTypeRepository
@@ -100,6 +125,18 @@ UI ---> Agent : saves all data and asks for photos of the property
 
            UI --> CTRL : getTypeComission()
            activate CTRL
+
+           CTRL -> Repository : getInstance()
+           activate Repository
+
+           Repository --> CTRL : repositories
+           deactivate Repository
+
+           CTRL -> Repository2 : getTypeComissionRepository()
+           activate Repository2
+
+           Repository2 --> CTRL : typeComissionRepository
+           deactivate Repository2
 
                 CTRL -> typesComissionRepository : getTypeComission()
                 activate typesComissionRepository
