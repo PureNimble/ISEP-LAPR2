@@ -6,137 +6,186 @@ title US001 - Class Diagram
 skinparam packageStyle rectangle
 skinparam shadowing false
 skinparam linetype polyline
-skinparam classAttributeIconSize 0
 
 'skinparam linetype orto
 'skinparam monochrome true
 'left to right direction
 
 
-class Address {
-    - String streetName
-    - int zipCode : 0
 
-    +verifyZipCode()
+
+class Address {
+    '- String streetName
+    '- int zipCode : 0
+     - String CityName
+     - String StateName
+
+    '+verifyZipCode()
     +getCity()
-    +getDistrict()
+    '+getDistrict()
     +getState()
-    +Address(state, district, city, street, zipCode)
+    '+Address(state, district, city, street, zipCode)
 }
 
-class AvailableEquipment {
+/'class AvailableEquipment {
     - String typeOfEquipment
 
     +AvailableEquipment(typeOfEquipment)
 }
+'/
 
 
-class Business {
+/'class Business {
     - double requestedPrice : 0
 
     +getFinalComission()
     +calculatePriceWithComission()
 }
+'/
 
 
-class City {
+/'class City {
     - String cityName
 }
+'/
 
-class Comission {
+/'class Comission {
     - double percentage : 0
     - double staticValue : 0
 
     + calculateFinalComission()
 }
+'/
 
 
-class District {
-    - String districtName
+class DisplayPropertiesController {
+    + DisplayPropertiesController(PublishedAnnouncementRepository)
+    + getPublishedAnnouncement()
+    + displayProperties(type of business, type of property, number of rooms)
+    + sortPropertiesByPrice()
+    + sortPropertiesByCityName()
+    + sortPropertiesByStateName()
 }
 
+class DisplayPropertiesUI {
 
-class House {
+}
+
+/'class District {
+    - String districtName
+}
+'/
+
+
+/'class House {
     - Boolean existenceOfBasement : false
     - Boolean existenceOfInhabitableLoft : false
 
     +House(existenceOfBasement, existenceOfInhabitableLoft)
 }
+'/
 
 
+/'
 class Photos {
     - String URI
 }
+'/
 
 class Property {
-    - double area : 0
-    - int distanceFromTheCityCenter : 0
+    '- double area : 0
+    '- int distanceFromTheCityCenter : 0
+     - float price
 
-    +Property(area, distanceFromTheCityCenter)
+    '+ Property(area, distanceFromTheCityCenter)
+     +getPrice()
 }
 
 class PublishedAnnouncement {
     - String initialDate
     - String finalDate
 
-    +getAnnouncementRequest()
-    +PublishedAnnouncement(initialDate, finalDate, AnnouncementRequest)
+    + getAnnouncementRequest()
+    + PublishedAnnouncement(initialDate, finalDate, AnnouncementRequest)
+}
+
+class PublishedAnnouncementRepository {
+    + getPublishedAnnouncement()
+
 }
 
 
-class Rent {
+/'class Rent {
     - int durationOfContract: 0
 
-    +getFinalComission()
-    +calculateTotalPrice()
+    + getFinalComission()
+    + calculateTotalPrice()
+}
+'/
+
+
+class Repositories {
+    - Repositories()
+    + getInstance():Repositories
+    + getPublishedAnnouncementRepository()
 }
 
-
-class Residence {
+/'class Residence {
     - int numberOfBedrooms : 0
     - int numberOfBathrooms : 0
     - int numberOfParkingSpaces : 0
 
-    +Residence(numberOfBedrooms, numberOfBathrooms, numberOfParkingSpaces)
+    + Residence(numberOfBedrooms, numberOfBathrooms, numberOfParkingSpaces)
 }
+'/
 
 
-class State {
+/' class State {
     - String stateName
 }
+'/
 
-class SunExposure {
+/'class SunExposure {
     - String direction
 
-    +SunExposure(direction)
+    + SunExposure(direction)
 }
+'/
 
 
 class UnregisteredUser {
+
 }
 
 
+'Business <|-- Rent
 
-Business <|-- Rent
+'City "1" --- "*" Address : is in <
+'Comission "1" -right- "1" Business : contains <
 
-City "1" --- "*" Address : is in <
-Comission "1" -right- "1" Business : contains <
+DisplayPropertiesController .> Repositories : repositories
+DisplayPropertiesController .> PublishedAnnouncementRepository : PublishedAnnouncementRepository
+DisplayPropertiesController .> PublishedAnnouncement : published announcement
+DisplayPropertiesUI .> DisplayPropertiesController
+'District "1" --- "*" City : is in <
 
-District "1" --- "*" City : is in <
+'House "*" --- "1" SunExposure : has <
 
-House "*" --- "1" SunExposure : has <
-
-Property <|--- Residence
-Property "*" -left- "1" Address : has <
-Property "1" --- "1" Business : has <
-Property "1" -right- "*" Photos : has >
+'Property <|--- Residence
+Property "*" -- "1" Address : has <
+'Property "1" --- "1" Business : has <
+'Property "1" -right- "*" Photos : has >
 PublishedAnnouncement "*" --- "*" Property: advertises >
+PublishedAnnouncementRepository "1" --> "*" PublishedAnnouncement
 
-Residence "*" --- "1" AvailableEquipment : has <
-Residence <|--- House
+Repositories --> "1" PublishedAnnouncementRepository
+Repositories -> Repositories : instance
+'Residence "*" --- "1" AvailableEquipment : has <
+'Residence <|--- House
 
-State "1" --- "*" District : is in <
+'State "1" --- "*" District : is in <
+'State "1" --- "*" City : is in <
 
-UnregisteredUser "*" --- "*" PublishedAnnouncement: displays >
+UnregisteredUser "*" -right- "*" PublishedAnnouncement: displays >
 
 @enduml
