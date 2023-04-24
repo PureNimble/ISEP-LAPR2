@@ -10,30 +10,8 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
-class SystemAdministrator
-
-class State
-
-class District
-
-class City
-
-class Employee
-
-class Role
-
 class SystemAdministrator {
 
-}
-
-class Employee {
-    Name
-    ID
-    Tax Number
-}
-
-class Role {
-    Role
 }
 
 class State {
@@ -50,11 +28,8 @@ class City {
 
 State "1" -down-- "*" District : has >
 District "1" -down-- "*" City : has >
-Employee "*" -left-- "1" Role : has >
 City "1" -up-- "1" SystemAdministrator: adds <
 District "1" -left-- "1" SystemAdministrator: adds <
 State "1" -down-- "1" SystemAdministrator: adds <
-
-Employee <|--- SystemAdministrator
 
 @enduml
