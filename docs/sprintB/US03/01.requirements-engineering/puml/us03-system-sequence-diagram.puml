@@ -24,7 +24,7 @@ activate Admin
          System --> Admin : shows list of stores and asks to select one
             deactivate System
 
-                Admin -> System : selects a user role
+                Admin -> System : selects a store
                 activate System
 
    System --> Admin :  requested data(name,passport,tax number \n,adress,email adress,telephone number).
