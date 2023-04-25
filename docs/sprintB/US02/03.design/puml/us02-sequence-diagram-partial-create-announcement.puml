@@ -6,7 +6,7 @@ skinparam shadowing false
 participant "announcementRepository\n:Announcement Repository" as announcementRepository
 participant "announcement\n:Announcement" as Announcement
 
-autonumber 38
+autonumber 72
 -> announcementRepository: createAnnouncement(propertyData)
 
 

@@ -10,14 +10,14 @@ skinparam shadowing false
 participant ":PublishController" as CTRL
 participant ":Repositories" as Repository
 participant "repositories\n:Repositories" as Repository2
-participant "ownerIdentityRepository:\n Owner Identity Repository" as OwnerIdentity
+participant "userIdentityRepository:\n User Identity Repository" as UserIdentity
 
 
 autonumber 5
--> CTRL : getOwnerInformation()
+-> CTRL : getUserInformation()
 
     activate CTRL
-        group Get Task Category
+        group Get User Information
 
         CTRL -> Repository : getInstance()
         activate Repository
@@ -25,22 +25,22 @@ autonumber 5
         Repository --> CTRL : repositories
         deactivate Repository
 
-        CTRL -> Repository2 : getOwnerInformationRepository()
+        CTRL -> Repository2 : getUserInformationRepository()
         activate Repository2
 
-        Repository2 --> CTRL : ownerInformationRepository
+        Repository2 --> CTRL : UserInformationRepository
         deactivate Repository2
 
-        CTRL -> OwnerRepository : getOwnerInformation()
+        CTRL -> UserRepository : getUserInformation()
 
-        activate OwnerRepository
+        activate UserRepository
 
-        OwnerRepository --> CTRL : Owner Information
+        UserRepository --> CTRL : User Information
 
-        deactivate OwnerRepository
+        deactivate UserRepository
 
 end
-<-- CTRL : Owner Information
+<-- CTRL : User Information
 deactivate CTRL
 
 
