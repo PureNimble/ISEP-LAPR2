@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1704px" preserveAspectRatio="none" style="width:1668px;height:1704px;background:#FFFFFF;" version="1.1" viewBox="0 0 1668 1704" width="1668px" zoomAndPan="magnify"><defs/><g><rect fill="#FFFFFF" height="1511.4844" style="stroke:#181818;stroke-width:1.0;" width="10" x="75" y="92.6094"/><rect fill="#FFFFFF" height="255.0703" style="stroke:#181818;stroke-width:1.0;" width="10" x="515" y="114.9609"/><rect fill="#FFFFFF" height="272.1641" style="stroke:#181818;stroke-width:1.0;" width="10" x="515" y="416.7344"/><rect fill="#FFFFFF" height="255.8125" style="stroke:#181818;stroke-width:1.0;" width="10" x="515" y="719.25"/><rect fill="#FFFFFF" height="73.7031" style="stroke:#181818;stroke-width:1.0;" width="10" x="515" y="1005.4141"/><rect fill="#FFFFFF" height="73.7031" style="stroke:#181818;stroke-width:1.0;" width="10" x="515" y="1109.4688"/><rect fill="#FFFFFF" height="390.5703" style="stroke:#181818;stroke-width:1.0;" width="10" x="515" y="1213.5234"/><rect fill="#FFFFFF" height="151.7578" style="stroke:#181818;stroke-width:1.0;" width="10" x="859" y="187.9219"/><rect fill="#FFFFFF" height="151.7578" style="stroke:#181818;stroke-width:1.0;" width="10" x="859" y="506.7891"/><rect fill="#FFFFFF" height="151.7578" style="stroke:#181818;stroke-width:1.0;" width="10" x="859" y="792.9531"/><rect fill="#FFFFFF" height="313.5156" style="stroke:#181818;stroke-width:1.0;" width="10" x="859" y="1260.2266"/><rect fill="#FFFFFF" height="91.0547" style="stroke:#181818;stroke-width:1.0;" width="10" x="1009" y="218.2734"/><rect fill="#FFFFFF" height="91.0547" style="stroke:#181818;stroke-width:1.0;" width="10" x="1009" y="537.1406"/><rect fill="#FFFFFF" height="91.0547" style="stroke:#181818;stroke-width:1.0;" width="10" x="1009" y="823.3047"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="1113" y="248.625"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="1179" y="567.4922"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="1240.5" y="853.6563"/><rect fill="#FFFFFF" height="236.4609" style="stroke:#181818;stroke-width:1.0;" width="10" x="1297.5" y="1306.9297"/><rect fill="#FFFFFF" height="144.4063" style="stroke:#181818;stroke-width:1.0;" width="10" x="1302.5" y="1361.6328"/><rect fill="#FFFFFF" height="41.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="1307.5" y="1421.3359"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="80" x2="80" y1="82.6094" y2="1622.0938"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="519.5" x2="519.5" y1="82.6094" y2="1622.0938"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="863.5" x2="863.5" y1="154.2656" y2="1622.0938"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1014" x2="1014" y1="82.6094" y2="1622.0938"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1117.5" x2="1117.5" y1="82.6094" y2="1622.0938"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1183.5" x2="1183.5" y1="82.6094" y2="1622.0938"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1245.5" x2="1245.5" y1="82.6094" y2="1622.0938"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1302.5" x2="1302.5" y1="82.6094" y2="1622.0938"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="144" x="5" y="79.5332">System Admininistrator</text><ellipse cx="80" cy="13.5" fill="#E3E3E3" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M80,21.5 L80,48.5 M67,29.5 L93,29.5 M80,48.5 L67,63.5 M80,48.5 L93,63.5 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="144" x="5" y="1635.627">System Admininistrator</text><ellipse cx="80" cy="1647.2031" fill="#E3E3E3" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M80,1655.2031 L80,1682.2031 M67,1663.2031 L93,1663.2031 M80,1682.2031 L67,1697.2031 M80,1682.2031 L93,1697.2031 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><rect fill="#E3E3E3" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="89" x="475.5" y="50"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="75" x="482.5" y="71.5332">:AddStoreUI</text><rect fill="#E3E3E3" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="89" x="475.5" y="1621.0938"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="75" x="482.5" y="1642.627">:AddStoreUI</text><rect fill="#E3E3E3" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="139" x="794.5" y="1621.0938"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="125" x="801.5" y="1642.627">:AddStoreController</text><rect fill="#E3E3E3" height="49.2188" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="70" x="979" y="32.3906"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="52" x="988" y="53.9238">Address</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="56" x="986" y="71.5332">:Address</text><rect fill="#E3E3E3" height="49.2188" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="70" x="979" y="1621.0938"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="52" x="988" y="1642.627">Address</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="56" x="986" y="1660.2363">:Address</text><rect fill="#E3E3E3" height="49.2188" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="51" x="1092.5" y="32.3906"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="33" x="1101.5" y="53.9238">State</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="37" x="1099.5" y="71.5332">:State</text><rect fill="#E3E3E3" height="49.2188" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="51" x="1092.5" y="1621.0938"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="33" x="1101.5" y="1642.627">State</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="37" x="1099.5" y="1660.2363">:State</text><rect fill="#E3E3E3" height="49.2188" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="61" x="1153.5" y="32.3906"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43" x="1162.5" y="53.9238">District</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="47" x="1160.5" y="71.5332">:District</text><rect fill="#E3E3E3" height="49.2188" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="61" x="1153.5" y="1621.0938"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43" x="1162.5" y="1642.627">District</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="47" x="1160.5" y="1660.2363">:District</text><rect fill="#E3E3E3" height="49.2188" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="42" x="1224.5" y="32.3906"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="24" x="1233.5" y="53.9238">City</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="28" x="1231.5" y="71.5332">:City</text><rect fill="#E3E3E3" height="49.2188" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="42" x="1224.5" y="1621.0938"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="24" x="1233.5" y="1642.627">City</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="28" x="1231.5" y="1660.2363">:City</text><rect fill="#E3E3E3" height="49.2188" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="52" x="1276.5" y="32.3906"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="34" x="1285.5" y="53.9238">Store</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="38" x="1283.5" y="71.5332">:Store</text><rect fill="#E3E3E3" height="49.2188" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="52" x="1276.5" y="1621.0938"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="34" x="1285.5" y="1642.627">Store</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="38" x="1283.5" y="1660.2363">:Store</text><rect fill="#FFFFFF" height="1511.4844" style="stroke:#181818;stroke-width:1.0;" width="10" x="75" y="92.6094"/><rect fill="#FFFFFF" height="255.0703" style="stroke:#181818;stroke-width:1.0;" width="10" x="515" y="114.9609"/><rect fill="#FFFFFF" height="272.1641" style="stroke:#181818;stroke-width:1.0;" width="10" x="515" y="416.7344"/><rect fill="#FFFFFF" height="255.8125" style="stroke:#181818;stroke-width:1.0;" width="10" x="515" y="719.25"/><rect fill="#FFFFFF" height="73.7031" style="stroke:#181818;stroke-width:1.0;" width="10" x="515" y="1005.4141"/><rect fill="#FFFFFF" height="73.7031" style="stroke:#181818;stroke-width:1.0;" width="10" x="515" y="1109.4688"/><rect fill="#FFFFFF" height="390.5703" style="stroke:#181818;stroke-width:1.0;" width="10" x="515" y="1213.5234"/><rect fill="#FFFFFF" height="151.7578" style="stroke:#181818;stroke-width:1.0;" width="10" x="859" y="187.9219"/><rect fill="#FFFFFF" height="151.7578" style="stroke:#181818;stroke-width:1.0;" width="10" x="859" y="506.7891"/><rect fill="#FFFFFF" height="151.7578" style="stroke:#181818;stroke-width:1.0;" width="10" x="859" y="792.9531"/><rect fill="#FFFFFF" height="313.5156" style="stroke:#181818;stroke-width:1.0;" width="10" x="859" y="1260.2266"/><rect fill="#FFFFFF" height="91.0547" style="stroke:#181818;stroke-width:1.0;" width="10" x="1009" y="218.2734"/><rect fill="#FFFFFF" height="91.0547" style="stroke:#181818;stroke-width:1.0;" width="10" x="1009" y="537.1406"/><rect fill="#FFFFFF" height="91.0547" style="stroke:#181818;stroke-width:1.0;" width="10" x="1009" y="823.3047"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="1113" y="248.625"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="1179" y="567.4922"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="1240.5" y="853.6563"/><rect fill="#FFFFFF" height="236.4609" style="stroke:#181818;stroke-width:1.0;" width="10" x="1297.5" y="1306.9297"/><rect fill="#FFFFFF" height="144.4063" style="stroke:#181818;stroke-width:1.0;" width="10" x="1302.5" y="1361.6328"/><rect fill="#FFFFFF" height="41.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="1307.5" y="1421.3359"/><polygon fill="#181818" points="503,110.9609,513,114.9609,503,118.9609,507,114.9609" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="85" x2="509" y1="114.9609" y2="114.9609"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="92" y="110.1045">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="134" x="103" y="110.1045">asks to register a store</text><polygon fill="#181818" points="782.5,141.3125,792.5,145.3125,782.5,149.3125,786.5,145.3125" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="525" x2="788.5" y1="145.3125" y2="145.3125"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="532" y="140.4561">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="36" x="543" y="140.4561">create</text><rect fill="#E3E3E3" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="139" x="794.5" y="122.9609"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="125" x="801.5" y="144.4941">:AddStoreController</text><polygon fill="#181818" points="847,183.9219,857,187.9219,847,191.9219,851,187.9219" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="525" x2="853" y1="187.9219" y2="187.9219"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="532" y="183.0654">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="64" x="543" y="183.0654">getStates()</text><polygon fill="#181818" points="997,214.2734,1007,218.2734,997,222.2734,1001,218.2734" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="869" x2="1003" y1="218.2734" y2="218.2734"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="876" y="213.417">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="64" x="887" y="213.417">getStates()</text><polygon fill="#181818" points="1101,244.625,1111,248.625,1101,252.625,1105,248.625" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="1019" x2="1107" y1="248.625" y2="248.625"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="1026" y="243.7686">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="64" x="1037" y="243.7686">getStates()</text><polygon fill="#181818" points="1030,274.9766,1020,278.9766,1030,282.9766,1026,278.9766" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1024" x2="1117" y1="278.9766" y2="278.9766"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="1036" y="274.1201">6</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="38" x="1047" y="274.1201">States</text><polygon fill="#181818" points="880,305.3281,870,309.3281,880,313.3281,876,309.3281" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="874" x2="1013" y1="309.3281" y2="309.3281"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="886" y="304.4717">7</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="38" x="897" y="304.4717">States</text><polygon fill="#181818" points="536,335.6797,526,339.6797,536,343.6797,532,339.6797" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="530" x2="863" y1="339.6797" y2="339.6797"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="542" y="334.8232">8</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="38" x="553" y="334.8232">States</text><polygon fill="#181818" points="96,366.0313,86,370.0313,96,374.0313,92,370.0313" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="90" x2="519" y1="370.0313" y2="370.0313"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="102" y="365.1748">9</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="327" x="113" y="365.1748">requests the necessary data and provides a list of states</text><polygon fill="#181818" points="503,412.7344,513,416.7344,503,420.7344,507,416.7344" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="85" x2="509" y1="416.7344" y2="416.7344"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="92" y="403.7021">10</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="250" x="110" y="395.5264">types requested data(id, designation/name,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="307" x="110" y="411.8779">email address and phone number) and selectes state</text><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="525" x2="567" y1="463.4375" y2="463.4375"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="567" x2="567" y1="463.4375" y2="476.4375"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="526" x2="567" y1="476.4375" y2="476.4375"/><polygon fill="#181818" points="536,472.4375,526,476.4375,536,480.4375,532,476.4375" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="532" y="450.4053">11</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="220" x="550" y="442.2295">keepData(id, designation/name, state,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="196" x="550" y="458.5811">email address and phone number)</text><polygon fill="#181818" points="847,502.7891,857,506.7891,847,510.7891,851,506.7891" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="525" x2="853" y1="506.7891" y2="506.7891"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="532" y="501.9326">12</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="103" x="550" y="501.9326">getDistricts(state)</text><polygon fill="#181818" points="997,533.1406,1007,537.1406,997,541.1406,1001,537.1406" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="869" x2="1003" y1="537.1406" y2="537.1406"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="876" y="532.2842">13</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="103" x="894" y="532.2842">getDistricts(state)</text><polygon fill="#181818" points="1167,563.4922,1177,567.4922,1167,571.4922,1171,567.4922" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="1019" x2="1173" y1="567.4922" y2="567.4922"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="1026" y="562.6357">14</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="103" x="1044" y="562.6357">getDistricts(state)</text><polygon fill="#181818" points="1030,593.8438,1020,597.8438,1030,601.8438,1026,597.8438" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1024" x2="1183" y1="597.8438" y2="597.8438"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="1036" y="592.9873">15</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="48" x="1054" y="592.9873">Districts</text><polygon fill="#181818" points="880,624.1953,870,628.1953,880,632.1953,876,628.1953" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="874" x2="1013" y1="628.1953" y2="628.1953"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="886" y="623.3389">16</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="48" x="904" y="623.3389">Districts</text><polygon fill="#181818" points="536,654.5469,526,658.5469,536,662.5469,532,658.5469" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="530" x2="863" y1="658.5469" y2="658.5469"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="542" y="653.6904">17</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="48" x="560" y="653.6904">Districts</text><polygon fill="#181818" points="96,684.8984,86,688.8984,96,692.8984,92,688.8984" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="90" x2="519" y1="688.8984" y2="688.8984"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="102" y="684.042">18</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="388" x="120" y="684.042">shows list of districts available for that state and asks to select one</text><polygon fill="#181818" points="503,715.25,513,719.25,503,723.25,507,719.25" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="85" x2="509" y1="719.25" y2="719.25"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="92" y="714.3936">19</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="85" x="110" y="714.3936">selects district</text><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="525" x2="567" y1="749.6016" y2="749.6016"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="567" x2="567" y1="749.6016" y2="762.6016"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="526" x2="567" y1="762.6016" y2="762.6016"/><polygon fill="#181818" points="536,758.6016,526,762.6016,536,766.6016,532,762.6016" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="532" y="744.7451">20</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="116" x="550" y="744.7451">keepDistrict(district)</text><polygon fill="#181818" points="847,788.9531,857,792.9531,847,796.9531,851,792.9531" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="525" x2="853" y1="792.9531" y2="792.9531"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="532" y="788.0967">21</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="98" x="550" y="788.0967">getCities(district)</text><polygon fill="#181818" points="997,819.3047,1007,823.3047,997,827.3047,1001,823.3047" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="869" x2="1003" y1="823.3047" y2="823.3047"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="876" y="818.4482">22</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="98" x="894" y="818.4482">getCities(district)</text><polygon fill="#181818" points="1228.5,849.6563,1238.5,853.6563,1228.5,857.6563,1232.5,853.6563" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="1019" x2="1234.5" y1="853.6563" y2="853.6563"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="1026" y="848.7998">23</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="98" x="1044" y="848.7998">getCities(district)</text><polygon fill="#181818" points="1030,880.0078,1020,884.0078,1030,888.0078,1026,884.0078" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1024" x2="1244.5" y1="884.0078" y2="884.0078"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="1036" y="879.1514">24</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33" x="1054" y="879.1514">Cities</text><polygon fill="#181818" points="880,910.3594,870,914.3594,880,918.3594,876,914.3594" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="874" x2="1013" y1="914.3594" y2="914.3594"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="886" y="909.5029">25</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33" x="904" y="909.5029">Cities</text><polygon fill="#181818" points="536,940.7109,526,944.7109,536,948.7109,532,944.7109" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="530" x2="863" y1="944.7109" y2="944.7109"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="542" y="939.8545">26</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33" x="560" y="939.8545">Cities</text><polygon fill="#181818" points="96,971.0625,86,975.0625,96,979.0625,92,975.0625" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="90" x2="519" y1="975.0625" y2="975.0625"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="102" y="970.2061">27</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="383" x="120" y="970.2061">shows list of cities available for that district and asks to select one</text><polygon fill="#181818" points="503,1001.4141,513,1005.4141,503,1009.4141,507,1005.4141" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="85" x2="509" y1="1005.4141" y2="1005.4141"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="92" y="1000.5576">28</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="67" x="110" y="1000.5576">selects city</text><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="525" x2="567" y1="1035.7656" y2="1035.7656"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="567" x2="567" y1="1035.7656" y2="1048.7656"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="526" x2="567" y1="1048.7656" y2="1048.7656"/><polygon fill="#181818" points="536,1044.7656,526,1048.7656,536,1052.7656,532,1048.7656" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="532" y="1030.9092">29</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="80" x="550" y="1030.9092">keepCity(city)</text><polygon fill="#181818" points="96,1075.1172,86,1079.1172,96,1083.1172,92,1079.1172" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="90" x2="519" y1="1079.1172" y2="1079.1172"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="102" y="1074.2607">30</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="57" x="120" y="1074.2607">asks data</text><polygon fill="#181818" points="503,1105.4688,513,1109.4688,503,1113.4688,507,1109.4688" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="85" x2="509" y1="1109.4688" y2="1109.4688"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="92" y="1104.6123">31</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="244" x="110" y="1104.6123">types necessary data(street and zip code)</text><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="525" x2="567" y1="1139.8203" y2="1139.8203"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="567" x2="567" y1="1139.8203" y2="1152.8203"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="526" x2="567" y1="1152.8203" y2="1152.8203"/><polygon fill="#181818" points="536,1148.8203,526,1152.8203,536,1156.8203,532,1152.8203" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="532" y="1134.9639">32</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="174" x="550" y="1134.9639">keepData(street and zip code)</text><polygon fill="#181818" points="96,1179.1719,86,1183.1719,96,1187.1719,92,1183.1719" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="90" x2="519" y1="1183.1719" y2="1183.1719"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="102" y="1178.3154">33</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="265" x="120" y="1178.3154">shows inserted data and asks for confirmation</text><polygon fill="#181818" points="503,1209.5234,513,1213.5234,503,1217.5234,507,1213.5234" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="85" x2="509" y1="1213.5234" y2="1213.5234"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="92" y="1208.667">34</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="78" x="110" y="1208.667">confirms data</text><polygon fill="#181818" points="847,1256.2266,857,1260.2266,847,1264.2266,851,1260.2266" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="525" x2="853" y1="1260.2266" y2="1260.2266"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="532" y="1247.1943">35</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="293" x="550" y="1239.0186">addStore(id, designation/name, state, district, city,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="294" x="550" y="1255.3701">street, zip code, email address and phone number)</text><polygon fill="#181818" points="1285.5,1302.9297,1295.5,1306.9297,1285.5,1310.9297,1289.5,1306.9297" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="869" x2="1291.5" y1="1306.9297" y2="1306.9297"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="876" y="1293.8975">36</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="293" x="894" y="1285.7217">addStore(id, designation/name, state, district, city,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="294" x="894" y="1302.0732">street, zip code, email address and phone number)</text><line style="stroke:#181818;stroke-width:1.0;" x1="1307.5" x2="1354.5" y1="1348.6328" y2="1348.6328"/><line style="stroke:#181818;stroke-width:1.0;" x1="1354.5" x2="1354.5" y1="1348.6328" y2="1361.6328"/><line style="stroke:#181818;stroke-width:1.0;" x1="1313.5" x2="1354.5" y1="1361.6328" y2="1361.6328"/><polygon fill="#181818" points="1323.5,1357.6328,1313.5,1361.6328,1323.5,1365.6328,1319.5,1361.6328" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="1319.5" y="1335.6006">37</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="293" x="1337.5" y="1327.4248">addStore(id, designation/name, state, district, city,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="294" x="1337.5" y="1343.7764">street, zip code, email address and phone number)</text><line style="stroke:#181818;stroke-width:1.0;" x1="1312.5" x2="1359.5" y1="1408.3359" y2="1408.3359"/><line style="stroke:#181818;stroke-width:1.0;" x1="1359.5" x2="1359.5" y1="1408.3359" y2="1421.3359"/><line style="stroke:#181818;stroke-width:1.0;" x1="1318.5" x2="1359.5" y1="1421.3359" y2="1421.3359"/><polygon fill="#181818" points="1328.5,1417.3359,1318.5,1421.3359,1328.5,1425.3359,1324.5,1421.3359" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="1324.5" y="1395.3037">38</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="315" x="1342.5" y="1387.1279">validateStore(id, designation/name, state, district, city,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="294" x="1342.5" y="1403.4795">street, zip code, email address and phone number)</text><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1317.5" x2="1359.5" y1="1461.6875" y2="1461.6875"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1359.5" x2="1359.5" y1="1461.6875" y2="1474.6875"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1312.5" x2="1359.5" y1="1474.6875" y2="1474.6875"/><polygon fill="#181818" points="1322.5,1470.6875,1312.5,1474.6875,1322.5,1478.6875,1318.5,1474.6875" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="1324.5" y="1456.8311">39</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4" x="1342.5" y="1456.8311"> </text><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1312.5" x2="1354.5" y1="1505.0391" y2="1505.0391"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1354.5" x2="1354.5" y1="1505.0391" y2="1518.0391"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1307.5" x2="1354.5" y1="1518.0391" y2="1518.0391"/><polygon fill="#181818" points="1317.5,1514.0391,1307.5,1518.0391,1317.5,1522.0391,1313.5,1518.0391" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="1319.5" y="1500.1826">40</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4" x="1337.5" y="1500.1826"> </text><polygon fill="#181818" points="880,1539.3906,870,1543.3906,880,1547.3906,876,1543.3906" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="874" x2="1301.5" y1="1543.3906" y2="1543.3906"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="886" y="1538.5342">41</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="31" x="904" y="1538.5342">Store</text><polygon fill="#181818" points="536,1569.7422,526,1573.7422,536,1577.7422,532,1573.7422" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="530" x2="863" y1="1573.7422" y2="1573.7422"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="542" y="1568.8857">42</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="29" x="560" y="1568.8857">store</text><polygon fill="#181818" points="91,1600.0938,81,1604.0938,91,1608.0938,87,1604.0938" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="85" x2="519" y1="1604.0938" y2="1604.0938"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="97" y="1599.2373">43</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="158" x="115" y="1599.2373">displays operation success</text><!--MD5=[6ec997123e88eacd26ef93b5d7720cb9]
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "System Admininistrator" as Admin
+participant ":AddStoreUI" as AddStoreUI
+participant ":AddStoreController" as AddStoreController
+participant "Address\n:Address" as Address
+participant "State\n:State" as State
+participant "District\n:District" as District
+participant "City\n:City" as City
+'participant ":Repositories" as RepositorySingleton
+'participant "repositories\n:Repositories" as repositories
+'participant "storeRepository\n:storeRepository" as storeRepository
+participant "Store\n:Store" as Store
+
+activate Admin
+
+    Admin -> AddStoreUI : asks to register a store
+
+        activate AddStoreUI
+            create AddStoreController
+            AddStoreUI - -> AddStoreController** : create
+            AddStoreUI -> AddStoreController : getStates()
+            activate AddStoreController
+                AddStoreController -> Address : getStates()
+                    activate Address
+                        Address -> State : getStates()
+                            activate State
+                                State - -> Address : States
+                            deactivate State
+                        Address - -> AddStoreController : States
+                    deactivate Address
+                AddStoreController - -> AddStoreUI : States
+            deactivate AddStoreController
+            AddStoreUI - -> Admin : requests the necessary data and provides a list of states
+        deactivate AddStoreUI
+
+    Admin -> AddStoreUI : types requested data(id, designation/name, \nemail address and phone number) and selectes state
+        activate AddStoreUI
+        AddStoreUI - -> AddStoreUI : keepData(id, designation/name, state, \nemail address and phone number)
+            AddStoreUI -> AddStoreController : getDistricts(state)
+                activate AddStoreController
+                    AddStoreController -> Address : getDistricts(state)
+                        activate Address
+                            Address -> District : getDistricts(state)
+                                activate District
+                                    District - -> Address : Districts
+                                deactivate District
+                            Address - -> AddStoreController : Districts
+                        deactivate Address
+                    AddStoreController - -> AddStoreUI : Districts
+                deactivate AddStoreController
+            AddStoreUI - -> Admin : shows list of districts available for that state and asks to select one
+        deactivate AddStoreUI
+
+    Admin -> AddStoreUI : selects district
+        activate AddStoreUI
+        AddStoreUI - -> AddStoreUI : keepDistrict(district)
+            AddStoreUI -> AddStoreController : getCities(district)
+                activate AddStoreController
+                    AddStoreController -> Address : getCities(district)
+                        activate Address
+                            Address -> City : getCities(district)
+                                activate City
+                                    City - -> Address : Cities
+                                deactivate City
+                            Address - -> AddStoreController : Cities
+                        deactivate Address
+                    AddStoreController - -> AddStoreUI : Cities
+                deactivate AddStoreController
+            AddStoreUI - -> Admin : shows list of cities available for that district and asks to select one
+        deactivate AddStoreUI
+    Admin -> AddStoreUI : selects city
+        activate AddStoreUI
+        AddStoreUI - -> AddStoreUI : keepCity(city)
+        AddStoreUI - -> Admin : asks data
+    deactivate AddStoreUI
+    Admin -> AddStoreUI : types necessary data(street and zip code)
+        activate AddStoreUI
+        AddStoreUI - -> AddStoreUI : keepData(street and zip code)
+    
+        AddStoreUI - -> Admin : shows inserted data and asks for confirmation
+    deactivate AddStoreUI
+
+    Admin -> AddStoreUI : confirms data
+    activate AddStoreUI
+
+        AddStoreUI -> AddStoreController : addStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
+        activate AddStoreController
+
+            /'AddStoreController -> RepositorySingleton : getInstance()
+
+            activate RepositorySingleton
+
+                RepositorySingleton - -> AddStoreController : repositories
+
+            deactivate RepositorySingleton
+
+            AddStoreController -> repositories : getStoreRepository()
+
+            activate repositories
+
+                repositories - -> AddStoreController : storeRepository
+
+            deactivate repositories'/
+
+            AddStoreController -> Store : addStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
+
+            activate Store
+
+               Store -> Store : addStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
+                activate Store
+                        Store -> Store : validateStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
+                            activate Store
+                                Store - -> Store
+                            deactivate Store
+                            Store - -> Store
+                    deactivate Store
+                    Store - -> AddStoreController : Store
+            deactivate Store
+        AddStoreController - -> AddStoreUI : store
+        deactivate AddStoreController
+        AddStoreUI - -> Admin : displays operation success
+    deactivate AddStoreUI
+
+deactivate Admin
+
+@enduml
+
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "System Admininistrator" as Admin
+participant ":AddStoreUI" as AddStoreUI
+participant ":AddStoreController" as AddStoreController
+participant "Address\n:Address" as Address
+participant "State\n:State" as State
+participant "District\n:District" as District
+participant "City\n:City" as City
+participant "Store\n:Store" as Store
+
+activate Admin
+
+    Admin -> AddStoreUI : asks to register a store
+
+        activate AddStoreUI
+            create AddStoreController
+            AddStoreUI - -> AddStoreController** : create
+            AddStoreUI -> AddStoreController : getStates()
+            activate AddStoreController
+                AddStoreController -> Address : getStates()
+                    activate Address
+                        Address -> State : getStates()
+                            activate State
+                                State - -> Address : States
+                            deactivate State
+                        Address - -> AddStoreController : States
+                    deactivate Address
+                AddStoreController - -> AddStoreUI : States
+            deactivate AddStoreController
+            AddStoreUI - -> Admin : requests the necessary data and provides a list of states
+        deactivate AddStoreUI
+
+    Admin -> AddStoreUI : types requested data(id, designation/name, \nemail address and phone number) and selectes state
+        activate AddStoreUI
+        AddStoreUI - -> AddStoreUI : keepData(id, designation/name, state, \nemail address and phone number)
+            AddStoreUI -> AddStoreController : getDistricts(state)
+                activate AddStoreController
+                    AddStoreController -> Address : getDistricts(state)
+                        activate Address
+                            Address -> District : getDistricts(state)
+                                activate District
+                                    District - -> Address : Districts
+                                deactivate District
+                            Address - -> AddStoreController : Districts
+                        deactivate Address
+                    AddStoreController - -> AddStoreUI : Districts
+                deactivate AddStoreController
+            AddStoreUI - -> Admin : shows list of districts available for that state and asks to select one
+        deactivate AddStoreUI
+
+    Admin -> AddStoreUI : selects district
+        activate AddStoreUI
+        AddStoreUI - -> AddStoreUI : keepDistrict(district)
+            AddStoreUI -> AddStoreController : getCities(district)
+                activate AddStoreController
+                    AddStoreController -> Address : getCities(district)
+                        activate Address
+                            Address -> City : getCities(district)
+                                activate City
+                                    City - -> Address : Cities
+                                deactivate City
+                            Address - -> AddStoreController : Cities
+                        deactivate Address
+                    AddStoreController - -> AddStoreUI : Cities
+                deactivate AddStoreController
+            AddStoreUI - -> Admin : shows list of cities available for that district and asks to select one
+        deactivate AddStoreUI
+    Admin -> AddStoreUI : selects city
+        activate AddStoreUI
+        AddStoreUI - -> AddStoreUI : keepCity(city)
+        AddStoreUI - -> Admin : asks data
+    deactivate AddStoreUI
+    Admin -> AddStoreUI : types necessary data(street and zip code)
+        activate AddStoreUI
+        AddStoreUI - -> AddStoreUI : keepData(street and zip code)
+    
+        AddStoreUI - -> Admin : shows inserted data and asks for confirmation
+    deactivate AddStoreUI
+
+    Admin -> AddStoreUI : confirms data
+    activate AddStoreUI
+
+        AddStoreUI -> AddStoreController : addStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
+        activate AddStoreController
+
+
+            AddStoreController -> Store : addStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
+
+            activate Store
+
+               Store -> Store : addStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
+                activate Store
+                        Store -> Store : validateStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
+                            activate Store
+                                Store - -> Store
+                            deactivate Store
+                            Store - -> Store
+                    deactivate Store
+                    Store - -> AddStoreController : Store
+            deactivate Store
+        AddStoreController - -> AddStoreUI : store
+        deactivate AddStoreController
+        AddStoreUI - -> Admin : displays operation success
+    deactivate AddStoreUI
+
+deactivate Admin
+
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 18:01:30 WEST 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>

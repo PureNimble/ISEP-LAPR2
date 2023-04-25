@@ -1,0 +1,76 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class State {
+ - String stateName
+
+    +getStateName()
+}
+
+class District {
+- String districtName
+
+    +getDistrictName()
+}
+
+class City {
+- String cityName
+
+    +getCityName()
+}
+
+class Address {
+ -String streetName
+    -int zipCode
+
+    +verifyZipCode()
+    +getCity()
+    +getDistrict()
+    +getState()
+    +Address(state, district, city, street, zipCode)
+}
+
+class Contacts {
+    Phone Number
+    Email Adress
+}
+
+class SystemAdministrator {
+}
+
+class StoresRepository {
+    +getStores()
+
+}
+
+class Repositories {
+    -Repositories()
+    +getInstance():Repositories
+}
+
+class Store {
+    -int id
+    -String designation
+}
+
+class AddStoreController{
+    +AddStoreController(StoresRepository)
+    +getDistrict()
+    +getCity()
+    +getState()
+    +addStore(id, name, address, email address, phone number)
+}
+
+Repositories -> Repositories:instance
+Repositories ---> StoresRepository: storeRepository
+StoresRepository --> "*" Store
+Store <- "*" SystemAdministrator : registers
+Address "1" -> "*"  Store : is located at
+City "1" -right- "*" Address:has >
+District "1" -right- "*" City : has >
+State "1" -right- "*" District : has >
+Contacts "1" -up--> "1" Store: has
+Repositories -left--> StateRepository: storeRepository
+StateRepository -left[hidden].> StateRepository
+
+@enduml

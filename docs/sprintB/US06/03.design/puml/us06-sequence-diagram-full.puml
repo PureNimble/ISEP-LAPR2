@@ -1,0 +1,93 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "System Admininistrator" as Admin
+participant ":AddLocationUI" as AddLocationUI
+participant ":AddLocationController" as AddLocationController
+participant "State\n:State" as State
+participant "District\n:District" as District
+participant "City\n:City" as City
+
+activate Admin
+
+    Admin -> AddLocationUI : asks to register a new location
+
+        activate AddLocationUI
+            create AddLocationController
+            AddLocationUI -> AddLocationController** : create
+            AddLocationUI -> Admin : requests data
+        deactivate AddLocationUI
+
+    Admin -> AddLocationUI : types requested data (state)
+        activate AddLocationUI
+                AddLocationUI -> AddLocationUI : keepState(state)
+            AddLocationUI --> Admin :  requests data (district associated to the state inserted)
+        deactivate AddLocationUI
+
+    Admin -> AddLocationUI : types requested data
+        activate AddLocationUI
+                AddLocationUI -> AddLocationUI : keepDistrict(district)
+            AddLocationUI --> Admin :  requests data (city associated to the district inserted)
+        deactivate AddLocationUI
+
+    Admin -> AddLocationUI : types requested data
+        activate AddLocationUI
+                AddLocationUI -> AddLocationUI : keepCity(city)
+            AddLocationUI --> Admin : shows inserted data and asks for confirmation
+        deactivate AddLocationUI
+
+    Admin -> AddLocationUI : confirms data
+    activate AddLocationUI
+
+        AddLocationUI -> AddLocationController : addLocation(state, district, city)
+        activate AddLocationController
+
+                AddLocationController -> State : addState(state)
+                activate State
+                        State -> State : addState(state)
+                            activate State
+                                State -> State : validateState(state)
+                                    activate State
+                                        State --> State
+                                    deactivate State
+                                State --> State
+                            deactivate State
+                        State -> AddLocationController : State
+                deactivate State
+                AddLocationController -> District : addDistrict(state, district)
+                activate District
+                        District -> District : addDistrict(state, district)
+                            activate District
+                                District -> District : validateDistrict(state, district)
+                                    activate District
+                                        District --> District
+                                    deactivate District
+                                District --> District
+                            deactivate District
+                        District -> AddLocationController : District
+                deactivate District
+                AddLocationController -> City : addCity(state, district, city)
+                activate City
+                        City -> City : addCity(state, district, city)
+                            activate City
+                                City -> City : validateCity(state, district, city)
+                                    activate City
+                                        City --> City
+                                    deactivate City
+                                City --> City
+                            deactivate City
+                        City -> AddLocationController : City
+                deactivate City
+                AddLocationController --> AddLocationUI : State, District and City 
+            deactivate AddLocationController
+        AddLocationUI --> Admin : displays operation success
+    deactivate AddLocationUI
+
+deactivate Admin
+
+@enduml

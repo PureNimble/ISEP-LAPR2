@@ -1,4 +1,4 @@
-# US 007 - To register in the system to buy, sell or rent properties
+# US 007 - Register in the system to buy, sell or rent properties
 
 [Requirements Engineering](01.requirements-engineering/Readme.md)
 

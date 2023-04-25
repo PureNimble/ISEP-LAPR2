@@ -1,4 +1,4 @@
-# US 006 - To specify states, districts and cities in the system
+# US 006 - Specify states, districts and cities in the system
 
 [Requirements Engineering](01.requirements-engineering/Readme.md)
 

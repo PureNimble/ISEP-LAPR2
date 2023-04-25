@@ -1,0 +1,117 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "Unregistered User" as UnregisteredUser
+participant "UnregisterUserUI" as UnregisterUserUI
+participant "UnregisterUserController" as UnregisterUserController
+participant "Address\n:Address" as Address
+participant "State\n:State" as State
+participant "District\n:District" as District
+participant "City\n:City" as City
+participant "RegisteredUser\n:RegisteredUser" as RegisteredUser
+
+activate UnregisteredUser
+
+    UnregisteredUser -> UnregisterUserUI : asks to create an account
+    activate UnregisterUserUI
+        UnregisterUserUI -> UnregisterUserController : getStates()
+
+            activate UnregisterUserController
+                UnregisterUserController -> Address : getStates()
+                    activate Address
+                        Address -> State : getStates()
+                            activate State
+                                State --> Address : States
+                            deactivate State
+                        Address --> UnregisterUserController : States
+                    deactivate Address
+                UnregisterUserController --> UnregisterUserUI : States
+            deactivate UnregisterUserController
+        UnregisterUserUI --> UnregisteredUser : requests data (name, passport card number, tax number,\naddress ((asks to select a state) (not mandatory)), email address and phone number)
+        deactivate UnregisterUserUI
+
+    alt Enters Address/State
+    UnregisteredUser -> UnregisterUserUI : types all data and selects state
+        activate UnregisterUserUI
+        UnregisterUserUI --> UnregisterUserUI : keepData(name, passport card number, tax number, \nstate, email address, phone number)
+            UnregisterUserUI -> UnregisterUserController : getDistricts(state)
+                activate UnregisterUserController
+                    UnregisterUserController -> Address : getDistricts(state)
+                        activate Address
+                            Address -> District : getDistricts(state)
+                                activate District
+                                    District --> Address : Districts
+                                deactivate District
+                            Address --> UnregisterUserController : Districts
+                        deactivate Address
+                    UnregisterUserController --> UnregisterUserUI : Districts
+                deactivate UnregisterUserController
+            UnregisterUserUI --> UnregisteredUser : shows list of districts available for that state and asks to select one
+        deactivate UnregisterUserUI
+
+    UnregisteredUser -> UnregisterUserUI : selects district
+        activate UnregisterUserUI
+        UnregisterUserUI --> UnregisterUserUI : keepDistrict(district)
+            UnregisterUserUI -> UnregisterUserController : getCities(district)
+                activate UnregisterUserController
+                    UnregisterUserController -> Address : getCities(district)
+                        activate Address
+                            Address -> City : getCities(district)
+                                activate City
+                                    City --> Address : Cities
+                                deactivate City
+                            Address --> UnregisterUserController : Cities
+                        deactivate Address
+                    UnregisterUserController --> UnregisterUserUI : Cities
+                deactivate UnregisterUserController
+            UnregisterUserUI --> UnregisteredUser : shows list of cities available for that district and asks to select one
+        deactivate UnregisterUserUI
+    UnregisteredUser -> UnregisterUserUI : selects city
+        activate UnregisterUserUI
+        UnregisterUserUI --> UnregisterUserUI : keepCity(city)
+        UnregisterUserUI --> UnregisteredUser : asks data
+    deactivate UnregisterUserUI
+    UnregisteredUser -> UnregisterUserUI : types necessary data(street and zip code)
+        activate UnregisterUserUI
+        UnregisterUserUI --> UnregisterUserUI : keepAddress(street and zip code)
+        deactivate UnregisterUserUI 
+
+    else Does nor enter Address/State
+    UnregisteredUser -> UnregisterUserUI : types requested data except the address/state
+        activate UnregisterUserUI
+    end
+        UnregisterUserUI --> UnregisteredUser : shows inserted data and asks for confirmation
+    deactivate UnregisterUserUI
+
+    UnregisteredUser -> UnregisterUserUI : confirms data
+    activate UnregisterUserUI
+
+        UnregisterUserUI -> UnregisterUserController : registerAccount(name, passport card number, tax number,\nstate, district, city, street, zip code, email address\nand phone number)
+        activate UnregisterUserController
+
+        UnregisterUserController -> RegisteredUser : registerAccount(name, passport card number, tax number,\nstate, district, city, street, zip code, email address\nand phone number)
+        activate RegisteredUser
+                RegisteredUser -> RegisteredUser : registerAccount(name, passport card number, tax number,\nstate, district, city, street, zip code, email address\nand phone number)
+                activate RegisteredUser
+                            activate RegisteredUser
+                                RegisteredUser -> RegisteredUser : validateAccount(name, passport card number, tax number,\nstate, district, city, street, zip code, email address\nand phone number)
+                                    activate RegisteredUser
+                                        RegisteredUser --> RegisteredUser
+                                    deactivate RegisteredUser
+                                RegisteredUser --> RegisteredUser
+                            deactivate RegisteredUser
+                deactivate RegisteredUser
+                RegisteredUser --> UnregisterUserController : RegisteredUser
+            deactivate RegisteredUser
+            UnregisterUserController --> UnregisterUserUI : RegisteredUser
+            deactivate UnregisterUserController
+        UnregisterUserUI --> UnregisteredUser : displays operation success
+        deactivate UnregisterUserUI
+deactivate UnregisteredUser
+
+@enduml
