@@ -171,32 +171,14 @@ telephone number. The Agent is an employee of the company.
 >
 > **Date:**
 
-> **Question:**
->
->  **Answer:**
->
-> **Date:**
-
-> **Question:**
->
->  **Answer:**
->
-> **Date:**
-
-> **Question:**
->
->  **Answer:**
->
-> **Date:**
-
 ### 1.3. Acceptance Criteria
 
 
 * **AC1:** All required fiels must be filled in.
 * **AC2:** Task reference must have at least 5 alphanumeric chars.
 * **AC3:** When creating a task with an already existing reference, the system must reject such operation and the user must have the change to modify the typed reference.
-* *AC4:** The commission has a minimum of 0% and does not have a maximum amount.
-* *AC4:** The customer's personal data will not be displayed in the annoucement.
+* **AC4:** The commission has a minimum of 0% and does not have a maximum amount.
+* **AC4:** The customer's personal data will not be displayed in the annoucement.
 
 
 ### 1.4. Found out Dependencies
