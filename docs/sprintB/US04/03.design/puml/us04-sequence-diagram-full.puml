@@ -1,0 +1,154 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title uitem Sequence Diagram (SSD)
+
+autonumber
+
+actor "User" as user
+participant ":AnnouncementRequestUI" as ui
+participant ":AnnouncementRequestController" as controller
+participant ":Repositories" as singleton
+participant "repositories\n:Repositories" as repositories
+participant "announcementRequestRepository\n:AnnouncementRequestRepository" as AnnouncementRequestRepository
+participant "announcementRequest\n:AnnouncementRequest" as announcementRequest
+participant "storeRepository\n:StoreRepository" as storeRepository
+participant "agentRepository\n:AgentRepository" as agentRepository
+participant "businessRepository\n:BusinessRepository" as businessRepository
+participant "property\n:Property" as property
+
+
+activate user
+
+
+    user -> ui : asks to create a new request for an owned property
+    activate ui
+
+        create controller
+        ui -> controller: Create
+        ui -> controller: getAgencyList()
+        activate controller
+        controller -> singleton : getInstance()
+        activate singleton
+            singleton --> controller : repositories
+        deactivate singleton
+        controller -> repositories : getStoreRepository()
+        activate repositories
+            repositories --> controller : StoreRepository
+        deactivate repositories
+            controller -> storeRepository: getAgencyList()
+            activate storeRepository
+                storeRepository --> controller: agencyList
+            deactivate storeRepository
+            controller --> ui: agencyList
+        deactivate controller
+
+    ui --> user : accepts the request and gives a list of possible agencies
+    deactivate ui
+
+    user -> ui : chooses the agency
+    activate ui
+
+        ui -> controller: getAgentsList(agency)
+        activate controller
+        controller -> singleton : getInstance()
+        activate singleton
+            singleton --> controller : repositories
+        deactivate singleton
+        controller -> repositories : getAgentRepository()
+        activate repositories
+            repositories --> controller : AgentRepository
+        deactivate repositories
+            controller -> agentRepository: getAgentsList(agency)
+            activate agentRepository
+                agentRepository --> controller: agentsList
+            deactivate agentRepository
+            controller --> ui: agentsList
+        deactivate controller
+
+    ui --> user : gives the chosen agency to the user and provides a list of agents from that agency
+    deactivate ui
+
+    user -> ui : chooses the responsible agent
+    activate ui
+
+        ui -> ui: keepAgent(name)
+
+    ui --> user : gives the chosen agent to the user and asks the type of property
+    deactivate ui
+
+    user -> ui : chooses the type of business
+    activate ui
+
+        ui -> ui: keepBusiness(type)
+
+    ui --> user : retrieves the type of business and asks for property data
+    deactivate ui
+
+    user -> ui : types the requested data [area in m^2, state, district, city, street, zip code and distance from city center]
+        activate ui
+        ui -> ui: keepData(area, state, district, city, street, zipCode, distanceFromCenter)
+        opt house, apartment
+            user -> ui : types requested data [number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning)]
+                ui -> ui: keepData(numberOfBedrooms, numberOfBathrooms, numberOfParkingSpaces, availableEquipment)
+            opt house
+                user -> ui : types requested data [the existence of a basement and/or inhabitable loft, sun exposure \n(North, South, East, West)]
+                ui -> ui: keepData(basementOrLoft, sunExposure)
+        end
+    end
+
+    ui ---> user : saves all data and asks for photos of the property
+    deactivate ui
+
+    loop Sends photos one by one (from 1 up to 30 pictures)
+
+        user -> ui : sends photos of the property
+        activate ui
+        ui -> ui: keepPhoto(PhotoArray[i])
+        
+    end
+
+    ui -> controller: getTypesOfBusinessList()
+        activate controller
+            controller -> businessRepository: getTypesOfBusinessList()
+            activate businessRepository
+                businessRepository --> controller: typesOfBusinessList
+            deactivate businessRepository
+            controller --> ui: typesOfBusinessList
+        deactivate controller
+    ui ---> user : asks for the type of business
+    deactivate ui
+
+    user -> ui : selects the type of business
+    activate ui
+
+        ui -> ui: keepTypeOfBusiness(typeOfBusiness)
+
+    ui --> user : saves the type of business and asks for needed data
+    deactivate ui
+
+    user ---> ui : types the requested data [Requested price]
+    activate ui
+    ui -> ui: keepSaleData(requestedPrice)
+        
+    opt rent
+        user ---> ui : types the requested data [contract duration]
+        ui -> ui: keepRentData(contractDuration)
+    end
+
+    ui --> user : retrieves the received data and asks to confirm the operation
+    deactivate ui
+
+    user -> ui : confirms the operation
+    activate ui
+        
+        ui -> controller: createAnnouncementRequest()
+
+    
+    ui --> user : displays operation success
+    deactivate ui
+    deactivate user
+    
+    @enduml

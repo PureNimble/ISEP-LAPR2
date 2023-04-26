@@ -7,69 +7,76 @@ title System Sequence Diagram (SSD)
 
 autonumber
 
-actor "Property owner" as Owner
+actor "User" as user
 participant ":System" as sys
 
-activate Owner
+    activate user
 
-
-    Owner -> sys : asks to create a new request for an owned property
+    user -> sys: asks to create a new request for an owned property
     activate sys
 
-    sys -> Owner : accepts the request and gives a list of possible agencies
+    sys --> user : accepts the request and gives a list of possible agencies
     deactivate sys
 
-    Owner -> sys : chooses the agency
+    user -> sys : chooses the agency
     activate sys
 
-    sys -> Owner : gives the chosen agency to the owner and provides a list of agents from that agency
+    sys --> user : gives the chosen agency to the user and provides a list of agents from that agency
     deactivate sys
 
-    Owner -> sys : chooses the responsible agent
+    user -> sys : chooses the responsible agent
     activate sys
 
-    sys -> Owner : gives the chosen agent to the owner and asks the type of property as well as the data from that property
+    sys --> user : gives the chosen agent to the user and asks the type of property
     deactivate sys
 
-    Owner -> sys : types the type of property and requested data [area in m^2, state, district, city, street, zip code and distance from city center]
+    user -> sys : chooses the type of business
     activate sys
 
-    opt house, apartment
-        Owner -> sys : types requested data [number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning)]
-        opt house
-            Owner -> sys : types requested data [the existence of a basement and/or inhabitable loft, sun exposure \n(North, South, East, West)]
-        end
-    end
-
-    sys ---> Owner : saves all data and asks for photos of the property
+    sys --> user : retrieves the type of business and asks for property data
     deactivate sys
 
-    loop Sends photos (from 1 up to 30 pictures)
-
-        Owner -> sys : sends photos of the property
+    user -> sys : types the requested data [area in m^2, state, district, city, street, zip code and distance from city center]
         activate sys
+        opt house, apartment
+            user -> sys : types requested data [number of bedrooms, number of bathrooms, number of parking spaces, \navailable eqsyspment (central heating and/or airconditioning)]
+            opt house
+                user -> sys : types requested data [the existence of a basement and/or inhabitable loft, sun exposure \n(North, South, East, West)]
+            end
+        end
 
-    end
-
-    sys ---> Owner : saves the photos and asks for the type of business and neeeded data
+    sys ---> user : saves all data and asks for photos of the property
     deactivate sys
 
-    alt sale
-            Owner ---> sys : types the requested data [Requested price]
-            activate sys
-        
-        else lease
+    loop Sends photos one by one (from 1 up to 30 pictures)
 
-            Owner ---> sys : types the requested data [Requested fee and contract duration]
-
+        user -> sys : sends photos of the property
+        activate sys
     end
 
-    sys --> Owner : retrieves the received data, displays all the information that was sent and asks to confirm the operation
+    sys ---> user : asks for the type of business
     deactivate sys
 
-    Owner -> sys : confirms the operation
+    user -> sys : selects the type of business
     activate sys
 
-    sys --> Owner : displays operation success
-    
+    sys --> user : saves the type of business and asks for needed data
+    deactivate sys
+
+    user ---> sys : types the requested data [Requested price]
+    activate sys
+
+    opt rent
+        user ---> sys : types the requested data [contract duration]
+    end
+
+    sys --> user : retrieves the received data and asks to confirm the operation
+    deactivate sys
+
+    user -> sys : confirms the operation
+    activate sys
+
+    sys --> user : displays operation success
+    deactivate sys
+    deactivate user
     @enduml
