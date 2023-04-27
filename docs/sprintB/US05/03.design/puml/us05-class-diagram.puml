@@ -28,8 +28,8 @@ class Address {
 }
 
 class Contacts {
-    -Phone Number
-    -Email Adress
+    -String phoneNumber
+    -String email
 }
 
 class Repositories {
@@ -41,20 +41,22 @@ class Repositories {
 class Store {
     -int id
     -String designation
-    +registerStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
+    +addStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
+    +validateStore()
 }
 
 class RegisterStoreController {
     +getStates()
+    +getDistrictByDescription(state)
+    +getCityByDescription(district)
     +registerStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
-    -getDistrictsByDescription(state)
-    -getCitiesByDescription(district)
+    -getStateRepository()
 }
 
 class StateRepository {
     +getStates()
-    +getDistrictsByDescription(state)
-    +getCitiesByDescription(district)
+    +getDistrictByDescription(state)
+    +getCityByDescription(district)
 }
 
 class RegisterStoreUI {

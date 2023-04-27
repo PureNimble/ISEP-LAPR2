@@ -49,9 +49,9 @@ activate Admin
     Admin -> RegisterStoreUI : types requested data (id, designation/name, \nemail address and phone number) and selects state
         activate RegisterStoreUI
         RegisterStoreUI --> RegisterStoreUI : keepData(id, designation/name, state, \nemail address and phone number)
-            RegisterStoreUI -> RegisterStoreController : getDistrictsByDescription(state)
+            RegisterStoreUI -> RegisterStoreController : getDistrictByDescription(state)
                 activate RegisterStoreController
-                            RegisterStoreController -> StateRepository : getDistrictsByDescription(state)
+                            RegisterStoreController -> StateRepository : getDistrictByDescription(state)
                         activate StateRepository
                         StateRepository --> RegisterStoreController : DistrictsList
                         deactivate StateRepository
@@ -63,9 +63,9 @@ activate Admin
     Admin -> RegisterStoreUI : selects district
         activate RegisterStoreUI
         RegisterStoreUI --> RegisterStoreUI : keepDistrict(district)
-        RegisterStoreUI -> RegisterStoreController : getCitiesByDescription(district)
+        RegisterStoreUI -> RegisterStoreController : getCityByDescription(district)
             activate RegisterStoreController
-                        RegisterStoreController -> StateRepository : getCitiesByDescription(district)
+                        RegisterStoreController -> StateRepository : getCityByDescription(district)
                         activate StateRepository
 
                         StateRepository --> RegisterStoreController : CitiesList
@@ -96,11 +96,9 @@ activate Admin
 
             activate Store
 
-               Store -> Store : registerStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
+               Store -> Store : addStore(store)
                 activate Store
                         Store -> Store : validateStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
-                            activate Store
-                    deactivate Store
                 deactivate Store
                     Store --> RegisterStoreController : Store
             deactivate Store
