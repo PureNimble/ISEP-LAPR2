@@ -46,8 +46,16 @@ activate User
     System --> User : displays the options to order (price, city or state) and (ascending or descending)
              deactivate System
 
-    User -> System : selects the options to order the filtered list of properties
-             activate System
+             alt Select ordering method
+
+             User -> System : selects the options to order the filtered list of properties
+                    activate System
+
+             else Doesn't select a ordering method
+
+             User -> System : doesn't select any ordering method to order the filtered list of properties
+
+             end
 
     System --> User : display the filtered list of properties with the ordering method selected
              deactivate System
@@ -56,8 +64,6 @@ activate User
 
     System --> User : displays a empty list of properties
             deactivate System
-
-    User -> System : submits data
 
     end
 

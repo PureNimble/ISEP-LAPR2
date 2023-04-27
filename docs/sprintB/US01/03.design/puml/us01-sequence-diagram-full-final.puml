@@ -12,10 +12,13 @@ participant ":DisplayPropertiesController" as Controller
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as Repositories
 participant "PublishedAnnouncementRepository\n:PublishedAnnouncementRepository" as PublishedAnnouncementRepository
-participant "PublishedAnnouncement\n:PublishedAnnouncement" as PublishedAnnouncement
-participant "Property\n:Property" as Property
-participant "Address\n:Address" as Address
-participant "Compare\n:Compare" as Compare
+participant "PublishedAnnouncement" as PublishedAnnouncement
+participant "Property" as Property
+participant "Address" as Address
+participant "Comparator" as Comparator
+participant "City" as City
+participant "State" as State
+participant "Business" as Business
 
 activate User
 
@@ -42,13 +45,25 @@ deactivate Repositories
 Controller -> PublishedAnnouncementRepository : getPublishedAnnouncement()
 activate PublishedAnnouncementRepository
 
+PublishedAnnouncementRepository -> PublishedAnnouncement : getPublishedAnnouncement()
+activate PublishedAnnouncement
+
+PublishedAnnouncement -> Comparator : compare(announcement1, announcement2)
+activate Comparator
+
+Comparator --> PublishedAnnouncement : comparisonResult
+deactivate Comparator
+
+PublishedAnnouncement --> PublishedAnnouncementRepository : PublishedAnnouncementList
+deactivate PublishedAnnouncement
+
 PublishedAnnouncementRepository --> Controller : PublishedAnnouncementList
 deactivate PublishedAnnouncementRepository
 
 Controller --> System : PublishedAnnouncementList
 deactivate Controller
 
-opt List with Properties
+alt List with Properties
 
     System --> User : displays a list of properties from the most recent uploaded to the oldest
     deactivate System
@@ -59,50 +74,64 @@ opt List with Properties
     System --> User : asks to specify the options to filter [type of business (buying or renting), \ntype of property (house, apartment or land) and the number of rooms]
     deactivate System
 
-        opt Selects options to filter
+        alt Selects options to filter
 
             User -> System : selects the options to filter the list of properties
             activate System
 
-            System -> Controller : displayProperties(type of property, type of business, number of rooms)
-            activate Controller
 
-            Controller -> RepositorySingleton : getInstance()
-            activate RepositorySingleton
+System -> Controller : displayAnnouncements(type of property, type of business, number of rooms)
+activate Controller
 
-            RepositorySingleton --> Controller : repositories
-            deactivate RepositorySingleton
+Controller -> RepositorySingleton : getInstance()
+activate RepositorySingleton
 
-            Controller -> Repositories : getPublishedAnnouncementRepository()
-            activate Repositories
+RepositorySingleton --> Controller : repositories
+deactivate RepositorySingleton
 
-            Repositories --> Controller : PublishedAnnouncementRepository
-            deactivate Repositories
+Controller -> Repositories : getPublishedAnnouncementRepository()
+activate Repositories
 
-            Controller -> PublishedAnnouncementRepository : displayProperties (type of property, type of business, number of rooms)
-            activate PublishedAnnouncementRepository
+Repositories --> Controller : PublishedAnnouncementRepository
+deactivate Repositories
 
-                loop For Each Published Announcement
+alt type of property is not "land"
 
-                PublishedAnnouncementRepository -> PublishedAnnouncement : getPublishedAnnouncementRepository(type of property, type of business, number of rooms)
-                activate PublishedAnnouncement
+    Controller -> PublishedAnnouncementRepository : displayAnnouncements(type of property, type of business, number of rooms)
+    activate PublishedAnnouncementRepository
 
-                'PublishedAnnouncement -> Property : getPropertyByTheirCharacteristics(type of property, type of business, number of rooms)
-                'activate Property
 
-                'Property --> PublishedAnnouncement : Property
-                'deactivate Property
+    loop For Each Published Announcement
 
-                PublishedAnnouncement --> PublishedAnnouncementRepository : PublishedAnnouncement
-                deactivate PublishedAnnouncement
+        PublishedAnnouncementRepository -> PublishedAnnouncement : getPublishedAnnouncement(type of property, type of business, number of rooms)
+        activate PublishedAnnouncement
 
-                end
+        PublishedAnnouncement --> PublishedAnnouncementRepository : PublishedAnnouncement
+        deactivate PublishedAnnouncement
 
-            PublishedAnnouncementRepository --> Controller : PublishedAnnouncementList
-            deactivate PublishedAnnouncementRepository
+    end
 
-            Controller --> System : PublishedAnnouncementList
-            deactivate Controller
+else
+
+    Controller -> PublishedAnnouncementRepository : displayAnnouncements(type of property, type of business)
+
+   loop For Each Published Announcement
+
+           PublishedAnnouncementRepository -> PublishedAnnouncement : getPublishedAnnouncement(type of property, type of business)
+           activate PublishedAnnouncement
+
+           PublishedAnnouncement --> PublishedAnnouncementRepository : PublishedAnnouncement
+           deactivate PublishedAnnouncement
+
+       end
+
+end
+
+PublishedAnnouncementRepository --> Controller : PublishedAnnouncementList
+deactivate PublishedAnnouncementRepository
+
+Controller --> System : PublishedAnnouncementList
+deactivate Controller
 
         else Doesn't select options to filter
 
@@ -119,12 +148,14 @@ opt List with Properties
     System --> User : asks to specify the options to order (price, city or state) and (ascending or descending)
     deactivate System
 
+    alt Selects ordering method
+
     User -> System : selects the options to order the filtered list of properties
     activate System
 
     alt In case the selected ordering method is by price (which can be ascending or descending)
 
-        System -> Controller : sortPropertiesByPrice()
+        System -> Controller : sortAnnouncementsByPrice()
         activate Controller
 
         Controller -> RepositorySingleton : getInstance()
@@ -145,12 +176,12 @@ opt List with Properties
         Repositories --> Controller : PublishedAnnouncement
         deactivate Repositories
 
-            'alt Sorting by Ascending Price
+            alt Sorting by Ascending Price
 
-                Controller -> PublishedAnnouncementRepository : sortPropertiesByPrice()
+                Controller -> PublishedAnnouncementRepository : sortAnnouncementsByAscendingPrice()
                 activate PublishedAnnouncementRepository
 
-                PublishedAnnouncementRepository -> PublishedAnnouncement : sortPropertiesByPrice()
+                PublishedAnnouncementRepository -> PublishedAnnouncement : sortAnnouncementsByAscendingPrice()
                 activate PublishedAnnouncement
 
                     loop
@@ -177,43 +208,46 @@ opt List with Properties
                     Business --> PublishedAnnouncement : Business
                     deactivate Business
 
-                    PublishedAnnouncement -> Compare : compare(announcement1, announcement2)
-                    activate Compare
+                    PublishedAnnouncement -> Comparator : compare(announcement1, announcement2)
+                    activate Comparator
 
-                    Compare --> PublishedAnnouncement : comparisonResult
-                    deactivate Compare
+                    Comparator --> PublishedAnnouncement : comparisonResult
+                    deactivate Comparator
 
                     end
 
-                PublishedAnnouncement --> PublishedAnnouncementRepository : AnnouncementListByPrice
+                PublishedAnnouncement --> PublishedAnnouncementRepository : AnnouncementListByAscendingPrice
                 deactivate PublishedAnnouncement
 
-                PublishedAnnouncementRepository --> Controller : announcementListByPrice
+                PublishedAnnouncementRepository --> Controller : announcementListByAscendingPrice
                 deactivate PublishedAnnouncementRepository
 
-            'else Sorting by Descending Order
+                Controller --> System : AnnouncementListByAscendingPrice
+                deactivate Controller
 
-                /'Controller -> PublishedAnnouncementRepository : sortPropertiesByDescendingPrice()
+            else Sorting by Descending Order
+
+                Controller -> PublishedAnnouncementRepository : sortAnnouncementsByDescendingPrice()
                 activate PublishedAnnouncementRepository
 
-                PublishedAnnouncementRepository -> PublishedAnnouncement : sortPropertiesByDescendingPrice()
+                PublishedAnnouncementRepository -> PublishedAnnouncement : sortAnnouncementsByDescendingPrice()
                 activate PublishedAnnouncement
 
                     loop
 
-                    PublishedAnnouncement -> Property : getProperty()
-                    activate Property
+                    PublishedAnnouncement -> Business : getBusiness()
+                    activate Business
 
-                    Property -> Property : getPrice()
+                    Business -> Business : getPrice()
 
-                    Property --> PublishedAnnouncement : Property
-                    deactivate Property
+                    Business --> PublishedAnnouncement : Property
+                    deactivate Business
 
-                    PublishedAnnouncement -> Compare : compare(announcement1, announcement2)
-                    activate Compare
+                    PublishedAnnouncement -> Comparator : compare(announcement1, announcement2)
+                    activate Comparator
 
-                    Compare --> PublishedAnnouncement : comparisonResult
-                    deactivate Compare
+                    Comparator --> PublishedAnnouncement : comparisonResult
+                    deactivate Comparator
 
                     end
 
@@ -221,16 +255,16 @@ opt List with Properties
                 deactivate PublishedAnnouncement
 
                 PublishedAnnouncementRepository --> Controller : announcementListByDescendingPrice
-                deactivate PublishedAnnouncementRepository '/
+                deactivate PublishedAnnouncementRepository
 
-            'end
+                Controller --> System : AnnouncementListByDescendingPrice
+                deactivate Controller
 
-        Controller --> System : AnnouncementListByPrice
-        deactivate Controller
+            end
 
     else In case the selected ordering method is by city name (which can be ascending or descending)
 
-        System -> Controller : sortPropertiesByCityName()
+        System -> Controller : sortAnnouncementsByAscendingCityName()
         activate Controller
 
         Controller -> RepositorySingleton : getInstance()
@@ -251,12 +285,12 @@ opt List with Properties
         Repositories --> Controller : PublishedAnnouncement
         deactivate Repositories
 
-            'alt Sorting by Ascending City Name
+            alt Sorting by Ascending City Name
 
-                Controller -> PublishedAnnouncementRepository : sortPropertiesByCityName()
+                Controller -> PublishedAnnouncementRepository : sortAnnouncementsByAscendingCityName()
                 activate PublishedAnnouncementRepository
 
-                PublishedAnnouncementRepository -> PublishedAnnouncement : sortPropertiesByCityName()
+                PublishedAnnouncementRepository -> PublishedAnnouncement : sortAnnouncementsByAscendingCityName()
                 activate PublishedAnnouncement
 
                     loop
@@ -267,9 +301,13 @@ opt List with Properties
                     Property -> Address : getAddress()
                     activate Address
 
-                    Address -> Address : getCity()
+                    Address -> City : getCity()
+                    activate City
                     'Address -> Address : getDistrict()
                     'Address -> Address : getState()
+
+                    City --> Address : cityName
+                    deactivate City
 
                     Address --> Property : Address
                     deactivate Address
@@ -277,26 +315,29 @@ opt List with Properties
                     Property --> PublishedAnnouncement : Property
                     deactivate Property
 
-                    PublishedAnnouncement -> Compare : compare(announcement1, announcement2)
-                    activate Compare
+                    PublishedAnnouncement -> Comparator : compare(announcement1, announcement2)
+                    activate Comparator
 
-                    Compare --> PublishedAnnouncement : comparisonResult
-                    deactivate Compare
+                    Comparator --> PublishedAnnouncement : comparisonResult
+                    deactivate Comparator
 
                     end
 
-                PublishedAnnouncement --> PublishedAnnouncementRepository : AnnouncementListByCityName
+                PublishedAnnouncement --> PublishedAnnouncementRepository : AnnouncementListByAscendingCityName
                 deactivate PublishedAnnouncement
 
-                PublishedAnnouncementRepository --> Controller : announcementListByCityName
+                PublishedAnnouncementRepository --> Controller : announcementListByAscendingCityName
                 deactivate PublishedAnnouncementRepository
 
-            'else Sorting by Descending Order
+                Controller --> System : AnnouncementListByAscendingCityName
+                deactivate Controller
 
-                /'Controller -> PublishedAnnouncementRepository : sortPropertiesByDescendingCityName()
+            else Sorting by Descending Order
+
+                Controller -> PublishedAnnouncementRepository : sortAnnouncementsByDescendingCityName()
                 activate PublishedAnnouncementRepository
 
-                PublishedAnnouncementRepository -> PublishedAnnouncement : sortPropertiesByDescendingCityName()
+                PublishedAnnouncementRepository -> PublishedAnnouncement : sortAnnouncementsByDescendingCityName()
                 activate PublishedAnnouncement
 
                     loop
@@ -307,9 +348,14 @@ opt List with Properties
                     Property -> Address : getAddress()
                     activate Address
 
-                    Address -> Address : getCity()
+                    Address -> City : getCity()
+                    activate City
+
                     'Address -> Address : getDistrict()
                     'Address -> Address : getState()
+
+                    City --> Address : cityName
+                    deactivate City
 
                     Address --> Property : Address
                     deactivate Address
@@ -317,11 +363,11 @@ opt List with Properties
                     Property --> PublishedAnnouncement : Property
                     deactivate Property
 
-                    PublishedAnnouncement -> Compare : compare(announcement1, announcement2)
-                    activate Compare
+                    PublishedAnnouncement -> Comparator : compare(announcement1, announcement2)
+                    activate Comparator
 
-                    Compare --> PublishedAnnouncement : comparisonResult
-                    deactivate Compare
+                    Comparator --> PublishedAnnouncement : comparisonResult
+                    deactivate Comparator
 
                     end
 
@@ -329,16 +375,16 @@ opt List with Properties
                 deactivate PublishedAnnouncement
 
                 PublishedAnnouncementRepository --> Controller : announcementListByDescendingCityName
-                deactivate PublishedAnnouncementRepository '/
+                deactivate PublishedAnnouncementRepository
 
-            'end
+                Controller --> System : AnnouncementListByDescendingCityName
+                deactivate Controller
 
-        Controller --> System : AnnouncementListByCityName
-        deactivate Controller
+            end
 
     else In case the selected ordering method is by state name (which can be ascending or descending)
 
-        System -> Controller : sortPropertiesByStateName()
+        System -> Controller : sortAnnouncementsByStateName()
         activate Controller
 
         Controller -> RepositorySingleton : getInstance()
@@ -359,12 +405,12 @@ opt List with Properties
         Repositories --> Controller : PublishedAnnouncement
         deactivate Repositories
 
-            'alt Sorting by Ascending State Name
+            alt Sorting by Ascending State Name
 
-                Controller -> PublishedAnnouncementRepository : sortPropertiesByStateName()
+                Controller -> PublishedAnnouncementRepository : sortAnnouncementsByAscendingStateName()
                 activate PublishedAnnouncementRepository
 
-                PublishedAnnouncementRepository -> PublishedAnnouncement : sortPropertiesByStateName()
+                PublishedAnnouncementRepository -> PublishedAnnouncement : sortAnnouncementsByAscendingStateName()
                 activate PublishedAnnouncement
 
                     loop
@@ -375,7 +421,11 @@ opt List with Properties
                     Property -> Address : getAddress()
                     activate Address
 
-                    Address -> Address : getState()
+                    Address -> State : getState()
+                    activate State
+
+                    State --> Address : stateName
+                    deactivate State
 
                     Address --> Property : Address
                     deactivate Address
@@ -383,26 +433,29 @@ opt List with Properties
                     Property --> PublishedAnnouncement : Property
                     deactivate Property
 
-                    PublishedAnnouncement -> Compare : compare(announcement1, announcement2)
-                    activate Compare
+                    PublishedAnnouncement -> Comparator : compare(announcement1, announcement2)
+                    activate Comparator
 
-                    Compare --> PublishedAnnouncement : comparisonResult
-                    deactivate Compare
+                    Comparator --> PublishedAnnouncement : comparisonResult
+                    deactivate Comparator
 
                     end
 
-                PublishedAnnouncement --> PublishedAnnouncementRepository : AnnouncementListByStateName
+                PublishedAnnouncement --> PublishedAnnouncementRepository : AnnouncementListByAscendingStateName
                 deactivate PublishedAnnouncement
 
-                PublishedAnnouncementRepository --> Controller : announcementListByStateName
+                PublishedAnnouncementRepository --> Controller : announcementListByAscendingStateName
                 deactivate PublishedAnnouncementRepository
 
-            'else Sorting by Descending Order
+                Controller --> System : AnnouncementListByAscendingStateName
+                deactivate Controller
 
-                /' Controller -> PublishedAnnouncementRepository : sortPropertiesByDescendingStateName()
+            else Sorting by Descending Order
+
+                Controller -> PublishedAnnouncementRepository : sortAnnouncementsByDescendingStateName()
                 activate PublishedAnnouncementRepository
 
-                PublishedAnnouncementRepository -> PublishedAnnouncement : sortPropertiesByDescendingStateName()
+                PublishedAnnouncementRepository -> PublishedAnnouncement : sortAnnouncementsByDescendingStateName()
                 activate PublishedAnnouncement
 
                     loop
@@ -413,7 +466,11 @@ opt List with Properties
                     Property -> Address : getAddress()
                     activate Address
 
-                    Address -> Address : getState()
+                    Address -> State : getState()
+                    activate State
+
+                    State --> Address : stateName
+                    deactivate State
 
                     Address --> Property : Address
                     deactivate Address
@@ -421,11 +478,11 @@ opt List with Properties
                     Property --> PublishedAnnouncement : Property
                     deactivate Property
 
-                    PublishedAnnouncement -> Compare : compare(announcement1, announcement2)
-                    activate Compare
+                    PublishedAnnouncement -> Comparator : compare(announcement1, announcement2)
+                    activate Comparator
 
-                    Compare --> PublishedAnnouncement : comparisonResult
-                    deactivate Compare
+                    Comparator --> PublishedAnnouncement : comparisonResult
+                    deactivate Comparator
 
                     end
 
@@ -433,13 +490,19 @@ opt List with Properties
                 deactivate PublishedAnnouncement
 
                 PublishedAnnouncementRepository --> Controller : announcementListByDescendingStateName
-                deactivate PublishedAnnouncementRepository '/
+                deactivate PublishedAnnouncementRepository
 
-            'end
+                Controller --> System : AnnouncementListByDescendingStateName
+                deactivate Controller
 
-        Controller --> System : AnnouncementListByStateName
-        deactivate Controller
 
+            end
+
+    end
+
+    else Doesn't select a ordering method
+
+    User -> System : doesn't select the options to order the filtered list of properties
 
     end
 
@@ -453,13 +516,13 @@ else List without Properties
 
 end
 
-User -> System : submits data
-activate System
+'User -> System : submits data
+'activate System
 
-System -> Controller : displaysProperties(type of property, type of \nbusiness, number of rooms, price, city, state)
-activate Controller
+'System -> Controller : displaysProperties(type of property, type of \nbusiness, number of rooms, price, city, state)
+'activate Controller
 
-System --> User : displays operation success
-deactivate System
+'System --> User : displays operation success
+'deactivate System
 
 @enduml

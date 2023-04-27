@@ -15,15 +15,15 @@ skinparam linetype polyline
 
 
 class Address {
-    - String streetName
-    - int zipCode : 0
+    '- String streetName
+    '- int zipCode : 0
     '- String CityName
     '- String StateName
 
     '+verifyZipCode()
-    +getCity()
+    '+getCity()
     '+getDistrict()
-    +getState()
+    '+getState()
     '+Address(state, district, city, street, zipCode)
 }
 
@@ -37,7 +37,8 @@ class Address {
 
 class Business {
     '- double requestedPrice : 0
-     - boolean typeOfBusiness
+     - String typeOfBusiness
+     - double price
 
     '+getFinalComission()
     '+calculatePriceWithComission()
@@ -46,10 +47,16 @@ class Business {
 
 
 
-/'class City {
+class City {
     - String cityName
+
+    +getCity()
 }
-'/
+
+interface Comparator {
+    + compare(announcement1, announcement2
+}
+
 
 /'class Comission {
     - double percentage : 0
@@ -63,19 +70,21 @@ class Business {
 class DisplayPropertiesController {
     + DisplayPropertiesController(PublishedAnnouncementRepository)
     + getPublishedAnnouncement()
-    + displayProperties(type of business, type of property, number of rooms)
+    + displayAnnouncements(type of business, type of property, number of rooms)
     + sortPropertiesByPrice()
     + sortPropertiesByCityName()
     + sortPropertiesByStateName()
 }
 
 class DisplayPropertiesUI {
+
 }
 
-/'class District {
-    - String districtName
+
+class District {
+    '- String districtName
 }
-'/
+
 
 
 /'class House {
@@ -94,9 +103,10 @@ class Photos {
 '/
 
 class Property {
-    - double area : 0
-    - int distanceFromTheCityCenter : 0
+    '- double area : 0
+    '- int distanceFromTheCityCenter : 0
     '- float price
+     - String typeOfProperty
 
     '+ Property(area, distanceFromTheCityCenter)
      +getAddress()
@@ -107,16 +117,26 @@ class PublishedAnnouncement {
     - String finalDate
 
     + getBusiness()
+    + getProperty()
     + compare(announcement1, announcement2)
 }
 
 class PublishedAnnouncementRepository {
+    - ArrayList<PublishedAnnouncement> publishedannouncements
     + getPublishedAnnouncement(type of property, type of business, number of rooms)
+    + getPublishedAnnouncement()
+    + sortPropertiesByAscendingPrice()
+    + sortPropertiesByDescendingPrice()
+    + sortPropertiesByAscendingCityName()
+    + sortPropertiesByDescendingCityName()
+    + sortPropertiesByAscendingStateName()
+    + sortPropertiesByDescendingStateName()
 
 }
 
 
-/'class Rent {
+/'
+class Rent {
     - int durationOfContract: 0
 
     + getFinalComission()
@@ -141,10 +161,12 @@ class Repositories {
 '/
 
 
-/' class State {
+class State {
     - String stateName
+
+    +getState()
 }
-'/
+
 
 /'class SunExposure {
     - String direction
@@ -154,21 +176,21 @@ class Repositories {
 '/
 
 
-class UnregisteredUser {
+'class UnregisteredUser {
 
-}
+'}
 
 
 'Business <|-- Rent
 
-'City "1" --- "*" Address : is in <
+State "1" --- "*" Address : has <
 'Comission "1" -right- "1" Business : contains <
 
 DisplayPropertiesController .> Repositories : repositories
 DisplayPropertiesController .> PublishedAnnouncementRepository : PublishedAnnouncementRepository
 DisplayPropertiesController .> PublishedAnnouncement : published announcement
 DisplayPropertiesUI .> DisplayPropertiesController
-'District "1" --- "*" City : is in <
+District "1" --- "*" City : has <
 
 'House "*" --- "1" SunExposure : has <
 
@@ -176,18 +198,19 @@ DisplayPropertiesUI .> DisplayPropertiesController
 Property "*" -- "1" Address : has <
 'Property "1" --- "1" Business : has <
 'Property "1" -right- "*" Photos : has >
-PublishedAnnouncement "*" --- "*" Property: advertises >
+PublishedAnnouncement "1" --- "1" Property: advertises >
 PublishedAnnouncementRepository "1" --> "*" PublishedAnnouncement
 PublishedAnnouncement "1" --- "1" Business
+PublishedAnnouncement ---> Comparator : implements
 
 Repositories --> "1" PublishedAnnouncementRepository
 Repositories -> Repositories : instance
 'Residence "*" --- "1" AvailableEquipment : has <
 'Residence <|--- House
 
-'State "1" --- "*" District : is in <
-'State "1" --- "*" City : is in <
+State "1" --- "*" District : has <
 
-UnregisteredUser "*" -right- "*" PublishedAnnouncement: displays >
+
+'UnregisteredUser "*" -right- "*" PublishedAnnouncement: displays >
 
 @enduml
