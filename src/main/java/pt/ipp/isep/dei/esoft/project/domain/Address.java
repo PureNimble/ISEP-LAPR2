@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.util.Objects;
 
-public class Adress {
+public class Address {
     private String street;
     private int zipcode;
     private District district;
