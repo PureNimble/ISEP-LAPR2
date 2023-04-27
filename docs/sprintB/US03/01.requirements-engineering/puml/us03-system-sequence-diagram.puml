@@ -27,7 +27,25 @@ activate Admin
                 Admin -> System : selects a store
                 activate System
 
-   System --> Admin :  requested data(name,passport,tax number \n,adress,email adress,telephone number).
+         System <-- Admin:show list of states and asks to select one
+         deactivate System
+
+         Admin -> System : select state
+         activate System
+
+         System --> Admin : show list of districts and asks to select one
+         deactivate System
+
+         Admin -> System: select district
+         activate System
+
+         System --> Admin : show list of cities and asks to select one
+         deactivate System
+
+        Admin -> System: select city
+        activate System
+
+   System --> Admin :  requested data(name,passport,tax number \n,street,zipCode,email,telephone number,passport number).
      deactivate System
 
     Admin -> System : types requested data

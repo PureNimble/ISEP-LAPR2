@@ -27,7 +27,7 @@ activate User
     User -> System : selects the options to filter the list of properties
         activate System
 
-    System --> User : displays the list of properties
+    System --> User : displays the filtered list of properties
         deactivate System
 
     User -> System : asks to order the filtered list of properties

@@ -15,11 +15,17 @@ class Store
 
 class Role
 
+class AuthenticationRepository
+
+class User
+
+class EmployeeRepository
+
 class SystemAdministrator
 
 class StoresRepository
 
-class EmployeeListOfRolesRepository
+class RolesRepository
 
 class State
 
@@ -29,37 +35,51 @@ class District
 
 class StateRepository
 
-class DistrictRepository
+class EmployeeRepository{
++add(employee)
++getEmployees()
+}
 
-class CityRepository
+class AuthenticationRepository{
++doLogin(email,pwd)
++doLogout()
++getCurrentSession()
++addUserRole()
++addUserWithRole()
++passwordGenerator()
+-shuffleString(input,random)
+-randomCharacter(characters,random)
++getUser()
+}
 
 class StateRepository{
 +getState()
-}
-
-class DistrictRepository{
-+getDistrict()
-}
-
-
-class CityRepository{
-+getCity()
++addEmployee(State state)
++getCityByDescription(String cityDescription,District district)
++getDistrictByDescription(String districtDescription,State state)
++getStateByDescription(String stateDescription)
 }
 
 class State{
  - String stateName
+ - List<District> districts
+    +getState()
+    +getDistricts()
+    +toString()
 
-    +getStateName()
 }
 
 class District{
 - String districtName
+- List<City> cities
 
     +getDistrictName()
+    +getCities()
+    +toString()
 }
 
 class City{
-- String cityName
+- String city
 
     +getCityName()
 }
@@ -84,19 +104,24 @@ class SystemAdministrator{
 }
 
 class Employee{
--String name
--Passport passport
--int Tax Number
-+Employee(name,citizen´s card number,tax number ,adress,email adress,telephone number,agency  role,createdBy)
+-Store store
+-Role role
++Employee(email,name,store,phoneNumber,role,adress,taxNumber,passportNumber)
++getStore()
++getRole()
 }
 
 class StoresRepository{
 +getStores()
++getStoreByDescription()
++add(Store store)
 
 }
 
-class EmployeeListOfRolesRepository{
+class RolesRepository{
 +getRolesEmployee()
++getRoleByDescription()
++add(Role role)
 
 }
 
@@ -104,18 +129,21 @@ class AddEmployeeUI{
 }
 
 class AddEmployeeController{
-+AddEmployeeController(employeeRoleListRepository,StoresRepository)
++createEmployeeController(employeeRoleListRepository,StoresRepository,StateRepository,AuthemticationRepository,EmployeeRepository)
 +getRolesEmployee()
 +getStores()
-+getDistrict()
-+getCity()
 +getState()
-+addEmployee(name,citizen´s card number,tax number ,adress,email adress,telephone number,store, role)
--getRolesEmployeeByDescription(roleEmployeeDescription)
--getStoresEmployeeByDescription(storeDescription)
--getRolesEmployeeByDescription(stateDescription)
--getRolesEmployeeByDescription(cityDescription)
--getRolesEmployeeByDescription(districtDescription)
++getEmployees()
++createEmployee(name,citizen´s card number,tax number ,adress,email adress,telephone number,store, role)
++getStateByDescription(String stateDescription)
++getCityByDescription(String cityDescription)
++getDistrictByDescription(String districtDescription)
+-getRoleRepository()
+-getAuthenticationRepository()
+-getStoreRepository()
+-getStateRepository()
+-getRolesEmployeeRepository()
+-getRoleByDescription(String roleDescription)
 }
 
 class Repositories{
@@ -123,14 +151,35 @@ class Repositories{
 +getInstance():Repositories
 +getRolesEmployeeRepository()
 +getStoresRepository()
++getStatesRepository()
++getAuthenticationRepository()
++getEmployeesRepository()
+}
+
+class User{
+- String email
+- int passportNumber
+- int taxNumber
+- String name
+- Adress adress
+- int phoneNumber
+
++User(email,passportNumber,taxNumber,name,phoneNumber)
++getPassportNumber()
++getTaxNumber()
++getEmail()
++getAdress()
++getName()
++getPhoneNumber()
 }
 
 class Store{
 -String name
+-Adress adress
 -addEmployee(employee)
 -validateEmployee(employee)
 +Store(name,adress,contact)
-+addEmployee(name,citizen´s card number,tax number ,adress,email adress,telephone number,agency  role)
++createEmployee(name,citizen´s card number,tax number ,adress,email adress,telephone number,store, role)
 }
 
 
@@ -138,23 +187,27 @@ AddEmployeeUI .> AddEmployeeController
 
 AddEmployeeController ..> "1" Store : store
 
-AddEmployeeController ...> EmployeeListOfRolesRepository :EmployeeListOfRolesRepository
+AddEmployeeController ...> EmployeeRepository : employeeRepository
 
-AddEmployeeController ..> StoresRepository : StoresRepository
+AddEmployeeController ...> AuthenticationRepository : authenticationRepository
+
+AddEmployeeController ...> RolesRepository :RolesRepository
+
+AddEmployeeController .-left.> StoresRepository : StoresRepository
 
 AddEmployeeController ...> StateRepository : StateRepository
 
-AddEmployeeController ...> CityRepository : CityRepository
-
-AddEmployeeController ...> DistrictRepository : DistrictRepository
-
 Store "1" ---> "*" Employee : employee
 
-Repositories -> Repositories:intance
+Repositories -> Repositories:instance
+
+Repositories -----> EmployeeRepository: employeeRepository
+
+Repositories ----> AuthenticationRepository: authenticationRepository
 
 Repositories ---> StoresRepository: storeRepository
 
-Repositories ----> EmployeeListOfRolesRepository:roleEmployee
+Repositories ----> RolesRepository:roleEmployee
 
 AddEmployeeController .>  Repositories : repositories
 
@@ -164,7 +217,7 @@ Employee <|-- SystemAdministrator
 
 Store <- "*" SystemAdministrator : registers
 
-EmployeeListOfRolesRepository ---> Role
+RolesRepository ---> Role
 
 Employee "1" -> "1" Role : role
 
@@ -172,26 +225,19 @@ Adress "1" -> "*"  Store
 
 Adress "1" --> "*" Employee
 
-Adress "*" -left- "1" City:is in >
+Adress "*" -left- "1" State:is in <
 
-City "*" -left- "1" District : is in >
+State "1" -left- "*" District : is in <
 
-District "*" -left- "1" State : is in >
+District "1" -left- "*" City : is in <
 
+
+User <|-- Employee
 
 
 Repositories -> StateRepository: stateRepository
 
-Repositories -----> CityRepository : stateRepository
-
-Repositories -----> DistrictRepository: stateRepository
-
 StateRepository --------> "*" State : stateRepository
 
-DistrictRepository ------> "*" District : stateRepository
-
-CityRepository ------> "*" City : stateRepository
-
-StateRepository -left[hidden].> StateRepository
 
 @enduml
