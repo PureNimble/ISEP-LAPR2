@@ -301,7 +301,7 @@ deactivate Controller
                     Property -> Address : getAddress()
                     activate Address
 
-                    Address -> City : getCity()
+                    Address -> City : getCityName()
                     activate City
                     'Address -> Address : getDistrict()
                     'Address -> Address : getState()
@@ -348,7 +348,7 @@ deactivate Controller
                     Property -> Address : getAddress()
                     activate Address
 
-                    Address -> City : getCity()
+                    Address -> City : getCityName()
                     activate City
 
                     'Address -> Address : getDistrict()
@@ -421,7 +421,7 @@ deactivate Controller
                     Property -> Address : getAddress()
                     activate Address
 
-                    Address -> State : getState()
+                    Address -> State : getStateName()
                     activate State
 
                     State --> Address : stateName
@@ -466,7 +466,7 @@ deactivate Controller
                     Property -> Address : getAddress()
                     activate Address
 
-                    Address -> State : getState()
+                    Address -> State : getStateName()
                     activate State
 
                     State --> Address : stateName

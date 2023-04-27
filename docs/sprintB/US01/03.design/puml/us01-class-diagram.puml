@@ -15,16 +15,16 @@ skinparam linetype polyline
 
 
 class Address {
-    '- String streetName
-    '- int zipCode : 0
+    - String streetName
+    - int zipCode
     '- String CityName
     '- String StateName
 
-    '+verifyZipCode()
-    '+getCity()
-    '+getDistrict()
-    '+getState()
-    '+Address(state, district, city, street, zipCode)
+    +verifyZipCode()
+    +getCity()
+    +getDistrict()
+    +getState()
+    +Address(state, district, city, street, zipCode)
 }
 
 /'class AvailableEquipment {
@@ -50,7 +50,7 @@ class Business {
 class City {
     - String cityName
 
-    +getCity()
+    +getCityName()
 }
 
 interface Comparator {
@@ -82,7 +82,12 @@ class DisplayPropertiesUI {
 
 
 class District {
-    '- String districtName
+    - String districtName
+    - List <City> cities
+
+    +getDistrictName()
+    +getCities()
+    +toString()
 }
 
 
@@ -103,12 +108,12 @@ class Photos {
 '/
 
 class Property {
-    '- double area : 0
-    '- int distanceFromTheCityCenter : 0
+    - double area
+    - int distanceFromTheCityCenter
     '- float price
      - String typeOfProperty
 
-    '+ Property(area, distanceFromTheCityCenter)
+    + Property(area, distanceFromTheCityCenter)
      +getAddress()
 }
 
@@ -163,8 +168,11 @@ class Repositories {
 
 class State {
     - String stateName
+    - List <District> districts
 
     +getState()
+    +getDistricts()
+    +toString()
 }
 
 
@@ -183,7 +191,7 @@ class State {
 
 'Business <|-- Rent
 
-State "1" --- "*" Address : has <
+State "1" --- "*" Address : has >
 'Comission "1" -right- "1" Business : contains <
 
 DisplayPropertiesController .> Repositories : repositories
