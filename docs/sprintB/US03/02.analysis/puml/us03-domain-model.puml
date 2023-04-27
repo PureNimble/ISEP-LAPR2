@@ -12,6 +12,8 @@ hide circle
 
 class SystemAdministrator
 
+class User
+
 class Employee
 
 class Role
@@ -27,6 +29,14 @@ class StoreNetworkManager
 class Store
 
 class Address
+
+class User{
+Name
+Email
+Phone Number
+Tax Number
+Passport Number
+}
 
 class Role {
 Role
@@ -58,21 +68,18 @@ class SystemAdministrator {
 }
 
 class Employee {
-Name
-Email
-Phone Number
-Tax Number
+
 }
 
 
 
+User <|-- Employee
 
 Employee <|-- Agent
 Employee <|-- StoreNetworkManager
 Employee <|-- StoreManager
 Employee <|-- SystemAdministrator
 
-SystemAdministrator "1" -left- "*" Store : registers >
 
 Store "*" - "1" Address : located at >
 Employee "1" - "*" Store : works in >
@@ -81,11 +88,11 @@ Employee "1" -left "1" Role : has >
 
 Store "1" -- "*" StoreNetworkManager : manages <
 
-City "1" -- "*" Address : is in <
+State "1" -- "*" Address : is in >
 
-District "1" -- "*" City : is in <
+District "*" -- "1" State : is in >
 
-State "1" -- "*" District :is in <
+City "*" -- "1" District :is in >
 
 
 @enduml
