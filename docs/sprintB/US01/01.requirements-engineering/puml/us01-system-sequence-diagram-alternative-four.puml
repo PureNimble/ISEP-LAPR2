@@ -3,7 +3,7 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-title System Sequence Diagram (SSD) - Doesn't select a filtering
+title System Sequence Diagram (SSD) - Doesn't select a filtering nor an ordering method
 
 autonumber
 
@@ -31,15 +31,16 @@ activate User
         deactivate System
 
     User -> System : asks to order the filtered list of properties
-        deactivate System
+        activate System
 
     System --> User : displays the options to order (price, city or state) and (ascending or descending)
         deactivate System
 
-    User -> System : selects the options to order the filtered list of properties
+    User -> System : doesn't select the options to order the filtered list of properties
         activate System
 
-    System --> User : display the "filtered" list of properties with the ordering method selected
+    System --> User : display the filtered list of properties with no ordering method selected
         deactivate System
+
 
 @enduml
