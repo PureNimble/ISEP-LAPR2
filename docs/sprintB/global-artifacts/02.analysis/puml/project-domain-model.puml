@@ -15,11 +15,6 @@ class UnregisteredUser {
     Cookies
 }
 
-class Contacts {
-    Phone Number
-    Email Address
-}
-
 class State {
     State name
 }
@@ -123,7 +118,7 @@ class Comission {
 UnregisteredUser "1" --- "1" RegisteredUser : can register as >
 UnregisteredUser "*" --- "*" PublishedAnnouncement: sees >
 PublishedAnnouncement "*" --- "1" Agent: publishes <
-PublishedAnnouncement "1" --- "1" Business: has a <
+PublishedAnnouncement "*" --- "1" User: sees <
 RegisteredUser "1" --- "1" Address : can have >
 RegisteredUser "1" --- "1" Contacts : has >
 Comission "1" --- "1" Agent: defines <
@@ -150,7 +145,7 @@ Agent "*" --- "1" Store: has <
 AvailableEquipment "*" --- "1" Residence: contains <
 Property "1" --- "1..30" Photos: has >
 Business "1" --- "1" AnnouncementRequest: gets <
-
+AnnouncementRequest "1" --- "1" Property: advertises >
 
 Comission <|-- ComissionPercentage
 Business <|-- Rent

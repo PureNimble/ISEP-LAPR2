@@ -48,6 +48,10 @@ class ComissionPercentage
 
 class AnnouncementRequest
 
+class TypeOfProperty{
+    Type
+}
+
 class City {
     City name
 }
@@ -92,7 +96,6 @@ class AnnouncementRequest {
 }
 
 class Business {
-    Type of Business
     Total Price
 }
 
@@ -150,6 +153,7 @@ Comission <|-- ComissionPercentage
 Business <|-- Rent
 Property "1" -right-- "1..30" Photos: has >
 User "1" -left-- "1" AnnouncementRequest: makes >
-Business "1" -right-- "1" AnnouncementRequest: gets <
-
+Business "1" -left-- "1" AnnouncementRequest: gets <
+AnnouncementRequest "1" -left-- "1" Property: advertises >
+TypeOfProperty "1" -down-- "1" Property: defines >
 @enduml
