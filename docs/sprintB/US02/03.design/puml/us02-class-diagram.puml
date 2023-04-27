@@ -115,27 +115,7 @@ class Address {
     +getDistrict()
     +getState()
     +Address(state, district, city, street, zipCode)
-
 }
-
-class City {
-    - String cityName
-
-    -getCityName()
-}
-
-class District {
-    - String districtName
-
-    -getDistrictName()
-}
-
-class State {
-    - String stateName
-
-    -getStateName()
-}
-
 
 
 
@@ -200,10 +180,7 @@ AvailableEquipment "*" -right- "1" Residence: contains <
 
 
 
-City "1"-left- "*" Address: is in <
-District "1"-left- "*" City: is in <
-State "1"-left- "*" District: is in <
-User "1" --- "1" Address: has >
+
 UserIdentityRepository ..> User
 User --> Property
 
