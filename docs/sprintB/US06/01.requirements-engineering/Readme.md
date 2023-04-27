@@ -24,16 +24,22 @@ As a system administrator, I want to specify states, districts and cities in the
 
 > **Date:** Wednesday, March 22 of 2023
 > 
-> **Question:** As System Administrator, who wants to specify districts, municipalities and parishes, what specifically he wants to do? Create new locations? Control existent locations? **Asked at 11:06**
+> **Question:** As System Administrator, who wants to specify districts, municipalities and parishes, what specifically he wants to do? Create new locations? Control existent locations?
 > 
 > **Answer:** The System Administrator wants to specify information in the system that can be used/selected to introduce the location. Remember that this is an extra US.
+>
+> **Asked at:** 11:06
+>
 
 
 > **Date:** Thursday, March 23 of 2023
 > 
-> **Question:** In user story 006, it says "As a system administrator, I want to specify districts, municipalities, and parishes in the system." What is the purpose of this function, how does the system administrator intend to use the ability to specify different locations? **Asked at 11:54**
+> **Question:** In user story 006, it says "As a system administrator, I want to specify districts, municipalities, and parishes in the system." What is the purpose of this function, how does the system administrator intend to use the ability to specify different locations?
 >  
 > **Answer:** The goal is to specify in the system information that can be used/selected to fill the location of the property. An example of the store location is: 71 ST. NICHOLAS DRIVE, NORTH POLE, FAIRBANKS NORTH STAR, AK, 99705. For instance, if the information about the existing US states is specified in the system, then the user only selects AK and does not need to write this information.
+>
+> **Asked at:** 11:54
+>
 
 
 ### 1.3. Acceptance Criteria

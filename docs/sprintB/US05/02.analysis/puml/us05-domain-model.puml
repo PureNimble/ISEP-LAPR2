@@ -44,8 +44,8 @@ class Address {
 Store "1" -up-- "1" Address: is located at >
 Store "1" -right-- "1" Contacts: has >
 SystemAdministrator "1" -right-- "*" Store: registers >
-State "1" -left-- "*" District : has >
-District "1" -left-- "*" City : has >
-City "1" -left-- "*" Address : has >
+State "1" -right-- "*" District : has >
+District "1" -right-- "*" City : has >
+Address "*" -right-- "1" State : has >
 
 @enduml

@@ -20,7 +20,7 @@ class City {
 }
 
 class Address {
- -String streetName
+    -String streetName
     -int zipCode
 
     +verifyZipCode()
@@ -38,14 +38,12 @@ class Contacts {
 class SystemAdministrator {
 }
 
-class StoresRepository {
-    +getStores()
-
-}
-
 class Repositories {
     -Repositories()
     +getInstance():Repositories
+    +getStateRepository()
+    +getDistrictRepository()
+    +getCityRepository()
 }
 
 class Store {
@@ -53,16 +51,35 @@ class Store {
     -String designation
 }
 
-class AddStoreController{
-    +AddStoreController(StoresRepository)
-    +getDistrict()
-    +getCity()
-    +getState()
-    +addStore(id, name, address, email address, phone number)
+class RegisterStoreController {
+    +getStates()
+    +getByDiscription(state)
+    +getByDiscription(district)
+    +registerStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
+}
+
+class StateRepository {
+    getState()
+}
+
+class DistrictRepository {
+    getDistrict(state)
+}
+
+class CityRepository {
+    getCity(district)
+}
+
+class RegisterStoreUI {
+
 }
 
 Repositories -> Repositories:instance
-Repositories ---> StoresRepository: storeRepository
+Repositories --> StateRepository: stateRepository
+Repositories --> DistrictRepository: districtRepository
+Repositories --> CityRepository: cityRepository
+RegisterStoreController ..> Repositories : repositories
+RegisterStoreUI ..> RegisterStoreController
 StoresRepository --> "*" Store
 Store <- "*" SystemAdministrator : registers
 Address "1" -> "*"  Store : is located at
@@ -70,7 +87,6 @@ City "1" -right- "*" Address:has >
 District "1" -right- "*" City : has >
 State "1" -right- "*" District : has >
 Contacts "1" -up--> "1" Store: has
-Repositories -left--> StateRepository: storeRepository
 StateRepository -left[hidden].> StateRepository
 
 @enduml
