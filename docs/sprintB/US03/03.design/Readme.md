@@ -58,4 +58,4 @@ This diagram shows the full sequence of interactions between the classes involve
 
 ## 3.3. Class Diagram (CD)
 
-![Class Diagram](svg/us03-Class-diagram.svg)
+![Class Diagram](svg/us03-class-diagram.svg)
