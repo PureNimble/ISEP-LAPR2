@@ -5,7 +5,7 @@
 
 | **_TEA_** (EN)             | **_Description_** (EN)                                                                                                                                                                                                |                                       
 |:---------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Address**                | The unique identifier of a location including the number of the house, the street, the zip code, the city, the county, the state.                                                                                     | 
+| **Address**                | The unique identifier of a location including the number of the house, the street, the zip code, the city, the county and the state.                                                                                  | 
 | **Agency**                 | A business or organization providing a particular service on behalf of another business, person, or group. (Synonym of Store)                                                                                         |
 | **Agent**                  | Person responsible for selling or renting one or more properties.                                                                                                                                                     |
 | **Air Conditioning**       | System for controlling the humidity, ventilation, and temperature in a building.                                                                                                                                      |
