@@ -18,7 +18,7 @@ public class Residence extends Property{
     private int parkingSpaces;
 
     /** The available equipment in the residence */
-    private String availableEquipment;
+    private AvailableEquipment availableEquipment;
 
     /**
 
@@ -30,7 +30,7 @@ public class Residence extends Property{
      @param parkingSpaces The number of parking spaces in the residence.
      @param availableEquipment The available equipment in the residence.
      */
-    public Residence(int area, int distanceFromCityCenter, int numberOfBedrooms, int numberOfBathrooms, int parkingSpaces, String availableEquipment) {
+    public Residence(int area, int distanceFromCityCenter, int numberOfBedrooms, int numberOfBathrooms, int parkingSpaces, AvailableEquipment availableEquipment) {
         super(area, distanceFromCityCenter);
         this.numberOfBedrooms = numberOfBedrooms;
         this.numberOfBathrooms = numberOfBathrooms;

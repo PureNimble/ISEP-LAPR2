@@ -42,7 +42,7 @@ public class House extends Residence {
      @param inhabitableLoft the inhabitable loft of the house
      @param sunExposure the sun exposure of the house
      */
-    public House(int area, int distanceFromCityCenter, int numberOfBedrooms, int numberOfBathrooms, int parkingSpaces, String availableEquipment, String basement, String inhabitableLoft, String sunExposure) {
+    public House(int area, int distanceFromCityCenter, int numberOfBedrooms, int numberOfBathrooms, int parkingSpaces, AvailableEquipment availableEquipment, String basement, String inhabitableLoft, String sunExposure) {
         super(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment);
         this.basement = basement;
         this.inhabitableLoft = inhabitableLoft;
