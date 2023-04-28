@@ -133,7 +133,6 @@ State "1" -right- "*" District : has >
 State "1" -left- "*" Address : has >
 TypeOfProperty "1" -right- "1" Property : defines >
 UnregisteredUser "*" --- "*" PublishedAnnouncement: displays >
-User "1" -down-- "1" Contacts: has >
 Store "1" -right-- "1" Contacts: has >
 Address "1" -left-- "1" User: has <
 User "1" -down-- "1" Store: contacts >
@@ -146,7 +145,6 @@ Agent "1" --- "1" AnnouncementRequest : reviews >
 AnnouncementRequest "1" --- "1" Property: has a >
 AnnouncementRequest  <|---  PublishedAnnouncement
 PublishedAnnouncement "*" --- "1" Agent: publishes <
-PublishedAnnouncement "1" --- "1" Business: has a <
 Business <|--- Rent
 Comission <|-- ComissionPercentage
 User <|-- Employee
