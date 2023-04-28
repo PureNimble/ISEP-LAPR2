@@ -48,15 +48,15 @@ class Store {
 Designation
 }
 
-class Owner {
+class User {
 Name
 Tax number
 }
 
-Owner "1" -down-- "1" Contacts: has >
+User "1" -down-- "1" Contacts: has >
 Store "1" -right-- "1" Contacts: has >
-Address "1" -left-- "1" Owner: has <
-Owner "1" -down-- "1" Store: contacts >
+Address "1" -left-- "1" User: has <
+User "1" -down-- "1" Store: contacts >
 Agent "*" -up-- "1" Store: has <
 
 
@@ -93,7 +93,7 @@ Property <|-down- Residence
 Property "1" -left-- "1..30" Photos: has >
 SunExposure "1" -up-- "*" House: contains <
 Address "1" -up-- "1" Property: has <
-Owner "1" -down-- "*" Property: has >
+User "1" -down-- "*" Property: has >
 AvailableEquipment "*" -up-- "1" Residence: contains <
 
 
@@ -118,7 +118,7 @@ Contract type
 
 Comission "1" -right-- "1" Agent: defines <
 Comission "1" --- "1" Business: contains <
-Owner "1" --- "1" Business: requests >
+User "1" --- "1" Business: requests >
 Property "1" --- "1" Business: has a <
 AnnouncementRequest "1" --- "1" Business: has >
 Agent "1" --- "1" AnnouncementRequest : reviews >

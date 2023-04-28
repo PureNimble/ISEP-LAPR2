@@ -119,6 +119,25 @@ class Address {
 
 
 
+class City {
+     - String cityName
+
+    -getCityName()
+}
+
+class District {
+    - String districtName
+
+    -getDistrictName()
+}
+
+class State {
+   - String stateName
+
+    -getStateName()
+}
+
+
 
 
 class Comission{
@@ -180,7 +199,10 @@ AvailableEquipment "*" -right- "1" Residence: contains <
 
 
 
-
+State "*"-left- "1" Address: has a  <
+City "*"-left- "1" District: has a  <
+District "*"-left- "1" State: has a  <
+User "1" --- "1" Address: has >
 UserIdentityRepository ..> User
 User --> Property
 
