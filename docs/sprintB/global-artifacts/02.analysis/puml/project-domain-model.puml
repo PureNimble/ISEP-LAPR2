@@ -156,7 +156,7 @@ Employee <|-- StoreManager
 Employee <|-- SystemAdministrator
 Store "*" - "1" Address : located at >
 Employee "1" - "*" Store : works in >
-Employee "1" -left "1" Role : has >
+Employee "1" -left "1..4" Role : has >
 Store "1" -- "*" StoreNetworkManager : manages <
 City "1" -up-- "1" SystemAdministrator: adds <
 District "1" -left-- "1" SystemAdministrator: adds <
