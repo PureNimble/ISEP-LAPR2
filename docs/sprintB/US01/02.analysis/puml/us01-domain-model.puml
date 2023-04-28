@@ -20,7 +20,6 @@ Equipment
 
 
 class Business {
-Type of Business
 Total price
 }
 
@@ -29,12 +28,12 @@ class City {
 City Name
 }
 
-/'class Comission {
-Static Value
+class Comission {
+Value
 }
 '/
 
-/'class ComissionPercentage {
+class ComissionPercentage {
 Percentage Value
 }
 '/
@@ -52,7 +51,6 @@ Inhabitable Loft
 
 
 class Photos {
-Description
 URI
 }
 
@@ -62,14 +60,13 @@ Distance from the city center
 }
 
 class PublishedAnnouncement {
-Initial Date
-Final Date
+Contract Type
 
 }
 
 
 class Rent {
-Duration of the contract
+Duration of contract
 }
 
 
@@ -88,31 +85,38 @@ class SunExposure {
 Direction
 }
 
+class TypeOfProperty {
+Type
+}
 
 class UnregisteredUser {
+Cookies
 }
 
 
 
 Business <|-- Rent
 
-'Comission "1" -right- "1" Business : contains <
+Comission "1" -- "1" Business : contains <
+ComissionPercentage  --|> Comission
 
-District "1" --- "*" City : has <
+District "1" -right- "*" City : has >
 
-House "*" --- "1" SunExposure : has <
+House "1" --- "1" SunExposure : contains >
 
 Property <|--- Residence
-Property "*" --- "1" Address : has <
-Property "1" --- "1" Business : has <
-Property "1" -right- "*" Photos : has >
+Property "*" -right- "1" Address : has >
+PublishedAnnouncement "1" -left- "1" Business : has <
+Property "1" -- "1..30" Photos : has >
 PublishedAnnouncement "*" --- "*" Property: advertises >
 
-Residence "*" --- "1" AvailableEquipment : has <
+Residence "1" --- "*" AvailableEquipment : contains >
 Residence <|--- House
 
-State "1" --- "*" District : has <
-State "1" --- "*" Address : has <
+State "1" -right- "*" District : has >
+State "1" -left- "*" Address : has >
+
+TypeOfProperty "1" -right- "1" Property : defines >
 
 UnregisteredUser "*" --- "*" PublishedAnnouncement: displays >
 

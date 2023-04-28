@@ -92,7 +92,7 @@ _Specifies or constraints the system design process. Examples may include: progr
 
 ### Implementation Constraints
 
-_Specifies or constraints the code or construction of a system such
+_Specifies or constraints the code or construction of a system
 such as: mandatory standards/patterns, implementation languages,
 database integrity, resource limits, operating system._
 
