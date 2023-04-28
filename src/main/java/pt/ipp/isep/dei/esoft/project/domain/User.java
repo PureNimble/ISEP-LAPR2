@@ -159,3 +159,4 @@ public class User {
         return new User(this.email, this.passportNumber, this.taxNumber, this.name, this.address, this.phoneNumber);
     }
 }
+
