@@ -1,5 +1,12 @@
 @startuml
-'https://plantuml.com/class-diagram
+
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+'skinparam classAttributeIconSize 0
+'left to right direction
 
 title US004 - Class Diagram
 
@@ -8,19 +15,21 @@ class TypeOfProperty{
 }
 
 class City {
-    - string city
+    - string cityName
+}
+
+class State {
+    - String stateName 
+    + List<District> districts
 }
 
 class District {
-    - string district
+    - String districtName
+    + List<City> cities
 }
 
 class Photos {
     - string uri
-}
-
-class State {
-    - string state
 }
 
 class AvailableEquipment {
@@ -28,7 +37,7 @@ class AvailableEquipment {
 }
 
 class ComissionPercentage {
-    - double value
+    - double percentageValue
 }
 
 
@@ -37,8 +46,21 @@ class Contacts {
     - string emailAdress
 }
 
-class User {
+class User{
+    - String email
+    - int passportNumber
+    - int taxNumber
+    - String name
+    - Adress adress
+    - int phoneNumber
 
+    +User(email,passportNumber,taxNumber,name,phoneNumber)
+    +getPassportNumber()
+    +getTaxNumber()
+    +getEmail()
+    +getAdress()
+    +getName()
+    +getPhoneNumber()
 }
 
 class Rent {
@@ -47,6 +69,8 @@ class Rent {
 
 class AnnouncementRequest {
     - string initialDate
+    +addAnnouncementRequest(announcementRequest)
+    +validateAnnouncementRequest(announcementRequest)
 }
 
 class Business {
@@ -79,7 +103,7 @@ class SunExposure {
 }
 
 class Address {
-    - string street
+    - string streetName
     - string zipCode
 }
 
@@ -89,8 +113,8 @@ class Comission {
 
 class StateRepository {
     +getState()
-    +getDistrictsByDiscription(state)
-    +getCitiesByDiscription(district)
+    +getDistrictByDiscription(state)
+    +getCityByDiscription(district)
 }
 
 class UserRepository {
@@ -102,7 +126,7 @@ class TypeOfPropertyRepository {
 }
 
 class SunExposureRepository {
-    +getSunExposureDirections
+    +getSunExposureDirections()
 }
 
 class BusinessRepository {
@@ -112,7 +136,11 @@ class BusinessRepository {
 class Repositories {
     -Repositories()
     +getInstance():Repositories
+    +getUserRepository()
+    +getTypeOfPropertyRepository()
     +getStateRepository()
+    +getSunExposureRepository()
+    +getBusinessRepository()
 }
 
 class AnnouncementRequestUI {
@@ -121,7 +149,21 @@ class AnnouncementRequestUI {
 
 
 class AnnouncementRequestController {
-    
+    +getAgentList()
+    +getTypeOfPropertyList()
+    +getStates()
+    +getDistrictByDiscription(state)
+    +getCityByDiscription(district)
+    +getSunExposureDirections()
+    +getTypesOfBusinessList()
+    +getDistrictByDescription(state)
+    +getCityByDescription(district)
+    +createAnnouncementRequest(agentName, propertyType, area, \nstate, district, city, street, zipCode, distanceFromCenter, numberOfBedrooms, \nnumberOfBathrooms, numberOfParkingSpaces, availableEquipment,\n basement, loft, sunExposure, photoArray[], typeOfBusiness, requestedPrice, contractDuration)
+    -getUserRepository()
+    -getTypeOfPropertyRepository()
+    -getStateRepository()
+    -getSunExposureRepository()
+    -getBusinessRepository()
 }
 
 AnnouncementRequestUI ..> AnnouncementRequestController
@@ -163,11 +205,5 @@ TypeOfProperty "1" -down-- "1" Property: defines >
 State "1" -left-- "*" District: has >
 District "1" -left-- "*" City: has >
 Address "*" -left-- "1" State: has <
-
-
-
-
-
-
 
 @enduml
