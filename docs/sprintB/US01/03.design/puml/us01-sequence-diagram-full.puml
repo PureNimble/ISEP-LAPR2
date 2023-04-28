@@ -71,7 +71,7 @@ alt List with Properties
     User -> System : asks to filter the list of properties
     activate System
 
-    System --> User : asks to specify the options to filter [type of business (buying or renting), \ntype of property (house, apartment or land) and the number of rooms]
+    System --> User : display the options to filter [type of business (buying or renting), \ntype of property (house, apartment or land) and the number of rooms]
     deactivate System
 
         alt Selects options to filter
@@ -186,20 +186,6 @@ deactivate Controller
 
                     loop
 
-                    'PublishedAnnouncement -> Property : getProperty()
-                    'activate Property
-
-                    'Property -> Property : getPrice()
-
-                    'Property --> PublishedAnnouncement : Property
-                    'deactivate Property
-
-                    'PublishedAnnouncement -> BusinessRepository : getBusinessRepository()
-                    'activate BusinessRepository
-
-                    'BusinessRepository --> PublishedAnnouncement : BusinessRepository
-                    'deactivate BusinessRepository
-
                     PublishedAnnouncement -> Business : getBusiness()
                     activate Business
 
@@ -223,7 +209,7 @@ deactivate Controller
                 deactivate PublishedAnnouncementRepository
 
                 Controller --> System : AnnouncementListByAscendingPrice
-                deactivate Controller
+
 
             else Sorting by Descending Order
 
@@ -264,7 +250,7 @@ deactivate Controller
 
     else In case the selected ordering method is by city name (which can be ascending or descending)
 
-        System -> Controller : sortAnnouncementsByAscendingCityName()
+        System -> Controller : sortAnnouncementsByCityName()
         activate Controller
 
         Controller -> RepositorySingleton : getInstance()
@@ -303,8 +289,6 @@ deactivate Controller
 
                     Address -> City : getCityName()
                     activate City
-                    'Address -> Address : getDistrict()
-                    'Address -> Address : getState()
 
                     City --> Address : cityName
                     deactivate City
@@ -330,7 +314,6 @@ deactivate Controller
                 deactivate PublishedAnnouncementRepository
 
                 Controller --> System : AnnouncementListByAscendingCityName
-                deactivate Controller
 
             else Sorting by Descending Order
 
@@ -350,9 +333,6 @@ deactivate Controller
 
                     Address -> City : getCityName()
                     activate City
-
-                    'Address -> Address : getDistrict()
-                    'Address -> Address : getState()
 
                     City --> Address : cityName
                     deactivate City
@@ -448,7 +428,6 @@ deactivate Controller
                 deactivate PublishedAnnouncementRepository
 
                 Controller --> System : AnnouncementListByAscendingStateName
-                deactivate Controller
 
             else Sorting by Descending Order
 
@@ -515,14 +494,5 @@ else List without Properties
     deactivate System
 
 end
-
-'User -> System : submits data
-'activate System
-
-'System -> Controller : displaysProperties(type of property, type of \nbusiness, number of rooms, price, city, state)
-'activate Controller
-
-'System --> User : displays operation success
-'deactivate System
 
 @enduml
