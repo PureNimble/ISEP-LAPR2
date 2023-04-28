@@ -10,7 +10,7 @@
 |:-------------  |:--------------------- |:---------------------|:--------------------------------------------------------------------------------------------------------------|
 | Step 1 		 |	... interacting with the actor? | RegisterStoreUI         | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
 | 			  		 |	... coordinating the US? | RegisterStoreController | Controller                                                                                                    |
-| 			  		 |	... instantiating a new Store? | Store         | Creator (Rule 1): in the DM Store is created by the Admin.                                                          |
+| 			  		 |	... instantiating a new Store? | SystemAdministrator         | Creator (Rule 1): in the DM Store is created by the Admin.                                                          |
 | 			  		 |							 | repository         | IE: knows the StateRepository                                                                             |
 | 			  		 | ... obtaining the states list?  | StateRepository          | IE: cf. A&A component documentation.                                                                          |
 | 			  		 |							 | State             | IE: knows its own data (e.g. name)                                                                           |
@@ -20,7 +20,7 @@
 | Step 3	 |	...temporarily saving the inputted data? | RegisterStoreUI                 | Pure Fabrication                                                   |
 |  		 |			...knowing the store city?					 |             StateRepository         |         IE: has a list of cities for each district.                                                                                                    |              
 |   		 |   | City                 | IE: knows its own data (e.g. name)                                                                                            | 
-| Step 4			  		 |	... validating all data? | RegisterStoreController         | IE: controller validates the data and coordinates with other classes if necessary.                                                                       | 
+| Step 4			  		 |	... validating all data? | Store         | IE: store validates the necessary data.                                                                       | 
 | Step 5 			  		 |	... saving the registered store?| repository         | E: repository is responsible for storing and retrieving data.                                                                                      | 
 | Step 6  		 |	... informing operation success?| RegisterStoreUI         | IE: UI is responsible for showing messages to the user.                                                                    | 
 
@@ -28,13 +28,12 @@
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * Organization
- * Task
+ * Store
 
 Other software classes (i.e. Pure Fabrication) identified: 
 
- * CreateTaskUI  
- * CreateTaskController
+ * RegisterStoreUI  
+ * RegisterStoreController
 
 
 ## 3.2. Sequence Diagram (SD)
