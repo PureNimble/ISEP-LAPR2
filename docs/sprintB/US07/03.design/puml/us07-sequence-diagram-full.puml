@@ -7,8 +7,8 @@ autonumber
 
 'hide footbox
 actor "Unregistered User" as UnregisteredUser
-participant "UnregisterUserUI" as UnregisterUserUI
-participant "UnregisterUserController" as UnregisterUserController
+participant "UnregisteredUserUI" as UnregisteredUserUI
+participant "UnregisteredUserController" as UnregisteredUserController
 participant "User\n:User" as User
 participant ":repository" as RepositorySingleton
 participant "repository\n:Repository" as repository
@@ -18,85 +18,85 @@ participant "authenticationRepository\n:AuthenticationRepository" as Authenticat
 
 activate UnregisteredUser
 
-    UnregisteredUser -> UnregisterUserUI : asks to create an account
-    activate UnregisterUserUI
-        UnregisterUserUI -> UnregisterUserController : getStates()
-            activate UnregisterUserController
-            UnregisterUserController -> RepositorySingleton : getInstance()
+    UnregisteredUser -> UnregisteredUserUI : asks to create an account
+    activate UnregisteredUserUI
+        UnregisteredUserUI -> UnregisteredUserController : getStates()
+            activate UnregisteredUserController
+            UnregisteredUserController -> RepositorySingleton : getInstance()
             activate RepositorySingleton
 
-                RepositorySingleton --> UnregisterUserController : repositories
+                RepositorySingleton --> UnregisteredUserController : repositories
 
             deactivate RepositorySingleton
 
-            UnregisterUserController -> repository : getStateRepository()
+            UnregisteredUserController -> repository : getStateRepository()
 
             activate repository
 
-                repository --> UnregisterUserController : StateRepository
+                repository --> UnregisteredUserController : StateRepository
 
             deactivate repository
-                UnregisterUserController -> StateRepository : getStates()
+                UnregisteredUserController -> StateRepository : getStates()
                     activate StateRepository
-                        StateRepository --> UnregisterUserController : StatesList
+                        StateRepository --> UnregisteredUserController : StatesList
                     deactivate StateRepository
-                UnregisterUserController --> UnregisterUserUI : StatesList
-            deactivate UnregisterUserController
-        UnregisterUserUI --> UnregisteredUser : requests data (name, passport card number, tax number,\naddress ((asks to select a state) (not mandatory)), email address and phone number)\nand shows list of states
-        deactivate UnregisterUserUI
+                UnregisteredUserController --> UnregisteredUserUI : StatesList
+            deactivate UnregisteredUserController
+        UnregisteredUserUI --> UnregisteredUser : requests data (name, passport card number, tax number,\naddress ((asks to select a state) (not mandatory)), email address and phone number)\nand shows list of states
+        deactivate UnregisteredUserUI
 
     alt Enters Address/State
-    UnregisteredUser -> UnregisterUserUI : types all data and selects state
-        activate UnregisterUserUI
-        UnregisterUserUI --> UnregisterUserUI : keepData(name, passport card number, tax number, \nstate, email address, phone number)
-        UnregisterUserUI --> UnregisterUserController : getDistrictByDescription(state)
-            activate UnregisterUserController
-                            UnregisterUserController -> StateRepository : getDistrictByDescription(state)
+    UnregisteredUser -> UnregisteredUserUI : types all data and selects state
+        activate UnregisteredUserUI
+        UnregisteredUserUI --> UnregisteredUserUI : keepData(name, passport card number, tax number, \nstate, email address, phone number)
+        UnregisteredUserUI --> UnregisteredUserController : getDistrictByDescription(state)
+            activate UnregisteredUserController
+                            UnregisteredUserController -> StateRepository : getDistrictByDescription(state)
                         activate StateRepository
-                        StateRepository --> UnregisterUserController : DistrictsList
+                        StateRepository --> UnregisteredUserController : DistrictsList
                         deactivate StateRepository
-                    UnregisterUserController --> UnregisterUserUI : DistrictsList
-                deactivate UnregisterUserController
-            UnregisterUserUI --> UnregisteredUser : shows list of districts available for that state and asks to select one
-        deactivate UnregisterUserUI
+                    UnregisteredUserController --> UnregisteredUserUI : DistrictsList
+                deactivate UnregisteredUserController
+            UnregisteredUserUI --> UnregisteredUser : shows list of districts available for that state and asks to select one
+        deactivate UnregisteredUserUI
 
-    UnregisteredUser -> UnregisterUserUI : selects district
-        activate UnregisterUserUI
-            UnregisterUserUI --> UnregisterUserUI : keepDistrict(district)
-            UnregisterUserUI --> UnregisterUserController : getCityByDescription(district)
-            activate UnregisterUserController
-                            UnregisterUserController -> StateRepository : getCityByDescription(district)
+    UnregisteredUser -> UnregisteredUserUI : selects district
+        activate UnregisteredUserUI
+            UnregisteredUserUI --> UnregisteredUserUI : keepDistrict(district)
+            UnregisteredUserUI --> UnregisteredUserController : getCityByDescription(district)
+            activate UnregisteredUserController
+                            UnregisteredUserController -> StateRepository : getCityByDescription(district)
                         activate StateRepository
-                        StateRepository --> UnregisterUserController : CitiesList
+                        StateRepository --> UnregisteredUserController : CitiesList
                         deactivate StateRepository
-                    UnregisterUserController --> UnregisterUserUI : CitiesList
-                deactivate UnregisterUserController
-            UnregisterUserUI --> UnregisteredUser : shows list of cities available for that district and asks to select one
-        deactivate UnregisterUserUI
-    UnregisteredUser -> UnregisterUserUI : selects city
-        activate UnregisterUserUI
-        UnregisterUserUI --> UnregisterUserUI : keepCity(city)
-        UnregisterUserUI --> UnregisteredUser : asks data
-    deactivate UnregisterUserUI
-    UnregisteredUser -> UnregisterUserUI : types necessary data (street and zip code)
-        activate UnregisterUserUI
-        UnregisterUserUI --> UnregisterUserUI : keepAddress(street and zip code)
-        deactivate UnregisterUserUI 
+                    UnregisteredUserController --> UnregisteredUserUI : CitiesList
+                deactivate UnregisteredUserController
+            UnregisteredUserUI --> UnregisteredUser : shows list of cities available for that district and asks to select one
+        deactivate UnregisteredUserUI
+    UnregisteredUser -> UnregisteredUserUI : selects city
+        activate UnregisteredUserUI
+        UnregisteredUserUI --> UnregisteredUserUI : keepCity(city)
+        UnregisteredUserUI --> UnregisteredUser : asks data
+    deactivate UnregisteredUserUI
+    UnregisteredUser -> UnregisteredUserUI : types necessary data (street and zip code)
+        activate UnregisteredUserUI
+        UnregisteredUserUI --> UnregisteredUserUI : keepAddress(street and zip code)
+        deactivate UnregisteredUserUI 
 
     else Does nor enter Address/State
-    UnregisteredUser -> UnregisterUserUI : types requested data except the address/state
-        activate UnregisterUserUI
+    UnregisteredUser -> UnregisteredUserUI : types requested data except the address/state
+        activate UnregisteredUserUI
     end
-        UnregisterUserUI --> UnregisteredUser : shows inserted data and asks for confirmation
-    deactivate UnregisterUserUI
+        UnregisteredUserUI --> UnregisteredUser : shows inserted data and asks for confirmation
+    deactivate UnregisteredUserUI
 
-    UnregisteredUser -> UnregisterUserUI : confirms data
-    activate UnregisterUserUI
+    UnregisteredUser -> UnregisteredUserUI : confirms data
+    activate UnregisteredUserUI
 
-        UnregisterUserUI -> UnregisterUserController : registerPerson(name, passport card number, tax number,\nstate, district, city, street, zip code, email address\nand phone number)
-        activate UnregisterUserController
+        UnregisteredUserUI -> UnregisteredUserController : registerPerson(name, passport card number, tax number,\nstate, district, city, street, zip code, email address\nand phone number)
+        activate UnregisteredUserController
 
-        UnregisterUserController -> Person : registerPerson(name, passport card number, tax number,\nstate, district, city, street, zip code, email address\nand phone number)
+        UnregisteredUserController -> Person : registerPerson(name, passport card number, tax number,\nstate, district, city, street, zip code, email address\nand phone number)
         activate Person
                 Person -> Person : addPerson(Person)
                 activate Person
@@ -104,38 +104,38 @@ activate UnregisteredUser
                                 Person -> Person : validatePerson(Person)
                             deactivate Person
                 deactivate Person
-                Person --> UnregisterUserController : Person
+                Person --> UnregisteredUserController : Person
             deactivate Person
-        UnregisterUserController -> RepositorySingleton: getInstance()
+        UnregisteredUserController -> RepositorySingleton: getInstance()
             activate RepositorySingleton
 
-        RepositorySingleton --> UnregisterUserController : repositories
+        RepositorySingleton --> UnregisteredUserController : repositories
         deactivate RepositorySingleton
 
-            UnregisterUserController -> repository: getAuthenticationRepository()
+            UnregisteredUserController -> repository: getAuthenticationRepository()
             activate repository
 
-            repository--> UnregisterUserController:authenticationRepository
+            repository--> UnregisteredUserController:authenticationRepository
             deactivate repository
 
-        UnregisterUserController -> AuthenticationRepository: getpasswordGenerator()
+        UnregisteredUserController -> AuthenticationRepository: getpasswordGenerator()
         activate AuthenticationRepository
 
 
-    AuthenticationRepository --> UnregisterUserController: password
+    AuthenticationRepository --> UnregisteredUserController: password
     deactivate AuthenticationRepository
 
 
-    UnregisterUserController -> AuthenticationRepository: addUser(person and passsword)
+    UnregisteredUserController -> AuthenticationRepository: addUser(person and passsword)
     activate AuthenticationRepository
 
-    AuthenticationRepository --> UnregisterUserController: User
+    AuthenticationRepository --> UnregisteredUserController: User
     deactivate AuthenticationRepository
 
-    UnregisterUserController --> UnregisterUserUI: User
-      deactivate UnregisterUserController
-        UnregisterUserUI --> UnregisteredUser : displays operation success
-        deactivate UnregisterUserUI
+    UnregisteredUserController --> UnregisteredUserUI: User
+      deactivate UnregisteredUserController
+        UnregisteredUserUI --> UnregisteredUser : displays operation success
+        deactivate UnregisteredUserUI
 deactivate UnregisteredUser
 
 @enduml
