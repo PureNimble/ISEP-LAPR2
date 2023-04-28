@@ -23,9 +23,7 @@ class State {
     State name
 }
 
-class RegisteredUser {
-    Username
-    Password
+class Person {
     Name
     Passport Card Number
     Tax Number
@@ -44,11 +42,15 @@ class Address {
     Zip Code
 }
 
-UnregisteredUser "1" -right-- "1" RegisteredUser : can register as >
-State "1" -left-- "*" District : has >
-District "1" -left-- "*" City : has >
-City "1" -left-- "*" Address : has >
-RegisteredUser "1" -right-- "1" Address : can have >
-RegisteredUser "1" -up-- "1" Contacts : has >
-RegisteredUser <|-- User
+class User {
+    Password
+}
+
+UnregisteredUser "1" -right-- "1" User : can register as >
+State "1" -right-- "*" District: has >
+District "1" -right-- "*" City: has >
+Address "*" -right-- "1" State: has <
+Person "1" -right-- "1" Address : can have >
+Person "1" -down-- "1" Contacts : has >
+Person <|-up- User
 @enduml

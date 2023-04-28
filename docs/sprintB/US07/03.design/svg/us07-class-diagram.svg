@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="901px" preserveAspectRatio="none" style="width:1515px;height:901px;background:#FFFFFF;" version="1.1" viewBox="0 0 1515 901" width="1515px" zoomAndPan="magnify"><defs/><g><rect fill="none" height="27.6094" id="_title" style="stroke:none;stroke-width:1.0;" width="157" x="672.25" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="147" x="677.25" y="24.5332">US07 - Class Diagram</text><!--MD5=[60d6b92408f98aed8df94d5c6e04aa63]
+class State--><g id="elem_State"><rect codeLine="12" fill="#F1F1F1" height="83.2188" id="State" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="159" x="400" y="658.6094"/><ellipse cx="458.75" cy="674.6094" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M461.5156,670.4844 Q461.6719,670.2656 461.8594,670.1563 Q462.0469,670.0469 462.2656,670.0469 Q462.6406,670.0469 462.875,670.3125 Q463.1094,670.5625 463.1094,671.1719 L463.1094,672.625 Q463.1094,673.2344 462.875,673.5 Q462.6406,673.7656 462.2656,673.7656 Q461.9219,673.7656 461.7188,673.5625 Q461.5156,673.375 461.4063,672.8594 Q461.3594,672.5 461.1719,672.3125 Q460.8438,671.9375 460.2344,671.7188 Q459.625,671.5 459,671.5 Q458.2344,671.5 457.5938,671.8281 Q456.9688,672.1563 456.4688,672.9063 Q455.9844,673.6563 455.9844,674.6875 L455.9844,675.7813 Q455.9844,677.0156 456.875,677.8438 Q457.7656,678.6563 459.3594,678.6563 Q460.2969,678.6563 460.9531,678.4063 Q461.3438,678.25 461.7656,677.8125 Q462.0313,677.5469 462.1719,677.4688 Q462.3281,677.3906 462.5313,677.3906 Q462.8594,677.3906 463.1094,677.6563 Q463.375,677.9063 463.375,678.25 Q463.375,678.5938 463.0313,679 Q462.5313,679.5781 461.7344,679.9063 Q460.6563,680.3594 459.3594,680.3594 Q457.8438,680.3594 456.6406,679.7344 Q455.6563,679.2344 454.9688,678.1719 Q454.2813,677.0938 454.2813,675.8125 L454.2813,674.6563 Q454.2813,673.3281 454.8906,672.1875 Q455.5156,671.0313 456.6094,670.4219 Q457.7031,669.7969 458.9375,669.7969 Q459.6719,669.7969 460.3125,669.9688 Q460.9688,670.125 461.5156,670.4844 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="33" x="479.25" y="680.3379">State</text><line style="stroke:#181818;stroke-width:0.5;" x1="401" x2="558" y1="690.6094" y2="690.6094"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="408" y="701.9141"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="108" x="420" y="709.1426">String stateName</text><ellipse cx="411" cy="722.5234" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="133" x="420" y="726.752">List&lt;District&gt; districts</text><line style="stroke:#181818;stroke-width:0.5;" x1="401" x2="558" y1="733.8281" y2="733.8281"/></g><!--MD5=[c4d681900983498091bbbc67674786ba]
+class District--><g id="elem_District"><rect codeLine="17" fill="#F1F1F1" height="83.2188" id="District" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="144" x="629.5" y="658.6094"/><ellipse cx="675.75" cy="674.6094" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M678.5156,670.4844 Q678.6719,670.2656 678.8594,670.1563 Q679.0469,670.0469 679.2656,670.0469 Q679.6406,670.0469 679.875,670.3125 Q680.1094,670.5625 680.1094,671.1719 L680.1094,672.625 Q680.1094,673.2344 679.875,673.5 Q679.6406,673.7656 679.2656,673.7656 Q678.9219,673.7656 678.7188,673.5625 Q678.5156,673.375 678.4063,672.8594 Q678.3594,672.5 678.1719,672.3125 Q677.8438,671.9375 677.2344,671.7188 Q676.625,671.5 676,671.5 Q675.2344,671.5 674.5938,671.8281 Q673.9688,672.1563 673.4688,672.9063 Q672.9844,673.6563 672.9844,674.6875 L672.9844,675.7813 Q672.9844,677.0156 673.875,677.8438 Q674.7656,678.6563 676.3594,678.6563 Q677.2969,678.6563 677.9531,678.4063 Q678.3438,678.25 678.7656,677.8125 Q679.0313,677.5469 679.1719,677.4688 Q679.3281,677.3906 679.5313,677.3906 Q679.8594,677.3906 680.1094,677.6563 Q680.375,677.9063 680.375,678.25 Q680.375,678.5938 680.0313,679 Q679.5313,679.5781 678.7344,679.9063 Q677.6563,680.3594 676.3594,680.3594 Q674.8438,680.3594 673.6406,679.7344 Q672.6563,679.2344 671.9688,678.1719 Q671.2813,677.0938 671.2813,675.8125 L671.2813,674.6563 Q671.2813,673.3281 671.8906,672.1875 Q672.5156,671.0313 673.6094,670.4219 Q674.7031,669.7969 675.9375,669.7969 Q676.6719,669.7969 677.3125,669.9688 Q677.9688,670.125 678.5156,670.4844 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43" x="696.25" y="680.3379">District</text><line style="stroke:#181818;stroke-width:0.5;" x1="630.5" x2="772.5" y1="690.6094" y2="690.6094"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="637.5" y="701.9141"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="118" x="649.5" y="709.1426">String districtName</text><ellipse cx="640.5" cy="722.5234" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="98" x="649.5" y="726.752">List&lt;City&gt; cities</text><line style="stroke:#181818;stroke-width:0.5;" x1="630.5" x2="772.5" y1="733.8281" y2="733.8281"/></g><!--MD5=[9466097c40aeafc62ec36a0cc4f3c955]
+class City--><g id="elem_City"><rect codeLine="22" fill="#F1F1F1" height="65.6094" id="City" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="124" x="844.5" y="667.1094"/><ellipse cx="890.25" cy="683.1094" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M893.0156,678.9844 Q893.1719,678.7656 893.3594,678.6563 Q893.5469,678.5469 893.7656,678.5469 Q894.1406,678.5469 894.375,678.8125 Q894.6094,679.0625 894.6094,679.6719 L894.6094,681.125 Q894.6094,681.7344 894.375,682 Q894.1406,682.2656 893.7656,682.2656 Q893.4219,682.2656 893.2188,682.0625 Q893.0156,681.875 892.9063,681.3594 Q892.8594,681 892.6719,680.8125 Q892.3438,680.4375 891.7344,680.2188 Q891.125,680 890.5,680 Q889.7344,680 889.0938,680.3281 Q888.4688,680.6563 887.9688,681.4063 Q887.4844,682.1563 887.4844,683.1875 L887.4844,684.2813 Q887.4844,685.5156 888.375,686.3438 Q889.2656,687.1563 890.8594,687.1563 Q891.7969,687.1563 892.4531,686.9063 Q892.8438,686.75 893.2656,686.3125 Q893.5313,686.0469 893.6719,685.9688 Q893.8281,685.8906 894.0313,685.8906 Q894.3594,685.8906 894.6094,686.1563 Q894.875,686.4063 894.875,686.75 Q894.875,687.0938 894.5313,687.5 Q894.0313,688.0781 893.2344,688.4063 Q892.1563,688.8594 890.8594,688.8594 Q889.3438,688.8594 888.1406,688.2344 Q887.1563,687.7344 886.4688,686.6719 Q885.7813,685.5938 885.7813,684.3125 L885.7813,683.1563 Q885.7813,681.8281 886.3906,680.6875 Q887.0156,679.5313 888.1094,678.9219 Q889.2031,678.2969 890.4375,678.2969 Q891.1719,678.2969 891.8125,678.4688 Q892.4688,678.625 893.0156,678.9844 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="24" x="910.75" y="688.8379">City</text><line style="stroke:#181818;stroke-width:0.5;" x1="845.5" x2="967.5" y1="699.1094" y2="699.1094"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="852.5" y="710.4141"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="98" x="864.5" y="717.6426">String cityName</text><line style="stroke:#181818;stroke-width:0.5;" x1="845.5" x2="967.5" y1="724.7188" y2="724.7188"/></g><!--MD5=[c2fe003dc4f4575e3ea9c643120f69d1]
+class Contacts--><g id="elem_Contacts"><rect codeLine="27" fill="#F1F1F1" height="83.2188" id="Contacts" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="156" x="133.5" y="811.6094"/><ellipse cx="179.25" cy="827.6094" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M182.0156,823.4844 Q182.1719,823.2656 182.3594,823.1563 Q182.5469,823.0469 182.7656,823.0469 Q183.1406,823.0469 183.375,823.3125 Q183.6094,823.5625 183.6094,824.1719 L183.6094,825.625 Q183.6094,826.2344 183.375,826.5 Q183.1406,826.7656 182.7656,826.7656 Q182.4219,826.7656 182.2188,826.5625 Q182.0156,826.375 181.9063,825.8594 Q181.8594,825.5 181.6719,825.3125 Q181.3438,824.9375 180.7344,824.7188 Q180.125,824.5 179.5,824.5 Q178.7344,824.5 178.0938,824.8281 Q177.4688,825.1563 176.9688,825.9063 Q176.4844,826.6563 176.4844,827.6875 L176.4844,828.7813 Q176.4844,830.0156 177.375,830.8438 Q178.2656,831.6563 179.8594,831.6563 Q180.7969,831.6563 181.4531,831.4063 Q181.8438,831.25 182.2656,830.8125 Q182.5313,830.5469 182.6719,830.4688 Q182.8281,830.3906 183.0313,830.3906 Q183.3594,830.3906 183.6094,830.6563 Q183.875,830.9063 183.875,831.25 Q183.875,831.5938 183.5313,832 Q183.0313,832.5781 182.2344,832.9063 Q181.1563,833.3594 179.8594,833.3594 Q178.3438,833.3594 177.1406,832.7344 Q176.1563,832.2344 175.4688,831.1719 Q174.7813,830.0938 174.7813,828.8125 L174.7813,827.6563 Q174.7813,826.3281 175.3906,825.1875 Q176.0156,824.0313 177.1094,823.4219 Q178.2031,822.7969 179.4375,822.7969 Q180.1719,822.7969 180.8125,822.9688 Q181.4688,823.125 182.0156,823.4844 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="56" x="199.75" y="833.3379">Contacts</text><line style="stroke:#181818;stroke-width:0.5;" x1="134.5" x2="288.5" y1="843.6094" y2="843.6094"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="141.5" y="854.9141"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="130" x="153.5" y="862.1426">String phoneNumber</text><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="141.5" y="872.5234"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="74" x="153.5" y="879.752">String email</text><line style="stroke:#181818;stroke-width:0.5;" x1="134.5" x2="288.5" y1="886.8281" y2="886.8281"/></g><!--MD5=[0f39e4cb6f03951afbf6d14bd2505654]
+class Address--><g id="elem_Address"><rect codeLine="32" fill="#F1F1F1" height="83.2188" id="Address" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="139" x="504" y="391.6094"/><ellipse cx="543.75" cy="407.6094" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M546.5156,403.4844 Q546.6719,403.2656 546.8594,403.1563 Q547.0469,403.0469 547.2656,403.0469 Q547.6406,403.0469 547.875,403.3125 Q548.1094,403.5625 548.1094,404.1719 L548.1094,405.625 Q548.1094,406.2344 547.875,406.5 Q547.6406,406.7656 547.2656,406.7656 Q546.9219,406.7656 546.7188,406.5625 Q546.5156,406.375 546.4063,405.8594 Q546.3594,405.5 546.1719,405.3125 Q545.8438,404.9375 545.2344,404.7188 Q544.625,404.5 544,404.5 Q543.2344,404.5 542.5938,404.8281 Q541.9688,405.1563 541.4688,405.9063 Q540.9844,406.6563 540.9844,407.6875 L540.9844,408.7813 Q540.9844,410.0156 541.875,410.8438 Q542.7656,411.6563 544.3594,411.6563 Q545.2969,411.6563 545.9531,411.4063 Q546.3438,411.25 546.7656,410.8125 Q547.0313,410.5469 547.1719,410.4688 Q547.3281,410.3906 547.5313,410.3906 Q547.8594,410.3906 548.1094,410.6563 Q548.375,410.9063 548.375,411.25 Q548.375,411.5938 548.0313,412 Q547.5313,412.5781 546.7344,412.9063 Q545.6563,413.3594 544.3594,413.3594 Q542.8438,413.3594 541.6406,412.7344 Q540.6563,412.2344 539.9688,411.1719 Q539.2813,410.0938 539.2813,408.8125 L539.2813,407.6563 Q539.2813,406.3281 539.8906,405.1875 Q540.5156,404.0313 541.6094,403.4219 Q542.7031,402.7969 543.9375,402.7969 Q544.6719,402.7969 545.3125,402.9688 Q545.9688,403.125 546.5156,403.4844 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="52" x="563.25" y="413.3379">Address</text><line style="stroke:#181818;stroke-width:0.5;" x1="505" x2="642" y1="423.6094" y2="423.6094"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="512" y="434.9141"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="113" x="524" y="442.1426">String streetName</text><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="512" y="452.5234"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="70" x="524" y="459.752">int zipCode</text><line style="stroke:#181818;stroke-width:0.5;" x1="505" x2="642" y1="466.8281" y2="466.8281"/></g><!--MD5=[35ae6afabc28cfceb76ccc01ee55d1fe]
+class Repositories--><g id="elem_Repositories"><rect codeLine="37" fill="#F1F1F1" height="100.8281" id="Repositories" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="192" x="771.5" y="382.6094"/><ellipse cx="823.75" cy="398.6094" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M826.5156,394.4844 Q826.6719,394.2656 826.8594,394.1563 Q827.0469,394.0469 827.2656,394.0469 Q827.6406,394.0469 827.875,394.3125 Q828.1094,394.5625 828.1094,395.1719 L828.1094,396.625 Q828.1094,397.2344 827.875,397.5 Q827.6406,397.7656 827.2656,397.7656 Q826.9219,397.7656 826.7188,397.5625 Q826.5156,397.375 826.4063,396.8594 Q826.3594,396.5 826.1719,396.3125 Q825.8438,395.9375 825.2344,395.7188 Q824.625,395.5 824,395.5 Q823.2344,395.5 822.5938,395.8281 Q821.9688,396.1563 821.4688,396.9063 Q820.9844,397.6563 820.9844,398.6875 L820.9844,399.7813 Q820.9844,401.0156 821.875,401.8438 Q822.7656,402.6563 824.3594,402.6563 Q825.2969,402.6563 825.9531,402.4063 Q826.3438,402.25 826.7656,401.8125 Q827.0313,401.5469 827.1719,401.4688 Q827.3281,401.3906 827.5313,401.3906 Q827.8594,401.3906 828.1094,401.6563 Q828.375,401.9063 828.375,402.25 Q828.375,402.5938 828.0313,403 Q827.5313,403.5781 826.7344,403.9063 Q825.6563,404.3594 824.3594,404.3594 Q822.8438,404.3594 821.6406,403.7344 Q820.6563,403.2344 819.9688,402.1719 Q819.2813,401.0938 819.2813,399.8125 L819.2813,398.6563 Q819.2813,397.3281 819.8906,396.1875 Q820.5156,395.0313 821.6094,394.4219 Q822.7031,393.7969 823.9375,393.7969 Q824.6719,393.7969 825.3125,393.9688 Q825.9688,394.125 826.5156,394.4844 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="79" x="844.25" y="404.3379">Repositories</text><line style="stroke:#181818;stroke-width:0.5;" x1="772.5" x2="962.5" y1="414.6094" y2="414.6094"/><line style="stroke:#181818;stroke-width:0.5;" x1="772.5" x2="962.5" y1="422.6094" y2="422.6094"/><rect fill="#F24D5C" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="779.5" y="433.9141"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="89" x="791.5" y="441.1426">Repositories()</text><ellipse cx="782.5" cy="454.5234" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="166" x="791.5" y="458.752">getInstance():Repositories</text><ellipse cx="782.5" cy="472.1328" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="131" x="791.5" y="476.3613">getStateRepository()</text></g><!--MD5=[0d22722e7442ab8978c3a335bed2d7e4]
+class StateRepository--><g id="elem_StateRepository"><rect codeLine="43" fill="#F1F1F1" height="100.8281" id="StateRepository" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="217" x="1004" y="649.6094"/><ellipse cx="1057.75" cy="665.6094" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M1060.5156,661.4844 Q1060.6719,661.2656 1060.8594,661.1563 Q1061.0469,661.0469 1061.2656,661.0469 Q1061.6406,661.0469 1061.875,661.3125 Q1062.1094,661.5625 1062.1094,662.1719 L1062.1094,663.625 Q1062.1094,664.2344 1061.875,664.5 Q1061.6406,664.7656 1061.2656,664.7656 Q1060.9219,664.7656 1060.7188,664.5625 Q1060.5156,664.375 1060.4063,663.8594 Q1060.3594,663.5 1060.1719,663.3125 Q1059.8438,662.9375 1059.2344,662.7188 Q1058.625,662.5 1058,662.5 Q1057.2344,662.5 1056.5938,662.8281 Q1055.9688,663.1563 1055.4688,663.9063 Q1054.9844,664.6563 1054.9844,665.6875 L1054.9844,666.7813 Q1054.9844,668.0156 1055.875,668.8438 Q1056.7656,669.6563 1058.3594,669.6563 Q1059.2969,669.6563 1059.9531,669.4063 Q1060.3438,669.25 1060.7656,668.8125 Q1061.0313,668.5469 1061.1719,668.4688 Q1061.3281,668.3906 1061.5313,668.3906 Q1061.8594,668.3906 1062.1094,668.6563 Q1062.375,668.9063 1062.375,669.25 Q1062.375,669.5938 1062.0313,670 Q1061.5313,670.5781 1060.7344,670.9063 Q1059.6563,671.3594 1058.3594,671.3594 Q1056.8438,671.3594 1055.6406,670.7344 Q1054.6563,670.2344 1053.9688,669.1719 Q1053.2813,668.0938 1053.2813,666.8125 L1053.2813,665.6563 Q1053.2813,664.3281 1053.8906,663.1875 Q1054.5156,662.0313 1055.6094,661.4219 Q1056.7031,660.7969 1057.9375,660.7969 Q1058.6719,660.7969 1059.3125,660.9688 Q1059.9688,661.125 1060.5156,661.4844 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="101" x="1078.25" y="671.3379">StateRepository</text><line style="stroke:#181818;stroke-width:0.5;" x1="1005" x2="1220" y1="681.6094" y2="681.6094"/><line style="stroke:#181818;stroke-width:0.5;" x1="1005" x2="1220" y1="689.6094" y2="689.6094"/><ellipse cx="1015" cy="703.9141" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="70" x="1024" y="708.1426">getStates()</text><ellipse cx="1015" cy="721.5234" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="191" x="1024" y="725.752">getDistrictByDescription(state)</text><ellipse cx="1015" cy="739.1328" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="182" x="1024" y="743.3613">getCityByDescription(district)</text></g><!--MD5=[1afa0bbc24b48f9472bec9a0c235e9e2]
+class AuthenticationRepository--><g id="elem_AuthenticationRepository"><rect codeLine="49" fill="#F1F1F1" height="206.4844" id="AuthenticationRepository" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="266" x="1242.5" y="330.1094"/><ellipse cx="1292.25" cy="346.1094" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M1295.0156,341.9844 Q1295.1719,341.7656 1295.3594,341.6563 Q1295.5469,341.5469 1295.7656,341.5469 Q1296.1406,341.5469 1296.375,341.8125 Q1296.6094,342.0625 1296.6094,342.6719 L1296.6094,344.125 Q1296.6094,344.7344 1296.375,345 Q1296.1406,345.2656 1295.7656,345.2656 Q1295.4219,345.2656 1295.2188,345.0625 Q1295.0156,344.875 1294.9063,344.3594 Q1294.8594,344 1294.6719,343.8125 Q1294.3438,343.4375 1293.7344,343.2188 Q1293.125,343 1292.5,343 Q1291.7344,343 1291.0938,343.3281 Q1290.4688,343.6563 1289.9688,344.4063 Q1289.4844,345.1563 1289.4844,346.1875 L1289.4844,347.2813 Q1289.4844,348.5156 1290.375,349.3438 Q1291.2656,350.1563 1292.8594,350.1563 Q1293.7969,350.1563 1294.4531,349.9063 Q1294.8438,349.75 1295.2656,349.3125 Q1295.5313,349.0469 1295.6719,348.9688 Q1295.8281,348.8906 1296.0313,348.8906 Q1296.3594,348.8906 1296.6094,349.1563 Q1296.875,349.4063 1296.875,349.75 Q1296.875,350.0938 1296.5313,350.5 Q1296.0313,351.0781 1295.2344,351.4063 Q1294.1563,351.8594 1292.8594,351.8594 Q1291.3438,351.8594 1290.1406,351.2344 Q1289.1563,350.7344 1288.4688,349.6719 Q1287.7813,348.5938 1287.7813,347.3125 L1287.7813,346.1563 Q1287.7813,344.8281 1288.3906,343.6875 Q1289.0156,342.5313 1290.1094,341.9219 Q1291.2031,341.2969 1292.4375,341.2969 Q1293.1719,341.2969 1293.8125,341.4688 Q1294.4688,341.625 1295.0156,341.9844 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="158" x="1312.75" y="351.8379">AuthenticationRepository</text><line style="stroke:#181818;stroke-width:0.5;" x1="1243.5" x2="1507.5" y1="362.1094" y2="362.1094"/><line style="stroke:#181818;stroke-width:0.5;" x1="1243.5" x2="1507.5" y1="370.1094" y2="370.1094"/><ellipse cx="1253.5" cy="384.4141" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="123" x="1262.5" y="388.6426">doLogin(email,pwd)</text><ellipse cx="1253.5" cy="402.0234" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="70" x="1262.5" y="406.252">doLogout()</text><ellipse cx="1253.5" cy="419.6328" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="128" x="1262.5" y="423.8613">getCurrentSession()</text><ellipse cx="1253.5" cy="437.2422" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92" x="1262.5" y="441.4707">addUserRole()</text><ellipse cx="1253.5" cy="454.8516" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="120" x="1262.5" y="459.0801">addUserWithRole()</text><ellipse cx="1253.5" cy="472.4609" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="135" x="1262.5" y="476.6895">passwordGenerator()</text><rect fill="#F24D5C" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="1250.5" y="487.0703"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="172" x="1262.5" y="494.2988">shuffleString(input,random)</text><rect fill="#F24D5C" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="1250.5" y="504.6797"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="240" x="1262.5" y="511.9082">randomCharacter(characters,random)</text><ellipse cx="1253.5" cy="525.2891" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="59" x="1262.5" y="529.5176">getUser()</text></g><!--MD5=[0d12243de689bfebc51792ff4d7c27b5]
+class RegisterStoreController--><g id="elem_RegisterStoreController"><rect codeLine="61" fill="#F1F1F1" height="171.2656" id="RegisterStoreController" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="388" x="856.5" y="45.6094"/><ellipse cx="971.75" cy="61.6094" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M974.5156,57.4844 Q974.6719,57.2656 974.8594,57.1563 Q975.0469,57.0469 975.2656,57.0469 Q975.6406,57.0469 975.875,57.3125 Q976.1094,57.5625 976.1094,58.1719 L976.1094,59.625 Q976.1094,60.2344 975.875,60.5 Q975.6406,60.7656 975.2656,60.7656 Q974.9219,60.7656 974.7188,60.5625 Q974.5156,60.375 974.4063,59.8594 Q974.3594,59.5 974.1719,59.3125 Q973.8438,58.9375 973.2344,58.7188 Q972.625,58.5 972,58.5 Q971.2344,58.5 970.5938,58.8281 Q969.9688,59.1563 969.4688,59.9063 Q968.9844,60.6563 968.9844,61.6875 L968.9844,62.7813 Q968.9844,64.0156 969.875,64.8438 Q970.7656,65.6563 972.3594,65.6563 Q973.2969,65.6563 973.9531,65.4063 Q974.3438,65.25 974.7656,64.8125 Q975.0313,64.5469 975.1719,64.4688 Q975.3281,64.3906 975.5313,64.3906 Q975.8594,64.3906 976.1094,64.6563 Q976.375,64.9063 976.375,65.25 Q976.375,65.5938 976.0313,66 Q975.5313,66.5781 974.7344,66.9063 Q973.6563,67.3594 972.3594,67.3594 Q970.8438,67.3594 969.6406,66.7344 Q968.6563,66.2344 967.9688,65.1719 Q967.2813,64.0938 967.2813,62.8125 L967.2813,61.6563 Q967.2813,60.3281 967.8906,59.1875 Q968.5156,58.0313 969.6094,57.4219 Q970.7031,56.7969 971.9375,56.7969 Q972.6719,56.7969 973.3125,56.9688 Q973.9688,57.125 974.5156,57.4844 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="149" x="992.25" y="67.3379">RegisterStoreController</text><line style="stroke:#181818;stroke-width:0.5;" x1="857.5" x2="1243.5" y1="77.6094" y2="77.6094"/><line style="stroke:#181818;stroke-width:0.5;" x1="857.5" x2="1243.5" y1="85.6094" y2="85.6094"/><ellipse cx="867.5" cy="99.9141" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="70" x="876.5" y="104.1426">getStates()</text><ellipse cx="867.5" cy="117.5234" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="191" x="876.5" y="121.752">getDistrictByDescription(state)</text><ellipse cx="867.5" cy="135.1328" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="182" x="876.5" y="139.3613">getCityByDescription(district)</text><ellipse cx="867.5" cy="170.3516" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="362" x="876.5" y="156.9707">registerPerson(name, passport card number, tax number,</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="309" x="876.5" y="174.5801">state, district, city, street, zip code, email address</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="125" x="876.5" y="192.1895">and phone number)</text><rect fill="#F24D5C" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="864.5" y="202.5703"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="131" x="876.5" y="209.7988">getStateRepository()</text></g><!--MD5=[09ce52be0ee7de43c61b6e2d59bf108b]
+class Person--><g id="elem_Person"><rect codeLine="69" fill="#F1F1F1" height="276.9219" id="Person" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="409" x="7" y="294.6094"/><ellipse cx="184.75" cy="310.6094" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M187.5156,306.4844 Q187.6719,306.2656 187.8594,306.1563 Q188.0469,306.0469 188.2656,306.0469 Q188.6406,306.0469 188.875,306.3125 Q189.1094,306.5625 189.1094,307.1719 L189.1094,308.625 Q189.1094,309.2344 188.875,309.5 Q188.6406,309.7656 188.2656,309.7656 Q187.9219,309.7656 187.7188,309.5625 Q187.5156,309.375 187.4063,308.8594 Q187.3594,308.5 187.1719,308.3125 Q186.8438,307.9375 186.2344,307.7188 Q185.625,307.5 185,307.5 Q184.2344,307.5 183.5938,307.8281 Q182.9688,308.1563 182.4688,308.9063 Q181.9844,309.6563 181.9844,310.6875 L181.9844,311.7813 Q181.9844,313.0156 182.875,313.8438 Q183.7656,314.6563 185.3594,314.6563 Q186.2969,314.6563 186.9531,314.4063 Q187.3438,314.25 187.7656,313.8125 Q188.0313,313.5469 188.1719,313.4688 Q188.3281,313.3906 188.5313,313.3906 Q188.8594,313.3906 189.1094,313.6563 Q189.375,313.9063 189.375,314.25 Q189.375,314.5938 189.0313,315 Q188.5313,315.5781 187.7344,315.9063 Q186.6563,316.3594 185.3594,316.3594 Q183.8438,316.3594 182.6406,315.7344 Q181.6563,315.2344 180.9688,314.1719 Q180.2813,313.0938 180.2813,311.8125 L180.2813,310.6563 Q180.2813,309.3281 180.8906,308.1875 Q181.5156,307.0313 182.6094,306.4219 Q183.7031,305.7969 184.9375,305.7969 Q185.6719,305.7969 186.3125,305.9688 Q186.9688,306.125 187.5156,306.4844 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="45" x="205.25" y="316.3379">Person</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="415" y1="326.6094" y2="326.6094"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="15" y="337.9141"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="74" x="27" y="345.1426">String email</text><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="15" y="355.5234"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="123" x="27" y="362.752">int passportNumber</text><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="15" y="373.1328"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="86" x="27" y="380.3613">int taxNumber</text><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="15" y="390.7422"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="76" x="27" y="397.9707">String name</text><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="15" y="408.3516"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="91" x="27" y="415.5801">Adress adress</text><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="15" y="425.9609"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="108" x="27" y="433.1895">int phoneNumber</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="415" y1="440.2656" y2="440.2656"/><ellipse cx="18" cy="454.5703" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="383" x="27" y="458.7988">User(email,passportNumber,taxNumber,name,phoneNumber)</text><ellipse cx="18" cy="472.1797" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="135" x="27" y="476.4082">getPassportNumber()</text><ellipse cx="18" cy="489.7891" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="102" x="27" y="494.0176">getTaxNumber()</text><ellipse cx="18" cy="507.3984" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="64" x="27" y="511.627">getEmail()</text><ellipse cx="18" cy="525.0078" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="74" x="27" y="529.2363">getAdress()</text><ellipse cx="18" cy="542.6172" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="66" x="27" y="546.8457">getName()</text><ellipse cx="18" cy="560.2266" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="120" x="27" y="564.4551">getPhoneNumber()</text></g><!--MD5=[fff48e9c385a875a0ec7f6b68c295159]
+link Repositories to Repositories--><g id="link_Repositories_Repositories"><path codeLine="86" d="M963.75,401.2194 C983.95,404.5194 998.5,415.1494 998.5,433.1094 C998.5,449.5294 986.34,459.8194 968.83,463.9894 " fill="none" id="Repositories-to-Repositories" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="963.75,464.9994,973.3609,467.1513,968.6524,464.0161,971.7876,459.3075,963.75,464.9994" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="49" x="1004.5" y="438.6045">instance</text></g><!--MD5=[8d646d702199f52dfdc991bebcafce12]
+link Repositories to StateRepository--><g id="link_Repositories_StateRepository"><path codeLine="87" d="M901.27,483.8194 C938.59,538.7694 993.5,619.6094 993.5,619.6094 C993.5,619.6094 1011.75,631.7994 1033.96,646.6394 " fill="none" id="Repositories-to-StateRepository" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="1038.15,649.4394,1032.8803,641.1189,1033.9897,646.6659,1028.4427,647.7753,1038.15,649.4394" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="91" x="994.5" y="616.1045">stateRepository</text></g><!--MD5=[a801e6c0c94b341bb41f71580d9bc3c3]
+link RegisterStoreController to Repositories--><g id="link_RegisterStoreController_Repositories"><path codeLine="88" d="M998.79,216.8794 C967.26,268.5694 927.89,333.1094 900.53,377.9694 " fill="none" id="RegisterStoreController-to-Repositories" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="897.92,382.2494,906.0247,376.6534,900.5261,377.9823,899.1973,372.4837,897.92,382.2494" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="67" x="975.5" y="261.1045">repositories</text></g><!--MD5=[677725f41463730e0ac0569516128c56]
+link RegisterStoreController to StateRepository--><g id="link_RegisterStoreController_StateRepository"><path codeLine="89" d="M1059.75,216.6894 C1072.63,334.5194 1095.62,544.7494 1106.49,644.1494 " fill="none" id="RegisterStoreController-to-StateRepository" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="1107.06,649.3794,1110.0594,639.9984,1106.5172,644.4089,1102.1067,640.8668,1107.06,649.3794" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="93" x="1098.5" y="438.6045">StateRepository</text></g><!--MD5=[d23b63398beb4151f42007db0e97ded7]
+link RegisterStoreController to AuthenticationRepository--><g id="link_RegisterStoreController_AuthenticationRepository"><path codeLine="90" d="M1142.33,216.8794 C1179.24,250.9494 1222.2,290.5994 1261.11,326.5194 " fill="none" id="RegisterStoreController-to-AuthenticationRepository" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="1264.86,329.9794,1260.9745,320.9294,1261.1915,326.5821,1255.5388,326.799,1264.86,329.9794" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="145" x="1194.5" y="261.1045">AuthenticationRepository</text></g><!--MD5=[74882f42baa9a008b7039c05b0b2be7e]
+link RegisterStoreController to Person--><g id="link_RegisterStoreController_Person"><path codeLine="91" d="M856.4,188.0294 C693.26,235.0394 486.5,294.6094 486.5,294.6094 C486.5,294.6094 458.67,308.5294 420.72,327.4994 " fill="none" id="RegisterStoreController-to-Person" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="416.04,329.8394,425.8793,329.4047,420.515,327.609,422.3107,322.2448,416.04,329.8394" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="41" x="638.5" y="261.1045">Person</text></g><!--MD5=[b73c16dcbb300cfcfb8ac7b75475c389]
+link Person to Address--><g id="link_Person_Address"><path codeLine="92" d="M416.04,433.1094 C445.5,433.1094 474.11,433.1094 498.68,433.1094 " fill="none" id="Person-to-Address" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="503.86,433.1094,494.86,429.1094,498.86,433.1094,494.86,437.1094,503.86,433.1094" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="51" x="434.5" y="426.6045">can have</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="424.1666" y="430.3004">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="490.9697" y="429.7368">*</text></g><!--MD5=[129972a5e6cdb99fe3ca661a27424b30]
+link Address to State--><g id="link_Address_State"><path codeLine="93" d="M559.12,474.6494 C541.43,524.5194 511.57,608.6994 493.88,658.5794 " fill="none" id="Address-State" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#000000" points="519.1715,606.0728,513.3779,613.6151,518.9176,615.58,519.1715,606.0728" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="21" x="526.5" y="616.1045">has</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="551.3243" y="496.3606">*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="488.682" y="647.8821">1</text></g><!--MD5=[cd1097b4d6b53e13878caf984aed34c4]
+link District to City--><g id="link_District_City"><path codeLine="94" d="M773.78,700.1094 C796.83,700.1094 822.13,700.1094 844.39,700.1094 " fill="none" id="District-City" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#000000" points="801,688.2852,791.9549,685.3462,791.9549,691.2241,801,688.2852" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="21" x="805" y="693.6045">has</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="781.5948" y="696.7863">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="831.5157" y="696.6747">*</text></g><!--MD5=[9507060b9b8dd58465f9ccdeabbe9f6e]
+link State to District--><g id="link_State_District"><path codeLine="95" d="M559.02,700.1094 C581.91,700.1094 606.75,700.1094 629.18,700.1094 " fill="none" id="State-District" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#000000" points="586.25,688.2852,577.2049,685.3462,577.2049,691.2241,586.25,688.2852" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="21" x="590.25" y="693.6045">has</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="566.9328" y="696.8483">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="616.4642" y="696.7863">*</text></g><!--MD5=[9d7d0566f40d376779d681fa10ac6a5b]
+reverse link Person to Contacts--><g id="link_Person_Contacts"><path codeLine="96" d="M211.5,577.2494 C211.5,659.6494 211.5,757.2594 211.5,811.1694 " fill="none" id="Person-backto-Contacts" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="211.5,571.8494,207.5,580.8494,211.5,576.8494,215.5,580.8494,211.5,571.8494" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="21" x="212.5" y="705.6045">has</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="204.3195" y="592.9219">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="203.9422" y="800.7159">1</text></g><!--MD5=[f5f702f69d9f388e2218b39c08cd33bd]
+@startuml
+
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+'skinparam classAttributeIconSize 0
+'left to right direction
+
+title US07 - Class Diagram
+
+class State {
+    - String stateName
+    + List<District> districts
+}
+
+class District {
+    - String districtName
+    + List<City> cities
+}
+
+class City {
+    - String cityName
+
+}
+
+class Contacts {
+    -String phoneNumber
+    -String email
+}
+
+class Address {
+    - String streetName
+    - int zipCode
+}
+
+class Repositories {
+    -Repositories()
+    +getInstance():Repositories
+    +getStateRepository()
+}
+
+class StateRepository {
+    +getStates()
+    +getDistrictByDescription(state)
+    +getCityByDescription(district)
+}
+
+class AuthenticationRepository{
+    +doLogin(email,pwd)
+    +doLogout()
+    +getCurrentSession()
+    +addUserRole()
+    +addUserWithRole()
+    +passwordGenerator()
+    -shuffleString(input,random)
+    -randomCharacter(characters,random)
++getUser()
+}
+
+class RegisterStoreController {
+    + getStates()
+    + getDistrictByDescription(state)
+    + getCityByDescription(district)
+    + registerPerson(name, passport card number, tax number,\nstate, district, city, street, zip code, email address\nand phone number)
+    - getStateRepository()
+}
+
+class Person {
+    - String email
+    - int passportNumber
+    - int taxNumber
+    - String name
+    - Adress adress
+    - int phoneNumber
+
+    +User(email,passportNumber,taxNumber,name,phoneNumber)
+    +getPassportNumber()
+    +getTaxNumber()
+    +getEmail()
+    +getAdress()
+    +getName()
+    +getPhoneNumber()
+}
+
+Repositories -> Repositories:instance
+Repositories - -> StateRepository: stateRepository
+RegisterStoreController ..> Repositories : repositories
+RegisterStoreController ..> StateRepository : StateRepository
+RegisterStoreController ..> AuthenticationRepository : AuthenticationRepository
+RegisterStoreController ..> Person : Person
+Person "1" -right-> "*"  Address : can have
+State "1" -up- "*" Address: has >
+District "1" -right- "*" City : has >
+State "1" -right- "*" District : has >
+Contacts "1" -up- -> "1" Person: has
+
+@enduml
+
+@startuml
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+
+title US07 - Class Diagram
+
+class State {
+    - String stateName
+    + List<District> districts
+}
+
+class District {
+    - String districtName
+    + List<City> cities
+}
+
+class City {
+    - String cityName
+
+}
+
+class Contacts {
+    -String phoneNumber
+    -String email
+}
+
+class Address {
+    - String streetName
+    - int zipCode
+}
+
+class Repositories {
+    -Repositories()
+    +getInstance():Repositories
+    +getStateRepository()
+}
+
+class StateRepository {
+    +getStates()
+    +getDistrictByDescription(state)
+    +getCityByDescription(district)
+}
+
+class AuthenticationRepository{
+    +doLogin(email,pwd)
+    +doLogout()
+    +getCurrentSession()
+    +addUserRole()
+    +addUserWithRole()
+    +passwordGenerator()
+    -shuffleString(input,random)
+    -randomCharacter(characters,random)
++getUser()
+}
+
+class RegisterStoreController {
+    + getStates()
+    + getDistrictByDescription(state)
+    + getCityByDescription(district)
+    + registerPerson(name, passport card number, tax number,\nstate, district, city, street, zip code, email address\nand phone number)
+    - getStateRepository()
+}
+
+class Person {
+    - String email
+    - int passportNumber
+    - int taxNumber
+    - String name
+    - Adress adress
+    - int phoneNumber
+
+    +User(email,passportNumber,taxNumber,name,phoneNumber)
+    +getPassportNumber()
+    +getTaxNumber()
+    +getEmail()
+    +getAdress()
+    +getName()
+    +getPhoneNumber()
+}
+
+Repositories -> Repositories:instance
+Repositories - -> StateRepository: stateRepository
+RegisterStoreController ..> Repositories : repositories
+RegisterStoreController ..> StateRepository : StateRepository
+RegisterStoreController ..> AuthenticationRepository : AuthenticationRepository
+RegisterStoreController ..> Person : Person
+Person "1" -right-> "*"  Address : can have
+State "1" -up- "*" Address: has >
+District "1" -right- "*" City : has >
+State "1" -right- "*" District : has >
+Contacts "1" -up- -> "1" Person: has
+
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 18:01:30 WEST 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>

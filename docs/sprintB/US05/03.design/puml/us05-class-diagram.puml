@@ -8,13 +8,16 @@ skinparam linetype polyline
 'skinparam classAttributeIconSize 0
 'left to right direction
 
+title US05 - Class Diagram
+
 class State {
     - String stateName
+    + List<District> districts
 }
 
 class District {
     - String districtName
-
+    + List<City> cities
 }
 
 class City {
@@ -41,8 +44,8 @@ class Repositories {
 class Store {
     -int id
     -String designation
-    +addStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
-    +validateStore()
+    +addStore(store)
+    +validateStore(store)
 }
 
 class RegisterStoreController {
