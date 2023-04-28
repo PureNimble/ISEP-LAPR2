@@ -184,27 +184,7 @@ If the client does not select the type of business, the type of property and the
 
 ### 1.6. System Sequence Diagram (SSD)
 
-#### Alternative One
-
-![System Sequence Diagram](svg/us01-system-sequence-diagram-alternative-one.svg)
-
-#### Alternative Two
-
-![System Sequence Diagram](svg/us01-system-sequence-diagram-alternative-two.svg)
-
-#### Alternative Three
-
-![System Sequence Diagram](svg/us01-system-sequence-diagram-alternative-three.svg)
-
-#### Alternative Four
-
-![System Sequence Diagram](svg/us01-system-sequence-diagram-alternative-four.svg)
-
-#### Alternative Five
-
-![System Sequence Diagram](svg/us01-system-sequence-diagram-alternative-five.svg)
-
-#### Alternative Full
+#### Full
 
 ![System Sequence Diagram](svg/us01-system-sequence-diagram-full.svg)
 
