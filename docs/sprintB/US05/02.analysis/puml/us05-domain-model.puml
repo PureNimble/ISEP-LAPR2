@@ -46,6 +46,6 @@ Store "1" -right-- "1" Contacts: has >
 SystemAdministrator "1" -right-- "*" Store: registers >
 State "1" -right-- "*" District : has >
 District "1" -right-- "*" City : has >
-Address "*" -right-- "1" State : has >
+Address "*" -right-- "1" State : has <
 
 @enduml

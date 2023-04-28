@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="276px" preserveAspectRatio="none" style="width:636px;height:276px;background:#FFFFFF;" version="1.1" viewBox="0 0 636 276" width="636px" zoomAndPan="magnify"><defs/><g><!--MD5=[60d6b92408f98aed8df94d5c6e04aa63]
+class State--><g id="elem_State"><rect codeLine="10" fill="#F1F1F1" height="83.2188" id="State" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="160" x="7" y="186"/><ellipse cx="66.25" cy="202" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M69.0156,197.875 Q69.1719,197.6563 69.3594,197.5469 Q69.5469,197.4375 69.7656,197.4375 Q70.1406,197.4375 70.375,197.7031 Q70.6094,197.9531 70.6094,198.5625 L70.6094,200.0156 Q70.6094,200.625 70.375,200.8906 Q70.1406,201.1563 69.7656,201.1563 Q69.4219,201.1563 69.2188,200.9531 Q69.0156,200.7656 68.9063,200.25 Q68.8594,199.8906 68.6719,199.7031 Q68.3438,199.3281 67.7344,199.1094 Q67.125,198.8906 66.5,198.8906 Q65.7344,198.8906 65.0938,199.2188 Q64.4688,199.5469 63.9688,200.2969 Q63.4844,201.0469 63.4844,202.0781 L63.4844,203.1719 Q63.4844,204.4063 64.375,205.2344 Q65.2656,206.0469 66.8594,206.0469 Q67.7969,206.0469 68.4531,205.7969 Q68.8438,205.6406 69.2656,205.2031 Q69.5313,204.9375 69.6719,204.8594 Q69.8281,204.7813 70.0313,204.7813 Q70.3594,204.7813 70.6094,205.0469 Q70.875,205.2969 70.875,205.6406 Q70.875,205.9844 70.5313,206.3906 Q70.0313,206.9688 69.2344,207.2969 Q68.1563,207.75 66.8594,207.75 Q65.3438,207.75 64.1406,207.125 Q63.1563,206.625 62.4688,205.5625 Q61.7813,204.4844 61.7813,203.2031 L61.7813,202.0469 Q61.7813,200.7188 62.3906,199.5781 Q63.0156,198.4219 64.1094,197.8125 Q65.2031,197.1875 66.4375,197.1875 Q67.1719,197.1875 67.8125,197.3594 Q68.4688,197.5156 69.0156,197.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="33" x="86.75" y="207.7285">State</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="166" y1="218" y2="218"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="15" y="229.3047"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="108" x="27" y="236.5332">String stateName</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="166" y1="243.6094" y2="243.6094"/><ellipse cx="18" cy="257.9141" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="134" x="27" y="262.1426">addState(stateName)</text></g><!--MD5=[c4d681900983498091bbbc67674786ba]
+class District--><g id="elem_District"><rect codeLine="15" fill="#F1F1F1" height="83.2188" id="District" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="180" x="238" y="186"/><ellipse cx="302.25" cy="202" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M305.0156,197.875 Q305.1719,197.6563 305.3594,197.5469 Q305.5469,197.4375 305.7656,197.4375 Q306.1406,197.4375 306.375,197.7031 Q306.6094,197.9531 306.6094,198.5625 L306.6094,200.0156 Q306.6094,200.625 306.375,200.8906 Q306.1406,201.1563 305.7656,201.1563 Q305.4219,201.1563 305.2188,200.9531 Q305.0156,200.7656 304.9063,200.25 Q304.8594,199.8906 304.6719,199.7031 Q304.3438,199.3281 303.7344,199.1094 Q303.125,198.8906 302.5,198.8906 Q301.7344,198.8906 301.0938,199.2188 Q300.4688,199.5469 299.9688,200.2969 Q299.4844,201.0469 299.4844,202.0781 L299.4844,203.1719 Q299.4844,204.4063 300.375,205.2344 Q301.2656,206.0469 302.8594,206.0469 Q303.7969,206.0469 304.4531,205.7969 Q304.8438,205.6406 305.2656,205.2031 Q305.5313,204.9375 305.6719,204.8594 Q305.8281,204.7813 306.0313,204.7813 Q306.3594,204.7813 306.6094,205.0469 Q306.875,205.2969 306.875,205.6406 Q306.875,205.9844 306.5313,206.3906 Q306.0313,206.9688 305.2344,207.2969 Q304.1563,207.75 302.8594,207.75 Q301.3438,207.75 300.1406,207.125 Q299.1563,206.625 298.4688,205.5625 Q297.7813,204.4844 297.7813,203.2031 L297.7813,202.0469 Q297.7813,200.7188 298.3906,199.5781 Q299.0156,198.4219 300.1094,197.8125 Q301.2031,197.1875 302.4375,197.1875 Q303.1719,197.1875 303.8125,197.3594 Q304.4688,197.5156 305.0156,197.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43" x="322.75" y="207.7285">District</text><line style="stroke:#181818;stroke-width:0.5;" x1="239" x2="417" y1="218" y2="218"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="246" y="229.3047"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="118" x="258" y="236.5332">String districtName</text><line style="stroke:#181818;stroke-width:0.5;" x1="239" x2="417" y1="243.6094" y2="243.6094"/><ellipse cx="249" cy="257.9141" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="154" x="258" y="262.1426">addDistrict(districtName)</text></g><!--MD5=[9466097c40aeafc62ec36a0cc4f3c955]
+class City--><g id="elem_City"><rect codeLine="20" fill="#F1F1F1" height="83.2188" id="City" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="141" x="488.5" y="186"/><ellipse cx="542.75" cy="202" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M545.5156,197.875 Q545.6719,197.6563 545.8594,197.5469 Q546.0469,197.4375 546.2656,197.4375 Q546.6406,197.4375 546.875,197.7031 Q547.1094,197.9531 547.1094,198.5625 L547.1094,200.0156 Q547.1094,200.625 546.875,200.8906 Q546.6406,201.1563 546.2656,201.1563 Q545.9219,201.1563 545.7188,200.9531 Q545.5156,200.7656 545.4063,200.25 Q545.3594,199.8906 545.1719,199.7031 Q544.8438,199.3281 544.2344,199.1094 Q543.625,198.8906 543,198.8906 Q542.2344,198.8906 541.5938,199.2188 Q540.9688,199.5469 540.4688,200.2969 Q539.9844,201.0469 539.9844,202.0781 L539.9844,203.1719 Q539.9844,204.4063 540.875,205.2344 Q541.7656,206.0469 543.3594,206.0469 Q544.2969,206.0469 544.9531,205.7969 Q545.3438,205.6406 545.7656,205.2031 Q546.0313,204.9375 546.1719,204.8594 Q546.3281,204.7813 546.5313,204.7813 Q546.8594,204.7813 547.1094,205.0469 Q547.375,205.2969 547.375,205.6406 Q547.375,205.9844 547.0313,206.3906 Q546.5313,206.9688 545.7344,207.2969 Q544.6563,207.75 543.3594,207.75 Q541.8438,207.75 540.6406,207.125 Q539.6563,206.625 538.9688,205.5625 Q538.2813,204.4844 538.2813,203.2031 L538.2813,202.0469 Q538.2813,200.7188 538.8906,199.5781 Q539.5156,198.4219 540.6094,197.8125 Q541.7031,197.1875 542.9375,197.1875 Q543.6719,197.1875 544.3125,197.3594 Q544.9688,197.5156 545.5156,197.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="24" x="563.25" y="207.7285">City</text><line style="stroke:#181818;stroke-width:0.5;" x1="489.5" x2="628.5" y1="218" y2="218"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="496.5" y="229.3047"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="98" x="508.5" y="236.5332">String cityName</text><line style="stroke:#181818;stroke-width:0.5;" x1="489.5" x2="628.5" y1="243.6094" y2="243.6094"/><ellipse cx="499.5" cy="257.9141" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="115" x="508.5" y="262.1426">addCity(cityName)</text></g><!--MD5=[65af59e9f79580c72a5b8e211e0b7841]
+class addLocationController--><g id="elem_addLocationController"><rect codeLine="25" fill="#F1F1F1" height="100.8281" id="addLocationController" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="180" x="238" y="7"/><ellipse cx="256.6" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M259.3656,18.875 Q259.5219,18.6563 259.7094,18.5469 Q259.8969,18.4375 260.1156,18.4375 Q260.4906,18.4375 260.725,18.7031 Q260.9594,18.9531 260.9594,19.5625 L260.9594,21.0156 Q260.9594,21.625 260.725,21.8906 Q260.4906,22.1563 260.1156,22.1563 Q259.7719,22.1563 259.5688,21.9531 Q259.3656,21.7656 259.2563,21.25 Q259.2094,20.8906 259.0219,20.7031 Q258.6938,20.3281 258.0844,20.1094 Q257.475,19.8906 256.85,19.8906 Q256.0844,19.8906 255.4438,20.2188 Q254.8188,20.5469 254.3188,21.2969 Q253.8344,22.0469 253.8344,23.0781 L253.8344,24.1719 Q253.8344,25.4063 254.725,26.2344 Q255.6156,27.0469 257.2094,27.0469 Q258.1469,27.0469 258.8031,26.7969 Q259.1938,26.6406 259.6156,26.2031 Q259.8813,25.9375 260.0219,25.8594 Q260.1781,25.7813 260.3813,25.7813 Q260.7094,25.7813 260.9594,26.0469 Q261.225,26.2969 261.225,26.6406 Q261.225,26.9844 260.8813,27.3906 Q260.3813,27.9688 259.5844,28.2969 Q258.5063,28.75 257.2094,28.75 Q255.6938,28.75 254.4906,28.125 Q253.5063,27.625 252.8188,26.5625 Q252.1313,25.4844 252.1313,24.2031 L252.1313,23.0469 Q252.1313,21.7188 252.7406,20.5781 Q253.3656,19.4219 254.4594,18.8125 Q255.5531,18.1875 256.7875,18.1875 Q257.5219,18.1875 258.1625,18.3594 Q258.8188,18.5156 259.3656,18.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="140" x="271.4" y="28.7285">addLocationController</text><line style="stroke:#181818;stroke-width:0.5;" x1="239" x2="417" y1="39" y2="39"/><line style="stroke:#181818;stroke-width:0.5;" x1="239" x2="417" y1="47" y2="47"/><ellipse cx="249" cy="61.3047" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="134" x="258" y="65.5332">addState(stateName)</text><ellipse cx="249" cy="78.9141" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="154" x="258" y="83.1426">addDistrict(districtName)</text><ellipse cx="249" cy="96.5234" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="115" x="258" y="100.752">addCity(cityName)</text></g><!--MD5=[0aedf87d72dce86797c8d5db4f8b9dce]
+class addLocationUI--><g id="elem_addLocationUI"><rect codeLine="31" fill="#F1F1F1" height="48" id="addLocationUI" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="122" x="81" y="33.5"/><ellipse cx="96" cy="49.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M98.7656,45.375 Q98.9219,45.1563 99.1094,45.0469 Q99.2969,44.9375 99.5156,44.9375 Q99.8906,44.9375 100.125,45.2031 Q100.3594,45.4531 100.3594,46.0625 L100.3594,47.5156 Q100.3594,48.125 100.125,48.3906 Q99.8906,48.6563 99.5156,48.6563 Q99.1719,48.6563 98.9688,48.4531 Q98.7656,48.2656 98.6563,47.75 Q98.6094,47.3906 98.4219,47.2031 Q98.0938,46.8281 97.4844,46.6094 Q96.875,46.3906 96.25,46.3906 Q95.4844,46.3906 94.8438,46.7188 Q94.2188,47.0469 93.7188,47.7969 Q93.2344,48.5469 93.2344,49.5781 L93.2344,50.6719 Q93.2344,51.9063 94.125,52.7344 Q95.0156,53.5469 96.6094,53.5469 Q97.5469,53.5469 98.2031,53.2969 Q98.5938,53.1406 99.0156,52.7031 Q99.2813,52.4375 99.4219,52.3594 Q99.5781,52.2813 99.7813,52.2813 Q100.1094,52.2813 100.3594,52.5469 Q100.625,52.7969 100.625,53.1406 Q100.625,53.4844 100.2813,53.8906 Q99.7813,54.4688 98.9844,54.7969 Q97.9063,55.25 96.6094,55.25 Q95.0938,55.25 93.8906,54.625 Q92.9063,54.125 92.2188,53.0625 Q91.5313,51.9844 91.5313,50.7031 L91.5313,49.5469 Q91.5313,48.2188 92.1406,47.0781 Q92.7656,45.9219 93.8594,45.3125 Q94.9531,44.6875 96.1875,44.6875 Q96.9219,44.6875 97.5625,44.8594 Q98.2188,45.0156 98.7656,45.375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="90" x="110" y="55.2285">addLocationUI</text><line style="stroke:#181818;stroke-width:0.5;" x1="82" x2="202" y1="65.5" y2="65.5"/><line style="stroke:#181818;stroke-width:0.5;" x1="82" x2="202" y1="73.5" y2="73.5"/></g><!--MD5=[8516f7fb7adc547f96e813184a64d32c]
+link addLocationController to State--><g id="link_addLocationController_State"><path codeLine="35" d="M256.67,108.22 C222.66,131.93 182.35,160.03 149.56,182.89 " fill="none" id="addLocationController-to-State" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="145.19,185.94,154.8639,184.0919,149.2968,183.088,150.3007,177.521,145.19,185.94" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="31" x="209" y="152.4951">State</text></g><!--MD5=[5c8a91909761dfe93c147f41e70255a1]
+link addLocationController to District--><g id="link_addLocationController_District"><path codeLine="36" d="M328,108.45 C328,131.28 328,158.16 328,180.49 " fill="none" id="addLocationController-to-District" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="328,185.77,332,176.77,328,180.77,324,176.77,328,185.77" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="41" x="329" y="152.4951">District</text></g><!--MD5=[8995f0a8df20fdbc160a7d70f20d5fc1]
+link addLocationController to City--><g id="link_addLocationController_City"><path codeLine="37" d="M396.37,108.22 C428.96,131.93 467.6,160.03 499.04,182.89 " fill="none" id="addLocationController-to-City" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="503.23,185.94,498.2879,177.4209,499.1808,183.0068,493.5948,183.8996,503.23,185.94" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="23" x="458" y="152.4951">City</text></g><!--MD5=[ab4a3c2b8ae4e7653735b0440e8db1d7]
+link addLocationUI to addLocationController--><g id="link_addLocationUI_addLocationController"><path codeLine="38" d="M203.3,57.5 C203.76,57.5 204,57.5 204,57.5 C204,57.5 218.12,57.5 232.89,57.5 " fill="none" id="addLocationUI-to-addLocationController" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="237.9,57.5,228.9,53.5,232.9,57.5,228.9,61.5,237.9,57.5" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[cd1097b4d6b53e13878caf984aed34c4]
+link District to City--><g id="link_District_City"><path codeLine="39" d="M418.3,227.5 C441.59,227.5 466.31,227.5 488.42,227.5 " fill="none" id="District-City" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#000000" points="445.25,215.6758,436.2049,212.7369,436.2049,218.6147,445.25,215.6758" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="21" x="449.25" y="220.9951">has</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="426.0678" y="224.3381">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="475.4269" y="224.1274">*</text></g><!--MD5=[9507060b9b8dd58465f9ccdeabbe9f6e]
+link State to District--><g id="link_State_District"><path codeLine="40" d="M167.25,227.5 C189.84,227.5 214.57,227.5 237.71,227.5 " fill="none" id="State-District" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#000000" points="194.5,215.6758,185.4549,212.7369,185.4549,218.6147,194.5,215.6758" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="21" x="198.5" y="220.9951">has</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="174.9707" y="224.2637">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="225.0258" y="224.3381">*</text></g><!--MD5=[38e90ffb0ccdcc6127be7a5633f3a069]
+@startuml
+
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+'skinparam classAttributeIconSize 0
+'left to right direction
+
+class State {
+    - String stateName
+    +addState(stateName)
+}
+
+class District {
+    - String districtName
+    +addDistrict(districtName)
+}
+
+class City {
+    - String cityName
+    +addCity(cityName)
+}
+
+class addLocationController {
+    +addState(stateName)
+    +addDistrict(districtName)
+    +addCity(cityName)
+}
+
+class addLocationUI {
+
+}
+
+addLocationController ..> State : State
+addLocationController ..> District : District
+addLocationController ..> City : City
+addLocationUI .right.> addLocationController
+District "1" -right- "*" City : has >
+State "1" -right- "*" District : has >
+
+@enduml
+
+@startuml
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+
+class State {
+    - String stateName
+    +addState(stateName)
+}
+
+class District {
+    - String districtName
+    +addDistrict(districtName)
+}
+
+class City {
+    - String cityName
+    +addCity(cityName)
+}
+
+class addLocationController {
+    +addState(stateName)
+    +addDistrict(districtName)
+    +addCity(cityName)
+}
+
+class addLocationUI {
+
+}
+
+addLocationController ..> State : State
+addLocationController ..> District : District
+addLocationController ..> City : City
+addLocationUI .right.> addLocationController
+District "1" -right- "*" City : has >
+State "1" -right- "*" District : has >
+
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 18:01:30 WEST 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>

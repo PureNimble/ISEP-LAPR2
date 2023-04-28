@@ -96,15 +96,14 @@ class UnregisteredUser {
 
 Business <|-- Rent
 
-City "1" --- "*" Address : is in <
 'Comission "1" -right- "1" Business : contains <
 
-District "1" --- "*" City : is in <
+District "1" --- "*" City : has <
 
 House "*" --- "1" SunExposure : has <
 
 Property <|--- Residence
-Property "*" -left- "1" Address : has <
+Property "*" --- "1" Address : has <
 Property "1" --- "1" Business : has <
 Property "1" -right- "*" Photos : has >
 PublishedAnnouncement "*" --- "*" Property: advertises >
@@ -112,7 +111,8 @@ PublishedAnnouncement "*" --- "*" Property: advertises >
 Residence "*" --- "1" AvailableEquipment : has <
 Residence <|--- House
 
-State "1" --- "*" District : is in <
+State "1" --- "*" District : has <
+State "1" --- "*" Address : has <
 
 UnregisteredUser "*" --- "*" PublishedAnnouncement: displays >
 

@@ -9,158 +9,330 @@ title Sequence Diagram (SD)
 autonumber
 
 actor "System Administrator" as Admin
-participant ":AddEmployeeUI" as AddEmployeeUI
-participant ":AddEmployeeController" as AddEmployeeController
+participant ":RegisterEmployeeUI" as RegisterEmployeeUI
+participant ":RegisterEmployeeController" as RegisterEmployeeController
 participant ":Repositories" as Singleton
 participant "repositories\n:Repositories" as repositories
 participant "employeeRolesRepository\n:EmployeeRolesRepository" as EmployeeRolesRepository
+participant "stateRepository\n:StateRepository" as StateRepository
 participant "storesRepository\n:StoreListRepository" as StoreRepository
 participant ":Store" as Store
 participant "employee\n:Employee" as Employee
+participant "authenticationRepository\n:AuthenticationRepository" as AuthenticationRepository
 
 
 activate Admin
 
-     Admin -> AddEmployeeUI : asks to register an employee
-        activate AddEmployeeUI
+     Admin -> RegisterEmployeeUI : asks to register an employee
+        activate RegisterEmployeeUI
 
-        AddEmployeeUI -> AddEmployeeController** : create
+        RegisterEmployeeUI -> RegisterEmployeeController** : create
 
-        AddEmployeeUI -> AddEmployeeController : getsRolesEmployee()
-        activate AddEmployeeController
+        RegisterEmployeeUI -> RegisterEmployeeController : getsRolesEmployee()
+        activate RegisterEmployeeController
 
-        AddEmployeeController -> Singleton : getInstance()
+        RegisterEmployeeController -> Singleton : getInstance()
         activate Singleton
 
-        Singleton --> AddEmployeeController: repositories
+        Singleton --> RegisterEmployeeController: repositories
         deactivate Singleton
 
-        AddEmployeeController -> repositories : getEmployeeRolesRepository()
+        RegisterEmployeeController -> repositories : getEmployeeRolesRepository()
         activate repositories
 
-        repositories --> AddEmployeeController : employeeRolesRepository
+        repositories --> RegisterEmployeeController : employeeRolesRepository
         deactivate repositories
 
-        AddEmployeeController -> EmployeeRolesRepository : getRolesEmployee()
+        RegisterEmployeeController -> EmployeeRolesRepository : getRolesEmployee()
         activate EmployeeRolesRepository
 
-        EmployeeRolesRepository --> AddEmployeeController: rolesEmployee
+        EmployeeRolesRepository --> RegisterEmployeeController: rolesEmployee
         deactivate EmployeeRolesRepository
 
 
-         AddEmployeeController --> AddEmployeeUI : rolesEmployee
-                deactivate AddEmployeeController
+         RegisterEmployeeController --> RegisterEmployeeUI : rolesEmployee
+                deactivate RegisterEmployeeController
 
-        AddEmployeeUI --> Admin : shows list of roles and asks to select one
-        deactivate AddEmployeeUI
+        RegisterEmployeeUI --> Admin : shows list of roles and asks to select one
+        deactivate RegisterEmployeeUI
 
-            Admin -> AddEmployeeUI : selects the role of the employee
-            activate AddEmployeeUI
+            Admin -> RegisterEmployeeUI : selects the role of the employee
+            activate RegisterEmployeeUI
 
-                AddEmployeeUI --> AddEmployeeUI: keepsRoles(roleEmployeeDescription)
 
-      AddEmployeeUI -> AddEmployeeController : getStores()
-        activate AddEmployeeController
 
-         AddEmployeeController -> Singleton : getInstance()
+      RegisterEmployeeUI -> RegisterEmployeeController : getStores()
+        activate RegisterEmployeeController
+
+         RegisterEmployeeController -> Singleton : getInstance()
                 activate Singleton
 
-                Singleton --> AddEmployeeController: repositories
+                Singleton --> RegisterEmployeeController: repositories
                 deactivate Singleton
 
-                AddEmployeeController -> repositories : getStoreRepository()
+                RegisterEmployeeController -> repositories : getStoreRepository()
                 activate repositories
 
-                repositories --> AddEmployeeController : getStoreRepository
+                repositories --> RegisterEmployeeController : getStoreRepository
                 deactivate repositories
 
-                AddEmployeeController -> StoreRepository : getStore()
+                RegisterEmployeeController -> StoreRepository : getStore()
                 activate StoreRepository
 
-                 StoreRepository --> AddEmployeeController: stores
+                 StoreRepository --> RegisterEmployeeController: stores
                 deactivate StoreRepository
 
-         AddEmployeeController --> AddEmployeeUI : stores
-                deactivate AddEmployeeController
+         RegisterEmployeeController --> RegisterEmployeeUI : stores
+                deactivate RegisterEmployeeController
 
-             AddEmployeeUI --> Admin : shows list of stores and asks to select one
-                deactivate AddEmployeeUI
+             RegisterEmployeeUI --> Admin : shows list of stores and asks to select one
+                deactivate RegisterEmployeeUI
 
-                    Admin -> AddEmployeeUI : selects a store
-                    activate AddEmployeeUI
-
-AddEmployeeUI --> AddEmployeeUI: keepsStores(storeDescription)
+                    Admin -> RegisterEmployeeUI : selects a store
+                    activate RegisterEmployeeUI
 
 
-       AddEmployeeUI --> Admin :  requested data(name,citizen´s card number,tax number \n,adress,email adress,telephone number).
-         deactivate AddEmployeeUI
 
-    Admin -> AddEmployeeUI : types requested data
-    activate AddEmployeeUI
+           RegisterEmployeeUI -> RegisterEmployeeController : getStates()
+                   activate RegisterEmployeeController
 
-    AddEmployeeUI --> AddEmployeeUI: keeps data (name,citizen´s card number,tax number \n,adress,email adress,telephone number,storeDescription\n roleDescription)
+                    RegisterEmployeeController -> Singleton : getInstance()
+                           activate Singleton
 
-    AddEmployeeUI --> Admin : shows the information of an employee
-        deactivate AddEmployeeUI
+                           Singleton --> RegisterEmployeeController: repositories
+                           deactivate Singleton
 
-    Admin -> AddEmployeeUI : submits data
-    activate AddEmployeeUI
+                           RegisterEmployeeController -> repositories : getStateRepository()
+                           activate repositories
 
-    AddEmployeeUI -> AddEmployeeController: addEmployee (name,citizen´s card number,tax number \n,adress,email adress,telephone number,agencyDescription\n roleDescription)
-      activate AddEmployeeController
+                           repositories --> RegisterEmployeeController : getStateRepository
+                           deactivate repositories
 
-    AddEmployeeController -> AddEmployeeController: getRoleByDescription(roleDescription)
-    activate AddEmployeeController
+                           RegisterEmployeeController -> StateRepository : getState()
+                           activate StateRepository
 
-    AddEmployeeController -> Singleton: getInstance()
+                            StateRepository --> RegisterEmployeeController: states
+                           deactivate StateRepository
+
+                    RegisterEmployeeController --> RegisterEmployeeUI : states
+                           deactivate RegisterEmployeeController
+
+
+
+
+          RegisterEmployeeUI --> Admin: show list of states and asks to select one
+          deactivate RegisterEmployeeUI
+
+
+         Admin -> RegisterEmployeeUI: select state
+         activate RegisterEmployeeUI
+
+     RegisterEmployeeUI -> RegisterEmployeeController : getDistrict()
+                   activate RegisterEmployeeController
+
+                    RegisterEmployeeController -> Singleton : getInstance()
+                           activate Singleton
+
+                           Singleton --> RegisterEmployeeController: repositories
+                           deactivate Singleton
+
+                           RegisterEmployeeController -> repositories : getDistrictRepository()
+                           activate repositories
+
+                           repositories --> RegisterEmployeeController : getDistrictRepository()
+                           deactivate repositories
+
+                           RegisterEmployeeController -> StateRepository : getDistrict()
+                           activate StateRepository
+
+                            StateRepository --> RegisterEmployeeController: districts
+                           deactivate StateRepository
+
+                    RegisterEmployeeController --> RegisterEmployeeUI : districts
+                           deactivate RegisterEmployeeController
+
+
+RegisterEmployeeUI --> Admin: show list of districts and asks to select one
+          deactivate RegisterEmployeeUI
+
+          Admin -> RegisterEmployeeUI: select district
+                   activate RegisterEmployeeUI
+
+
+         RegisterEmployeeUI -> RegisterEmployeeController : getCities()
+                   activate RegisterEmployeeController
+
+                    RegisterEmployeeController -> Singleton : getInstance()
+                           activate Singleton
+
+                           Singleton --> RegisterEmployeeController: repositories
+                           deactivate Singleton
+
+                           RegisterEmployeeController -> repositories : getCityRepository()
+                           activate repositories
+
+                           repositories --> RegisterEmployeeController : getCityRepository
+                           deactivate repositories
+
+                           RegisterEmployeeController -> StateRepository : getCity()
+                           activate StateRepository
+
+                            StateRepository --> RegisterEmployeeController: cities
+                           deactivate StateRepository
+
+                    RegisterEmployeeController --> RegisterEmployeeUI : cities
+                           deactivate RegisterEmployeeController
+
+RegisterEmployeeUI --> Admin: show list of cities and asks to select one
+          deactivate RegisterEmployeeUI
+
+
+Admin -> RegisterEmployeeUI: select city
+         activate RegisterEmployeeUI
+
+
+
+       RegisterEmployeeUI --> Admin :  requested data(name,citizen´s card number,tax number \n,adress,email adress,telephone number).
+         deactivate RegisterEmployeeUI
+
+    Admin -> RegisterEmployeeUI : types requested data
+    activate RegisterEmployeeUI
+
+    RegisterEmployeeUI --> Admin : shows the information of an employee
+        deactivate RegisterEmployeeUI
+
+    Admin -> RegisterEmployeeUI : submits data
+    activate RegisterEmployeeUI
+
+    RegisterEmployeeUI -> RegisterEmployeeController: createEmployee (name,passport number,tax number \n,adress,email adress,telephone number,storeDescription\n roleDescription,cityDescription\n,stateDescription,districtDescription)
+
+      activate RegisterEmployeeController
+
+    RegisterEmployeeController -> RegisterEmployeeController: getRoleByDescription(roleDescription)
+    activate RegisterEmployeeController
+
+    RegisterEmployeeController -> Singleton: getInstance()
     activate Singleton
 
-    Singleton --> AddEmployeeController :repositories
+    Singleton --> RegisterEmployeeController :repositories
     deactivate Singleton
 
-    AddEmployeeController -> repositories: getEmployeeRolesRepository()
+    RegisterEmployeeController -> repositories: getEmployeeRolesRepository()
     activate repositories
 
-    repositories--> AddEmployeeController:employeeRolesRepository
+    repositories--> RegisterEmployeeController:employeeRolesRepository
     deactivate repositories
 
-    AddEmployeeController -> EmployeeRolesRepository: getsRolesEmployeeByDescription()
+    RegisterEmployeeController -> EmployeeRolesRepository: getsRolesEmployeeByDescription()
     activate EmployeeRolesRepository
 
-    EmployeeRolesRepository --> AddEmployeeController: roleEmployee
+    EmployeeRolesRepository --> RegisterEmployeeController: roleEmployee
     deactivate EmployeeRolesRepository
 
-    AddEmployeeController --> AddEmployeeController: roleEmployee
+    RegisterEmployeeController --> RegisterEmployeeController: roleEmployee
 
 
 
-    AddEmployeeController -> AddEmployeeController: getStoresByDescription(roleDescription)
-    activate AddEmployeeController
+    RegisterEmployeeController -> RegisterEmployeeController: getStoresByDescription(storeDescription)
+    activate RegisterEmployeeController
 
-    AddEmployeeController -> Singleton: getInstance()
+    RegisterEmployeeController -> Singleton: getInstance()
     activate Singleton
 
-    Singleton --> AddEmployeeController :repositories
+    Singleton --> RegisterEmployeeController :repositories
     deactivate Singleton
 
-    AddEmployeeController -> repositories: getStoresRepository()
+    RegisterEmployeeController -> repositories: getStoresRepository()
     activate repositories
 
-    repositories--> AddEmployeeController:StoreRepository
+    repositories--> RegisterEmployeeController:StoreRepository
     deactivate repositories
 
-    AddEmployeeController -> StoreRepository: getsStoreByDescription()
-    activate EmployeeRolesRepository
+    RegisterEmployeeController -> StoreRepository: getsStoreByDescription()
+    activate StoreRepository
 
-    EmployeeRolesRepository --> AddEmployeeController: store
-    deactivate EmployeeRolesRepository
+    StoreRepository --> RegisterEmployeeController: store
+    deactivate StoreRepository
 
-    AddEmployeeController --> AddEmployeeController: store
+    RegisterEmployeeController --> RegisterEmployeeController: store
 
-         AddEmployeeController --> Store: addEmployee (name,citizen´s card number,tax number \n,adress,email adress,telephone number,agency\n role)
+
+RegisterEmployeeController -> RegisterEmployeeController: getStatesByDescription(stateDescription)
+    activate RegisterEmployeeController
+
+    RegisterEmployeeController -> Singleton: getInstance()
+    activate Singleton
+
+    Singleton --> RegisterEmployeeController :repositories
+    deactivate Singleton
+
+    RegisterEmployeeController -> repositories: getStatesRepository()
+    activate repositories
+
+    repositories--> RegisterEmployeeController:StateRepository
+    deactivate repositories
+
+    RegisterEmployeeController -> StateRepository: getsStateByDescription()
+    activate StateRepository
+
+    StateRepository --> RegisterEmployeeController: state
+    deactivate StateRepository
+
+    RegisterEmployeeController --> RegisterEmployeeController: state
+
+
+RegisterEmployeeController -> RegisterEmployeeController: getCtiesByDescription(cityDescription)
+    activate RegisterEmployeeController
+
+    RegisterEmployeeController -> Singleton: getInstance()
+    activate Singleton
+
+    Singleton --> RegisterEmployeeController :repositories
+    deactivate Singleton
+
+    RegisterEmployeeController -> repositories: getCtiesRepository()
+    activate repositories
+
+    repositories--> RegisterEmployeeController:CityRepository
+    deactivate repositories
+
+    RegisterEmployeeController -> StateRepository: getsCityByDescription()
+    activate StateRepository
+
+    StateRepository --> RegisterEmployeeController: city
+    deactivate StateRepository
+
+    RegisterEmployeeController --> RegisterEmployeeController: city
+
+
+RegisterEmployeeController -> RegisterEmployeeController: getDistrictByDescription(roleDescription)
+    activate RegisterEmployeeController
+
+    RegisterEmployeeController -> Singleton: getInstance()
+    activate Singleton
+
+    Singleton --> RegisterEmployeeController :repositories
+    deactivate Singleton
+
+    RegisterEmployeeController -> repositories: getDistrictsRepository()
+    activate repositories
+
+    repositories--> RegisterEmployeeController:DistrictRepository
+    deactivate repositories
+
+    RegisterEmployeeController -> StateRepository: getsDistrictByDescription()
+    activate StateRepository
+
+    StateRepository --> RegisterEmployeeController: districts
+    deactivate StateRepository
+
+    RegisterEmployeeController --> RegisterEmployeeController: districts
+
+
+         RegisterEmployeeController --> Store: createEmployee (name,passport number,tax number \n,adress,email adress,telephone number,store\n role,state,city,district)
             activate Store
 
-            Store -> Employee** : addEmployee (name,citizen´s card number,tax number \n,adress,email adress,telephone number,agency\n role)
+            Store -> Employee** : createEmployee (name,passport number,tax number \n,adress,email adress,telephone number,store\n role,state,city,district)
              Store -> Store : addEmployee(employee)
              activate Store
               Store -> Store : validateEmployee(employee)
@@ -170,14 +342,41 @@ AddEmployeeUI --> AddEmployeeUI: keepsStores(storeDescription)
                 Store--> Store
                 deactivate Store
 
-       Store --> AddEmployeeController: employee
+       Store --> RegisterEmployeeController: employee
             deactivate Store
 
-    AddEmployeeController --> AddEmployeeUI: employee
-      deactivate AddEmployeeController
+ RegisterEmployeeController -> Singleton: getInstance()
+                    activate Singleton
 
-    AddEmployeeUI --> Admin : displays operation success
-      deactivate AddEmployeeUI
+      Singleton --> RegisterEmployeeController :repositories
+                    deactivate Singleton
+
+                       RegisterEmployeeController -> repositories: getAuthenticationRepository()
+                        activate repositories
+
+                        repositories--> RegisterEmployeeController:authenticationRepository
+                        deactivate repositories
+
+       RegisterEmployeeController -> AuthenticationRepository: getpasswordGenerator()
+       activate AuthenticationRepository
+
+
+     AuthenticationRepository --> RegisterEmployeeController: password
+     deactivate AuthenticationRepository
+
+
+     RegisterEmployeeController -> AuthenticationRepository: addUserWithRole(name,employeeEmail,password,roleDescription,passportNumber,\ntaxNumber,phoneNumber,adress)
+     activate AuthenticationRepository
+
+     AuthenticationRepository --> RegisterEmployeeController: addUserWithRole
+     deactivate AuthenticationRepository
+
+    RegisterEmployeeController --> RegisterEmployeeUI: employee
+      deactivate RegisterEmployeeController
+
+    RegisterEmployeeUI --> Admin : displays operation success
+      deactivate RegisterEmployeeUI
 
 
 @enduml
+

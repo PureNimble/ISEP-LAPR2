@@ -1,73 +1,62 @@
 @startuml
-'https://plantuml.com/class-diagram
+
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+'skinparam classAttributeIconSize 0
+'left to right direction
 
 class State {
- - String stateName
-
-    +getStateName()
+    - String stateName
 }
 
 class District {
-- String districtName
+    - String districtName
 
-    +getDistrictName()
 }
 
 class City {
-- String cityName
+    - String cityName
 
-    +getCityName()
 }
 
 class Address {
     -String streetName
     -int zipCode
-
-    +verifyZipCode()
-    +getCity()
-    +getDistrict()
-    +getState()
-    +Address(state, district, city, street, zipCode)
 }
 
 class Contacts {
-    Phone Number
-    Email Adress
-}
-
-class SystemAdministrator {
+    -String phoneNumber
+    -String email
 }
 
 class Repositories {
     -Repositories()
     +getInstance():Repositories
     +getStateRepository()
-    +getDistrictRepository()
-    +getCityRepository()
 }
 
 class Store {
     -int id
     -String designation
+    +addStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
+    +validateStore()
 }
 
 class RegisterStoreController {
     +getStates()
-    +getByDiscription(state)
-    +getByDiscription(district)
+    +getDistrictByDescription(state)
+    +getCityByDescription(district)
     +registerStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
+    -getStateRepository()
 }
 
 class StateRepository {
-    getState()
-}
-
-class DistrictRepository {
-    getDistrict(state)
-}
-
-class CityRepository {
-    getCity(district)
+    +getStates()
+    +getDistrictByDescription(state)
+    +getCityByDescription(district)
 }
 
 class RegisterStoreUI {
@@ -76,17 +65,14 @@ class RegisterStoreUI {
 
 Repositories -> Repositories:instance
 Repositories --> StateRepository: stateRepository
-Repositories --> DistrictRepository: districtRepository
-Repositories --> CityRepository: cityRepository
 RegisterStoreController ..> Repositories : repositories
-RegisterStoreUI ..> RegisterStoreController
-StoresRepository --> "*" Store
-Store <- "*" SystemAdministrator : registers
-Address "1" -> "*"  Store : is located at
-City "1" -right- "*" Address:has >
+RegisterStoreController ..> StateRepository : StateRepository
+RegisterStoreController ..> Store : Store
+RegisterStoreUI .right.> RegisterStoreController
+Address "1" -left-> "*"  Store : is located at
+State "1" -up- "*" Address: has >
 District "1" -right- "*" City : has >
 State "1" -right- "*" District : has >
 Contacts "1" -up--> "1" Store: has
-StateRepository -left[hidden].> StateRepository
 
 @enduml

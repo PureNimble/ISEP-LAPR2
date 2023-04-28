@@ -93,7 +93,9 @@ As a system administrator, I want to register a store.
 ### 1.4. Found out Dependencies
 
 
-* There is a dependency to the US06 "As a system administrator, I want to specify states, districts and cities in the system." since the location is specified in this US and US07 "As an unregistered user, I want to register in the system to buy, sell or rent properties." since the System Administrator should be registered in the app.
+* There is a dependency to the US06 "As a system administrator, I want to specify states, districts and cities in the system." since the location is specified in this US.
+
+* There is a dependency to the US06 US07 "As an unregistered user, I want to register in the system to buy, sell or rent properties." since the System Administrator should be registered in the app.
 
 
 ### 1.5 Input and Output Data

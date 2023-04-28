@@ -115,7 +115,7 @@ class Comission {
     Value
 }
 
-UnregisteredUser "1" --- "1" RegisteredUser : can register as >
+UnregisteredUser "n" --- "1" RegisteredUser : can register as >
 UnregisteredUser "*" --- "*" PublishedAnnouncement: sees >
 PublishedAnnouncement "*" --- "1" Agent: publishes <
 PublishedAnnouncement "*" --- "1" User: sees <

@@ -39,23 +39,23 @@ activate Admin
             deactivate repository
                 RegisterStoreController -> StateRepository : getStates()
                     activate StateRepository
-                        StateRepository --> RegisterStoreController : States
+                        StateRepository --> RegisterStoreController : StatesList
                     deactivate StateRepository
-                RegisterStoreController --> RegisterStoreUI : States
+                RegisterStoreController --> RegisterStoreUI : StatesList
             deactivate RegisterStoreController
             RegisterStoreUI --> Admin : requests the necessary data and provides a list of states
         deactivate RegisterStoreUI
 
-    Admin -> RegisterStoreUI : types requested data(id, designation/name, \nemail address and phone number) and selects state
+    Admin -> RegisterStoreUI : types requested data (id, designation/name, \nemail address and phone number) and selects state
         activate RegisterStoreUI
         RegisterStoreUI --> RegisterStoreUI : keepData(id, designation/name, state, \nemail address and phone number)
-            RegisterStoreUI -> RegisterStoreController : getByDescription(state)
+            RegisterStoreUI -> RegisterStoreController : getDistrictByDescription(state)
                 activate RegisterStoreController
                             RegisterStoreController -> StateRepository : getDistrictByDescription(state)
                         activate StateRepository
-                        StateRepository --> RegisterStoreController : Districts
+                        StateRepository --> RegisterStoreController : DistrictsList
                         deactivate StateRepository
-                    RegisterStoreController --> RegisterStoreUI : Districts
+                    RegisterStoreController --> RegisterStoreUI : DistrictsList
                 deactivate RegisterStoreController
             RegisterStoreUI --> Admin : shows list of districts available for that state and asks to select one
         deactivate RegisterStoreUI
@@ -63,27 +63,27 @@ activate Admin
     Admin -> RegisterStoreUI : selects district
         activate RegisterStoreUI
         RegisterStoreUI --> RegisterStoreUI : keepDistrict(district)
-        RegisterStoreUI -> RegisterStoreController : getByDescription(district)
+        RegisterStoreUI -> RegisterStoreController : getCityByDescription(district)
             activate RegisterStoreController
                         RegisterStoreController -> StateRepository : getCityByDescription(district)
                         activate StateRepository
 
-                        StateRepository --> RegisterStoreController : Cities
+                        StateRepository --> RegisterStoreController : CitiesList
                         deactivate StateRepository
-                    RegisterStoreController --> RegisterStoreUI : Cities
+                    RegisterStoreController --> RegisterStoreUI : CitiesList
             deactivate RegisterStoreController
             RegisterStoreUI --> Admin : shows list of cities available for that district and asks to select one
         deactivate RegisterStoreUI
     Admin -> RegisterStoreUI : selects city
         activate RegisterStoreUI
         RegisterStoreUI --> RegisterStoreUI : keepCity(city)
-        RegisterStoreUI --> Admin : asks data
+        RegisterStoreUI --> Admin : requests data
     deactivate RegisterStoreUI
-    Admin -> RegisterStoreUI : types necessary data(street and zip code)
+    Admin -> RegisterStoreUI : types requested data (street and zip code)
         activate RegisterStoreUI
         RegisterStoreUI --> RegisterStoreUI : keepData(street and zip code)
     
-        RegisterStoreUI --> Admin : shows inserted data and asks for confirmation
+        RegisterStoreUI --> Admin : shows all inserted data and asks for confirmation
     deactivate RegisterStoreUI
 
     Admin -> RegisterStoreUI : confirms data
@@ -92,31 +92,13 @@ activate Admin
         RegisterStoreUI -> RegisterStoreController : registerStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
         activate RegisterStoreController
 
-            /'RegisterStoreController -> RepositorySingleton : getInstance()
-
-            activate RepositorySingleton
-
-                RepositorySingleton --> RegisterStoreController : repository
-
-            deactivate RepositorySingleton
-
-            RegisterStoreController -> repository : getStoreRepository()
-
-            activate repository
-
-                repository --> RegisterStoreController : StoreRepository
-
-            deactivate repository'/
-
             RegisterStoreController -> Store : registerStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
 
             activate Store
 
-               Store -> Store : registerStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
+               Store -> Store : addStore(store)
                 activate Store
                         Store -> Store : validateStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
-                            activate Store
-                    deactivate Store
                 deactivate Store
                     Store --> RegisterStoreController : Store
             deactivate Store
