@@ -159,12 +159,16 @@ As an owner, I intend to submit a request for listing a property sale or rent,ch
 ### 1.3. Acceptance Criteria
 
 
-* **AC1:**  Real Estate USA needs to sell or rent the property for the price requested or as close to it as possible, within a specific timeframe. 
+* **AC1:**  The owner has to provide information about: the type of property; the area in m2; the location; the distance from the city center; the requested price and one or more photographs.
+* **AC2:**  If the property is an apartment or a house, the owner also provides: the number of bedrooms; the number of bathrooms; the number of parking spaces and the available equipment, such as central heating and/or air conditioning.
+* **AC3:**  In case the property is a house, the existence of a basement, an inhabitable loft, and the direction of the sun exposure must be registered as well.
 
 
 ### 1.4. Found out Dependencies
 
-No dependencies were found till this point of the project
+There is a dependency to US003 "As a system administrator, I want to register a new employee.", since the agents need to be registered in the app so the owner can choose them.
+There is a dependency to US005 "As a system administrator, I want to register a store", since the existence of a store is necessary for the presence of an agent.
+There is a dependency to US006 "As a system administrator, I want to specify states, districts and cities in the system." since the owner needs to be able to select the location of the property he's trying to sell.
 
 ### 1.5 Input and Output Data
 
@@ -173,14 +177,29 @@ No dependencies were found till this point of the project
 
 * Typed data:
     * a name,
-    * a citizen´s card number,
+    * an area (m2),
+    * distance from city center,
+    * a passport card number,
     * a tax number,
-    * an adress,
     * an email adress,
     * a telefone number,
-    * an agency,
-    * an agent
-    * the requested property characteristics
+    * the requested property characteristics,
+    * the available equipment,
+    * the number of bedrooms,
+    * the number of bathrooms,
+    * the number of parking spaces,
+    * photographs,
+    * a price
+
+* Selected data:
+    * an agency, 
+	* an agent, 
+	* the existence of a basement,
+    * the existence of an inhabitable loft,
+    * the sun exposure
+    * a state, 
+	* a district, 
+	* a city
 
 **Output Data:**
 
