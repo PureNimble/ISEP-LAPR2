@@ -95,7 +95,7 @@ SystemAdministrator "1" --- "*" Employee: registers >
 Store "*" - "1" Address : located at >
 Employee "1" - "*" Store : works in >
 
-Employee "1" -left "1" Role : has >
+Employee "1" -left "1..4" Role : has >
 
 Store "1" -- "*" StoreNetworkManager : manages <
 

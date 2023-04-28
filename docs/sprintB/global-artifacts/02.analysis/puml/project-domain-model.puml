@@ -5,6 +5,7 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 skinparam classAttributeIconSize 0
+skinparam linetype orthogonal
 
 hide circle
 hide methods
@@ -119,51 +120,51 @@ class Comission {
     Value
 }
 
-Comission "1" -- "1" Business : contains <
-District "1" -right- "*" City : has >
-House "1" --- "1" SunExposure : contains >
-Property <|--- Residence
-Property "*" -right- "1" Address : has >
-PublishedAnnouncement "1" -left- "1" Business : has <
-Property "1" -- "1..30" Photos : has >
-PublishedAnnouncement "*" --- "*" Property: advertises >
-Residence "1" --- "*" AvailableEquipment : contains >
-Residence <|--- House
-State "1" -right- "*" District : has >
-State "1" -left- "*" Address : has >
-TypeOfProperty "1" -right- "1" Property : defines >
-UnregisteredUser "*" --- "*" PublishedAnnouncement: displays >
-Store "1" -right-- "1" Contacts: has >
-Address "1" -left-- "1" User: has <
-User "1" -down-- "1" Store: contacts >
-Agent "*" -up-- "1" Store: has <
-Comission "1" -right-- "1" Agent: defines <
-User "1" --- "1" Business: requests >
-Property "1" --- "1" Business: has a <
-AnnouncementRequest "1" --- "1" Business: has >
+Comission "1" --- "1" Business : contains <
+District "1" -right--- "*" City : has >
+House "1" -down-- "1" SunExposure : contains >
+Property <|-down--- Residence
+Property "*" ---right- "1" Address : has >
+PublishedAnnouncement "1" --down-- "1" Business : has <
+Property "1" -right--- "1..30" Photos : has >
+PublishedAnnouncement "*" -up---- "*" Property: advertises >
+Residence "1" -right--- "*" AvailableEquipment : contains >
+Residence <|-down-- House
+State "1" -right-- "*" District : has >
+State "1" -up- "*" Address : has >
+TypeOfProperty "1" -down--- "1" Property : defines >
+UnregisteredUser "*" -left--- "*" PublishedAnnouncement: displays >
+Store "1" ---right- "1" Contacts: has >
+Address "1" -left--- "1" User: has <
+User "1" ---- "1" Store: contacts >
+Agent "*" -down- "1" Store: has <
+Comission "1" -right---- "1" Agent: defines <
+User "1" -down-- "1" Business: requests >
+Property "1" ------- "1" Business: has a <
+AnnouncementRequest "1" -up--- "1" Business: has >
 Agent "1" --- "1" AnnouncementRequest : reviews >
 AnnouncementRequest "1" --- "1" Property: has a >
-AnnouncementRequest  <|---  PublishedAnnouncement
+AnnouncementRequest  <|-down--  PublishedAnnouncement
 PublishedAnnouncement "*" --- "1" Agent: publishes <
-Business <|--- Rent
-Comission <|-- ComissionPercentage
-User <|-- Employee
+Business <|-up- Rent
+Comission <|-left--- ComissionPercentage
+User <|-down-------------- Employee
 Employee <|-- Agent
-Employee <|-- StoreNetworkManager
-Employee <|-- StoreManager
-Employee <|-- SystemAdministrator
-Store "*" - "1" Address : located at >
-Employee "1" - "*" Store : works in >
-Employee "1" -left "1..4" Role : has >
-Store "1" -- "*" StoreNetworkManager : manages <
+Employee <|- StoreNetworkManager
+Employee <|-left-- StoreManager
+Employee <|------ SystemAdministrator
+Store "*" ----- "1" Address : located at >
+Employee "1" ------ "*" Store : works in >
+Employee "1" - "1..4" Role : has >
+Store "1" ------- "*" StoreNetworkManager : manages <
 City "1" -up-- "1" SystemAdministrator: adds <
 District "1" -left-- "1" SystemAdministrator: adds <
-State "1" -down-- "1" SystemAdministrator: adds < 
+State "1" -down-- "1" SystemAdministrator: adds <
 UnregisteredUser "1" -right-- "1" User : can register as >
-Person "1" -right-- "1" Address : can have >
+Person "1" --- "1" Address : can have >
 Person "1" -down-- "1" Contacts : has >
 Person <|-up- User
-SystemAdministrator "1" -right-- "*" Store: registers >
+SystemAdministrator "1" -left-- "*" Store: registers >
 
 
 

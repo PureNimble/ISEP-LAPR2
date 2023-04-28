@@ -7,29 +7,51 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
-
- A class representing a store with a designation.
+ * A class representing a store with a designation.
  */
 public class Store {
 
     private String designation;
 
+    private int id;
 
+    private Address address;
 
-    public Store(String designation) {
+    private String email;
+
+    private int phoneNumber;
+
+    public Store(String designation, int id, Address address, int phoneNumber, String email) {
         this.designation = designation;
+        this.id = id;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
     }
 
+    public Store() {
+    }
 
+    public int getId() {
+        return id;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public String toString() {
+        return String.format("Loja: %s %s localizada em %s", id, designation, address.toString());
+    }
 
     public Optional<Employee> createEmployee(String email, String name,
                                              int phone, List<Role> roles, Store store, Address address, int passportNumber, int taxNumber) {
 
         Optional<Employee> optionalValue = Optional.empty();
 
-        Employee employee = new Employee(email,passportNumber,taxNumber,name,phone,store,roles,address);
+        Employee employee = new Employee(email, passportNumber, taxNumber, name, phone, store, roles, address);
 
-        if (addEmployee(employee)){
+        if (addEmployee(employee)) {
             optionalValue = Optional.of(employee);
 
         }
@@ -64,7 +86,7 @@ public class Store {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Store store = (Store) o;
-        return designation.equals(store.designation);
+        return this.id == store.id;
     }
 
 
@@ -77,7 +99,5 @@ public class Store {
         return designation;
     }
 
-    public Store clone() {
-        return new Store(this.designation);
-    }
+
 }

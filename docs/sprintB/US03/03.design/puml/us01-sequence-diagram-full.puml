@@ -13,13 +13,13 @@ participant ":RegisterEmployeeUI" as RegisterEmployeeUI
 participant ":RegisterEmployeeController" as RegisterEmployeeController
 participant ":Repositories" as Singleton
 participant "repositories\n:Repositories" as repositories
-participant "employeeRolesRepository\n:EmployeeRolesRepository" as EmployeeRolesRepository
+participant "RolesRepository\n:RolesRepository" as RolesRepository
 participant "stateRepository\n:StateRepository" as StateRepository
 participant "storesRepository\n:StoreListRepository" as StoreRepository
 participant ":Store" as Store
 participant "employee\n:Employee" as Employee
 participant "authenticationRepository\n:AuthenticationRepository" as AuthenticationRepository
-
+participant "userRepository\n:UserRepository" as UserRepository
 
 activate Admin
 
@@ -28,6 +28,7 @@ activate Admin
 
         RegisterEmployeeUI -> RegisterEmployeeController** : create
 
+loop selects roles
         RegisterEmployeeUI -> RegisterEmployeeController : getsRolesEmployee()
         activate RegisterEmployeeController
 
@@ -43,22 +44,22 @@ activate Admin
         repositories --> RegisterEmployeeController : employeeRolesRepository
         deactivate repositories
 
-        RegisterEmployeeController -> EmployeeRolesRepository : getRolesEmployee()
-        activate EmployeeRolesRepository
+        RegisterEmployeeController -> RolesRepository : getRolesEmployee()
+        activate RolesRepository
 
-        EmployeeRolesRepository --> RegisterEmployeeController: rolesEmployee
-        deactivate EmployeeRolesRepository
+        RolesRepository --> RegisterEmployeeController: rolesEmployee
+        deactivate RolesRepository
 
 
          RegisterEmployeeController --> RegisterEmployeeUI : rolesEmployee
                 deactivate RegisterEmployeeController
 
-        RegisterEmployeeUI --> Admin : shows list of roles and asks to select one
+        RegisterEmployeeUI --> Admin : shows list of roles and asks to select
         deactivate RegisterEmployeeUI
 
-            Admin -> RegisterEmployeeUI : selects the role of the employee
+            Admin -> RegisterEmployeeUI : selects the role of an employee
             activate RegisterEmployeeUI
-
+end
 
 
       RegisterEmployeeUI -> RegisterEmployeeController : getStores()
@@ -136,16 +137,22 @@ activate Admin
                            Singleton --> RegisterEmployeeController: repositories
                            deactivate Singleton
 
-                           RegisterEmployeeController -> repositories : getDistrictRepository()
+                           RegisterEmployeeController -> repositories : getStateRepository()
                            activate repositories
 
-                           repositories --> RegisterEmployeeController : getDistrictRepository()
+                           repositories --> RegisterEmployeeController : getStateRepository()
                            deactivate repositories
 
-                           RegisterEmployeeController -> StateRepository : getDistrict()
+                           RegisterEmployeeController -> StateRepository: getStateByDescription(stateDescription)
                            activate StateRepository
 
-                            StateRepository --> RegisterEmployeeController: districts
+                           StateRepository --> RegisterEmployeeController: stateByDescription
+                           deactivate StateRepository
+
+                           RegisterEmployeeController -> StateRepository: getDistrict(stateByDescription)
+                           activate StateRepository
+
+                           StateRepository --> RegisterEmployeeController: districts
                            deactivate StateRepository
 
                     RegisterEmployeeController --> RegisterEmployeeUI : districts
@@ -168,13 +175,21 @@ RegisterEmployeeUI --> Admin: show list of districts and asks to select one
                            Singleton --> RegisterEmployeeController: repositories
                            deactivate Singleton
 
-                           RegisterEmployeeController -> repositories : getCityRepository()
+                           RegisterEmployeeController -> repositories : getStateRepository()
                            activate repositories
 
-                           repositories --> RegisterEmployeeController : getCityRepository
+                           repositories --> RegisterEmployeeController : getStateRepository
                            deactivate repositories
 
-                           RegisterEmployeeController -> StateRepository : getCity()
+                               RegisterEmployeeController -> StateRepository: getDistrictByDescription(districtDescription)
+                                                      activate StateRepository
+
+                                                      StateRepository --> RegisterEmployeeController: districtByDescription
+                                                      deactivate StateRepository
+
+
+
+                           RegisterEmployeeController -> StateRepository : getCity(districtByDescription)
                            activate StateRepository
 
                             StateRepository --> RegisterEmployeeController: cities
@@ -192,7 +207,7 @@ Admin -> RegisterEmployeeUI: select city
 
 
 
-       RegisterEmployeeUI --> Admin :  requested data(name,citizen´s card number,tax number \n,adress,email adress,telephone number).
+       RegisterEmployeeUI --> Admin :  requested data(name,citizen´s card number,tax number \n,email ,telephone number).
          deactivate RegisterEmployeeUI
 
     Admin -> RegisterEmployeeUI : types requested data
@@ -223,11 +238,11 @@ Admin -> RegisterEmployeeUI: select city
     repositories--> RegisterEmployeeController:employeeRolesRepository
     deactivate repositories
 
-    RegisterEmployeeController -> EmployeeRolesRepository: getsRolesEmployeeByDescription()
-    activate EmployeeRolesRepository
+    RegisterEmployeeController -> RolesRepository: getsRolesEmployeeByDescription()
+    activate RolesRepository
 
-    EmployeeRolesRepository --> RegisterEmployeeController: roleEmployee
-    deactivate EmployeeRolesRepository
+    RolesRepository --> RegisterEmployeeController: roleEmployee
+    deactivate RolesRepository
 
     RegisterEmployeeController --> RegisterEmployeeController: roleEmployee
 
@@ -329,10 +344,10 @@ RegisterEmployeeController -> RegisterEmployeeController: getDistrictByDescripti
     RegisterEmployeeController --> RegisterEmployeeController: districts
 
 
-         RegisterEmployeeController --> Store: createEmployee (name,passport number,tax number \n,adress,email adress,telephone number,store\n role,state,city,district)
+         RegisterEmployeeController --> Store: createEmployee (name,passport number,tax number \n,adress,email adress,telephone number,store\n role,adress)
             activate Store
 
-            Store -> Employee** : createEmployee (name,passport number,tax number \n,adress,email adress,telephone number,store\n role,state,city,district)
+            Store -> Employee** : createEmployee (name,passport number,tax number \n,email ,telephone number,store\n role,adress)
              Store -> Store : addEmployee(employee)
              activate Store
               Store -> Store : validateEmployee(employee)
@@ -365,11 +380,11 @@ RegisterEmployeeController -> RegisterEmployeeController: getDistrictByDescripti
      deactivate AuthenticationRepository
 
 
-     RegisterEmployeeController -> AuthenticationRepository: addUserWithRole(name,employeeEmail,password,roleDescription,passportNumber,\ntaxNumber,phoneNumber,adress)
-     activate AuthenticationRepository
+     RegisterEmployeeController -> UserRepository: addUser(user)
+     activate UserRepository
 
-     AuthenticationRepository --> RegisterEmployeeController: addUserWithRole
-     deactivate AuthenticationRepository
+     UserRepository --> RegisterEmployeeController: addUser
+     deactivate UserRepository
 
     RegisterEmployeeController --> RegisterEmployeeUI: employee
       deactivate RegisterEmployeeController

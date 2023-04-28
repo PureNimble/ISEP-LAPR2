@@ -198,6 +198,15 @@ public class RegisterEmployeeController {
         return stateRepository.getStates();
     }
 
+    public List<District> getDistrict(State state){
+        return state.getDistricts();
+    }
+
+    public List<City> getCities(District district){
+        return district.getCities();
+    }
+
+
     public List<Role> getRoles() {
         RoleRepository roleRepository = getRoleRepository();
         return roleRepository.getRoles();
