@@ -165,11 +165,7 @@ telephone number. The Agent is an employee of the company.
 >
 > **Date:** 21 de April de 2023
 
-> **Question:**
->
->  **Answer:**
->
-> **Date:**
+
 
 ### 1.3. Acceptance Criteria
 
