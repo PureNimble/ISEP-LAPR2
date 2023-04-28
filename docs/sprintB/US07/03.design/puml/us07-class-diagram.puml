@@ -59,7 +59,7 @@ class AuthenticationRepository{
 +getUser()
 }
 
-class RegisterStoreController {
+class UnregisteredUserController {
     + getStates()
     + getDistrictByDescription(state)
     + getCityByDescription(district)
@@ -72,7 +72,7 @@ class Person {
     - int passportNumber
     - int taxNumber
     - String name
-    - Adress adress
+    - Address address
     - int phoneNumber
 
     +User(email,passportNumber,taxNumber,name,phoneNumber)
