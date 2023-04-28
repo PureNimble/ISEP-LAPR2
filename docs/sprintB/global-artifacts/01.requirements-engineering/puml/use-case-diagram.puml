@@ -7,7 +7,7 @@ left to right direction
  :Unregistered user: as user
  :Owner: as owner
  package System {
-   usecase "UC01: Display a listed properties" as UC1
+   usecase "UC01: Display listed properties" as UC1
    usecase "UC02: Publish any sale announcement on the system" as UC2
    usecase "UC03: Add an employee" as UC3
    usecase "UC04: Sell or rent properties of a company" as UC4
