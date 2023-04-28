@@ -7,6 +7,8 @@ class Adress
 
 class AddEmployeeController
 
+class Person
+
 class Repositories
 
 class Employee
@@ -34,6 +36,25 @@ class City
 class District
 
 class StateRepository
+
+
+class Person{
+- String email
+- int passportNumber
+- int taxNumber
+- String name
+- Adress adress
+- int phoneNumber
+
++User(email,passportNumber,taxNumber,name,phoneNumber)
++getPassportNumber()
++getTaxNumber()
++getEmail()
++getAdress()
++getName()
++getPhoneNumber()
+
+}
 
 class EmployeeRepository{
 +add(employee)
@@ -157,20 +178,9 @@ class Repositories{
 }
 
 class User{
-- String email
-- int passportNumber
-- int taxNumber
-- String name
-- Adress adress
-- int phoneNumber
+-String passwordGenerator
 
-+User(email,passportNumber,taxNumber,name,phoneNumber)
-+getPassportNumber()
-+getTaxNumber()
-+getEmail()
-+getAdress()
-+getName()
-+getPhoneNumber()
++getPassword()
 }
 
 class Store{
@@ -234,10 +244,17 @@ District "1" -left- "*" City : is in <
 
 User <|-- Employee
 
+Person <|-- User
+
 
 Repositories -> StateRepository: stateRepository
 
 StateRepository --------> "*" State : stateRepository
+
+
+Store -[hidden]> Person
+
+EmployeeRepository --> "*" Employee
 
 
 @enduml

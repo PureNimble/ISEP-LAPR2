@@ -19,9 +19,11 @@ class State {
     State name
 }
 
-class RegisteredUser {
-    Username
+class User {
     Password
+}
+
+class Person {
     Name
     Passport Card Number
     Tax Number
@@ -116,6 +118,55 @@ class SunExposure {
 class Comission {
     Value
 }
+
+Comission "1" -- "1" Business : contains <
+District "1" -right- "*" City : has >
+House "1" --- "1" SunExposure : contains >
+Property <|--- Residence
+Property "*" -right- "1" Address : has >
+PublishedAnnouncement "1" -left- "1" Business : has <
+Property "1" -- "1..30" Photos : has >
+PublishedAnnouncement "*" --- "*" Property: advertises >
+Residence "1" --- "*" AvailableEquipment : contains >
+Residence <|--- House
+State "1" -right- "*" District : has >
+State "1" -left- "*" Address : has >
+TypeOfProperty "1" -right- "1" Property : defines >
+UnregisteredUser "*" --- "*" PublishedAnnouncement: displays >
+User "1" -down-- "1" Contacts: has >
+Store "1" -right-- "1" Contacts: has >
+Address "1" -left-- "1" User: has <
+User "1" -down-- "1" Store: contacts >
+Agent "*" -up-- "1" Store: has <
+Comission "1" -right-- "1" Agent: defines <
+User "1" --- "1" Business: requests >
+Property "1" --- "1" Business: has a <
+AnnouncementRequest "1" --- "1" Business: has >
+Agent "1" --- "1" AnnouncementRequest : reviews >
+AnnouncementRequest "1" --- "1" Property: has a >
+AnnouncementRequest  <|---  PublishedAnnouncement
+PublishedAnnouncement "*" --- "1" Agent: publishes <
+PublishedAnnouncement "1" --- "1" Business: has a <
+Business <|--- Rent
+Comission <|-- ComissionPercentage
+User <|-- Employee
+Employee <|-- Agent
+Employee <|-- StoreNetworkManager
+Employee <|-- StoreManager
+Employee <|-- SystemAdministrator
+Store "*" - "1" Address : located at >
+Employee "1" - "*" Store : works in >
+Employee "1" -left "1" Role : has >
+Store "1" -- "*" StoreNetworkManager : manages <
+City "1" -up-- "1" SystemAdministrator: adds <
+District "1" -left-- "1" SystemAdministrator: adds <
+State "1" -down-- "1" SystemAdministrator: adds < 
+UnregisteredUser "1" -right-- "1" User : can register as >
+Person "1" -right-- "1" Address : can have >
+Person "1" -down-- "1" Contacts : has >
+Person <|-up- User
+SystemAdministrator "1" -right-- "*" Store: registers >
+
 
 
 

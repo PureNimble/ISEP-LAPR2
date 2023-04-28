@@ -30,12 +30,19 @@ class Store
 
 class Address
 
-class User{
+class Person
+
+class Person{
 Name
 Email
 Phone Number
 Tax Number
 Passport Number
+}
+
+
+class User{
+Password
 }
 
 class Role {
@@ -73,12 +80,16 @@ class Employee {
 
 
 
+Person <|-- User
+
+
 User <|-- Employee
 
 Employee <|-- Agent
 Employee <|-- StoreNetworkManager
 Employee <|-- StoreManager
-Employee <|-- SystemAdministrator
+
+SystemAdministrator "1" --- "*" Employee: registers >
 
 
 Store "*" - "1" Address : located at >

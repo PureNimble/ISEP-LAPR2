@@ -6,23 +6,25 @@
 
 **SSD - Alternative 1 is adopted.**
 
-| Interaction ID | Question: Which class is responsible for...   | Answer                      | Justification (with patterns)                                                                                 |
-|:--------------:|:----------------------------------------------|:----------------------------|:--------------------------------------------------------------------------------------------------------------| 
-|     Step 1     | 	... interacting with the actor?              | DisplayPropertiesUI         | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
-|                | 	... coordinating the US?                     | DisplayPropertiesController | Controller                                                                                                    |
-|                | 	... instantiating a new Task?                | Organization                | Creator (Rule 1): in the DM Organization has a Task.                                                          |
-|                | ... knowing the user using the system?        | UserSession                 | IE: cf. A&A component documentation.                                                                          |
-|                | 							                                       | Organization                | IE: knows/has its own Employees                                                                               |
-|                | 							                                       | Employee                    | IE: knows its own data (e.g. email)                                                                           |
-|     Step 2     | 							                                       |                             |                                                                                                               |
-|     Step 3     | 	...saving the inputted data?                 | Task                        | IE: object created in step 1 has its own data.                                                                |
-|     Step 4     | 	...knowing the task categories to show?      | System                      | IE: Task Categories are defined by the Administrators.                                                        |
-|     Step 5     | 	... saving the selected category?            | Task                        | IE: object created in step 1 is classified in one Category.                                                   |
-|     Step 6     | 							                                       |                             |                                                                                                               |              
-|     Step 7     | 	... validating all data (local validation)?  | Task                        | IE: owns its data.                                                                                            | 
-|                | 	... validating all data (global validation)? | Organization                | IE: knows all its tasks.                                                                                      | 
-|                | 	... saving the created task?                 | Organization                | IE: owns all its tasks.                                                                                       | 
-|     Step 8     | 	... informing operation success?             | DisplayPropertiesUI         | IE: is responsible for user interactions.                                                                     | 
+|                                                                       Interaction ID                                                                       | Question: Which class is responsible for...                    | Answer                         | Justification (with patterns)                                                                                                                                                                                                                       |
+|:----------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------|:-------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|                                                       Step 1 : asks to display a list of properties                                                        | ...interacting with the actor?                                 | DisplayPropertiesUI            | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                                                                                       |
+|                                                                                                                                                            | ...coordinating the US?                                        | DisplayPropertiesController    | Controller                                                                                                                                                                                                                                          |
+|                                                                                                                                                            | ...obtaining the published annnouncements list?                | PublishedAnnounementRepository | Creator (Rule 1): in the DM one Announcement has just one Property.                                                                                                                                                                                 |
+|                                     Step 2 : displays a list of properties from the most recent glossary to the oldest                                     | ...displaying the UI for the Unregistered User to select data? | DisplayPropertiesSUI           | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                                                                                       |
+|                                                       Step 3 : asks to filter the list of properties                                                       | ...UI-related class being instantiated?                        | DisplayPropertiesUI            | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                                                                                       |
+| Step 4 : asks to specify the options to filter (type of business (buying or renting), type of property (house, apartment or land) and the number of rooms) | ...displaying the UI for the Unregistered User to select data? | DisplayPropertiesUI            | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                                                                                       |
+|                                               Step 5 : selects the options to filter the list of properties                                                | ...validating the selected data?                               | DisplayPropertiesUI            | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                                                                                       |
+|                                                                                                                                                            | ...obtaining the selected options?                             | DisplayPropertyRepository      | IE: The DisplayPropertyRepository interacts with the user interface to obtain the list of properties. Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern. |
+|                                            Step 6 : doesn't select any options to filter the list of properties                                            | ...validating the selected data?                               | DisplayPropertiesUI            | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                                                                                       |
+|                                                          Step 7 : displays the list of properties                                                          | ...displaying the list of properties?                          | DisplayPropertiesUI            | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                                                                                       |
+|                                                   Step 8 : asks to order the filtered list of properties                                                   | ...UI-related class being instantiated?                        | DisplayPropertiesUI            | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                                                                                       |
+|                              Step 9 : asks to specify the options to order (price, city or state) and ascending or descending                              | ...displaying the UI for the Unregistered User to select data? | DisplayPropertiesUI            | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                                                                                       |
+|                                           Step 10 : selects the options to order the filtered list of properties                                           | ...validating the selected data?                               | DisplayPropertiesUI            | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                                                                                       |
+|                                                                                                                                                            | ...obtaining the selected options?                             | DisplayPropertyRepository      | IE: The DisplayPropertyRepository interacts with the user interface to obtain the list of properties. Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern. |
+|                                   Step 11 : doesn't select any ordering method to order the filtered list of properties                                    | ...validating the selected data?                               | DisplayPropertiesUI            | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                                                                                       |
+|                                    Step 12 : displays the filtered list of properties with the ordering method selected                                    | ...displaying the list of properties?                          | DisplayPropertiesUI            | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                                                                                       |
+|                                                       Step 13 : displays an empty list of properties                                                       | ...displaying the UI for the Unregistered User?                | DisplayPropertiesUI            | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                                                                                       |
 
 ### Systematization ##
 
@@ -45,30 +47,6 @@ This diagram shows the full sequence of interactions between the classes involve
 
 ![Sequence Diagram - Full](svg/us01-sequence-diagram-full.svg)
 
-### Alternative 2 - Split Diagram
-
-This diagram shows the same sequence of interactions between the classes involved in the realization of this user story, but it is split in partial diagrams to better illustrate the interactions between the classes.
-
-It uses interaction ocurrence.
-
-![Sequence Diagram - split](svg/us006-sequence-diagram-split.svg)
-
-**Get Task Category List Partial SD**
-
-![Sequence Diagram - Partial - Get Task Category List](svg/us006-sequence-diagram-partial-get-task-category-list.svg)
-
-**Get Task Category Object**
-
-![Sequence Diagram - Partial - Get Task Category Object](svg/us006-sequence-diagram-partial-get-task-category.svg)
-
-**Get Employee**
-
-![Sequence Diagram - Partial - Get Employee](svg/us006-sequence-diagram-partial-get-employee.svg)
-
-**Create Task**
-
-![Sequence Diagram - Partial - Create Task](svg/us006-sequence-diagram-partial-create-task.svg)
-
 ## 3.3. Class Diagram (CD)
 
-![Class Diagram](svg/us006-class-diagram.svg)
+![Class Diagram](svg/us01-Class-diagram.svg)
