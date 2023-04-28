@@ -3,10 +3,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.application.controller.PublishAnnouncementController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class PublishedAnnouncementRepository {
 
@@ -86,4 +83,48 @@ public class PublishedAnnouncementRepository {
         //This is a defensive copy, so that the repository cannot be modified from the outside.
         return publishedAnnouncements;
     }
+
+    Comparator<PublishedAnnouncement> compareToAscendingCityName = new Comparator<PublishedAnnouncement>() {
+        @Override
+        public int compare(PublishedAnnouncement announcement1, PublishedAnnouncement announcement2) {
+            return 0;
+        }
+    };
+
+    Comparator<PublishedAnnouncement> compareToDescendingCityName = new Comparator<PublishedAnnouncement>() {
+        @Override
+        public int compare(PublishedAnnouncement announcement1, PublishedAnnouncement announcement2) {
+            return 0;
+        }
+    };
+
+    Comparator<PublishedAnnouncement> compareToAscendingPrice = new Comparator<PublishedAnnouncement>() {
+        @Override
+        public int compare(PublishedAnnouncement announcement1, PublishedAnnouncement announcement2) {
+            return 0;
+        }
+    };
+
+    Comparator<PublishedAnnouncement> compareToDescendingPrice = new Comparator<PublishedAnnouncement>() {
+        @Override
+        public int compare(PublishedAnnouncement announcement1, PublishedAnnouncement announcement2) {
+            return 0;
+        }
+    };
+
+    Comparator<PublishedAnnouncement> compareToAscendingStateName = new Comparator<PublishedAnnouncement>() {
+        @Override
+        public int compare(PublishedAnnouncement announcement1, PublishedAnnouncement announcement2) {
+            return 0;
+        }
+    };
+
+    Comparator<PublishedAnnouncement> compareToDescendingStateName = new Comparator<PublishedAnnouncement>() {
+        @Override
+        public int compare(PublishedAnnouncement announcement1, PublishedAnnouncement announcement2) {
+            return 0;
+        }
+    };
+
+
 }
