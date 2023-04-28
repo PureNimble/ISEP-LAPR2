@@ -61,8 +61,8 @@ class AuthenticationRepository{
 
 class UnregisteredUserController {
     + getStates()
-    + getDistrictByDescription(state)
-    + getCityByDescription(district)
+    + getDistrictByDescription(districtDescription, state)
+    + getCityByDescription(cityDescription, district)
     + registerPerson(name, passport card number, tax number,\nstate, district, city, street, zip code, email address\nand phone number)
     - getStateRepository()
 }

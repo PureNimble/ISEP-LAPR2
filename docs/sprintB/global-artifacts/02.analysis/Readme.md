@@ -168,33 +168,51 @@ An association is a relationship between instances of objects that indicates a r
 
 | **_Concept (A)_**   | **_Association_** | **_Concept (B)_** |                                       
 |:--------------------|:------------------|------------------:|
-| Agent               | is a              |          Employee |
-| Agent               | publishes         |          Property |
-| Agent               | defines           |         Comission |
-| Announcement        | is a              |          Business |
-| AvailableEquipment  | has               |        Residences |
-| Business            | have a            |          Property |
-| Business            | contains          |         Comission |
-| Employee            | works in          |             Store |
-| Employee            | has               |              Role |
-| Employee            | has               |          Contacts |
-| House               | is a              |        Residences |
-| House               | contains          |       SunExposure |
-| Owner               | contacts          |             Store |
-| Owner               | has               |           Address |
-| Owner               | has               |          Contacts |
-| Property            | located at        |           Address |
-| Rent                | is a              |          Business |
-| Residences          | is a              |          Property |
-| Store               | located at        |           Address |
-| Store               | has               |          Contacts |
-| StoreManager        | is a              |          Employee |
-| StoreNetworkManager | is a              |          Employee |
-| StoreNetworkManager | manages           |             Store |
-| SystemAdministrator | registers         |             Store |
-| SystemAdministrator | resgisters        |          Employee |
-| UnregisteredUser    | wants to see      |          Property |
-|                     |                   |                   |                                                                                                                                                                         |                                                                                                                                                                          |
+| Agent               | reviews           | AnnouncementRequest |
+| Agent               | defines           | Comission         |
+| Agent               | is a              | Employee          |
+| Agent               | publishes         | PublishedAnnouncement |
+| AnnouncementRequest | has               | Business          |
+| AnnouncementRequest | has a             | Property          |
+| Business            | contains          | Comission         |
+| Business            | has a             | PublishedAnnouncement |
+| ComissionPercentage | is a              | Comission         |
+| District            | has               | City              |
+| Employee            | has               | Role              |
+| Employee            | works in          | Store             |
+| Employee            | is a              | User              |
+| House               | is a              | Residence         |
+| House               | contains          | SunExposure       |
+| Person              | can have          | Address           |
+| Person              | has               | Contacts          |
+| Property            | has               | Address           |
+| Property            | has               | Photos            |
+| PublishAnnouncement | advertises        | AnnouncementRequest |
+| PublishAnnouncement | is a              | AnnouncementRequest |
+| Rent                | is a              | Business          |
+| Residence           | contains          | AvailableEquipment |
+| Residence           | is a              | Property          |
+| State               | has               | Address           |
+| State               | has               | District          |
+| Store               | located at        | Address           |
+| Store               | has               | Agent             |
+| Store               | has               | Contacts          |
+| StoreManager        | is a              | Employee          |
+| StoreNetworkManager | is a              | Employee          |
+| StoreNetworkManager | manages           | Store             | 
+| SystemAdministrator | adds              | City              |  
+| SystemAdministrator | adds              | District          |      
+| SystemAdministrator | is a              | Employee          |
+| SystemAdministrator | adds              | State             |
+| SystemAdministrator | registers         | Store             |
+| TypeOfProperty      | defines           | Property          |  
+| User                | requests          | Business          |
+| User                | is a              | Person            |
+| User                | has               | Property          |
+| User                | contacts          | Store             |
+| UnregisteredUser    | can register as   | User              |
+| UnregisteredUser    | displays          | PublishedAnnouncement |
+|                     |                   |                   |         
 
 ## Domain Model
 
