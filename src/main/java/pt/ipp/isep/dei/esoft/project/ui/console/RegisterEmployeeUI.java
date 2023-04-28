@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
-public class RegisterEmployeeUI {
+public class RegisterEmployeeUI implements Runnable{
     private final RegisterEmployeeController controller = new RegisterEmployeeController();
 
     private final AuthenticationController authenticationController = new AuthenticationController();
@@ -98,11 +98,12 @@ public class RegisterEmployeeUI {
 
         Optional<Employee> employee = getController().createEmployee(employeeEmail, name, phoneNumber, rolesEmployee, storeDescription, address, passportNumber, taxNumber);
 
-        AuthenticationRepository authenticationRepository = Repositories.getInstance().getAuthenticationRepository();
-
         String password = authenticationRepository.passwordGenerator();
 
-        authenticationRepository.addUserWithRole(name, employeeEmail, password, roleDescription, passportNumber, taxNumber, phoneNumber, address);
+        User user = new User(employeeEmail,passportNumber,taxNumber,name,address,phoneNumber);
+
+        controller.addUser(user);
+
 
 
         try {

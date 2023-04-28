@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
-public class PublishAnnouncementUI {
+public class PublishAnnouncementUI implements Runnable {
 
 
     private final PublishAnnouncementController controller = new PublishAnnouncementController();

@@ -19,6 +19,8 @@ public class RegisterEmployeeController {
 
     private EmployeeRepository employeeRepository = null;
 
+    private UserRepository userRepository = null;
+
     public RegisterEmployeeController() {
         getRoleRepository();
         getAuthenticationRepository();
@@ -26,6 +28,7 @@ public class RegisterEmployeeController {
         getStateRepository();
         getStateRepository();
         getEmployeeRepository();
+        getUserRepository();
     }
 
     private RoleRepository getRoleRepository() {
@@ -80,6 +83,26 @@ public class RegisterEmployeeController {
 
 
     }
+
+
+    private UserRepository getUserRepository() {
+        if (userRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+
+            //Get the AuthenticationRepository
+            userRepository = repositories.getUserRepository();
+        }
+        return userRepository;
+
+    }
+
+    public void addUser(User user){
+        UserRepository userRepository = getUserRepository();
+
+        userRepository.add(user);
+
+    }
+
 
     private Store getStoreByDescription(String storeDescription) {
         StoreRepository storeRepository = getStoreRepository();
