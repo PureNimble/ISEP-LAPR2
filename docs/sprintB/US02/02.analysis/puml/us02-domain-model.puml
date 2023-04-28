@@ -12,45 +12,44 @@ hide methods
 
 title US002 - Domain Model
 
-class Address{
-Street
-Zip Code
+class Address {
+    Street
+    Zip Code
 }
 
-class City{
-Name
+class City {
+    City name
 }
 
-class District{
-Name
+class District {
+    District name
 }
 
-class State{
-Name
+class State {
+    State name
 }
 
-
-State "1"-- "*" District: is in <
-District "1"-- "*" City: is in <
-City "1"-- "*" Address: is in <
+State "1" -up-- "*" District: has >
+District "1" -up-- "*" City: has >
+Address "*" -up-- "1" State: has <
 
 
 class Contacts {
-Phone number
-Email adress
+    Phone Number
+    Email Adress
 }
 
 class Business {
-Requested price
+    Requested price
 }
 
 class Store {
-Designation
+    ID
+    Designation
 }
 
 class User {
-Name
-Tax number
+    Password
 }
 
 User "1" -down-- "1" Contacts: has >
@@ -61,31 +60,36 @@ Agent "*" -up-- "1" Store: has <
 
 
 class Residence {
-Number of Bedrooms
-Number of Bathrooms
-Number of Parking Spaces
- }
-
-class Property {
-Area
-Distance from the city center
+    Number of Bedrooms
+    Number of Bathrooms
+    Number of Parking Spaces
 }
 
-class Photos{
-URI
+class Property {
+    Area
+    Photos
+    Distance from the city center
+}
+
+class TypeOfProperty{
+    Type
+}
+
+class Photos {
+    URI
 }
 
 class House {
-Basement
-Inhabitable loft
+    Basement
+    Inhabitable loft
 }
 
 class SunExposure {
-Direction
+    Direction
 }
 
 class AvailableEquipment {
-Equipment
+    Equipment
 }
 
 Residence <|-down- House
@@ -95,25 +99,27 @@ SunExposure "1" -up-- "*" House: contains <
 Address "1" -up-- "1" Property: has <
 User "1" -down-- "*" Property: has >
 AvailableEquipment "*" -up-- "1" Residence: contains <
+TypeOfProperty "1" -down-- "1" Property: defines >
 
 
+class Comission {
+    Value
+}
 
-class Comission{
-Percentage
-Static Value
+class ComissionPercentage {
+    Percentage value
 }
 
 class Rent {
-Duration of contract
+    Duration of contract
 }
 
-class AnnouncementRequest{
-Initial date
-Contract type
+class AnnouncementRequest {
+    Initial date
 }
 
 class PublishedAnnouncement {
-Contract type
+    Contract type
 }
 
 Comission "1" -right-- "1" Agent: defines <
@@ -127,6 +133,6 @@ AnnouncementRequest  <|---  PublishedAnnouncement
 PublishedAnnouncement "*" --- "1" Agent: publishes <
 PublishedAnnouncement "1" --- "1" Business: has a <
 Business <|--- Rent
-
+Comission <|-- ComissionPercentage
 
 @enduml
