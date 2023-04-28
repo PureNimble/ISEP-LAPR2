@@ -29,7 +29,7 @@ public class Employee extends User {
     }
 
     public String toString(){
-        return String.format(super.toString() + "\nfuncionário da loja %s que desempenha o papel de %s",store.getDesignation(),roles.toString());
+        return String.format(super.toString() + "\nfuncionário da loja %s que desempenha o papel de %s",store.toString(),roles.toString());
     }
 
     @Override

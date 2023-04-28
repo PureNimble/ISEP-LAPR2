@@ -9,18 +9,17 @@ import java.util.Optional;
 public class StoreRepository {
     private final List<Store> stores = new ArrayList<>();
 
-    public Store getStoreByDescription(String storeDescription) {
+    public Store getStoreByDescription(String storeIDDescription) {
 
-        Store newStore = new Store(storeDescription);
-        Store store = null;
-        if (stores.contains(newStore)) {
-            store = stores.get(stores.indexOf(newStore));
+        Store newStore = new Store();
+
+        for (Store store: stores) {
+            if (store.getId() == Integer.parseInt(storeIDDescription)){
+                newStore = store;
+            }
         }
-        if (store == null) {
-            throw new IllegalArgumentException(
-                    "Type of Business requested for [" + storeDescription + "] does not exist.");
-        }
-        return store;
+
+        return newStore;
     }
 
 
@@ -30,7 +29,7 @@ public class StoreRepository {
         boolean operationSuccess = false;
 
         if (validateStore(store)) {
-            newStore = Optional.of(store.clone());
+            newStore = Optional.of(store);
             operationSuccess = stores.add(newStore.get());
 
         }

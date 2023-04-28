@@ -15,11 +15,15 @@ activate Admin
     Admin -> System : asks to register an employee
     activate System
 
-    System --> Admin : shows list of roles and asks to select one
-    deactivate System
+    loop selects roles
+     System --> Admin : shows list of roles and asks to select
+        deactivate System
 
-        Admin -> System : selects a user role
-        activate System
+            Admin -> System : selects roles of an employee
+            activate System
+    end
+
+
 
          System --> Admin : shows list of stores and asks to select one
             deactivate System

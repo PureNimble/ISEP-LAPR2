@@ -35,3 +35,27 @@
 |                                                       | ...adding to a collection<br/>and globally<br/>validating duplicated records        | Store                      | IE:Knows all Employees instances                                                                              |
 | Step 16: shows opperation success                     | ...informing operation success?                                                     | RegisterEmployeeUI         | Pure Fabrication                                                                                              |
 
+### Systematization ##
+
+According to the taken rationale, the conceptual classes promoted to software classes are:
+
+* Store
+* Employee
+
+Other software classes (i.e. Pure Fabrication) identified:
+
+* RegisterEmployeeUI
+* RegisterEmployeeController
+
+
+## 3.2. Sequence Diagram (SD)
+
+### Alternative 1 - Full Diagram
+
+This diagram shows the full sequence of interactions between the classes involved in the realization of this user story.
+
+![Sequence Diagram - Full](svg/us03-sequence-diagram-full.svg)
+
+## 3.3. Class Diagram (CD)
+
+![Class Diagram](svg/us03-Class-diagram.svg)

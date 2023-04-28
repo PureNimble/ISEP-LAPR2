@@ -113,10 +113,12 @@ public class Bootstrap implements Runnable {
     private void addStores() {
         StoreRepository storeRepository = Repositories.getInstance().getStoreRepository();
 
-        storeRepository.add(new Store("Gaia"));
-        storeRepository.add(new Store("Porto"));
-        storeRepository.add(new Store("Póvoa de Varzim"));
-        storeRepository.add(new Store("Guimaraes"));
+        Address address = new Address("Avenue Walmart",22334,new District("Jefferson"),new City("Ottawa"),new State("Arizona"));
+
+        storeRepository.add(new Store("Holloway",10234,address,9383811,"holloway@gmail.com"));
+        storeRepository.add(new Store("Maltip",104224,address,9678910,"123sttore@gmail.com"));
+        storeRepository.add(new Store("Elvis",224,address,9437782,"dadaw@gmail.com"));
+        storeRepository.add(new Store("Trap",4554,address,9827612,"trappp@gmail.com"));
 
 
     }

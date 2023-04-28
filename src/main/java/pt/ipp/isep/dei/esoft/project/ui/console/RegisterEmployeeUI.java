@@ -4,7 +4,6 @@ import pt.ipp.isep.dei.esoft.project.application.controller.RegisterEmployeeCont
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
-import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -33,7 +32,7 @@ public class RegisterEmployeeUI implements Runnable{
 
     private String stateDescription;
 
-    private String countryDescription;
+    private String districtDescription;
 
     private int passportNumber;
 
@@ -67,7 +66,7 @@ public class RegisterEmployeeUI implements Runnable{
 
         stateDescription = displayAndSelectState();
 
-        countryDescription = displayAndSelectCountry();
+        districtDescription = displayAndSelectCountry();
 
         cityDescription = displayAndSelectCity();
 
@@ -91,7 +90,7 @@ public class RegisterEmployeeUI implements Runnable{
         List<Role> rolesEmployee = getController().getRolesByDescription(rolesDescriptions);
 
         State state = getController().getStateByDescription(stateDescription);
-        District district = getController().getDistrictByDescription(countryDescription, state);
+        District district = getController().getDistrictByDescription(districtDescription, state);
         City city = getController().getCityByDescription(cityDescription, district);
 
         Address address = new Address(street, zipCode, district, city, state);
@@ -238,7 +237,10 @@ public class RegisterEmployeeUI implements Runnable{
             answer = input.nextInt();
         }
 
-        String description = stores.get(answer - 1).getDesignation();
+        int numeroInteiro = stores.get(answer - 1).getId();
+
+        String description =Integer.toString(numeroInteiro);
+
         return description;
 
     }
@@ -269,7 +271,7 @@ public class RegisterEmployeeUI implements Runnable{
 
         State state = getController().getStateByDescription(stateDescription);
 
-        District district = getController().getDistrictByDescription(countryDescription, state);
+        District district = getController().getDistrictByDescription(districtDescription, state);
 
         List<City> cities = district.getCities();
 
@@ -346,7 +348,7 @@ public class RegisterEmployeeUI implements Runnable{
         int i = 1;
 
         for (Store store : stores) {
-            System.out.println(i + "-" + store.getDesignation());
+            System.out.println(i + "-" + store.getId());
             i++;
         }
     }
