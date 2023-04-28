@@ -1,4 +1,4 @@
-# US 007 - Register a store
+# US 007 - Register in the system to buy, sell or rent properties
 
 ## 2. Analysis
 

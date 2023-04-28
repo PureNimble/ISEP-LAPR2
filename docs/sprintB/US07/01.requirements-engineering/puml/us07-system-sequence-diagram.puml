@@ -15,12 +15,30 @@ activate unregUser
     unregUser -> System : asks to create an account
     activate System
 
-        System --> unregUser : requests data (name, passport card number, tax number, \naddress (not mandatory), email address and phone number)
+        System --> unregUser : requests data (name, passport card number, tax number,\naddress ((asks to select a state) (not mandatory)), email address and phone number)\nand shows list of states
     deactivate System
 
     alt enters Address
 
-    unregUser -> System : types all requested data
+    unregUser -> System : types all data and selects state
+    activate System
+
+        System --> unregUser : shows list of districts available for that state and asks to select one
+    deactivate System
+
+    unregUser -> System : selects district
+    activate System
+
+        System --> unregUser : shows list of cities available for that district and asks to select one
+    deactivate System
+
+    unregUser -> System : selects city
+    activate System
+
+        System --> unregUser : asks data
+    deactivate System
+
+    unregUser -> System : types necessary data (street and zip code)
     activate System
 
     else does not enter Address
@@ -32,7 +50,7 @@ activate unregUser
         System --> unregUser : shows inserted data and asks for confirmation
     deactivate System
 
-    unregUser -> System : confirms
+    unregUser -> System : confirms data
     activate System
 
         System --> unregUser : displays operation success

@@ -110,14 +110,16 @@ As an unregistered user, I want to register in the system to buy, sell or rent p
 **Input Data:**
 
 * Typed data:
-	* a username,
-	* a password,
 	* a name,
 	* a passport card number,
 	* a tax number,
-	* an address,
 	* an email address,
 	* a phone number
+	
+* Selected data:
+	* a state, 
+	* a district, 
+	* a city
 
 
 **Output Data:**

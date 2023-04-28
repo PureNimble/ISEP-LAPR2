@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 007 - Register in the system to buy, sell or rent properties
 
 ## 3. Design - User Story Realization 
 
