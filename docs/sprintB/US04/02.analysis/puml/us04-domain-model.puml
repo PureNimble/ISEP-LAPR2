@@ -10,44 +10,6 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
-class Property
-
-class House
-
-class Residence
-
-class Address
-
-class Contacts
-
-class User
-
-class Comission
-
-class Agent
-
-class Photos
-
-class Business
-
-class AvailableEquipment
-
-class Rent
-
-class SunExposure
-
-class Store
-
-class City
-
-class District
-
-class State
-
-class ComissionPercentage
-
-class AnnouncementRequest
-
 class TypeOfProperty{
     Type
 }
@@ -141,9 +103,6 @@ Address "1" -right-- "1" Property: has <
 User "1" -down-- "*" Property: has >
 User "1" -right- "1" Store: contacts >
 Agent "*" -left-- "1" Store: has <
-Address "*" -left-- "1" City: has <
-State "1" -right-- "*" District: has >
-District "1" -right-- "*" City: has >
 AvailableEquipment "*" -left-- "1" Residence: contains <
 User "1" -up-- "1" Business: defines >
 Store "1" -right-- "1" Contacts: has >
@@ -156,4 +115,7 @@ User "1" -left-- "1" AnnouncementRequest: makes >
 Business "1" -left-- "1" AnnouncementRequest: gets <
 AnnouncementRequest "1" -left-- "1" Property: advertises >
 TypeOfProperty "1" -down-- "1" Property: defines >
+State "1" -left-- "*" District: has >
+District "1" -left-- "*" City: has >
+Address "*" -left-- "1" State: has <
 @enduml

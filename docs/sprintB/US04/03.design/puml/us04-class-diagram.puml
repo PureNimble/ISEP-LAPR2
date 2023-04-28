@@ -1,130 +1,173 @@
 @startuml
-'skinparam monochrome true
-skinparam packageStyle rectangle
-skinparam shadowing false
-skinparam linetype polyline
-'skinparam linetype orto
+'https://plantuml.com/class-diagram
 
-skinparam classAttributeIconSize 0
+title US004 - Class Diagram
 
-'left to right direction
-
-class ApplicationSession
-{
-    + static getInstance()
-    + getCurrentSession()
+class TypeOfProperty{
+    - string typeofProperty
 }
 
-class UserSession
-{
-    + getUserEmail()
+class City {
+    - string city
 }
 
-class Employee {
-    - name
-    - email
-    - position
-    - phone
+class District {
+    - string district
 }
 
-class Task {
-    - String reference
-    - String description
-    - String informalDescription
-    - String technicalDescription
-    - Integer duration
-    - Double cost
-
-    + Task(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, createdBy, taskCategory)
+class Photos {
+    - string uri
 }
 
-class TaskCategory {
-    - String description
-
-    + TaskCategory(description)
+class State {
+    - string state
 }
 
-class Organization {
-    - String name
-    - String vatNumber
-    - String website
-    - String phone
-    - String email
-
-    - addTask(task)
-    - validateTask(task)
-    + anyEmployeeHasEmail(email)
-    + Organization(name, vatNumber, webSite, phone, email, postalAddress, manager)
-    + createTask(reference, description, informalDesccription,\ntechnicalDescription, duration, cost, taskCategoryDescription)
-    - getEmployeeByEmail(email)
-
-'  +saveTask(task)
+class AvailableEquipment {
+    - string equipment
 }
 
-class TaskCategoryRepository {
-    + getTaskCategoryByDescription(description)
+class ComissionPercentage {
+    - double value
 }
 
-class OrganizationRepository {
-    + getOrganizationByEmployeeEmail(email)
+
+class Contacts {
+    - String phoneNumber
+    - string emailAdress
+}
+
+class User {
+
+}
+
+class Rent {
+    - double contractDuration
+}
+
+class AnnouncementRequest {
+    - string initialDate
+}
+
+class Business {
+    - double requestedPrice
+}
+
+class Residence {
+    - int numberOfBedrooms
+    - int numberOfBathrooms
+    - int numberOfParkingSpaces
+}
+
+class Store {
+    - int ID
+    - string Designation
+}
+
+class Property {
+    - double area
+    - double distanceFromCenter
+}
+
+class House {
+    - boolean basement
+    - boolean loft
+}
+
+class SunExposure {
+    - string direction
+}
+
+class Address {
+    - string street
+    - string zipCode
+}
+
+class Comission {
+    - double value
+}
+
+class StateRepository {
+    +getState()
+    +getDistrictsByDiscription(state)
+    +getCitiesByDiscription(district)
+}
+
+class UserRepository {
+    +getAgentList()
+}
+
+class TypeOfPropertyRepository {
+    +getTypeOfPropertyList()
+}
+
+class SunExposureRepository {
+    +getSunExposureDirections
+}
+
+class BusinessRepository {
+    +getTypesOfBusinessList()
 }
 
 class Repositories {
-    - Repositories()
-    + getInstance() : Repositories
-    + getTaskCategoryRepository()
-    + getOrganizationRepository()
+    -Repositories()
+    +getInstance():Repositories
+    +getStateRepository()
 }
 
-class CreateTaskController {
-    + CreateTaskController(organizationRepository, taskCategoryRepository)
-    + getTaskCategories()
-    + createTask(userEmail, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, categoryDescription)
-    - getTaskCategoryByDescription(taskCategoryDescription)
-    - getEmployeeFromSession()
+class AnnouncementRequestUI {
+
 }
 
-note right of CreateTaskController
-    - userEmail is obtained
-    from the user session
-    - categoryDescription
-    is retrieved from selected data
-end note
 
-note bottom of TaskCategoryRepository
-    - used for displaying
-    the category list
-end note
-
-class CreateTaskUI {
+class AnnouncementRequestController {
+    
 }
 
-Repositories -> Repositories : instance
-ApplicationSession -> ApplicationSession : instance
+AnnouncementRequestUI ..> AnnouncementRequestController
+AnnouncementRequestController ..> StateRepository
+Repositories --> StateRepository: stateRepository
 
-CreateTaskUI .> CreateTaskController
+AnnouncementRequestController ..> UserRepository
+Repositories --> UserRepository: userRepository
 
-CreateTaskController .> Repositories : repositories
+AnnouncementRequestController ..> TypeOfPropertyRepository
+Repositories --> TypeOfPropertyRepository: typeOfPropertyRepository
 
-Repositories -> "1" TaskCategoryRepository
+AnnouncementRequestController ..> SunExposureRepository
+Repositories --> SunExposureRepository: sunExposureRepository
 
-CreateTaskController ..> TaskCategory
-CreateTaskController ..> OrganizationRepository : organizationRepository
-CreateTaskController ..> TaskCategoryRepository : TaskCategoryRepository
+AnnouncementRequestController ..> BusinessRepository
+Repositories --> BusinessRepository: businessRepository
 
-Repositories --> "1" OrganizationRepository
+Repositories -> Repositories:instance
+Residence <|-- House
+Property <|-- Residence
+SunExposure "1" -up-- "1" House: contains <
+Address "1" -right-- "1" Property: has <
+User "1" -down-- "*" Property: has >
+User "1" -right- "1" Store: contacts >
+Agent "*" -left-- "1" Store: has <
+AvailableEquipment "*" -left-- "1" Residence: contains <
+User "1" -up-- "1" Business: defines >
+Store "1" -right-- "1" Contacts: has >
+Comission "1" -down-- "1" Agent: defines <
+Comission "1" -up-- "1" Business: contains <
+Comission <|-- ComissionPercentage
+Business <|-- Rent
+Property "1" -right-- "1..30" Photos: has >
+User "1" -left-- "1" AnnouncementRequest: makes >
+Business "1" -left-- "1" AnnouncementRequest: gets <
+AnnouncementRequest "1" -left-- "1" Property: advertises >
+TypeOfProperty "1" -down-- "1" Property: defines >
+State "1" -left-- "*" District: has >
+District "1" -left-- "*" City: has >
+Address "*" -left-- "1" State: has <
 
-OrganizationRepository --> "*" Organization
-ApplicationSession --> "1" UserSession : userSession
 
-CreateTaskController ..> "1" Organization : organization
-CreateTaskController ..> ApplicationSession
-CreateTaskController ..> UserSession
-Task "*" --> "1" TaskCategory : taskCategory
-TaskCategoryRepository "1" --> "*" TaskCategory : taskCategory
-Organization "1" --> "*" Task : tasks
-Task --> Employee : createdBy
 
-Organization --> "*" Employee : employs
+
+
+
 
 @enduml

@@ -12,12 +12,12 @@ participant ":AnnouncementRequestUI" as ui
 participant ":AnnouncementRequestController" as controller
 participant ":Repositories" as singleton
 participant "repositories\n:Repositories" as repositories
-participant "announcementRequestRepository\n:AnnouncementRequestRepository" as AnnouncementRequestRepository
-participant "announcementRequest\n:AnnouncementRequest" as announcementRequest
-participant "storeRepository\n:StoreRepository" as storeRepository
-participant "agentRepository\n:AgentRepository" as agentRepository
+participant "userRepository\n:UserRepository" as userRepository
+participant "typeOfPropertyRepository\n:TypeOfPropertyRepository" as typeOfPropertyRepository
+participant "stateRepository\n:StateRepository" as stateRepository
+participant "sunExposureRepository\n:SunExposureRepository" as sunExposureRepository
 participant "businessRepository\n:BusinessRepository" as businessRepository
-participant "property\n:Property" as property
+participant "announcementRequest\n:AnnouncementRequest" as announcementRequest
 
 
 activate user
@@ -28,85 +28,160 @@ activate user
 
         create controller
         ui -> controller: Create
-        ui -> controller: getAgencyList()
+        ui -> controller: getAgentList()
         activate controller
         controller -> singleton : getInstance()
         activate singleton
             singleton --> controller : repositories
         deactivate singleton
-        controller -> repositories : getStoreRepository()
+        controller -> repositories : getUserRepository()
         activate repositories
-            repositories --> controller : StoreRepository
+            repositories --> controller : userRepository
         deactivate repositories
-            controller -> storeRepository: getAgencyList()
-            activate storeRepository
-                storeRepository --> controller: agencyList
-            deactivate storeRepository
-            controller --> ui: agencyList
-        deactivate controller
-
-    ui --> user : accepts the request and gives a list of possible agencies
-    deactivate ui
-
-    user -> ui : chooses the agency
-    activate ui
-
-        ui -> controller: getAgentsList(agency)
-        activate controller
-        controller -> singleton : getInstance()
-        activate singleton
-            singleton --> controller : repositories
-        deactivate singleton
-        controller -> repositories : getAgentRepository()
-        activate repositories
-            repositories --> controller : AgentRepository
-        deactivate repositories
-            controller -> agentRepository: getAgentsList(agency)
-            activate agentRepository
-                agentRepository --> controller: agentsList
-            deactivate agentRepository
+            controller -> userRepository: getAgentsList()
+            activate userRepository
+                userRepository --> controller: agentsList
+            deactivate userRepository
             controller --> ui: agentsList
         deactivate controller
 
-    ui --> user : gives the chosen agency to the user and provides a list of agents from that agency
+    ui --> user : gives a list of possible agents and asks for the agent
     deactivate ui
 
     user -> ui : chooses the responsible agent
     activate ui
 
-        ui -> ui: keepAgent(name)
+        ui -> ui: keepAgent(agentName)
+        ui -> controller: getTypeOfPropertyList()
+        activate controller
+        controller -> singleton : getInstance()
+        activate singleton
+            singleton --> controller : repositories
+        deactivate singleton
+        controller -> repositories : getTypesOfPropertyRepository()
+        activate repositories
+            repositories --> controller : typeOfPropertyRepository
+        deactivate repositories
+            controller -> typeOfPropertyRepository: getTypeOfPropertyList()
+            activate typeOfPropertyRepository
+                typeOfPropertyRepository --> controller: typesOfPropertyList
+            deactivate typeOfPropertyRepository
+            controller --> ui: typesOfPropertyList
+        deactivate controller
 
-    ui --> user : gives the chosen agent to the user and asks the type of property
+    ui --> user : shows list of types of property and asks the type of property
     deactivate ui
 
-    user -> ui : chooses the type of business
+    user -> ui : selects the type of property
     activate ui
 
-        ui -> ui: keepBusiness(type)
+        ui -> ui: keepPropertyType(propertyType)
 
-    ui --> user : retrieves the type of business and asks for property data
+    ui --> user : asks for property data
     deactivate ui
 
-    user -> ui : types the requested data [area in m^2, state, district, city, street, zip code and distance from city center]
+    user -> ui : types the requested data [area in m^2, street, zip code and distance from city center]
         activate ui
-        ui -> ui: keepData(area, state, district, city, street, zipCode, distanceFromCenter)
+        ui -> ui: keepPropertyData(area, street, zipCode, distanceFromCenter)
+        ui -> controller: getState()
+                activate controller
+                controller -> singleton: getInstance()
+                activate singleton
+                singleton --> controller : repositories
+                deactivate singleton
+                controller -> repositories : getStateRepository()
+                activate repositories
+                repositories --> controller : StateRepository
+                deactivate repositories
+                controller -> stateRepository: getState()
+                activate stateRepository
+                stateRepository --> controller: statesList
+                deactivate stateRepository
+                controller --> ui: statesList
+                deactivate controller
+                ui --> user: shows list of states and asks to select one
+                deactivate ui
+                user -> ui : selects state
+                activate ui
+                ui -> ui: keepState(state)
+
+                ui -> controller: getByDistrictsDescription(state)
+                activate controller
+                controller -> stateRepository: getDistrictsByDescription(state)
+                activate stateRepository
+                stateRepository --> controller: DistrictsList
+                deactivate stateRepository
+                controller --> ui: DistrictsList
+                deactivate controller
+                ui --> user: shows list of districts and asks to select one
+                deactivate ui
+                user -> ui : selects district
+                activate ui
+                ui -> ui: keepDistrict(district)
+                
+                ui -> controller: getCitiesByDescription(district)
+                activate controller
+                controller -> stateRepository: getCitiesByDescription(district)
+                activate stateRepository
+                stateRepository --> controller: CitiesList
+                deactivate stateRepository
+                controller --> ui: CitiesList
+                deactivate controller
+                ui --> user: shows list of cities and asks to select one
+                deactivate ui
+                user -> ui : selects city
+                activate ui
+                ui -> ui: keepCity(city)
+
         opt house, apartment
+            ui --> user : asks for house/apartment data
+            deactivate ui
             user -> ui : types requested data [number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning)]
-                ui -> ui: keepData(numberOfBedrooms, numberOfBathrooms, numberOfParkingSpaces, availableEquipment)
+                activate ui
+                ui -> ui: keepResidenceData(numberOfBedrooms, numberOfBathrooms, numberOfParkingSpaces, availableEquipment)
             opt house
-                user -> ui : types requested data [the existence of a basement and/or inhabitable loft, sun exposure \n(North, South, East, West)]
-                ui -> ui: keepData(basementOrLoft, sunExposure)
+                ui --> user : asks for the existence of a basement
+                deactivate ui
+                user -> ui: selects yes or no for the existence of a basement
+                activate ui
+                ui -> ui: keepBasementData(basement)
+                ui --> user : asks for the existence of a loft
+                deactivate ui
+                user -> ui: selects yes or no for the existence of a loft
+                activate ui
+                ui -> ui: keepLoftData(loft)
+                ui -> controller: getSunExposureDirections()
+                activate controller
+                controller -> singleton: getInstance()
+                activate singleton
+                singleton --> controller : repositories
+                deactivate singleton
+                controller -> repositories : getSunExposureRepository()
+                activate repositories
+                repositories --> controller : SunExposuresRepository
+                deactivate repositories
+                controller -> sunExposureRepository: getSunExposureDirections()
+                activate sunExposureRepository
+                sunExposureRepository --> controller: directions
+                deactivate sunExposureRepository
+                controller --> ui: directions
+                deactivate controller
+                ui --> user: asks for the direction of the sun exposure
+                deactivate ui
+                user -> ui : selects the direction of the sun exposure [north, south, east, west]
+                activate ui
+                ui -> ui: keepData(direction)
         end
     end
 
-    ui ---> user : saves all data and asks for photos of the property
+    ui --> user : asks for photos of the property
     deactivate ui
 
-    loop Sends photos one by one (from 1 up to 30 pictures)
+    loop Sends URI's one by one (from 1 up to 30 pictures)
 
-        user -> ui : sends photos of the property
+        user -> ui : sends URI of the property
         activate ui
-        ui -> ui: keepPhoto(PhotoArray[i])
+        ui -> ui: keepPhoto(photoArray[i])
         
     end
 
@@ -126,27 +201,42 @@ activate user
 
         ui -> ui: keepTypeOfBusiness(typeOfBusiness)
 
-    ui --> user : saves the type of business and asks for needed data
+    ui --> user : asks for needed data
     deactivate ui
 
-    user ---> ui : types the requested data [Requested price]
+    user -> ui : types the requested data [Requested price]
     activate ui
     ui -> ui: keepSaleData(requestedPrice)
         
     opt rent
-        user ---> ui : types the requested data [contract duration]
+        ui --> user : asks for rent data
+        deactivate ui
+        user -> ui : types the requested data [contract duration]
+        activate ui
         ui -> ui: keepRentData(contractDuration)
     end
 
-    ui --> user : retrieves the received data and asks to confirm the operation
+    ui --> user : asks to confirm the operation
     deactivate ui
 
     user -> ui : confirms the operation
     activate ui
         
-        ui -> controller: createAnnouncementRequest()
+        ui -> controller: createAnnouncementRequest(agentName, propertyType, area, \nstate, district, city, street, zipCode, distanceFromCenter, numberOfBedrooms, \nnumberOfBathrooms, numberOfParkingSpaces, availableEquipment,\n basement, loft, sunExposure, photoArray[], typeOfBusiness, requestedPrice, contractDuration)
+        activate controller
+        controller -> announcementRequest: createAnnouncementRequest(agentName, propertyType, area, \nstate, district, city, street, zipCode, distanceFromCenter, numberOfBedrooms, \nnumberOfBathrooms, numberOfParkingSpaces, availableEquipment,\n basement, loft, sunExposure, photoArray[], typeOfBusiness, requestedPrice, contractDuration)
+        activate announcementRequest
+        announcementRequest -> announcementRequest: addAnnouncementRequest(announcementRequest)
+        activate announcementRequest
+        announcementRequest -> announcementRequest: validateAnnouncementRequest(announcementRequest)
+        deactivate announcementRequest
+        announcementRequest --> controller: announcementRequest
+        deactivate announcementRequest
+        controller --> ui: announcementRequest
+        deactivate controller
 
-    
+
+
     ui --> user : displays operation success
     deactivate ui
     deactivate user

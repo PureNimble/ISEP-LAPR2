@@ -10,48 +10,83 @@ autonumber
 actor "User" as user
 participant ":System" as sys
 
-    activate user
+activate user
 
-    user -> sys: asks to create a new request for an owned property
+
+    user -> sys : asks to create a new request for an owned property
     activate sys
 
-    sys --> user : accepts the request and gives a list of possible agencies
-    deactivate sys
-
-    user -> sys : chooses the agency
-    activate sys
-
-    sys --> user : gives the chosen agency to the user and provides a list of agents from that agency
+    sys --> user : gives a list of possible agents and asks for the agent
     deactivate sys
 
     user -> sys : chooses the responsible agent
     activate sys
 
-    sys --> user : gives the chosen agent to the user and asks the type of property
+    sys --> user : shows list of types of property and asks the type of property
     deactivate sys
 
-    user -> sys : chooses the type of business
+    user -> sys : selects the type of property
     activate sys
 
-    sys --> user : retrieves the type of business and asks for property data
+    sys --> user : asks for property data
     deactivate sys
 
-    user -> sys : types the requested data [area in m^2, state, district, city, street, zip code and distance from city center]
-        activate sys
-        opt house, apartment
+    user -> sys : types the requested data [area in m^2, street, zip code and distance from city center]
+    activate sys
+
+    sys --> user: shows list of states and asks to select one
+                deactivate sys
+
+                user -> sys : selects state
+                activate sys
+
+    sys --> user: shows list of districts and asks to select one
+                deactivate sys
+
+                user -> sys : selects district
+                activate sys
+
+   sys --> user: shows list of cities and asks to select one
+                deactivate sys
+
+                user -> sys : selects city
+                activate sys
+
+    opt house, apartment
+            sys --> user : asks for house/apartment data
+            deactivate sys
+
             user -> sys : types requested data [number of bedrooms, number of bathrooms, number of parking spaces, \navailable eqsyspment (central heating and/or airconditioning)]
-            opt house
-                user -> sys : types requested data [the existence of a basement and/or inhabitable loft, sun exposure \n(North, South, East, West)]
-            end
-        end
+            activate sys
 
-    sys ---> user : saves all data and asks for photos of the property
+            opt house
+                sys --> user : asks for the existence of a basement
+                deactivate sys
+
+                user -> sys: selects yes or no for the existence of a basement
+                activate sys
+
+                sys --> user : asks for the existence of a loft
+                deactivate sys
+
+                user -> sys: selects yes or no for the existence of a loft
+                activate sys
+
+                sys --> user: asks for the direction of the sun exposure
+                deactivate sys
+
+                user -> sys : selects the direction of the sun exposure [north, south, east, west]
+                activate sys
+           end
+    end
+     sys --> user : asks for photos of the property
     deactivate sys
 
-    loop Sends photos one by one (from 1 up to 30 pictures)
+    loop Sends URI's one by one (from 1 up to 30 pictures)
 
-        user -> sys : sends photos of the property
+        user -> sys : sends URI of the property
         activate sys
+ 
     end
 
     sys ---> user : asks for the type of business
@@ -60,17 +95,20 @@ participant ":System" as sys
     user -> sys : selects the type of business
     activate sys
 
-    sys --> user : saves the type of business and asks for needed data
+    sys --> user : asks for needed data
     deactivate sys
 
-    user ---> sys : types the requested data [Requested price]
+    user -> sys : types the requested data [Requested price]
     activate sys
 
     opt rent
-        user ---> sys : types the requested data [contract duration]
+        sys --> user : asks for rent data
+        deactivate sys
+        user -> sys : types the requested data [contract duration]
+        activate sys
     end
 
-    sys --> user : retrieves the received data and asks to confirm the operation
+    sys --> user : asks to confirm the operation
     deactivate sys
 
     user -> sys : confirms the operation
@@ -79,4 +117,6 @@ participant ":System" as sys
     sys --> user : displays operation success
     deactivate sys
     deactivate user
+
+    
     @enduml
