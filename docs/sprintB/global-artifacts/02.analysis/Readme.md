@@ -187,8 +187,8 @@ An association is a relationship between instances of objects that indicates a r
 | Person              | has               | Contacts          |
 | Property            | has               | Address           |
 | Property            | has               | Photos            |
-| PublishAnnouncement | advertises        | AnnouncementRequest |
 | PublishAnnouncement | is a              | AnnouncementRequest |
+| PublishAnnouncement | advertises        | Property          |
 | Rent                | is a              | Business          |
 | Residence           | contains          | AvailableEquipment |
 | Residence           | is a              | Property          |
