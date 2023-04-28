@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 04 - Submit a request for listing a property sale or rent
 
 ## 3. Design - User Story Realization 
 
@@ -8,33 +8,42 @@
 
 | Interaction ID | Question: Which class is responsible for... | Answer               | Justification (with patterns)                                                                                 |
 |:-------------  |:--------------------- |:---------------------|:--------------------------------------------------------------------------------------------------------------|
-| Step 1  		 |	... interacting with the actor? | CreateTaskUI         | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
-| 			  		 |	... coordinating the US? | CreateTaskController | Controller                                                                                                    |
-| 			  		 |	... instantiating a new Task? | Organization         | Creator (Rule 1): in the DM Organization has a Task.                                                          |
+| Step 1  		 |	... interacting with the actor? | AnnouncementRequestUI         | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
+| 			  		 |	... coordinating the US? | AnnouncementRequestController | Controller                                                                                                    |
+| 			  		 |	... instantiating a new Announcement? | User         | Creator (Rule 1): the user creates a new Announcement Request for their property.                                                         |
 | 			  		 | ... knowing the user using the system?  | UserSession          | IE: cf. A&A component documentation.                                                                          |
-| 			  		 |							 | Organization         | IE: knows/has its own Employees                                                                               |
-| 			  		 |							 | Employee             | IE: knows its own data (e.g. email)                                                                           |
-| Step 2  		 |							 |                      |                                                                                                               |
-| Step 3  		 |	...saving the inputted data? | Task                 | IE: object created in step 1 has its own data.                                                                |
-| Step 4  		 |	...knowing the task categories to show? | System               | IE: Task Categories are defined by the Administrators.                                                        |
-| Step 5  		 |	... saving the selected category? | Task                 | IE: object created in step 1 is classified in one Category.                                                   |
-| Step 6  		 |							 |                      |                                                                                                               |              
-| Step 7  		 |	... validating all data (local validation)? | Task                 | IE: owns its data.                                                                                            | 
-| 			  		 |	... validating all data (global validation)? | Organization         | IE: knows all its tasks.                                                                                      | 
-| 			  		 |	... saving the created task? | Organization         | IE: owns all its tasks.                                                                                       | 
-| Step 8  		 |	... informing operation success?| CreateTaskUI         | IE: is responsible for user interactions.                                                                     | 
+|  		  		 |							 | repository         | IE: knows the UserRepository                                                                             |
+| 			  		 | ...getting a list of possible agents?					 | UserRepository             | IE: a repository that manages Users should be responsible for the management of the Agents                                                                          |
+| Step 2  		 | ...saving the inputted data?							 | AnnouncementRequestUI               |       Pure Fabrication                                                                                                        |
+|   		 | 						 | repository               |       IE: knows the TypeOfPropertyRepository                                                                                                       |
+|   		 |	......getting a list of types of properties? | TypeOfPropertyRepository                 | IE: a repository that manages Types of Properties should be responsible for the management of the Property types.                                                                |
+| Step 3		  		 |   | repository          | IE: cf. A&A component documentation.                                                                          |
+| 		  		 | ... obtaining the states list?  | StateRepository          | IE: knows the UserRepository                                                                          |
+| 			  		 |							 | State             | IE: knows its own data (e.g. name)                                                                           |
+| 		 |	...temporarily saving the inputted data? | AnnouncementRequestUI                 | Pure Fabrication                                                                |
+|   		 |	 | StateRepository               | 	IE: has a list of districts for each state.                                                        |
+|   		 |	 | District               | IE: knows its own data (e.g. name)                                                        |
+| Step 4	 |	...temporarily saving the inputted data? | AnnouncementRequestUI                 | Pure Fabrication                                                   |
+|  		 |			...knowing the property city?					 |             StateRepository         |         IE: has a list of cities for each district.                                                                                                    |              
+|   		 |   | City                 | IE: knows its own data (e.g. name)                                                                                            |
+| Step 5  		 |	| repository                 | IE: knows the SunExposureRepository                                                  |
+| 	 |		...knowing the sun Exposure?					 |     SunExposureRepository                 |  IE: has a list of directions of the sun exposure.                                                                                                             |    
+| Step 6  		 |	| repository                 | IE: knows the BusinessRepository                                                  |
+| 	 |		...knowing the business list?					 |     BusinessRepository                 |  IE: has of type of business.                                                                                                             |           
+| Step 7  		 |	... validating all data (local validation)? | AnnouncementRequest                 | IE: owns its data.                                                                                            | 
+| 			  		 |	... saving the created Announcement? | AnnouncementRequest         | IE: owns all its requests.                                                                                       | 
+| Step 8  		 |	... informing operation success?| AnnouncementRequestUI         | IE: is responsible for user interactions.                                                                     | 
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * Organization
- * Task
+ * AnnouncementRequest
 
 Other software classes (i.e. Pure Fabrication) identified: 
 
- * CreateTaskUI  
- * CreateTaskController
+ * AnnouncementRequestUI  
+ * AnnouncementRequestController
 
 
 ## 3.2. Sequence Diagram (SD)
@@ -43,32 +52,8 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 This diagram shows the full sequence of interactions between the classes involved in the realization of this user story.
 
-![Sequence Diagram - Full](svg/us05-sequence-diagram-full.svg)
-
-### Alternative 2 - Split Diagram
-
-This diagram shows the same sequence of interactions between the classes involved in the realization of this user story, but it is split in partial diagrams to better illustrate the interactions between the classes.
-
-It uses interaction ocurrence.
-
-![Sequence Diagram - split](svg/us006-sequence-diagram-split.svg)
-
-**Get Task Category List Partial SD**
-
-![Sequence Diagram - Partial - Get Task Category List](svg/us006-sequence-diagram-partial-get-task-category-list.svg)
-
-**Get Task Category Object**
-
-![Sequence Diagram - Partial - Get Task Category Object](svg/us006-sequence-diagram-partial-get-task-category.svg)
-
-**Get Employee**
-
-![Sequence Diagram - Partial - Get Employee](svg/us006-sequence-diagram-partial-get-employee.svg)
-
-**Create Task**
-
-![Sequence Diagram - Partial - Create Task](svg/us006-sequence-diagram-partial-create-task.svg)
+![Sequence Diagram - Full](svg/us04-sequence-diagram-full.svg)
 
 ## 3.3. Class Diagram (CD)
 
-![Class Diagram](svg/us006-class-diagram.svg)
+![Class Diagram](svg/us04-class-diagram.svg)
