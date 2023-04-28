@@ -107,7 +107,10 @@ When registering a store, the System Administrator should introduce the followin
 >**Question:**  It has been discussed previously that the passport number should be used as person identification, can we assume that everyone has one? If not can we use the social security number instead?
 >
 >**Answer:** You can assume that everyone has one.
-
+ 
+>**Question:**Can a single employee have more than one role? This is, when a system administrator is registering an employee, can he/she select more than one role for that employee or is it limited to one role per employee?
+> 
+>**Answer:** An employee can have more than one role
 
 ### 1.3. Acceptance Criteria
 
@@ -121,6 +124,7 @@ When registering a store, the System Administrator should introduce the followin
 * **AC7:** An employee can´t be working in more than 1 store.
 * **AC8:** The system administrator must select the role of the employee and the store assigned.
 * **AC9** The employee's email account is any email account provided by the employee.
+* **AC10** Employee can have more than one role.
 
 ### 1.4. Found out Dependencies
 
@@ -136,12 +140,12 @@ When registering a store, the System Administrator should introduce the followin
 
 * Typed data:
     * a name,
-    * a citizen´s card number,,
+    * a passport number,
     * a tax number,
     * an adress,
     * an email adress,
     * a telefone number,
-    * an agency,
+    * a store,
 
 **Output Data:**
 
