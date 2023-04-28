@@ -11,14 +11,20 @@ import java.util.List;
  */
 public class AuthenticationController {
 
-    public static final String ROLE_ADMIN = "ADMINISTRATOR";
+    public static final String ROLE_ADMIN = "Admin";
     public static final String ROLE_EMPLOYEE = "EMPLOYEE";
+    public static final String ROLE_AGENT = "Agent";
+    public static final String ROLE_OWNER = "Owner";
 
     //private final ApplicationSession applicationSession;
     private final AuthenticationRepository authenticationRepository;
 
     public AuthenticationController() {
         this.authenticationRepository = Repositories.getInstance().getAuthenticationRepository();
+    }
+
+    public AuthenticationRepository getAuthenticationRepository() {
+        return authenticationRepository;
     }
 
     public boolean doLogin(String email, String pwd) {
