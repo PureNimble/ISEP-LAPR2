@@ -86,10 +86,10 @@ class Person {
 
 Repositories -> Repositories:instance
 Repositories --> StateRepository: stateRepository
-RegisterStoreController ..> Repositories : repositories
-RegisterStoreController ..> StateRepository : StateRepository
-RegisterStoreController ..> AuthenticationRepository : AuthenticationRepository
-RegisterStoreController ..> Person : Person
+UnregisteredUserController ..> Repositories : repositories
+UnregisteredUserController ..> StateRepository : StateRepository
+UnregisteredUserController ..> AuthenticationRepository : AuthenticationRepository
+UnregisteredUserController ..> Person : Person
 Person "1" -right-> "*"  Address : can have
 State "1" -up- "*" Address: has >
 District "1" -right- "*" City : has >
