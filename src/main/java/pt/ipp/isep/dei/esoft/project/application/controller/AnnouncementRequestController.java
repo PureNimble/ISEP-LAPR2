@@ -8,85 +8,104 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+/**
+
+ The AnnouncementRequestController class is responsible for managing announcement requests.
+
+ It interacts with the UserRepository, PropertyTypeRepository, AnnouncementRequestRepository,
+
+ EmployeeRepository, TypeOfBusinessRepository, and AvailableEquipmentRepository to perform its operations.
+ */
 public class AnnouncementRequestController {
 
     private UserRepository userRepository = null;
-
     PropertyTypeRepository propertyTypeRepository = null;
-
     AnnouncementRequestRepository announcementRequestRepository = null;
-
     EmployeeRepository employeeRepository = null;
-
     TypeOfBusinessRepository typeOfBusinessRepository = null;
-
     AvailableEquipmentRepository availableEquipmentRepository = null;
 
+    /**
+
+     Constructor for AnnouncementRequestController that initializes the required repositories.
+     */
     public AnnouncementRequestController() {
         getUserRepository();
         getPropertyTypeRepository();
         getAnnouncementRequestRepository();
     }
+    /**
 
+     Method to get the UserRepository instance.
+     @return UserRepository instance
+     */
     private UserRepository getUserRepository() {
         if (userRepository == null) {
             Repositories repositories = Repositories.getInstance();
-
-            //Get the TaskCategoryRepository
             userRepository = repositories.getUserRepository();
         }
         return userRepository;
     }
+    /**
 
-
+     Method to get the PropertyTypeRepository instance.
+     @return PropertyTypeRepository instance
+     */
     private PropertyTypeRepository getPropertyTypeRepository() {
         if (propertyTypeRepository == null) {
             Repositories repositories = Repositories.getInstance();
-
-            //Get the TaskCategoryRepository
             propertyTypeRepository = repositories.getPropertyTypeRepository();
         }
         return propertyTypeRepository;
     }
+    /**
 
-
+     Method to get a PropertyType instance by its description.
+     @param propertyTypeDescription The description of the property type.
+     @return PropertyType instance
+     */
     public PropertyType getPropertyTypeByDescription(String propertyTypeDescription) {
         PropertyTypeRepository propertyTypeRepository = getPropertyTypeRepository();
-
-        //Get the TaskCategory by its description
-        PropertyType propertyTypeByDescription =
-                getPropertyTypeRepository().getPropertyTypeByDescription(propertyTypeDescription);
-
+        PropertyType propertyTypeByDescription = getPropertyTypeRepository().getPropertyTypeByDescription(propertyTypeDescription);
         return propertyTypeByDescription;
-
     }
+    /**
 
+     Method to get a list of all PropertyType instances.
+     @return List of PropertyType instances
+     */
     public List<PropertyType> getPropertyType() {
         PropertyTypeRepository propertyTypeRepository = getPropertyTypeRepository();
         return propertyTypeRepository.getPropertyTypes();
     }
+    /**
 
+     Method to get the TypeOfBusinessRepository instance.
+     @return TypeOfBusinessRepository instance
+     */
     private TypeOfBusinessRepository getTypeOfBusinessRepository() {
         if (typeOfBusinessRepository == null) {
             Repositories repositories = Repositories.getInstance();
-
-            //Get the TaskCategoryRepository
             typeOfBusinessRepository = repositories.getTypeOfBusinessRepository();
         }
         return typeOfBusinessRepository;
     }
+    /**
 
+     Method to get a TypeOfBusiness instance by its description.
+     @param typeOfBusinessDescription The description of the type of business.
+     @return TypeOfBusiness instance
+     */
     public TypeOfBusiness getTypeOfBusinessByDescription(String typeOfBusinessDescription) {
         TypeOfBusinessRepository typeOfBusinessRepository = getTypeOfBusinessRepository();
-
-        //Get the TaskCategory by its description
-        TypeOfBusiness typeOfBusinessByDescription =
-                typeOfBusinessRepository.getTypeOfBusinessByDescription(typeOfBusinessDescription);
-
+        TypeOfBusiness typeOfBusinessByDescription = typeOfBusinessRepository.getTypeOfBusinessByDescription(typeOfBusinessDescription);
         return typeOfBusinessByDescription;
-
     }
+    /**
 
+     Method to get a list of all TypeOfBusiness instances.
+     @return List of TypeOfBusiness instances
+     */
     public List<TypeOfBusiness> getTypeOfBusiness() {
         TypeOfBusinessRepository typeOfBusinessRepository = getTypeOfBusinessRepository();
         return typeOfBusinessRepository.getTypeOfBusinesses();
