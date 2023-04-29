@@ -38,7 +38,11 @@ class HouseTest {
 
     @Test
     void testEquals() {
+        //for the same object
+        assertEquals(house1,house1);
+        //for equal objects
         assertEquals(house1, house2);
+        //for different objects
         assertNotEquals(house1, house3);
     }
 

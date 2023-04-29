@@ -40,10 +40,10 @@ class DistrictTest {
 
     @Test
     void testEquals() {
-        assertTrue(district1.equals(district3));
-        assertFalse(district1.equals(district2));
-        assertFalse(district2.equals(null));
-        assertFalse(district2.equals(new Object()));
+        assertEquals(district1, district3);
+        assertNotEquals(district1, district2);
+        assertNotEquals(null, district2);
+        assertNotEquals(district2, new Object());
     }
 
     @Test

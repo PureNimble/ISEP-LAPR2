@@ -20,7 +20,11 @@ class PropertyTest {
         Property property3 = new Property(200, 5);
         Property property4 = new Property(100, 10);
 
+        //for the same object
+        assertEquals(property1,property1);
+        //for equal objects
         assertEquals(property1, property2);
+        //for different objects
         assertNotEquals(property1, property3);
         assertNotEquals(property1, property4);
     }

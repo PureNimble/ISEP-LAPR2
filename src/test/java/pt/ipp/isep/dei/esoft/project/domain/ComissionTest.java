@@ -18,13 +18,30 @@ class ComissionTest {
         assertEquals("560.0\n", comission.toString());
     }
 
+    //for the same object
     @Test
     void testEquals() {
         Comission comission1 = new Comission(500.0);
+
+        assertEquals(comission1, comission1);
+    }
+
+    //for equal objects
+    @Test
+    void testEquals2() {
+        Comission comission1 = new Comission(500.0);
         Comission comission2 = new Comission(500.0);
-        Comission comission3 = new Comission(1009.0);
+
         assertEquals(comission1, comission2);
-        assertNotEquals(comission1, comission3);
+    }
+
+    //for different objects
+    @Test
+    void testEquals3() {
+        Comission comission1 = new Comission(500.0);
+        Comission comission2 = new Comission(1009.0);
+
+        assertNotEquals(comission1, comission2);
     }
 
     @Test

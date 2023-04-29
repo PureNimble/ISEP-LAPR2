@@ -23,8 +23,13 @@ class PropertyTypeTest {
         PropertyType type1 = new PropertyType("Apartment");
         PropertyType type2 = new PropertyType("Apartment");
         PropertyType type3 = new PropertyType("House");
-        assertTrue(type1.equals(type2));
-        assertFalse(type1.equals(type3));
+
+        //for the same object
+        assertEquals(type1,type1);
+        //for equal objects
+        assertEquals(type1, type2);
+        //for different objects
+        assertNotEquals(type1, type3);
     }
 
     @Test

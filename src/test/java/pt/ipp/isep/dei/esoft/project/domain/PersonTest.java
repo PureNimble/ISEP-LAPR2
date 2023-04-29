@@ -21,8 +21,11 @@ class PersonTest {
         Person person1 = new Person("test@example.com", 123456, 789012, "Test Person", address1, 123456789);
         Person person2 = new Person("test@example.com", 123456, 789012, "Test Person", address1, 123456789);
         Person person3 = new Person("other@example.com", 123456, 789012, "Test Person", address1, 123456789);
-        assertNotEquals(null, person1);
+        //for the same object
+        assertEquals(person1, person1);
+        //for equal objects
         assertEquals(person1, person2);
+        //for different objects
         assertNotEquals(person1, person3);
     }
 

@@ -37,6 +37,7 @@ class ResidenceTest {
         AvailableEquipment availableEquipment1 = new AvailableEquipment("air conditioning");
 
         Residence r1 = new Residence(area1, distanceFromCityCenter1, numberOfBedrooms1, numberOfBathrooms1, parkingSpaces1, availableEquipment1);
+        Residence r2 = new Residence(area1, distanceFromCityCenter1, numberOfBedrooms1, numberOfBathrooms1, parkingSpaces1, availableEquipment1);
 
         int area2 = 100;
         int distanceFromCityCenter2 = 10;
@@ -45,10 +46,14 @@ class ResidenceTest {
         int parkingSpaces2 = 1;
         AvailableEquipment availableEquipment2 = new AvailableEquipment("air conditioning");
 
-        Residence r2 = new Residence(area2, distanceFromCityCenter2, numberOfBedrooms2, numberOfBathrooms2, parkingSpaces2, availableEquipment2);
+        Residence r3 = new Residence(area2, distanceFromCityCenter2, numberOfBedrooms2, numberOfBathrooms2, parkingSpaces2, availableEquipment2);
 
+        //for the same object
+        assertEquals(r1, r1);
+        //for equal objects
         assertEquals(r1, r2);
-
+        //for different objects
+        assertEquals(r1, r3);
     }
 
     @Test

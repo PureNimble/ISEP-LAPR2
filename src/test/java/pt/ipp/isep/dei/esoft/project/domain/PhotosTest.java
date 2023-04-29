@@ -21,11 +21,15 @@ class PhotosTest {
 
     @Test
     void testEquals() {
-        Photos p1 = new Photos("https://example.com/imagee.jpg");
-        Photos p2 = new Photos("https://example.com/imagee.jpg");
-        Photos p3 = new Photos("https://example.com/imagee2.jpg");
+        Photos p1 = new Photos("https://example.com/image.jpg");
+        Photos p2 = new Photos("https://example.com/image.jpg");
+        Photos p3 = new Photos("https://example.com/image2.jpg");
 
+        //for the same object
+        assertEquals(p1,p1);
+        //for equal objects
         assertEquals(p1, p2);
+        //for different objects
         assertNotEquals(p1, p3);
     }
 

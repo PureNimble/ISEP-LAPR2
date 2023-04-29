@@ -57,11 +57,15 @@ class StateTest {
     @Test
     void testEquals() {
         State state1 = new State("State A", districts);
-        State state2 = new State("State B", districts);
-        State state3 = new State("State A", districts);
-        assertEquals(state, state1);
-        assertNotEquals(state, state2);
-        assertEquals(state, state3);
+        State state2 = new State("State A", districts);
+        State state3 = new State("State B", districts);
+
+        //for the same object
+        assertEquals(state1, state1);
+        //for equal objects
+        assertEquals(state1, state2);
+        //for different objects
+        assertNotEquals(state1, state3);
     }
 
     @Test

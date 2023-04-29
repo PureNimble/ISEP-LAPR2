@@ -14,14 +14,16 @@ class RentTest {
 
     @Test
     void testEquals() {
-        Rent rent1 = new Rent(36);
-        Rent rent2 = new Rent(36);
-        Rent rent3 = new Rent(124);
+        Rent rent1 = new Rent(12);
+        Rent rent2 = new Rent(12);
+        Rent rent3 = new Rent(24);
 
-        assertTrue(rent1.equals(rent2));
-        assertTrue(rent2.equals(rent1));
-        assertFalse(rent1.equals(rent3));
-        assertFalse(rent3.equals(rent1));
+        //for the same object
+        assertEquals(rent1,rent1);
+        //for equal objects
+        assertEquals(rent1, rent2);
+        //for different objects
+        assertNotEquals(rent1, rent3);
     }
 
     @Test

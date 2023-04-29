@@ -18,8 +18,12 @@ class RoleTest {
         Role role2 = new Role("Agent");
         Role role3 = new Role("Employee");
 
-        assertTrue(role1.equals(role2));
-        assertFalse(role1.equals(role3));
+        //for the same object
+        assertEquals(role1,role1);
+        //for equal objects
+        assertEquals(role1, role2);
+        //for different objects
+        assertNotEquals(role1, role3);
     }
 
     @Test

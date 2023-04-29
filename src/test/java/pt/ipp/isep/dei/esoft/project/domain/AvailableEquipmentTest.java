@@ -18,14 +18,29 @@ class AvailableEquipmentTest {
         assertEquals("air conditioning", equipment.toString());
     }
 
+    //for the same object
     @Test
     void testEquals() {
         AvailableEquipment equipment1 = new AvailableEquipment("air conditioning");
-        AvailableEquipment equipment2 = new AvailableEquipment("air conditioning");
-        AvailableEquipment equipment3 = new AvailableEquipment("central heating");
 
-        assertTrue(equipment1.equals(equipment2));
-        assertFalse(equipment1.equals(equipment3));
+        assertEquals(equipment1, equipment1);
+    }
+
+    //for equal objects
+    @Test
+    void testEquals2() {
+        AvailableEquipment equipment1 = new AvailableEquipment("air conditioning");
+        AvailableEquipment equipment2 = new AvailableEquipment("air conditioning");
+        assertEquals(equipment1, equipment2);
+    }
+
+    //for diffrent objects
+    @Test
+    void testEquals3() {
+        AvailableEquipment equipment1 = new AvailableEquipment("air conditioning");
+        AvailableEquipment equipment2 = new AvailableEquipment("central heating");
+
+        assertNotEquals(equipment1, equipment2);
     }
 
     @Test
