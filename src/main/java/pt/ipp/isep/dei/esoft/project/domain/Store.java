@@ -6,18 +6,48 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+
+ The {@code Store} class represents a store with a designation, an ID, an address, an email, and a phone number.
+
+ It also has methods to create an employee and add it to the store.
+ */
 public class Store {
 
+    /**
+
+     The designation of the store.
+     */
     private String designation;
+    /**
 
+     The ID of the store.
+     */
     private int id;
+    /**
 
+     The address of the store.
+     */
     private Address address;
+    /**
 
+     The email of the store.
+     */
     private String email;
+    /**
 
+     The phone number of the store.
+     */
     private int phoneNumber;
+    /**
 
+     Constructs a {@code Store} object with a designation, an ID, an address, a phone number, and an email.
+     @param designation the designation of the store
+     @param id the ID of the store
+     @param address the address of the store
+     @param phoneNumber the phone number of the store
+     @param email the email of the store
+     */
     public Store(String designation, int id, Address address, int phoneNumber, String email) {
         this.designation = designation;
         this.id = id;
@@ -25,22 +55,62 @@ public class Store {
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
+    /**
 
+     Constructs an empty {@code Store} object.
+     */
     public Store() {
     }
+    /**
 
+     Returns the ID of the store.
+     @return the ID of the store
+     */
     public int getId() {
         return id;
     }
+    /**
 
+     Returns the address of the store.
+     @return the address of the store
+     */
     public Address getAddress() {
         return address;
     }
+    /**
 
+     Returns a string representation of the store.
+     @return a string representation of the store
+     */
     public String toString() {
         return String.format("Loja: %s %s localizada em %s", id, designation, address.toString());
     }
+    /**
 
+     Creates an employee with the given information and adds it to the store, if the employee is not already in the
+
+     store.
+
+     @param email the email of the employee
+
+     @param name the name of the employee
+
+     @param phone the phone number of the employee
+
+     @param roles the roles of the employee
+
+     @param store the store where the employee will work
+
+     @param address the address of the employee
+
+     @param passportNumber the passport number of the employee
+
+     @param taxNumber the tax number of the employee
+
+     @return an {@code Optional} containing the created employee, or an empty {@code Optional} if the employee could
+
+     not be added to the store
+     */
     public Optional<Employee> createEmployee(String email, String name,
                                              int phone, List<Role> roles, Store store, Address address, int passportNumber, int taxNumber) {
 
@@ -55,29 +125,47 @@ public class Store {
         return optionalValue;
     }
 
+    /**
+
+     Adds an employee to the list of employees in the store.
+     @param employee The employee object to add to the store.
+     @return True if the employee is added to the store, false otherwise.
+     */
     private boolean addEmployee(Employee employee) {
         boolean success = false;
         RegisterEmployeeController controller = new RegisterEmployeeController();
         List<Employee> employees = controller.getEmployee();
         if (validate(employee)) {
-            // A clone of the task is added to the list of tasks, to avoid side effects and outside manipulation.
+// A clone of the employee is added to the list of employees, to avoid side effects and outside manipulation.
             success = employees.add(employee);
         }
         return success;
-
     }
+    /**
 
+     Validates if an employee already exists in the store.
+     @param employee The employee object to validate.
+     @return True if the employee does not exist in the store, false otherwise.
+     */
     private boolean validate(Employee employee) {
-        return tasksDoNotContain(employee);
+        return employeesDoNotContain(employee);
     }
+    /**
 
-
-    private boolean tasksDoNotContain(Employee employee) {
+     Checks if the list of employees in the store contains an employee object.
+     @param employee The employee object to check.
+     @return True if the employee does not exist in the store, false otherwise.
+     */
+    private boolean employeesDoNotContain(Employee employee) {
         RegisterEmployeeController controller = new RegisterEmployeeController();
         return !controller.getEmployee().contains(employee);
     }
+    /**
 
-
+     Overrides the equals method to compare store objects based on their id fields.
+     @param o The object to compare.
+     @return True if the object is a store object and has the same id field, false otherwise.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -85,16 +173,21 @@ public class Store {
         Store store = (Store) o;
         return this.id == store.id;
     }
+    /**
 
-
+     Overrides the hashCode method to calculate the hash code of a store object based on its designation field.
+     @return The hash code of the store object.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(designation);
     }
+    /**
 
+     Gets the designation of the store.
+     @return The designation of the store.
+     */
     public String getDesignation() {
         return designation;
     }
-
-
 }
