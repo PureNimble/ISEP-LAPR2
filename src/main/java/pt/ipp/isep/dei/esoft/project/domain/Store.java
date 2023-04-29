@@ -5,7 +5,7 @@ import pt.ipp.isep.dei.esoft.project.application.controller.RegisterEmployeeCont
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-x
+
 public class Store {
 
     private String designation;
