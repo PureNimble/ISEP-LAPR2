@@ -23,12 +23,10 @@ class RegisterStoreControllerTest {
 
     @Test
     void registerStore() {
-        // Adding store to the repository
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
         Store store = new Store("Store1", 1, address, 123456789, "store1@test.com");
         Optional<Store> result = storeRepository.add(store);
 
-        // Checking if store is added to the repository and returned correctly
         assertTrue(storeRepository.getStores().contains(store));
         assertTrue(result.isPresent());
         assertEquals(store, result.get());
@@ -63,7 +61,6 @@ class RegisterStoreControllerTest {
         City losAngeles = stateRepository.getCityByDescription("Los Angeles", new District("District 1"));
         Assertions.assertEquals("Los Angeles", "Los Angeles");
 
-        // Test for IllegalArgumentException if state doesn't exist
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             stateRepository.getCityByDescription("New York", new District("District 1"));
         });
@@ -74,7 +71,6 @@ class RegisterStoreControllerTest {
         District district1 = stateRepository.getDistrictByDescription("District 1", new State("California"));
         Assertions.assertEquals("District 1", "District 1");
 
-        // Test for IllegalArgumentException if state doesn't exist
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             stateRepository.getDistrictByDescription("District 1", new State("California"));
         });
