@@ -154,7 +154,13 @@ public class PublishAnnouncementUI implements Runnable {
 
             inhabitableLoft = requestInhabitableLoft();
 
-            sunExposure = requestSunExposure();
+            do {
+                sunExposure = requestSunExposure();
+                if (!sunExposure.equals("North") && !sunExposure.equals("South") && !sunExposure.equals("West")&& !sunExposure.equals("East")) {
+                    System.out.println("Please select one of the coordinates North South West or East");
+                }
+            } while (!sunExposure.equals("North") && !sunExposure.equals("South") && !sunExposure.equals("West")&& !sunExposure.equals("East"));
+
 
 
         }
@@ -328,8 +334,18 @@ public class PublishAnnouncementUI implements Runnable {
      */
     private String requestBasement() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Basement:");
-        return input.nextLine();
+        String basementString;
+
+        do {
+            System.out.println("Basement:(Y/N)");
+            basementString = input.nextLine();
+            if (!basement.equals("N") && !basement.equals("Y")) {
+                System.out.println("Please select N if the house doesn t have basement and Y if the house have basement");
+            }
+
+        } while (!basementString.equals("N") && !basementString.equals("S"));
+
+        return basementString;
     }
     /**
 
@@ -338,8 +354,18 @@ public class PublishAnnouncementUI implements Runnable {
      */
     private String requestInhabitableLoft() {
         Scanner input = new Scanner(System.in);
-        System.out.println("InhabitableLoft:");
-        return input.nextLine();
+        String inhabitableLoftString;
+
+        do {
+            System.out.println("Inhabitable Loft(Y/N):");
+            inhabitableLoftString = input.nextLine();
+            if (!basement.equals("N") && !basement.equals("Y")) {
+                System.out.println("Please select N if the house doesn t have Inhabitable loft and Y if the house have Inhabitable Loft");
+            }
+
+        } while (!inhabitableLoftString.equals("N") && !inhabitableLoftString.equals("S"));
+
+        return inhabitableLoftString;
     }
     /**
 

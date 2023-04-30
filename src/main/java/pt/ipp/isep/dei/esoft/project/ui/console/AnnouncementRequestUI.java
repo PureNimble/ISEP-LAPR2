@@ -4,13 +4,13 @@ import pt.ipp.isep.dei.esoft.project.application.controller.AnnouncementRequestC
 import pt.ipp.isep.dei.esoft.project.domain.*;
 
 import java.util.*;
+
 /**
-
- The AnnouncementRequestUI class is responsible for handling the user interface of the Announcement Request functionality.
-
- It implements the Runnable interface for concurrent execution of code.
+ * The AnnouncementRequestUI class is responsible for handling the user interface of the Announcement Request functionality.
+ * <p>
+ * It implements the Runnable interface for concurrent execution of code.
  */
-public class AnnouncementRequestUI implements Runnable{
+public class AnnouncementRequestUI implements Runnable {
 
     private final AnnouncementRequestController controller = new AnnouncementRequestController();
     private String contractType;
@@ -31,34 +31,34 @@ public class AnnouncementRequestUI implements Runnable{
     private Date date;
 
     private int durationOfContract;
+
     /**
-
-     Implements the Runnable interface method to run the Announcement Request functionality.
-
-     Displays property types and available agents to the user and requests information such as the type of contract,
-
-     the property information, and the responsible agent information. Then, submits the information to the controller
-
-     to create a new announcement request and displays it to the user.
+     * Implements the Runnable interface method to run the Announcement Request functionality.
+     * <p>
+     * Displays property types and available agents to the user and requests information such as the type of contract,
+     * <p>
+     * the property information, and the responsible agent information. Then, submits the information to the controller
+     * <p>
+     * to create a new announcement request and displays it to the user.
      */
     public void run() {
 
         System.out.println("Announcement Request: ");
 
-        propertyTypeDescription = displayAndSelectPropertytype();
-
-        if (propertyTypeDescription.equals("Rent")){
-            durationOfContract = requestDurationOfContract();
-        }
-
         if (controller.getListAgents().size() > 0) {
+            propertyTypeDescription = displayAndSelectPropertytype();
+
             responsibleAgent = displayAndSelectAgents();
 
             contractType = displayAndSelectTypeOfBusiness();
 
+            if (propertyTypeDescription.equals("Rent")) {
+                durationOfContract = requestDurationOfContract();
+            }
+
             requestData();
 
-            submitDataHouse();
+            submitData();
 
             List<AnnouncementRequest> announcementRequests = controller.getAnnouncementRequest();
 
@@ -71,13 +71,15 @@ public class AnnouncementRequestUI implements Runnable{
 
             System.out.println(st);
 
+        }else {
+            System.out.println("There is no Agents on the system for you to choose one");
         }
     }
-    /**
 
-     Submits the user's requested information to the controller to create a new announcement request.
+    /**
+     * Submits the user's requested information to the controller to create a new announcement request.
      */
-    private void submitDataHouse() {
+    private void submitData() {
 
         PropertyType propertyType = controller.getPropertyTypeByDescription(propertyTypeDescription);
         TypeOfBusiness typeOfBusiness = controller.getTypeOfBusinessByDescription(contractType);
@@ -87,7 +89,7 @@ public class AnnouncementRequestUI implements Runnable{
 
             Property land = new Property(area, distanceFromCityCenter);
 
-            Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date,typeOfBusiness,land,propertyType,business,durationOfContract);
+            Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, land, propertyType, business, durationOfContract);
 
         } else {
             if (propertyTypeDescription.equals("Appartment")) {
@@ -96,23 +98,23 @@ public class AnnouncementRequestUI implements Runnable{
 
                 Residence appartment = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment);
 
-                Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date,typeOfBusiness, appartment,propertyType, business,durationOfContract);
+                Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, appartment, propertyType, business, durationOfContract);
             } else {
                 AvailableEquipment availableEquipment = controller.getAvailableEquipmentByDescription(availableEquipmentDescription);
 
                 House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, inhabitableLoft, sunExposure);
 
-                Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date,typeOfBusiness, house,propertyType,business,durationOfContract);
+                Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, house, propertyType, business, durationOfContract);
 
             }
         }
 
 
     }
-    /**
 
-     Requests the necessary information from the user, such as the property type, the number of bathrooms and bedrooms,
-     the available equipment, etc.
+    /**
+     * Requests the necessary information from the user, such as the property type, the number of bathrooms and bedrooms,
+     * the available equipment, etc.
      */
     private void requestData() {
 
@@ -139,21 +141,30 @@ public class AnnouncementRequestUI implements Runnable{
 
         if (propertyTypeDescription.equals("House")) {
 
-            basement = requestBasement();
+                basement = requestBasement();
 
-            inhabitableLoft = requestInhabitableLoft();
+                inhabitableLoft = requestInhabitableLoft();
 
-            sunExposure = requestSunExposure();
+
+            do {
+                sunExposure = requestSunExposure();
+                if (!sunExposure.equals("North") && !sunExposure.equals("South") && !sunExposure.equals("West")&& !sunExposure.equals("East")) {
+                    System.out.println("Please select one of the coordinates North South West or East");
+                }
+            } while (!sunExposure.equals("North") && !sunExposure.equals("South") && !sunExposure.equals("West")&& !sunExposure.equals("East"));
+
+
 
 
         }
 
 
     }
-    /**
 
-     Prompts the user to enter the duration of the rental contract, and returns the value as an integer.
-     @return The duration of the rental contract as an integer.
+    /**
+     * Prompts the user to enter the duration of the rental contract, and returns the value as an integer.
+     *
+     * @return The duration of the rental contract as an integer.
      */
     private int requestDurationOfContract() {
         Scanner input = new Scanner(System.in);
@@ -170,14 +181,15 @@ public class AnnouncementRequestUI implements Runnable{
                 durationOfContract = -1;
             }
 
-        } while (durationOfContract > 0);
+        } while (durationOfContract < 0);
 
         return durationOfContract;
     }
-    /**
 
-     Prompts the user to enter the price of the rental property, and returns the value as a double.
-     @return The price of the rental property as a double.
+    /**
+     * Prompts the user to enter the price of the rental property, and returns the value as a double.
+     *
+     * @return The price of the rental property as a double.
      */
     private double requestPrice() {
         Scanner input = new Scanner(System.in);
@@ -189,21 +201,21 @@ public class AnnouncementRequestUI implements Runnable{
                 System.out.println("Price:");
                 price = input.nextDouble();
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter an integer value:");
+                System.out.println("Invalid input. Please enter a double value:");
                 input.nextLine();
                 price = -1;
             }
 
-        } while (price > -1);
+        } while (price < 0);
 
         return price;
     }
 
 
     /**
-
-     Prompts the user to enter the number of bedrooms in the rental property, and returns the value as an integer.
-     @return The number of bedrooms in the rental property as an integer.
+     * Prompts the user to enter the number of bedrooms in the rental property, and returns the value as an integer.
+     *
+     * @return The number of bedrooms in the rental property as an integer.
      */
     private int requestNumberOfBedrooms() {
         Scanner input = new Scanner(System.in);
@@ -220,14 +232,15 @@ public class AnnouncementRequestUI implements Runnable{
                 numberOfBedrooms = -1;
             }
 
-        } while (numberOfBedrooms > -1);
+        } while (numberOfBedrooms < 0);
 
         return numberOfBedrooms;
     }
-    /**
 
-     Prompts the user to enter the number of bathrooms in the rental property, and returns the value as an integer.
-     @return The number of bathrooms in the rental property as an integer.
+    /**
+     * Prompts the user to enter the number of bathrooms in the rental property, and returns the value as an integer.
+     *
+     * @return The number of bathrooms in the rental property as an integer.
      */
     private int requestNumberOfBathrooms() {
         Scanner input = new Scanner(System.in);
@@ -244,14 +257,15 @@ public class AnnouncementRequestUI implements Runnable{
                 numberOfBathrooms = -1;
             }
 
-        } while (numberOfBathrooms > -1);
+        } while (numberOfBathrooms < 0);
 
         return numberOfBathrooms;
     }
-    /**
 
-     Prompts the user to enter the number of parking spaces available for the rental property, and returns the value as an integer.
-     @return The number of parking spaces available for the rental property as an integer.
+    /**
+     * Prompts the user to enter the number of parking spaces available for the rental property, and returns the value as an integer.
+     *
+     * @return The number of parking spaces available for the rental property as an integer.
      */
     private int requestparkingSpaces() {
         Scanner input = new Scanner(System.in);
@@ -268,14 +282,15 @@ public class AnnouncementRequestUI implements Runnable{
                 parkingSpaces = -1;
             }
 
-        } while (parkingSpaces > -1);
+        } while (parkingSpaces < 0);
 
         return parkingSpaces;
     }
-    /**
 
-     Prompts the user to enter the distance of the rental property from the city center, and returns the value as an integer.
-     @return The distance of the rental property from the city center as an integer.
+    /**
+     * Prompts the user to enter the distance of the rental property from the city center, and returns the value as an integer.
+     *
+     * @return The distance of the rental property from the city center as an integer.
      */
     private int requestDistanceFromCityCenter() {
         Scanner input = new Scanner(System.in);
@@ -292,15 +307,15 @@ public class AnnouncementRequestUI implements Runnable{
                 distanceFromCityCenter = -1;
             }
 
-        } while (distanceFromCityCenter > -1);
+        } while (distanceFromCityCenter < 0);
 
         return distanceFromCityCenter;
     }
+
     /**
-
-     Requests user to input an integer value for the area of the property.
-
-     @return The integer value of the area of the property.
+     * Requests user to input an integer value for the area of the property.
+     *
+     * @return The integer value of the area of the property.
      */
     private int requestArea() {
         Scanner input = new Scanner(System.in);
@@ -317,47 +332,69 @@ public class AnnouncementRequestUI implements Runnable{
                 area = -1;
             }
 
-        } while (area > -1);
+        } while (area < 0);
 
         return area;
     }
-    /**
 
-     Requests user to input a string value for the basement of the property.
-     @return The string value of the basement of the property.
+    /**
+     * Requests user to input a string value for the basement of the property.
+     *
+     * @return The string value of the basement of the property.
      */
     private String requestBasement() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Basement:");
-        return input.nextLine();
-    }
-    /**
+        String basementString;
 
-     Requests user to input a string value for the inhabitable loft of the property.
-     @return The string value of the inhabitable loft of the property.
+        do {
+            System.out.println("Basement:(Y/N)");
+            basementString = input.nextLine();
+            if (!basement.equals("N") && !basement.equals("Y")) {
+                System.out.println("Please select N if the house doesn t have basement and Y if the house have basement");
+            }
+
+        } while (!basementString.equals("N") && !basementString.equals("S"));
+
+        return basementString;
+    }
+
+    /**
+     * Requests user to input a string value for the inhabitable loft of the property.
+     *
+     * @return The string value of the inhabitable loft of the property.
      */
     private String requestInhabitableLoft() {
         Scanner input = new Scanner(System.in);
-        System.out.println("InhabitableLoft:");
-        return input.nextLine();
-    }
-    /**
+        String inhabitableLoftString;
 
-     Requests user to input a string value for the sun exposure of the property.
-     @return The string value of the sun exposure of the property.
+        do {
+            System.out.println("Inhabitable Loft(Y/N):");
+            inhabitableLoftString = input.nextLine();
+            if (!basement.equals("N") && !basement.equals("Y")) {
+                System.out.println("Please select N if the house doesn t have Inhabitable loft and Y if the house have Inhabitable Loft");
+            }
+
+        } while (!inhabitableLoftString.equals("N") && !inhabitableLoftString.equals("S"));
+
+        return inhabitableLoftString;
+    }
+
+    /**
+     * Requests user to input a string value for the sun exposure of the property.
+     *
+     * @return The string value of the sun exposure of the property.
      */
     private String requestSunExposure() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Sun Exposure:");
+        System.out.println("Sun Exposure:(North/South/West/East)");
         return input.nextLine();
     }
 
 
     /**
-
-     Displays a list of property types and requests user to select one of them.
-
-     @return The designation of the selected property type.
+     * Displays a list of property types and requests user to select one of them.
+     *
+     * @return The designation of the selected property type.
      */
     private String displayAndSelectPropertytype() {
 
@@ -386,10 +423,11 @@ public class AnnouncementRequestUI implements Runnable{
         return description;
 
     }
-    /**
 
-     Displays a list of property types.
-     @param propertyTypes The list of property types to be displayed.
+    /**
+     * Displays a list of property types.
+     *
+     * @param propertyTypes The list of property types to be displayed.
      */
     private void displayPropertyTypeOptions(List<PropertyType> propertyTypes) {
 
@@ -401,10 +439,9 @@ public class AnnouncementRequestUI implements Runnable{
     }
 
     /**
-
-     Displays a list of agents and requests user to select one of them.
-
-     @return The selected agent.
+     * Displays a list of agents and requests user to select one of them.
+     *
+     * @return The selected agent.
      */
     private Employee displayAndSelectAgents() {
 
@@ -434,6 +471,7 @@ public class AnnouncementRequestUI implements Runnable{
         return agent;
 
     }
+
     /**
      * Displays a numbered list of employees and allows the user to select an employee by entering the corresponding number.
      *
@@ -481,6 +519,7 @@ public class AnnouncementRequestUI implements Runnable{
         return description;
 
     }
+
     /**
      * Displays a numbered list of TypeOfBusiness objects.
      *
@@ -528,6 +567,7 @@ public class AnnouncementRequestUI implements Runnable{
         return description;
 
     }
+
     /**
      * Displays a numbered list of AvailableEquipment objects.
      *

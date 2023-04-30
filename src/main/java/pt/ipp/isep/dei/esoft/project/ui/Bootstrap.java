@@ -20,7 +20,27 @@ public class Bootstrap implements Runnable {
         addComission();
         addTypeOfBusiness();
         addAvailableEquipment();
+        addAgents();
 
+    }
+
+
+    private void addAgents(){
+        EmployeeRepository employeeRepository = Repositories.getInstance().getEmployeeRepository();
+        Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
+        Role role = new Role("Agent");
+        Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
+        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        List<Role> roles = new ArrayList<>();
+        roles.add(new Role("Agent"));
+
+        Employee agent1 = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store,  roles, address);
+
+        Employee agent2 = new Employee("agent2@this.app",12345677,12231311,"Agent 02",555661,store,roles,address);
+
+
+        employeeRepository.add(agent1);
+        employeeRepository.add(agent2);
     }
 
     private void addAvailableEquipment(){
