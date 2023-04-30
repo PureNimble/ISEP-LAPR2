@@ -28,7 +28,7 @@ class RoleRepositoryTest {
         roleRepository.add(role1);
         roleRepository.add(role2);
 
-        Role retrievedRole = roleRepository.getTaskCategoryByDescription("Test Role 2");
+        Role retrievedRole = roleRepository.getRoleByDescription("Test Role 2");
 
         Assertions.assertEquals(retrievedRole, role2);
     }

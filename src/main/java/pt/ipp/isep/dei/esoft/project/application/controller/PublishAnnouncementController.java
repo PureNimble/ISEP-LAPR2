@@ -286,7 +286,7 @@ public class PublishAnnouncementController {
      @return an Optional containing the new published announcement if it was created successfully,
      or an empty Optional if a published announcement with the same parameters already exists
      */
-    public Optional<PublishedAnnouncement> createPublishmentAnnouncementHouse(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract) {
+    public Optional<PublishedAnnouncement> createPublishmentAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract) {
 
         Optional<PublishedAnnouncement> newPublishedAnnouncement = Optional.empty();
 

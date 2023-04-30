@@ -34,7 +34,7 @@ public class AnnouncementRequestRepository {
         Optional<AnnouncementRequest> newAnnouncementRequest = Optional.empty();
         boolean operationSuccess = false;
 
-        if (validateTaskCategory(announcementRequest)) {
+        if (validateAnnouncementRequest(announcementRequest)) {
             newAnnouncementRequest = Optional.of(announcementRequest);
             operationSuccess = announcementRequests.add(newAnnouncementRequest.get());
         }
@@ -52,7 +52,7 @@ public class AnnouncementRequestRepository {
      @param announcementRequest The AnnouncementRequest to validate.
      @return true if the AnnouncementRequest is valid, false otherwise.
      */
-    private boolean validateTaskCategory(AnnouncementRequest announcementRequest) {
+    private boolean validateAnnouncementRequest(AnnouncementRequest announcementRequest) {
         boolean isValid = !announcementRequests.contains(announcementRequest);
         return isValid;
     }

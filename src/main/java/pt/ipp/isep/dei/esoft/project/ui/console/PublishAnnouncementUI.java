@@ -82,7 +82,7 @@ public class PublishAnnouncementUI implements Runnable {
 
             Property land = new Property(area, distanceFromCityCenter);
 
-            Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncementHouse(date, typeOfBusiness, land, propertyType, comission, business, durationOfContract);
+            Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, land, propertyType, comission, business, durationOfContract);
 
         } else {
             if (propertyTypeDescription.equals("Appartment")) {
@@ -91,13 +91,13 @@ public class PublishAnnouncementUI implements Runnable {
 
                 Residence appartment = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment);
 
-                Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncementHouse(date, typeOfBusiness, appartment, propertyType, comission, business, durationOfContract);
+                Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, appartment, propertyType, comission, business, durationOfContract);
             } else {
                 AvailableEquipment availableEquipment = controller.getAvailableEquipmentByDescription(availableEquipmentDescription);
 
                 House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, inhabitableLoft, sunExposure);
 
-                Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncementHouse(date, typeOfBusiness, house, propertyType, comission, business, durationOfContract);
+                Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, durationOfContract);
 
             }
         }

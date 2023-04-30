@@ -22,7 +22,7 @@ public class RoleRepository {
      @return The Role object.
      @throws IllegalArgumentException If the role does not exist.
      */
-    public Role getTaskCategoryByDescription(String taskCategoryDescription) {
+    public Role getRoleByDescription(String taskCategoryDescription) {
         Role newRole = new Role(taskCategoryDescription);
         Role role = null;
         if (roles.contains(newRole)) {
