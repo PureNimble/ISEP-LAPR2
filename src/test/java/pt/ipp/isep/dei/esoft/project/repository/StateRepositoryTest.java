@@ -20,7 +20,6 @@ class StateRepositoryTest {
     void setUp() {
         stateRepository = new StateRepository();
 
-        // Add some sample data to the repository for testing
         State california = new State("California");
         District district1 = new District("District 1");
         City losAngeles = new City("Los Angeles");
@@ -37,7 +36,6 @@ class StateRepositoryTest {
         State california = stateRepository.getStateByDescription("California");
         Assertions.assertEquals("California", "California");
 
-        // Test for IllegalArgumentException if state doesn't exist
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             stateRepository.getStateByDescription("New York");
         });
@@ -59,7 +57,6 @@ class StateRepositoryTest {
         Assertions.assertTrue(addedState.isPresent());
         Assertions.assertEquals("New York", "New York");
 
-        // Test that the repository now contains the added state
         List<State> states = stateRepository.getStates();
         Assertions.assertEquals(3, states.size());
         Assertions.assertTrue(states.contains(newYork));
@@ -70,7 +67,6 @@ class StateRepositoryTest {
         List<State> states = stateRepository.getStates();
         Assertions.assertEquals(2, states.size());
 
-        // Test that the list is a defensive copy and cannot be modified
         Assertions.assertThrows(UnsupportedOperationException.class, () -> {
             states.add(new State("New State"));
         });

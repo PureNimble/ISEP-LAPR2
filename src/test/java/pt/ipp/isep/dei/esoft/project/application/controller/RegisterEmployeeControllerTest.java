@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.*;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,27 +109,27 @@ class RegisterEmployeeControllerTest {
 
     }
 
-//    @Test
-//    void getCityByDescription() {
-//        City losAngeles = stateRepository.getCityByDescription("Los Angeles", new District("District 1"));
-//        Assertions.assertEquals("Los Angeles", "Los Angeles");
-//
-//        // Test for IllegalArgumentException if state doesn't exist
-//        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-//            stateRepository.getCityByDescription("New York", new District("District 1"));
-//        });
-//    }
+    @Test
+    void getCityByDescription() {
+        City losAngeles = stateRepository.getCityByDescription("Los Angeles", new District("District 1"));
+        Assertions.assertEquals("Los Angeles", "Los Angeles");
 
-//    @Test
-//    void getDistrictByDescription() {
-//        District district1 = stateRepository.getDistrictByDescription("District 1", new State("California"));
-//        Assertions.assertEquals("District 1", "District 1");
-//
-//        // Test for IllegalArgumentException if state doesn't exist
-//        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-//            stateRepository.getDistrictByDescription("District 1", new State("California"));
-//        });
-//    }
+        // Test for IllegalArgumentException if state doesn't exist
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            stateRepository.getCityByDescription("New York", new District("District 1"));
+        });
+    }
+
+    @Test
+    void getDistrictByDescription() {
+        District district1 = stateRepository.getDistrictByDescription("District 1", new State("California"));
+        Assertions.assertEquals("District 1", "District 1");
+
+        // Test for IllegalArgumentException if state doesn't exist
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            stateRepository.getDistrictByDescription("District 1", new State("California"));
+        });
+    }
 
     @BeforeEach
     void setUp4() {

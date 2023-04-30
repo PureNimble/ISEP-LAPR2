@@ -52,10 +52,8 @@ class PropertyTypeRepositoryTest {
 
         List<PropertyType> propertyTypes = repository.getPropertyTypes();
 
-        // Ensure the list of task categories returned by the method is immutable
         Assertions.assertThrows(UnsupportedOperationException.class, () -> propertyTypes.add(new PropertyType("Industrial")));
 
-        // Ensure the list contains the added property types
         Assertions.assertTrue(propertyTypes.contains(propertyType1));
         Assertions.assertTrue(propertyTypes.contains(propertyType2));
     }

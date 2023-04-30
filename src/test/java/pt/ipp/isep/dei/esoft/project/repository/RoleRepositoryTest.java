@@ -65,18 +65,16 @@ class RoleRepositoryTest {
 
     @Test
     void getRoles() {
-        // create some test data
+
         Role role1 = new Role("Administrator");
         Role role2 = new Role("Manager");
         Role role3 = new Role("Employee");
 
-        // add the test data to the repository
         RoleRepository roleRepository = new RoleRepository();
         roleRepository.add(role1);
         roleRepository.add(role2);
         roleRepository.add(role3);
 
-        // get a copy of the roles list and check that it matches the test data
         List<Role> roles = roleRepository.getRoles();
         assertEquals(3, roles.size());
         assertTrue(roles.contains(role1));
