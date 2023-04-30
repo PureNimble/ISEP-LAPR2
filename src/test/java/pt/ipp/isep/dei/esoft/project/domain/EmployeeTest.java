@@ -42,7 +42,7 @@ class EmployeeTest {
         Employee employee = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store, roles, new Address("123 Main St", 12345, new District("Test District"), new City("Test City"), new State("Test State")));
 
         String expected = "Name Employee residente em 123 Main St,Test City,Test District,Test State,12345 que possui como documentos de identificação 123456789 987654321 de email:employee@example.com e de numero de telefone 5551234 , \n" +
-                "funcionário da  Loja: 1 Store A localizada em 123 Main St,Test City,Test District,Test State,13456 que desempenha o papel de [Agent, Manager]";
+                "funcionário da Loja: 1 Store A localizada em 123 Main St,Test City,Test District,Test State,13456 que desempenha o papel de [Agent, Manager]";
 
         assertEquals(expected, employee.toString());
     }
