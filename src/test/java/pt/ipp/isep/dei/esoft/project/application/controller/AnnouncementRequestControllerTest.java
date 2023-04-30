@@ -96,6 +96,7 @@ class AnnouncementRequestControllerTest {
 
     @Test
     void getListAgents() {
+
         List<Employee> employeeList = new ArrayList<>();
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
         Role role = new Role("Agent");
@@ -103,7 +104,7 @@ class AnnouncementRequestControllerTest {
         Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
         List<Role> roles = new ArrayList<>();
         roles.add(role);
-        roles.add(new Role("Agent"));
+
 
         Employee employee1 = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store, roles, address);
         employeeList.add(employee1);
@@ -111,7 +112,9 @@ class AnnouncementRequestControllerTest {
         employeeRepository.add(employee1);
 
 
-        assertEquals(employeeList, controller.getListAgents());
+        List<Employee> agents = controller.getListAgents();
+
+        assertEquals(employeeList, agents);
 
 
     }

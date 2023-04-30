@@ -54,9 +54,9 @@ public class EmployeeRepository {
         return isValid;
     }
     /**
-
-     Returns a defensive (immutable) copy of the list of Employee objects in the repository.
-     @return An immutable list of Employee objects.
+     * Returns a list of all employees managed by this repository.
+     *
+     * @return a list of all employees managed by this repository
      */
     public List<Employee> getEmployees() {
 // This is a defensive copy, so that the repository cannot be modified from the outside.
