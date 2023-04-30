@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+
+ The RegisterEmployeeController class is responsible for handling the registration of new employees in the system.
+ */
 public class RegisterEmployeeController {
 
     private RoleRepository roleRepository = null;
@@ -20,6 +24,11 @@ public class RegisterEmployeeController {
     private EmployeeRepository employeeRepository = null;
 
     private UserRepository userRepository = null;
+    /**
+
+     Constructs a new RegisterEmployeeController object.
+     Initializes repositories using the respective getters.
+     */
 
     public RegisterEmployeeController() {
         getRoleRepository();
@@ -30,7 +39,14 @@ public class RegisterEmployeeController {
         getEmployeeRepository();
         getUserRepository();
     }
+    /**
 
+     Returns an instance of the RoleRepository.
+
+     If the instance does not exist, it creates one using the Repositories class.
+
+     @return The RoleRepository instance
+     */
     private RoleRepository getRoleRepository() {
         if (roleRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -40,7 +56,14 @@ public class RegisterEmployeeController {
         }
         return roleRepository;
     }
+/**
 
+    Returns an instance of the AuthenticationRepository.
+
+    If the instance does not exist, it creates one using the Repositories class.
+
+            @return The AuthenticationRepository instance
+*/
     private AuthenticationRepository getAuthenticationRepository() {
         if (authenticationRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -50,7 +73,14 @@ public class RegisterEmployeeController {
         }
         return authenticationRepository;
     }
+    /**
 
+     Returns an instance of the StoreRepository.
+
+     If the instance does not exist, it creates one using the Repositories class.
+
+     @return The StoreRepository instance
+     */
     private StoreRepository getStoreRepository() {
         if (storeRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -60,7 +90,14 @@ public class RegisterEmployeeController {
         }
         return storeRepository;
     }
+    /**
 
+     Returns an instance of the StateRepository.
+
+     If the instance does not exist, it creates one using the Repositories class.
+
+     @return The StateRepository instance
+     */
     private StateRepository getStateRepository() {
         if (stateRepository == null) {
             Repositories repositories = Repositories.getInstance();

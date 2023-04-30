@@ -110,7 +110,12 @@ public class AnnouncementRequestController {
         TypeOfBusinessRepository typeOfBusinessRepository = getTypeOfBusinessRepository();
         return typeOfBusinessRepository.getTypeOfBusinesses();
     }
+    /**
 
+     Returns the AnnouncementRequestRepository instance, creating it if necessary.
+
+     @return The AnnouncementRequestRepository instance.
+     */
     private AnnouncementRequestRepository getAnnouncementRequestRepository() {
         if (announcementRequestRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -120,7 +125,12 @@ public class AnnouncementRequestController {
         }
         return announcementRequestRepository;
     }
+    /**
 
+     Returns the EmployeeRepository instance, creating it if necessary.
+
+     @return The EmployeeRepository instance.
+     */
     private EmployeeRepository getEmployeeRepository() {
         if (employeeRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -131,7 +141,12 @@ public class AnnouncementRequestController {
         return employeeRepository;
     }
 
+    /**
 
+     Returns a list of all agents.
+
+     @return A List of Employee objects representing agents.
+     */
     public List<Employee> getListAgents() {
 
         List<Employee> listAgents = new ArrayList<>();
@@ -147,12 +162,23 @@ public class AnnouncementRequestController {
         return listAgents;
     }
 
+    /**
 
+     Returns a list of all Announcement Requests.
+     @return A List of AnnouncementRequest objects.
+     */
     public List<AnnouncementRequest> getAnnouncementRequest() {
         AnnouncementRequestRepository announcementRequestRepository = getAnnouncementRequestRepository();
         return announcementRequestRepository.getAnnouncementsRequest();
     }
+    /**
 
+     Returns a Business object by its description.
+
+     @param priceDescription The price description of the Business object.
+
+     @return The Business object with the specified price description.
+     */
     public Business getBusinessByDescription(double priceDescription){
 
         Business priceByDescription = new Business(priceDescription);
@@ -160,7 +186,12 @@ public class AnnouncementRequestController {
         return priceByDescription;
 
     }
+    /**
 
+     Returns the AvailableEquipmentRepository instance, creating it if necessary.
+
+     @return The AvailableEquipmentRepository instance.
+     */
     private AvailableEquipmentRepository getAvailableEquipmentRepository() {
         if (availableEquipmentRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -170,7 +201,14 @@ public class AnnouncementRequestController {
         }
         return availableEquipmentRepository;
     }
+    /**
 
+     Returns an AvailableEquipment object by its description.
+
+     @param availableEquipmentDescription The description of the AvailableEquipment object.
+
+     @return The AvailableEquipment object with the specified description.
+     */
     public AvailableEquipment getAvailableEquipmentByDescription(String availableEquipmentDescription) {
         AvailableEquipmentRepository availableEquipmentRepository = getAvailableEquipmentRepository();
 
@@ -181,12 +219,26 @@ public class AnnouncementRequestController {
         return availableEquipmentByDescription;
 
     }
+    /**
 
+     Returns a list of all Available Equipment objects.
+     @return A List of AvailableEquipment objects.
+     */
     public List<AvailableEquipment> getAvailableEquipment() {
         AvailableEquipmentRepository availableEquipmentRepository = getAvailableEquipmentRepository();
         return availableEquipmentRepository.getAvailableEquipments();
     }
+    /**
 
+     Creates a new announcement request with the given parameters.
+     @param date The date of the announcement request.
+     @param typeOfBusiness The type of business for the announcement request.
+     @param property The property for the announcement request.
+     @param propertyType The property type for the announcement request.
+     @param business The business for the announcement request.
+     @param durationOfContract The duration of the contract for the announcement request.
+     @return An optional containing the newly created announcement request if it was created successfully, or an empty optional if the announcement request already exists in the repository.
+     */
     public Optional<AnnouncementRequest> createAnnouncementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract) {
 
         Optional<AnnouncementRequest> newAnnoucementRequest = Optional.empty();
