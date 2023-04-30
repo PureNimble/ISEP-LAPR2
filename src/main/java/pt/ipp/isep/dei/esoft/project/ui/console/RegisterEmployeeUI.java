@@ -9,7 +9,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
+/**
 
+ The RegisterEmployeeUI class is responsible for user interaction related to employee registration.
+
+ It implements the Runnable interface to run the UI as a separate thread.
+ */
 public class RegisterEmployeeUI implements Runnable {
     private final RegisterEmployeeController controller = new RegisterEmployeeController();
 
@@ -35,11 +40,18 @@ public class RegisterEmployeeUI implements Runnable {
 
     private int taxNumber;
 
+    /**
 
+     Returns the RegisterEmployeeController instance associated with the UI.
+     @return the RegisterEmployeeController instance associated with the UI.
+     */
     private RegisterEmployeeController getController() {
         return controller;
     }
+    /**
 
+     Runs the UI.
+     */
     public void run() {
         System.out.println("Employee");
 
@@ -78,7 +90,12 @@ public class RegisterEmployeeUI implements Runnable {
 
         }
     }
+    /**
 
+     Submits the employee data to the RegisterEmployeeController for processing.
+
+     @param rolesDescriptions the list of role descriptions selected by the employee.
+     */
     private void submitData(List<String> rolesDescriptions) {
 
         List<Role> rolesEmployee = getController().getRolesByDescription(rolesDescriptions);
@@ -118,7 +135,10 @@ public class RegisterEmployeeUI implements Runnable {
             System.out.println("Task not created!");
         }
     }
+    /**
 
+     Requests the employee data from the user through the console.
+     */
     private void requestData() {
 
         //Request the Zip Code from the console
@@ -144,14 +164,23 @@ public class RegisterEmployeeUI implements Runnable {
 
 
     }
+    /**
 
+     Requests the user's name.
+     @return the user's name as a String.
+     */
     private String requestNameDescription() {
         Scanner input = new Scanner(System.in);
         System.out.println("Name:");
         return input.nextLine();
 
     }
+    /**
 
+     Requests the user whether they want to add more roles.
+
+     @return "Y" if the user wants to add more roles, "N" otherwise.
+     */
     private String addMoreRoles() {
         Scanner input = new Scanner(System.in);
         String addRoles;
@@ -162,7 +191,12 @@ public class RegisterEmployeeUI implements Runnable {
 
         return addRoles;
     }
+    /**
 
+     Requests the user's passport number, which must be a 9-digit integer.
+
+     @return the user's passport number as an integer.
+     */
     private int requestPassportNumberDescription() {
         Scanner input = new Scanner(System.in);
         String passportNumberString;
@@ -196,7 +230,12 @@ public class RegisterEmployeeUI implements Runnable {
         return passportNumberInt;
 
     }
+    /**
 
+     Requests the user's tax number, which must be a 9-digit integer.
+
+     @return the user's tax number as an integer.
+     */
     private int requestTaxNumberDescription() {
         Scanner input = new Scanner(System.in);
         String taxNumberString;
@@ -227,7 +266,12 @@ public class RegisterEmployeeUI implements Runnable {
         return taxNumberInt;
 
     }
+    /**
 
+     Requests the user's phone number, which must be a 10-digit integer.
+
+     @return the user's phone number as an integer.
+     */
     private int requestPhoneNumberDescription() {
         Scanner input = new Scanner(System.in);
 
@@ -260,7 +304,10 @@ public class RegisterEmployeeUI implements Runnable {
 
         return phoneNumberInt;
     }
-
+    /**
+     * Requests the zip code from the user and validates if it is a 5-digit integer.
+     * @return the integer zip code.
+     */
     private int requestZipcodeDescription() {
         Scanner input = new Scanner(System.in);
         String zipCodeString;
@@ -289,19 +336,29 @@ public class RegisterEmployeeUI implements Runnable {
         } while (zipCodeString.length() != 5);
         return zipCodeInt;
     }
-
+    /**
+     * Requests the street name from the user.
+     * @return the string street name.
+     */
     private String requestStreetDescription() {
         Scanner input = new Scanner(System.in);
         System.out.println("Street:");
         return input.nextLine();
     }
-
+    /**
+     * Requests the employee email from the user.
+     * @return the string employee email.
+     */
     private String requestEmployeeEmailDescription() {
         Scanner input = new Scanner(System.in);
         System.out.println("Employee Email:");
         return input.nextLine();
     }
-
+    /**
+     * Displays a list of roles and prompts the user to select one.
+     * @param rolesDescriptions the list of descriptions of roles.
+     * @return the string description of the selected role.
+     */
     private String displayAndSelectRoles(List<String> rolesDescriptions) {
         //Display the list of task categories
         List<Role> roles = controller.getRoles();
@@ -331,7 +388,10 @@ public class RegisterEmployeeUI implements Runnable {
         return description;
 
     }
-
+    /**
+     * Displays a list of stores and prompts the user to select one.
+     * @return the string description of the selected store.
+     */
     private String displayAndSelectStore() {
         //Display the list of task categories
         List<Store> stores = controller.getStore();
@@ -364,7 +424,10 @@ public class RegisterEmployeeUI implements Runnable {
         return description;
 
     }
-
+    /**
+     * Displays a list of states and prompts the user to select one.
+     * @return the string description of the selected state.
+     */
     private String displayAndSelectState() {
         //Display the list of task categories
         List<State> states = controller.getState();
@@ -395,7 +458,10 @@ public class RegisterEmployeeUI implements Runnable {
 
     }
 
-
+    /**
+     * Displays a list of cities and prompts the user to select one.
+     * @return the cities description of the selected state.
+     */
     private String displayAndSelectCity() {
         //Display the list of task categories
 
@@ -433,7 +499,10 @@ public class RegisterEmployeeUI implements Runnable {
 
     }
 
-
+    /**
+     * Displays a list of district and prompts the user to select one.
+     * @return the district description of the selected state.
+     */
     private String displayAndSelectDistrict() {
         //Display the list of task categories
 
@@ -468,8 +537,14 @@ public class RegisterEmployeeUI implements Runnable {
         return description;
 
     }
-
-
+    /**
+     * Displays a menu of task categories as numbered options. If a list of role descriptions
+     * is provided, only displays the task categories that do not have a description matching
+     * any of the descriptions in the list.
+     *
+     * @param taskCategories    a list of roles representing task categories
+     * @param rolesDescriptions a list of descriptions of roles to exclude from the menu
+     */
     private void displayRoleOptions(List<Role> taskCategories, List<String> rolesDescriptions) {
         //display the task categories as a menu with number options to select
         int i = 1;
@@ -495,6 +570,11 @@ public class RegisterEmployeeUI implements Runnable {
         }
     }
 
+    /**
+     * Displays a menu of store IDs as numbered options.
+     *
+     * @param stores a list of stores to display
+     */
     private void displayStoreOptions(List<Store> stores) {
         int i = 1;
 
@@ -503,7 +583,11 @@ public class RegisterEmployeeUI implements Runnable {
             i++;
         }
     }
-
+    /**
+     * Displays a menu of cities within a given district as numbered options.
+     *
+     * @param district the district containing the cities to display
+     */
     private void displayCityOptions(District district) {
         int i = 1;
 
@@ -512,7 +596,11 @@ public class RegisterEmployeeUI implements Runnable {
             i++;
         }
     }
-
+    /**
+     * Displays a menu of districts within a given state as numbered options.
+     *
+     * @param state the state containing the districts to display
+     */
     private void displayDistrictOptions(State state) {
         int i = 1;
         for (District district : state.getDistricts()) {
@@ -522,7 +610,11 @@ public class RegisterEmployeeUI implements Runnable {
         }
     }
 
-
+    /**
+     * Displays a menu of states as numbered options.
+     *
+     * @param states a list of states to display
+     */
     private void displayStateOptions(List<State> states) {
         int i = 1;
 
