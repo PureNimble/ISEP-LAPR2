@@ -35,7 +35,7 @@ class StateTest {
     void testConstructorWithStateName() {
         State state = new State("State A");
         assertEquals("State A", state.getState());
-        assertNull(state.getDistricts());
+        assertNotNull(state.getDistricts());
     }
 
 
