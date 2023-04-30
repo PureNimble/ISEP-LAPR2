@@ -29,7 +29,7 @@ class DistrictTest {
     @Test
     void getCities() {
         assertEquals(cities, district1.getCities());
-        assertNull(district2.getCities());
+        assertNotNull(district2.getCities());
     }
 
     @Test
