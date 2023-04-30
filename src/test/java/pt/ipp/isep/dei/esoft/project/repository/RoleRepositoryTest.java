@@ -45,11 +45,11 @@ class RoleRepositoryTest {
         roleDescriptions.add("Test Role 1");
         roleDescriptions.add("Test Role 2");
 
-//        List<Role> retrievedRoles = roleRepository.getRolesByDescription(roleDescriptions);
+        List<Role> retrievedRoles = roleRepository.getRolesByDescription(roleDescriptions);
 
-//        Assertions.assertEquals(retrievedRoles.size(), 2);
-//        Assertions.assertTrue(retrievedRoles.contains(role1));
-//        Assertions.assertTrue(retrievedRoles.contains(role2));
+        Assertions.assertEquals(retrievedRoles.size(), 2);
+        Assertions.assertTrue(retrievedRoles.contains(role1));
+        Assertions.assertTrue(retrievedRoles.contains(role2));
     }
 
     @Test
