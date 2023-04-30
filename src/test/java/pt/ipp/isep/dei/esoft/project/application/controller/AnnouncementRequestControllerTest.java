@@ -3,14 +3,16 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.esoft.project.domain.AvailableEquipment;
-import pt.ipp.isep.dei.esoft.project.domain.PropertyType;
-import pt.ipp.isep.dei.esoft.project.domain.TypeOfBusiness;
+import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.AvailableEquipmentRepository;
+import pt.ipp.isep.dei.esoft.project.repository.EmployeeRepository;
 import pt.ipp.isep.dei.esoft.project.repository.PropertyTypeRepository;
 import pt.ipp.isep.dei.esoft.project.repository.TypeOfBusinessRepository;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,6 +25,9 @@ class AnnouncementRequestControllerTest {
     private AvailableEquipment equipment1;
     private AvailableEquipment equipment2;
 
+    private AnnouncementRequestController controller = new AnnouncementRequestController();
+
+    EmployeeRepository employeeRepository = new EmployeeRepository();
 
     @BeforeEach
     public void setUp5() {
@@ -90,13 +95,31 @@ class AnnouncementRequestControllerTest {
         Assertions.assertTrue(result.contains(typeOfBusiness2));
     }
 
-//    @Test
-//    void getListAgents() {
-//    }
-//
-//    @Test
-//    void getAnnouncementRequest() {
-//    }
+    @Test
+   void getListAgents() {
+        List<Employee> employeeList = new ArrayList<>();
+        Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
+        Role role = new Role("Agent");
+        Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
+        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        List<Role> roles = new ArrayList<>();
+        roles.add(role);
+        roles.add(new Role("Agent"));
+
+        Employee employee1 = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store,  roles, address);
+        employeeList.add(employee1);
+
+        employeeRepository.add(employee1);
+
+
+        assertEquals(employeeList,controller.getListAgents());
+
+
+    }
+
+    @Test
+    void getAnnouncementRequest() {
+    }
 
     @BeforeEach
     void setUp4() {
@@ -121,7 +144,27 @@ class AnnouncementRequestControllerTest {
         assertEquals(2, availableEquipmentRepository.getAvailableEquipments().size());
     }
 
-//    @Test
-//    void createAnnouncementRequest() {
-//    }
+    @Test
+    void createAnnouncementRequest() {
+
+        //The result is the same but the test keeps not working
+        Date date = new Date();
+
+        House house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South");
+        PropertyType propertyType = new PropertyType("House");
+        TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
+        Double price = 1000.32;
+        Business business = new Business(price);
+
+
+        AnnouncementRequest announcementRequestObject = new AnnouncementRequest(date, typeOfBusiness, house, propertyType, business, 5);
+
+        Optional<AnnouncementRequest> announcementRequest = Optional.of(announcementRequestObject);
+
+        Optional<AnnouncementRequest> announcementRequest1 = controller.createAnnouncementRequest(date, typeOfBusiness, house, propertyType, business, 5);
+
+
+        assertEquals(announcementRequest, announcementRequest1);
+
+    }
 }

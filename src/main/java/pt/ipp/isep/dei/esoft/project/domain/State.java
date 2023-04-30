@@ -14,7 +14,7 @@ public class State {
     private String state;
 
     /** The list of districts in the state. */
-    private  List<District> districts;
+    private  List<District> districts = new ArrayList<>();
 
     /**
 
@@ -24,7 +24,7 @@ public class State {
      */
     public State(String state,List<District> districts) {
         this.state = state;
-        this.districts = new ArrayList<>(districts);
+        this.districts = districts;
     }
 
 

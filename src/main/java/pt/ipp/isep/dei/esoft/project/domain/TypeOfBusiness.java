@@ -21,6 +21,17 @@ public class TypeOfBusiness {
     public TypeOfBusiness(String typeOfBusiness) {
         this.typeOfBusiness = typeOfBusiness;
     }
+
+    /**
+     *  Returns the string representation of the Type of Business.
+     *
+     * @return the format string about the type of business
+     */
+    public String toString(){
+        return String.format(typeOfBusiness);
+    }
+
+
     /**
 
      Returns the type of business.

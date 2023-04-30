@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,7 +9,7 @@ import java.util.Objects;
  */
 public class District {
     private String district;
-    private List<City> cities;
+    private List<City> cities = new ArrayList<>();
 
     /**
      * Creates a new district object with a specified name and list of cities.

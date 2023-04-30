@@ -21,6 +21,12 @@ class RegisterStoreControllerTest {
     private State state;
     private List<District> districts;
 
+    private City losAngeles;
+
+    private State california;
+
+    private District district1;
+
     @Test
     void registerStore() {
         // Adding store to the repository
@@ -34,10 +40,7 @@ class RegisterStoreControllerTest {
         assertEquals(store, result.get());
     }
 
-    @Test
-    void getState() {
-        assertEquals("State A", state.getState());
-    }
+
 
     @BeforeEach
     void setUp4() {
@@ -58,9 +61,28 @@ class RegisterStoreControllerTest {
         assertEquals(stores, storeRepository.getStores());
     }
 
+    @BeforeEach
+    void setUp3() {
+        stateRepository = new StateRepository();
+
+        // Add some sample data to the repository for testing
+        losAngeles = new City("Los Angeles");
+        List<City> cities = new ArrayList<>();
+        cities.add(losAngeles);
+
+        district1 = new District("District 1",cities);
+        List<District> districts = new ArrayList<>();
+        districts.add(district1);
+
+        california = new State("California",districts);
+
+
+        stateRepository.add(california);
+    }
+
         @Test
     void getCityByDescription() {
-        City losAngeles = stateRepository.getCityByDescription("Los Angeles", new District("District 1"));
+        City losAngeles = stateRepository.getCityByDescription("Los Angeles", district1);
         Assertions.assertEquals("Los Angeles", "Los Angeles");
 
         // Test for IllegalArgumentException if state doesn't exist
@@ -71,7 +93,7 @@ class RegisterStoreControllerTest {
 
     @Test
     void getDistrictByDescription() {
-        District district1 = stateRepository.getDistrictByDescription("District 1", new State("California"));
+        District district1 = stateRepository.getDistrictByDescription("District 1", california);
         Assertions.assertEquals("District 1", "District 1");
 
         // Test for IllegalArgumentException if state doesn't exist
@@ -82,11 +104,17 @@ class RegisterStoreControllerTest {
 
     @Test
     void getDistrict() {
-        assertEquals(districts, state.getDistricts());
+        assertEquals(district1, california.getDistricts().get(0));
     }
 
     @Test
     void getCities() {
+        assertEquals(losAngeles,district1.getCities().get(0));
+    }
+
+    @Test
+    void getState() {
+        assertEquals("California", california.getState());
     }
 
 }

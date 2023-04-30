@@ -6,7 +6,10 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.*;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,6 +23,8 @@ class PublishAnnouncementControllerTest {
     private TypeOfBusinessRepository repository3;
     private UserRepository userRepository;
     private PublishAnnouncementController controller = new PublishAnnouncementController();
+
+    private PublishedAnnouncementRepository publishedAnnouncementRepository = new PublishedAnnouncementRepository();
 
 
     @BeforeEach
@@ -164,7 +169,28 @@ class PublishAnnouncementControllerTest {
 
     @Test
     void getPublishedAnnoucement() {
-//        assertNotNull(controller.getPublishedAnnouncement(), "Published announcement should not be null");
+
+        //The result is the same but the test keeps not working
+        List<PublishedAnnouncement> publishedAnnouncements = new ArrayList<>();
+
+        Date date = new Date();
+
+        House house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South");
+        PropertyType propertyType = new PropertyType("House");
+        TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
+        Double comissionValue = 5.0;
+        Comission comission = new Comission(comissionValue);
+        Double price = 1000.32;
+        Business business = new Business(price);
+
+        PublishedAnnouncement publishedAnnouncement = new PublishedAnnouncement(date,typeOfBusiness,house,propertyType,comission,business);
+        publishedAnnouncements.add(publishedAnnouncement);
+
+        publishedAnnouncementRepository.add(publishedAnnouncement);
+
+
+
+       assertEquals(publishedAnnouncements,controller.getPublishedAnnoucement());
 
     }
 
@@ -184,23 +210,28 @@ class PublishAnnouncementControllerTest {
     }
 
     @Test
-    void createPublishmentAnnouncementHouse() {
-//        User user = controller.getUserByEmail("john@example.com");
-//        PropertyType propertyType = controller.getPropertyTypeByDescription("House");
-//        TypeOfBusiness typeOfBusiness = controller.getTypeOfBusinessByDescription("Sale");
-//        Double comissionValue = 5.0;
-//        Comission comission = controller.getComissionByDescription(comissionValue);
-//        House house = new House(100, 2, 2, 1, 1,new AvailableEquipment("air conditioning"),"Yes","No","South");
+    void createPublishmentAnnouncement() {
 
-//        House house = new House(100, 2, 2, 1, true, true, true, true);
-//        PublishedAnnouncement announcement = controller.createPublishmentAnnouncementHouse(user, propertyType, typeOfBusiness, comission, house);
-//
-//        assertNotNull(announcement, "Announcement should not be null");
-//        assertEquals(user, announcement.getUser(), "User should be the same as the provided user");
-//        assertEquals(propertyType, announcement.getPropertyType(), "Property type should be the same as the provided property type");
-//        assertEquals(typeOfBusiness, announcement.getTypeOfBusiness(), "Type of business should be the same as the provided type of business");
-//        assertEquals(comission, announcement.getComission(), "Comission should be the same as the provided comission");
-//        assertEquals(house, announcement.getProperty(), "Property should be the same as the provided house");
+        //The result is the same but the test keeps not working
+        Date date = new Date();
+
+        House house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South");
+        PropertyType propertyType = new PropertyType("House");
+        TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
+        Double comissionValue = 5.0;
+        Comission comission = new Comission(comissionValue);
+        Double price = 1000.32;
+        Business business = new Business(price);
+
+
+        PublishedAnnouncement publishedAnnouncementObject = new PublishedAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, 5);
+
+        Optional<PublishedAnnouncement> publishedAnnouncement = Optional.of(publishedAnnouncementObject);
+
+        Optional<PublishedAnnouncement> announcement = controller.createPublishmentAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, 5);
+
+
+        assertEquals(publishedAnnouncement, announcement);
 
     }
 }

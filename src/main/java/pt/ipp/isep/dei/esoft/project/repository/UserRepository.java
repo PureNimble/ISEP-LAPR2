@@ -58,6 +58,6 @@ public class UserRepository {
      */
     public List<User> getUsers() {
 // This is a defensive copy, so that the repository cannot be modified from the outside.
-        return new ArrayList<>(users);
+        return users;
     }
 }

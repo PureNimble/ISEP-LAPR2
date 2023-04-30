@@ -23,6 +23,12 @@ class RegisterEmployeeControllerTest {
     private State state;
     private List<District> districts;
 
+    private City losAngeles;
+
+    private State california;
+
+    private District district1;
+
 
     @BeforeEach
     void setUp() {
@@ -91,9 +97,17 @@ class RegisterEmployeeControllerTest {
         stateRepository = new StateRepository();
 
         // Add some sample data to the repository for testing
-        State california = new State("California");
-        District district1 = new District("District 1");
-        City losAngeles = new City("Los Angeles");
+        losAngeles = new City("Los Angeles");
+        List<City> cities = new ArrayList<>();
+        cities.add(losAngeles);
+
+         district1 = new District("District 1",cities);
+        List<District> districts = new ArrayList<>();
+        districts.add(district1);
+
+        california = new State("California",districts);
+
+
         stateRepository.add(california);
     }
 
@@ -111,7 +125,7 @@ class RegisterEmployeeControllerTest {
 
     @Test
     void getCityByDescription() {
-        City losAngeles = stateRepository.getCityByDescription("Los Angeles", new District("District 1"));
+        City losAngeles = stateRepository.getCityByDescription("Los Angeles", district1);
         Assertions.assertEquals("Los Angeles", "Los Angeles");
 
         // Test for IllegalArgumentException if state doesn't exist
@@ -122,7 +136,7 @@ class RegisterEmployeeControllerTest {
 
     @Test
     void getDistrictByDescription() {
-        District district1 = stateRepository.getDistrictByDescription("District 1", new State("California"));
+        District district1 = stateRepository.getDistrictByDescription("District 1",california);
         Assertions.assertEquals("District 1", "District 1");
 
         // Test for IllegalArgumentException if state doesn't exist
