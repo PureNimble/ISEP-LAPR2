@@ -14,7 +14,7 @@ public class PublishedAnnouncementRepository {
         Optional<PublishedAnnouncement> newPublishedAnnouncement = Optional.empty();
         boolean operationSuccess = false;
 
-        if (validateTaskCategory(publishedAnnouncement)) {
+        if (validate(publishedAnnouncement)) {
             newPublishedAnnouncement = Optional.of(publishedAnnouncement);
             operationSuccess = publishedAnnouncements.add(newPublishedAnnouncement.get());
         }
@@ -26,7 +26,7 @@ public class PublishedAnnouncementRepository {
         return newPublishedAnnouncement;
     }
 
-    private boolean validateTaskCategory(PublishedAnnouncement publishedAnnouncement) {
+    private boolean validate(PublishedAnnouncement publishedAnnouncement) {
         boolean isValid = !publishedAnnouncements.contains(publishedAnnouncement);
         return isValid;
     }
