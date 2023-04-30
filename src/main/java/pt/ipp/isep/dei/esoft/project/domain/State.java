@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,7 +14,7 @@ public class State {
     private String state;
 
     /** The list of districts in the state. */
-    private List<District> districts;
+    private  List<District> districts;
 
     /**
 
@@ -23,7 +24,7 @@ public class State {
      */
     public State(String state,List<District> districts) {
         this.state = state;
-        this.districts = districts;
+        this.districts = new ArrayList<>(districts);
     }
 
 

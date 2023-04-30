@@ -8,12 +8,9 @@ import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 
-public class RegisterEmployeeUI implements Runnable{
+public class RegisterEmployeeUI implements Runnable {
     private final RegisterEmployeeController controller = new RegisterEmployeeController();
 
     private final AuthenticationController authenticationController = new AuthenticationController();
@@ -59,14 +56,11 @@ public class RegisterEmployeeUI implements Runnable{
 
         } while (!confirmacao.equals("N") || rolesDescriptions.size() == 4);
 
-
-        if (getController().getStore().size() > 0) {
-            storeDescription = displayAndSelectStore();
-        }
+        storeDescription = displayAndSelectStore();
 
         stateDescription = displayAndSelectState();
 
-        districtDescription = displayAndSelectCountry();
+        districtDescription = displayAndSelectDistrict();
 
         cityDescription = displayAndSelectCity();
 
@@ -99,10 +93,9 @@ public class RegisterEmployeeUI implements Runnable{
 
         String password = authenticationRepository.passwordGenerator();
 
-        User user = new User(employeeEmail,passportNumber,taxNumber,name,address,phoneNumber);
+        User user = new User(employeeEmail, passportNumber, taxNumber, name, address, phoneNumber);
 
         controller.addUser(user);
-
 
 
         try {
@@ -115,6 +108,7 @@ public class RegisterEmployeeUI implements Runnable{
             pw.close();
 
         } catch (IOException ex) {
+            System.out.println("Error to write password to file:" + ex.getMessage());
         }
 
 
@@ -127,23 +121,25 @@ public class RegisterEmployeeUI implements Runnable{
 
     private void requestData() {
 
-        //Request the Task Reference from the console
+        //Request the Zip Code from the console
         zipCode = requestZipcodeDescription();
 
-        //Request the Task Description from the console
+        //Request the Street from the console
         street = requestStreetDescription();
 
-        //Request the Task Informal Description from the console
+        //Request the Name Description from the console
         name = requestNameDescription();
 
-        //Request the Task Technical Description from the console
+        //Request the Employee Email Description from the console
         employeeEmail = requestEmployeeEmailDescription();
 
-        //Request the Task Duration from the console
+        //Request the Phone Number from the console
         phoneNumber = requestPhoneNumberDescription();
 
+        //Request the Passport Number from the console
         passportNumber = requestPassportNumberDescription();
 
+        //Request the Tax Number from the console
         taxNumber = requestTaxNumberDescription();
 
 
@@ -158,35 +154,140 @@ public class RegisterEmployeeUI implements Runnable{
 
     private String addMoreRoles() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Do you want to add more Roles:");
-        return input.nextLine();
+        String addRoles;
+        do {
+            System.out.println("Do you want to add more Roles:(Y/N)");
+            addRoles = input.nextLine();
+        } while (!addRoles.equals("Y") && !addRoles.equals("N"));
 
+        return addRoles;
     }
 
     private int requestPassportNumberDescription() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Passport Number:");
-        return input.nextInt();
+        String passportNumberString;
+        int passportNumberInt;
+
+        do {
+
+
+            do {
+
+                try {
+                    System.out.println("Passport Number:");
+                    passportNumberInt = input.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input. Please enter an integer value:");
+                    input.nextLine();
+                    passportNumberInt = -1;
+                }
+
+            }while (passportNumberInt > 1);
+
+
+            passportNumberString = Integer.toString(passportNumberInt);
+            if (passportNumberString.length() != 9) {
+                System.out.println("A Passport Number is a number with only 9 digits");
+            }
+
+        } while (passportNumberString.length() != 9);
+
+
+        return passportNumberInt;
 
     }
 
     private int requestTaxNumberDescription() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Tax Number:");
-        return input.nextInt();
+        String taxNumberString;
+        int taxNumberInt;
+
+        do {
+            do {
+
+                try {
+                    System.out.println("Tax Number:");
+                    taxNumberInt = input.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input. Please enter an integer value:");
+                    input.nextLine();
+                    taxNumberInt = -1;
+                }
+
+            }while (taxNumberInt > 1);
+
+            taxNumberString = Integer.toString(taxNumberInt);
+            if (taxNumberString.length() != 9) {
+                System.out.println("A Tax number is a number with only 9 digits");
+            }
+
+        } while (taxNumberString.length() != 9);
+
+
+        return taxNumberInt;
 
     }
 
     private int requestPhoneNumberDescription() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Phone Number:");
-        return input.nextInt();
+
+        String phoneNumberString;
+        int phoneNumberInt;
+
+        do {
+
+            do {
+
+                try {
+                    System.out.println("Phone Number:");
+                    phoneNumberInt = input.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input. Please enter an integer value:");
+                    input.nextLine();
+                    phoneNumberInt = -1;
+                }
+
+            }while (phoneNumberInt > 1);
+
+
+            phoneNumberString = Integer.toString(phoneNumberInt);
+            if (phoneNumberString.length() != 10) {
+                System.out.println("A Phone Number is a number with only 10 digits");
+            }
+
+        } while (phoneNumberString.length() != 10);
+
+
+        return phoneNumberInt;
     }
 
     private int requestZipcodeDescription() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Zipcode:");
-        return input.nextInt();
+        String zipCodeString;
+        int zipCodeInt;
+
+        do {
+
+            do {
+
+                try {
+                    System.out.println("Zip Code:");
+                    zipCodeInt = input.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input. Please enter an integer value:");
+                    input.nextLine();
+                    zipCodeInt = -1;
+                }
+
+            }while (zipCodeInt > 1);
+
+            zipCodeString = Integer.toString(zipCodeInt);
+            if (zipCodeString.length() != 5) {
+                System.out.println("A zipcode is a number with only 5 digits");
+            }
+
+        } while (zipCodeString.length() != 5);
+        return zipCodeInt;
     }
 
     private String requestStreetDescription() {
@@ -211,9 +312,18 @@ public class RegisterEmployeeUI implements Runnable{
         Scanner input = new Scanner(System.in);
 
         while (answer < 1 || answer > listSize) {
-            displayRoleOptions(roles, rolesDescriptions);
-            System.out.println("Select a role:");
-            answer = input.nextInt();
+            try {
+
+                displayRoleOptions(roles, rolesDescriptions);
+                System.out.println("Select a role:");
+                answer = input.nextInt();
+
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value:");
+                input.nextLine();
+                answer = -1;
+            }
+
         }
 
         String description = roles.get(answer - 1).getDescription();
@@ -232,14 +342,24 @@ public class RegisterEmployeeUI implements Runnable{
         Scanner input = new Scanner(System.in);
 
         while (answer < 1 || answer > listSize) {
-            displayStoreOptions(stores);
-            System.out.println("Select a Store:");
-            answer = input.nextInt();
+
+            try {
+
+                displayStoreOptions(stores);
+                System.out.println("Select a Store:");
+                answer = input.nextInt();
+
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value:");
+                input.nextLine();
+                answer = -1;
+            }
+
         }
 
         int numeroInteiro = stores.get(answer - 1).getId();
 
-        String description =Integer.toString(numeroInteiro);
+        String description = Integer.toString(numeroInteiro);
 
         return description;
 
@@ -255,9 +375,19 @@ public class RegisterEmployeeUI implements Runnable{
         Scanner input = new Scanner(System.in);
 
         while (answer < 1 || answer > listSize) {
-            displayStateOptions(states);
-            System.out.println("Select a State:");
-            answer = input.nextInt();
+
+            try {
+
+                displayStateOptions(states);
+                System.out.println("Select a State:");
+                answer = input.nextInt();
+
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value:");
+                input.nextLine();
+                answer = -1;
+            }
+
         }
 
         String description = states.get(answer - 1).getState();
@@ -281,9 +411,20 @@ public class RegisterEmployeeUI implements Runnable{
         Scanner input = new Scanner(System.in);
 
         while (answer < 1 || answer > listSize) {
-            displayCityOptions(district);
-            System.out.println("Select a City:");
-            answer = input.nextInt();
+
+            try {
+
+                displayCityOptions(district);
+                System.out.println("Select a City:");
+                answer = input.nextInt();
+
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value:");
+                input.nextLine();
+                answer = -1;
+            }
+
+
         }
 
         String description = cities.get(answer - 1).getCity();
@@ -293,25 +434,35 @@ public class RegisterEmployeeUI implements Runnable{
     }
 
 
-    private String displayAndSelectCountry() {
+    private String displayAndSelectDistrict() {
         //Display the list of task categories
 
         List<State> states = controller.getState();
 
         State state = controller.getStateByDescription(stateDescription);
 
-        int listSize = states.size();
+        int listSize = state.getDistricts().size();
         int answer = -1;
 
         Scanner input = new Scanner(System.in);
 
         while ((answer < 1 || answer > listSize)) {
-            displayCountryOptions(state);
-            System.out.println("Select a Country:");
-            answer = input.nextInt();
+
+            try {
+
+                displayDistrictOptions(state);
+                System.out.println("Select a District:");
+                answer = input.nextInt();
+
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value:");
+                input.nextLine();
+                answer = -1;
+            }
+
         }
 
-        String description = states.get(answer - 1).getDistricts().get(answer - 1).getDistrict();
+        String description = state.getDistricts().get(answer - 1).getDistrict();
 
 
         return description;
@@ -362,7 +513,7 @@ public class RegisterEmployeeUI implements Runnable{
         }
     }
 
-    private void displayCountryOptions(State state) {
+    private void displayDistrictOptions(State state) {
         int i = 1;
         for (District district : state.getDistricts()) {
             System.out.println(i + "-" + district.getDistrict());

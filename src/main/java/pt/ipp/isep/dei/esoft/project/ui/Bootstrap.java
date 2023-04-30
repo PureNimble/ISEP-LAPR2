@@ -105,7 +105,6 @@ public class Bootstrap implements Runnable {
 
         List<District> districts1 = new ArrayList<>();
         districts1.add(new District("Pima",cities1));
-
         stateRepository.add(new State("Arizona AZ",districts1));
 
     }

@@ -5,10 +5,7 @@ import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.UserRepository;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 
 public class PublishAnnouncementUI implements Runnable {
 
@@ -38,9 +35,9 @@ public class PublishAnnouncementUI implements Runnable {
 
         email = requestEmail();
 
-        propertyTypeDescription = displayAndSelectTaskCategory();
+        propertyTypeDescription = displayandselectPropertyType();
 
-        if (propertyTypeDescription.equals("Rent")){
+        if (propertyTypeDescription.equals("Rent")) {
             durationOfContract = requestDurationOfContract();
         }
 
@@ -85,7 +82,7 @@ public class PublishAnnouncementUI implements Runnable {
 
             Property land = new Property(area, distanceFromCityCenter);
 
-            Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncementHouse(date,typeOfBusiness, land,propertyType,comission,business,durationOfContract);
+            Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncementHouse(date, typeOfBusiness, land, propertyType, comission, business, durationOfContract);
 
         } else {
             if (propertyTypeDescription.equals("Appartment")) {
@@ -94,13 +91,13 @@ public class PublishAnnouncementUI implements Runnable {
 
                 Residence appartment = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment);
 
-                Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncementHouse(date,typeOfBusiness, appartment,propertyType,comission, business,durationOfContract);
+                Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncementHouse(date, typeOfBusiness, appartment, propertyType, comission, business, durationOfContract);
             } else {
                 AvailableEquipment availableEquipment = controller.getAvailableEquipmentByDescription(availableEquipmentDescription);
 
                 House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, inhabitableLoft, sunExposure);
 
-                Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncementHouse(date,typeOfBusiness, house,propertyType,comission, business,durationOfContract);
+                Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncementHouse(date, typeOfBusiness, house, propertyType, comission, business, durationOfContract);
 
             }
         }
@@ -153,38 +150,122 @@ public class PublishAnnouncementUI implements Runnable {
 
     private int requestDurationOfContract() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Duration of Contract:");
-        return input.nextInt();
+        int durationOfContract;
+
+        do {
+
+            try {
+                System.out.println("Duration of Contract:");
+                durationOfContract = input.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value:");
+                input.nextLine();
+                durationOfContract = -1;
+            }
+
+        } while (durationOfContract > 0);
+
+        return durationOfContract;
     }
 
     private int requestNumberOfBedrooms() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Number of Bedrooms:");
-        return input.nextInt();
+        int numberOfBedrooms;
+
+        do {
+
+            try {
+                System.out.println("Number Of Bedrooms:");
+                numberOfBedrooms = input.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value:");
+                input.nextLine();
+                numberOfBedrooms = -1;
+            }
+
+        } while (numberOfBedrooms > -1);
+
+        return numberOfBedrooms;
     }
 
     private int requestNumberOfBathrooms() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Number Of Bathrooms:");
-        return input.nextInt();
+        int numberOfBathrooms;
+
+        do {
+
+            try {
+                System.out.println("Number Of Bathrooms:");
+                numberOfBathrooms = input.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value:");
+                input.nextLine();
+                numberOfBathrooms = -1;
+            }
+
+        } while (numberOfBathrooms > -1);
+
+        return numberOfBathrooms;
     }
 
     private int requestparkingSpaces() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Parking Spaces:");
-        return input.nextInt();
+        int parkingSpaces;
+
+        do {
+
+            try {
+                System.out.println("Parking Spaces:");
+                parkingSpaces = input.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value:");
+                input.nextLine();
+                parkingSpaces = -1;
+            }
+
+        } while (parkingSpaces > -1);
+
+        return parkingSpaces;
     }
 
     private int requestDistanceFromCityCenter() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Distance from City Center:");
-        return input.nextInt();
+        int distanceFromCityCenter;
+
+        do {
+
+            try {
+                System.out.println("Distance From City Center:");
+                distanceFromCityCenter = input.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value:");
+                input.nextLine();
+                distanceFromCityCenter = -1;
+            }
+
+        } while (distanceFromCityCenter > -1);
+
+        return distanceFromCityCenter;
     }
 
     private int requestArea() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Area:");
-        return input.nextInt();
+        int area;
+
+        do {
+
+            try {
+                System.out.println("Area:");
+                area = input.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value:");
+                input.nextLine();
+                area = -1;
+            }
+
+        } while (area > -1);
+
+        return area;
     }
 
     private String requestBasement() {
@@ -207,13 +288,27 @@ public class PublishAnnouncementUI implements Runnable {
 
     private double requestPrice() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Price:");
-        return input.nextDouble();
+        double price;
+
+        do {
+
+            try {
+                System.out.println("Price:");
+                price = input.nextDouble();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value:");
+                input.nextLine();
+                price = -1;
+            }
+
+        } while (price > -1);
+
+        return price;
     }
 
 
-    private String displayAndSelectTaskCategory() {
-        //Display the list of task categories
+    private String displayandselectPropertyType() {
+
         List<PropertyType> propertyTypes = controller.getPropertyType();
 
         int listSize = propertyTypes.size();
@@ -222,9 +317,17 @@ public class PublishAnnouncementUI implements Runnable {
         Scanner input = new Scanner(System.in);
 
         while (answer < 1 || answer > listSize) {
-            displayPropertyTypeOptions(propertyTypes);
-            System.out.println("Select a Property Type:");
-            answer = input.nextInt();
+            try {
+
+                displayPropertyTypeOptions(propertyTypes);
+                System.out.println("Select a Property Type:");
+                answer = input.nextInt();
+
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value:");
+                input.nextLine();
+                answer = -1;
+            }
         }
 
         String description = propertyTypes.get(answer - 1).getDesignation();
@@ -233,7 +336,7 @@ public class PublishAnnouncementUI implements Runnable {
     }
 
     private void displayPropertyTypeOptions(List<PropertyType> propertyTypes) {
-        //display the task categories as a menu with number options to select
+
         int i = 1;
         for (PropertyType propertyType : propertyTypes) {
             System.out.println(i + " - " + propertyType.getDesignation());
@@ -243,7 +346,7 @@ public class PublishAnnouncementUI implements Runnable {
 
 
     private Double displayAndSelectComission() {
-        //Display the list of task categories
+
         List<Comission> comissions = controller.getComission();
 
         int listSize = comissions.size();
@@ -252,9 +355,17 @@ public class PublishAnnouncementUI implements Runnable {
         Scanner input = new Scanner(System.in);
 
         while (answer < 1 || answer > listSize) {
-            displayComissionOptions(comissions);
-            System.out.println("Select a Comission:");
-            answer = input.nextInt();
+            try {
+
+                displayComissionOptions(comissions);
+                System.out.println("Select a Comission:");
+                answer = input.nextInt();
+
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value:");
+                input.nextLine();
+                answer = -1;
+            }
         }
 
         Double description = comissions.get(answer - 1).getComission();
@@ -264,7 +375,7 @@ public class PublishAnnouncementUI implements Runnable {
     }
 
     private void displayComissionOptions(List<Comission> comissions) {
-        //display the task categories as a menu with number options to select
+
         int i = 1;
         for (Comission comission : comissions) {
             System.out.println(i + " - " + comission.getComission());
@@ -273,7 +384,7 @@ public class PublishAnnouncementUI implements Runnable {
     }
 
     private String displayAndSelectTypeOfBusiness() {
-        //Display the list of task categories
+
         List<TypeOfBusiness> typeOfBusinesses = controller.getTypeOfBusiness();
 
         int listSize = typeOfBusinesses.size();
@@ -282,19 +393,27 @@ public class PublishAnnouncementUI implements Runnable {
         Scanner input = new Scanner(System.in);
 
         while (answer < 1 || answer > listSize) {
-            displayTypeOfBusinessOptions(typeOfBusinesses);
-            System.out.println("Select a TypeOfBusiness:");
-            answer = input.nextInt();
+            try {
+
+                displayTypeOfBusinessOptions(typeOfBusinesses);
+                System.out.println("Select a Type of Business:");
+                answer = input.nextInt();
+
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value:");
+                input.nextLine();
+                answer = -1;
+            }
         }
 
-        String  description = typeOfBusinesses.get(answer - 1).getTypeOfBusiness();
+        String description = typeOfBusinesses.get(answer - 1).getTypeOfBusiness();
 
         return description;
 
     }
 
     private void displayTypeOfBusinessOptions(List<TypeOfBusiness> typeOfBusinesses) {
-        //display the task categories as a menu with number options to select
+
         int i = 1;
         for (TypeOfBusiness typeOfBusiness : typeOfBusinesses) {
             System.out.println(i + " - " + typeOfBusiness.getTypeOfBusiness());
@@ -304,7 +423,7 @@ public class PublishAnnouncementUI implements Runnable {
 
 
     private String displayAndSelectAvailableEquipment() {
-        //Display the list of task categories
+
         List<AvailableEquipment> availableEquipments = controller.getAvailableEquipment();
 
         int listSize = availableEquipments.size();
@@ -313,27 +432,33 @@ public class PublishAnnouncementUI implements Runnable {
         Scanner input = new Scanner(System.in);
 
         while (answer < 1 || answer > listSize) {
-            displayAvailableEquipmentOptions(availableEquipments);
-            System.out.println("Select a AvailableEquipment:");
-            answer = input.nextInt();
+            try {
+
+                displayAvailableEquipmentOptions(availableEquipments);
+                System.out.println("Select a Available Equipment:");
+                answer = input.nextInt();
+
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value:");
+                input.nextLine();
+                answer = -1;
+            }
         }
 
-        String  description = availableEquipments.get(answer - 1).getAvailableEquipment();
+        String description = availableEquipments.get(answer - 1).getAvailableEquipment();
 
         return description;
 
     }
 
     private void displayAvailableEquipmentOptions(List<AvailableEquipment> availableEquipments) {
-        //display the task categories as a menu with number options to select
+
         int i = 1;
         for (AvailableEquipment availableEquipment : availableEquipments) {
             System.out.println(i + " - " + availableEquipment.getAvailableEquipment());
             i++;
         }
     }
-
-
 
 
 }
