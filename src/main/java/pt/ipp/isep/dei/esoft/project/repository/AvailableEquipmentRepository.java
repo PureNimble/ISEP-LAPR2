@@ -37,7 +37,7 @@ public class AvailableEquipmentRepository {
         }
         if (availableEquipment == null) {
             throw new IllegalArgumentException(
-                    "Type of Business requested for [" + availableEquipmentDescription + "] does not exist.");
+                    "Available Equipment requested for [" + availableEquipmentDescription + "] does not exist.");
         }
         return availableEquipment;
     }

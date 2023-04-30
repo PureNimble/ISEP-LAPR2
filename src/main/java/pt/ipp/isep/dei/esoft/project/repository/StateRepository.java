@@ -62,7 +62,7 @@ public class StateRepository {
         }
         if (district == null) {
             throw new IllegalArgumentException(
-                    "Task Category requested for [" + districtDescription + "] does not exist.");
+                    "District requested for [" + districtDescription + "] does not exist.");
         }
         return district;
     }
