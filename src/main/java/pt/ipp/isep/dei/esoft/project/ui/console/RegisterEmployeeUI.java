@@ -216,7 +216,7 @@ public class RegisterEmployeeUI implements Runnable {
                     passportNumberInt = -1;
                 }
 
-            }while (passportNumberInt > 1);
+            }while (passportNumberInt <0);
 
 
             passportNumberString = Integer.toString(passportNumberInt);
@@ -253,7 +253,7 @@ public class RegisterEmployeeUI implements Runnable {
                     taxNumberInt = -1;
                 }
 
-            }while (taxNumberInt > 1);
+            }while (taxNumberInt < 0);
 
             taxNumberString = Integer.toString(taxNumberInt);
             if (taxNumberString.length() != 9) {
@@ -291,7 +291,7 @@ public class RegisterEmployeeUI implements Runnable {
                     phoneNumberInt = -1;
                 }
 
-            }while (phoneNumberInt > 1);
+            }while (phoneNumberInt < 0);
 
 
             phoneNumberString = Integer.toString(phoneNumberInt);
@@ -326,7 +326,7 @@ public class RegisterEmployeeUI implements Runnable {
                     zipCodeInt = -1;
                 }
 
-            }while (zipCodeInt > 1);
+            }while (zipCodeInt < 0);
 
             zipCodeString = Integer.toString(zipCodeInt);
             if (zipCodeString.length() != 5) {

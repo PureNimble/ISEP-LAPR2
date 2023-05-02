@@ -56,7 +56,7 @@ public class Employee extends User {
      * @return a string representation of the Employee object
      */
     public String toString() {
-        return String.format(super.toString() + "\nfuncionário da %s que desempenha o papel de %s", store.toString(), roles.toString());
+        return String.format(super.toString() + "\nEmployee of %s, who performs the role of %s", store.toString(), roles.toString());
     }
 
     /**

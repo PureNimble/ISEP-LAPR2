@@ -11,9 +11,7 @@ import java.util.Optional;
 /**
 
  The RegisterStoreController class is responsible for registering a new store in the system.
-
- It provides a method for registering a store and uses lazy initialization to initialize its
-
+ It provides a method for registering a store to initialize its
  StoreRepository and StateRepository instance variables.
  */
 public class RegisterStoreController {
@@ -31,8 +29,7 @@ public class RegisterStoreController {
     }
 
     /**
-
-     Initializes the StoreRepository instance variable using lazy initialization.
+     Initializes the StoreRepository instance variable.
      @return The StoreRepository object associated with this controller.
      */
     private StoreRepository getStoreRepository() {
@@ -46,7 +43,7 @@ public class RegisterStoreController {
     }
     /**
 
-     Initializes the StateRepository instance variable using lazy initialization.
+     Initializes the StateRepository instance variable.
      @return The StateRepository object associated with this controller.
      */
     private StateRepository getStateRepository() {

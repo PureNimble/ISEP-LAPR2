@@ -57,7 +57,7 @@ public class Person {
      @return a String representation of this Person.
      */
     public String toString(){
-        return String.format("%s residente em %s que possui como documentos de identificação %s %s de email:%s e de numero de telefone %s , ",name,address,passportNumber,taxNumber,email,phoneNumber);
+        return String.format("%s resident in %s that possess as identifying documents the passport, whose number is: %s, the tax number, which is: %s, the email: %s and the phone number: %s , ",name,address,passportNumber,taxNumber,email,phoneNumber);
     }
     /**
 

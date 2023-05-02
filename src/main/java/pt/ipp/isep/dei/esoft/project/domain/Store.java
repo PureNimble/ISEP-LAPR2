@@ -83,7 +83,7 @@ public class Store {
      @return a string representation of the store
      */
     public String toString() {
-        return String.format("Loja: %s %s localizada em %s", id, designation, address.toString());
+        return String.format("Store: %s %s located at %s", id, designation, address.toString());
     }
     /**
 
