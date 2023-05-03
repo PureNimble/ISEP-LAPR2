@@ -1,0 +1,85 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title PublishAnnouncementUI Sequence Diagram (SSD)
+
+autonumber
+
+actor "Agent" as Agent
+participant ":PublishAnnouncementUI" as PublishAnnouncementUI
+participant ":PublishAnnouncementController" as PublishAnnouncementController
+participant ":Repositories" as Singleton
+participant "repositories\n:Repositories" as repositories
+participant "publishAnnouncementRequestRepository\n:PublishAnnouncementRequestRepository" as PublishAnnouncementRequestRepository
+participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as PublishAnnouncementRepository
+
+activate Agent
+
+    Agent -> PublishAnnouncementUI : asks to see the list of property announcement request
+    activate PublishAnnouncementUI
+
+PublishAnnouncementUI -> PublishAnnouncementController**: create
+
+
+PublishAnnouncementUI -> PublishAnnouncementController : getAnnouncementRequestList()
+activate PublishAnnouncementController
+
+PublishAnnouncementController -> Singleton: getInstance()
+activate Singleton
+
+Singleton --> PublishAnnouncementController: repositories
+deactivate Singleton
+
+PublishAnnouncementController -> repositories: getAnnouncementsRequestRepository()
+activate repositories
+
+repositories --> PublishAnnouncementController:announcementRepository
+deactivate repositories
+
+PublishAnnouncementController -> PublishAnnouncementRequestRepository:getAnnouncementRequestList()
+activate PublishAnnouncementRequestRepository
+
+PublishAnnouncementRequestRepository --> PublishAnnouncementController:announcementsRequest
+deactivate PublishAnnouncementRequestRepository
+
+
+PublishAnnouncementController --> PublishAnnouncementUI:announcementsRequest
+deactivate PublishAnnouncementController
+
+     PublishAnnouncementUI --> Agent : shows list of announcement request responsible for that agent and asks to select one
+        deactivate PublishAnnouncementUI
+
+            Agent -> PublishAnnouncementUI : selects one announcement request
+            activate PublishAnnouncementUI
+
+PublishAnnouncementUI --> Agent:shows the list of comissions
+deactivate PublishAnnouncementUI
+
+Agent -> PublishAnnouncementUI:selects the respective comssion
+activate PublishAnnouncementUI
+
+PublishAnnouncementUI --> Agent:shows the information of the announcement request selected and asks for confirmation
+deactivate PublishAnnouncementUI
+
+ Agent -> PublishAnnouncementUI : submits data
+    activate PublishAnnouncementUI
+
+
+PublishAnnouncementUI -> PublishAnnouncementController:publishAnnouncementRequest(publishedAnnouncementRequestByDescription)
+activate PublishAnnouncementController
+
+
+        PublishAnnouncementUI --> Agent : displays operation success
+    deactivate PublishAnnouncementUI
+
+
+
+@enduml
+

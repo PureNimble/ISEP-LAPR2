@@ -22,9 +22,14 @@ activate Agent
             activate System
 
 
-System --> Agent: shows information of the announcement request and asks for confirmation
+System --> Agent:shows the comissions available
 deactivate System
 
+Agent -> System:select the respective comission
+activate System
+
+System --> Agent: shows the infomation of the announcement request and asks for confirmation
+deactivate System
 
  Agent -> System : submits data
     activate System
