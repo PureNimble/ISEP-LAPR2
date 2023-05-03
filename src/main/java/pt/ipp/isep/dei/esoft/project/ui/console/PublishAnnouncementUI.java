@@ -198,7 +198,7 @@ public class PublishAnnouncementUI implements Runnable {
                 durationOfContract = -1;
             }
 
-        } while (durationOfContract > 0);
+        } while (durationOfContract < 0);
 
         return durationOfContract;
     }
@@ -223,7 +223,7 @@ public class PublishAnnouncementUI implements Runnable {
                 numberOfBedrooms = -1;
             }
 
-        } while (numberOfBedrooms > -1);
+        } while (numberOfBedrooms < 0);
 
         return numberOfBedrooms;
     }
@@ -248,7 +248,7 @@ public class PublishAnnouncementUI implements Runnable {
                 numberOfBathrooms = -1;
             }
 
-        } while (numberOfBathrooms > -1);
+        } while (numberOfBathrooms < 0);
 
         return numberOfBathrooms;
     }
@@ -273,7 +273,7 @@ public class PublishAnnouncementUI implements Runnable {
                 parkingSpaces = -1;
             }
 
-        } while (parkingSpaces > -1);
+        } while (parkingSpaces < 0);
 
         return parkingSpaces;
     }
@@ -298,7 +298,7 @@ public class PublishAnnouncementUI implements Runnable {
                 distanceFromCityCenter = -1;
             }
 
-        } while (distanceFromCityCenter > -1);
+        } while (distanceFromCityCenter < 0);
 
         return distanceFromCityCenter;
     }
@@ -323,7 +323,7 @@ public class PublishAnnouncementUI implements Runnable {
                 area = -1;
             }
 
-        } while (area > -1);
+        } while (area < 0);
 
         return area;
     }
