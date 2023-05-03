@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 0010 - Place an order to purchase the property, submitting the order amount
 
 ## 1. Requirements Engineering
 
@@ -6,8 +6,8 @@
 ### 1.1. User Story Description
 
 
-As an organization employee, I want to create a new task in order to be further published.
-
+As a client, I place an order to purchase the property, submitting the order
+amount.
 
 
 ### 1.2. Customer Specifications and Clarifications 
@@ -15,38 +15,39 @@ As an organization employee, I want to create a new task in order to be further 
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost as well as the its classifying task category. 
+> (...)
 
-
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
-
+> (...)
 
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** (...)
 >  
-> **Answer:** Duration is estimated in days.
+> **Answer:** (...)
 
 
-> **Question:** Monetary data is expressed in any particular currency?
+> **Question:** (...)
 >  
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POTs (virtual currency internal to the platform).
+> **Answer:** (...)
 
 
 ### 1.3. Acceptance Criteria
 
 
-* **AC1:** All required fiels must be filled in.
-* **AC2:** Task reference must have at least 5 alphanumeric chars.
-* **AC3:** When creating a task with an already existing reference, the system must reject such operation and the user must have the change to modify the typed reference.
-
+* **AC1:** The order amount submitted by the client must be equal to or lower than
+the price set by the owner for the property.
+* **AC2:** If the order amount submitted by the client has already been posted for
+the property (by another request from this client or any other client), the
+system must state that on the screen and the order placed previously should be
+considered first when selling the property.
+* **AC3:** A client can only submit a new order to purchase the same property after
+the previous one is declined.
 
 ### 1.4. Found out Dependencies
 
 
-* There is a dependency to "US003 Create a task category" since at least a task category must exist to classify the task being created.
-
+* (...)
 
 ### 1.5 Input and Output Data
 
@@ -54,21 +55,16 @@ As an organization employee, I want to create a new task in order to be further 
 **Input Data:**
 
 * Typed data:
-	* a reference, 
-	* a designation, 
-	* an informal description
-	* a technical description
-	* an estimated duration
-	* an estimated cost
+	* (...)
 	
 * Selected data:
-	* Classifying task category 
+	* (...)
 
 
 **Output Data:**
 
-* List of existing task categories
-* (In)Success of the operation
+* (...)
+* (...)
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -76,12 +72,9 @@ As an organization employee, I want to create a new task in order to be further 
 
 #### Alternative One
 
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
+![System Sequence Diagram](svg/us010-system-sequence-diagram.svg)
 
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
 
 ### 1.7 Other Relevant Remarks
 
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
+* (...)

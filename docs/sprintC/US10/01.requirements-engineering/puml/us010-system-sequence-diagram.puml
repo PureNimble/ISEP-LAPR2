@@ -1,0 +1,64 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US010 - System Sequence Diagram (SSD)
+
+autonumber
+
+actor "Client" as Client
+participant ":System" as System
+
+activate Client
+
+Client -> System : asks to place an order on a property
+activate System
+
+System --> Client : displays the list of properties
+deactivate System
+
+Client -> System : selects the desired property
+activate System
+
+System --> Client : request the order amount
+deactivate System
+
+Client -> System : places an order to purchase a property by submitting the order amount
+activate System
+
+    opt if there is a pending order
+
+        System --> Client : asks the user to wait until the pending request is either accepted or rejected
+
+    end
+
+    alt order amount is superior
+
+        loop if the order amount is higher than the owner's requested proce
+
+            System --> Client : asks for a new price
+            deactivate System
+
+            Client -> System : places a new order with an inferior order amount
+            activate System
+
+        end
+
+    else order amount is inferior
+
+        System --> Client : accepts the purchase request
+        deactivate System
+
+    end
+
+Client -> System : submits data
+activate System
+
+System --> Client : displays operation sucess
+deactivate System
+
+
+
+@enduml
