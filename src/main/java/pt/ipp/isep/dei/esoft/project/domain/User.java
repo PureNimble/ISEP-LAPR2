@@ -43,5 +43,10 @@ public class User extends Person {
     public int compare(String email) {
         return super.compare(email);
     }
+
+
+    public String getEmail(){
+        return super.getEmail();
+    }
 }
 

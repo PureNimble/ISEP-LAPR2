@@ -16,6 +16,8 @@ public class PublishedAnnouncement {
     private Business business;
     private int durationOfContract;
 
+    AnnouncementRequest announcementRequest;
+
     /**
      * Constructs a new PublishedAnnouncement object for sale.
      *
@@ -54,6 +56,11 @@ public class PublishedAnnouncement {
         this.comission = comission;
         this.business = business;
         this.durationOfContract = durationOfContract;
+    }
+
+    public PublishedAnnouncement(Comission comission, AnnouncementRequest announcementRequest) {
+        this.comission = comission;
+        this.announcementRequest = announcementRequest;
     }
 
     /**

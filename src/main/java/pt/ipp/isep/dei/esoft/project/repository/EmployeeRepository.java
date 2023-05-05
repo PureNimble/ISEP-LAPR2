@@ -62,4 +62,15 @@ public class EmployeeRepository {
 // This is a defensive copy, so that the repository cannot be modified from the outside.
         return employees;
     }
+
+
+    public Employee getEmployeeByEmail(String email){
+        for (Employee employee: employees) {
+            if (employee.getEmployeeEmail().equals(email)){
+                return  employee;
+            }
+        }
+        return null;
+    }
+
 }

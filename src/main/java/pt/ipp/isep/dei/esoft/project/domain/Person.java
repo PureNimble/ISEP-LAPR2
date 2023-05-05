@@ -51,6 +51,11 @@ public class Person {
         this.name = name;
         this.phoneNumber = phoneNumber;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
     /**
 
      Returns a String representation of this Person.

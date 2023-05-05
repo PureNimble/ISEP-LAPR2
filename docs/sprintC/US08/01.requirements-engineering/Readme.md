@@ -45,9 +45,9 @@ publishes the offer so that it is visible to all clients who visit the agency an
 ### 1.4. Found out Dependencies
 
 
-* There is a dependency to "US004 Create a task category" since at least a task category must exist to classify the task being created.
-* There is a dependency to "US006"
-* There is a dependency to "US002"
+* There is a dependency to "US004 Submit a request for listing a property sale or rent" since the announcement request should  previously be already on created.
+* There is a dependency to "US006 Specify states, districts and cities in the system" since a property has an adress.
+* There is a dependency to "US002 Publish any sale announcement on the system"
 
 ### 1.5 Input and Output Data
 

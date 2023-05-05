@@ -55,6 +55,14 @@ public class Employee extends User {
      *
      * @return a string representation of the Employee object
      */
+
+    public String getEmployeeEmail(){
+        return super.getEmail();
+    }
+
+
+
+
     public String toString() {
         return String.format(super.toString() + "\nEmployee of %s, who performs the role of %s", store.toString(), roles.toString());
     }

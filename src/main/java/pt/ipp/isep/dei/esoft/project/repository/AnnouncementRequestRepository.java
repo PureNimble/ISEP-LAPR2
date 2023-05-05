@@ -3,10 +3,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.application.controller.AnnouncementRequestController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
 
@@ -132,6 +129,11 @@ public class AnnouncementRequestRepository {
      */
     public List<AnnouncementRequest> getAnnouncementsRequest() {
         // This is a defensive copy, so that the repository cannot be modified from the outside.
+        return announcementRequests;
+    }
+
+    public  List<AnnouncementRequest> getAnnouncementRequestsByMostRecent(){
+        Collections.reverse(announcementRequests);
         return announcementRequests;
     }
 }

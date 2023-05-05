@@ -73,6 +73,25 @@ public class PublishedAnnouncementRepository {
         }
         return optionalValue;
     }
+
+    public Optional<PublishedAnnouncement> publishedAnnouncementRequest( Comission comission, AnnouncementRequest announcementRequest) {
+
+
+        Optional<PublishedAnnouncement> optionalValue = Optional.empty();
+
+        PublishedAnnouncement publishedAnnouncement;
+
+
+        publishedAnnouncement = new PublishedAnnouncement(comission,announcementRequest);
+
+
+        if (addPublishedAnnouncement(publishedAnnouncement)) {
+            optionalValue = Optional.of(publishedAnnouncement);
+
+        }
+        return optionalValue;
+    }
+
     /**
      * Adds a new published announcement to the repository.
      *

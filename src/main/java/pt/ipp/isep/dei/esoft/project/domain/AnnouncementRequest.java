@@ -48,6 +48,11 @@ public class AnnouncementRequest {
         this.business = business;
         this.durationOfContract = durationOfContract;
     }
+
+    public Property getProperty() {
+        return property;
+    }
+
     /**
 
      Returns a string representation of this AnnouncementRequest object.

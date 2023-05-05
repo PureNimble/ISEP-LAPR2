@@ -339,7 +339,7 @@ public class PublishAnnouncementUI implements Runnable {
         do {
             System.out.println("Basement:(Y/N)");
             basementString = input.nextLine();
-            if (!basement.equals("N") && !basement.equals("Y")) {
+            if (!basementString.equals("N") && !basementString.equals("Y")) {
                 System.out.println("Please select N if the house doesn t have basement and Y if the house have basement");
             }
 
@@ -397,7 +397,7 @@ public class PublishAnnouncementUI implements Runnable {
                 price = -1;
             }
 
-        } while (price > -1);
+        } while (price < 0);
 
         return price;
     }

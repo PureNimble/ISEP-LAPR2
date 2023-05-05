@@ -22,7 +22,7 @@ participant ":ApplicationSession" as AplicationSession
 participant "appSession\n:ApplicationSession" as aplicationSession
 participant "currentSession\n:UserSession" as UserSession
 participant "announcementRequestRepository\n:AnnouncementRequestRepository" as AnnouncementRequestRepository
-participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as PublishAnnouncementRepository
+participant "publishedAnnouncementRequestRepository\n:PublishedAnnouncementRequestRepository" as PublishAnnouncementRepository
 participant "employeeRepository\n:EmployeeRepository" as EmployeeRepository
 participant "comissionRepository\n:ComissionRepository" as ComissionRepository
 participant "announcementReques"

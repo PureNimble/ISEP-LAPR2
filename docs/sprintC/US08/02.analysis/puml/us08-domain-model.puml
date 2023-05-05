@@ -1,5 +1,13 @@
 @startuml
 
+skinparam groupInheritance 2
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
 class Employee{
 }
 
@@ -57,7 +65,30 @@ class AvailableEquipment {
     Equipment
 }
 
+class City {
+    City name
+}
 
+class District {
+    District name
+}
+
+class State {
+    State name
+}
+
+class Address {
+    Street
+    Zip Code
+}
+
+class Business {
+    Total Price
+}
+
+class Comission {
+    Value
+}
 
 
 
@@ -74,5 +105,14 @@ Residence <|-- House
 AnnouncementRequest "*" -> "1..30" Photos: has >
 Residence -- AvailableEquipment : contains
 House --- SunExposure:contains
+
+Address "1" -right-- "1" Property: has <
+State "1" -left-- "*" District: has >
+District "1" -left-- "*" City: has >
+Address "*" -left-- "1" State: has <
+
+Business "1" --- "1" AnnouncementRequest: has <
+
+Agent "1" -left "1" Comission: defines >
 
 @enduml
