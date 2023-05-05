@@ -1,4 +1,5 @@
 @startuml
+
 'https://plantuml.com/sequence-diagram
 
 autonumber
@@ -17,8 +18,15 @@ participant ":PublishAnnouncementUI" as PublishAnnouncementUI
 participant ":PublishAnnouncementController" as PublishAnnouncementController
 participant ":Repositories" as Singleton
 participant "repositories\n:Repositories" as repositories
-participant "publishAnnouncementRequestRepository\n:PublishAnnouncementRequestRepository" as PublishAnnouncementRequestRepository
+participant ":ApplicationSession" as AplicationSession
+participant "appSession\n:ApplicationSession" as aplicationSession
+participant "currentSession\n:UserSession" as UserSession
+participant "announcementRequestRepository\n:AnnouncementRequestRepository" as AnnouncementRequestRepository
 participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as PublishAnnouncementRepository
+participant "employeeRepository\n:EmployeeRepository" as EmployeeRepository
+participant "comissionRepository\n:ComissionRepository" as ComissionRepository
+participant "announcementReques"
+
 
 activate Agent
 
@@ -27,9 +35,37 @@ activate Agent
 
 PublishAnnouncementUI -> PublishAnnouncementController**: create
 
-
 PublishAnnouncementUI -> PublishAnnouncementController : getAnnouncementRequestList()
 activate PublishAnnouncementController
+
+PublishAnnouncementController -> PublishAnnouncementController: getEmployeeFromSession
+
+PublishAnnouncementController -> AplicationSession: getInstance()
+activate AplicationSession
+
+AplicationSession --> PublishAnnouncementController:appSession
+deactivate AplicationSession
+
+PublishAnnouncementController -> aplicationSession :getCurrentSession()
+activate aplicationSession
+
+aplicationSession --> PublishAnnouncementController:currentSession
+deactivate aplicationSession
+
+PublishAnnouncementController -> UserSession :email = getUserEmail()
+activate UserSession
+
+UserSession --> PublishAnnouncementController:email
+deactivate UserSession
+
+PublishAnnouncementController ->EmployeeRepository:getEmployeeByEmail()
+activate EmployeeRepository
+
+EmployeeRepository --> PublishAnnouncementController:employeeByEmail
+deactivate EmployeeRepository
+
+
+
 
 PublishAnnouncementController -> Singleton: getInstance()
 activate Singleton
@@ -43,14 +79,14 @@ activate repositories
 repositories --> PublishAnnouncementController:announcementRepository
 deactivate repositories
 
-PublishAnnouncementController -> PublishAnnouncementRequestRepository:getAnnouncementRequestList()
-activate PublishAnnouncementRequestRepository
+PublishAnnouncementController -> AnnouncementRequestRepository:getAnnouncementRequestListByAgent(employeeByEmail)
+activate AnnouncementRequestRepository
 
-PublishAnnouncementRequestRepository --> PublishAnnouncementController:announcementsRequest
-deactivate PublishAnnouncementRequestRepository
+AnnouncementRequestRepository --> PublishAnnouncementController:announcementsRequestListByAgent
+deactivate AnnouncementRequestRepository
 
 
-PublishAnnouncementController --> PublishAnnouncementUI:announcementsRequest
+PublishAnnouncementController --> PublishAnnouncementUI:announcementsRequestListByAgent
 deactivate PublishAnnouncementController
 
      PublishAnnouncementUI --> Agent : shows list of announcement request responsible for that agent and asks to select one
@@ -58,6 +94,34 @@ deactivate PublishAnnouncementController
 
             Agent -> PublishAnnouncementUI : selects one announcement request
             activate PublishAnnouncementUI
+
+
+
+ PublishAnnouncementUI --> PublishAnnouncementController : getTypeComission()
+           activate PublishAnnouncementController
+
+           PublishAnnouncementController -> Singleton : getInstance()
+           activate Singleton
+
+           Singleton --> PublishAnnouncementController : repositories
+           deactivate Singleton
+
+           PublishAnnouncementController -> repositories : getTypeComissionRepository()
+           activate repositories
+
+           repositories --> PublishAnnouncementController : typeComissionRepository
+           deactivate repositories
+
+               PublishAnnouncementController -> ComissionRepository : getTypeComission()
+                activate ComissionRepository
+
+                ComissionRepository --> PublishAnnouncementController : Type Comission
+                deactivate ComissionRepository
+
+           PublishAnnouncementController --> PublishAnnouncementUI : Type Comission
+           deactivate PublishAnnouncementController
+
+
 
 PublishAnnouncementUI --> Agent:shows the list of comissions
 deactivate PublishAnnouncementUI
@@ -72,9 +136,74 @@ deactivate PublishAnnouncementUI
     activate PublishAnnouncementUI
 
 
-PublishAnnouncementUI -> PublishAnnouncementController:publishAnnouncementRequest(publishedAnnouncementRequestByDescription)
+PublishAnnouncementUI -> PublishAnnouncementController:publishAnnouncementRequest(publishedAnnouncementRequestDescription,comissionDescription)
 activate PublishAnnouncementController
 
+PublishAnnouncementController -> PublishAnnouncementController:getAnnouncementRequestByDescription(announcementRequestDescription)
+activate PublishAnnouncementController
+
+PublishAnnouncementController -> Singleton: getInstance()
+activate Singleton
+
+Singleton--> PublishAnnouncementController :repositories
+deactivate Singleton
+
+PublishAnnouncementController-> repositories:getAnnouncementsRequestRepository()
+activate repositories
+
+repositories -->PublishAnnouncementController:getAnnouncementsRequestRepository
+deactivate repositories
+
+PublishAnnouncementController -> AnnouncementRequestRepository :getAnnouncementRequestByDescription()
+activate AnnouncementRequestRepository
+
+AnnouncementRequestRepository --> PublishAnnouncementController:announcementRequest
+deactivate AnnouncementRequestRepository
+
+PublishAnnouncementController--> PublishAnnouncementController:announcementRequest
+
+
+PublishAnnouncementController -> PublishAnnouncementController:getComissionByDescription(comissionDescription)
+activate PublishAnnouncementController
+
+PublishAnnouncementController -> Singleton:getInstance()
+activate Singleton
+
+Singleton --> PublishAnnouncementController:repositories
+deactivate Singleton
+
+PublishAnnouncementController -> repositories:getComissionRepository()
+activate repositories
+
+repositories --> PublishAnnouncementController:comissionRepository
+deactivate repositories
+
+PublishAnnouncementController -> ComissionRepository:getComissionByDescription()
+activate ComissionRepository
+
+PublishAnnouncementController --> ComissionRepository:comission
+deactivate ComissionRepository
+
+PublishAnnouncementController --> PublishAnnouncementController:comission
+
+PublishAnnouncementController -> PublishAnnouncementRepository:createPublishedAnnouncement(announcementRequest,comission)
+activate PublishAnnouncementRepository
+
+PublishAnnouncementRepository -> PublishedAnnouncement** : createEmployee (name,passport number,tax number \n,email ,telephone number,store\n role,adress)
+             PublishAnnouncementRepository -> PublishAnnouncementRepository : addPublishedAnnouncement(publishedAnnouncement)
+             activate PublishAnnouncementRepository
+             PublishAnnouncementRepository -> PublishAnnouncementRepository : validatePublishedAnnoncement(publishedAnnouncement)
+              activate PublishAnnouncementRepository
+               PublishAnnouncementRepository --> PublishAnnouncementRepository
+               deactivate PublishAnnouncementRepository
+                PublishAnnouncementRepository--> PublishAnnouncementRepository
+                deactivate PublishAnnouncementRepository
+
+
+PublishAnnouncementRepository --> PublishAnnouncementController:publishedAnnouncement
+deactivate PublishAnnouncementRepository
+
+PublishAnnouncementController --> PublishAnnouncementUI:publishedAnnouncement
 
         PublishAnnouncementUI --> Agent : displays operation success
     deactivate PublishAnnouncementUI
@@ -82,4 +211,3 @@ activate PublishAnnouncementController
 
 
 @enduml
-
