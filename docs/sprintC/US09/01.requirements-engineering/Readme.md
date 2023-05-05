@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 009 - As a client, I want to leave a message to the agent to schedule a visit to a property of my interest. 
 
 ## 1. Requirements Engineering
 
@@ -6,7 +6,7 @@
 ### 1.1. User Story Description
 
 
-As an organization employee, I want to create a new task in order to be further published.
+As a client, I want to leave a message to the agent to schedule a visit to a property of my interest.
 
 
 
@@ -15,37 +15,40 @@ As an organization employee, I want to create a new task in order to be further 
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost as well as the its classifying task category. 
+>	After consulting a list of properties, the client can request to schedule a visit to the real estate agent for a specific property to verify its conditions. The agent receives the request, checks the availability and sends the response.
 
-
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
+>	
 
 
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
->  
-> **Answer:** Duration is estimated in days.
+> **Question:**
+>
+>  **Answer:** 
+>
+> **Date:**
 
-
-> **Question:** Monetary data is expressed in any particular currency?
->  
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POTs (virtual currency internal to the platform).
-
+> **Question:** 
+> 
+>  **Answer:** 
+>
+> **Date:**
 
 ### 1.3. Acceptance Criteria
 
 
-* **AC1:** All required fiels must be filled in.
-* **AC2:** Task reference must have at least 5 alphanumeric chars.
-* **AC3:** When creating a task with an already existing reference, the system must reject such operation and the user must have the change to modify the typed reference.
+* **AC1:** A list of available properties must be shown, sorted from the most recent entries to the oldest.
+* **AC2:** The message must also include the client's name, phone number, preferred date and time slot (from x hour to y hour) for the property visit.
+* **AC3:** A client may post multiple visit requests, but only if those do not overlap each other.
+* **AC4:** The client must receive a success message when the request is valid and registered in the system.
 
 
 ### 1.4. Found out Dependencies
 
 
-* There is a dependency to "US003 Create a task category" since at least a task category must exist to classify the task being created.
+* There is a dependency to "US004 Submit a request for listing a property sale or rent." since the client has to choose a property of his interest before scheduling a visit to that property.
+* There is a dependency to "US003 As a system administrator, I want to register a store." since the client must leave a message to the agent, this agent must be registered in a store in order to schedule a visit for the client.
 
 
 ### 1.5 Input and Output Data
@@ -54,20 +57,15 @@ As an organization employee, I want to create a new task in order to be further 
 **Input Data:**
 
 * Typed data:
-	* a reference, 
-	* a designation, 
-	* an informal description
-	* a technical description
-	* an estimated duration
-	* an estimated cost
+	* A message from the client
 	
 * Selected data:
-	* Classifying task category 
+	* The property that the client has interest in
 
 
 **Output Data:**
 
-* List of existing task categories
+* A a success message
 * (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
