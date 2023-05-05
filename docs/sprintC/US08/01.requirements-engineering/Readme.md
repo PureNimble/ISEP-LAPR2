@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 008 - See the list of property announcement requests 
 
 ## 1. Requirements Engineering
 
@@ -6,8 +6,7 @@
 ### 1.1. User Story Description
 
 
-As an organization employee, I want to create a new task in order to be further published.
-
+As an agent, I intend to see the list of property announcement requests made to myself, so that i can post the announcement
 
 
 ### 1.2. Customer Specifications and Clarifications 
@@ -15,38 +14,40 @@ As an organization employee, I want to create a new task in order to be further 
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost as well as the its classifying task category. 
-
-
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
-
-
+>	The real estate agent reviews advertisement requests, registers the information in the system and
+publishes the offer so that it is visible to all clients who visit the agency and use the application
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** When displaying the property announcement requests in the system to the agent besides them being ordered from most recent to oldest is there a need to display the specific day where the requests were published?
+>
+> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POTs (virtual currency internal to the platform).
+> 
+> **Date:** Thursday, 4 de May de 2023 às 09:39
+
+
+> **Question:** Can the agent select multiple requests at the same time?
 >  
 > **Answer:** Duration is estimated in days.
+> 
+> **Date:** Thursday, 4 de May de 2023 às 10:59
 
 
-> **Question:** Monetary data is expressed in any particular currency?
->  
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POTs (virtual currency internal to the platform).
 
 
 ### 1.3. Acceptance Criteria
 
 
-* **AC1:** All required fiels must be filled in.
-* **AC2:** Task reference must have at least 5 alphanumeric chars.
-* **AC3:** When creating a task with an already existing reference, the system must reject such operation and the user must have the change to modify the typed reference.
+* **AC1:** The list of property announcement requests should be sorted by the date they were created, with the most recent requests appearing first.
+* **AC2:** An announcement is posted when a request is accepted. The list of requests should be refreshed, and that request should not be shown again.
 
 
 ### 1.4. Found out Dependencies
 
 
-* There is a dependency to "US003 Create a task category" since at least a task category must exist to classify the task being created.
-
+* There is a dependency to "US004 Create a task category" since at least a task category must exist to classify the task being created.
+* There is a dependency to "US006"
+* There is a dependency to "US002"
 
 ### 1.5 Input and Output Data
 
@@ -54,12 +55,7 @@ As an organization employee, I want to create a new task in order to be further 
 **Input Data:**
 
 * Typed data:
-	* a reference, 
-	* a designation, 
-	* an informal description
-	* a technical description
-	* an estimated duration
-	* an estimated cost
+	* a comission
 	
 * Selected data:
 	* Classifying task category 
@@ -67,7 +63,8 @@ As an organization employee, I want to create a new task in order to be further 
 
 **Output Data:**
 
-* List of existing task categories
+* List of existing Announcement Requests
+* List of existing Comissions
 * (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
@@ -76,11 +73,7 @@ As an organization employee, I want to create a new task in order to be further 
 
 #### Alternative One
 
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
-
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
+![System Sequence Diagram - Alternative One](svg/us08-system-sequence-diagram.svg)
 
 ### 1.7 Other Relevant Remarks
 
