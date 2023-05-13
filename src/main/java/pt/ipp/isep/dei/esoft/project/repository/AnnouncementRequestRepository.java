@@ -71,16 +71,16 @@ public class AnnouncementRequestRepository {
 
      @return An Optional containing the added AnnouncementRequest if the operation was successful, otherwise an empty Optional.
      */
-    public Optional<AnnouncementRequest> announcementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract) {
+    public Optional<AnnouncementRequest> announcementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract,Employee agent) {
 
         Optional<AnnouncementRequest> optionalValue = Optional.empty();
 
         AnnouncementRequest announcementRequest;
 
         if (property.toString().equals("Rent")) {
-            announcementRequest = new AnnouncementRequest(date, typeOfBusiness, property, propertyType, business, durationOfContract);
+            announcementRequest = new AnnouncementRequest(date, typeOfBusiness, property, propertyType, business, durationOfContract,agent);
         } else {
-            announcementRequest = new AnnouncementRequest(date, typeOfBusiness, property, propertyType, business);
+            announcementRequest = new AnnouncementRequest(date, typeOfBusiness, property, propertyType, business,agent);
         }
 
         if (addAnnouncementRequest(announcementRequest)) {
@@ -132,8 +132,31 @@ public class AnnouncementRequestRepository {
         return announcementRequests;
     }
 
-    public  List<AnnouncementRequest> getAnnouncementRequestsByMostRecent(){
-        Collections.reverse(announcementRequests);
+    public  List<AnnouncementRequest> getAnnouncementRequestsByMostRecent(Employee agent){
+        List<AnnouncementRequest> newAnnouncementRequest = new ArrayList<>();
+
+        for (AnnouncementRequest announcementRequest: announcementRequests) {
+            if (announcementRequest.getAgent().equals(agent)){
+                newAnnouncementRequest.add(announcementRequest);
+            }
+        }
+
+        Collections.reverse(newAnnouncementRequest);
         return announcementRequests;
     }
+
+    public AnnouncementRequest getAnnouncementRequestByDescription(int annnouncementRequestDescription) {
+        AnnouncementRequest newAnnouncementRequest = announcementRequests.get(annnouncementRequestDescription);
+        AnnouncementRequest announcementRequest = null;
+        if (announcementRequests.contains(newAnnouncementRequest)) {
+            announcementRequest = announcementRequests.get(announcementRequests.indexOf(newAnnouncementRequest));
+        }
+        if (announcementRequest == null) {
+            throw new IllegalArgumentException(
+                    "Announcement Request requested for [" + newAnnouncementRequest.toString() + "] does not exist.");
+        }
+        return announcementRequest;
+    }
+
+
 }

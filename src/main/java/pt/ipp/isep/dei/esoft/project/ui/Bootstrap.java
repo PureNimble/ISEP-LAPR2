@@ -80,6 +80,7 @@ public class Bootstrap implements Runnable {
 
         Address adress = new Address("",555,new District("dwadw"),new City("dwada"),new State("WADDA"));
         AuthenticationRepository authenticationRepository = Repositories.getInstance().getAuthenticationRepository();
+        UserRepository userRepository = Repositories.getInstance().getUserRepository();
         authenticationRepository.addUserRole(AuthenticationController.ROLE_ADMIN, AuthenticationController.ROLE_ADMIN);
         authenticationRepository.addUserRole(AuthenticationController.ROLE_EMPLOYEE,
                 AuthenticationController.ROLE_EMPLOYEE);
@@ -97,6 +98,7 @@ public class Bootstrap implements Runnable {
 
         authenticationRepository.addUserWithRole("Owner", "owner@this.app", "owner", AuthenticationController.ROLE_OWNER);
 
+        authenticationRepository.addUserWithRole("Agent 02","agent2@this.app","agent02",AuthenticationController.ROLE_AGENT);
 
 
     }

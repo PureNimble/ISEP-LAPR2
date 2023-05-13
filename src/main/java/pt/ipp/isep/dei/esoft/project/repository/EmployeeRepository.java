@@ -73,4 +73,13 @@ public class EmployeeRepository {
         return null;
     }
 
+    public  Employee getEmployeeByString(String employeeString){
+        for (Employee employee: employees) {
+            if (employee.toString().equals(employeeString)){
+                return  employee;
+            }
+        }
+        return null;
+    }
+
 }

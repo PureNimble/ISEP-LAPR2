@@ -8,13 +8,9 @@ class PublishAnnouncementRequestController
 
 class Person
 
-class UserRepository
-
 class Repositories
 
 class Employee
-
-class Store
 
 class Role
 
@@ -24,27 +20,13 @@ class User
 
 class EmployeeRepository
 
-class SystemAdministrator
-
-class StoresRepository
-
-class RolesRepository
+class Agent
 
 class State
 
 class City
 
 class District
-
-class StateRepository
-
-class UserRepository{
-+add(user)
--validateUser(user)
-+getUsers()
-
-}
-
 
 class Person{
 - String email
@@ -67,6 +49,7 @@ class Person{
 class EmployeeRepository{
 +add(employee)
 +getEmployees()
++getEmployeeeByEmail(email)
 }
 
 class AuthenticationRepository{
@@ -80,13 +63,21 @@ class AuthenticationRepository{
 -randomCharacter(characters,random)
 }
 
-class StateRepository{
-+getState()
-+addEmployee(State state)
-+getCityByDescription(String cityDescription,District district)
-+getDistrictByDescription(String districtDescription,State state)
-+getStateByDescription(String stateDescription)
+class ComissionRepository{
++getComissionByDescription(comissionDescription)
++getComission()
++add(comission)
+
 }
+
+class PublishedAnnouncementRepository{
++add(publishedAnnouncement)
++publishedAnnouncement(date,typeOfBusiness,property,propertyType,comission,business,durationOfContract)
++publishedAnnouncementRequest(comission,announcementRequest)
++addPublishedAnnouncement(publishedAnnouncement)
++getPublishedAnnouncemens()
+}
+
 
 class State{
  - String stateName
@@ -96,6 +87,11 @@ class State{
     +toString()
 
 }
+
+class Comission {
+    -Double Value
+}
+
 
 class District{
 - String districtName
@@ -110,6 +106,13 @@ class City{
 - String city
 
     +getCityName()
+}
+
+
+class Property {
+    - int Area
+    -Photos Photos
+    - int Distance from the city center
 }
 
 class Adress{
@@ -128,7 +131,7 @@ class Role{
 +Role(role)
 }
 
-class SystemAdministrator{
+class Agent{
 }
 
 class Employee{
@@ -139,39 +142,60 @@ class Employee{
 +getRole()
 }
 
-class StoresRepository{
-+getStores()
-+getStoreByDescription()
-+add(Store store)
 
+class Residence {
+    -int Number of Bedrooms
+    -int Number of Bathrooms
+    -int Number of Parking Spaces
 }
 
-class RolesRepository{
-+getRolesEmployee()
-+getRoleByDescription()
-+add(Role role)
-
+class House {
+    Basement
+    Inhabitable loft
 }
+
+class SunExposure {
+    Direction
+}
+
+class AvailableEquipment {
+    Equipment
+}
+
+class AnnouncementRequest{
+date
+}
+
 
 class PublishAnnouncementRequestUI{
 }
 
+class AnnouncementRequestRepository{
++add(announcementRequest)
++announcementRequest(date,typeOfBusiness,property,propertyType,business,durationOfContract)
++addAnnouncementRequest(announcementRequest)
++getAnnouncementRequestByDescription(announcementRequestDescription)
++getAnnouncementRequestByMostRecent()
++getAnnouncementRequest()
+}
+
+
+
 class PublishAnnouncementRequestController{
 +createPublishAnnouncementRequestController(employeeRepository,announcementRequestRepository,publishedAnnouncementRepository,comissionRepository)
-+getRolesEmployee()
-+getStores()
-+getState()
 +getEmployees()
-+getDistrict()
-+getCity()
-+getState()
++getAnnouncementRequestByMostRecent()
++getComissions()
++getCurrentSessionEmail()
 +createPublishedAnnouncementRequestController(announcementRequest,comission)
 +getComissionByDescription(String comissionDescription)
-+getAnnouncementRequestByDescription(String announcementRequestDescription)
++getAnnouncementRequestByDescription(int announcementRequestDescription)
++getEmployeeeByEmail(email)
 -getAuthenticationRepository()
 -getPublishedAnnouncementRepository()
 -getPublishedAnnouncementRequestRepository()
 -getComissionRepository()
+-getEmployeeRepository()
 
 }
 
@@ -182,68 +206,49 @@ class Repositories{
 +getComissionRepository()
 +getPublishedAnnouncementRepository()
 +getAuthenticationRepository()
-+getEmployeesRepository()
++getAnnouncementRequestRepository()
 }
 
 class User{
 -String passwordGenerator
-
 +getPassword()
 }
 
-class Store{
--String name
--Adress adress
--addEmployee(employee)
--validateEmployee(employee)
-+Store(name,adress,contact)
-+createEmployee(name,citizen´s card number,tax number ,adress,email adress,telephone number,store, role)
-}
-
-
 PublishAnnouncementRequestUI .> PublishAnnouncementRequestController
 
-PublishAnnouncementRequestController ..> "1" Store : store
+PublishAnnouncementRequestController ..> AnnouncementRequestRepository: announcementRequestRepository
+
+PublishAnnouncementRequestController ..> ComissionRepository: comissionRepository
 
 PublishAnnouncementRequestController ...> EmployeeRepository : employeeRepository
 
 PublishAnnouncementRequestController ...> AuthenticationRepository : authenticationRepository
 
-PublishAnnouncementRequestController ...> RolesRepository :RolesRepository
-
-PublishAnnouncementRequestController .-left.> StoresRepository : StoresRepository
-
-PublishAnnouncementRequestController ...> StateRepository : StateRepository
-
-Store "1" ---> "*" Employee : employee
+PublishAnnouncementRequestController ...> PublishedAnnouncementRepository: publishedAnnouncementRepository
 
 Repositories -> Repositories:instance
 
-Repositories --------> UserRepository: userRepository
+Repositories -----> PublishedAnnouncementRepository: publishedAnnouncementRepository
+
+Repositories ----> AnnouncementRequestRepository: announcementRequestRepository
+
+Repositories -----> ComissionRepository :comissionRepository
 
 Repositories -----> EmployeeRepository: employeeRepository
 
 Repositories ----> AuthenticationRepository: authenticationRepository
 
-Repositories ---> StoresRepository: storeRepository
-
-Repositories ----> RolesRepository:roleEmployee
-
 PublishAnnouncementRequestController .>  Repositories : repositories
 
-StoresRepository --> "*" Store
+ComissionRepository -----> "*" Comission
 
-Employee <-- SystemAdministrator : registers
+AnnouncementRequestRepository ------> "*" AnnouncementRequest
 
-Store <- "*" SystemAdministrator : registers
+AnnouncementRequest "1" - "1" PublishedAnnouncement: can have <
 
-RolesRepository ---> Role
+Employee <|-- Agent
 
-Employee "1" -> "*" Role : role
-
-Adress "1" -> "*"  Store
-
-Adress "1" --> "*" Employee
+Employee "1" -left> "*" Role : role
 
 Adress "1" -left- "1" State
 
@@ -251,22 +256,29 @@ State "1" -left- "*" District
 
 District "1" -left- "*" City
 
-User "*" <----------  UserRepository
-
-
 User <|-- Employee
 
 Person <|-- User
 
+EmployeeRepository ----> "*" Employee
 
-Repositories -> StateRepository: stateRepository
+Agent "1" -left "1" Comission: defines >
 
-StateRepository --------> "*" State : stateRepository
+Agent "1" - "*" AnnouncementRequest:intends to see >
+
+Adress "1" -right-- "1" Property: has <
 
 
-Store -[hidden]> Person
 
-EmployeeRepository --> "*" Employee
+AnnouncementRequest "1" -- Property: has >
+Property <|-- Residence
+Residence <|-- House
+
+Residence -- AvailableEquipment : contains
+House --- SunExposure:contains
+
+PublishedAnnouncementRepository --> "*" PublishedAnnouncement
+
 
 
 @enduml

@@ -14,6 +14,8 @@ public class AnnouncementRequest {
     private Business business;
     private int durationOfContract;
 
+    private Employee agent;
+
     /**
 
      Creates a new AnnouncementRequest object with the given parameters.
@@ -23,12 +25,13 @@ public class AnnouncementRequest {
      @param propertyType the type of property.
      @param business the business to be advertised.
      */
-    public AnnouncementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business) {
+    public AnnouncementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business,Employee agent) {
         this.date = date;
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
         this.propertyType = propertyType;
         this.business = business;
+        this.agent = agent;
     }
     /**
 
@@ -40,17 +43,26 @@ public class AnnouncementRequest {
      @param business the business to be advertised.
      @param durationOfContract the duration of the contract for the advertisement.
      */
-    public AnnouncementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract) {
+    public AnnouncementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract,Employee agent) {
         this.date = date;
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
         this.propertyType = propertyType;
         this.business = business;
         this.durationOfContract = durationOfContract;
+        this.agent = agent;
     }
 
     public Property getProperty() {
         return property;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public Employee getAgent() {
+        return agent;
     }
 
     /**

@@ -239,16 +239,23 @@ public class AnnouncementRequestController {
      @param durationOfContract The duration of the contract for the announcement request.
      @return An optional containing the newly created announcement request if it was created successfully, or an empty optional if the announcement request already exists in the repository.
      */
-    public Optional<AnnouncementRequest> createAnnouncementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract) {
+    public Optional<AnnouncementRequest> createAnnouncementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract,Employee agent) {
 
         Optional<AnnouncementRequest> newAnnoucementRequest = Optional.empty();
 
-        AnnouncementRequest announcementRequest = new AnnouncementRequest(date, typeOfBusiness, property, propertyType, business, durationOfContract);
+        AnnouncementRequest announcementRequest = new AnnouncementRequest(date, typeOfBusiness, property, propertyType, business, durationOfContract,agent);
 
         if (!getAnnouncementRequestRepository().getAnnouncementsRequest().contains(announcementRequest)) {
-            newAnnoucementRequest = getAnnouncementRequestRepository().announcementRequest(date, typeOfBusiness, property, propertyType, business, durationOfContract);
+            newAnnoucementRequest = getAnnouncementRequestRepository().announcementRequest(date, typeOfBusiness, property, propertyType, business, durationOfContract,agent);
         }
         return newAnnoucementRequest;
+    }
+
+
+    public Employee getAgentByDescription(String agentDescription){
+        EmployeeRepository employeeRepository = getEmployeeRepository();
+
+        return employeeRepository.getEmployeeByString(agentDescription);
     }
 
 

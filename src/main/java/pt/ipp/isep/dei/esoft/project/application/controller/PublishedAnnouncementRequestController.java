@@ -3,9 +3,12 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 import pt.ipp.isep.dei.esoft.project.domain.AnnouncementRequest;
 import pt.ipp.isep.dei.esoft.project.domain.Comission;
 import pt.ipp.isep.dei.esoft.project.domain.Employee;
+import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 import pt.ipp.isep.dei.esoft.project.repository.*;
 
+import java.util.AbstractCollection;
 import java.util.List;
+import java.util.Optional;
 
 public class PublishedAnnouncementRequestController {
 
@@ -115,9 +118,9 @@ public class PublishedAnnouncementRequestController {
      Returns a list of all Announcement Requests.
      @return A List of AnnouncementRequest objects.
      */
-    public List<AnnouncementRequest> getAnnouncementRequestByMostRecent() {
+    public List<AnnouncementRequest> getAnnouncementRequestByMostRecent(Employee agent) {
         AnnouncementRequestRepository announcementRequestRepository = getAnnouncementRequestRepository();
-        return announcementRequestRepository.getAnnouncementRequestsByMostRecent();
+        return announcementRequestRepository.getAnnouncementRequestsByMostRecent(agent);
     }
 
     /**
@@ -133,15 +136,59 @@ public class PublishedAnnouncementRequestController {
 
     public String getCurrentSessionEmail(){
         AuthenticationRepository authenticationRepository = getAuthenticationRepository();
-        return authenticationRepository.getCurrentUserSession().getUserName();
+        return authenticationRepository.getCurrentUserSession().getUserId().getEmail();
     }
 
 
     public Employee getEmployeeByEmail(String email){
-        EmployeeRepository employeeRepository = new EmployeeRepository();
 
-        return employeeRepository.getEmployeeByEmail(email);
+        return getEmployeeRepository().getEmployeeByEmail(email);
     }
 
+    public Employee getAgentByDescription(String agentDescription){
+        EmployeeRepository employeeRepository = new EmployeeRepository();
+
+        return employeeRepository.getEmployeeByString(agentDescription);
+    }
+
+
+    /**
+
+     Returns the Comission object with the specified description.
+     @param comissionDescription the description of the Comission object to be retrieved
+     @return the Comission object with the specified description
+     */
+    public Comission getComissionByDescription(Double comissionDescription) {
+       ComissionRepository comissionRepository = getComissionRepository();
+
+        //Get the TaskCategory by its description
+        Comission comissionByDescription =
+               comissionRepository.getComissionByDescription(comissionDescription);
+
+        return comissionByDescription;
+
+    }
+
+    public AnnouncementRequest getAnnouncementRequestByDescription(int announcementRequestDescription) {
+        AnnouncementRequestRepository announcementRequestRepository = getAnnouncementRequestRepository();
+
+        //Get the TaskCategory by its description
+        AnnouncementRequest announcementRequestByDescription =
+                announcementRequestRepository.getAnnouncementRequestByDescription(announcementRequestDescription);
+
+        return announcementRequestByDescription;
+
+    }
+
+    public Optional<PublishedAnnouncement> createPublishAnnouncementRequest(Comission comission, AnnouncementRequest announcementRequest){
+        Optional<PublishedAnnouncement> newPublishedAnnouncement = Optional.empty();
+
+        PublishedAnnouncement publishedAnnouncement = new PublishedAnnouncement(comission,announcementRequest);
+
+        if (!getPublishedAnnouncementRepository().getPublishedAnnouncements().contains(publishedAnnouncement)){
+            newPublishedAnnouncement = getPublishedAnnouncementRepository().publishedAnnouncementRequest(comission,announcementRequest);
+        }
+        return newPublishedAnnouncement;
+    }
 
 }

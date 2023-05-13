@@ -24,7 +24,7 @@ public class AnnouncementRequestUI implements Runnable {
     private String basement;
     private String inhabitableLoft;
     private String sunExposure;
-    private Employee responsibleAgent;
+    private String  responsibleAgent;
 
     private double businessDescription;
 
@@ -84,12 +84,13 @@ public class AnnouncementRequestUI implements Runnable {
         PropertyType propertyType = controller.getPropertyTypeByDescription(propertyTypeDescription);
         TypeOfBusiness typeOfBusiness = controller.getTypeOfBusinessByDescription(contractType);
         Business business = controller.getBusinessByDescription(businessDescription);
+        Employee agent = controller.getAgentByDescription(responsibleAgent);
 
         if (propertyTypeDescription.equals("Land")) {
 
             Property land = new Property(area, distanceFromCityCenter);
 
-            Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, land, propertyType, business, durationOfContract);
+            Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, land, propertyType, business, durationOfContract,agent);
 
         } else {
             if (propertyTypeDescription.equals("Appartment")) {
@@ -98,13 +99,13 @@ public class AnnouncementRequestUI implements Runnable {
 
                 Residence appartment = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment);
 
-                Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, appartment, propertyType, business, durationOfContract);
+                Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, appartment, propertyType, business, durationOfContract,agent);
             } else {
                 AvailableEquipment availableEquipment = controller.getAvailableEquipmentByDescription(availableEquipmentDescription);
 
                 House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, inhabitableLoft, sunExposure);
 
-                Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, house, propertyType, business, durationOfContract);
+                Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, house, propertyType, business, durationOfContract,agent);
 
             }
         }
@@ -443,7 +444,7 @@ public class AnnouncementRequestUI implements Runnable {
      *
      * @return The selected agent.
      */
-    private Employee displayAndSelectAgents() {
+    private String displayAndSelectAgents() {
 
         List<Employee> agents = controller.getListAgents();
 
@@ -466,7 +467,7 @@ public class AnnouncementRequestUI implements Runnable {
             }
         }
 
-        Employee agent = agents.get(answer - 1);
+        String agent = agents.get(answer - 1).toString();
 
         return agent;
 

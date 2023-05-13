@@ -1,5 +1,8 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import pt.ipp.isep.dei.esoft.project.application.controller.PublishAnnouncementController;
+import pt.ipp.isep.dei.esoft.project.application.controller.RegisterEmployeeController;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +19,7 @@ public class PublishedAnnouncement {
     private Business business;
     private int durationOfContract;
 
-    AnnouncementRequest announcementRequest;
+    private AnnouncementRequest announcementRequest;
 
     /**
      * Constructs a new PublishedAnnouncement object for sale.
@@ -93,4 +96,5 @@ public class PublishedAnnouncement {
                         "%s",
                 date.toString(),typeOfBusiness.toString(),propertyType,comission.toString(),business.toString(),durationOfContract,property.toString());
     }
+
 }
