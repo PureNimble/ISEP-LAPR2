@@ -40,6 +40,7 @@ class Contacts {
 
 class User {
     Password
+    Name
 }
 
 User "1" -right-- "1" Contacts: has >
@@ -106,7 +107,6 @@ Business <|--- Rent
 class Message{
     Inital Date and time for visit
     End Date and time for visit
-    User name
 }
 
 class Agent{

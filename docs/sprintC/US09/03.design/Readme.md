@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 09 - As a client, I want to leave a message to the agent to schedule a visit to a property of my interest.
 
 ## 3. Design - User Story Realization 
 
@@ -43,7 +43,7 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 This diagram shows the full sequence of interactions between the classes involved in the realization of this user story.
 
-![Sequence Diagram - Full](svg/us006-sequence-diagram-full.svg)
+![Sequence Diagram - Full](svg/us09-sequence-diagram-full.svg)
 
 ### Alternative 2 - Split Diagram
 

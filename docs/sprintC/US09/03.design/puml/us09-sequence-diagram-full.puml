@@ -1,0 +1,166 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US09 - Sequence Diagram Full
+
+autonumber
+
+'hide footbox
+actor "Client" as Client
+participant ":SendMessageUI" as UI
+participant ":SendMessageController" as CTRL
+participant ":Repositories" as Repository
+participant "repositories\n:Repositories" as Repository2
+participant "UserIdentityRepository:\nUser Identity Repository" as UserRepository
+participant "publishedAnnouncementRepository\n:Published Announcement Repository" as publishedAnnouncementRepository
+participant "messageRepository: \nMessage Repository" as messageRepository
+participant "message:\nMessage" as message
+
+autonumber
+
+        activate Client
+
+    Client -> UI: asks to schedule a visit
+        activate UI
+
+        UI -> CTRL** : create
+    UI --> Client : requests an identity
+        deactivate UI
+
+    Client -> UI : inserts his email
+        activate UI
+
+        UI -> CTRL : getUserInformation()
+
+            activate CTRL
+
+            CTRL -> Repository : getInstance()
+                activate Repository
+
+            Repository --> CTRL : repositories
+                deactivate Repository
+
+            CTRL -> Repository2 : getUserInformationRepository()
+                activate Repository2
+
+            Repository2 --> CTRL : UserInformationRepository
+                deactivate Repository2
+
+            CTRL -> UserRepository : getUserInformation()
+
+                activate UserRepository
+
+            UserRepository --> CTRL : User Information
+
+                deactivate UserRepository
+
+        CTRL --> UI : User Information
+
+            deactivate CTRL
+
+
+    UI --> Client : shows User information and requests a confirmation
+        deactivate UI
+
+    Client -> UI : confirms his personal information
+        activate UI
+
+        UI -> CTRL : getListOfProperties()
+            activate CTRL
+
+            CTRL -> Repository : getInstance()
+                activate Repository
+
+            Repository --> CTRL : repositories
+                deactivate Repository
+
+            CTRL -> Repository2 : getPublishedAnnouncementRepository()
+                activate Repository2
+
+            Repository2 --> CTRL : PublishedAnnouncementRepository
+                deactivate Repository2
+
+            CTRL -> publishedAnnouncementRepository : getListOfProperties()
+
+                activate publishedAnnouncementRepository
+
+            publishedAnnouncementRepository --> CTRL : List Of Properties
+
+                deactivate publishedAnnouncementRepository
+
+        CTRL --> UI : List Of Properties
+
+            deactivate CTRL
+
+    UI --> Client: shows a list of properties sorted from the most recent entries to the oldest
+        deactivate UI
+
+    Client -> UI: selects a property of his interest
+        activate UI
+
+        UI --> UI : keepPropertySelected(propertyDescription)
+
+
+    UI --> Client: asks to confirm the property selected
+        deactivate UI
+
+    Client -> UI: confirms the selected data
+        activate UI
+
+    UI --> Client: requests the name, phone number and preferred \ndate and time slot (from x hour to y hour) for the property visit
+        deactivate UI
+
+    Client -> UI: submits the requested data
+        activate UI
+
+    UI --> UI : keepsData(name, phone number \nand date and time slot)
+
+    UI -> CTRL: createMessage(name, phone number \nand date and time slot)
+        activate CTRL
+
+    CTRL ->CTRL: Property Selected
+
+        CTRL -> Repository : getInstance()
+            activate Repository
+
+        Repository --> CTRL : repositories
+            deactivate Repository
+
+        CTRL -> Repository2 : getMessageRepository()
+            activate Repository2
+
+        Repository2 --> CTRL : messageRepository
+            deactivate Repository2
+
+            CTRL -> messageRepository : createMessage(name, phone number and date and time slot)
+                activate messageRepository
+
+                messageRepository -> message** : createMessage(name, phone number \nand date and time slot)
+
+                messageRepository -> messageRepository : addMessage(message)
+                activate messageRepository
+
+                messageRepository -> messageRepository : validateMessage(message)
+                activate messageRepository
+
+                messageRepository --> CTRL : Message
+                deactivate messageRepository
+                deactivate messageRepository
+                deactivate messageRepository
+
+           CTRL --> UI : Message
+           deactivate CTRL
+
+    UI --> Client: asks to confirm the submitted data
+        deactivate UI
+
+    Client -> UI: confirms the submitted data
+        activate UI
+
+    UI --> Client: registers the information and shows a success message
+        deactivate UI
+
+
+@enduml
