@@ -1,4 +1,4 @@
-# Integrating Project for the 2nd Semester of LEI-ISEP 2021-22
+# Integrating Project for the 2nd Semester of LEI-ISEP 2022-23
 
 # 1. Team Members
 
