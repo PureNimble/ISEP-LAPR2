@@ -1,0 +1,108 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+'skinparam classAttributeIconSize 0
+'left to right direction
+
+title US09 - Class Diagram
+
+class SendMessageUI {
+}
+
+class SendMessageControler {
+}
+
+class Repositories {
+
+-Repositories()
+
++getInstance():Repositories
++getMessageRepository()
++getPublishedAnnouncementRepository()
++getUserIdentityRepository()
+}
+
+class UserIdentityRepository {
++getUserIdentity()
+}
+
+class PublishedAnnouncementRepository {
+
++ getTypeOfProperty()
++ getTypeOfBussiness()
+}
+
+class MessageRepository {
++getMessage()
+}
+
+class Message {
+
+}
+
+
+class User{
++String name
++int tax number
++int phone number
++String email
+
+-getName()
+-getEmail()
+-getPhoneNumber()
+-getTaxNumber()
+}
+
+class Address {
+    -String streetName
+    -int zipCode
+
+    +verifyZipCode()
+    +getCity()
+    +getDistrict()
+    +getState()
+    +Address(state, district, city, street, zipCode)
+}
+
+
+
+class City {
+     - String cityName
+
+    -getCityName()
+}
+
+class District {
+    - String districtName
+
+    -getDistrictName()
+}
+
+class State {
+   - String stateName
+
+    -getStateName()
+}
+
+
+
+SendMessageUI -right-> SendMessageControler
+
+SendMessageControler -right-> Repositories
+
+Repositories ..> UserIdentityRepository
+Repositories ..> PublishedAnnouncementRepository
+Repositories ..> MessageRepository
+
+
+
+State "*"-left- "1" Address: has a  <
+City "*"-left- "1" District: has a  <
+District "*"-left- "1" State: has a  <
+User "1" --- "1" Address: has >
+UserIdentityRepository ..> User
+
+@enduml
