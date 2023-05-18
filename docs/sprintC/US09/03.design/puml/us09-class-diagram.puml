@@ -9,30 +9,44 @@ skinparam linetype polyline
 
 title US09 - Class Diagram
 
-class SendMessageUI {
+
+class SendMessageUI
+
+
+class SendMessageController {
+    + sendMessageController(propertyTypeRepository,announcementRepository)
+    + getPpublishAnnouncement(propertyType, description, cost, informalDescription,\ntechnicalDescription, durationOfAnnouncement, designation)
 }
 
-class SendMessageControler {
-}
+SendMessageUI .> SendMessageController
 
 class Repositories {
-
 -Repositories()
 
 +getInstance():Repositories
 +getMessageRepository()
 +getPublishedAnnouncementRepository()
 +getUserIdentityRepository()
+
 }
 
-class UserIdentityRepository {
-+getUserIdentity()
-}
 
 class PublishedAnnouncementRepository {
 
 + getTypeOfProperty()
 + getTypeOfBussiness()
+}
+
+class PropertyTypeRepository{
+    + getPropertyType()
+}
+
+class UserIdentityRepository{
++getUserIdentity()
+}
+
+class TypeComissionRepository{
++ getTypeCommission()
 }
 
 class MessageRepository {
@@ -42,6 +56,49 @@ class MessageRepository {
 class Message {
 
 }
+
+
+
+class Property {
+    - double area
+    - int distanceFromTheCityCenter
+
+    +Property(area, distanceFromTheCityCenter)
+}
+
+class Photos{
+    - String URI
+}
+
+class House {
+    - Boolean existenceOfBasement : false
+    - Boolean existenceOfInhabitableLoft : false
+
+    +House(existenceOfBasement, existenceOfInhabitableLoft)
+}
+
+class Residence {
+ - int numberOfBedrooms
+ - int numberOfBathrooms
+ - int numberOfParkingSpaces
+
+    +Residence(numberOfBedrooms, numberOfBathrooms, numberOfParkingSpaces)
+}
+
+class SunExposure {
+    - String direction
+
+    +SunExposure(direction)
+}
+
+class AvailableEquipment {
+    - String typeOfEquipment
+
+    +AvailableEquipment(typeOfEquipment)
+}
+
+
+
 
 
 class User{
@@ -89,13 +146,63 @@ class State {
 
 
 
-SendMessageUI -right-> SendMessageControler
 
-SendMessageControler -right-> Repositories
+class Comission{
+     - double percentage
+     - double staticValue
 
-Repositories ..> UserIdentityRepository
-Repositories ..> PublishedAnnouncementRepository
-Repositories ..> MessageRepository
+    + calculateFinalComission()
+}
+
+
+class Rent {
+    - int durationOfContract
+
+    +getFinalComission()
+    +calculateTotalPrice()
+}
+
+class Announcement {
+    - String initialDate
+    - String finalDate
+    - String contractType
+
+    +getUser()
+    +PublishedAnnouncement(initialDate, finalDate, AnnouncementRequest)
+}
+
+class Business {
+    - double requestedPrice
+    -String typeOfBusiness
+
+    +getFinalComission()
+    +calculatePriceWithComission()
+    +getTypeOfBusiness()
+}
+
+class Repositories
+{
+    + getPublishedAnnouncementRepository()
+}
+
+
+
+SendMessageController .> Repositories : repositories
+Repositories --> Repositories :instance
+Repositories ..> UserIdentityRepository : UserIdentity
+Repositories ..> TypeComissionRepository : comission
+Repositories ..> PublishedAnnouncementRepository : announcement
+Repositories ..> PropertyTypeRepository : propertyType
+
+
+
+PropertyTypeRepository --> Property
+Residence <|-down-- House
+Property <|-down-- Residence
+Property "1" -left- "1..30" Photos: has >
+SunExposure "1" --right- "*" House: contains <
+AvailableEquipment "*" -right- "1" Residence: contains <
+
 
 
 
@@ -104,5 +211,18 @@ City "*"-left- "1" District: has a  <
 District "*"-left- "1" State: has a  <
 User "1" --- "1" Address: has >
 UserIdentityRepository ..> User
+User --> Property
+
+
+
+TypeComissionRepository -down-> Comission
+Comission "1" -up "1" Agent: defines <
+Comission "1" -- "1" Business: contains <
+Property "1" - "1" Business: has a <
+Announcement "1" --- "1" Business: has >
+Announcement "1" --up- "1" Property: has a >
+Announcement "*" -up-- "1" Agent: publishes <
+Business <|--- Rent
+
 
 @enduml

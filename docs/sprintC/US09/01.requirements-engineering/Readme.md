@@ -89,6 +89,24 @@ As a client, I want to leave a message to the agent to schedule a visit to a pro
 >
 > **Date:** 12 de May de 2023
 
+> **Question:** On US9 AC1 it is says: "AC1. A list of available properties must be shown, sorted from the most recent entries to the oldest." Does this mean that we can only have the option to make contact in this type of sort?
+>
+>  **Answer:** No. AC1 is the default sorting method.
+>
+> **Date:** 15 de May de 2023
+
+> **Question:** When we list in another way, should not be possible to have the option to schedule a visit?
+>
+>  **Answer:** After sorting the properties, the cliente can still schedule a visit.
+>
+> **Date:** 15 de May de 2023
+
+> **Question:** The client can make multiple schedules in a single message?
+>
+>  **Answer:** Every time the client makes use of this feature of the system, the client can specify multiple date/time slots.
+>
+> **Date:** 16 de May de 2023
+
 > **Question:**
 >
 >  **Answer:**
@@ -100,6 +118,19 @@ As a client, I want to leave a message to the agent to schedule a visit to a pro
 >  **Answer:**
 >
 > **Date:**
+
+> **Question:**
+>
+>  **Answer:**
+>
+> **Date:**
+
+> **Question:**
+>
+>  **Answer:**
+>
+> **Date:**
+
 
 ### 1.3. Acceptance Criteria
 
