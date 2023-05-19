@@ -25,7 +25,6 @@ public class PublishAnnouncementRequestUI implements Runnable {
 
         System.out.println("Publish Announcement Request: ");
 
-        if (controller.getEmployeeByEmail(controller.getCurrentSessionEmail()) != null) {
 
             announcementRequestDescription = displayAndSelectAnnouncementRequests(controller.getEmployeeByEmail(controller.getCurrentSessionEmail()));
 
@@ -33,9 +32,7 @@ public class PublishAnnouncementRequestUI implements Runnable {
             comissionDescription = displayAndSelectComission();
 
             submitData();
-        }else {
-            System.out.println("There is no announcement requests that you are responsible for!!");
-        }
+
 
     }
 

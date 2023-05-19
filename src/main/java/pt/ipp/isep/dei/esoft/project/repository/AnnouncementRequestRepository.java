@@ -43,6 +43,26 @@ public class AnnouncementRequestRepository {
         return newAnnouncementRequest;
     }
 
+    public Optional<AnnouncementRequest> remove(AnnouncementRequest announcementRequest) {
+
+        Optional<AnnouncementRequest> newAnnouncementRequest = Optional.empty();
+        boolean operationSuccess = false;
+
+        if (validateAnnouncementRequest(announcementRequest)) {
+            newAnnouncementRequest = Optional.of(announcementRequest);
+            operationSuccess = announcementRequests.remove(newAnnouncementRequest.get());
+        }
+
+        if (!operationSuccess) {
+            newAnnouncementRequest = Optional.empty();
+        }
+
+        return newAnnouncementRequest;
+    }
+
+
+
+
     /**
 
      Validates that an AnnouncementRequest is not already in the list.
@@ -50,7 +70,7 @@ public class AnnouncementRequestRepository {
      @return true if the AnnouncementRequest is valid, false otherwise.
      */
     private boolean validateAnnouncementRequest(AnnouncementRequest announcementRequest) {
-        boolean isValid = !announcementRequests.contains(announcementRequest);
+        boolean isValid = announcementRequests.contains(announcementRequest);
         return isValid;
     }
     /**
@@ -142,7 +162,7 @@ public class AnnouncementRequestRepository {
         }
 
         Collections.reverse(newAnnouncementRequest);
-        return announcementRequests;
+        return newAnnouncementRequest;
     }
 
     public AnnouncementRequest getAnnouncementRequestByDescription(int annnouncementRequestDescription) {

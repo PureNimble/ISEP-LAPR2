@@ -187,6 +187,7 @@ public class PublishedAnnouncementRequestController {
 
         if (!getPublishedAnnouncementRepository().getPublishedAnnouncements().contains(publishedAnnouncement)){
             newPublishedAnnouncement = getPublishedAnnouncementRepository().publishedAnnouncementRequest(comission,announcementRequest);
+            getAnnouncementRequestRepository().remove(announcementRequest);
         }
         return newPublishedAnnouncement;
     }
