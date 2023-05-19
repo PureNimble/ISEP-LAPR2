@@ -1,0 +1,61 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US09 - Sequence Diagram Partial - Create Message
+
+autonumber
+
+'hide footbox
+
+participant ":SendMessageController" as CTRL
+participant ":Repositories" as Repository
+participant "repositories\n:Repositories" as Repository2
+participant "messageRepository: \nMessage Repository" as messageRepository
+participant "message:\nMessage" as message
+
+autonumber
+
+-> CTRL: createMessage(name, phone number \nand date and time slot)
+        activate CTRL
+
+        group Create Message
+
+    CTRL ->CTRL: Property Selected
+
+        CTRL -> Repository : getInstance()
+            activate Repository
+
+        Repository --> CTRL : repositories
+            deactivate Repository
+
+        CTRL -> Repository2 : getMessageRepository()
+            activate Repository2
+
+        Repository2 --> CTRL : messageRepository
+            deactivate Repository2
+
+            CTRL -> messageRepository : createMessage(name, phone number and date and time slot)
+                activate messageRepository
+
+                messageRepository -> message** : createMessage(name, phone number \nand date and time slot)
+
+                messageRepository -> messageRepository : addMessage(message)
+                activate messageRepository
+
+                messageRepository -> messageRepository : validateMessage(message)
+                activate messageRepository
+
+                messageRepository --> CTRL : Message
+                deactivate messageRepository
+                deactivate messageRepository
+                deactivate messageRepository
+
+                end
+
+
+           <-- CTRL : Message
+@enduml

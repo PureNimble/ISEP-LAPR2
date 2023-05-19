@@ -9,25 +9,27 @@ skinparam linetype polyline
 
 title US09 - Class Diagram
 
-class SendMessageUI {
+
+class SendMessageUI
+
+
+class SendMessageController {
+    + sendMessageController(propertyTypeRepository,announcementRepository)
+    + getPpublishAnnouncement(propertyType, description, cost, informalDescription,\ntechnicalDescription, durationOfAnnouncement, designation)
 }
 
-class SendMessageControler {
-}
+SendMessageUI .> SendMessageController
 
 class Repositories {
-
 -Repositories()
 
 +getInstance():Repositories
 +getMessageRepository()
 +getPublishedAnnouncementRepository()
-+getUserIdentityRepository()
++getUserRepository()
+
 }
 
-class UserIdentityRepository {
-+getUserIdentity()
-}
 
 class PublishedAnnouncementRepository {
 
@@ -35,13 +37,71 @@ class PublishedAnnouncementRepository {
 + getTypeOfBussiness()
 }
 
+class PropertyTypeRepository{
+    + getPropertyType()
+}
+
+class UserRepository{
++getUserIdentity()
+}
+
+class TypeComissionRepository{
++ getTypeCommission()
+}
+
 class MessageRepository {
 +getMessage()
 }
 
 class Message {
+    - String initialDateAndTime
+    - String endDateAndTime
+    - String description
 
 }
+
+
+
+class Property {
+    - double area
+    - int distanceFromTheCityCenter
+
+    +Property(area, distanceFromTheCityCenter)
+}
+
+class Photos{
+    - String URI
+}
+
+class House {
+    - Boolean existenceOfBasement : false
+    - Boolean existenceOfInhabitableLoft : false
+
+    +House(existenceOfBasement, existenceOfInhabitableLoft)
+}
+
+class Residence {
+ - int numberOfBedrooms
+ - int numberOfBathrooms
+ - int numberOfParkingSpaces
+
+    +Residence(numberOfBedrooms, numberOfBathrooms, numberOfParkingSpaces)
+}
+
+class SunExposure {
+    - String direction
+
+    +SunExposure(direction)
+}
+
+class AvailableEquipment {
+    - String typeOfEquipment
+
+    +AvailableEquipment(typeOfEquipment)
+}
+
+
+
 
 
 class User{
@@ -89,13 +149,68 @@ class State {
 
 
 
-SendMessageUI -right-> SendMessageControler
 
-SendMessageControler -right-> Repositories
+class Comission{
+     - double percentage
+     - double staticValue
 
-Repositories ..> UserIdentityRepository
-Repositories ..> PublishedAnnouncementRepository
-Repositories ..> MessageRepository
+    + calculateFinalComission()
+}
+
+
+class Rent {
+    - int durationOfContract
+
+    +getFinalComission()
+    +calculateTotalPrice()
+}
+
+class Announcement {
+    - String initialDate
+    - String finalDate
+    - String contractType
+
+    +getUser()
+    +PublishedAnnouncement(initialDate, finalDate, AnnouncementRequest)
+}
+
+class Business {
+    - double requestedPrice
+    -String typeOfBusiness
+
+    +getFinalComission()
+    +calculatePriceWithComission()
+    +getTypeOfBusiness()
+}
+
+class Repositories
+{
+    + getPublishedAnnouncementRepository()
+}
+
+
+
+SendMessageController .> Repositories : repositories
+Repositories --> Repositories :instance
+Repositories ..> UserRepository : user
+Repositories ..> TypeComissionRepository : comission
+Repositories ..> PublishedAnnouncementRepository : announcement
+Repositories ..> PropertyTypeRepository : propertyType
+Repositories ..> MessageRepository : message
+
+MessageRepository -down-> Message
+Agent "1" -up- "*" Message : recives a >
+Message "1" -right- "*" PublishedAnnouncementRepository: has a <
+
+
+
+PropertyTypeRepository --> Property
+Residence <|-down-- House
+Property <|-down-- Residence
+Property "1" -left- "1..30" Photos: has >
+SunExposure "1" --right- "*" House: contains <
+AvailableEquipment "*" -left- "1" Residence: contains <
+
 
 
 
@@ -103,6 +218,19 @@ State "*"-left- "1" Address: has a  <
 City "*"-left- "1" District: has a  <
 District "*"-left- "1" State: has a  <
 User "1" --- "1" Address: has >
-UserIdentityRepository ..> User
+UserRepository --> User
+PublishedAnnouncementRepository --> Business
+User "1"-right-"*" Message : sends a >
+
+
+TypeComissionRepository -down-> Comission
+Comission "*" -up "1" Agent: defines <
+Comission "1" -- "1" Business: contains <
+Property "1" - "1" Business: has a <
+Announcement "1" --- "1" Business: has >
+Announcement "1" --down- "1" Property: has a >
+Announcement "*" -up-- "1" Agent: publishes <
+Business <|--- Rent
+
 
 @enduml

@@ -29,21 +29,15 @@ class State {
     State name
 }
 
-State "1" -down-- "*" District: has >
-District "1" -down-- "*" City: has >
-Address "*" -down-- "1" State: has <
+State "1" -down- "*" District: has >
+District "1" -down- "*" City: has >
+Address "*" -down- "1" State: has <
 
-class Contacts {
-    Phone Number
-    Email Adress
-}
 
 class User {
     Password
-    Name
 }
 
-User "1" -right-- "1" Contacts: has >
 
 class Residence {
     Number of Bedrooms
@@ -81,9 +75,9 @@ class AvailableEquipment {
 Residence <|-down- House
 Property <|-down- Residence
 Property "1" -left-- "1..30" Photos: has >
-SunExposure "1" -up-- "*" House: contains <
-Address "1" -up-- "1" Property: has <
-AvailableEquipment "*" -up-- "1" Residence: contains <
+SunExposure "1" -up- "*" House: contains <
+Address "1" -up- "1" Property: has <
+AvailableEquipment "*" -up- "1" Residence: contains <
 TypeOfProperty "1" -down-- "1" Property: defines >
 
 
@@ -107,15 +101,24 @@ Business <|--- Rent
 class Message{
     Inital Date and time for visit
     End Date and time for visit
+    Description
 }
 
 class Agent{
 }
 
+class Person{
+Name
+Phone Number
+}
+
 Message "*" --- "1" PublishedAnnouncement: has a >
 User "1" --- "1..*" Message: leaves a >
-Agent "1" --- "1" Message: recives a >
+Agent "1" --- "1" Message: receives a >
 Agent "1" --- "*" PublishedAnnouncement: publishes an >
+Person  <|--- Agent
+Person <|--- User
+
 
 
 

@@ -13,7 +13,7 @@ participant ":SendMessageUI" as UI
 participant ":SendMessageController" as CTRL
 participant ":Repositories" as Repository
 participant "repositories\n:Repositories" as Repository2
-participant "UserIdentityRepository:\nUser Identity Repository" as UserRepository
+participant "UserRepository:\nUser Repository" as UserRepository
 participant "publishedAnnouncementRepository\n:Published Announcement Repository" as publishedAnnouncementRepository
 participant "messageRepository: \nMessage Repository" as messageRepository
 participant "message:\nMessage" as message
@@ -67,7 +67,7 @@ autonumber
     Client -> UI : confirms his personal information
         activate UI
 
-        UI -> CTRL : getListOfProperties()
+        UI -> CTRL : getProperties()
             activate CTRL
 
             CTRL -> Repository : getInstance()
@@ -82,15 +82,15 @@ autonumber
             Repository2 --> CTRL : PublishedAnnouncementRepository
                 deactivate Repository2
 
-            CTRL -> publishedAnnouncementRepository : getListOfProperties()
+            CTRL -> publishedAnnouncementRepository : getProperties()
 
                 activate publishedAnnouncementRepository
 
-            publishedAnnouncementRepository --> CTRL : List Of Properties
+            publishedAnnouncementRepository --> CTRL : Properties
 
                 deactivate publishedAnnouncementRepository
 
-        CTRL --> UI : List Of Properties
+        CTRL --> UI : Properties
 
             deactivate CTRL
 
@@ -100,7 +100,7 @@ autonumber
     Client -> UI: selects a property of his interest
         activate UI
 
-        UI --> UI : keepPropertySelected(propertyDescription)
+    '   UI --> UI : keepPropertySelected(propertyDescription)
 
 
     UI --> Client: asks to confirm the property selected
@@ -115,7 +115,7 @@ autonumber
     Client -> UI: submits the requested data
         activate UI
 
-    UI --> UI : keepsData(name, phone number \nand date and time slot)
+   ' UI --> UI : keepsData(name, phone number \nand date and time slot)
 
     UI -> CTRL: createMessage(name, phone number \nand date and time slot)
         activate CTRL

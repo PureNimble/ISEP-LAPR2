@@ -4,71 +4,85 @@
 
 ### 3.1. Rationale
 
-**SSD - Alternative 1 is adopted.**
 
-| Interaction ID | Question: Which class is responsible for... | Answer               | Justification (with patterns)                                                                                 |
-|:-------------  |:--------------------- |:---------------------|:--------------------------------------------------------------------------------------------------------------|
-| Step 1  		 |	... interacting with the actor? | CreateTaskUI         | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
-| 			  		 |	... coordinating the US? | CreateTaskController | Controller                                                                                                    |
-| 			  		 |	... instantiating a new Task? | Organization         | Creator (Rule 1): in the DM Organization has a Task.                                                          |
-| 			  		 | ... knowing the user using the system?  | UserSession          | IE: cf. A&A component documentation.                                                                          |
-| 			  		 |							 | Organization         | IE: knows/has its own Employees                                                                               |
-| 			  		 |							 | Employee             | IE: knows its own data (e.g. email)                                                                           |
-| Step 2  		 |							 |                      |                                                                                                               |
-| Step 3  		 |	...saving the inputted data? | Task                 | IE: object created in step 1 has its own data.                                                                |
-| Step 4  		 |	...knowing the task categories to show? | System               | IE: Task Categories are defined by the Administrators.                                                        |
-| Step 5  		 |	... saving the selected category? | Task                 | IE: object created in step 1 is classified in one Category.                                                   |
-| Step 6  		 |							 |                      |                                                                                                               |              
-| Step 7  		 |	... validating all data (local validation)? | Task                 | IE: owns its data.                                                                                            | 
-| 			  		 |	... validating all data (global validation)? | Organization         | IE: knows all its tasks.                                                                                      | 
-| 			  		 |	... saving the created task? | Organization         | IE: owns all its tasks.                                                                                       | 
-| Step 8  		 |	... informing operation success?| CreateTaskUI         | IE: is responsible for user interactions.                                                                     | 
+| **_Interaction ID_**                                                                                                                                            | **_Which class is responsible for..._**                          | **_Answer_**              | **_Justification_**                                                                                                                                                             |                                   
+|:----------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------|:--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Step 1: asks to publish an announcement                                                                                                                         | ... interacting with the actor?                                  | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                   |
+|                                                                                                                                                                 | ... coordinating the US?                                         | PublishController         | Controller                                                                                                                                                                      | 
+|                                                                                                                                                                 | ... UI-related class being instantiated?                         | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                   |
+| Step 2: requests User identity                                                                                                                                  | ... displaying the UI for the agent to input data?               | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                   |
+| Step 3: inserts the User email                                                                                                                                  | ... validating the input data?                                   | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                   |
+|                                                                                                                                                                 | ... obtaining the owner identity?                                | UserIdentityRepository    | IE: the UserIdentityRepository interacts with the user interface to obtain the owner identity , Pure Fabrication: there is no corresponding domain object in the domain model.  |
+| Step 4: shows User information                                                                                                                                  | ... displaying the owner identification?                         | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                   |
+| Step 5: confirms User identity                                                                                                                                  | ... validating the confirmation?                                 | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                   |
+| Step 6: list and request the property type                                                                                                                      | ... obtaining the property types?                                | PropertyTypesRepository   | IE: the PropertyTypesRepository interacts with the user interface to obtain the property types , Pure Fabrication: there is no corresponding domain object in the domain model. |
+| Step 7: chooses the property type                                                                                                                               | ... validating the input data?                                   | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                   |
+|                                                                                                                                                                 | ... saving input data?                                           | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                   |
+| Step 8: requests property data                                                                                                                                  | ... displaying the UI for the agent to input data?               | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                   |
+| Step 9: types requested data (area in m^2, state, district, city, street, zip code and distance from city center)                                               | ... validating the input data?                                   | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                   |
+|                                                                                                                                                                 | ... saving input data?                                           | AnnouncementRepository    | Creator: AnnouncementRepository records instances of the Announcement, and records them.                                                                                        |
+| Step 10: types requested data (number of bedrooms, number of bathrooms, number of parking spaces, available equipment (central heating and/or airconditioning)) | ... validating the input data?                                   | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                   |
+|                                                                                                                                                                 | ... saving input data?                                           | AnnouncementRepository    | Creator: AnnouncementRepository records instances of the Announcement, and records them.                                                                                        |
+| Step 11: types requested data (the existence of a basement and/or inhabitable loft, sun exposure (North, South, East, West))                                    | ... validating the input data?                                   | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                   |
+|                                                                                                                                                                 | ... saving input data?                                           | AnnouncementRepository    | Creator: AnnouncementRepository records instances of the Announcement, and records them.                                                                                        |
+| Step 12: saves all data and asks for photos of the property                                                                                                     | ... displaying the UI for the agent to input data?               | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model.                                                                   |
+| Step 13: sends photos of the property                                                                                                                           | ... validating the input data?                                   | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                   |
+|                                                                                                                                                                 | ... saving input data?                                           | AnnouncementRepository    | Creator: AnnouncementRepository records instances of the Announcement, and records them.                                                                                        |
+| Step 15: Asks for the Comission Type                                                                                                                            | ... obtaining the commission types?                              | TypesComissionRepository  | IE: knows all its data, Pure Fabrication.                                                                                                                                       |
+| Step 16: chooses the Comission Type                                                                                                                             | ... validating the input data?                                   | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                   |
+|                                                                                                                                                                 | ... saving input data?                                           | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model.                                                                   |
+| Step 17: requests the comission data                                                                                                                            | ... displaying the UI for the agent to input data?               | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model.                                                                   |
+| Step 18: inserts the percentage comission                                                                                                                       | ... validating the input data?                                   | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                   |
+|                                                                                                                                                                 | ... saving input data?                                           | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model.                                                                   |
+| Step 19: inserts the comission value                                                                                                                            | ... validating the input data?                                   | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                   |
+|                                                                                                                                                                 | ... saving input data?                                           | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model.                                                                   |
+| Step 20: Asks for the type of business and requested price                                                                                                      | ... obtaining the type of business?                              | TypesOfBusinessRepository | IE: knows all it's data.                                                                                                                                                        |
+| Step 21: types the requested data (Requested price)                                                                                                             | ... validating the input data?                                   | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                   |
+|                                                                                                                                                                 | ... saving input data?                                           | AnnouncementRepository    | Creator: AnnouncementRepository records instances of the Announcement, and records them.                                                                                        |
+| Step 22: types the requested data (Requested fee and contract duration)                                                                                         | ... validating the input data?                                   | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                   |
+|                                                                                                                                                                 | ... saving input data?                                           | AnnouncementRepository    | Creator: AnnouncementRepository records instances of the Announcement, and records them.                                                                                        |
+| Step 23: displays announcement details and requests confirmation                                                                                                | ... displaying announcement details and requesting confirmation? | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model.                                                                   |
+| Step 24: confirm to publish the announcement                                                                                                                    | ... creating the announcement Object?                            | Announcement              | Creator: the object create has its own data.                                                                                                                                    |
+|                                                                                                                                                                 | ... validating the input data?                                   | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern.                                   |
+| Step 25: displays operation success                                                                                                                             | ... displaying operation success?                                | PublishUI                 | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model.                                                                   |
 
-### Systematization ##
+#### Systematization
 
-According to the taken rationale, the conceptual classes promoted to software classes are: 
+The conceptual classes developed to software classes are, matching with the adopted rationale:
+* Announcement
 
- * Organization
- * Task
+Other software classes identified:
+* PublishUI
+* AnnouncementRepository
+* UserIdentityRepository
+* PropertyTypeRepository
+* TypesOfBusinessRepository
+* TypesComissionRepository
 
-Other software classes (i.e. Pure Fabrication) identified: 
+### 3.2. Sequence Diagram (SD)
 
- * CreateTaskUI  
- * CreateTaskController
+#### Full Diagram
+This diagram displays the entire series of interactions between the classes involved in the realization of this user story.
 
+![Sequence Diagram - Alternative One](svg/us09-sequence-diagram-full.svg)
 
-## 3.2. Sequence Diagram (SD)
+#### Split Diagram
 
-### Alternative 1 - Full Diagram
+This diagram, which is divided into smaller diagrams to better describe the interactions between the classes, displays the same series of interactions between the classes involved in the realization of this user story.
 
-This diagram shows the full sequence of interactions between the classes involved in the realization of this user story.
+![Sequence Diagram Split](svg/us09-sequence-diagram-split.svg)
 
-![Sequence Diagram - Full](svg/us09-sequence-diagram-full.svg)
+##### Get User Information
 
-### Alternative 2 - Split Diagram
+![Sequence Diagram Partial Get User Information](svg/us09-sequence-diagram-partial-get-user-information.svg)
 
-This diagram shows the same sequence of interactions between the classes involved in the realization of this user story, but it is split in partial diagrams to better illustrate the interactions between the classes.
+##### Get Properties
 
-It uses interaction ocurrence.
+![Sequence Diagram Partial Get Type Of Property](svg/us09-sequence-diagram-partial-get-properties.svg)
 
-![Sequence Diagram - split](svg/us006-sequence-diagram-split.svg)
+##### Create Message
 
-**Get Task Category List Partial SD**
+![Sequence Diagram Partial Get Type Of Property](svg/us09-sequence-diagram-partial-create-message.svg)
 
-![Sequence Diagram - Partial - Get Task Category List](svg/us006-sequence-diagram-partial-get-task-category-list.svg)
-
-**Get Task Category Object**
-
-![Sequence Diagram - Partial - Get Task Category Object](svg/us006-sequence-diagram-partial-get-task-category.svg)
-
-**Get Employee**
-
-![Sequence Diagram - Partial - Get Employee](svg/us006-sequence-diagram-partial-get-employee.svg)
-
-**Create Task**
-
-![Sequence Diagram - Partial - Create Task](svg/us006-sequence-diagram-partial-create-task.svg)
-
-## 3.3. Class Diagram (CD)
-
-![Class Diagram](svg/us006-class-diagram.svg)
+### 3.3. Class Diagram (CD)
+![Class Diagram - Alternative One](svg/us09-class-diagram.svg)
