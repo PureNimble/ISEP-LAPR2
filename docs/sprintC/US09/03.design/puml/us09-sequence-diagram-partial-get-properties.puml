@@ -1,0 +1,45 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US09 - Sequence Diagram Partial - Get Properties
+
+autonumber
+
+'hide footbox
+
+participant ":SendMessageController" as CTRL
+participant ":Repositories" as Repository
+participant "repositories\n:Repositories" as Repository2
+participant "publishedAnnouncementRepository\n:Published Announcement Repository" as publishedAnnouncementRepository
+
+autonumber
+
+-> CTRL : getProperties()
+            activate CTRL
+
+
+            CTRL -> Repository : getInstance()
+                activate Repository
+
+            Repository --> CTRL : repositories
+                deactivate Repository
+
+            CTRL -> Repository2 : getPublishedAnnouncementRepository()
+                activate Repository2
+
+            Repository2 --> CTRL : PublishedAnnouncementRepository
+                deactivate Repository2
+
+            CTRL -> publishedAnnouncementRepository : getProperties()
+
+                activate publishedAnnouncementRepository
+
+            publishedAnnouncementRepository --> CTRL : Properties
+
+                deactivate publishedAnnouncementRepository
+
+
+        <-- CTRL : Properties
+@enduml

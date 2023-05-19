@@ -26,7 +26,7 @@ class Repositories {
 +getInstance():Repositories
 +getMessageRepository()
 +getPublishedAnnouncementRepository()
-+getUserIdentityRepository()
++getUserRepository()
 
 }
 
@@ -41,7 +41,7 @@ class PropertyTypeRepository{
     + getPropertyType()
 }
 
-class UserIdentityRepository{
+class UserRepository{
 +getUserIdentity()
 }
 
@@ -54,6 +54,9 @@ class MessageRepository {
 }
 
 class Message {
+    - String initialDateAndTime
+    - String endDateAndTime
+    - String description
 
 }
 
@@ -189,10 +192,15 @@ class Repositories
 
 SendMessageController .> Repositories : repositories
 Repositories --> Repositories :instance
-Repositories ..> UserIdentityRepository : UserIdentity
+Repositories ..> UserRepository : user
 Repositories ..> TypeComissionRepository : comission
 Repositories ..> PublishedAnnouncementRepository : announcement
 Repositories ..> PropertyTypeRepository : propertyType
+Repositories ..> MessageRepository : message
+
+MessageRepository -down-> Message
+Agent "1" -up- "*" Message : recives a >
+Message "1" -right- "*" PublishedAnnouncementRepository: has a <
 
 
 
@@ -201,7 +209,7 @@ Residence <|-down-- House
 Property <|-down-- Residence
 Property "1" -left- "1..30" Photos: has >
 SunExposure "1" --right- "*" House: contains <
-AvailableEquipment "*" -right- "1" Residence: contains <
+AvailableEquipment "*" -left- "1" Residence: contains <
 
 
 
@@ -210,17 +218,17 @@ State "*"-left- "1" Address: has a  <
 City "*"-left- "1" District: has a  <
 District "*"-left- "1" State: has a  <
 User "1" --- "1" Address: has >
-UserIdentityRepository ..> User
-User --> Property
-
+UserRepository --> User
+PublishedAnnouncementRepository --> Business
+User "1"-right-"*" Message : sends a >
 
 
 TypeComissionRepository -down-> Comission
-Comission "1" -up "1" Agent: defines <
+Comission "*" -up "1" Agent: defines <
 Comission "1" -- "1" Business: contains <
 Property "1" - "1" Business: has a <
 Announcement "1" --- "1" Business: has >
-Announcement "1" --up- "1" Property: has a >
+Announcement "1" --down- "1" Property: has a >
 Announcement "*" -up-- "1" Agent: publishes <
 Business <|--- Rent
 
