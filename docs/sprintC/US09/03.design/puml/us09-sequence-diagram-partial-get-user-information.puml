@@ -22,6 +22,8 @@ autonumber
 
             activate CTRL
 
+            group Get User Information
+
             CTRL -> Repository : getInstance()
                 activate Repository
 
@@ -41,6 +43,8 @@ autonumber
             UserRepository --> CTRL : User Information
 
                 deactivate UserRepository
+
+            end
 
          <-- CTRL : User Information
 @enduml

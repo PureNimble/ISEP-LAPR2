@@ -19,6 +19,8 @@ autonumber
 -> CTRL : getProperties()
             activate CTRL
 
+            group Get Properties
+
 
             CTRL -> Repository : getInstance()
                 activate Repository
@@ -40,6 +42,7 @@ autonumber
 
                 deactivate publishedAnnouncementRepository
 
+        end
 
         <-- CTRL : Properties
 @enduml

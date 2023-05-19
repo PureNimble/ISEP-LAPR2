@@ -22,6 +22,8 @@ autonumber
 -> CTRL: createMessage(name, phone number \nand date and time slot)
         activate CTRL
 
+        group Create Message
+
     CTRL ->CTRL: Property Selected
 
         CTRL -> Repository : getInstance()
@@ -51,6 +53,8 @@ autonumber
                 deactivate messageRepository
                 deactivate messageRepository
                 deactivate messageRepository
+
+                end
 
 
            <-- CTRL : Message
