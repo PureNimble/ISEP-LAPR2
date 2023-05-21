@@ -14,9 +14,10 @@ class SendMessageUI
 
 
 class SendMessageController {
-    + sendMessageController(propertyTypeRepository,announcementRepository)
-    + getPpublishAnnouncement(propertyType, description, cost, informalDescription,\ntechnicalDescription, durationOfAnnouncement, designation)
-}
+    + sendMessageController ()
+    + getMessage ()
+    + createNewMessageToAgent ()
+  }
 
 SendMessageUI .> SendMessageController
 
@@ -24,8 +25,10 @@ class Repositories {
 -Repositories()
 
 +getInstance():Repositories
-+getMessageRepository()
 +getPublishedAnnouncementRepository()
++getMessageRepository()
++getComissionRepository()
++getPropertyTypeRepository()
 +getUserRepository()
 
 }
@@ -38,54 +41,85 @@ class PublishedAnnouncementRepository {
 }
 
 class PropertyTypeRepository{
-    + getPropertyType()
+    + getPropertyTypeByDescription(String propertyTypeDescription)
+    +add(PropertyType propertyType)
+    +getPropertyTypes()
+    -validatePropertyType(PropertyType propertyType)
 }
 
 class UserRepository{
-+getUserIdentity()
++add(User user)
++validateUser(User user)
++getUsers()
 }
 
-class TypeComissionRepository{
-+ getTypeCommission()
+class ComissionRepository{
++getComissionByDescription(Double comissionDescription)
++add(Comission comission)
+-validateComission(Comission comission)
++getComission()
 }
 
 class MessageRepository {
-+getMessage()
++add(Message message)
++getMessages()
+-validateMessage(Message message)
+-checkIfTimeOverlaps(Message message1, Message message2)
 }
 
 class Message {
-    - String initialDateAndTime
-    - String endDateAndTime
+    - String name
+    - int phoneNumber
+    - Date initialDate
+    - int initialTime
+    - int endTime
     - String description
+
+    + Message(String name, int phoneNumber, String description, \nDate initialDate, int initialTime, int endTime, \nPublishedAnnouncement publishedAnnouncement)
+    + Message()
+    + getName()
+    + getPhoneNumber()
+    + getDescription()
+    + getInitialDate()
+    + getInitialTime()
+    + getEndTime()
+    + getPublishedAnnouncement()
 
 }
 
 
 
 class Property {
-    - double area
+    - int area
     - int distanceFromTheCityCenter
 
-    +Property(area, distanceFromTheCityCenter)
+    +Property(int area, int distanceFromCityCenter)
+    +toString()
 }
 
 class Photos{
-    - String URI
+    - String url
+
+    +Photos(String url)
+    + getUrl()
 }
 
 class House {
-    - Boolean existenceOfBasement : false
-    - Boolean existenceOfInhabitableLoft : false
+    - String basement
+    - String inhabitableLoft
+    - String sunExposure
 
-    +House(existenceOfBasement, existenceOfInhabitableLoft)
+    + House(int area, int distanceFromCityCenter, int numberOfBedrooms, \nint numberOfBathrooms, int parkingSpaces, AvailableEquipment availableEquipment, \nString basement, String inhabitableLoft, String sunExposure)
+    + toString()
 }
 
 class Residence {
  - int numberOfBedrooms
  - int numberOfBathrooms
- - int numberOfParkingSpaces
+ - int parkingSpaces
 
-    +Residence(numberOfBedrooms, numberOfBathrooms, numberOfParkingSpaces)
+    + Residence(int area, int distanceFromCityCenter, int numberOfBedrooms,\n int numberOfBathrooms, int parkingSpaces, \nAvailableEquipment availableEquipment)
+    + toString()
 }
 
 class SunExposure {
@@ -97,24 +131,28 @@ class SunExposure {
 class AvailableEquipment {
     - String typeOfEquipment
 
-    +AvailableEquipment(typeOfEquipment)
+    +AvailableEquipment(String availableEquipment)
+    +getAvailableEquipment()
+    + toString()
 }
-
 
 
 
 
 class User{
-+String name
-+int tax number
-+int phone number
-+String email
+-String name
+-int tax number
+-int phone number
+-String email
 
--getName()
--getEmail()
--getPhoneNumber()
--getTaxNumber()
++getName()
++User(email,taxNumber,name,phoneNumber)
++getEmail()
++getPhoneNumber()
++getTaxNumber()
 }
+
+
 
 class Address {
     -String streetName
@@ -135,18 +173,22 @@ class City {
     -getCityName()
 }
 
-class District {
-    - String districtName
+class District{
+- String districtName
 
-    -getDistrictName()
+
+    +getDistrictName()
+    +getCities()
+    +toString()
 }
 
-class State {
-   - String stateName
+class State{
+  - String stateName
 
-    -getStateName()
+     +getState()
+     +getDistricts()
+     +toString()
 }
-
 
 
 
@@ -161,7 +203,9 @@ class Comission{
 class Rent {
     - int durationOfContract
 
+    +Rent(int durationContract)
     +getFinalComission()
+    +getDurationContract()
     +calculateTotalPrice()
 }
 
@@ -193,7 +237,7 @@ class Repositories
 SendMessageController .> Repositories : repositories
 Repositories --> Repositories :instance
 Repositories ..> UserRepository : user
-Repositories ..> TypeComissionRepository : comission
+Repositories ..> ComissionRepository : comission
 Repositories ..> PublishedAnnouncementRepository : announcement
 Repositories ..> PropertyTypeRepository : propertyType
 Repositories ..> MessageRepository : message
@@ -223,7 +267,7 @@ PublishedAnnouncementRepository --> Business
 User "1"-right-"*" Message : sends a >
 
 
-TypeComissionRepository -down-> Comission
+ComissionRepository -down-> Comission
 Comission "*" -up "1" Agent: defines <
 Comission "1" -- "1" Business: contains <
 Property "1" - "1" Business: has a <
