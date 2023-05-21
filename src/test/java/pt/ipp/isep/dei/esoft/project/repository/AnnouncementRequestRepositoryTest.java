@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -22,7 +23,14 @@ class AnnouncementRequestRepositoryTest {
 
     @Test
     void add() {
-        AnnouncementRequest announcementRequest = new AnnouncementRequest(new Date(), new TypeOfBusiness("Sale"), new Property(345,789), new PropertyType("House"), new Business(89999));
+        Role role = new Role("Agent");
+        Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
+        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        List<Role> roles = new ArrayList<>();
+        roles.add(role);
+        Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
+
+        AnnouncementRequest announcementRequest = new AnnouncementRequest(new Date(), new TypeOfBusiness("Sale"), new Property(345,789), new PropertyType("House"), new Business(89999), employee);
         Optional<AnnouncementRequest> addedAnnouncementRequest = repository.add(announcementRequest);
         Assertions.assertTrue(addedAnnouncementRequest.isPresent());
         Assertions.assertEquals(announcementRequest, addedAnnouncementRequest.get());
@@ -32,13 +40,27 @@ class AnnouncementRequestRepositoryTest {
 
     @Test
     void announcementRequest() {
-        AnnouncementRequest announcementRequest = new AnnouncementRequest(new Date(), new TypeOfBusiness("Sale"), new Property(345,789), new PropertyType("House"), new Business(89999));
+        Role role = new Role("Agent");
+        Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
+        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        List<Role> roles = new ArrayList<>();
+        roles.add(role);
+        Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
+
+        AnnouncementRequest announcementRequest = new AnnouncementRequest(new Date(), new TypeOfBusiness("Sale"), new Property(345,789), new PropertyType("House"), new Business(89999), employee);
         List<AnnouncementRequest> announcementRequests = repository.getAnnouncementsRequest();
         Assertions.assertFalse(announcementRequests.contains(announcementRequest));
     }
 
     @Test
     void getAnnouncementsRequest() {
+        Role role = new Role("Agent");
+        Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
+        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        List<Role> roles = new ArrayList<>();
+        roles.add(role);
+        Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
+
         AnnouncementRequestRepository repository = new AnnouncementRequestRepository();
 
         AnnouncementRequest announcementRequest1 = new AnnouncementRequest(
@@ -47,7 +69,7 @@ class AnnouncementRequestRepositoryTest {
                 new Property(567,89),
                 new PropertyType("House"),
                 new Business(45666),
-                12
+                employee
         );
 
         AnnouncementRequest announcementRequest2 = new AnnouncementRequest(
@@ -56,7 +78,7 @@ class AnnouncementRequestRepositoryTest {
                 new Property(967,89),
                 new PropertyType("Land"),
                 new Business(666),
-                6
+                employee
         );
 
         repository.add(announcementRequest1);

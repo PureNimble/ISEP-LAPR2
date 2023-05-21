@@ -20,6 +20,7 @@ public class Bootstrap implements Runnable {
         addTypeOfBusiness();
         addAvailableEquipment();
         addAgents();
+        addPublishedAnnouncement();
 
     }
 
@@ -37,6 +38,12 @@ public class Bootstrap implements Runnable {
 
         Employee agent2 = new Employee("agent2@this.app",12345677,12231311,"Agent 02",555661,store,roles,address);
 
+        employeeRepository.add(agent1);
+        employeeRepository.add(agent2);
+    }
+
+    private void addPublishedAnnouncement(){
+
         PublishedAnnouncementRepository publishedAnnouncementRepository = Repositories.getInstance().getPublishedAnnouncementRepository();
         Comission com = new Comission(25.00);
         Property property = new Property(2,2);
@@ -49,8 +56,7 @@ public class Bootstrap implements Runnable {
         PublishedAnnouncement p2 = new PublishedAnnouncement(date2, typeOfBusiness, property, propertyType, com, business);
         publishedAnnouncementRepository.add(p1);
         publishedAnnouncementRepository.add(p2);
-        employeeRepository.add(agent1);
-        employeeRepository.add(agent2);
+
     }
 
     private void addAvailableEquipment(){

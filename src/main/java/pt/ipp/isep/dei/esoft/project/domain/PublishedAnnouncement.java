@@ -24,12 +24,12 @@ public class PublishedAnnouncement {
     /**
      * Constructs a new PublishedAnnouncement object for sale.
      *
-     * @param date the date the announcement was published
+     * @param date           the date the announcement was published
      * @param typeOfBusiness the type of business (buying or selling)
-     * @param property the property being advertised
-     * @param propertyType the type of property
-     * @param comission the commission chosen by the client
-     * @param business the business representing the client
+     * @param property       the property being advertised
+     * @param propertyType   the type of property
+     * @param comission      the commission chosen by the client
+     * @param business       the business representing the client
      */
     public PublishedAnnouncement(Date date,TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType,Comission comission,Business business) {
         this.typeOfBusiness = typeOfBusiness;
@@ -43,12 +43,12 @@ public class PublishedAnnouncement {
     /**
      * Constructs a new PublishedAnnouncement object for rent.
      *
-     * @param date the date the announcement was published
-     * @param typeOfBusiness the type of business (renting)
-     * @param property the property being advertised
-     * @param propertyType the type of property
-     * @param comission the commission chosen by the client
-     * @param business the business representing the client
+     * @param date               the date the announcement was published
+     * @param typeOfBusiness     the type of business (renting)
+     * @param property           the property being advertised
+     * @param propertyType       the type of property
+     * @param comission          the commission chosen by the client
+     * @param business           the business representing the client
      * @param durationOfContract the duration of the rental contract
      */
     public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract) {
@@ -61,20 +61,41 @@ public class PublishedAnnouncement {
         this.durationOfContract = durationOfContract;
     }
 
+    /**
+     * Instantiates a new Published announcement.
+     *
+     * @param comission           the comission
+     * @param announcementRequest the announcement request
+     */
     public PublishedAnnouncement(Comission comission, AnnouncementRequest announcementRequest) {
         this.comission = comission;
         this.announcementRequest = announcementRequest;
     }
 
 
+    /**
+     * Gets property.
+     *
+     * @return the property
+     */
     public Property getProperty() {
         return property;
     }
 
+    /**
+     * Gets date.
+     *
+     * @return the date
+     */
     public Date getDate() {
         return date;
     }
 
+    /**
+     * Sets date.
+     *
+     * @param date the date
+     */
     public void setDate(Date date) {
         this.date = date;
     }

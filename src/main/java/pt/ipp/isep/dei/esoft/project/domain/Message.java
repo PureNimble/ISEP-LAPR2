@@ -56,12 +56,13 @@ public class Message {
     /**
      * Constructs a new Message object with the specified parameters.
      *
-     * @param name        the client's name associated with the message
-     * @param phoneNumber the client's phone number associated with the message
-     * @param description the description of the message
-     * @param initialDate the initial date for visiting
-     * @param initialTime the initial time for visiting
-     * @param endTime     the end time for visiting
+     * @param name                  the client's name associated with the message
+     * @param phoneNumber           the client's phone number associated with the message
+     * @param description           the description of the message
+     * @param initialDate           the initial date for visiting
+     * @param initialTime           the initial time for visiting
+     * @param endTime               the end time for visiting
+     * @param publishedAnnouncement the published announcement
      */
     public Message(String name, int phoneNumber, String description, Date initialDate, int initialTime, int endTime, PublishedAnnouncement publishedAnnouncement) {
         this.name = name;
@@ -187,10 +188,20 @@ public class Message {
         this.endTime = endTime;
     }
 
+    /**
+     * Gets published announcement.
+     *
+     * @return the published announcement
+     */
     public PublishedAnnouncement getPublishedAnnouncement() {
         return publishedAnnouncement;
     }
 
+    /**
+     * Sets published announcement.
+     *
+     * @param publishedAnnouncement the published announcement
+     */
     public void setPublishedAnnouncement(PublishedAnnouncement publishedAnnouncement) {
         this.publishedAnnouncement = publishedAnnouncement;
     }
@@ -205,7 +216,7 @@ public class Message {
     public String toString() {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         String date = format.format(initialDate);
-        return String.format("Message: The client %s, with %s phone number, wants to schedule a visit from %s until %s at %s. \n Description: %s \n Property: %s", name, phoneNumber, initialTime, endTime, date, description, publishedAnnouncement.toString());
+        return String.format("Message: \nThe client %s, with phone number %s, wants to schedule a visit from %s until %s at %s. \n\nDescription: \n%s \n\nProperty: \n%s", name, phoneNumber, initialTime, endTime, date, description, publishedAnnouncement.toString());
     }
 
 

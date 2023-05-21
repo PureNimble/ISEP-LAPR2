@@ -23,6 +23,9 @@ public class RegisterStoreController {
     private StateRepository stateRepository = null;
 
 
+    /**
+     * Instantiates a new Register store controller.
+     */
     public RegisterStoreController(){
         getStoreRepository();
         getStateRepository();

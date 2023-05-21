@@ -2,12 +2,22 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.util.Objects;
 
+/**
+ * The type Offer.
+ */
 public class Offer {
 
     private double price;
     private User user;
     private PublishedAnnouncement publishedAnnouncement;
 
+    /**
+     * Instantiates a new Offer.
+     *
+     * @param price                 the price
+     * @param user                  the user
+     * @param publishedAnnouncement the published announcement
+     */
     public Offer (double price, User user, PublishedAnnouncement publishedAnnouncement) {
         this.price = price;
         this.user = user;

@@ -43,6 +43,12 @@ public class AnnouncementRequestRepository {
         return newAnnouncementRequest;
     }
 
+    /**
+     * Remove optional.
+     *
+     * @param announcementRequest the announcement request
+     * @return the optional
+     */
     public Optional<AnnouncementRequest> remove(AnnouncementRequest announcementRequest) {
 
         Optional<AnnouncementRequest> newAnnouncementRequest = Optional.empty();
@@ -152,6 +158,12 @@ public class AnnouncementRequestRepository {
         return announcementRequests;
     }
 
+    /**
+     * Get announcement requests by most recent list.
+     *
+     * @param agent the agent
+     * @return the list
+     */
     public  List<AnnouncementRequest> getAnnouncementRequestsByMostRecent(Employee agent){
         List<AnnouncementRequest> newAnnouncementRequest = new ArrayList<>();
 
@@ -165,6 +177,12 @@ public class AnnouncementRequestRepository {
         return newAnnouncementRequest;
     }
 
+    /**
+     * Gets announcement request by description.
+     *
+     * @param annnouncementRequestDescription the annnouncement request description
+     * @return the announcement request by description
+     */
     public AnnouncementRequest getAnnouncementRequestByDescription(int annnouncementRequestDescription) {
         AnnouncementRequest newAnnouncementRequest = announcementRequests.get(annnouncementRequestDescription);
         AnnouncementRequest announcementRequest = null;

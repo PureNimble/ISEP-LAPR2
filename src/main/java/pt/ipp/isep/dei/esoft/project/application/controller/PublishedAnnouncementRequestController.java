@@ -12,17 +12,35 @@ import java.util.Optional;
 
 public class PublishedAnnouncementRequestController {
 
+    /**
+     * The Published announcement repository.
+     */
     PublishedAnnouncementRepository publishedAnnouncementRepository = null;
 
+    /**
+     * The Announcement request repository.
+     */
     AnnouncementRequestRepository announcementRequestRepository = null;
 
+    /**
+     * The Comission repository.
+     */
     ComissionRepository comissionRepository = null;
 
+    /**
+     * The Employee repository.
+     */
     EmployeeRepository employeeRepository = null;
 
+    /**
+     * The Authentication repository.
+     */
     AuthenticationRepository authenticationRepository = null;
 
 
+    /**
+     * Instantiates a new Published announcement request controller.
+     */
     public PublishedAnnouncementRequestController() {
        getAnnouncementRequestRepository();
        getComissionRepository();
@@ -134,17 +152,34 @@ public class PublishedAnnouncementRequestController {
         return comissionRepository.getComission();
     }
 
+    /**
+     * Get current session email string.
+     *
+     * @return the string
+     */
     public String getCurrentSessionEmail(){
         AuthenticationRepository authenticationRepository = getAuthenticationRepository();
         return authenticationRepository.getCurrentUserSession().getUserId().getEmail();
     }
 
 
+    /**
+     * Get employee by email employee.
+     *
+     * @param email the email
+     * @return the employee
+     */
     public Employee getEmployeeByEmail(String email){
 
         return getEmployeeRepository().getEmployeeByEmail(email);
     }
 
+    /**
+     * Get agent by description employee.
+     *
+     * @param agentDescription the agent description
+     * @return the employee
+     */
     public Employee getAgentByDescription(String agentDescription){
         EmployeeRepository employeeRepository = new EmployeeRepository();
 
@@ -169,6 +204,12 @@ public class PublishedAnnouncementRequestController {
 
     }
 
+    /**
+     * Gets announcement request by description.
+     *
+     * @param announcementRequestDescription the announcement request description
+     * @return the announcement request by description
+     */
     public AnnouncementRequest getAnnouncementRequestByDescription(int announcementRequestDescription) {
         AnnouncementRequestRepository announcementRequestRepository = getAnnouncementRequestRepository();
 
@@ -180,6 +221,13 @@ public class PublishedAnnouncementRequestController {
 
     }
 
+    /**
+     * Create publish announcement request optional.
+     *
+     * @param comission           the comission
+     * @param announcementRequest the announcement request
+     * @return the optional
+     */
     public Optional<PublishedAnnouncement> createPublishAnnouncementRequest(Comission comission, AnnouncementRequest announcementRequest){
         Optional<PublishedAnnouncement> newPublishedAnnouncement = Optional.empty();
 

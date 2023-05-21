@@ -7,22 +7,18 @@ import java.util.List;
 import java.util.Optional;
 
 /**
-
- The EmployeeRepository class represents a repository for Employee objects. It provides methods to add and return a
-
- defensive copy of the list of Employee objects.
+ * The EmployeeRepository class represents a repository for Employee objects. It provides methods to add and return a
+ * defensive copy of the list of Employee objects.
  */
 public class EmployeeRepository {
 
     private List<Employee> employees = new ArrayList<>();
 
     /**
-
-     Adds a new Employee to the repository.
-
-     @param employee The Employee object to be added to the repository.
-
-     @return An optional containing the Employee object if the operation was successful, otherwise an empty Optional.
+     * Adds a new Employee to the repository.
+     *
+     * @param employee The Employee object to be added to the repository.
+     * @return An optional containing the Employee object if the operation was successful, otherwise an empty Optional.
      */
     public Optional<Employee> add(Employee employee) {
 
@@ -53,6 +49,7 @@ public class EmployeeRepository {
         boolean isValid = !employees.contains(employee);
         return isValid;
     }
+
     /**
      * Returns a list of all employees managed by this repository.
      *
@@ -64,6 +61,12 @@ public class EmployeeRepository {
     }
 
 
+    /**
+     * Get employee by email employee.
+     *
+     * @param email the email
+     * @return the employee
+     */
     public Employee getEmployeeByEmail(String email){
         for (Employee employee: employees) {
             if (employee.getEmployeeEmail().equals(email)){
@@ -73,6 +76,12 @@ public class EmployeeRepository {
         return null;
     }
 
+    /**
+     * Get employee by string employee.
+     *
+     * @param employeeString the employee string
+     * @return the employee
+     */
     public  Employee getEmployeeByString(String employeeString){
         for (Employee employee: employees) {
             if (employee.toString().equals(employeeString)){

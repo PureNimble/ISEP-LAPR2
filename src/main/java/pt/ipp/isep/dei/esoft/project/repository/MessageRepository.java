@@ -1,17 +1,24 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
-import pt.ipp.isep.dei.esoft.project.domain.Employee;
 import pt.ipp.isep.dei.esoft.project.domain.Message;
-import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Message repository.
+ */
 public class MessageRepository {
 
     private ArrayList<Message> messages = new ArrayList<>();
 
+    /**
+     * Add optional.
+     *
+     * @param message the message
+     * @return the optional
+     */
     public Optional<Message> add(Message message) {
 
         Optional<Message> newMessage = Optional.empty();
@@ -48,6 +55,11 @@ public class MessageRepository {
         return !(message1.getEndTime() < message2.getInitialTime()) && !(message1.getInitialTime() > message2.getEndTime());
     }
 
+    /**
+     * Gets messages.
+     *
+     * @return the messages
+     */
     public List<Message> getMessages() {
         //This is a defensive copy, so that the repository cannot be modified from the outside.
         return messages;

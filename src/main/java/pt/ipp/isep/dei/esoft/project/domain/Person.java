@@ -3,10 +3,8 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import java.util.Objects;
 
 /**
-
- Represents a person with identifying information such as email, passport and tax numbers,
-
- name, address, and phone number.
+ * Represents a person with identifying information such as email, passport and tax numbers,
+ * name, address, and phone number.
  */
 public class Person {
 
@@ -18,14 +16,14 @@ public class Person {
     private int phoneNumber;
 
     /**
-
-     Constructs a Person object with all identifying information.
-     @param email The person's email address.
-     @param passportNumber The person's passport number.
-     @param taxNumber The person's tax number.
-     @param name The person's name.
-     @param address The person's address.
-     @param phoneNumber The person's phone number.
+     * Constructs a Person object with all identifying information.
+     *
+     * @param email          The person's email address.
+     * @param passportNumber The person's passport number.
+     * @param taxNumber      The person's tax number.
+     * @param name           The person's name.
+     * @param address        The person's address.
+     * @param phoneNumber    The person's phone number.
      */
     public Person(String email, int passportNumber, int taxNumber, String name, Address address, int phoneNumber) {
         this.email = email;
@@ -35,14 +33,15 @@ public class Person {
         this.address = address;
         this.phoneNumber = phoneNumber;
     }
-    /**
 
-     Constructs a Person object with minimal identifying information.
-     @param email The person's email address.
-     @param passportNumber The person's passport number.
-     @param taxNumber The person's tax number.
-     @param name The person's name.
-     @param phoneNumber The person's phone number.
+    /**
+     * Constructs a Person object with minimal identifying information.
+     *
+     * @param email          The person's email address.
+     * @param passportNumber The person's passport number.
+     * @param taxNumber      The person's tax number.
+     * @param name           The person's name.
+     * @param phoneNumber    The person's phone number.
      */
     public Person(String email, int passportNumber, int taxNumber, String name, int phoneNumber) {
         this.email = email;
@@ -52,10 +51,20 @@ public class Person {
         this.phoneNumber = phoneNumber;
     }
 
+    /**
+     * Gets email.
+     *
+     * @return the email
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
     public String getName() {
         return name;
     }
@@ -90,11 +99,12 @@ public class Person {
     public int hashCode() {
         return Objects.hash(email, passportNumber, taxNumber, name, address, phoneNumber);
     }
-    /**
 
-     Compares the email of this Person with a given email.
-     @param email the email to compare with this Person's email.
-     @return 0 if the emails are equal, 1 otherwise.
+    /**
+     * Compares the email of this Person with a given email.
+     *
+     * @param email the email to compare with this Person's email.
+     * @return 0 if the emails are equal, 1 otherwise.
      */
     public int compare(String email){
         if (email.equals(this.email)){

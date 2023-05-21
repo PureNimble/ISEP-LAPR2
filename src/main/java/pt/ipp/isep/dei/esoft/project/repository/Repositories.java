@@ -2,10 +2,8 @@ package pt.ipp.isep.dei.esoft.project.repository;
 
 
 /**
-
- The Repositories class represents a singleton instance that manages all the repositories.
-
- This class contains methods to retrieve instances of each repository.
+ * The Repositories class represents a singleton instance that manages all the repositories.
+ * This class contains methods to retrieve instances of each repository.
  */
 public class Repositories {
 
@@ -82,115 +80,138 @@ public class Repositories {
      */
     private Repositories() {
     }
-    /**
 
-     Returns the instance of the Repositories class.
-     @return the instance of the Repositories class.
+    /**
+     * Returns the instance of the Repositories class.
+     *
+     * @return the instance of the Repositories class.
      */
     public static Repositories getInstance() {
         return instance;
     }
-    /**
 
-     Returns the RoleRepository instance.
-     @return the RoleRepository instance.
+    /**
+     * Returns the RoleRepository instance.
+     *
+     * @return the RoleRepository instance.
      */
     public RoleRepository getRoleRepository() {
         return roleRepository;
     }
-    /**
 
-     Returns the AuthenticationRepository instance.
-     @return the AuthenticationRepository instance.
+    /**
+     * Returns the AuthenticationRepository instance.
+     *
+     * @return the AuthenticationRepository instance.
      */
     public AuthenticationRepository getAuthenticationRepository() {
         return authenticationRepository;
     }
-    /**
 
-     Returns the StoreRepository instance.
-     @return the StoreRepository instance.
+    /**
+     * Returns the StoreRepository instance.
+     *
+     * @return the StoreRepository instance.
      */
     public StoreRepository getStoreRepository() {
         return storeRepository;
     }
-    /**
 
-     Returns the StateRepository instance.
-     @return the StateRepository instance.
+    /**
+     * Returns the StateRepository instance.
+     *
+     * @return the StateRepository instance.
      */
     public StateRepository getStateRepository() {
         return stateRepository;
     }
-    /**
 
-     Returns the EmployeeRepository instance.
-     @return the EmployeeRepository instance.
+    /**
+     * Returns the EmployeeRepository instance.
+     *
+     * @return the EmployeeRepository instance.
      */
     public EmployeeRepository getEmployeeRepository() {
         return employeeRepository;
     }
-    /**
 
-     Returns the UserRepository instance.
-     @return the UserRepository instance.
+    /**
+     * Returns the UserRepository instance.
+     *
+     * @return the UserRepository instance.
      */
     public UserRepository getUserRepository() {
         return userRepository;
     }
-    /**
 
-     Returns the PropertyTypeRepository instance.
-     @return the PropertyTypeRepository instance.
+    /**
+     * Returns the PropertyTypeRepository instance.
+     *
+     * @return the PropertyTypeRepository instance.
      */
     public PropertyTypeRepository getPropertyTypeRepository() {
         return propertyTypeRepository;
     }
-    /**
 
-     Returns the PublishedAnnouncementRepository instance.
-     @return the PublishedAnnouncementRepository instance.
+    /**
+     * Returns the PublishedAnnouncementRepository instance.
+     *
+     * @return the PublishedAnnouncementRepository instance.
      */
     public PublishedAnnouncementRepository getPublishedAnnouncementRepository() {
         return publishedAnnouncementRepository;
     }
-    /**
 
-     Returns the TypeOfBusinessRepository instance.
-     @return the TypeOfBusinessRepository instance.
+    /**
+     * Returns the TypeOfBusinessRepository instance.
+     *
+     * @return the TypeOfBusinessRepository instance.
      */
     public TypeOfBusinessRepository getTypeOfBusinessRepository() {
         return typeOfBusinessRepository;
     }
-    /**
 
-     Returns the AnnouncementRequestRepository instance.
-     @return the AnnouncementRequestRepository instance.
+    /**
+     * Returns the AnnouncementRequestRepository instance.
+     *
+     * @return the AnnouncementRequestRepository instance.
      */
     public AnnouncementRequestRepository getAnnouncementRequestRepository() {
         return announcementRequestRepository;
     }
-    /**
 
-     Returns the ComissionRepository instance.
-     @return the ComissionRepository instance.
+    /**
+     * Returns the ComissionRepository instance.
+     *
+     * @return the ComissionRepository instance.
      */
     public ComissionRepository getComissionRepository() {
         return comissionRepository;
     }
-    /**
 
-     Returns the AvailableEquipmentRepository instance.
-     @return the AvailableEquipmentRepository instance.
+    /**
+     * Returns the AvailableEquipmentRepository instance.
+     *
+     * @return the AvailableEquipmentRepository instance.
      */
     public AvailableEquipmentRepository getAvailableEquipmentRepository() {
         return availableEquipmentRepository;
     }
 
+    /**
+     * Gets message repository.
+     *
+     * @return the message repository
+     */
     public MessageRepository getMessageRepository() {
         return messageRepository;
     }
 
+    /**
+     * Sets message repository.
+     *
+     * @param messageRepository the message repository
+     */
     public void setMessageRepository(MessageRepository messageRepository) {
         this.messageRepository = messageRepository;
     }

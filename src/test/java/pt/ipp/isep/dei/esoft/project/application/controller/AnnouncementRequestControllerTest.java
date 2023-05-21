@@ -131,8 +131,14 @@ class AnnouncementRequestControllerTest {
         TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
         Double price = 1000.32;
         Business business = new Business(price);
+        Role role = new Role("Agent");
+        Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
+        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        List<Role> roles = new ArrayList<>();
+        roles.add(role);
+        Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
 
-        AnnouncementRequest announcementRequest = new AnnouncementRequest(date, typeOfBusiness, house, propertyType, business);
+        AnnouncementRequest announcementRequest = new AnnouncementRequest(date, typeOfBusiness, house, propertyType, business, employee);
         announcementRequests.add(announcementRequest);
 
         announcementRequestRepository.add(announcementRequest);
@@ -177,14 +183,20 @@ class AnnouncementRequestControllerTest {
         Business business = new Business(price);
 
 
-        AnnouncementRequest announcementRequestObject = new AnnouncementRequest(date, typeOfBusiness, house, propertyType, business, 5);
+        Role role = new Role("Agent");
+        Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
+        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        List<Role> roles = new ArrayList<>();
+        roles.add(role);
+        Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
+
+        AnnouncementRequest announcementRequestObject = new AnnouncementRequest(date, typeOfBusiness, house, propertyType, business, employee);
 
         Optional<AnnouncementRequest> announcementRequest = Optional.of(announcementRequestObject);
 
-        Optional<AnnouncementRequest> announcementRequest1 = controller.createAnnouncementRequest(date, typeOfBusiness, house, propertyType, business, 5);
+        Optional<AnnouncementRequest> announcementRequest1 = controller.createAnnouncementRequest(date, typeOfBusiness, house, propertyType, business, 5, employee);
 
-
-        assertEquals(announcementRequest, announcementRequest1);
+        assertEquals(announcementRequest.get(), announcementRequest1.get());
 
     }
 }

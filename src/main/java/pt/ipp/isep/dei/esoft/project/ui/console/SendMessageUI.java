@@ -12,11 +12,18 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The type Send message ui.
+ */
 public class SendMessageUI implements Runnable{
 
+    /**
+     * The Controller.
+     */
     public final SendMessageController controller = new SendMessageController();
 
     private final PublishAnnouncementController controllerPublishAnnouncement = new PublishAnnouncementController();
+
 
     @Override
     public void run() {
@@ -56,20 +63,20 @@ public class SendMessageUI implements Runnable{
             sb.append("\n");
         }
         System.out.println(sb);
-        System.out.println("Choose one property");
+        System.out.println("Choose one of the properties above.");
         int index = Integer.parseInt(input.nextLine())-1;
         return publishedAnnouncements.get(index);
     }
 
     private String requestClientName() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Client Name:");
+        System.out.println("Name:");
         return input.nextLine();
     }
 
     private String requestMessage() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Write message to agent:");
+        System.out.println("Write message to the agent:");
         return input.nextLine();
     }
 
@@ -95,13 +102,13 @@ public class SendMessageUI implements Runnable{
 
     private int requestInitialTime() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Initial time of visit in hours:");
+        System.out.println("Initial time for visit in hours:");
         return Integer.parseInt(input.nextLine());
     }
 
     private int requestEndTime() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Final time of visit in hours:");
+        System.out.println("Final time for visit in hours:");
         return Integer.parseInt(input.nextLine());
     }
 

@@ -9,11 +9,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
+
 /**
-
- The RegisterEmployeeUI class is responsible for user interaction related to employee registration.
-
- It implements the Runnable interface to run the UI as a separate thread.
+ * The RegisterEmployeeUI class is responsible for user interaction related to employee registration.
+ * It implements the Runnable interface to run the UI as a separate thread.
  */
 public class RegisterEmployeeUI implements Runnable {
     private final RegisterEmployeeController controller = new RegisterEmployeeController();

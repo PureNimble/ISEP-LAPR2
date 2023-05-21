@@ -10,12 +10,12 @@ public class User extends Person {
     /**
      * Constructs a User object with the specified email, passport number, tax number, name, address, and phone number.
      *
-     * @param email the email address of the user.
+     * @param email          the email address of the user.
      * @param passportNumber the passport number of the user.
-     * @param taxNumber the tax number of the user.
-     * @param name the name of the user.
-     * @param address the address of the user.
-     * @param phoneNumber the phone number of the user.
+     * @param taxNumber      the tax number of the user.
+     * @param name           the name of the user.
+     * @param address        the address of the user.
+     * @param phoneNumber    the phone number of the user.
      */
     public User(String email, int passportNumber, int taxNumber, String name, Address address, int phoneNumber) {
         super(email, passportNumber, taxNumber, name, address, phoneNumber);
@@ -24,11 +24,11 @@ public class User extends Person {
     /**
      * Constructs a User object with the specified email, passport number, tax number, name, and phone number.
      *
-     * @param email the email address of the user.
+     * @param email          the email address of the user.
      * @param passportNumber the passport number of the user.
-     * @param taxNumber the tax number of the user.
-     * @param name the name of the user.
-     * @param phoneNumber the phone number of the user.
+     * @param taxNumber      the tax number of the user.
+     * @param name           the name of the user.
+     * @param phoneNumber    the phone number of the user.
      */
     public User(String email, int passportNumber, int taxNumber, String name, int phoneNumber) {
         super(email, passportNumber, taxNumber, name, phoneNumber);

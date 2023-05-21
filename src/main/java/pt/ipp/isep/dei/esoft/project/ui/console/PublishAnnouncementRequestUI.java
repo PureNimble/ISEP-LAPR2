@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
+/**
+ * The type Publish announcement request ui.
+ */
 public class PublishAnnouncementRequestUI implements Runnable {
 
 

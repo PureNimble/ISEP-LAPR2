@@ -4,21 +4,21 @@ import pt.ipp.isep.dei.esoft.project.application.controller.PublishAnnouncementC
 import pt.ipp.isep.dei.esoft.project.domain.*;
 
 import java.util.*;
+
 /**
  * A repository for storing and managing PublishedAnnouncement objects.
  */
-
 public class PublishedAnnouncementRepository {
     /**
      * A list of published announcements.
      */
     private List<PublishedAnnouncement> publishedAnnouncements = new ArrayList<>();
+
     /**
      * Adds a new published announcement to the repository.
      *
      * @param publishedAnnouncement the published announcement to add.
-     * @return an Optional containing the newly added published announcement if the operation was successful,
-     *         otherwise an empty Optional.
+     * @return an Optional containing the newly added published announcement if the operation was successful,         otherwise an empty Optional.
      */
     public Optional<PublishedAnnouncement> add(PublishedAnnouncement publishedAnnouncement) {
 
@@ -41,18 +41,18 @@ public class PublishedAnnouncementRepository {
         boolean isValid = !publishedAnnouncements.contains(publishedAnnouncement);
         return isValid;
     }
+
     /**
      * Checks if a published announcement is valid and adds it to the repository if it is.
      *
-     * @param date the date of the published announcement.
-     * @param typeOfBusiness the type of business of the published announcement.
-     * @param property the property of the published announcement.
-     * @param propertyType the property type of the published announcement.
-     * @param comission the commission of the published announcement.
-     * @param business the business of the published announcement.
+     * @param date               the date of the published announcement.
+     * @param typeOfBusiness     the type of business of the published announcement.
+     * @param property           the property of the published announcement.
+     * @param propertyType       the property type of the published announcement.
+     * @param comission          the commission of the published announcement.
+     * @param business           the business of the published announcement.
      * @param durationOfContract the duration of the contract of the published announcement.
-     * @return an Optional containing the newly added published announcement if the operation was successful,
-     *         otherwise an empty Optional.
+     * @return an Optional containing the newly added published announcement if the operation was successful,         otherwise an empty Optional.
      */
     public Optional<PublishedAnnouncement> publishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract) {
 
@@ -74,6 +74,13 @@ public class PublishedAnnouncementRepository {
         return optionalValue;
     }
 
+    /**
+     * Published announcement request optional.
+     *
+     * @param comission           the comission
+     * @param announcementRequest the announcement request
+     * @return the optional
+     */
     public Optional<PublishedAnnouncement> publishedAnnouncementRequest( Comission comission, AnnouncementRequest announcementRequest) {
 
 
@@ -132,23 +139,28 @@ public class PublishedAnnouncementRepository {
 
 
     /**
-
-     This method returns a defensive (immutable) copy of the list of published announcements.
-     @return The list of published announcements.
+     * This method returns a defensive (immutable) copy of the list of published announcements.
+     *
+     * @return The list of published announcements.
      */
     public List<PublishedAnnouncement> getPublishedAnnouncements() {
         //This is a defensive copy, so that the repository cannot be modified from the outside.
         return publishedAnnouncements;
     }
 
+    /**
+     * Gets published announcements desc.
+     *
+     * @return the published announcements desc
+     */
     public List<PublishedAnnouncement> getPublishedAnnouncementsDesc() {
         //This is a defensive copy, so that the repository cannot be modified from the outside.
         Collections.sort(publishedAnnouncements, Comparator.comparing(PublishedAnnouncement::getDate).reversed());
         return publishedAnnouncements;
     }
-    /**
 
-     A comparator that compares PublishedAnnouncement objects in ascending order based on city name.
+    /**
+     * A comparator that compares PublishedAnnouncement objects in ascending order based on city name.
      */
     Comparator<PublishedAnnouncement> compareToAscendingCityName = new Comparator<PublishedAnnouncement>() {
         @Override
@@ -157,8 +169,7 @@ public class PublishedAnnouncementRepository {
         }
     };
     /**
-
-     A comparator that compares PublishedAnnouncement objects in descending order based on city name.
+     * A comparator that compares PublishedAnnouncement objects in descending order based on city name.
      */
     Comparator<PublishedAnnouncement> compareToDescendingCityName = new Comparator<PublishedAnnouncement>() {
         @Override
@@ -167,8 +178,7 @@ public class PublishedAnnouncementRepository {
         }
     };
     /**
-
-     A comparator that compares PublishedAnnouncement objects in ascending order based on price.
+     * A comparator that compares PublishedAnnouncement objects in ascending order based on price.
      */
     Comparator<PublishedAnnouncement> compareToAscendingPrice = new Comparator<PublishedAnnouncement>() {
         @Override
@@ -177,8 +187,7 @@ public class PublishedAnnouncementRepository {
         }
     };
     /**
-
-     A comparator that compares PublishedAnnouncement objects in descending order based on price.
+     * A comparator that compares PublishedAnnouncement objects in descending order based on price.
      */
     Comparator<PublishedAnnouncement> compareToDescendingPrice = new Comparator<PublishedAnnouncement>() {
         @Override
@@ -187,8 +196,7 @@ public class PublishedAnnouncementRepository {
         }
     };
     /**
-
-     A comparator that compares PublishedAnnouncement objects in ascending order based on state name.
+     * A comparator that compares PublishedAnnouncement objects in ascending order based on state name.
      */
     Comparator<PublishedAnnouncement> compareToAscendingStateName = new Comparator<PublishedAnnouncement>() {
         @Override
@@ -197,8 +205,7 @@ public class PublishedAnnouncementRepository {
         }
     };
     /**
-
-     A comparator that compares PublishedAnnouncement objects in descending order based on state name.
+     * A comparator that compares PublishedAnnouncement objects in descending order based on state name.
      */
     Comparator<PublishedAnnouncement> compareToDescendingStateName = new Comparator<PublishedAnnouncement>() {
         @Override
@@ -208,7 +215,9 @@ public class PublishedAnnouncementRepository {
     };
 
 
-
+    /**
+     * The Compare to descending date.
+     */
     Comparator<PublishedAnnouncement> compareToDescendingDate = new Comparator<PublishedAnnouncement>() {
         @Override
         public int compare(PublishedAnnouncement announcement1, PublishedAnnouncement announcement2) {

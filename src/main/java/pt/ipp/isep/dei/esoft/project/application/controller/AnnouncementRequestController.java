@@ -252,6 +252,12 @@ public class AnnouncementRequestController {
     }
 
 
+    /**
+     * Get agent by description employee.
+     *
+     * @param agentDescription the agent description
+     * @return the employee
+     */
     public Employee getAgentByDescription(String agentDescription){
         EmployeeRepository employeeRepository = getEmployeeRepository();
 

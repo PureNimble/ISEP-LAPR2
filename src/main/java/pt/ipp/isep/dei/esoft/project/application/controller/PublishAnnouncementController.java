@@ -256,6 +256,11 @@ public class PublishAnnouncementController {
         return publishedAnnouncementRepository.getPublishedAnnouncements();
     }
 
+    /**
+     * Gets published announcements desc.
+     *
+     * @return the published announcements desc
+     */
     public List<PublishedAnnouncement> getPublishedAnnouncementsDesc() {
         PublishedAnnouncementRepository publishedAnnouncementRepository = getPublishedAnnouncementRepository();
         return publishedAnnouncementRepository.getPublishedAnnouncementsDesc();

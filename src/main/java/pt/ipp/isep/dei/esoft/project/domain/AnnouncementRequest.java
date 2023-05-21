@@ -53,14 +53,29 @@ public class AnnouncementRequest {
         this.agent = agent;
     }
 
+    /**
+     * Gets property.
+     *
+     * @return the property
+     */
     public Property getProperty() {
         return property;
     }
 
+    /**
+     * Gets date.
+     *
+     * @return the date
+     */
     public Date getDate() {
         return date;
     }
 
+    /**
+     * Gets agent.
+     *
+     * @return the agent
+     */
     public Employee getAgent() {
         return agent;
     }
