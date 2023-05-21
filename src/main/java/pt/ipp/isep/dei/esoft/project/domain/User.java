@@ -48,5 +48,7 @@ public class User extends Person {
     public String getEmail(){
         return super.getEmail();
     }
+
+    public String getName() { return  super.getName(); }
 }
 

@@ -4,8 +4,7 @@ import pt.ipp.isep.dei.esoft.project.application.controller.authorization.Authen
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Bootstrap implements Runnable {
 
@@ -38,7 +37,18 @@ public class Bootstrap implements Runnable {
 
         Employee agent2 = new Employee("agent2@this.app",12345677,12231311,"Agent 02",555661,store,roles,address);
 
-
+        PublishedAnnouncementRepository publishedAnnouncementRepository = Repositories.getInstance().getPublishedAnnouncementRepository();
+        Comission com = new Comission(25.00);
+        Property property = new Property(2,2);
+        PropertyType propertyType = new PropertyType("House");
+        TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
+        Business business = new Business(200);
+        Date date1 = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
+        Date date2 = new GregorianCalendar(2015, Calendar.FEBRUARY, 11).getTime();
+        PublishedAnnouncement p1 = new PublishedAnnouncement(date1, typeOfBusiness, property, propertyType, com, business);
+        PublishedAnnouncement p2 = new PublishedAnnouncement(date2, typeOfBusiness, property, propertyType, com, business);
+        publishedAnnouncementRepository.add(p1);
+        publishedAnnouncementRepository.add(p2);
         employeeRepository.add(agent1);
         employeeRepository.add(agent2);
     }
@@ -59,6 +69,7 @@ public class Bootstrap implements Runnable {
         //get task category repository
         RoleRepository roleRepository = Repositories.getInstance().getRoleRepository();
         roleRepository.add(new Role("Admin"));
+        roleRepository.add(new Role("Client"));
         roleRepository.add(new Role("Agent"));
         roleRepository.add(new Role("Store Manager"));
         roleRepository.add(new Role("Store Network Manager"));
@@ -88,6 +99,8 @@ public class Bootstrap implements Runnable {
 
         authenticationRepository.addUserRole(AuthenticationController.ROLE_OWNER, AuthenticationController.ROLE_OWNER);
 
+        authenticationRepository.addUserRole(AuthenticationController.ROLE_CLIENT, AuthenticationController.ROLE_CLIENT);
+
         authenticationRepository.addUserWithRole("Main Administrator", "admin@this.app", "admin",
                 AuthenticationController.ROLE_ADMIN);
 
@@ -99,6 +112,9 @@ public class Bootstrap implements Runnable {
         authenticationRepository.addUserWithRole("Owner", "owner@this.app", "owner", AuthenticationController.ROLE_OWNER);
 
         authenticationRepository.addUserWithRole("Agent 02","agent2@this.app","agent02",AuthenticationController.ROLE_AGENT);
+
+        authenticationRepository.addUserWithRole("Client", "client@this.app", "client",
+                AuthenticationController.ROLE_CLIENT);
 
 
     }

@@ -256,6 +256,11 @@ public class PublishAnnouncementController {
         return publishedAnnouncementRepository.getPublishedAnnouncements();
     }
 
+    public List<PublishedAnnouncement> getPublishedAnnouncementsDesc() {
+        PublishedAnnouncementRepository publishedAnnouncementRepository = getPublishedAnnouncementRepository();
+        return publishedAnnouncementRepository.getPublishedAnnouncementsDesc();
+    }
+
     /**
 
      Returns a new Business object with the specified price description.

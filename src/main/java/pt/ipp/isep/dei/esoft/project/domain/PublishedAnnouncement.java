@@ -66,6 +66,19 @@ public class PublishedAnnouncement {
         this.announcementRequest = announcementRequest;
     }
 
+
+    public Property getProperty() {
+        return property;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     /**
      * Returns a string representation of the announcement for sale.
      *

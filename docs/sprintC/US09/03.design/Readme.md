@@ -49,15 +49,14 @@
 #### Systematization
 
 The conceptual classes developed to software classes are, matching with the adopted rationale:
-* Announcement
+* Message
 
 Other software classes identified:
-* PublishUI
-* AnnouncementRepository
-* UserIdentityRepository
-* PropertyTypeRepository
-* TypesOfBusinessRepository
-* TypesComissionRepository
+* MessageUI
+* PublishedAnnouncementRepository
+* UserRepository
+* MessageRepository
+
 
 ### 3.2. Sequence Diagram (SD)
 

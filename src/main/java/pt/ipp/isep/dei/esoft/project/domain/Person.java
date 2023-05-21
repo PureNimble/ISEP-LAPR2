@@ -56,6 +56,10 @@ public class Person {
         return email;
     }
 
+    public String getName() {
+        return name;
+    }
+
     /**
 
      Returns a String representation of this Person.

@@ -140,6 +140,12 @@ public class PublishedAnnouncementRepository {
         //This is a defensive copy, so that the repository cannot be modified from the outside.
         return publishedAnnouncements;
     }
+
+    public List<PublishedAnnouncement> getPublishedAnnouncementsDesc() {
+        //This is a defensive copy, so that the repository cannot be modified from the outside.
+        Collections.sort(publishedAnnouncements, Comparator.comparing(PublishedAnnouncement::getDate).reversed());
+        return publishedAnnouncements;
+    }
     /**
 
      A comparator that compares PublishedAnnouncement objects in ascending order based on city name.
@@ -201,5 +207,13 @@ public class PublishedAnnouncementRepository {
         }
     };
 
+
+
+    Comparator<PublishedAnnouncement> compareToDescendingDate = new Comparator<PublishedAnnouncement>() {
+        @Override
+        public int compare(PublishedAnnouncement announcement1, PublishedAnnouncement announcement2) {
+            return announcement2.getDate().compareTo(announcement1.getDate());
+        }
+    };
 
 }

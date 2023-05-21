@@ -343,7 +343,7 @@ public class PublishAnnouncementUI implements Runnable {
                 System.out.println("Please select N if the house doesn t have basement and Y if the house have basement");
             }
 
-        } while (!basementString.equals("N") && !basementString.equals("S"));
+        } while (!basementString.equals("N") && !basementString.equals("Y"));
 
         return basementString;
     }
@@ -363,7 +363,7 @@ public class PublishAnnouncementUI implements Runnable {
                 System.out.println("Please select N if the house doesn t have Inhabitable loft and Y if the house have Inhabitable Loft");
             }
 
-        } while (!inhabitableLoftString.equals("N") && !inhabitableLoftString.equals("S"));
+        } while (!inhabitableLoftString.equals("N") && !inhabitableLoftString.equals("Y"));
 
         return inhabitableLoftString;
     }
