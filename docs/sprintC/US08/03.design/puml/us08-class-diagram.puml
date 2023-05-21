@@ -209,10 +209,6 @@ class Repositories{
 +getAnnouncementRequestRepository()
 }
 
-class User{
--String passwordGenerator
-+getPassword()
-}
 
 PublishAnnouncementRequestUI .> PublishAnnouncementRequestController
 
@@ -255,10 +251,7 @@ Adress "1" -left- "1" State
 State "1" -left- "*" District
 
 District "1" -left- "*" City
-
-User <|-- Employee
-
-Person <|-- User
+Person <|-- Employee
 
 EmployeeRepository ----> "*" Employee
 

@@ -6,10 +6,7 @@ import pt.ipp.isep.dei.esoft.project.domain.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * The type Publish announcement request ui.
@@ -23,18 +20,35 @@ public class PublishAnnouncementRequestUI implements Runnable {
 
     private int announcementRequestDescription;
 
+    private String option;
+
+    private String messageJustification;
 
     public void run() {
+
+
 
         System.out.println("Publish Announcement Request: ");
 
 
             announcementRequestDescription = displayAndSelectAnnouncementRequests(controller.getEmployeeByEmail(controller.getCurrentSessionEmail()));
 
+            option = requestOption();
 
-            comissionDescription = displayAndSelectComission();
-
+            if (requestOption().equals("A")) {
+                comissionDescription = displayAndSelectComission();
+            }else {
+                requestData();
+            }
             submitData();
+
+
+    }
+
+
+    private void requestData() {
+
+       messageJustification = requestMessageJustification();
 
 
     }
@@ -54,6 +68,19 @@ public class PublishAnnouncementRequestUI implements Runnable {
             System.out.println("Aconteceu algum erro...");
         }
 
+    }
+
+
+    private String requestMessageJustification(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Give the reason to the owner justifying your decision");
+        return input.nextLine();
+    }
+
+    private String requestOption(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Do you want to reject or accept this announcement(A-Accept/R-Reject):");
+        return input.nextLine();
     }
 
 

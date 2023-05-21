@@ -21,15 +21,24 @@ activate Agent
             Agent -> System : selects one announcement request
             activate System
 
-
+opt Accepts Announcement Request
 System --> Agent:shows the comissions available
 deactivate System
 
 Agent -> System:select the respective comission
-activate System
-
-System --> Agent: shows the infomation of the announcement request and asks for confirmation
 deactivate System
+end
+alt reject Announcement Request
+System --> Agent:requests data(messageJustification)
+deactivate System
+
+Agent -> System:types request data
+activate System
+end
+
+System --> Agent: shows the infomation of and asks for confirmation
+deactivate System
+
 
  Agent -> System : submits data
     activate System
