@@ -9,13 +9,13 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-title PublishAnnouncementUI Sequence Diagram (SSD)
+title PublishAnnouncementRequestUI Sequence Diagram (SSD)
 
 autonumber
 
 actor "Agent" as Agent
-participant ":PublishAnnouncementUI" as PublishAnnouncementUI
-participant ":PublishAnnouncementController" as PublishAnnouncementController
+participant ":PublishAnnouncementRequestUI" as PublishAnnouncementRequestUI
+participant ":PublishAnnouncementRequestController" as PublishAnnouncementRequestController
 participant ":Repositories" as Singleton
 participant "repositories\n:Repositories" as repositories
 participant ":ApplicationSession" as AplicationSession
@@ -26,167 +26,174 @@ participant "publishedAnnouncementRequestRepository\n:PublishedAnnouncementReque
 participant "employeeRepository\n:EmployeeRepository" as EmployeeRepository
 participant "comissionRepository\n:ComissionRepository" as ComissionRepository
 participant "announcementReques"
-
+participant ":XMapper" as XMapper
+participant "listAnnouncementRequestDto:List<AnnouncementRequestDto>" as listAnnouncementRequestDto
 
 activate Agent
 
-    Agent -> PublishAnnouncementUI : asks to see the list of property announcement request
-    activate PublishAnnouncementUI
+    Agent -> PublishAnnouncementRequestUI : asks to see the list of property announcement request
+    activate PublishAnnouncementRequestUI
 
-PublishAnnouncementUI -> PublishAnnouncementController**: create
+PublishAnnouncementRequestUI -> PublishAnnouncementRequestController**: create
 
-PublishAnnouncementUI -> PublishAnnouncementController : getAnnouncementRequestList()
-activate PublishAnnouncementController
+PublishAnnouncementRequestUI -> PublishAnnouncementRequestController : getAnnouncementRequestList()
+activate PublishAnnouncementRequestController
 
-PublishAnnouncementController -> PublishAnnouncementController: getEmployeeFromSession
+PublishAnnouncementRequestController -> PublishAnnouncementRequestController: getEmployeeFromSession
 
-PublishAnnouncementController -> AplicationSession: getInstance()
+PublishAnnouncementRequestController -> AplicationSession: getInstance()
 activate AplicationSession
 
-AplicationSession --> PublishAnnouncementController:appSession
+AplicationSession --> PublishAnnouncementRequestController:appSession
 deactivate AplicationSession
 
-PublishAnnouncementController -> aplicationSession :getCurrentSession()
+PublishAnnouncementRequestController -> aplicationSession :getCurrentSession()
 activate aplicationSession
 
-aplicationSession --> PublishAnnouncementController:currentSession
+aplicationSession --> PublishAnnouncementRequestController:currentSession
 deactivate aplicationSession
 
-PublishAnnouncementController -> UserSession :email = getUserEmail()
+PublishAnnouncementRequestController -> UserSession :email = getUserEmail()
 activate UserSession
 
-UserSession --> PublishAnnouncementController:email
+UserSession --> PublishAnnouncementRequestController:email
 deactivate UserSession
 
-PublishAnnouncementController ->EmployeeRepository:getEmployeeByEmail()
+PublishAnnouncementRequestController ->EmployeeRepository:getEmployeeByEmail()
 activate EmployeeRepository
 
-EmployeeRepository --> PublishAnnouncementController:employeeByEmail
+EmployeeRepository --> PublishAnnouncementRequestController:employeeByEmail
 deactivate EmployeeRepository
 
 
 
 
-PublishAnnouncementController -> Singleton: getInstance()
+PublishAnnouncementRequestController -> Singleton: getInstance()
 activate Singleton
 
-Singleton --> PublishAnnouncementController: repositories
+Singleton --> PublishAnnouncementRequestController: repositories
 deactivate Singleton
 
-PublishAnnouncementController -> repositories: getAnnouncementsRequestRepository()
+PublishAnnouncementRequestController -> repositories: getAnnouncementsRequestRepository()
 activate repositories
 
-repositories --> PublishAnnouncementController:announcementRepository
+repositories --> PublishAnnouncementRequestController:announcementRepository
 deactivate repositories
 
-PublishAnnouncementController -> AnnouncementRequestRepository:getAnnouncementRequestListByAgent(employeeByEmail)
+PublishAnnouncementRequestController -> AnnouncementRequestRepository:getAnnouncementRequestListByAgent(employeeByEmail)
 activate AnnouncementRequestRepository
 
-AnnouncementRequestRepository --> PublishAnnouncementController:announcementsRequestListByAgent
+AnnouncementRequestRepository --> PublishAnnouncementRequestController:announcementsRequestListByAgent
 deactivate AnnouncementRequestRepository
 
+PublishAnnouncementRequestController -> XMapper: toDto(announcementsRequestListByAgent)
+activate XMapper
 
-PublishAnnouncementController --> PublishAnnouncementUI:announcementsRequestListByAgent
-deactivate PublishAnnouncementController
-
-     PublishAnnouncementUI --> Agent : shows list of announcement request responsible for that agent and asks to select one
-        deactivate PublishAnnouncementUI
-
-            Agent -> PublishAnnouncementUI : selects one announcement request
-            activate PublishAnnouncementUI
+XMapper --> listAnnouncementRequestDto**: create()
 
 
 
- PublishAnnouncementUI --> PublishAnnouncementController : getTypeComission()
-           activate PublishAnnouncementController
+PublishAnnouncementRequestController --> PublishAnnouncementRequestUI:announcementsRequestListByAgent
+deactivate PublishAnnouncementRequestController
 
-           PublishAnnouncementController -> Singleton : getInstance()
+     PublishAnnouncementRequestUI --> Agent : shows list of announcement request responsible for that agent and asks to select one
+        deactivate PublishAnnouncementRequestUI
+
+            Agent -> PublishAnnouncementRequestUI : selects one announcement request
+            activate PublishAnnouncementRequestUI
+
+
+
+ PublishAnnouncementRequestUI --> PublishAnnouncementRequestController : getTypeComission()
+           activate PublishAnnouncementRequestController
+
+           PublishAnnouncementRequestController -> Singleton : getInstance()
            activate Singleton
 
-           Singleton --> PublishAnnouncementController : repositories
+           Singleton --> PublishAnnouncementRequestController : repositories
            deactivate Singleton
 
-           PublishAnnouncementController -> repositories : getTypeComissionRepository()
+           PublishAnnouncementRequestController -> repositories : getTypeComissionRepository()
            activate repositories
 
-           repositories --> PublishAnnouncementController : typeComissionRepository
+           repositories --> PublishAnnouncementRequestController : typeComissionRepository
            deactivate repositories
 
-               PublishAnnouncementController -> ComissionRepository : getTypeComission()
+               PublishAnnouncementRequestController -> ComissionRepository : getTypeComission()
                 activate ComissionRepository
 
-                ComissionRepository --> PublishAnnouncementController : Type Comission
+                ComissionRepository --> PublishAnnouncementRequestController : Type Comission
                 deactivate ComissionRepository
 
-           PublishAnnouncementController --> PublishAnnouncementUI : Type Comission
-           deactivate PublishAnnouncementController
+           PublishAnnouncementRequestController --> PublishAnnouncementRequestUI : Type Comission
+           deactivate PublishAnnouncementRequestController
 
 
 
-PublishAnnouncementUI --> Agent:shows the list of comissions
-deactivate PublishAnnouncementUI
+PublishAnnouncementRequestUI --> Agent:shows the list of comissions
+deactivate PublishAnnouncementRequestUI
 
-Agent -> PublishAnnouncementUI:selects the respective comssion
-activate PublishAnnouncementUI
+Agent -> PublishAnnouncementRequestUI:selects the respective comssion
+activate PublishAnnouncementRequestUI
 
-PublishAnnouncementUI --> Agent:shows the information of the announcement request selected and asks for confirmation
-deactivate PublishAnnouncementUI
+PublishAnnouncementRequestUI --> Agent:shows the information of the announcement request selected and asks for confirmation
+deactivate PublishAnnouncementRequestUI
 
- Agent -> PublishAnnouncementUI : submits data
-    activate PublishAnnouncementUI
+ Agent -> PublishAnnouncementRequestUI : submits data
+    activate PublishAnnouncementRequestUI
 
 
-PublishAnnouncementUI -> PublishAnnouncementController:publishAnnouncementRequest(publishedAnnouncementRequestDescription,comissionDescription)
-activate PublishAnnouncementController
+PublishAnnouncementRequestUI -> PublishAnnouncementRequestController:publishAnnouncementRequest(publishedAnnouncementRequestDescription,comissionDescription)
+activate PublishAnnouncementRequestController
 
-PublishAnnouncementController -> PublishAnnouncementController:getAnnouncementRequestByDescription(announcementRequestDescription)
-activate PublishAnnouncementController
+PublishAnnouncementRequestController -> PublishAnnouncementRequestController:getAnnouncementRequestByDescription(announcementRequestDescription)
+activate PublishAnnouncementRequestController
 
-PublishAnnouncementController -> Singleton: getInstance()
+PublishAnnouncementRequestController -> Singleton: getInstance()
 activate Singleton
 
-Singleton--> PublishAnnouncementController :repositories
+Singleton--> PublishAnnouncementRequestController :repositories
 deactivate Singleton
 
-PublishAnnouncementController-> repositories:getAnnouncementsRequestRepository()
+PublishAnnouncementRequestController-> repositories:getAnnouncementsRequestRepository()
 activate repositories
 
-repositories -->PublishAnnouncementController:getAnnouncementsRequestRepository
+repositories -->PublishAnnouncementRequestController:getAnnouncementsRequestRepository
 deactivate repositories
 
-PublishAnnouncementController -> AnnouncementRequestRepository :getAnnouncementRequestByDescription()
+PublishAnnouncementRequestController -> AnnouncementRequestRepository :getAnnouncementRequestByDescription()
 activate AnnouncementRequestRepository
 
-AnnouncementRequestRepository --> PublishAnnouncementController:announcementRequest
+AnnouncementRequestRepository --> PublishAnnouncementRequestController:announcementRequest
 deactivate AnnouncementRequestRepository
 
-PublishAnnouncementController--> PublishAnnouncementController:announcementRequest
+PublishAnnouncementRequestController--> PublishAnnouncementRequestController:announcementRequest
 
 
-PublishAnnouncementController -> PublishAnnouncementController:getComissionByDescription(comissionDescription)
-activate PublishAnnouncementController
+PublishAnnouncementRequestController -> PublishAnnouncementRequestController:getComissionByDescription(comissionDescription)
+activate PublishAnnouncementRequestController
 
-PublishAnnouncementController -> Singleton:getInstance()
+PublishAnnouncementRequestController -> Singleton:getInstance()
 activate Singleton
 
-Singleton --> PublishAnnouncementController:repositories
+Singleton --> PublishAnnouncementRequestController:repositories
 deactivate Singleton
 
-PublishAnnouncementController -> repositories:getComissionRepository()
+PublishAnnouncementRequestController -> repositories:getComissionRepository()
 activate repositories
 
-repositories --> PublishAnnouncementController:comissionRepository
+repositories --> PublishAnnouncementRequestController:comissionRepository
 deactivate repositories
 
-PublishAnnouncementController -> ComissionRepository:getComissionByDescription()
+PublishAnnouncementRequestController -> ComissionRepository:getComissionByDescription()
 activate ComissionRepository
 
-PublishAnnouncementController --> ComissionRepository:comission
+PublishAnnouncementRequestController --> ComissionRepository:comission
 deactivate ComissionRepository
 
-PublishAnnouncementController --> PublishAnnouncementController:comission
+PublishAnnouncementRequestController --> PublishAnnouncementRequestController:comission
 
-PublishAnnouncementController -> PublishAnnouncementRepository:createPublishedAnnouncement(announcementRequest,comission)
+PublishAnnouncementRequestController -> PublishAnnouncementRepository:createPublishedAnnouncement(announcementRequest,comission)
 activate PublishAnnouncementRepository
 
 PublishAnnouncementRepository -> PublishedAnnouncement** : createEmployee (name,passport number,tax number \n,email ,telephone number,store\n role,adress)
@@ -200,13 +207,13 @@ PublishAnnouncementRepository -> PublishedAnnouncement** : createEmployee (name,
                 deactivate PublishAnnouncementRepository
 
 
-PublishAnnouncementRepository --> PublishAnnouncementController:publishedAnnouncement
+PublishAnnouncementRepository --> PublishAnnouncementRequestController:publishedAnnouncement
 deactivate PublishAnnouncementRepository
 
-PublishAnnouncementController --> PublishAnnouncementUI:publishedAnnouncement
+PublishAnnouncementRequestController --> PublishAnnouncementRequestUI:publishedAnnouncement
 
-        PublishAnnouncementUI --> Agent : displays operation success
-    deactivate PublishAnnouncementUI
+        PublishAnnouncementRequestUI --> Agent : displays operation success
+    deactivate PublishAnnouncementRequestUI
 
 
 

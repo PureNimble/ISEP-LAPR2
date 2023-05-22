@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.ui.console.utils;
 
+import pt.isep.lei.esoft.auth.mappers.dto.UserRoleDTO;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.text.ParseException;
@@ -86,6 +88,12 @@ public class Utils {
         return selectsObject(list);
     }
 
+    static public Object showAndSelectOneRole(List list, String header) {
+        showListRoleSession(list, header);
+        return selectsObject(list);
+    }
+
+
     static public int showAndSelectIndex(List list, String header) {
         showList(list, header);
         return selectsIndex(list);
@@ -103,6 +111,22 @@ public class Utils {
         System.out.println();
         System.out.println("0 - Cancel");
     }
+
+
+    static public void showListRoleSession(List<UserRoleDTO> list, String header) {
+        System.out.println(header);
+
+        int index = 0;
+        for (UserRoleDTO o : list) {
+            index++;
+
+            System.out.println(index + ". " +o.getDescription() );
+        }
+        System.out.println();
+        System.out.println("0 - Cancel");
+    }
+
+
 
     static public Object selectsObject(List list) {
         String input;

@@ -75,7 +75,6 @@ public class Bootstrap implements Runnable {
         //get task category repository
         RoleRepository roleRepository = Repositories.getInstance().getRoleRepository();
         roleRepository.add(new Role("Admin"));
-        roleRepository.add(new Role("Client"));
         roleRepository.add(new Role("Agent"));
         roleRepository.add(new Role("Store Manager"));
         roleRepository.add(new Role("Store Network Manager"));

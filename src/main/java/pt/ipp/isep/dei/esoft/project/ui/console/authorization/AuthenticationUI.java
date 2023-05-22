@@ -95,7 +95,7 @@ public class AuthenticationUI implements Runnable {
         if (roles.size() == 1) {
             return roles.get(0);
         } else {
-            return (UserRoleDTO) Utils.showAndSelectOne(roles, "Select the role you want to adopt in this session:");
+            return (UserRoleDTO) Utils.showAndSelectOneRole(roles,"Select the role you want to adopt in this session:" );
         }
     }
 

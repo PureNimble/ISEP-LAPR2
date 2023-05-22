@@ -53,6 +53,22 @@ public class AnnouncementRequest {
         this.agent = agent;
     }
 
+    public TypeOfBusiness getTypeOfBusiness() {
+        return typeOfBusiness;
+    }
+
+    public PropertyType getPropertyType() {
+        return propertyType;
+    }
+
+    public Business getBusiness() {
+        return business;
+    }
+
+    public int getDurationOfContract() {
+        return durationOfContract;
+    }
+
     /**
      * Gets property.
      *

@@ -1,9 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
-import pt.ipp.isep.dei.esoft.project.domain.AnnouncementRequest;
-import pt.ipp.isep.dei.esoft.project.domain.Comission;
-import pt.ipp.isep.dei.esoft.project.domain.Employee;
-import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
+import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.*;
 
 import java.util.AbstractCollection;
@@ -149,8 +146,19 @@ public class PublishedAnnouncementRequestController {
      */
     public List<AnnouncementRequest> getAnnouncementRequestByMostRecent(Employee agent) {
         AnnouncementRequestRepository announcementRequestRepository = getAnnouncementRequestRepository();
-        return announcementRequestRepository.getAnnouncementRequestsByMostRecent(agent);
+        List<PublishedAnnouncement> publishedAnnouncements = getPublishedAnnouncements();
+
+        return announcementRequestRepository.getAnnouncementRequestsByMostRecent(agent,publishedAnnouncements);
     }
+
+    public List<AnnouncementRequestDto> toDto(Employee agent){
+        List<AnnouncementRequest> announcementRequests = getAnnouncementRequestByMostRecent(agent);
+
+        AnnouncementRequestMapper announcementRequestMapper = new AnnouncementRequestMapper();
+
+        return  announcementRequestMapper.toDto(announcementRequests);
+    }
+
 
     /**
 

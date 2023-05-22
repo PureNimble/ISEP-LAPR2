@@ -64,6 +64,11 @@ public class AuthenticationRepository {
     public boolean addUserWithRole(String name, String email, String pwd, String roleId) {
         return authenticationFacade.addUserWithRole(name, email, pwd, roleId);
     }
+
+
+    public boolean addUserWithRoles(String name, String email, String pwd, String[] roleId) {
+        return authenticationFacade.addUserWithRoles(name, email, pwd, roleId);
+    }
     /**
 
      Generates a random password with the specified length, number of capital letters, and number of digits.

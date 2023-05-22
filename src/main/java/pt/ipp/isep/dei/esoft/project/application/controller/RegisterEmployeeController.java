@@ -326,5 +326,9 @@ public class RegisterEmployeeController {
         return roleRepository.getRoles();
     }
 
+    public void addUser(String name,String employeeEmail, String password, String[] rolesString){
+        AuthenticationRepository authenticationRepository = getAuthenticationRepository();
+        authenticationRepository.addUserWithRoles(name,employeeEmail,password,rolesString);
+    }
 
 }

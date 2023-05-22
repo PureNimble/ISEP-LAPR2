@@ -6,25 +6,22 @@ import pt.ipp.isep.dei.esoft.project.domain.*;
 import java.util.*;
 
 /**
-
- The AnnouncementRequestRepository class is responsible for managing the list of AnnouncementRequest objects.
-
- It provides methods to add an AnnouncementRequest to the list, retrieve a list of AnnouncementRequest objects, and validate that an AnnouncementRequest is not already in the list.
+ * The AnnouncementRequestRepository class is responsible for managing the list of AnnouncementRequest objects.
+ * <p>
+ * It provides methods to add an AnnouncementRequest to the list, retrieve a list of AnnouncementRequest objects, and validate that an AnnouncementRequest is not already in the list.
  */
 public class AnnouncementRequestRepository {
 
     /**
-
-     The list of AnnouncementRequest objects.
+     * The list of AnnouncementRequest objects.
      */
     private List<AnnouncementRequest> announcementRequests = new ArrayList<>();
+
     /**
-
-     Adds an AnnouncementRequest to the list if it is valid and not already in the list.
-
-     @param announcementRequest The AnnouncementRequest to add.
-
-     @return An Optional containing the added AnnouncementRequest if the operation was successful, otherwise an empty Optional.
+     * Adds an AnnouncementRequest to the list if it is valid and not already in the list.
+     *
+     * @param announcementRequest The AnnouncementRequest to add.
+     * @return An Optional containing the added AnnouncementRequest if the operation was successful, otherwise an empty Optional.
      */
     public Optional<AnnouncementRequest> add(AnnouncementRequest announcementRequest) {
 
@@ -45,43 +42,37 @@ public class AnnouncementRequestRepository {
 
 
     /**
-
-     Validates that an AnnouncementRequest is not already in the list.
-     @param announcementRequest The AnnouncementRequest to validate.
-     @return true if the AnnouncementRequest is valid, false otherwise.
+     * Validates that an AnnouncementRequest is not already in the list.
+     *
+     * @param announcementRequest The AnnouncementRequest to validate.
+     * @return true if the AnnouncementRequest is valid, false otherwise.
      */
     private boolean validateAnnouncementRequest(AnnouncementRequest announcementRequest) {
         boolean isValid = announcementRequests.contains(announcementRequest);
         return isValid;
     }
+
     /**
-
-     Creates an AnnouncementRequest object and adds it to the list if it is valid and not already in the list.
-
-     @param date The date of the AnnouncementRequest.
-
-     @param typeOfBusiness The type of business for the AnnouncementRequest.
-
-     @param property The property for the AnnouncementRequest.
-
-     @param propertyType The property type for the AnnouncementRequest.
-
-     @param business The business for the AnnouncementRequest.
-
-     @param durationOfContract The duration of the contract for the AnnouncementRequest.
-
-     @return An Optional containing the added AnnouncementRequest if the operation was successful, otherwise an empty Optional.
+     * Creates an AnnouncementRequest object and adds it to the list if it is valid and not already in the list.
+     *
+     * @param date               The date of the AnnouncementRequest.
+     * @param typeOfBusiness     The type of business for the AnnouncementRequest.
+     * @param property           The property for the AnnouncementRequest.
+     * @param propertyType       The property type for the AnnouncementRequest.
+     * @param business           The business for the AnnouncementRequest.
+     * @param durationOfContract The duration of the contract for the AnnouncementRequest.
+     * @return An Optional containing the added AnnouncementRequest if the operation was successful, otherwise an empty Optional.
      */
-    public Optional<AnnouncementRequest> announcementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract,Employee agent) {
+    public Optional<AnnouncementRequest> announcementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract, Employee agent) {
 
         Optional<AnnouncementRequest> optionalValue = Optional.empty();
 
         AnnouncementRequest announcementRequest;
 
         if (property.toString().equals("Rent")) {
-            announcementRequest = new AnnouncementRequest(date, typeOfBusiness, property, propertyType, business, durationOfContract,agent);
+            announcementRequest = new AnnouncementRequest(date, typeOfBusiness, property, propertyType, business, durationOfContract, agent);
         } else {
-            announcementRequest = new AnnouncementRequest(date, typeOfBusiness, property, propertyType, business,agent);
+            announcementRequest = new AnnouncementRequest(date, typeOfBusiness, property, propertyType, business, agent);
         }
 
         if (addAnnouncementRequest(announcementRequest)) {
@@ -92,10 +83,10 @@ public class AnnouncementRequestRepository {
     }
 
     /**
-
-     Adds an AnnouncementRequest to the list if it is valid and not already in the list.
-     @param announcementRequest The AnnouncementRequest to add.
-     @return true if the AnnouncementRequest is valid and was added to the list, false otherwise.
+     * Adds an AnnouncementRequest to the list if it is valid and not already in the list.
+     *
+     * @param announcementRequest The AnnouncementRequest to add.
+     * @return true if the AnnouncementRequest is valid and was added to the list, false otherwise.
      */
     private boolean addAnnouncementRequest(AnnouncementRequest announcementRequest) {
         boolean success = false;
@@ -139,12 +130,21 @@ public class AnnouncementRequestRepository {
      * @param agent the agent
      * @return the list
      */
-    public  List<AnnouncementRequest> getAnnouncementRequestsByMostRecent(Employee agent){
+    public List<AnnouncementRequest> getAnnouncementRequestsByMostRecent(Employee agent, List<PublishedAnnouncement> publishedAnnouncements) {
         List<AnnouncementRequest> newAnnouncementRequest = new ArrayList<>();
 
-        for (AnnouncementRequest announcementRequest: announcementRequests) {
-            if (announcementRequest.getAgent().equals(agent)){
-                newAnnouncementRequest.add(announcementRequest);
+        int aux = 0;
+        for (AnnouncementRequest announcementRequest : announcementRequests) {
+            if (announcementRequest.getAgent().equals(agent)) {
+                for (PublishedAnnouncement publishedAnnouncement : publishedAnnouncements) {
+                    if (!announcementRequest.equals(publishedAnnouncement.getAnnouncementRequest())) {
+                        aux++;
+                    }
+                }
+                if (aux == publishedAnnouncements.size()) {
+                    newAnnouncementRequest.add(announcementRequest);
+                    aux = 0;
+                }
             }
         }
 

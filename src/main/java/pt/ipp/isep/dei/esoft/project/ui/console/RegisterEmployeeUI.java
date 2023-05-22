@@ -40,16 +40,16 @@ public class RegisterEmployeeUI implements Runnable {
     private int taxNumber;
 
     /**
-
-     Returns the RegisterEmployeeController instance associated with the UI.
-     @return the RegisterEmployeeController instance associated with the UI.
+     * Returns the RegisterEmployeeController instance associated with the UI.
+     *
+     * @return the RegisterEmployeeController instance associated with the UI.
      */
     private RegisterEmployeeController getController() {
         return controller;
     }
-    /**
 
-     Runs the UI.
+    /**
+     * Runs the UI.
      */
     public void run() {
         System.out.println("Employee");
@@ -81,7 +81,16 @@ public class RegisterEmployeeUI implements Runnable {
 
         requestData();
 
-        submitData(rolesDescriptions);
+        String[] rolesString = new String[rolesDescriptions.size()];
+
+        int i = 0;
+
+        for (String roleDescription : rolesDescriptions) {
+            rolesString[i] = roleDescription;
+            i++;
+        }
+
+        submitData(rolesDescriptions,rolesString);
 
         for (Employee t : listEmpregados) {
             System.out.println(t.toString());
@@ -89,13 +98,13 @@ public class RegisterEmployeeUI implements Runnable {
 
         }
     }
+
     /**
-
-     Submits the employee data to the RegisterEmployeeController for processing.
-
-     @param rolesDescriptions the list of role descriptions selected by the employee.
+     * Submits the employee data to the RegisterEmployeeController for processing.
+     *
+     * @param rolesDescriptions the list of role descriptions selected by the employee.
      */
-    private void submitData(List<String> rolesDescriptions) {
+    private void submitData(List<String> rolesDescriptions,String[] rolesString) {
 
         List<Role> rolesEmployee = getController().getRolesByDescription(rolesDescriptions);
 
@@ -112,6 +121,8 @@ public class RegisterEmployeeUI implements Runnable {
         User user = new User(employeeEmail, passportNumber, taxNumber, name, address, phoneNumber);
 
         controller.addUser(user);
+
+        controller.addUser(name,employeeEmail,password,rolesString);
 
 
         try {
@@ -134,9 +145,9 @@ public class RegisterEmployeeUI implements Runnable {
             System.out.println("Task not created!");
         }
     }
-    /**
 
-     Requests the employee data from the user through the console.
+    /**
+     * Requests the employee data from the user through the console.
      */
     private void requestData() {
 
@@ -163,10 +174,11 @@ public class RegisterEmployeeUI implements Runnable {
 
 
     }
-    /**
 
-     Requests the user's name.
-     @return the user's name as a String.
+    /**
+     * Requests the user's name.
+     *
+     * @return the user's name as a String.
      */
     private String requestNameDescription() {
         Scanner input = new Scanner(System.in);
@@ -174,11 +186,11 @@ public class RegisterEmployeeUI implements Runnable {
         return input.nextLine();
 
     }
+
     /**
-
-     Requests the user whether they want to add more roles.
-
-     @return "Y" if the user wants to add more roles, "N" otherwise.
+     * Requests the user whether they want to add more roles.
+     *
+     * @return "Y" if the user wants to add more roles, "N" otherwise.
      */
     private String addMoreRoles() {
         Scanner input = new Scanner(System.in);
@@ -190,11 +202,11 @@ public class RegisterEmployeeUI implements Runnable {
 
         return addRoles;
     }
+
     /**
-
-     Requests the user's passport number, which must be a 9-digit integer.
-
-     @return the user's passport number as an integer.
+     * Requests the user's passport number, which must be a 9-digit integer.
+     *
+     * @return the user's passport number as an integer.
      */
     private int requestPassportNumberDescription() {
         Scanner input = new Scanner(System.in);
@@ -215,7 +227,7 @@ public class RegisterEmployeeUI implements Runnable {
                     passportNumberInt = -1;
                 }
 
-            }while (passportNumberInt <0);
+            } while (passportNumberInt < 0);
 
 
             passportNumberString = Integer.toString(passportNumberInt);
@@ -229,11 +241,11 @@ public class RegisterEmployeeUI implements Runnable {
         return passportNumberInt;
 
     }
+
     /**
-
-     Requests the user's tax number, which must be a 9-digit integer.
-
-     @return the user's tax number as an integer.
+     * Requests the user's tax number, which must be a 9-digit integer.
+     *
+     * @return the user's tax number as an integer.
      */
     private int requestTaxNumberDescription() {
         Scanner input = new Scanner(System.in);
@@ -252,7 +264,7 @@ public class RegisterEmployeeUI implements Runnable {
                     taxNumberInt = -1;
                 }
 
-            }while (taxNumberInt < 0);
+            } while (taxNumberInt < 0);
 
             taxNumberString = Integer.toString(taxNumberInt);
             if (taxNumberString.length() != 9) {
@@ -265,11 +277,11 @@ public class RegisterEmployeeUI implements Runnable {
         return taxNumberInt;
 
     }
+
     /**
-
-     Requests the user's phone number, which must be a 10-digit integer.
-
-     @return the user's phone number as an integer.
+     * Requests the user's phone number, which must be a 10-digit integer.
+     *
+     * @return the user's phone number as an integer.
      */
     private int requestPhoneNumberDescription() {
         Scanner input = new Scanner(System.in);
@@ -290,7 +302,7 @@ public class RegisterEmployeeUI implements Runnable {
                     phoneNumberInt = -1;
                 }
 
-            }while (phoneNumberInt < 0);
+            } while (phoneNumberInt < 0);
 
 
             phoneNumberString = Integer.toString(phoneNumberInt);
@@ -303,8 +315,10 @@ public class RegisterEmployeeUI implements Runnable {
 
         return phoneNumberInt;
     }
+
     /**
      * Requests the zip code from the user and validates if it is a 5-digit integer.
+     *
      * @return the integer zip code.
      */
     private int requestZipcodeDescription() {
@@ -325,7 +339,7 @@ public class RegisterEmployeeUI implements Runnable {
                     zipCodeInt = -1;
                 }
 
-            }while (zipCodeInt < 0);
+            } while (zipCodeInt < 0);
 
             zipCodeString = Integer.toString(zipCodeInt);
             if (zipCodeString.length() != 5) {
@@ -335,8 +349,10 @@ public class RegisterEmployeeUI implements Runnable {
         } while (zipCodeString.length() != 5);
         return zipCodeInt;
     }
+
     /**
      * Requests the street name from the user.
+     *
      * @return the string street name.
      */
     private String requestStreetDescription() {
@@ -344,8 +360,10 @@ public class RegisterEmployeeUI implements Runnable {
         System.out.println("Street:");
         return input.nextLine();
     }
+
     /**
      * Requests the employee email from the user.
+     *
      * @return the string employee email.
      */
     private String requestEmployeeEmailDescription() {
@@ -353,8 +371,10 @@ public class RegisterEmployeeUI implements Runnable {
         System.out.println("Employee Email:");
         return input.nextLine();
     }
+
     /**
      * Displays a list of roles and prompts the user to select one.
+     *
      * @param rolesDescriptions the list of descriptions of roles.
      * @return the string description of the selected role.
      */
@@ -387,8 +407,10 @@ public class RegisterEmployeeUI implements Runnable {
         return description;
 
     }
+
     /**
      * Displays a list of stores and prompts the user to select one.
+     *
      * @return the string description of the selected store.
      */
     private String displayAndSelectStore() {
@@ -423,8 +445,10 @@ public class RegisterEmployeeUI implements Runnable {
         return description;
 
     }
+
     /**
      * Displays a list of states and prompts the user to select one.
+     *
      * @return the string description of the selected state.
      */
     private String displayAndSelectState() {
@@ -459,6 +483,7 @@ public class RegisterEmployeeUI implements Runnable {
 
     /**
      * Displays a list of cities and prompts the user to select one.
+     *
      * @return the cities description of the selected state.
      */
     private String displayAndSelectCity() {
@@ -500,6 +525,7 @@ public class RegisterEmployeeUI implements Runnable {
 
     /**
      * Displays a list of district and prompts the user to select one.
+     *
      * @return the district description of the selected state.
      */
     private String displayAndSelectDistrict() {
@@ -536,6 +562,7 @@ public class RegisterEmployeeUI implements Runnable {
         return description;
 
     }
+
     /**
      * Displays a menu of task categories as numbered options. If a list of role descriptions
      * is provided, only displays the task categories that do not have a description matching
@@ -582,6 +609,7 @@ public class RegisterEmployeeUI implements Runnable {
             i++;
         }
     }
+
     /**
      * Displays a menu of cities within a given district as numbered options.
      *
@@ -595,6 +623,7 @@ public class RegisterEmployeeUI implements Runnable {
             i++;
         }
     }
+
     /**
      * Displays a menu of districts within a given state as numbered options.
      *

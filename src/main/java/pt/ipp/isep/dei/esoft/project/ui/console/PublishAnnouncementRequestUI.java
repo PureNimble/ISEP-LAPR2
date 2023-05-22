@@ -89,10 +89,10 @@ public class PublishAnnouncementRequestUI implements Runnable {
      */
     private int displayAndSelectAnnouncementRequests(Employee agent) {
 
-        List<AnnouncementRequest> announcementRequests = controller.getAnnouncementRequestByMostRecent(agent);
-        List<PublishedAnnouncement> publishedAnnouncements = controller.getPublishedAnnouncements();
+        List<AnnouncementRequestDto> announcementRequestsDtos = controller.toDto(agent);
 
-        int listSize = announcementRequests.size();
+
+        int listSize = announcementRequestsDtos.size();
         int answer = -1;
 
         Scanner input = new Scanner(System.in);
@@ -100,7 +100,7 @@ public class PublishAnnouncementRequestUI implements Runnable {
         while (answer < 1 || answer > listSize) {
             try {
 
-                displayAnnouncementRequestOptions(announcementRequests, publishedAnnouncements);
+                displayAnnouncementRequestOptions(announcementRequestsDtos);
                 System.out.println("Select a Announcement Request:");
                 answer = input.nextInt();
 
@@ -120,23 +120,16 @@ public class PublishAnnouncementRequestUI implements Runnable {
     /**
      * Displays the list of Announcement Requests options to the user.
      *
-     * @param announcementRequests A List of Announcement Requests objects containing the available commission values.
+     *  A List of Announcement Requests objects containing the available commission values.
      */
-    private void displayAnnouncementRequestOptions(List<AnnouncementRequest> announcementRequests, List<PublishedAnnouncement> publishedAnnouncements) {
+    private void displayAnnouncementRequestOptions(List<AnnouncementRequestDto> announcementRequestDtos) {
 
         int i = 1;
-        int aux = 0;
-        for (AnnouncementRequest announcementRequest : announcementRequests) {
-            for (PublishedAnnouncement publishedAnnouncement : publishedAnnouncements) {
-                if (!announcementRequest.equals(publishedAnnouncement.getAnnouncementRequest())) {
-                    aux++;
-                }
-            }
-            if (aux == publishedAnnouncements.size()) {
-                System.out.println(i + " - " + announcementRequest.toString());
+        for (AnnouncementRequestDto announcementRequestDto : announcementRequestDtos) {
+                System.out.println(i + " - " + announcementRequestDto.toString());
                 i++;
             }
-        }
+
     }
 
 
