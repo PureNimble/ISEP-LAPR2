@@ -133,6 +133,17 @@ public class PublishedAnnouncementRequestController {
 
     /**
 
+     Returns a list of all Published Announcements.
+     @return A List of Published Announcements objects.
+     */
+    public List<PublishedAnnouncement> getPublishedAnnouncements() {
+        PublishedAnnouncementRepository publishedAnnouncementRepository = getPublishedAnnouncementRepository();
+        return publishedAnnouncementRepository.getPublishedAnnouncements();
+    }
+
+
+    /**
+
      Returns a list of all Announcement Requests.
      @return A List of AnnouncementRequest objects.
      */
@@ -235,7 +246,6 @@ public class PublishedAnnouncementRequestController {
 
         if (!getPublishedAnnouncementRepository().getPublishedAnnouncements().contains(publishedAnnouncement)){
             newPublishedAnnouncement = getPublishedAnnouncementRepository().publishedAnnouncementRequest(comission,announcementRequest);
-            getAnnouncementRequestRepository().remove(announcementRequest);
         }
         return newPublishedAnnouncement;
     }

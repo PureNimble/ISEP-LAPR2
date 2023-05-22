@@ -43,31 +43,6 @@ public class AnnouncementRequestRepository {
         return newAnnouncementRequest;
     }
 
-    /**
-     * Remove optional.
-     *
-     * @param announcementRequest the announcement request
-     * @return the optional
-     */
-    public Optional<AnnouncementRequest> remove(AnnouncementRequest announcementRequest) {
-
-        Optional<AnnouncementRequest> newAnnouncementRequest = Optional.empty();
-        boolean operationSuccess = false;
-
-        if (validateAnnouncementRequest(announcementRequest)) {
-            newAnnouncementRequest = Optional.of(announcementRequest);
-            operationSuccess = announcementRequests.remove(newAnnouncementRequest.get());
-        }
-
-        if (!operationSuccess) {
-            newAnnouncementRequest = Optional.empty();
-        }
-
-        return newAnnouncementRequest;
-    }
-
-
-
 
     /**
 

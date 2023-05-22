@@ -72,6 +72,9 @@ public class PublishedAnnouncement {
         this.announcementRequest = announcementRequest;
     }
 
+    public AnnouncementRequest getAnnouncementRequest() {
+        return announcementRequest;
+    }
 
     /**
      * Gets property.

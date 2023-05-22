@@ -27,20 +27,19 @@ public class PublishAnnouncementRequestUI implements Runnable {
     public void run() {
 
 
-
         System.out.println("Publish Announcement Request: ");
 
 
-            announcementRequestDescription = displayAndSelectAnnouncementRequests(controller.getEmployeeByEmail(controller.getCurrentSessionEmail()));
+        announcementRequestDescription = displayAndSelectAnnouncementRequests(controller.getEmployeeByEmail(controller.getCurrentSessionEmail()));
 
-            option = requestOption();
+        option = requestOption();
 
-            if (requestOption().equals("A")) {
-                comissionDescription = displayAndSelectComission();
-            }else {
-                requestData();
-            }
-            submitData();
+        if (requestOption().equals("A")) {
+            comissionDescription = displayAndSelectComission();
+        } else {
+            requestData();
+        }
+        submitData();
 
 
     }
@@ -48,7 +47,7 @@ public class PublishAnnouncementRequestUI implements Runnable {
 
     private void requestData() {
 
-       messageJustification = requestMessageJustification();
+        messageJustification = requestMessageJustification();
 
 
     }
@@ -70,14 +69,13 @@ public class PublishAnnouncementRequestUI implements Runnable {
 
     }
 
-
-    private String requestMessageJustification(){
+    private String requestMessageJustification() {
         Scanner input = new Scanner(System.in);
         System.out.println("Give the reason to the owner justifying your decision");
         return input.nextLine();
     }
 
-    private String requestOption(){
+    private String requestOption() {
         Scanner input = new Scanner(System.in);
         System.out.println("Do you want to reject or accept this announcement(A-Accept/R-Reject):");
         return input.nextLine();
@@ -92,6 +90,7 @@ public class PublishAnnouncementRequestUI implements Runnable {
     private int displayAndSelectAnnouncementRequests(Employee agent) {
 
         List<AnnouncementRequest> announcementRequests = controller.getAnnouncementRequestByMostRecent(agent);
+        List<PublishedAnnouncement> publishedAnnouncements = controller.getPublishedAnnouncements();
 
         int listSize = announcementRequests.size();
         int answer = -1;
@@ -101,7 +100,7 @@ public class PublishAnnouncementRequestUI implements Runnable {
         while (answer < 1 || answer > listSize) {
             try {
 
-                displayAnnouncementRequestOptions(announcementRequests);
+                displayAnnouncementRequestOptions(announcementRequests, publishedAnnouncements);
                 System.out.println("Select a Announcement Request:");
                 answer = input.nextInt();
 
@@ -123,12 +122,20 @@ public class PublishAnnouncementRequestUI implements Runnable {
      *
      * @param announcementRequests A List of Announcement Requests objects containing the available commission values.
      */
-    private void displayAnnouncementRequestOptions(List<AnnouncementRequest> announcementRequests) {
+    private void displayAnnouncementRequestOptions(List<AnnouncementRequest> announcementRequests, List<PublishedAnnouncement> publishedAnnouncements) {
 
         int i = 1;
+        int aux = 0;
         for (AnnouncementRequest announcementRequest : announcementRequests) {
-            System.out.println(i + " - " + announcementRequest.toString());
-            i++;
+            for (PublishedAnnouncement publishedAnnouncement : publishedAnnouncements) {
+                if (!announcementRequest.equals(publishedAnnouncement.getAnnouncementRequest())) {
+                    aux++;
+                }
+            }
+            if (aux == publishedAnnouncements.size()) {
+                System.out.println(i + " - " + announcementRequest.toString());
+                i++;
+            }
         }
     }
 
