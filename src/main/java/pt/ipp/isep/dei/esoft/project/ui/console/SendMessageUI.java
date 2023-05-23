@@ -9,13 +9,14 @@ import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 /**
  * The type Send message ui.
  */
-public class SendMessageUI implements Runnable{
+public class SendMessageUI implements Runnable {
 
     /**
      * The Controller.
@@ -23,6 +24,8 @@ public class SendMessageUI implements Runnable{
     public final SendMessageController controller = new SendMessageController();
 
     private final PublishAnnouncementController controllerPublishAnnouncement = new PublishAnnouncementController();
+
+    private int initialTime;
 
 
     @Override
@@ -36,7 +39,7 @@ public class SendMessageUI implements Runnable{
         String clientName = requestClientName();
         int clientsPhoneNumber = requestPhoneNumber();
         Date dateOfVisit = requestDate();
-        int initialTime = requestInitialTime();
+        initialTime = requestInitialTime();
         int endTime = requestEndTime();
 
         submitData(message, clientName, clientsPhoneNumber, dateOfVisit, initialTime, endTime, announcement);
@@ -57,14 +60,30 @@ public class SendMessageUI implements Runnable{
         Scanner input = new Scanner(System.in);
         List<PublishedAnnouncement> publishedAnnouncements = controllerPublishAnnouncement.getPublishedAnnouncementsDesc();
         StringBuilder sb = new StringBuilder();
-        for(int i=0; i<publishedAnnouncements.size(); i++) {
-            sb.append(i+1 + " - ");
+        for (int i = 0; i < publishedAnnouncements.size(); i++) {
+            sb.append(i + 1 + " - ");
             sb.append(publishedAnnouncements.get(i).toString());
             sb.append("\n");
         }
         System.out.println(sb);
-        System.out.println("Choose one of the properties above.");
-        int index = Integer.parseInt(input.nextLine())-1;
+        int index;
+        do {
+            do {
+                try {
+                    System.out.println("Choose one of the properties above.");
+                    index = input.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input. Please enter an integer value:");
+                    input.nextLine();
+                    index = -1;
+                }
+            } while (index < 0);
+
+            if (index > publishedAnnouncements.size() + 1) {
+                System.out.println(String.format("Invalid input. Please enter an value between 1 and %s:", publishedAnnouncements.size()));
+                index = input.nextInt();
+            }
+        } while (index < 0);
         return publishedAnnouncements.get(index);
     }
 
@@ -82,38 +101,119 @@ public class SendMessageUI implements Runnable{
 
     private int requestPhoneNumber() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Phone Number:");
-        return Integer.parseInt(input.nextLine());
+        String phoneNumberString;
+        int phoneNumberInt;
+
+        do {
+            do {
+                try {
+                    System.out.println("Phone Number:");
+                    phoneNumberInt = input.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input. Please enter an integer value:");
+                    input.nextLine();
+                    phoneNumberInt = -1;
+                }
+            } while (phoneNumberInt < 0);
+            phoneNumberString = Integer.toString(phoneNumberInt);
+            if (phoneNumberString.length() != 9) {
+                System.out.println("A Phone Number is a number with 9 digits");
+            }
+
+
+        } while (phoneNumberString.length() != 9);
+        return phoneNumberInt;
     }
 
     private Date requestDate() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Date of visit:");
+        System.out.println("Date of visit (dd-MM-yyyy):");
         String dateInput = input.next();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date date = null;
-        try{
+
+//        do {
+//            do {
+        try {
             date = dateFormat.parse(dateInput);
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
+//            } while (date != 0);
+//
+//            Date todayDate = new Date();
+//            if (todayDate==date){
+//                System.out.println();
+//            }
+//
+//        }
+//
         return date;
     }
 
     private int requestInitialTime() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Initial time for visit in hours:");
-        return Integer.parseInt(input.nextLine());
+
+        int initialTimeInt;
+
+        do {
+            do {
+                try {
+                    System.out.println("Initial time for visit in hours (from 0 to 24):");
+                    initialTimeInt = input.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input. Please enter an integer value:");
+                    input.nextLine();
+                    initialTimeInt = -1;
+                }
+
+            } while (initialTimeInt < 0);
+
+            if (initialTimeInt >= 25) {
+                System.out.println("Please insert an hour from 0 to 24.");
+            }
+        } while (initialTimeInt < 0);
+        return initialTimeInt;
     }
 
     private int requestEndTime() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Final time for visit in hours:");
-        return Integer.parseInt(input.nextLine());
+        int endTimeInt;
+
+        do {
+            do {
+                do {
+
+                    try {
+                        System.out.println("End time for visit in hours (from 0 to 24):");
+                        endTimeInt = input.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input. Please enter an integer value:");
+                        input.nextLine();
+                        endTimeInt = -1;
+                    }
+
+                } while (endTimeInt < 0);
+
+                if (endTimeInt >= 25) {
+                    System.out.println("Please insert an hour from 0 to 24.");
+                    endTimeInt = input.nextInt();
+                }
+
+            } while (endTimeInt < 0);
+
+            if (endTimeInt <= initialTime) {
+                System.out.println("Please enter a time that is after the previously selected initial time.");
+                endTimeInt = input.nextInt();
+            }
+        } while (endTimeInt < 0);
+
+        return endTimeInt;
     }
 
 
-    private void submitData(String message, String clientName, int clientsPhoneNumber, Date dateOfVisit, int initialTime, int endTime, PublishedAnnouncement announcement) {
+    private void submitData(String message, String clientName, int clientsPhoneNumber, Date dateOfVisit,
+                            int initialTime, int endTime, PublishedAnnouncement announcement) {
         controller.createNewMessageToAgent(clientName, message, clientsPhoneNumber, dateOfVisit, initialTime, endTime, announcement);
     }
 }
