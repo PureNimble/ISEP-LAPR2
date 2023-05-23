@@ -13,7 +13,6 @@ participant ":SendMessageUI" as UI
 participant ":SendMessageController" as CTRL
 participant ":Repositories" as Repository
 participant "repositories\n:Repositories" as Repository2
-participant "UserRepository:\nUser Repository" as UserRepository
 participant "publishedAnnouncementRepository\n:Published Announcement Repository" as publishedAnnouncementRepository
 participant "messageRepository: \nMessage Repository" as messageRepository
 participant "message:\nMessage" as message
@@ -26,46 +25,46 @@ autonumber
         activate UI
 
         UI -> CTRL** : create
-    UI --> Client : requests an identity
-        deactivate UI
-
-    Client -> UI : inserts his email
-        activate UI
-
-        UI -> CTRL : getUserInformation()
-
-            activate CTRL
-
-            CTRL -> Repository : getInstance()
-                activate Repository
-
-            Repository --> CTRL : repositories
-                deactivate Repository
-
-            CTRL -> Repository2 : getUserInformationRepository()
-                activate Repository2
-
-            Repository2 --> CTRL : UserInformationRepository
-                deactivate Repository2
-
-            CTRL -> UserRepository : getUserInformation()
-
-                activate UserRepository
-
-            UserRepository --> CTRL : User Information
-
-                deactivate UserRepository
-
-        CTRL --> UI : User Information
-
-            deactivate CTRL
-
-
-    UI --> Client : shows User information and requests a confirmation
-        deactivate UI
-
-    Client -> UI : confirms his personal information
-        activate UI
+'    UI --> Client : requests an identity
+'        deactivate UI
+'
+'    Client -> UI : inserts his email
+'        activate UI
+'
+'        UI -> CTRL : getUserInformation()
+'
+'            activate CTRL
+'
+'            CTRL -> Repository : getInstance()
+'                activate Repository
+'
+'            Repository --> CTRL : repositories
+'                deactivate Repository
+'
+'            CTRL -> Repository2 : getUserInformationRepository()
+'                activate Repository2
+'
+'            Repository2 --> CTRL : UserInformationRepository
+'                deactivate Repository2
+'
+'            CTRL -> UserRepository : getUserInformation()
+'
+'                activate UserRepository
+'
+'            UserRepository --> CTRL : User Information
+'
+'                deactivate UserRepository
+'
+'        CTRL --> UI : User Information
+'
+'            deactivate CTRL
+'
+'
+'    UI --> Client : shows User information and requests a confirmation
+'        deactivate UI
+'
+'    Client -> UI : confirms his personal information
+'        activate UI
 
         UI -> CTRL : getProperties()
             activate CTRL
@@ -103,11 +102,11 @@ autonumber
     '   UI --> UI : keepPropertySelected(propertyDescription)
 
 
-    UI --> Client: asks to confirm the property selected
-        deactivate UI
-
-    Client -> UI: confirms the selected data
-        activate UI
+'    UI --> Client: asks to confirm the property selected
+'        deactivate UI
+'
+'    Client -> UI: confirms the selected data
+'        activate UI
 
     UI --> Client: requests the name, phone number and preferred \ndate and time slot (from x hour to y hour) for the property visit
         deactivate UI
