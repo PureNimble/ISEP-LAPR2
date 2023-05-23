@@ -1,0 +1,146 @@
+@startuml
+
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title PublishAnnouncementRequestUI Sequence Diagram (SSD)
+
+autonumber
+
+actor "Agent" as Agent
+participant ":PublishAnnouncementRequestUI" as PublishAnnouncementRequestUI
+participant ":PublishAnnouncementRequestController" as PublishAnnouncementRequestController
+participant ":Repositories" as Singleton
+participant "repositories\n:Repositories" as repositories
+participant ":ApplicationSession" as AplicationSession
+participant "appSession\n:ApplicationSession" as aplicationSession
+participant "currentSession\n:UserSession" as UserSession
+participant "announcementRequestRepository\n:AnnouncementRequestRepository" as AnnouncementRequestRepository
+participant "comissionRepository\n:ComissionRepository" as ComissionRepository
+participant ":XMapper" as XMapper
+participant "listAnnouncementRequestDto:List<AnnouncementRequestDto>" as listAnnouncementRequestDto
+participant "listAnnouncementRequest:List<AnnouncementRequest>" as listAnnouncementRequest
+participant "announcementRequestDto:AnnouncementRequestDto" as AnnouncementRequestDto
+participant "publishedAnnouncementRequestRepository\n:PublishedAnnouncementRequestRepository" as PublishAnnouncementRepository
+participant "employeeRepository\n:EmployeeRepository" as EmployeeRepository
+
+
+activate Agent
+
+    Agent -> PublishAnnouncementRequestUI : asks to see the list of property announcement request
+    activate PublishAnnouncementRequestUI
+
+PublishAnnouncementRequestUI -> PublishAnnouncementRequestController**: create
+
+PublishAnnouncementRequestUI -> PublishAnnouncementRequestController : getAnnouncementRequestList()
+activate PublishAnnouncementRequestController
+
+ref over PublishAnnouncementRequestController
+
+            Get Employee By Email
+
+end ref
+
+ref over PublishAnnouncementRequestController
+
+            Get Announcement Request List By Most Recent responsible for the Agent
+
+
+ end ref
+
+ref over PublishAnnouncementRequestController
+
+            Get AnnouncementRequest List Using DTO
+
+ end ref
+
+PublishAnnouncementRequestController --> PublishAnnouncementRequestUI:listAnnouncementRequestDto
+deactivate PublishAnnouncementRequestController
+
+     PublishAnnouncementRequestUI --> Agent : shows list of announcement request responsible for that agent and asks to select one
+        deactivate PublishAnnouncementRequestUI
+
+            Agent -> PublishAnnouncementRequestUI : selects one announcement request
+            activate PublishAnnouncementRequestUI
+
+
+
+ PublishAnnouncementRequestUI --> PublishAnnouncementRequestController : getTypeComission()
+           activate PublishAnnouncementRequestController
+
+          ref over PublishAnnouncementRequestController
+
+                      Get Comission List
+
+           end ref
+           PublishAnnouncementRequestController --> PublishAnnouncementRequestUI : Type Comission
+           deactivate PublishAnnouncementRequestController
+
+
+
+PublishAnnouncementRequestUI --> Agent:shows the list of comissions
+deactivate PublishAnnouncementRequestUI
+
+Agent -> PublishAnnouncementRequestUI:selects the respective comssion
+activate PublishAnnouncementRequestUI
+
+PublishAnnouncementRequestUI --> Agent:shows the information of the announcement request selected and asks for confirmation
+deactivate PublishAnnouncementRequestUI
+
+ Agent -> PublishAnnouncementRequestUI : submits data
+    activate PublishAnnouncementRequestUI
+
+
+PublishAnnouncementRequestUI -> PublishAnnouncementRequestController:publishAnnouncementRequest(publishedAnnouncementRequestDescription,comissionDescription)
+activate PublishAnnouncementRequestController
+
+PublishAnnouncementRequestController -> PublishAnnouncementRequestController:getAnnouncementRequestByDescription(announcementRequestDescription)
+activate PublishAnnouncementRequestController
+
+
+ref over PublishAnnouncementRequestController
+
+                      Get Announcement Request By Description
+
+           end ref
+
+PublishAnnouncementRequestController--> PublishAnnouncementRequestController:announcementRequest
+
+
+PublishAnnouncementRequestController -> PublishAnnouncementRequestController:getComissionByDescription(comissionDescription)
+activate PublishAnnouncementRequestController
+
+ref over PublishAnnouncementRequestController
+
+                      Get Comission By Description
+
+           end ref
+
+PublishAnnouncementRequestController --> PublishAnnouncementRequestController:comission
+
+PublishAnnouncementRequestController -> PublishAnnouncementRepository:createPublishedAnnouncement(announcementRequest,comission)
+activate PublishAnnouncementRepository
+
+ref over PublishAnnouncementRepository
+
+                      Get Comission By Description
+
+           end ref
+
+PublishAnnouncementRepository --> PublishAnnouncementRequestController:publishedAnnouncement
+deactivate PublishAnnouncementRepository
+
+PublishAnnouncementRequestController --> PublishAnnouncementRequestUI:publishedAnnouncement
+
+        PublishAnnouncementRequestUI --> Agent : displays operation success
+    deactivate PublishAnnouncementRequestUI
+
+
+
+@enduml

@@ -22,12 +22,14 @@ participant ":ApplicationSession" as AplicationSession
 participant "appSession\n:ApplicationSession" as aplicationSession
 participant "currentSession\n:UserSession" as UserSession
 participant "announcementRequestRepository\n:AnnouncementRequestRepository" as AnnouncementRequestRepository
-participant "publishedAnnouncementRequestRepository\n:PublishedAnnouncementRequestRepository" as PublishAnnouncementRepository
-participant "employeeRepository\n:EmployeeRepository" as EmployeeRepository
 participant "comissionRepository\n:ComissionRepository" as ComissionRepository
-participant "announcementReques"
 participant ":XMapper" as XMapper
 participant "listAnnouncementRequestDto:List<AnnouncementRequestDto>" as listAnnouncementRequestDto
+participant "listAnnouncementRequest:List<AnnouncementRequest>" as listAnnouncementRequest
+participant "announcementRequestDto:AnnouncementRequestDto" as AnnouncementRequestDto
+participant "publishedAnnouncementRequestRepository\n:PublishedAnnouncementRequestRepository" as PublishAnnouncementRepository
+participant "employeeRepository\n:EmployeeRepository" as EmployeeRepository
+
 
 activate Agent
 
@@ -91,9 +93,67 @@ activate XMapper
 
 XMapper --> listAnnouncementRequestDto**: create()
 
+loop
+
+XMapper -> listAnnouncementRequest :agent = getAgent()
+activate listAnnouncementRequest
+
+XMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+XMapper -> listAnnouncementRequest: property = getProperty()
+activate listAnnouncementRequest
+
+XMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+XMapper -> listAnnouncementRequest: typeOfBusiness = getTypeOfBusiness()
+activate listAnnouncementRequest
+
+XMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+XMapper -> listAnnouncementRequest: propertyType = getPropertyType()
+activate listAnnouncementRequest
+
+XMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+XMapper -> listAnnouncementRequest: business = getBusiness()
+activate listAnnouncementRequest
+
+XMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+XMapper -> listAnnouncementRequest: date = geDate()
+activate listAnnouncementRequest
+
+XMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
 
 
-PublishAnnouncementRequestController --> PublishAnnouncementRequestUI:announcementsRequestListByAgent
+XMapper -> listAnnouncementRequest: durationOfContract = geDate()
+activate listAnnouncementRequest
+
+XMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+XMapper -> XMapper : announcementsRequestDto = toDto(agent,property,typeOfBusiness,propertyType,business,date,durationOfContract)
+activate XMapper
+
+deactivate XMapper
+
+XMapper --> AnnouncementRequestDto**: create(...)
+
+XMapper -> listAnnouncementRequestDto: add(announcementRequestDto)
+activate listAnnouncementRequestDto
+
+deactivate listAnnouncementRequestDto
+end
+
+XMapper --> PublishAnnouncementRequestController: listAnnouncementRequestDto
+
+PublishAnnouncementRequestController --> PublishAnnouncementRequestUI:listAnnouncementRequestDto
 deactivate PublishAnnouncementRequestController
 
      PublishAnnouncementRequestUI --> Agent : shows list of announcement request responsible for that agent and asks to select one
@@ -104,7 +164,7 @@ deactivate PublishAnnouncementRequestController
 
 
 
- PublishAnnouncementRequestUI --> PublishAnnouncementRequestController : getTypeComission()
+ PublishAnnouncementRequestUI -> PublishAnnouncementRequestController : getTypeComission()
            activate PublishAnnouncementRequestController
 
            PublishAnnouncementRequestController -> Singleton : getInstance()
@@ -149,17 +209,6 @@ activate PublishAnnouncementRequestController
 PublishAnnouncementRequestController -> PublishAnnouncementRequestController:getAnnouncementRequestByDescription(announcementRequestDescription)
 activate PublishAnnouncementRequestController
 
-PublishAnnouncementRequestController -> Singleton: getInstance()
-activate Singleton
-
-Singleton--> PublishAnnouncementRequestController :repositories
-deactivate Singleton
-
-PublishAnnouncementRequestController-> repositories:getAnnouncementsRequestRepository()
-activate repositories
-
-repositories -->PublishAnnouncementRequestController:getAnnouncementsRequestRepository
-deactivate repositories
 
 PublishAnnouncementRequestController -> AnnouncementRequestRepository :getAnnouncementRequestByDescription()
 activate AnnouncementRequestRepository
@@ -173,18 +222,6 @@ PublishAnnouncementRequestController--> PublishAnnouncementRequestController:ann
 PublishAnnouncementRequestController -> PublishAnnouncementRequestController:getComissionByDescription(comissionDescription)
 activate PublishAnnouncementRequestController
 
-PublishAnnouncementRequestController -> Singleton:getInstance()
-activate Singleton
-
-Singleton --> PublishAnnouncementRequestController:repositories
-deactivate Singleton
-
-PublishAnnouncementRequestController -> repositories:getComissionRepository()
-activate repositories
-
-repositories --> PublishAnnouncementRequestController:comissionRepository
-deactivate repositories
-
 PublishAnnouncementRequestController -> ComissionRepository:getComissionByDescription()
 activate ComissionRepository
 
@@ -196,7 +233,7 @@ PublishAnnouncementRequestController --> PublishAnnouncementRequestController:co
 PublishAnnouncementRequestController -> PublishAnnouncementRepository:createPublishedAnnouncement(announcementRequest,comission)
 activate PublishAnnouncementRepository
 
-PublishAnnouncementRepository -> PublishedAnnouncement** : createEmployee (name,passport number,tax number \n,email ,telephone number,store\n role,adress)
+PublishAnnouncementRepository -> PublishedAnnouncement** : createPublishedAnnouncement(name,passport number,tax number \n,email ,telephone number,store\n role,adress)
              PublishAnnouncementRepository -> PublishAnnouncementRepository : addPublishedAnnouncement(publishedAnnouncement)
              activate PublishAnnouncementRepository
              PublishAnnouncementRepository -> PublishAnnouncementRepository : validatePublishedAnnoncement(publishedAnnouncement)

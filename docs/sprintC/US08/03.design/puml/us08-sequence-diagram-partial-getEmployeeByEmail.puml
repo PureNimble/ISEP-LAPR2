@@ -1,0 +1,51 @@
+@startuml
+
+participant ":PublishAnnouncementRequestController" as PublishAnnouncementRequestController
+participant ":Repositories" as Singleton
+participant "repositories\n:Repositories" as repositories
+participant ":ApplicationSession" as AplicationSession
+participant "appSession\n:ApplicationSession" as aplicationSession
+participant "currentSession\n:UserSession" as UserSession
+
+
+
+autonumber 3
+
+-> PublishAnnouncementRequestController:getAnnouncementRequestList()
+
+activate PublishAnnouncementRequestController
+
+
+group Get Employee By Email
+
+PublishAnnouncementRequestController -> PublishAnnouncementRequestController: getEmployeeFromSession
+
+PublishAnnouncementRequestController -> AplicationSession: getInstance()
+activate AplicationSession
+
+AplicationSession --> PublishAnnouncementRequestController:appSession
+deactivate AplicationSession
+
+PublishAnnouncementRequestController -> aplicationSession :getCurrentSession()
+activate aplicationSession
+
+aplicationSession --> PublishAnnouncementRequestController:currentSession
+deactivate aplicationSession
+
+PublishAnnouncementRequestController -> UserSession :email = getUserEmail()
+activate UserSession
+
+UserSession --> PublishAnnouncementRequestController:email
+deactivate UserSession
+
+PublishAnnouncementRequestController ->EmployeeRepository:getEmployeeByEmail()
+activate EmployeeRepository
+
+EmployeeRepository --> PublishAnnouncementRequestController:employeeByEmail
+deactivate EmployeeRepository
+
+end
+
+<-- PublishAnnouncementRequestController:getAnnouncementRequestList()
+
+@enduml
