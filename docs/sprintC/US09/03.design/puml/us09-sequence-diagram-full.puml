@@ -26,46 +26,46 @@ autonumber
         activate UI
 
         UI -> CTRL** : create
-    UI --> Client : requests an identity
-        deactivate UI
-
-    Client -> UI : inserts his email
-        activate UI
-
-        UI -> CTRL : getUserInformation()
-
-            activate CTRL
-
-            CTRL -> Repository : getInstance()
-                activate Repository
-
-            Repository --> CTRL : repositories
-                deactivate Repository
-
-            CTRL -> Repository2 : getUserInformationRepository()
-                activate Repository2
-
-            Repository2 --> CTRL : UserInformationRepository
-                deactivate Repository2
-
-            CTRL -> UserRepository : getUserInformation()
-
-                activate UserRepository
-
-            UserRepository --> CTRL : User Information
-
-                deactivate UserRepository
-
-        CTRL --> UI : User Information
-
-            deactivate CTRL
-
-
-    UI --> Client : shows User information and requests a confirmation
-        deactivate UI
-
-    Client -> UI : confirms his personal information
-        activate UI
+'    UI --> Client : requests an identity
+'        deactivate UI
+'
+'    Client -> UI : inserts his email
+'        activate UI
+'
+'        UI -> CTRL : getUserInformation()
+'
+'            activate CTRL
+'
+'            CTRL -> Repository : getInstance()
+'                activate Repository
+'
+'            Repository --> CTRL : repositories
+'                deactivate Repository
+'
+'            CTRL -> Repository2 : getUserInformationRepository()
+'                activate Repository2
+'
+'            Repository2 --> CTRL : UserInformationRepository
+'                deactivate Repository2
+'
+'            CTRL -> UserRepository : getUserInformation()
+'
+'                activate UserRepository
+'
+'            UserRepository --> CTRL : User Information
+'
+'                deactivate UserRepository
+'
+'        CTRL --> UI : User Information
+'
+'            deactivate CTRL
+'
+'
+'    UI --> Client : shows User information and requests a confirmation
+'        deactivate UI
+'
+'    Client -> UI : confirms his personal information
+'        activate UI
 
         UI -> CTRL : getProperties()
             activate CTRL

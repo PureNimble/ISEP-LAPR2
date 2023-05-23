@@ -34,8 +34,8 @@ District "1" -down- "*" City: has >
 Address "*" -down- "1" State: has <
 
 
-class User {
-    Password
+class Client {
+
 }
 
 
@@ -99,25 +99,24 @@ PublishedAnnouncement "1" --- "1" Business: has a <
 Business <|--- Rent
 
 class Message{
-    Inital Date and time for visit
-    End Date and time for visit
+    Name
+    Phone number
+    Date
+    Initial time
+    End time
     Description
 }
 
 class Agent{
 }
 
-class Person{
-Name
-Phone Number
-}
 
-Message "*" --- "1" PublishedAnnouncement: has a >
-User "1" --- "1..*" Message: leaves a >
+
+Message "*" --- "1" PublishedAnnouncement: can have a <
+Client "1" --- "1..*" Message: leaves a >
 Agent "1" --- "1" Message: receives a >
 Agent "1" --- "*" PublishedAnnouncement: publishes an >
-Person  <|--- Agent
-Person <|--- User
+
 
 
 

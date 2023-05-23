@@ -29,7 +29,7 @@ class Repositories {
 +getMessageRepository()
 +getComissionRepository()
 +getPropertyTypeRepository()
-+getUserRepository()
+'+getUserRepository()
 
 }
 
@@ -47,11 +47,11 @@ class PropertyTypeRepository{
     -validatePropertyType(PropertyType propertyType)
 }
 
-class UserRepository{
-+add(User user)
-+validateUser(User user)
-+getUsers()
-}
+'class UserRepository{
+'+add(User user)
+'+validateUser(User user)
+'+getUsers()
+'}
 
 class ComissionRepository{
 +getComissionByDescription(Double comissionDescription)
@@ -139,17 +139,20 @@ class AvailableEquipment {
 
 
 
-class User{
--String name
--int tax number
--int phone number
--String email
+'class User{
+'-String name
+'-int tax number
+'-int phone number
+'-String email
+'
+'+getName()
+'+User(email,taxNumber,name,phoneNumber)
+'+getEmail()
+'+getPhoneNumber()
+'+getTaxNumber()
+'}
 
-+getName()
-+User(email,taxNumber,name,phoneNumber)
-+getEmail()
-+getPhoneNumber()
-+getTaxNumber()
+class Client{
 }
 
 
@@ -214,7 +217,6 @@ class Announcement {
     - String finalDate
     - String contractType
 
-    +getUser()
     +PublishedAnnouncement(initialDate, finalDate, AnnouncementRequest)
 }
 
@@ -236,7 +238,7 @@ class Repositories
 
 SendMessageController .> Repositories : repositories
 Repositories --> Repositories :instance
-Repositories ..> UserRepository : user
+'Repositories ..> UserRepository : user
 Repositories ..> ComissionRepository : comission
 Repositories ..> PublishedAnnouncementRepository : announcement
 Repositories ..> PropertyTypeRepository : propertyType
@@ -251,20 +253,21 @@ Message "1" -right- "*" PublishedAnnouncementRepository: has a <
 PropertyTypeRepository --> Property
 Residence <|-down-- House
 Property <|-down-- Residence
-Property "1" -left- "1..30" Photos: has >
+Property "1" -- "1..30" Photos: has >
 SunExposure "1" --right- "*" House: contains <
 AvailableEquipment "*" -left- "1" Residence: contains <
 
 
 
 
-State "*"-left- "1" Address: has a  <
-City "*"-left- "1" District: has a  <
-District "*"-left- "1" State: has a  <
-User "1" --- "1" Address: has >
-UserRepository --> User
+State "*"-right- "1" Address: has a  <
+City "*"-right- "1" District: has a  <
+District "*"-right- "1" State: has a  <
+Property "1" -left- "1" Address: has an >
+'User "1" --- "1" Address: has >
+'UserRepository --> User
 PublishedAnnouncementRepository --> Business
-User "1"-right-"*" Message : sends a >
+Client "1"-right-"*" Message : sends a >
 
 
 ComissionRepository -down-> Comission
