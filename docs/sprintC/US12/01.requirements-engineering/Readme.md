@@ -1,4 +1,5 @@
-# US 006 - To create a Task 
+# US 012 - As a system administrator, I want to import information from a legacy
+system that has been in use in several agencies.
 
 ## 1. Requirements Engineering
 
@@ -24,9 +25,11 @@ As an organization employee, I want to create a new task in order to be further 
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
->  
-> **Answer:** Duration is estimated in days.
+> **Question:**  From the provided CSV file, our team infers that this feature is meant to import data related to announcements only and not other data like, for example, employee information. Is this correct?
+>
+>  **Answer:** 
+>
+> **Date:** 
 
 
 > **Question:** Monetary data is expressed in any particular currency?
