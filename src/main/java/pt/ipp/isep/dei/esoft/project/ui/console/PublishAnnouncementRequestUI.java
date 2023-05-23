@@ -34,13 +34,37 @@ public class PublishAnnouncementRequestUI implements Runnable {
 
         option = requestOption();
 
-        if (requestOption().equals("A")) {
+        if (option.equals("A")) {
             comissionDescription = displayAndSelectComission();
+            submitData();
         } else {
             requestData();
+            sendEmailJustification();
         }
-        submitData();
 
+
+    }
+
+
+    private void sendEmailJustification() {
+        try {
+            FileWriter fw = new FileWriter("emailJustificationAnnouncementRequest.txt");
+            PrintWriter pw = new PrintWriter(fw);
+
+            pw.println("----------Your announcement Request was declined-----");
+            pw.println();
+            pw.println(controller.getAnnouncementRequestByDescription(announcementRequestDescription).toString());
+            pw.println();
+            pw.println("The following Announcement Request was rejected by the following reason/s:");
+            pw.println(messageJustification);
+            pw.println();
+            pw.println("Best regards");
+            pw.println("Contact:"+controller.getEmployeeByEmail(controller.getCurrentSessionEmail()).getEmail());
+            pw.close();
+
+        } catch (IOException ex) {
+            System.out.println("Error to write password to file:" + ex.getMessage());
+        }
 
     }
 
@@ -119,16 +143,16 @@ public class PublishAnnouncementRequestUI implements Runnable {
 
     /**
      * Displays the list of Announcement Requests options to the user.
-     *
-     *  A List of Announcement Requests objects containing the available commission values.
+     * <p>
+     * A List of Announcement Requests objects containing the available commission values.
      */
     private void displayAnnouncementRequestOptions(List<AnnouncementRequestDto> announcementRequestDtos) {
 
         int i = 1;
         for (AnnouncementRequestDto announcementRequestDto : announcementRequestDtos) {
-                System.out.println(i + " - " + announcementRequestDto.toString());
-                i++;
-            }
+            System.out.println(i + " - " + announcementRequestDto.toString());
+            i++;
+        }
 
     }
 
