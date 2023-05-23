@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant ":PublishAnnouncementRequestController" as PublishAnnouncementRequestController
+participant ":Repositories" as Singleton
+participant "repositories\n:Repositories" as repositories
+participant "announcementRequestRepository\n:AnnouncementRequestRepository" as AnnouncementRequestRepository
+
+autonumber 13
+
+activate PublishAnnouncementRequestController
+
+PublishAnnouncementRequestController -> Singleton: getInstance()
+activate Singleton
+
+Singleton --> PublishAnnouncementRequestController: repositories
+deactivate Singleton
+
+PublishAnnouncementRequestController -> repositories: getAnnouncementsRequestRepository()
+activate repositories
+
+repositories --> PublishAnnouncementRequestController:announcementRepository
+deactivate repositories
+
+PublishAnnouncementRequestController -> AnnouncementRequestRepository:getAnnouncementRequestListByAgent(employeeByEmail)
+activate AnnouncementRequestRepository
+
+AnnouncementRequestRepository --> PublishAnnouncementRequestController:announcementsRequestListByAgent
+deactivate AnnouncementRequestRepository
+
+@enduml

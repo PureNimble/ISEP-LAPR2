@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant ":PublishAnnouncementRequestController" as PublishAnnouncementRequestController
+participant ":Repositories" as Singleton
+participant "repositories\n:Repositories" as repositories
+participant "comissionRepository\n:ComissionRepository" as ComissionRepository
+
+
+autonumber 42
+
+ -> PublishAnnouncementRequestController : getTypeComission()
+           activate PublishAnnouncementRequestController
+
+           PublishAnnouncementRequestController -> Singleton : getInstance()
+           activate Singleton
+
+           Singleton --> PublishAnnouncementRequestController : repositories
+           deactivate Singleton
+
+           PublishAnnouncementRequestController -> repositories : getTypeComissionRepository()
+           activate repositories
+
+           repositories --> PublishAnnouncementRequestController : typeComissionRepository
+           deactivate repositories
+
+               PublishAnnouncementRequestController -> ComissionRepository : getTypeComission()
+                activate ComissionRepository
+
+                ComissionRepository --> PublishAnnouncementRequestController : Type Comission
+                deactivate ComissionRepository
+
+   <-- PublishAnnouncementRequestController  : Type Comission
+
+@enduml

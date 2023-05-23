@@ -1,0 +1,79 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant ":PublishAnnouncementRequestController" as PublishAnnouncementRequestController
+participant ":XMapper" as XMapper
+participant "listAnnouncementRequestDto:List<AnnouncementRequestDto>" as listAnnouncementRequestDto
+participant "listAnnouncementRequest:List<AnnouncementRequest>" as listAnnouncementRequest
+participant "announcementRequestDto:AnnouncementRequestDto" as AnnouncementRequestDto
+
+autonumber 19
+
+activate PublishAnnouncementRequestController
+
+PublishAnnouncementRequestController -> XMapper: toDto(announcementsRequestListByAgent)
+activate XMapper
+
+XMapper --> listAnnouncementRequestDto**: create()
+
+loop
+
+XMapper -> listAnnouncementRequest :agent = getAgent()
+activate listAnnouncementRequest
+
+XMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+XMapper -> listAnnouncementRequest: property = getProperty()
+activate listAnnouncementRequest
+
+XMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+XMapper -> listAnnouncementRequest: typeOfBusiness = getTypeOfBusiness()
+activate listAnnouncementRequest
+
+XMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+XMapper -> listAnnouncementRequest: propertyType = getPropertyType()
+activate listAnnouncementRequest
+
+XMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+XMapper -> listAnnouncementRequest: business = getBusiness()
+activate listAnnouncementRequest
+
+XMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+XMapper -> listAnnouncementRequest: date = geDate()
+activate listAnnouncementRequest
+
+XMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+
+XMapper -> listAnnouncementRequest: durationOfContract = geDate()
+activate listAnnouncementRequest
+
+XMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+XMapper -> XMapper : announcementsRequestDto = toDto(agent,property,typeOfBusiness,propertyType,business,date,durationOfContract)
+activate XMapper
+
+deactivate XMapper
+
+XMapper --> AnnouncementRequestDto**: create(...)
+
+XMapper -> listAnnouncementRequestDto: add(announcementRequestDto)
+activate listAnnouncementRequestDto
+
+deactivate listAnnouncementRequestDto
+end
+
+XMapper --> PublishAnnouncementRequestController: listAnnouncementRequestDto
+
+@enduml
