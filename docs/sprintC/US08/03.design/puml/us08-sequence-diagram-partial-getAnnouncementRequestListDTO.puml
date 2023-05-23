@@ -14,6 +14,8 @@ activate PublishAnnouncementRequestController
 PublishAnnouncementRequestController -> XMapper: toDto(announcementsRequestListByAgent)
 activate XMapper
 
+Group Get AnnouncementRequest List Using DTO
+
 XMapper --> listAnnouncementRequestDto**: create()
 
 loop
@@ -73,7 +75,7 @@ activate listAnnouncementRequestDto
 
 deactivate listAnnouncementRequestDto
 end
-
+end
 XMapper --> PublishAnnouncementRequestController: listAnnouncementRequestDto
 
 @enduml

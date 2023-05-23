@@ -8,6 +8,8 @@ participant "announcementRequestRepository\n:AnnouncementRequestRepository" as A
 
 autonumber 13
 
+Group Get Announcement Request List By Most Recent responsible for the Agent
+
 activate PublishAnnouncementRequestController
 
 PublishAnnouncementRequestController -> Singleton: getInstance()
@@ -27,5 +29,5 @@ activate AnnouncementRequestRepository
 
 AnnouncementRequestRepository --> PublishAnnouncementRequestController:announcementsRequestListByAgent
 deactivate AnnouncementRequestRepository
-
+end
 @enduml

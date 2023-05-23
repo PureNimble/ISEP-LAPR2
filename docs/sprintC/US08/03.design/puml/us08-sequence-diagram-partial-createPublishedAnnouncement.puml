@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+participant ":PublishAnnouncementRequestController" as PublishAnnouncementRequestController
+participant "publishedAnnouncementRequestRepository\n:PublishedAnnouncementRequestRepository" as PublishAnnouncementRepository
+
+autonumber 63
+
+
+
+activate PublishAnnouncementRequestController
+
+PublishAnnouncementRequestController -> PublishAnnouncementRepository:createPublishedAnnouncement(announcementRequest,comission)
+activate PublishAnnouncementRepository
+Group Create Published Announcement
+PublishAnnouncementRepository -> PublishedAnnouncement** : createPublishedAnnouncement(name,passport number,tax number \n,email ,telephone number,store\n role,adress)
+             PublishAnnouncementRepository -> PublishAnnouncementRepository : addPublishedAnnouncement(publishedAnnouncement)
+             activate PublishAnnouncementRepository
+             PublishAnnouncementRepository -> PublishAnnouncementRepository : validatePublishedAnnoncement(publishedAnnouncement)
+              activate PublishAnnouncementRepository
+               PublishAnnouncementRepository --> PublishAnnouncementRepository
+               deactivate PublishAnnouncementRepository
+                PublishAnnouncementRepository--> PublishAnnouncementRepository
+                deactivate PublishAnnouncementRepository
+end
+
+PublishAnnouncementRepository --> PublishAnnouncementRequestController:publishedAnnouncement
+deactivate PublishAnnouncementRepository
+
+@enduml

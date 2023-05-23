@@ -41,24 +41,117 @@ PublishAnnouncementRequestUI -> PublishAnnouncementRequestController**: create
 PublishAnnouncementRequestUI -> PublishAnnouncementRequestController : getAnnouncementRequestList()
 activate PublishAnnouncementRequestController
 
-ref over PublishAnnouncementRequestController
+PublishAnnouncementRequestController -> PublishAnnouncementRequestController: getEmployeeFromSession
 
-            Get Employee By Email
+PublishAnnouncementRequestController -> AplicationSession: getInstance()
+activate AplicationSession
 
-end ref
+AplicationSession --> PublishAnnouncementRequestController:appSession
+deactivate AplicationSession
 
-ref over PublishAnnouncementRequestController
+PublishAnnouncementRequestController -> aplicationSession :getCurrentSession()
+activate aplicationSession
 
-            Get Announcement Request List By Most Recent responsible for the Agent
+aplicationSession --> PublishAnnouncementRequestController:currentSession
+deactivate aplicationSession
+
+PublishAnnouncementRequestController -> UserSession :email = getUserEmail()
+activate UserSession
+
+UserSession --> PublishAnnouncementRequestController:email
+deactivate UserSession
+
+PublishAnnouncementRequestController ->EmployeeRepository:getEmployeeByEmail()
+activate EmployeeRepository
+
+EmployeeRepository --> PublishAnnouncementRequestController:employeeByEmail
+deactivate EmployeeRepository
 
 
- end ref
 
-ref over PublishAnnouncementRequestController
 
-            Get AnnouncementRequest List Using DTO
+PublishAnnouncementRequestController -> Singleton: getInstance()
+activate Singleton
 
- end ref
+Singleton --> PublishAnnouncementRequestController: repositories
+deactivate Singleton
+
+PublishAnnouncementRequestController -> repositories: getAnnouncementsRequestRepository()
+activate repositories
+
+repositories --> PublishAnnouncementRequestController:announcementRepository
+deactivate repositories
+
+PublishAnnouncementRequestController -> AnnouncementRequestRepository:getAnnouncementRequestListByAgent(employeeByEmail)
+activate AnnouncementRequestRepository
+
+AnnouncementRequestRepository --> PublishAnnouncementRequestController:announcementsRequestListByAgent
+deactivate AnnouncementRequestRepository
+
+PublishAnnouncementRequestController -> XMapper: toDto(announcementsRequestListByAgent)
+activate XMapper
+
+XMapper --> listAnnouncementRequestDto**: create()
+
+loop
+
+XMapper -> listAnnouncementRequest :agent = getAgent()
+activate listAnnouncementRequest
+
+XMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+XMapper -> listAnnouncementRequest: property = getProperty()
+activate listAnnouncementRequest
+
+XMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+XMapper -> listAnnouncementRequest: typeOfBusiness = getTypeOfBusiness()
+activate listAnnouncementRequest
+
+XMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+XMapper -> listAnnouncementRequest: propertyType = getPropertyType()
+activate listAnnouncementRequest
+
+XMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+XMapper -> listAnnouncementRequest: business = getBusiness()
+activate listAnnouncementRequest
+
+XMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+XMapper -> listAnnouncementRequest: date = geDate()
+activate listAnnouncementRequest
+
+XMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+
+XMapper -> listAnnouncementRequest: durationOfContract = geDate()
+activate listAnnouncementRequest
+
+XMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+XMapper -> XMapper : announcementsRequestDto = toDto(agent,property,typeOfBusiness,propertyType,business,date,durationOfContract)
+activate XMapper
+
+deactivate XMapper
+
+XMapper --> AnnouncementRequestDto**: create(...)
+
+XMapper -> listAnnouncementRequestDto: add(announcementRequestDto)
+activate listAnnouncementRequestDto
+
+deactivate listAnnouncementRequestDto
+end
+
+XMapper --> PublishAnnouncementRequestController: listAnnouncementRequestDto
 
 PublishAnnouncementRequestController --> PublishAnnouncementRequestUI:listAnnouncementRequestDto
 deactivate PublishAnnouncementRequestController
@@ -71,14 +164,27 @@ deactivate PublishAnnouncementRequestController
 
 
 
- PublishAnnouncementRequestUI --> PublishAnnouncementRequestController : getTypeComission()
+ PublishAnnouncementRequestUI -> PublishAnnouncementRequestController : getTypeComission()
            activate PublishAnnouncementRequestController
 
-          ref over PublishAnnouncementRequestController
+           PublishAnnouncementRequestController -> Singleton : getInstance()
+           activate Singleton
 
-                      Get Comission List
+           Singleton --> PublishAnnouncementRequestController : repositories
+           deactivate Singleton
 
-           end ref
+           PublishAnnouncementRequestController -> repositories : getTypeComissionRepository()
+           activate repositories
+
+           repositories --> PublishAnnouncementRequestController : typeComissionRepository
+           deactivate repositories
+
+               PublishAnnouncementRequestController -> ComissionRepository : getTypeComission()
+                activate ComissionRepository
+
+                ComissionRepository --> PublishAnnouncementRequestController : Type Comission
+                deactivate ComissionRepository
+
            PublishAnnouncementRequestController --> PublishAnnouncementRequestUI : Type Comission
            deactivate PublishAnnouncementRequestController
 
@@ -104,11 +210,11 @@ PublishAnnouncementRequestController -> PublishAnnouncementRequestController:get
 activate PublishAnnouncementRequestController
 
 
-ref over PublishAnnouncementRequestController
+PublishAnnouncementRequestController -> AnnouncementRequestRepository :getAnnouncementRequestByDescription()
+activate AnnouncementRequestRepository
 
-                      Get Announcement Request By Description
-
-           end ref
+AnnouncementRequestRepository --> PublishAnnouncementRequestController:announcementRequest
+deactivate AnnouncementRequestRepository
 
 PublishAnnouncementRequestController--> PublishAnnouncementRequestController:announcementRequest
 
@@ -116,22 +222,27 @@ PublishAnnouncementRequestController--> PublishAnnouncementRequestController:ann
 PublishAnnouncementRequestController -> PublishAnnouncementRequestController:getComissionByDescription(comissionDescription)
 activate PublishAnnouncementRequestController
 
-ref over PublishAnnouncementRequestController
+PublishAnnouncementRequestController -> ComissionRepository:getComissionByDescription()
+activate ComissionRepository
 
-                      Get Comission By Description
-
-           end ref
+PublishAnnouncementRequestController <-- ComissionRepository:comission
+deactivate ComissionRepository
 
 PublishAnnouncementRequestController --> PublishAnnouncementRequestController:comission
 
 PublishAnnouncementRequestController -> PublishAnnouncementRepository:createPublishedAnnouncement(announcementRequest,comission)
 activate PublishAnnouncementRepository
 
-ref over PublishAnnouncementRepository
+PublishAnnouncementRepository -> PublishedAnnouncement** : createPublishedAnnouncement(name,passport number,tax number \n,email ,telephone number,store\n role,adress)
+             PublishAnnouncementRepository -> PublishAnnouncementRepository : addPublishedAnnouncement(publishedAnnouncement)
+             activate PublishAnnouncementRepository
+             PublishAnnouncementRepository -> PublishAnnouncementRepository : validatePublishedAnnoncement(publishedAnnouncement)
+              activate PublishAnnouncementRepository
+               PublishAnnouncementRepository --> PublishAnnouncementRepository
+               deactivate PublishAnnouncementRepository
+                PublishAnnouncementRepository--> PublishAnnouncementRepository
+                deactivate PublishAnnouncementRepository
 
-                      Get Comission By Description
-
-           end ref
 
 PublishAnnouncementRepository --> PublishAnnouncementRequestController:publishedAnnouncement
 deactivate PublishAnnouncementRepository

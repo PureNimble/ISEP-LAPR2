@@ -9,7 +9,12 @@ participant "comissionRepository\n:ComissionRepository" as ComissionRepository
 
 autonumber 42
 
+
+
  -> PublishAnnouncementRequestController : getTypeComission()
+
+           Group  Get Comission List
+
            activate PublishAnnouncementRequestController
 
            PublishAnnouncementRequestController -> Singleton : getInstance()
@@ -29,6 +34,8 @@ autonumber 42
 
                 ComissionRepository --> PublishAnnouncementRequestController : Type Comission
                 deactivate ComissionRepository
+
+end
 
    <-- PublishAnnouncementRequestController  : Type Comission
 
