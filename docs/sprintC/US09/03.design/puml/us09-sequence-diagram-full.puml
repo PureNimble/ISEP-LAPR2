@@ -13,7 +13,6 @@ participant ":SendMessageUI" as UI
 participant ":SendMessageController" as CTRL
 participant ":Repositories" as Repository
 participant "repositories\n:Repositories" as Repository2
-participant "UserRepository:\nUser Repository" as UserRepository
 participant "publishedAnnouncementRepository\n:Published Announcement Repository" as publishedAnnouncementRepository
 participant "messageRepository: \nMessage Repository" as messageRepository
 participant "message:\nMessage" as message
@@ -103,11 +102,11 @@ autonumber
     '   UI --> UI : keepPropertySelected(propertyDescription)
 
 
-    UI --> Client: asks to confirm the property selected
-        deactivate UI
-
-    Client -> UI: confirms the selected data
-        activate UI
+'    UI --> Client: asks to confirm the property selected
+'        deactivate UI
+'
+'    Client -> UI: confirms the selected data
+'        activate UI
 
     UI --> Client: requests the name, phone number and preferred \ndate and time slot (from x hour to y hour) for the property visit
         deactivate UI

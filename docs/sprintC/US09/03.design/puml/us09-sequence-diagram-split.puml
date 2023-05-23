@@ -26,19 +26,19 @@ autonumber
         activate UI
 
         UI -> CTRL** : create
-    UI --> Client : requests an identity
-        deactivate UI
-
-    Client -> UI : inserts his email
-        activate UI
-
-        UI -> CTRL : getUserInformation()
-
-            activate CTRL
-
-            ref over CTRL
-
-            Get User Information
+'    UI --> Client : requests an identity
+'        deactivate UI
+'
+'    Client -> UI : inserts his email
+'        activate UI
+'
+'        UI -> CTRL : getUserInformation()
+'
+'            activate CTRL
+'
+'            ref over CTRL
+'
+'            Get User Information
 
 
 '            CTRL -> Repository : getInstance()
@@ -61,18 +61,18 @@ autonumber
 '
 '                deactivate UserRepository
 
-            end
+          '  end
 
-        CTRL --> UI : User Information
-
-            deactivate CTRL
-
-
-    UI --> Client : shows User information and requests a confirmation
-        deactivate UI
-
-    Client -> UI : confirms his personal information
-        activate UI
+'        CTRL --> UI : User Information
+'
+'            deactivate CTRL
+'
+'
+'    UI --> Client : shows User information and requests a confirmation
+'        deactivate UI
+'
+'    Client -> UI : confirms his personal information
+'        activate UI
 
         UI -> CTRL : getProperties()
             activate CTRL
