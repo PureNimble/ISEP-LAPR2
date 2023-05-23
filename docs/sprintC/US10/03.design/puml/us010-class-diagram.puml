@@ -1,0 +1,58 @@
+@startuml
+
+title US010 - Class Diagram
+
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+
+class PlaceOrderUI {
+
+}
+
+class PlaceOrderController {
+    + getPublishedAnnouncement()
+    + createOffer(orderAmount)
+}
+
+class PublishedAnnouncemtRepository {
+    - List <PublishedAnnouncement> publishedAnnouncement
+    + getPublishedAnnouncement()
+}
+
+class AuthenticationRepository {
+    + getCurrentUserSession()
+}
+
+class OfferRepository {
+    + addOffer(offer)
+}
+
+class Repositories {
+    - Repositories()
+    + getInstance():Repositories
+    + getPublishedAnnouncementRepository()
+    + getAuthenticationRepository()
+    + getOfferRepository()
+}
+
+class Offer {
+ + User user
+ + PublishedAnnouncement publishedAnnouncement
+ + double orderAmount
+}
+
+PlaceOrderUI .> PlaceOrderController
+PlaceOrderController .> Repositories : repositories
+PlaceOrderController ..> PublishedAnnouncemtRepository : publishedAnnouncementRepository
+PlaceOrderController ..> AuthenticationRepository : authenticationRepository
+PlaceOrderController ..> OfferRepository : offerRepository
+PlaceOrderController ..> Offer
+Repositories --> Repositories : instance
+Repositories --> PublishedAnnouncemtRepository
+Repositories --> AuthenticationRepository
+Repositories --> OfferRepository
+
+
+@enduml
