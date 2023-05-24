@@ -1,11 +1,30 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - US12
 
 autonumber
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+actor "System Administrator" as Admin
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+activate Admin
+
+Admin -> System : asks to import information from a legacy system
+activate System
+
+System --> Admin : shows the list of files to import
+deactivate System
+
+Admin -> System : chooses one file to import
+activate System
+
+System --> Admin : saves the information and displays operation success
+deactivate System
+
+
+
+
 @enduml

@@ -1,5 +1,4 @@
-# US 012 - As a system administrator, I want to import information from a legacy
-system that has been in use in several agencies.
+# US 012 - As a system administrator, I want to import information from a legacy system that has been in use in several agencies.
 
 ## 1. Requirements Engineering
 
@@ -7,21 +6,23 @@ system that has been in use in several agencies.
 ### 1.1. User Story Description
 
 
-As an organization employee, I want to create a new task in order to be further published.
+As a system administrator, I want to import information from a legacy system that has been in use in several agencies.
 
 
-
-### 1.2. Customer Specifications and Clarifications 
+### 1.2. Customer Specifications and Clarifications
 
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost as well as the its classifying task category. 
+>	The company's systems administrator will be responsible for registering all employees (specifying
+the name, the citizen's card number, the tax number, the address, the email address, the contact
+telephone number and the agency to which it is assigned) and branches of the network (specifying
+the designation, the location, the email address and the contact telephone number) as well as
+preparing the system in order to facilitate the insertion of advertisements and facilitate the use of the
+application.
 
-
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
-
-
+> All the images/figures produced during the software development process should be recorded in
+SVG format.
 
 **From the client clarifications:**
 
@@ -78,15 +79,19 @@ administrator if the file is empty or its content is not in the requested format
 ### 1.3. Acceptance Criteria
 
 
-* **AC1:** All required fiels must be filled in.
-* **AC2:** Task reference must have at least 5 alphanumeric chars.
-* **AC3:** When creating a task with an already existing reference, the system must reject such operation and the user must have the change to modify the typed reference.
+* **AC1:** The system administrator must be able to choose a file to import.
+* **AC2:** The system should only accept CSV files.
+* **AC3:** The file content must be validated, showing a message to the system administrator if the file is empty or its content is not in the requested format.
+* **AC4:** The import operation, when successful, should trigger a success message to the system administrator.
 
 
 ### 1.4. Found out Dependencies
 
 
-* There is a dependency to "US003 Create a task category" since at least a task category must exist to classify the task being created.
+* There is a dependency to "US004 Submit a request for listing a property sale or rent." since the System Administrator can import a file with Announcements Resquest Information.
+* There is a dependency to "US003 As a system administrator, I want to register a store." since System Administrator has to import the information, this System Administrator must be registered in a store in order to do that.
+* There is a dependency to "US002 Publish any sale announcement on the system" since the System Administrator can import a file with Published Announcements Information.
+
 
 
 ### 1.5 Input and Output Data
@@ -95,20 +100,15 @@ administrator if the file is empty or its content is not in the requested format
 **Input Data:**
 
 * Typed data:
-	* a reference, 
-	* a designation, 
-	* an informal description
-	* a technical description
-	* an estimated duration
-	* an estimated cost
 	
 * Selected data:
-	* Classifying task category 
+	* The imported information
 
 
 **Output Data:**
 
-* List of existing task categories
+* The status of the file
+* A a success message
 * (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
@@ -125,4 +125,3 @@ administrator if the file is empty or its content is not in the requested format
 
 ### 1.7 Other Relevant Remarks
 
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
