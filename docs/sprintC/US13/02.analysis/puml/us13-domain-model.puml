@@ -1,0 +1,50 @@
+@startuml
+
+title US13 - Domain Model
+
+skinparam groupInheritance 2
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+class NetworkManager {
+
+}
+
+class User {
+    Password
+}
+
+class Person {
+    Name
+    Email
+    Phone Number
+    Tax Number
+    Passport Number
+}
+
+class Employee {
+
+}
+
+class Store {
+    ID
+    Designation
+}
+
+class Role {
+    Role
+}
+
+Person <|-- User
+User <|-- Employee
+Employee <|-- NetworkManager
+
+Employee "*" -left- "1" Store : works in >
+NetworkManager "*" -- "1" Store : manages >
+Employee "1" -left- "1..4" Role : has >
+
+@enduml

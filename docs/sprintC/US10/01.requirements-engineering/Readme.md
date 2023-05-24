@@ -24,50 +24,69 @@ amount.
 
 **From the client clarifications:**
 
-> **Question:** What data is required, in addition to the order value, so that a client can place an order to purchase a property? 
-> **(Tuesday, 2nd May, 2023 at 11:44)**
->  
-> **Answer:** Only the order amount **(Wednesday, 3rd May, 2023 at 17:46)**
 
-
-
-> **Question:** When the client intends to place a purchase order, should the list of properties (announcements) be presented initially and 
-> then asked to select a property? **(Wednesday, 3rd May, 2023 at 10:56)**
->  
-> **Answer:** The system should show a list of properties to the client. **(Friday, 5th May, 2023 at 10:01)**
-
-
-
-> **Question:** In US10, can the client remove an offer they made at any point, in order to replace it with a different one? 
-> **(Wednesday, 3rd May, 2023 at 11:54)**
-> 
-> **Answer:** No. **(Friday, 5th May, 2023 at 10:13)**
-
-
-
-> **Question:** Should this User Story be implemented as an addition to US001 (Users can display properties, and select one to make an order), 
-> or should it be completely separate, with a separate section of the app dedicated to it? **(Wednesday, 3rd May, 2023 at 13:24)**
-> 
-> **Answer:** To place an order the actor should be registered in the system. **(Friday, 5th May, 2023 at 11:35)**
-
-
-
-> **Question:** To order a purchase of a property, should the client be able to filter the properties by type of property, city, 
-> district....so that it's easier to find the wanted property, or should the system show the entire list of properties to sale? 
-> **(Friday, 5th May, 2023 at 11:43)**
+> **Question:** What data is required, in addition to the order value, so that a client can place an order to purchase a property?
 >
-> **Answer:** The system should show a list of properties to the client. Filtering is a useful feature of the system, please 
-> prepare a user friendly and effective filtering to show the properties to the client. **(Tuesday, 9th May, 2023 at 15:49)**
+>  **Answer:** Only the order amount.
+>
+> **Date:** 2 de May de 2023
 
+
+> **Question:** When the client intends to place a purchase order, should the list of properties (announcements) be presented initially and then asked to select a property?
+>
+>  **Answer:** The system should show a list of properties to the client.
+>
+> **Date:**  3 de May de 2023
+
+
+> **Question:** Regarding the us010 i had a question about the order of the client. After the client sent an order to purchase the property where does the request go to? To the agency, to the owner, to the store?
+>
+>  **Answer:** I don not understand your question and I think you are confusing things. Please discuss this question with your teammates and class teachers. Remember that I am your client and not your ESOFT teacher.
+>
+> **Date:** 3 de May de 2023
+
+
+> **Question:**  In US10, can the client remove an offer they made at any point, in order to replace it with a different one?
+>
+>  **Answer:** No.
+>
+> **Date:** 3 de May de 2023
+
+
+> **Question:** If a client makes an order of equal or lower value to a previous one, the older order will be considered first. The system should state this on the screen, but should this information be shown to the client, the agent, or both?
+>
+>  **Answer:** Please check who is the ator of this Us and check again the acceptance criteria of this US.
+>
+> **Date:** 3 de May de 2023
+
+
+> **Question:** Should this User Story be implemented as an addition to US001 (Users can display properties, and select one to make an order), or should it be completely separate, with a separate section of the app dedicated to it?
+>
+>  **Answer:** To place an order the actor should be registered in the system.
+>
+> **Date:** 3 de May de 2023
+
+
+> **Question:** To order a purchase of a property, should the client be able to filter the properties by type of property, city, district....so that it's easier to find the wanted property, or should the system show the entire list of properties to sale?
+>
+>  **Answer:** The system should show a list of properties to the client. Filtering is a useful feature of the system, please prepare a user friendly and effective filtering to show the properties to the client.
+>
+> **Date:** 5 de May de 2023
 
 
 > **Question:** When showing the other order on the screen, what data should be shown (eg client name, published date, order status)?
-> **(Friday, 5th May, 2023 at 15:58)**
 >
-> **Answer:** If the order amount submitted by the client has already been posted for the property (by another request 
-> from this client or any other client), the system must state that on the screen. The system should show the message 
-> "The order amount submitted has already been posted for this property. Please contact the agent that is responsible for this property.". 
-> **(Tuesday, 9th May, 2023 at 15:59)**
+>  **Answer:** If the order amount submitted by the client has already been posted for the property (by another request from this client or any other client), the system must state that on the screen. The system should show the message "The order amount submitted has already been posted for this property. Please contact the agent that is responsible for this property.".
+>
+> **Date:** 5 de May de 2023
+
+
+> **Question:**  Let's suppose the client doesn't want to filter the properties. That means there will be shown both "sale" and "rent" announcements to him. If he later wants to sort them by price (ascending or descending), how does the comparison between a property for sale with a 200 000$ price (e.g.) and a property for rent with a 800$ monthly price (e.g.) and a 12 months contract duration (e.g.) should be?
+> 
+>  **Answer:**  If the actor does not chooses to filter properties by type of business (sale or rent), the property sale price and the property rent monthly price should used for sorting the properties.
+>
+> **Date:** 19 de May de 2023
+
 
 
 ### 1.3. Acceptance Criteria

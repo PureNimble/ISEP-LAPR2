@@ -28,23 +28,29 @@ System -> Controller** : create
 System -> Controller : getPublishedAnnouncement()
 activate Controller
 
-Controller -> RepositorySingleton : getInstance()
-activate RepositorySingleton
+ref over Controller
 
-RepositorySingleton --> Controller: repositories
-deactivate RepositorySingleton
+Get Published Announcement
 
-Controller -> Repositories : getPublishedAnnouncementRepository()
-activate Repositories
+'Controller -> RepositorySingleton : getInstance()
+'activate RepositorySingleton
+'
+'RepositorySingleton --> Controller: repositories
+'deactivate RepositorySingleton
+'
+'Controller -> Repositories : getPublishedAnnouncementRepository()
+'activate Repositories
+'
+'Repositories --> Controller: PublishedAnnouncementRepository
+'deactivate Repositories
+'
+'Controller -> PublishedAnnouncementRepository : getPublishedAnnouncement()
+'activate PublishedAnnouncementRepository
+'
+'PublishedAnnouncementRepository --> Controller : PublishedAnnouncementList
+'deactivate PublishedAnnouncementRepository
 
-Repositories --> Controller: PublishedAnnouncementRepository
-deactivate Repositories
-
-Controller -> PublishedAnnouncementRepository : getPublishedAnnouncement()
-activate PublishedAnnouncementRepository
-
-PublishedAnnouncementRepository --> Controller : PublishedAnnouncementList
-deactivate PublishedAnnouncementRepository
+end
 
 Controller --> System : PublishedAnnouncementList
 deactivate Controller
@@ -89,41 +95,48 @@ activate System
 System -> Controller : createOffer(orderAmount)
 activate Controller
 
-Controller -> Repositories : getAuthenticationRepository()
-activate Repositories
+ref over Controller
 
-Repositories --> Controller : authenticationRepository
-deactivate Repositories
+    Create Offer
 
-Controller -> AuthenticationRepository : getCurrentUserSession()
-activate AuthenticationRepository
+'Controller -> Repositories : getAuthenticationRepository()
+'activate Repositories
+'
+'Repositories --> Controller : authenticationRepository
+'deactivate Repositories
+'
+'Controller -> AuthenticationRepository : getCurrentUserSession()
+'activate AuthenticationRepository
+'
+'AuthenticationRepository --> Controller : getCurrentUserSession
+'deactivate AuthenticationRepository
+'
+'Controller -> Repositories : getOfferRepository()
+'activate Repositories
+'
+'Repositories --> Controller : getOfferRepository
+'deactivate Repositories
+'
+'Controller -> OfferRepository : createOffer(orderAmount)
+'activate OfferRepository
+'
+'OfferRepository -> Offer** : createOffer(orderAmount)
+'
+'OfferRepository -> OfferRepository : addOffer(offer)
+'
+'OfferRepository -> OfferRepository : validateOffer(offer)
+'
+'OfferRepository --> OfferRepository
+'
+'OfferRepository --> OfferRepository
+'
+'OfferRepository --> Controller : offer
+'deactivate OfferRepository
 
-AuthenticationRepository --> Controller : getCurrentUserSession
-deactivate AuthenticationRepository
-
-Controller -> Repositories : getOfferRepository()
-activate Repositories
-
-Repositories --> Controller : getOfferRepository
-deactivate Repositories
-
-Controller -> OfferRepository : createOffer(orderAmount)
-activate OfferRepository
-
-OfferRepository -> Offer** : createOffer(orderAmount)
-
-OfferRepository -> OfferRepository : addOffer(offer)
-
-OfferRepository -> OfferRepository : validateOffer(offer)
-
-OfferRepository --> OfferRepository
-
-OfferRepository --> OfferRepository
-
-OfferRepository --> Controller : offer
-deactivate OfferRepository
+end
 
 Controller --> System : offer
+deactivate Controller
 
 'Controller -> OfferRepository : checkExistingOffer(offer)
 'activate OfferRepository

@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 13 - To list all employees working in every store of the network 
 
 ## 3. Design - User Story Realization 
 
@@ -43,7 +43,7 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 This diagram shows the full sequence of interactions between the classes involved in the realization of this user story.
 
-![Sequence Diagram - Full](svg/us006-sequence-diagram-full.svg)
+![Sequence Diagram - Full](svg/us13-sequence-diagram-full.svg)
 
 ### Alternative 2 - Split Diagram
 
@@ -71,4 +71,4 @@ It uses interaction ocurrence.
 
 ## 3.3. Class Diagram (CD)
 
-![Class Diagram](svg/us006-class-diagram.svg)
+![Class Diagram](svg/us13-class-diagram.svg)
