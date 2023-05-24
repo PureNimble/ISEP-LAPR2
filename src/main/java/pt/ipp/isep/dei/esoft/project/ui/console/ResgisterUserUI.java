@@ -425,6 +425,7 @@ public class ResgisterUserUI {
         }
     }
 
+
     /**
      * Displays a menu of states as numbered options.
      *
