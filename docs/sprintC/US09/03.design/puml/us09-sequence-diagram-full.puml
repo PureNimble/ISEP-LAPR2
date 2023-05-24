@@ -69,11 +69,11 @@ autonumber
         UI -> CTRL : getProperties()
             activate CTRL
 
-            CTRL -> Repository : getInstance()
-                activate Repository
-
-            Repository --> CTRL : repositories
-                deactivate Repository
+'            CTRL -> Repository : getInstance()
+'                activate Repository
+'
+'            Repository --> CTRL : repositories
+'                deactivate Repository
 
             CTRL -> Repository2 : getPublishedAnnouncementRepository()
                 activate Repository2

@@ -1,4 +1,4 @@
-# US 13 - To create a Task 
+# US 13 - To list all employees working in every store of the network 
 
 ## 2. Analysis
 
