@@ -12,7 +12,7 @@ participant "authenticationRepository\n:AuthenticationRepository" as Authenticat
 participant "offerRepository\n:OfferRepository" as OfferRepository
 participant "Offer" as Offer
 
-autonumber 15
+autonumber 17
 
 -> Controller : createOffer(orderAmount)
 activate Controller
@@ -31,40 +31,30 @@ activate AuthenticationRepository
 AuthenticationRepository --> Controller : getCurrentUserSession
 deactivate AuthenticationRepository
 
-Controller -> Offer : Offer(user, publishedAnnouncement, orderAmount)
-activate Offer
-
-Offer --> Controller : offer
-deactivate Offer
-
 Controller -> Repositories : getOfferRepository()
 activate Repositories
 
 Repositories --> Controller : getOfferRepository
 deactivate Repositories
 
-'Controller -> OfferRepository : checkExistingOffer(offer)
-'activate OfferRepository
-'
-'OfferRepository --> Controller : checkExistingOffer
-'deactivate OfferRepository
-'
-'    opt if checkExistingOffer == true
-'
-'       Controller --> System : checkExistingOffer
-'
-'       System --> Client : asks the user to wait until the pending request is either accepted or rejected
-'
-'    end
-
-Controller -> OfferRepository : addOffer(offer)
+Controller -> OfferRepository : createOffer(orderAmount)
 activate OfferRepository
 
-OfferRepository --> Controller : addOffer
+OfferRepository -> Offer** : createOffer(orderAmount)
+
+OfferRepository -> OfferRepository : addOffer(offer)
+
+OfferRepository -> OfferRepository : validateOffer(offer)
+
+OfferRepository --> OfferRepository
+
+OfferRepository --> OfferRepository
+
+OfferRepository --> Controller : offer
 deactivate OfferRepository
 
 end
 
-<-- Controller : createOffer
+<-- Controller : offer
 
 @enduml
