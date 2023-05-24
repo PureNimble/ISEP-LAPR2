@@ -141,6 +141,4 @@ Controller --> System : offer
 
 System --> Client : displays operation success
 
-
-
 @enduml
