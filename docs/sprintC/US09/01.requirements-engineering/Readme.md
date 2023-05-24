@@ -115,7 +115,9 @@ As a client, I want to leave a message to the agent to schedule a visit to a pro
 **Input Data:**
 
 * Typed data:
-	* A message from the client
+	* The date and hour slot for visit
+    * The name and phone number
+    * A message from the client
 	
 * Selected data:
 	* The property that the client has interest in

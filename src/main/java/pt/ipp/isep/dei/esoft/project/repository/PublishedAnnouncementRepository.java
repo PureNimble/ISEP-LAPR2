@@ -123,7 +123,7 @@ public class PublishedAnnouncementRepository {
      @return true if the published announcement is valid, false otherwise
      */
     private boolean validatePublishedAnnouncement(PublishedAnnouncement publishedAnnouncement) {
-        return tasksDoNotContainAnnouncement(publishedAnnouncement);
+        return !tasksDoNotContainAnnouncement(publishedAnnouncement);
     }
 
     /**
