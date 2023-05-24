@@ -151,7 +151,9 @@ public class PublishedAnnouncementRequestController {
      @return A List of AnnouncementRequest objects.
      */
     public List<AnnouncementRequest> getAnnouncementRequestByMostRecent(Employee agent) {
+
         AnnouncementRequestRepository announcementRequestRepository = getAnnouncementRequestRepository();
+
         List<PublishedAnnouncement> publishedAnnouncements = getPublishedAnnouncements();
 
         return announcementRequestRepository.getAnnouncementRequestsByMostRecent(agent,publishedAnnouncements);
@@ -160,8 +162,6 @@ public class PublishedAnnouncementRequestController {
     public List<AnnouncementRequestDto> toDto(Employee agent){
 
         List<AnnouncementRequest> announcementRequests = getAnnouncementRequestByMostRecent(agent);
-
-        AnnouncementRequestMapper announcementRequestMapper = new AnnouncementRequestMapper();
 
         return  announcementRequestMapper.toDto(announcementRequests);
     }
@@ -185,7 +185,7 @@ public class PublishedAnnouncementRequestController {
      */
     public String getCurrentSessionEmail(){
         AuthenticationRepository authenticationRepository = getAuthenticationRepository();
-        return authenticationRepository.getCurrentUserSession().getUserID.getEmail();
+        return authenticationRepository.getCurrentUserSession().getUserId().getEmail();
     }
 
 
