@@ -155,6 +155,16 @@ class AvailableEquipment {
 class Client{
 }
 
+class AutheticationRepository{
++doLogin(email,pwd)
++doLogout()
++getCurrentSession()
++addUserRole()
++addUserWithRole()
++passwordGenerator()
+-shuffleString(input,random)
+-randomCharacter(characters,random)
+}
 
 
 class Address {
@@ -237,12 +247,19 @@ class Repositories
 
 
 SendMessageController .> Repositories : repositories
-Repositories --> Repositories :instance
+Repositories ---> Repositories :instance
 'Repositories ..> UserRepository : user
-Repositories ..> ComissionRepository : comission
-Repositories ..> PublishedAnnouncementRepository : announcement
-Repositories ..> PropertyTypeRepository : propertyType
-Repositories ..> MessageRepository : message
+Repositories ---> ComissionRepository : comission
+Repositories ---> PublishedAnnouncementRepository : announcement
+Repositories ---> PropertyTypeRepository : propertyType
+Repositories ---> MessageRepository : message
+Repositories ---> AutheticationRepository : authentication
+
+SendMessageController ...> ComissionRepository : comission
+SendMessageController ...> PublishedAnnouncementRepository : announcement
+SendMessageController ...> PropertyTypeRepository : propertyType
+SendMessageController ...> MessageRepository : message
+SendMessageController ...> AutheticationRepository : authentication
 
 MessageRepository -down-> Message
 Agent "1" -up- "*" Message : recives a >
