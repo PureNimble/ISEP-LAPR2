@@ -13,66 +13,172 @@ public class UnregisterUserController {
 
     private StateRepository stateRepository = null;
 
+    private AuthenticationRepository authenticationRepository = null;
+
+    private UserRepository userRepository = null;
+
     /**
      * Constructs a new instance of the UnregisterUserController.
      */
     public UnregisterUserController() {
+        getAuthenticationRepository();
+        getStateRepository();
+        getUserRepository();
+    }
+
+
+    /**
+     * Returns an instance of the AuthenticationRepository.
+     * <p>
+     * If the instance does not exist, it creates one using the Repositories class.
+     *
+     * @return The AuthenticationRepository instance
+     */
+    private AuthenticationRepository getAuthenticationRepository() {
+        if (authenticationRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+
+            //Get the AuthenticationRepository
+            authenticationRepository = repositories.getAuthenticationRepository();
+        }
+        return authenticationRepository;
     }
 
     /**
-     * Returns the state repository.
+     * Returns an instance of the UserRepository.
+     * <p>
+     * If the instance does not exist, it creates one using the Repositories class.
      *
-     * @return the state repository
+     * @return The UserRepository instance
+     */
+    private UserRepository getUserRepository() {
+        if (userRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+
+            //Get the AuthenticationRepository
+            userRepository = repositories.getUserRepository();
+        }
+        return userRepository;
+    }
+
+
+    /**
+     * Returns an instance of the StateRepository.
+     * <p>
+     * If the instance does not exist, it creates one using the Repositories class.
+     *
+     * @return The StateRepository instance
      */
     private StateRepository getStateRepository() {
-        return null;
+        if (stateRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+
+            //Get the AuthenticationRepository
+            stateRepository = repositories.getStateRepository();
+        }
+        return stateRepository;
+    }
+
+
+    public void registerClient(String name, String email, int passportCardNumber, int taxNumber, int telephoneNumber, Address address) {
+        if (address == null) {
+            getUserRepository().add(new Client(email, passportCardNumber, taxNumber, name, telephoneNumber));
+        }else {
+            getUserRepository().add(new Client(email, passportCardNumber, taxNumber, name, address,telephoneNumber));
+        }
+    }
+
+
+    public String getPassword() {
+       return getAuthenticationRepository().passwordGenerator();
+    }
+
+    public void registerUser(String name, String email, String password, String role) {
+        getAuthenticationRepository().addUserWithRole(name, email, password, role);
     }
 
     /**
-     * Registers a new person with the given information.
+     * Returns the State that matches the given description.
      *
-     * @param name the name of the person
-     * @param passportNumber the passport number of the person
-     * @param taxNumber the tax number of the person
-     * @param state the state of the person
-     * @param district the district of the person
-     * @param city the city of the person
-     * @param street the street of the person
-     * @param zipCode the zip code of the person
-     * @param emailAddress the email address of the person
-     * @param phoneNumber the phone number of the person
+     * @param stateDescription the description of the State to retrieve
+     * @return the State that matches the description, or null if not found
      */
-    public void registerPerson (int name, int passportNumber, int taxNumber, int state, int district, int city, int street, int zipCode, String emailAddress, int phoneNumber) {
+    public State getStateByDescription(String stateDescription) {
+
+        StateRepository stateRepository = getStateRepository();
+
+        //Get the TaskCategory by its description
+        State stateByDescription =
+                stateRepository.getStateByDescription(stateDescription);
+        return stateByDescription;
+
     }
 
     /**
-     * Returns a list of all states.
+     * Returns the City that matches the given description and District.
      *
-     * @return a list of all states
+     * @param cityDescription the description of the City to retrieve
+     * @param district        the District that the City should belong to
+     * @return the City that matches the description and District, or null if not found
+     */
+    public City getCityByDescription(String cityDescription, District district) {
+
+        StateRepository stateRepository = getStateRepository();
+
+        //Get the TaskCategory by its description
+        City cityByDescription =
+                stateRepository.getCityByDescription(cityDescription, district);
+        return cityByDescription;
+
+    }
+
+
+    /**
+     * Returns the District that matches the given description and State.
+     *
+     * @param districtDescription the description of the District to retrieve
+     * @param state               the State that the District should belong to
+     * @return the District that matches the description and State, or null if not found
+     */
+    public District getDistrictByDescription(String districtDescription, State state) {
+
+        StateRepository stateRepository = getStateRepository();
+
+        //Get the TaskCategory by its description
+        District districtByDescription =
+                stateRepository.getDistrictByDescription(districtDescription, state);
+        return districtByDescription;
+    }
+
+
+    /**
+     * Returns a list of all States.
+     *
+     * @return a list of all States
      */
     public List<State> getState() {
+        StateRepository stateRepository = getStateRepository();
         return stateRepository.getStates();
     }
 
     /**
-     * Returns the district with the given description in the specified state.
+     * Returns a list of all Districts belonging to the given State.
      *
-     * @param districtDescription the description of the district
-     * @param state the state to search in
-     * @return the district with the given description in the specified state
+     * @param state the State to retrieve Districts for
+     * @return a list of all Districts belonging to the State
      */
-    public District getDistrictByDescription(String districtDescription,State state) {
-        return stateRepository.getDistrictByDescription(districtDescription,state);
+    public List<District> getDistrict(State state) {
+        return state.getDistricts();
     }
 
     /**
-     * Returns the city with the given description in the specified district.
+     * Returns a list of all Cities belonging to the given District.
      *
-     * @param cityDescription the description of the city
-     * @param district the district to search in
-     * @return the city with the given description in the specified district
+     * @param district the District to retrieve Cities for
+     * @return a list of all Cities belonging to the District
      */
-    public City getCityByDescription(String cityDescription, District district) {
-        return stateRepository.getCityByDescription(cityDescription,district);
+    public List<City> getCities(District district) {
+        return district.getCities();
     }
+
 }

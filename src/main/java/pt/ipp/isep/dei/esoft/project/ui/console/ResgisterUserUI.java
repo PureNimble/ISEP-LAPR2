@@ -1,15 +1,15 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.UnregisterUserController;
-import pt.ipp.isep.dei.esoft.project.domain.City;
-import pt.ipp.isep.dei.esoft.project.domain.District;
-import pt.ipp.isep.dei.esoft.project.domain.State;
+import pt.ipp.isep.dei.esoft.project.domain.*;
 
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.*;
+import java.util.regex.Pattern;
 
-public class ResgisterUserUI {
+public class ResgisterUserUI implements Runnable {
 
 
     private final UnregisterUserController controller = new UnregisterUserController();
@@ -19,8 +19,6 @@ public class ResgisterUserUI {
     private String name;
     private String employeeEmail;
     private Integer phoneNumber;
-    private String roleDescription;
-    private String storeDescription;
 
     private String cityDescription;
 
@@ -31,6 +29,8 @@ public class ResgisterUserUI {
     private int passportNumber;
 
     private int taxNumber;
+
+    private String password;
 
     /**
      * Returns the RegisterEmployeeController instance associated with the UI.
@@ -45,7 +45,7 @@ public class ResgisterUserUI {
      * Runs the UI.
      */
     public void run() {
-        System.out.println("Employee");
+        System.out.println("Register");
 
         String confirmacao = enterAdress();
 
@@ -58,6 +58,37 @@ public class ResgisterUserUI {
         }
 
         requestData();
+
+        submitData();
+
+    }
+
+
+    private void submitData() {
+
+        if (stateDescription != null) {
+            State state = controller.getStateByDescription(stateDescription);
+            District district = controller.getDistrictByDescription(districtDescription, state);
+            City city = controller.getCityByDescription(cityDescription, district);
+
+            Address address = new Address(street, zipCode, district, city, state);
+            controller.registerClient(name, employeeEmail, passportNumber, taxNumber, phoneNumber, address);
+        }
+        controller.registerClient(name, employeeEmail, passportNumber, taxNumber, phoneNumber, null);
+        controller.registerUser(name, employeeEmail, password, "Client");
+
+        try {
+            FileWriter fw = new FileWriter("emailRegistration.txt");
+            PrintWriter pw = new PrintWriter(fw);
+
+            pw.println("Email:" + employeeEmail);
+            pw.println("Password:" + password);
+
+            pw.close();
+
+        } catch (IOException ex) {
+            System.out.println("Error to write password to file:" + ex.getMessage());
+        }
 
 
     }
@@ -74,7 +105,7 @@ public class ResgisterUserUI {
         name = requestNameDescription();
 
         //Request the Employee Email Description from the console
-        employeeEmail = requestEmployeeEmailDescription();
+        employeeEmail = requestEmailDescription();
 
         //Request the Phone Number from the console
         phoneNumber = requestPhoneNumberDescription();
@@ -85,6 +116,7 @@ public class ResgisterUserUI {
         //Request the Tax Number from the console
         taxNumber = requestTaxNumberDescription();
 
+        password = controller.getPassword();
 
     }
 
@@ -274,11 +306,26 @@ public class ResgisterUserUI {
      *
      * @return the string employee email.
      */
-    private String requestEmployeeEmailDescription() {
+    private String requestEmailDescription() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Employee Email:");
-        return input.nextLine();
+        System.out.print("Email: ");
+        String email = input.nextLine();
+
+        while (!isValidEmail(email)) {
+            System.out.println("Invalid email. Please enter a valid email address like x@x.xx");
+            System.out.print("Email: ");
+            email = input.nextLine();
+        }
+
+        return email;
     }
+
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pat = Pattern.compile(emailRegex);
+        return pat.matcher(email).matches();
+    }
+
 
     /**
      * Displays a list of states and prompts the user to select one.
