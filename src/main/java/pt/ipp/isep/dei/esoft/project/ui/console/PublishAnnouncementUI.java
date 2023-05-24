@@ -82,12 +82,12 @@ public class PublishAnnouncementUI implements Runnable {
      */
     private void submitDataHouse() {
 
-        User user = controller.getUserByEmail(email);
+        Client client = controller.getUserByEmail(email);
 
         UserRepository UserRepositories = Repositories.getInstance().getUserRepository();
 
-        if (UserRepositories.getUsers().contains(user)) {
-            System.out.println(user);
+        if (UserRepositories.getUsers().contains(client)) {
+            System.out.println(client);
         }
 
         PropertyType propertyType = controller.getPropertyTypeByDescription(propertyTypeDescription);

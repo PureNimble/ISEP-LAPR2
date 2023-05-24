@@ -8,24 +8,24 @@ import java.util.Objects;
 public class Offer {
 
     private double orderAmount;
-    private User user;
+    private Client client;
     private PublishedAnnouncement publishedAnnouncement;
 
     /**
      * Instantiates a new Offer.
      *
      * @param orderAmount                 the price
-     * @param user                  the user
+     * @param client                  the user
      * @param publishedAnnouncement the published announcement
      */
-    public Offer (double orderAmount, User user, PublishedAnnouncement publishedAnnouncement) {
+    public Offer (double orderAmount, Client client, PublishedAnnouncement publishedAnnouncement) {
         this.orderAmount = orderAmount;
-        this.user = user;
+        this.client = client;
         this.publishedAnnouncement = publishedAnnouncement;
     }
 
     public String toString() {
-        return String.format("%s,%s,%s", orderAmount, user, publishedAnnouncement);
+        return String.format("%s,%s,%s", orderAmount, client, publishedAnnouncement);
 
     }
 
@@ -34,11 +34,11 @@ public class Offer {
         if (this == o) return true;
         if (!(o instanceof Offer)) return false;
         Offer offer = (Offer) o;
-        return Double.compare(offer.orderAmount, orderAmount) == 0 && Objects.equals(user, offer.user) && Objects.equals(publishedAnnouncement, offer.publishedAnnouncement);
+        return Double.compare(offer.orderAmount, orderAmount) == 0 && Objects.equals(client, offer.client) && Objects.equals(publishedAnnouncement, offer.publishedAnnouncement);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderAmount, user, publishedAnnouncement);
+        return Objects.hash(orderAmount, client, publishedAnnouncement);
     }
 }

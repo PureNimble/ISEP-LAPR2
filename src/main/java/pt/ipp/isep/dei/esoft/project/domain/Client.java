@@ -1,11 +1,9 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import java.util.Objects;
-
 /**
  * The User class represents a user and extends the Person class.
  */
-public class User extends Person {
+public class Client extends Person {
 
     /**
      * Constructs a User object with the specified email, passport number, tax number, name, address, and phone number.
@@ -17,7 +15,7 @@ public class User extends Person {
      * @param address        the address of the user.
      * @param phoneNumber    the phone number of the user.
      */
-    public User(String email, int passportNumber, int taxNumber, String name, Address address, int phoneNumber) {
+    public Client(String email, int passportNumber, int taxNumber, String name, Address address, int phoneNumber) {
         super(email, passportNumber, taxNumber, name, address, phoneNumber);
     }
 
@@ -30,7 +28,7 @@ public class User extends Person {
      * @param name           the name of the user.
      * @param phoneNumber    the phone number of the user.
      */
-    public User(String email, int passportNumber, int taxNumber, String name, int phoneNumber) {
+    public Client(String email, int passportNumber, int taxNumber, String name, int phoneNumber) {
         super(email, passportNumber, taxNumber, name, phoneNumber);
     }
 

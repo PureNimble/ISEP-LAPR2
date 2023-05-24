@@ -9,7 +9,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UserRepositoryTest {
+class ClientRepositoryTest {
 
     private UserRepository userRepository;
 
@@ -22,13 +22,13 @@ class UserRepositoryTest {
     void add() {
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
         UserRepository userRepository = new UserRepository();
-        User user = new User("person@exampl.com", 123456, 567890, "Person", address, 8937653);
+        Client client = new Client("person@exampl.com", 123456, 567890, "Person", address, 8937653);
 
-        Optional<User> addedUser = userRepository.add(user);
+        Optional<Client> addedUser = userRepository.add(client);
 
         assertTrue(addedUser.isPresent());
-        assertEquals(user, addedUser.get());
-        assertEquals(List.of(user), userRepository.getUsers());
+        assertEquals(client, addedUser.get());
+        assertEquals(List.of(client), userRepository.getUsers());
     }
 
     @Test
@@ -36,16 +36,16 @@ class UserRepositoryTest {
         UserRepository userRepository = new UserRepository();
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
 
-        User user1 = new User("person@exampl.com", 123456, 567890, "Person", address, 8937653);
-        User user2 = new User("person@exampl.com", 123456, 567890, "Person", address, 8937653);
+        Client client1 = new Client("person@exampl.com", 123456, 567890, "Person", address, 8937653);
+        Client client2 = new Client("person@exampl.com", 123456, 567890, "Person", address, 8937653);
 
 
-        Optional<User> addedUser1 = userRepository.add(user1);
-        Optional<User> addedUser2 = userRepository.add(user2);
+        Optional<Client> addedUser1 = userRepository.add(client1);
+        Optional<Client> addedUser2 = userRepository.add(client2);
 
         assertTrue(addedUser1.isPresent());
         assertFalse(addedUser2.isPresent());
-        assertEquals(List.of(user1), userRepository.getUsers());
+        assertEquals(List.of(client1), userRepository.getUsers());
     }
 
     @Test
@@ -53,16 +53,16 @@ class UserRepositoryTest {
         UserRepository userRepository = new UserRepository();
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
 
-        User user1 = new User("person@exampl.com", 123456, 567890, "Person", address, 8937634);
-        User user2 = new User("persona@exampl.com", 1234565, 5678909, "Personaa", address, 89376534);
+        Client client1 = new Client("person@exampl.com", 123456, 567890, "Person", address, 8937634);
+        Client client2 = new Client("persona@exampl.com", 1234565, 5678909, "Personaa", address, 89376534);
 
-        userRepository.add(user1);
-        userRepository.add(user2);
+        userRepository.add(client1);
+        userRepository.add(client2);
 
-        List<User> users = userRepository.getUsers();
+        List<Client> clients = userRepository.getUsers();
 
-        assertEquals(2, users.size());
-        assertTrue(users.contains(user1));
-        assertTrue(users.contains(user2));
+        assertEquals(2, clients.size());
+        assertTrue(clients.contains(client1));
+        assertTrue(clients.contains(client2));
     }
 }

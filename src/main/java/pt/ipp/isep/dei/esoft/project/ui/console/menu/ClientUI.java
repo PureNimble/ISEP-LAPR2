@@ -27,6 +27,7 @@ public class ClientUI implements Runnable{
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
         options.add(new MenuItem("Send a message to an agent", new SendMessageUI()));
+        options.add(new MenuItem("Request an Announcement", new AnnouncementRequestUI()));
 
         int option = 0;
         do {
