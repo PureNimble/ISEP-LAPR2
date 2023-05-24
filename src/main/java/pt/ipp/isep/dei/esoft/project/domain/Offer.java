@@ -11,17 +11,51 @@ public class Offer {
     private Client client;
     private PublishedAnnouncement publishedAnnouncement;
 
+//    private final double ORDER_AMOUNT_DEFAULT = 0;
+//    private final String CLIENT_DEFAULT = "NO CLIENT";
+//    private final String PUBLISHED_ANNOUNCEMENT_DEFAULT = "";
+
     /**
      * Instantiates a new Offer.
      *
-     * @param orderAmount                 the price
-     * @param client                  the user
+     * @param orderAmount the price
+     * @param client the user
      * @param publishedAnnouncement the published announcement
      */
     public Offer (double orderAmount, Client client, PublishedAnnouncement publishedAnnouncement) {
         this.orderAmount = orderAmount;
         this.client = client;
         this.publishedAnnouncement = publishedAnnouncement;
+    }
+
+//    public Offer() {
+//        this.orderAmount = ORDER_AMOUNT_DEFAULT;
+//        this.client = CLIENT_DEFAULT;
+//        this.publishedAnnouncement = PUBLISHED_ANNOUNCEMENT_DEFAULT;
+//    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public PublishedAnnouncement getPublishedAnnouncement() {
+        return publishedAnnouncement;
+    }
+
+    public double getOrderAmount() {
+        return orderAmount;
+    }
+
+    public void setClient (Client client) {
+        this.client = client;
+    }
+
+    public void setPublishedAnnouncement (PublishedAnnouncement publishedAnnouncement) {
+        this.publishedAnnouncement = publishedAnnouncement;
+    }
+
+    public  void setOrderAmount (double orderAmount) {
+        this.orderAmount = orderAmount;
     }
 
     public String toString() {

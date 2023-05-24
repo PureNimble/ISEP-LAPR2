@@ -74,6 +74,8 @@ public class Repositories {
     private AvailableEquipmentRepository availableEquipmentRepository = new AvailableEquipmentRepository();
 
     private MessageRepository messageRepository = new MessageRepository();
+
+    private OfferRepository offerRepository = new OfferRepository();
     /**
 
      Private constructor to prevent instantiation from outside the class.
@@ -214,5 +216,9 @@ public class Repositories {
      */
     public void setMessageRepository(MessageRepository messageRepository) {
         this.messageRepository = messageRepository;
+    }
+
+    public OfferRepository getOfferRepository() {
+        return offerRepository;
     }
 }

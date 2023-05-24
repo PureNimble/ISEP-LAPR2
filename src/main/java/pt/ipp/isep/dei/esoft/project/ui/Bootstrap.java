@@ -21,6 +21,7 @@ public class Bootstrap implements Runnable {
         addAvailableEquipment();
         addAgents();
         addPublishedAnnouncement();
+        addOffers();
 
     }
 
@@ -185,6 +186,41 @@ public class Bootstrap implements Runnable {
         comissionRepository.add(new Comission(10.5));
         comissionRepository.add(new Comission(23.7));
 
+    }
+
+    private void addOffers() {
+
+        OfferRepository offerRepository = Repositories.getInstance().getOfferRepository();
+
+        Comission comission1 = new Comission(5.00);
+        Comission comission2 = new Comission(10.00);
+
+        Property property1 = new Property(185,2348);
+        Property property2 = new Property(341,679);
+
+        PropertyType propertyType1 = new PropertyType("House");
+        PropertyType propertyType2 = new PropertyType("Apartment");
+
+        TypeOfBusiness typeOfBusiness1 = new TypeOfBusiness("Sale");
+        TypeOfBusiness typeOfBusiness2 = new TypeOfBusiness("Rent");
+
+        Business business1 = new Business(200000);
+        Business business2 = new Business(345);
+
+        Date date1 = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
+        Date date2 = new GregorianCalendar(2023,Calendar.JANUARY, 2).getTime();
+
+        Address address1 = new Address("Avenue Walmart",22334,new District("Jefferson"),new City("Ottawa"),new State("Arizona"));
+        Address address2 = new Address("Avenue Tesco", 90210, new District("Beverly Hills"), new City("Los Angeles"), new State("California"));
+
+        Client client1 = new Client("pedro@this.app", 123456789,123456789,"Pedro",address1,123456789);
+        Client client2 = new Client("miguel@this.app", 987654321,987654321, "Miguel", address2, 987654321);
+
+        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1,typeOfBusiness1, property1, propertyType1, comission1, business1);
+        PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, property2, propertyType2, comission2, business2);
+
+        offerRepository.add(new Offer(200000,client1, publishedAnnouncement1));
+        offerRepository.add(new Offer(3456, client2, publishedAnnouncement2));
     }
 
 
