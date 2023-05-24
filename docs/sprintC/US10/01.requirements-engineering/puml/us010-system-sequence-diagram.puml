@@ -16,7 +16,7 @@ activate Client
 Client -> System : asks to place an order on a property
 activate System
 
-System --> Client : displays the list of properties
+System --> Client : shows the list of properties
 deactivate System
 
 Client -> System : selects the desired property

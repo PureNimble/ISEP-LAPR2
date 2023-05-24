@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 010 - Place an order to purchase the property, submitting the order amount 
 
 ## 3. Design - User Story Realization 
 
@@ -6,35 +6,41 @@
 
 **SSD - Alternative 1 is adopted.**
 
-| Interaction ID | Question: Which class is responsible for... | Answer               | Justification (with patterns)                                                                                 |
-|:-------------  |:--------------------- |:---------------------|:--------------------------------------------------------------------------------------------------------------|
-| Step 1  		 |	... interacting with the actor? | CreateTaskUI         | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
-| 			  		 |	... coordinating the US? | CreateTaskController | Controller                                                                                                    |
-| 			  		 |	... instantiating a new Task? | Organization         | Creator (Rule 1): in the DM Organization has a Task.                                                          |
-| 			  		 | ... knowing the user using the system?  | UserSession          | IE: cf. A&A component documentation.                                                                          |
-| 			  		 |							 | Organization         | IE: knows/has its own Employees                                                                               |
-| 			  		 |							 | Employee             | IE: knows its own data (e.g. email)                                                                           |
-| Step 2  		 |							 |                      |                                                                                                               |
-| Step 3  		 |	...saving the inputted data? | Task                 | IE: object created in step 1 has its own data.                                                                |
-| Step 4  		 |	...knowing the task categories to show? | System               | IE: Task Categories are defined by the Administrators.                                                        |
-| Step 5  		 |	... saving the selected category? | Task                 | IE: object created in step 1 is classified in one Category.                                                   |
-| Step 6  		 |							 |                      |                                                                                                               |              
-| Step 7  		 |	... validating all data (local validation)? | Task                 | IE: owns its data.                                                                                            | 
-| 			  		 |	... validating all data (global validation)? | Organization         | IE: knows all its tasks.                                                                                      | 
-| 			  		 |	... saving the created task? | Organization         | IE: owns all its tasks.                                                                                       | 
-| Step 8  		 |	... informing operation success?| CreateTaskUI         | IE: is responsible for user interactions.                                                                     | 
+| Interaction ID                                                                 | Question: Which class is responsible for...             | Answer                          | Justification (with patterns)                                                                                                                 |
+|:-------------------------------------------------------------------------------|:--------------------------------------------------------|:--------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------|
+| Step 1 : asks to place an offer on a property                                  | ...interacting with the actor?                          | PlaceOrderUI                    | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern. |
+|                                                                                | ...coordinating the US?                                 | PlaceOrderController            | Controller                                                                                                                                    |
+|                                                                                | ...UI-related class being instantiated?                 | PlaceOrderUI                    | Pure Fabrication                                                                                                                              |
+| Step 2 : shows the list of properties                                          | ...obtaining the list of properties?                    | PublishedAnnouncementRepository | IE: knows all it's data, Pure Fabrication                                                                                                     |
+| Step 3 : selects the desired property                                          | ...validating selected data?                            | PlaceOrderUI                    | Pure Fabrication                                                                                                                              |
+|                                                                                | ...saving selected data?                                | (...)                           | (...)                                                                                                                                         |
+| Step 4 : request the offer amount                                              | ...displaying the UI for the client to input the data?  | PlaceOrderUI                    | Pure Fabrication                                                                                                                              |
+| Step 5 : places an offer to purchase a property by submitting the offer amount | ...validating the input data?                           | PlaceOrderUI                    | Pure Fabrication                                                                                                                              |
+|                                                                                | ...temporarily keeping the input data?                  | PlaceOrderUI                    | Pure Fabrication                                                                                                                              |
+| Step 6 : shows an offer to purchase a property                                 | ...display all the offer information before submitting? | PlaceOrderUI                    | PureFabrication                                                                                                                               |
+| Step 8 : submits data                                                          | ...creating the offer Object?                           | OfferRepository                 | Creator: the object create has its own data.                                                                                                  |
+|                                                                                | ...                                                     | (...)                           | (...)                                                                                                                                         |
+|                                                                                | ...                                                     | (...)                           | (...)                                                                                                                                         |
+|                                                                                | ...                                                     | (...)                           | (...)                                                                                                                                         |
+|                                                                                | ...                                                     | (...)                           | (...)                                                                                                                                         |
+|                                                                                | ...                                                     | (...)                           | (...)                                                                                                                                         |
+|                                                                                | ...validating the data locally(mandatory data)?         | Offer                           | IE: knows its own data                                                                                                                        |
+|                                                                                | ...validating all data (global validation)?             | OfferRepository                 | IE: knows all Offer instances                                                                                                                 |
+| Step 9 : displays operation success                                            | ...displaying operation success?                        | PlaceOrderUI                    | PureFabrication                                                                                                                               |
+
+
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * Organization
- * Task
+ * (...)
+ * Offer
 
 Other software classes (i.e. Pure Fabrication) identified: 
 
- * CreateTaskUI  
- * CreateTaskController
+ * PlaceOrderUI  
+ * PlaceOrderController
 
 
 ## 3.2. Sequence Diagram (SD)
@@ -43,7 +49,7 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 This diagram shows the full sequence of interactions between the classes involved in the realization of this user story.
 
-![Sequence Diagram - Full](svg/us006-sequence-diagram-full.svg)
+![Sequence Diagram - Full](svg/us010-sequence-diagram-full.svg)
 
 ### Alternative 2 - Split Diagram
 
@@ -51,24 +57,16 @@ This diagram shows the same sequence of interactions between the classes involve
 
 It uses interaction ocurrence.
 
-![Sequence Diagram - split](svg/us006-sequence-diagram-split.svg)
+![Sequence Diagram - Split](svg/us010-sequence-diagram-split.svg)
 
-**Get Task Category List Partial SD**
+**Create Offer**
 
-![Sequence Diagram - Partial - Get Task Category List](svg/us006-sequence-diagram-partial-get-task-category-list.svg)
+![Sequence Diagram - Partial - Create Offer](svg/us010-sequence-diagram-partial-createOffer.svg)
 
-**Get Task Category Object**
+**Get Published Announcement**
 
-![Sequence Diagram - Partial - Get Task Category Object](svg/us006-sequence-diagram-partial-get-task-category.svg)
-
-**Get Employee**
-
-![Sequence Diagram - Partial - Get Employee](svg/us006-sequence-diagram-partial-get-employee.svg)
-
-**Create Task**
-
-![Sequence Diagram - Partial - Create Task](svg/us006-sequence-diagram-partial-create-task.svg)
+![Sequence Diagram - Partial - Get Published Announcement](svg/us010-sequence-diagram-partial-getPublishedAnnouncement.svg)
 
 ## 3.3. Class Diagram (CD)
 
-![Class Diagram](svg/us006-class-diagram.svg)
+![Class Diagram](svg/us010-class-diagram.svg)
