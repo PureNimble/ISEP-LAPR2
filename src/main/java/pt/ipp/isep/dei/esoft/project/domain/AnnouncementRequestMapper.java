@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public class AnnouncementRequestMapper {
 
@@ -54,7 +55,6 @@ public class AnnouncementRequestMapper {
         }
         return announcementRequestDto;
     }
-
 
 
 

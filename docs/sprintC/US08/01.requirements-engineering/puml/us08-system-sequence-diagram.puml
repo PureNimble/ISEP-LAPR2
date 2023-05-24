@@ -21,7 +21,7 @@ activate Agent
             Agent -> System : selects one announcement request
             activate System
 
-opt Accepts Announcement Request
+alt Accepts Announcement Request
 System --> Agent:shows the comissions available
 deactivate System
 
