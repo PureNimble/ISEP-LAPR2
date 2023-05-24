@@ -1,0 +1,144 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US010 - System Sequence Diagram (SSD)
+
+autonumber
+
+actor "Client" as Client
+participant ":PlaceOrderUI" as System
+participant ":PlaceOrderController" as Controller
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as Repositories
+participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as PublishedAnnouncementRepository
+participant "authenticationRepository\n:AuthenticationRepository" as AuthenticationRepository
+participant "offerRepository\n:OfferRepository" as OfferRepository
+participant "Offer" as Offer
+
+activate Client
+
+Client -> System : asks to place an order on a property
+activate System
+
+System -> Controller** : create
+
+System -> Controller : getPublishedAnnouncement()
+activate Controller
+
+Controller -> RepositorySingleton : getInstance()
+activate RepositorySingleton
+
+RepositorySingleton --> Controller: repositories
+deactivate RepositorySingleton
+
+Controller -> Repositories : getPublishedAnnouncementRepository()
+activate Repositories
+
+Repositories --> Controller: PublishedAnnouncementRepository
+deactivate Repositories
+
+Controller -> PublishedAnnouncementRepository : getPublishedAnnouncement()
+activate PublishedAnnouncementRepository
+
+PublishedAnnouncementRepository --> Controller : PublishedAnnouncementList
+deactivate PublishedAnnouncementRepository
+
+Controller --> System : PublishedAnnouncementList
+deactivate Controller
+
+System --> Client : shows the list of properties
+deactivate System
+
+Client -> System : selects the desired property
+activate System
+
+System --> Client : request the order amount
+deactivate System
+
+Client -> System : places an order to purchase a property by submitting the order amount
+activate System
+
+'    alt order amount is superior
+'
+'        loop if the order amount is higher than the owner's requested proce
+'
+'            System --> Client : asks for a new price
+'            deactivate System
+'
+'            Client -> System : places a new order with an inferior order amount
+'            activate System
+'
+'        end
+'
+'    else order amount is inferior
+'
+'        System --> Client : accepts the purchase request
+'        deactivate System
+'
+'    end
+
+System --> Client : shows that an order to purchase was been submitted
+deactivate System
+
+Client -> System : submits data
+activate System
+
+System -> Controller : createOffer(orderAmount)
+activate Controller
+
+Controller -> Repositories : getAuthenticationRepository()
+activate Repositories
+
+Repositories --> Controller : authenticationRepository
+deactivate Repositories
+
+Controller -> AuthenticationRepository : getCurrentUserSession()
+activate AuthenticationRepository
+
+AuthenticationRepository --> Controller : getCurrentUserSession
+deactivate AuthenticationRepository
+
+Controller -> Repositories : getOfferRepository()
+activate Repositories
+
+Repositories --> Controller : getOfferRepository
+deactivate Repositories
+
+Controller -> OfferRepository : createOffer(orderAmount)
+activate OfferRepository
+
+OfferRepository -> Offer** : createOffer(orderAmount)
+
+OfferRepository -> OfferRepository : addOffer(offer)
+
+OfferRepository -> OfferRepository : validateOffer(offer)
+
+OfferRepository --> OfferRepository
+
+OfferRepository --> OfferRepository
+
+OfferRepository --> Controller : offer
+deactivate OfferRepository
+
+Controller --> System : offer
+
+'Controller -> OfferRepository : checkExistingOffer(offer)
+'activate OfferRepository
+'
+'OfferRepository --> Controller : checkExistingOffer
+'deactivate OfferRepository
+'
+'    opt if checkExistingOffer == true
+'
+'       Controller --> System : checkExistingOffer
+'
+'       System --> Client : asks the user to wait until the pending request is either accepted or rejected
+'
+'    end
+
+System --> Client : displays operation success
+
+@enduml
