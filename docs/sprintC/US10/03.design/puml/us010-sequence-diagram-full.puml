@@ -61,56 +61,6 @@ deactivate System
 Client -> System : places an order to purchase a property by submitting the order amount
 activate System
 
-System -> Controller : createOffer(orderAmount)
-activate Controller
-
-Controller -> Repositories : getAuthenticationRepository()
-activate Repositories
-
-Repositories --> Controller : authenticationRepository
-deactivate Repositories
-
-Controller -> AuthenticationRepository : getCurrentUserSession()
-activate AuthenticationRepository
-
-AuthenticationRepository --> Controller : getCurrentUserSession
-deactivate AuthenticationRepository
-
-Controller -> Offer : Offer(user, publishedAnnouncement, orderAmount)
-activate Offer
-
-Offer --> Controller : offer
-deactivate Offer
-
-Controller -> Repositories : getOfferRepository()
-activate Repositories
-
-Repositories --> Controller : getOfferRepository
-deactivate Repositories
-
-'Controller -> OfferRepository : checkExistingOffer(offer)
-'activate OfferRepository
-'
-'OfferRepository --> Controller : checkExistingOffer
-'deactivate OfferRepository
-'
-'    opt if checkExistingOffer == true
-'
-'       Controller --> System : checkExistingOffer
-'
-'       System --> Client : asks the user to wait until the pending request is either accepted or rejected
-'
-'    end
-
-Controller -> OfferRepository : addOffer(offer)
-activate OfferRepository
-
-OfferRepository --> Controller : addOffer
-deactivate OfferRepository
-
-Controller --> System : createOffer
-deactivate Controller
-
 '    alt order amount is superior
 '
 '        loop if the order amount is higher than the owner's requested proce
@@ -135,6 +85,59 @@ deactivate System
 
 Client -> System : submits data
 activate System
+
+System -> Controller : createOffer(orderAmount)
+activate Controller
+
+Controller -> Repositories : getAuthenticationRepository()
+activate Repositories
+
+Repositories --> Controller : authenticationRepository
+deactivate Repositories
+
+Controller -> AuthenticationRepository : getCurrentUserSession()
+activate AuthenticationRepository
+
+AuthenticationRepository --> Controller : getCurrentUserSession
+deactivate AuthenticationRepository
+
+Controller -> Repositories : getOfferRepository()
+activate Repositories
+
+Repositories --> Controller : getOfferRepository
+deactivate Repositories
+
+Controller -> OfferRepository : createOffer(orderAmount)
+activate OfferRepository
+
+OfferRepository -> Offer** : createOffer(user, publishedAnnouncement, orderAmount)
+
+OfferRepository -> OfferRepository : addOffer(offer)
+
+OfferRepository -> OfferRepository : validateOffer(offer)
+
+OfferRepository --> OfferRepository
+
+OfferRepository --> OfferRepository
+
+OfferRepository --> Controller : offer
+deactivate OfferRepository
+
+Controller --> System : offer
+
+'Controller -> OfferRepository : checkExistingOffer(offer)
+'activate OfferRepository
+'
+'OfferRepository --> Controller : checkExistingOffer
+'deactivate OfferRepository
+'
+'    opt if checkExistingOffer == true
+'
+'       Controller --> System : checkExistingOffer
+'
+'       System --> Client : asks the user to wait until the pending request is either accepted or rejected
+'
+'    end
 
 System --> Client : displays operation success
 
