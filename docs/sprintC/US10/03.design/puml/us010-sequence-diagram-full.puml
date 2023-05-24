@@ -110,7 +110,7 @@ deactivate Repositories
 Controller -> OfferRepository : createOffer(orderAmount)
 activate OfferRepository
 
-OfferRepository -> Offer** : createOffer(user, publishedAnnouncement, orderAmount)
+OfferRepository -> Offer** : createOffer(orderAmount)
 
 OfferRepository -> OfferRepository : addOffer(offer)
 

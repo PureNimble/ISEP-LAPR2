@@ -26,7 +26,9 @@ class AuthenticationRepository {
 }
 
 class OfferRepository {
+    - List <Offer> offer
     + addOffer(offer)
+    + validateOffer(offer)
 }
 
 class Repositories {
@@ -41,6 +43,7 @@ class Offer {
  + User user
  + PublishedAnnouncement publishedAnnouncement
  + double orderAmount
+ + createOffer(offer)
 }
 
 PlaceOrderUI .> PlaceOrderController
@@ -48,7 +51,7 @@ PlaceOrderController .> Repositories : repositories
 PlaceOrderController ..> PublishedAnnouncemtRepository : publishedAnnouncementRepository
 PlaceOrderController ..> AuthenticationRepository : authenticationRepository
 PlaceOrderController ..> OfferRepository : offerRepository
-PlaceOrderController ..> Offer
+OfferRepository ..> Offer
 Repositories --> Repositories : instance
 Repositories --> PublishedAnnouncemtRepository
 Repositories --> AuthenticationRepository
