@@ -1,0 +1,21 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD)
+
+autonumber
+
+actor "Network Manager" as manager
+participant ":System" as System
+
+activate manager
+
+    manager -> System : asks to see list of all employees working in every store
+    activate System
+
+        System --> manager : provides a list of employees (Id, name and role) alphabetically sorted\nand grouped by store (Id, name and number of listings) sorted from the one with \nmore listings to the one with less listings
+    deactivate System
+
+@enduml
