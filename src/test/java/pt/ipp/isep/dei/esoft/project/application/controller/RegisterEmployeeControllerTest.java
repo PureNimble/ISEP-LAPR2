@@ -38,12 +38,12 @@ class RegisterEmployeeControllerTest {
     @Test
     void addUserSuccessful() {
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
-        User user = new User("test@example.com", 12343345, 6789344, "Person", address, 5551234);
+        Client client = new Client("test@example.com", 12343345, 6789344, "Person", address, 5551234);
 
-        userRepository.add(user);
+        userRepository.add(client);
 
         assertEquals(1, userRepository.getUsers().size());
-        assertTrue(userRepository.getUsers().contains(user));
+        assertTrue(userRepository.getUsers().contains(client));
     }
 
     @BeforeEach

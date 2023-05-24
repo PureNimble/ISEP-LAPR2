@@ -1,25 +1,18 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
-import pt.ipp.isep.dei.esoft.project.application.controller.RegisterEmployeeController;
-import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
-import pt.ipp.isep.dei.esoft.project.domain.*;
-import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
+import pt.ipp.isep.dei.esoft.project.application.controller.UnregisterUserController;
+import pt.ipp.isep.dei.esoft.project.domain.City;
+import pt.ipp.isep.dei.esoft.project.domain.District;
+import pt.ipp.isep.dei.esoft.project.domain.State;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.*;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
 
-/**
- * The RegisterEmployeeUI class is responsible for user interaction related to employee registration.
- * It implements the Runnable interface to run the UI as a separate thread.
- */
-public class RegisterEmployeeUI implements Runnable {
-    private final RegisterEmployeeController controller = new RegisterEmployeeController();
+public class ResgisterUserUI {
 
-    private final AuthenticationController authenticationController = new AuthenticationController();
 
-    private final AuthenticationRepository authenticationRepository = new AuthenticationRepository();
+    private final UnregisterUserController controller = new UnregisterUserController();
 
     private int zipCode;
     private String street;
@@ -44,7 +37,7 @@ public class RegisterEmployeeUI implements Runnable {
      *
      * @return the RegisterEmployeeController instance associated with the UI.
      */
-    private RegisterEmployeeController getController() {
+    private UnregisterUserController getController() {
         return controller;
     }
 
@@ -54,101 +47,21 @@ public class RegisterEmployeeUI implements Runnable {
     public void run() {
         System.out.println("Employee");
 
-        String confirmacao;
+        String confirmacao = enterAdress();
 
-        List<String> rolesDescriptions = new ArrayList<>();
+        if (!confirmacao.equals("N")) {
+            stateDescription = displayAndSelectState();
 
-        do {
-            roleDescription = displayAndSelectRoles(rolesDescriptions);
+            districtDescription = displayAndSelectDistrict();
 
-            rolesDescriptions.add(roleDescription);
-
-            confirmacao = addMoreRoles();
-
-        } while (!confirmacao.equals("N") || rolesDescriptions.size() == 4);
-
-        storeDescription = displayAndSelectStore();
-
-        stateDescription = displayAndSelectState();
-
-        districtDescription = displayAndSelectDistrict();
-
-        cityDescription = displayAndSelectCity();
-
-
-        List<Employee> listEmpregados = getController().getEmployee();
-
+            cityDescription = displayAndSelectCity();
+        }
 
         requestData();
 
-        String[] rolesString = new String[rolesDescriptions.size()];
 
-        int i = 0;
-
-        for (String roleDescription : rolesDescriptions) {
-            rolesString[i] = roleDescription;
-            i++;
-        }
-
-        submitData(rolesDescriptions,rolesString);
-
-        for (Employee t : listEmpregados) {
-            System.out.println(t.toString());
-            System.out.println();
-
-        }
     }
 
-    /**
-     * Submits the employee data to the RegisterEmployeeController for processing.
-     *
-     * @param rolesDescriptions the list of role descriptions selected by the employee.
-     */
-    private void submitData(List<String> rolesDescriptions,String[] rolesString) {
-
-        List<Role> rolesEmployee = getController().getRolesByDescription(rolesDescriptions);
-
-        State state = getController().getStateByDescription(stateDescription);
-        District district = getController().getDistrictByDescription(districtDescription, state);
-        City city = getController().getCityByDescription(cityDescription, district);
-
-        Address address = new Address(street, zipCode, district, city, state);
-
-        Optional<Employee> employee = getController().createEmployee(employeeEmail, name, phoneNumber, rolesEmployee, storeDescription, address, passportNumber, taxNumber);
-
-        String password = authenticationRepository.passwordGenerator();
-
-        Client client = new Client(employeeEmail, passportNumber, taxNumber, name, address, phoneNumber);
-
-        controller.addUser(client);
-
-        controller.addUser(name,employeeEmail,password,rolesString);
-
-
-        try {
-            FileWriter fw = new FileWriter("email.txt");
-            PrintWriter pw = new PrintWriter(fw);
-
-            pw.println("Email:" + employeeEmail);
-            pw.println("Password:" + password);
-
-            pw.close();
-
-        } catch (IOException ex) {
-            System.out.println("Error to write password to file:" + ex.getMessage());
-        }
-
-
-        if (employee.isPresent()) {
-            System.out.println("Task successfully created!");
-        } else {
-            System.out.println("Task not created!");
-        }
-    }
-
-    /**
-     * Requests the employee data from the user through the console.
-     */
     private void requestData() {
 
         //Request the Zip Code from the console
@@ -175,6 +88,17 @@ public class RegisterEmployeeUI implements Runnable {
 
     }
 
+    private String enterAdress() {
+        Scanner input = new Scanner(System.in);
+        String addRoles;
+        do {
+            System.out.println("Do you want to register with you address:(Y/N)");
+            addRoles = input.nextLine();
+        } while (!addRoles.equals("Y") && !addRoles.equals("N"));
+
+        return addRoles;
+    }
+
     /**
      * Requests the user's name.
      *
@@ -185,22 +109,6 @@ public class RegisterEmployeeUI implements Runnable {
         System.out.println("Name:");
         return input.nextLine();
 
-    }
-
-    /**
-     * Requests the user whether they want to add more roles.
-     *
-     * @return "Y" if the user wants to add more roles, "N" otherwise.
-     */
-    private String addMoreRoles() {
-        Scanner input = new Scanner(System.in);
-        String addRoles;
-        do {
-            System.out.println("Do you want to add more Roles:(Y/N)");
-            addRoles = input.nextLine();
-        } while (!addRoles.equals("Y") && !addRoles.equals("N"));
-
-        return addRoles;
     }
 
     /**
@@ -373,80 +281,6 @@ public class RegisterEmployeeUI implements Runnable {
     }
 
     /**
-     * Displays a list of roles and prompts the user to select one.
-     *
-     * @param rolesDescriptions the list of descriptions of roles.
-     * @return the string description of the selected role.
-     */
-    private String displayAndSelectRoles(List<String> rolesDescriptions) {
-        //Display the list of task categories
-        List<Role> roles = controller.getRoles();
-
-        int listSize = roles.size();
-        int answer = -1;
-
-        Scanner input = new Scanner(System.in);
-
-        while (answer < 1 || answer > listSize) {
-            try {
-
-                displayRoleOptions(roles, rolesDescriptions);
-                System.out.println("Select a role:");
-                answer = input.nextInt();
-
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter an integer value:");
-                input.nextLine();
-                answer = -1;
-            }
-
-        }
-
-        String description = roles.get(answer - 1).getDescription();
-
-        return description;
-
-    }
-
-    /**
-     * Displays a list of stores and prompts the user to select one.
-     *
-     * @return the string description of the selected store.
-     */
-    private String displayAndSelectStore() {
-        //Display the list of task categories
-        List<Store> stores = controller.getStore();
-
-        int listSize = stores.size();
-        int answer = -1;
-
-        Scanner input = new Scanner(System.in);
-
-        while (answer < 1 || answer > listSize) {
-
-            try {
-
-                displayStoreOptions(stores);
-                System.out.println("Select a Store:");
-                answer = input.nextInt();
-
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter an integer value:");
-                input.nextLine();
-                answer = -1;
-            }
-
-        }
-
-        int numeroInteiro = stores.get(answer - 1).getId();
-
-        String description = Integer.toString(numeroInteiro);
-
-        return description;
-
-    }
-
-    /**
      * Displays a list of states and prompts the user to select one.
      *
      * @return the string description of the selected state.
@@ -564,53 +398,6 @@ public class RegisterEmployeeUI implements Runnable {
     }
 
     /**
-     * Displays a menu of task categories as numbered options. If a list of role descriptions
-     * is provided, only displays the task categories that do not have a description matching
-     * any of the descriptions in the list.
-     *
-     * @param taskCategories    a list of roles representing task categories
-     * @param rolesDescriptions a list of descriptions of roles to exclude from the menu
-     */
-    private void displayRoleOptions(List<Role> taskCategories, List<String> rolesDescriptions) {
-        //display the task categories as a menu with number options to select
-        int i = 1;
-        int auxDiferente = 0;
-        for (Role role : taskCategories) {
-            if (rolesDescriptions.size() > 0) {
-                for (String rD : rolesDescriptions) {
-                    if (!rD.equals(role.getDescription())) {
-                        auxDiferente++;
-                    }
-                }
-
-                if (auxDiferente == rolesDescriptions.size()) {
-                    System.out.println(taskCategories.indexOf(role) + 1 + "-" + role.getDescription());
-                    i++;
-                }
-                auxDiferente = 0;
-            } else {
-                System.out.println(i + " - " + role.getDescription());
-                i++;
-            }
-
-        }
-    }
-
-    /**
-     * Displays a menu of store IDs as numbered options.
-     *
-     * @param stores a list of stores to display
-     */
-    private void displayStoreOptions(List<Store> stores) {
-        int i = 1;
-
-        for (Store store : stores) {
-            System.out.println(i + "-" + store.getId());
-            i++;
-        }
-    }
-
-    /**
      * Displays a menu of cities within a given district as numbered options.
      *
      * @param district the district containing the cities to display
@@ -651,6 +438,5 @@ public class RegisterEmployeeUI implements Runnable {
             i++;
         }
     }
-
 
 }

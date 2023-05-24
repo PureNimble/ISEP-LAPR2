@@ -143,12 +143,12 @@ public class RegisterEmployeeController {
     /**
      * Adds the given User to the UserRepository.
      *
-     * @param user the User to add
+     * @param client the User to add
      */
-    public void addUser(User user){
+    public void addUser(Client client){
         UserRepository userRepository = getUserRepository();
 
-        userRepository.add(user);
+        userRepository.add(client);
 
     }
 

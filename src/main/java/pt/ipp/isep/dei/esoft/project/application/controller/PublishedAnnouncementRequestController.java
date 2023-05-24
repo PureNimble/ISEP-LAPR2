@@ -185,7 +185,7 @@ public class PublishedAnnouncementRequestController {
      */
     public String getCurrentSessionEmail(){
         AuthenticationRepository authenticationRepository = getAuthenticationRepository();
-        return authenticationRepository.getCurrentUserSession().getUserID.getEmail();
+        return authenticationRepository.getCurrentUserSession().getUser.getEmail();
     }
 
 

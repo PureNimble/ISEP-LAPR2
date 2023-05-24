@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
-import pt.ipp.isep.dei.esoft.project.domain.User;
+import pt.ipp.isep.dei.esoft.project.domain.Client;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,24 +14,24 @@ import java.util.Optional;
  */
 public class UserRepository {
 
-    private List<User> users = new ArrayList<>();
+    private List<Client> clients = new ArrayList<>();
 
     /**
 
      Adds a user to the repository if it is valid.
 
-     @param user The user object to add to the repository.
+     @param client The user object to add to the repository.
 
      @return An Optional object containing the added user if the operation is successful, empty Optional otherwise.
      */
-    public Optional<User> add(User user) {
+    public Optional<Client> add(Client client) {
 
-        Optional<User> newUser = Optional.empty();
+        Optional<Client> newUser = Optional.empty();
         boolean operationSuccess = false;
 
-        if (validateUser(user)) {
-            newUser = Optional.of(user);
-            operationSuccess = users.add(newUser.get());
+        if (validateUser(client)) {
+            newUser = Optional.of(client);
+            operationSuccess = clients.add(newUser.get());
         }
 
         if (!operationSuccess) {
@@ -44,11 +44,11 @@ public class UserRepository {
     /**
 
      Validates if a user already exists in the repository.
-     @param user The user object to validate.
+     @param client The user object to validate.
      @return True if the user does not exist in the repository, false otherwise.
      */
-    private boolean validateUser(User user) {
-        boolean isValid = !users.contains(user);
+    private boolean validateUser(Client client) {
+        boolean isValid = !clients.contains(client);
         return isValid;
     }
     /**
@@ -56,8 +56,8 @@ public class UserRepository {
      Returns a defensive (immutable) copy of the list of users in the repository.
      @return The list of users.
      */
-    public List<User> getUsers() {
+    public List<Client> getUsers() {
 // This is a defensive copy, so that the repository cannot be modified from the outside.
-        return users;
+        return clients;
     }
 }

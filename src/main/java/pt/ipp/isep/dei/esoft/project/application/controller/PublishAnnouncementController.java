@@ -101,12 +101,12 @@ public class PublishAnnouncementController {
      @param email Email of the User object.
      @return User object.
      */
-    public User getUserByEmail(String email) {
+    public Client getUserByEmail(String email) {
         UserRepository userRepository = getUserRepository();
 
-        for (User user : getUserRepository().getUsers()) {
-            if (user.compare(email) == 0) {
-                return user;
+        for (Client client : getUserRepository().getUsers()) {
+            if (client.compare(email) == 0) {
+                return client;
             }
         }
         return null;
