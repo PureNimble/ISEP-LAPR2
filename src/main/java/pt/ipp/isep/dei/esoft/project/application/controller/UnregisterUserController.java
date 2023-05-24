@@ -75,4 +75,8 @@ public class UnregisterUserController {
     public City getCityByDescription(String cityDescription, District district) {
         return stateRepository.getCityByDescription(cityDescription,district);
     }
+
+    public State getStateByDescription(String stateDescription) {
+        return stateRepository.getStateByDescription(stateDescription);
+    }
 }
