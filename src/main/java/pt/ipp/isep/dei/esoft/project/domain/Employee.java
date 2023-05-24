@@ -7,7 +7,7 @@ import java.util.Objects;
  * The Employee class represents an employee in the system.
  * It extends the User class and adds a reference to the Store the employee works at and the roles they play.
  */
-public class Employee extends User {
+public class Employee extends Person {
 
     private final Store store;
     private List<Role> roles;

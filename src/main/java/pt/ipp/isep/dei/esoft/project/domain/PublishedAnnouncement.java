@@ -72,6 +72,16 @@ public class PublishedAnnouncement {
         this.announcementRequest = announcementRequest;
     }
 
+    public PublishedAnnouncement (AnnouncementRequestDto announcementRequestDto,Comission comission) {
+        this.date = announcementRequestDto.getDate();
+        this.typeOfBusiness = announcementRequestDto.getTypeOfBusiness();
+        this.property = announcementRequestDto.getProperty();
+        this.propertyType = announcementRequestDto.getPropertyType();
+        this.business = announcementRequestDto.getBusiness();
+        this.durationOfContract = announcementRequestDto.getDurationOfContract();
+        this.comission = comission;
+    }
+
     public AnnouncementRequest getAnnouncementRequest() {
         return announcementRequest;
     }

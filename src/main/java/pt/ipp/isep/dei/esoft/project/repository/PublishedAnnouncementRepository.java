@@ -78,10 +78,10 @@ public class PublishedAnnouncementRepository {
      * Published announcement request optional.
      *
      * @param comission           the comission
-     * @param announcementRequest the announcement request
+
      * @return the optional
      */
-    public Optional<PublishedAnnouncement> publishedAnnouncementRequest( Comission comission, AnnouncementRequest announcementRequest) {
+    public Optional<PublishedAnnouncement> publishedAnnouncementRequest( AnnouncementRequestDto announcementRequestDto, Comission comission) {
 
 
         Optional<PublishedAnnouncement> optionalValue = Optional.empty();
@@ -89,7 +89,7 @@ public class PublishedAnnouncementRepository {
         PublishedAnnouncement publishedAnnouncement;
 
 
-        publishedAnnouncement = new PublishedAnnouncement(comission,announcementRequest);
+        publishedAnnouncement = new PublishedAnnouncement(announcementRequestDto,comission);
 
 
         if (addPublishedAnnouncement(publishedAnnouncement)) {
@@ -134,7 +134,7 @@ public class PublishedAnnouncementRepository {
      */
     private boolean tasksDoNotContainAnnouncement(PublishedAnnouncement publishAnnouncement) {
         PublishAnnouncementController controller = new PublishAnnouncementController();
-        return !controller.getPublishedAnnoucement().contains(publishAnnouncement);
+        return getPublishedAnnouncements().contains(publishAnnouncement);
     }
 
 

@@ -34,6 +34,7 @@ public class PublishedAnnouncementRequestController {
      */
     AuthenticationRepository authenticationRepository = null;
 
+    AnnouncementRequestMapper announcementRequestMapper = new AnnouncementRequestMapper();
 
     /**
      * Instantiates a new Published announcement request controller.
@@ -128,6 +129,11 @@ public class PublishedAnnouncementRequestController {
         return publishedAnnouncementRepository;
     }
 
+    private AnnouncementRequestMapper getAnnouncementRequestMapper(){
+        return announcementRequestMapper;
+    }
+
+
     /**
 
      Returns a list of all Published Announcements.
@@ -152,6 +158,7 @@ public class PublishedAnnouncementRequestController {
     }
 
     public List<AnnouncementRequestDto> toDto(Employee agent){
+
         List<AnnouncementRequest> announcementRequests = getAnnouncementRequestByMostRecent(agent);
 
         AnnouncementRequestMapper announcementRequestMapper = new AnnouncementRequestMapper();
@@ -178,7 +185,7 @@ public class PublishedAnnouncementRequestController {
      */
     public String getCurrentSessionEmail(){
         AuthenticationRepository authenticationRepository = getAuthenticationRepository();
-        return authenticationRepository.getCurrentUserSession().getUserId().getEmail();
+        return authenticationRepository.getCurrentUserSession().getUserID.getEmail();
     }
 
 
@@ -199,12 +206,6 @@ public class PublishedAnnouncementRequestController {
      * @param agentDescription the agent description
      * @return the employee
      */
-    public Employee getAgentByDescription(String agentDescription){
-        EmployeeRepository employeeRepository = new EmployeeRepository();
-
-        return employeeRepository.getEmployeeByString(agentDescription);
-    }
-
 
     /**
 
@@ -240,21 +241,18 @@ public class PublishedAnnouncementRequestController {
 
     }
 
-    /**
-     * Create publish announcement request optional.
-     *
-     * @param comission           the comission
-     * @param announcementRequest the announcement request
-     * @return the optional
-     */
-    public Optional<PublishedAnnouncement> createPublishAnnouncementRequest(Comission comission, AnnouncementRequest announcementRequest){
+    public Optional<PublishedAnnouncement> createPublishAnnouncementRequest(double comissionDescription, int announcementRequestDtoDescription){
+
         Optional<PublishedAnnouncement> newPublishedAnnouncement = Optional.empty();
 
-        PublishedAnnouncement publishedAnnouncement = new PublishedAnnouncement(comission,announcementRequest);
+        Comission comission = getComissionByDescription(comissionDescription);
 
-        if (!getPublishedAnnouncementRepository().getPublishedAnnouncements().contains(publishedAnnouncement)){
-            newPublishedAnnouncement = getPublishedAnnouncementRepository().publishedAnnouncementRequest(comission,announcementRequest);
-        }
+        AnnouncementRequestMapper announcementRequestMapper = getAnnouncementRequestMapper();
+
+        AnnouncementRequestDto announcementRequestDto =  announcementRequestMapper.getAnnouncementRequestDtoByDescription(announcementRequestDtoDescription);
+
+        newPublishedAnnouncement = getPublishedAnnouncementRepository().publishedAnnouncementRequest(announcementRequestDto,comission);
+
         return newPublishedAnnouncement;
     }
 

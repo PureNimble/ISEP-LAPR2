@@ -53,6 +53,7 @@ public class AnnouncementRequest {
         this.agent = agent;
     }
 
+
     public TypeOfBusiness getTypeOfBusiness() {
         return typeOfBusiness;
     }

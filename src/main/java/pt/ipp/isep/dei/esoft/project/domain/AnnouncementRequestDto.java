@@ -60,4 +60,32 @@ public class AnnouncementRequestDto {
                         "%s",
                 date.toString(),typeOfBusiness.toString(),propertyType,business.toString(),durationOfContract,property.toString());
     }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public TypeOfBusiness getTypeOfBusiness() {
+        return typeOfBusiness;
+    }
+
+    public Property getProperty() {
+        return property;
+    }
+
+    public PropertyType getPropertyType() {
+        return propertyType;
+    }
+
+    public Business getBusiness() {
+        return business;
+    }
+
+    public int getDurationOfContract() {
+        return durationOfContract;
+    }
+
+    public Employee getAgent() {
+        return agent;
+    }
 }

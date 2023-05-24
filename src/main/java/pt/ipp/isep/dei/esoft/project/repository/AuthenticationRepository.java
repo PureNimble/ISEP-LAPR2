@@ -1,13 +1,10 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
 
-import pt.ipp.isep.dei.esoft.project.domain.User;
 import pt.isep.lei.esoft.auth.AuthFacade;
 import pt.isep.lei.esoft.auth.UserSession;
 
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
 

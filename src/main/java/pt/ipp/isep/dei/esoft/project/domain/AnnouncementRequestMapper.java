@@ -42,5 +42,20 @@ public class AnnouncementRequestMapper {
         }
     }
 
+    public AnnouncementRequestDto getAnnouncementRequestDtoByDescription(int annnouncementRequestDescription) {
+        AnnouncementRequestDto newAnnouncementRequestDto = announcementRequestDtos.get(annnouncementRequestDescription);
+        AnnouncementRequestDto announcementRequestDto = null;
+        if (announcementRequestDtos.contains(newAnnouncementRequestDto)) {
+            announcementRequestDto = announcementRequestDtos.get(announcementRequestDtos.indexOf(newAnnouncementRequestDto));
+        }
+        if (announcementRequestDto == null) {
+            throw new IllegalArgumentException(
+                    "Announcement Request requested for [" + newAnnouncementRequestDto.toString() + "] does not exist.");
+        }
+        return announcementRequestDto;
+    }
+
+
+
 
 }

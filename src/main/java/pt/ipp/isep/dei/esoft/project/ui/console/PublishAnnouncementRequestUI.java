@@ -79,11 +79,7 @@ public class PublishAnnouncementRequestUI implements Runnable {
 
     private void submitData() {
 
-        AnnouncementRequest announcementRequestByDescription = controller.getAnnouncementRequestByDescription(announcementRequestDescription);
-
-        Comission comissionByDescription = controller.getComissionByDescription(comissionDescription);
-
-        Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishAnnouncementRequest(comissionByDescription, announcementRequestByDescription);
+        Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishAnnouncementRequest(comissionDescription, announcementRequestDescription);
 
         if (publishedAnnouncement.isPresent()) {
             System.out.println("O anúncio foi publicado com êxito!!!");
