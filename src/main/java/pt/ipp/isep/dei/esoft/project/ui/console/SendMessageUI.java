@@ -116,12 +116,12 @@ public class SendMessageUI implements Runnable {
                 }
             } while (phoneNumberInt < 0);
             phoneNumberString = Integer.toString(phoneNumberInt);
-            if (phoneNumberString.length() != 9) {
-                System.out.println("A Phone Number is a number with 9 digits");
+            if (phoneNumberString.length() != 10) {
+                System.out.println("A Phone Number is a number with 10 digits");
             }
 
 
-        } while (phoneNumberString.length() != 9);
+        } while (phoneNumberString.length() != 10);
         return phoneNumberInt;
     }
 
@@ -138,7 +138,7 @@ public class SendMessageUI implements Runnable {
                 date = dateFormat.parse(dateInput);
                 correct = true;
             } catch (Exception e) {
-                System.out.println("Date is wrong, try again");
+                System.out.println("The date is in the wrong format, please try again.");
             }
         } while(!correct);
 
