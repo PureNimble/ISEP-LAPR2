@@ -9,8 +9,8 @@ title US010 - Sequence Diagram Full
 autonumber
 
 actor "Client" as Client
-participant ":PlaceOrderUI" as System
-participant ":PlaceOrderController" as Controller
+participant ":PlaceOfferUI" as System
+participant ":PlaceOfferController" as Controller
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as Repositories
 participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as PublishedAnnouncementRepository

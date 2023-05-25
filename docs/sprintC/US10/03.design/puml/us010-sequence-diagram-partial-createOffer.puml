@@ -6,7 +6,7 @@ skinparam shadowing false
 
 title US010 - Sequence Diagram Partial - Create Offer
 
-participant ":PlaceOrderController" as Controller
+participant ":PlaceOfferController" as Controller
 participant "repositories\n:Repositories" as Repositories
 participant "authenticationRepository\n:AuthenticationRepository" as AuthenticationRepository
 participant "offerRepository\n:OfferRepository" as OfferRepository

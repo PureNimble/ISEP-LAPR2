@@ -6,7 +6,7 @@ skinparam shadowing false
 
 title US010 - Sequence Diagram Partial - Get Published Announcement
 
-participant ":PlaceOrderController" as Controller
+participant ":PlaceOfferController" as Controller
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as Repositories
 participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as PublishedAnnouncementRepository

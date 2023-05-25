@@ -13,7 +13,7 @@ class PlaceOrderUI {
 
 class PlaceOrderController {
     + getPublishedAnnouncement()
-    + createOffer(orderAmount)
+    + createNewOfferToAgent(orderAmount, publishedAnnouncement)
 }
 
 class PublishedAnnouncemtRepository {
@@ -22,13 +22,21 @@ class PublishedAnnouncemtRepository {
 }
 
 class AuthenticationRepository {
-    + getCurrentUserSession()
+    + doLogin(email,pwd)
+    + doLogout()
+    + getCurrentSession()
+    + addUserRole()
+    + addUserWithRole()
+    + passwordGenerator()
+    - shuffleString(input,random)
+    - randomCharacter(characters,random)
 }
 
 class OfferRepository {
-    - List <Offer> offer
-    + addOffer(offer)
-    + validateOffer(offer)
+    + add(Offer offer)
+    + getOffers()
+    - validateOffer(Offer offer)
+    - checkOffer(Offer offer)
 }
 
 class Repositories {
@@ -40,22 +48,174 @@ class Repositories {
 }
 
 class Offer {
- + User user
- + PublishedAnnouncement publishedAnnouncement
- + double orderAmount
- + createOffer(offer)
+ - Client client
+ - PublishedAnnouncement publishedAnnouncement
+ - double orderAmount
+
+ + Offer (Client client, PublishedAnnouncement \npublishedAnnouncement, double orderAmount)
+ + Offer()
+ + getOrderAmount()
+ + getPublishedAnnouncement()
+ + getClient()
 }
+
+class Announcement {
+    - String initialDate
+    - String finalDate
+    - String contractType
+
+    + PublishedAnnouncement(initialDate, finalDate, AnnouncementRequest)
+}
+
+class Business {
+    - double requestedPrice
+    - String typeOfBusiness
+
+    + getFinalComission()
+    + calculatePriceWithComission()
+    + getTypeOfBusiness()
+}
+
+class Rent {
+    - int durationOfContract
+
+    + Rent(int durationContract)
+    + getFinalComission()
+    + getDurationContract()
+    + calculateTotalPrice()
+}
+
+class Comission {
+     - double percentage
+     - double staticValue
+
+    + calculateFinalComission()
+}
+
+class State {
+    - String stateName
+
+    + getState()
+    + getDistricts()
+    + toString()
+}
+
+class District {
+    - String districtName
+
+
+    + getDistrictName()
+    + getCities()
+    + toString()
+}
+
+class City {
+    - String cityName
+
+    - getCityName()
+}
+
+class Address {
+    - String streetName
+    - int zipCode
+
+    + verifyZipCode()
+    + getCity()
+    + getDistrict()
+    + getState()
+    + Address(state, district, city, street, zipCode)
+}
+
+class Client {
+}
+
+class AvailableEquipment {
+    - String typeOfEquipment
+
+    + AvailableEquipment(String availableEquipment)
+    + getAvailableEquipment()
+    + toString()
+}
+
+class SunExposure {
+    - String direction
+
+    + SunExposure(direction)
+}
+
+class Residence {
+    - int numberOfBedrooms
+    - int numberOfBathrooms
+    - int parkingSpaces
+
+    + Residence(int area, int distanceFromCityCenter, \nint numberOfBedrooms, int numberOfBathrooms, \nint parkingSpaces, AvailableEquipment availableEquipment)
+    + toString()
+}
+
+class House {
+    - String basement
+    - String inhabitableLoft
+    - String sunExposure
+
+    + House(int area, int distanceFromCityCenter, \nint numberOfBedrooms, int numberOfBathrooms, \nint parkingSpaces, AvailableEquipment availableEquipment, \nString basement, String inhabitableLoft, String sunExposure)
+    + toString()
+}
+
+class Photos {
+    - String url
+
+    + Photos(String url)
+    + getUrl()
+}
+
+class Property {
+    - int area
+    - int distanceFromTheCityCenter
+
+    + Property(int area, int distanceFromCityCenter)
+    + toString()
+}
+
 
 PlaceOrderUI .> PlaceOrderController
 PlaceOrderController .> Repositories : repositories
 PlaceOrderController ..> PublishedAnnouncemtRepository : publishedAnnouncementRepository
 PlaceOrderController ..> AuthenticationRepository : authenticationRepository
 PlaceOrderController ..> OfferRepository : offerRepository
-OfferRepository ..> Offer
 Repositories --> Repositories : instance
 Repositories --> PublishedAnnouncemtRepository
 Repositories --> AuthenticationRepository
 Repositories --> OfferRepository
+OfferRepository --> Offer
+PublishedAnnouncemtRepository --> Business
 
+Business <|-- Rent
+Business "1" -- "1" Property : has >
+Business "1" -- "1" Comission : contains >
+
+Comission "*" -- "1" Agent : defines <
+
+Agent "1" -- "*" Offer : receives >
+
+Offer "*" -- "1" Client : sends <
+
+Announcement "1" -- "1" Property : has >
+Announcement "1" -- "1" Business : has >
+
+Property <|-- Residence
+Property "1" -- "1..30" Photos : has >
+
+Property "1" -- "1" Address : has >
+
+Address "1" -- "*" State : has >
+
+State "1" -- "*" District : has >
+
+District "1" -- "*" City : has >
+
+Residence "1" -- "*" AvailableEquipment : contains >
+Residence <|-- House
+
+House "*" -- "1" SunExposure : contains >
 
 @enduml

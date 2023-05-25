@@ -13,7 +13,7 @@ participant ":System" as System
 
 activate Client
 
-Client -> System : asks to place an order on a property
+Client -> System : asks to place an offer on a property
 activate System
 
 System --> Client : shows the list of properties
@@ -22,21 +22,21 @@ deactivate System
 Client -> System : selects the desired property
 activate System
 
-System --> Client : request the order amount
+System --> Client : request the offer amount
 deactivate System
 
-Client -> System : places an order to purchase a property by submitting the order amount
+Client -> System : places an offer to purchase a property by submitting the order amount
 activate System
 
-    opt if there is a pending order
+    opt if there is a pending offer
 
         System --> Client : asks the user to wait until the pending request is either accepted or rejected
 
     end
 
-    alt order amount is superior
+    alt offer amount is superior
 
-        loop if the order amount is higher than the owner's requested proce
+        loop if the offer amount is higher than the owner's requested price
 
             System --> Client : asks for a new price
             deactivate System
@@ -46,7 +46,7 @@ activate System
 
         end
 
-    else order amount is inferior
+    else offer amount is inferior
 
         System --> Client : accepts the purchase request
         deactivate System
