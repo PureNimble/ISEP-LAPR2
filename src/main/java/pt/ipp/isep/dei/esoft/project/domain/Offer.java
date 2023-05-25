@@ -28,6 +28,10 @@ public class Offer {
         this.publishedAnnouncement = publishedAnnouncement;
     }
 
+    public Offer() {
+
+    }
+
 //    public Offer() {
 //        this.orderAmount = ORDER_AMOUNT_DEFAULT;
 //        this.client = CLIENT_DEFAULT;

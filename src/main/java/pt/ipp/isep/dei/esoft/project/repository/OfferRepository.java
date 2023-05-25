@@ -17,6 +17,7 @@ public class OfferRepository {
         if (validateOffer(offer)) {
             newOffer = Optional.of(offer);
             operationSuccess = offers.add(newOffer.get());
+            System.out.println("\n\nOffer sent with success!\n\n");
         }
         if (!operationSuccess) {
             System.out.println("The offer amount submitted has already been posted for this property. Please contact the agent that is responsible for this property.");
@@ -26,8 +27,16 @@ public class OfferRepository {
     }
 
     public boolean validateOffer(Offer offer) {
-        boolean isValid = !offers.contains(offer);
-        return isValid;
+        for (Offer offer1 : offers) {
+            if (offer1.getOrderAmount() == offer.getOrderAmount() && checkOffer(offer, offer1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean checkOffer(Offer offer1, Offer offer2) {
+        return !(offer1.getOrderAmount() < offer2.getOrderAmount());
     }
 
     public List<Offer> getOffers() {

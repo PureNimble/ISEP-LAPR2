@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.PlaceOfferController;
 import pt.ipp.isep.dei.esoft.project.application.controller.PublishAnnouncementController;
+import pt.ipp.isep.dei.esoft.project.domain.Client;
 import pt.ipp.isep.dei.esoft.project.domain.Offer;
 import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 import pt.ipp.isep.dei.esoft.project.repository.PublishedAnnouncementRepository;
@@ -16,16 +17,26 @@ public class PlaceOrderUI implements Runnable {
     private final PlaceOfferController controller = new PlaceOfferController();
     private final PublishAnnouncementController publishAnnouncementController = new PublishAnnouncementController();
 
-    private int initialTime;
-
     @Override
     public void run() {
         System.out.println("Place Order");
 
         PublishedAnnouncement publishedAnnouncement = requestChooseProperty();
+
         double offer = requestOffer();
+//        Client client = requestClient();
 
+        submitData(publishedAnnouncement, offer);
 
+        List<Offer> offers = controller.getOffers();
+
+        StringBuilder st = new StringBuilder();
+
+        for (Offer o : offers) {
+            st.append(o.toString());
+            st.append("\n");
+        }
+        System.out.println(st);
     }
 
     private PublishedAnnouncement requestChooseProperty() {
@@ -64,10 +75,9 @@ public class PlaceOrderUI implements Runnable {
         String offerAmountString;
         double offerAmountDouble;
 
-
         do {
             try {
-                System.out.println("Order Amount:");
+                System.out.println("Offer Amount:");
                 offerAmountDouble = input.nextDouble();
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a positive value:");
@@ -78,5 +88,15 @@ public class PlaceOrderUI implements Runnable {
         offerAmountString = Double.toString(offerAmountDouble);
 
         return offerAmountDouble;
+    }
+
+//    private Client requestClient() {
+//        Scanner input = new Scanner(System.in);
+//        String clientString;
+//        return null;
+//    }
+
+    private void submitData(PublishedAnnouncement publishedAnnouncement, double offer) {
+        controller.createNewOfferToAgent(offer, publishedAnnouncement);
     }
 }

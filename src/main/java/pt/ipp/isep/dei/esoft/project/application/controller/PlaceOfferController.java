@@ -1,12 +1,14 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.domain.Offer;
+import pt.ipp.isep.dei.esoft.project.domain.Client;
 import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
 import pt.ipp.isep.dei.esoft.project.repository.PublishedAnnouncementRepository;
 import pt.ipp.isep.dei.esoft.project.repository.OfferRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import java.util.List;
+import java.util.Optional;
 
 
 public class PlaceOfferController {
@@ -64,8 +66,10 @@ public class PlaceOfferController {
         return offerRepository.getOffers();
     }
 
-    public List<PublishedAnnouncement> getPublishedAnnouncements() {
-        PublishedAnnouncementRepository publishedAnnouncementRepository = getPublishedAnnouncementRepository();
-        return publishedAnnouncementRepository.getPublishedAnnouncements();
+    public Optional<Offer> createNewOfferToAgent (double orderAmount, PublishedAnnouncement publishedAnnouncement) {
+        Offer offerSent = new Offer();
+        offerSent.setOrderAmount(orderAmount);
+        offerSent.setPublishedAnnouncement(publishedAnnouncement);
+        return offerRepository.add(offerSent);
     }
 }
