@@ -44,7 +44,7 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 This diagram shows the full sequence of interactions between the classes involved in the realization of this user story.
 
-![Sequence Diagram - Full](svg/us006-sequence-diagram-full.svg)
+![Sequence Diagram - Full](svg/US08-sequence-diagram-full.svg)
 
 ### Alternative 2 - Split Diagram
 
@@ -52,24 +52,38 @@ This diagram shows the same sequence of interactions between the classes involve
 
 It uses interaction ocurrence.
 
-![Sequence Diagram - split](svg/us006-sequence-diagram-split.svg)
+![Sequence Diagram - split](svg/US08-sequence-diagram-split.svg)
 
-**Get Task Category List Partial SD**
+**Get Comission Partial SD**
 
-![Sequence Diagram - Partial - Get Task Category List](svg/us006-sequence-diagram-partial-get-task-category-list.svg)
+![Sequence Diagram - Partial - Comission](svg/US08-sequence-diagram-partial-getComission.svg)
 
-**Get Task Category Object**
+**Create Published Announcement Partial SD**
 
-![Sequence Diagram - Partial - Get Task Category Object](svg/us006-sequence-diagram-partial-get-task-category.svg)
+![Sequence Diagram - Partial - Create Published Announcement](svg/US08-sequence-diagram-partial-createPublishedAnnouncement.svg)
 
-**Get Employee**
+**Get Announcement Request Partial SD**
 
-![Sequence Diagram - Partial - Get Employee](svg/us006-sequence-diagram-partial-get-employee.svg)
+![Sequence Diagram - Partial - Get Announcement Request](svg/us08-sequence-diagram-partial-getAnnouncementRequest.svg)
 
-**Create Task**
+**Get Announcement Request List By Most Recent Partial SD**
 
-![Sequence Diagram - Partial - Create Task](svg/us006-sequence-diagram-partial-create-task.svg)
+![Sequence Diagram - Partial - Get Announcement Request List By Most Recent](svg/us08-sequence-diagram-partial-getAnnouncementRequestListByMostRecent.svg)
+
+**Get Announcement Request Dto List Patial SD**
+
+![Sequence Diagram - Partial - Get Announcement Request Dto List](svg/us08-sequence-diagram-partial-getAnnouncementRequestListDTO.svg)
+
+
+**Get Comission List Partial SD**
+
+![Sequence Diagram - Partial - Get Comission List](svg/us08-sequence-diagram-partial-getComissionList.svg)
+
+**Get Employee By Email Partial SD**
+
+![Sequence Diagram - Partial - Get Employee By Email](svg/us08-sequence-diagram-partial-getEmployeeByEmail.svg)
+
 
 ## 3.3. Class Diagram (CD)
 
-![Class Diagram](svg/us006-class-diagram.svg)
+![Class Diagram](svg/us08-class-diagram.svg)

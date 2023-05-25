@@ -41,5 +41,73 @@ public class FileReaderClass {
         return arrayInformations;
     }
 
+    public String[][] readOwnerInformations(File file) {
+
+        String[] ownerInformations = new String[1000];
+
+        String[][] arrayInformations = new String[10000][5];
+
+        try {
+            int linhas = 0;
+
+            Scanner ler = new Scanner(file);
+
+            while (ler.hasNextLine()) {
+
+                String[] itens = ler.nextLine().split(";");
+
+                ownerInformations[linhas] = itens[0];
+
+                int i = 1;
+                for (int item = 1; item < 6; item++) {
+
+                    arrayInformations[linhas][item - 1] = itens[i];
+                    i++;
+                }
+                linhas++;
+
+            }
+            ler.close();
+        } catch (FileNotFoundException fileNotFoundException) {
+
+        }
+
+        return arrayInformations;
+    }
+
+    public String[][] readPropertyInformations(File file) {
+
+        String[] propertyInformations = new String[1000];
+
+        String[][] arrayInformations = new String[10000][12];
+
+        try {
+            int linhas = 0;
+
+            Scanner ler = new Scanner(file);
+
+            while (ler.hasNextLine()) {
+
+                String[] itens = ler.nextLine().split(";");
+
+                propertyInformations[linhas] = itens[0];
+
+                int i = 5;
+                for (int item = 1; item < 13; item++) {
+
+                    arrayInformations[linhas][item - 1] = itens[i];
+                    i++;
+                }
+                linhas++;
+
+            }
+            ler.close();
+        } catch (FileNotFoundException fileNotFoundException) {
+
+        }
+
+        return arrayInformations;
+    }
+
 
 }

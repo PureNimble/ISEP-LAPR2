@@ -16,6 +16,10 @@ public class ReadFileUI implements Runnable {
 
        String[][] informations = fileReaderClass.readStoreInformations(file);
 
+       String[][] informations1 = fileReaderClass.readOwnerInformations(file);
+
+       String[][] informatons2 = fileReaderClass.readPropertyInformations(file);
+
         System.out.println(informations[1][0]);
 
     }
