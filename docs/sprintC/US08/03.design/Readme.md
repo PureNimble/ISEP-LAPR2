@@ -6,36 +6,37 @@
 
 **SSD - Alternative 1 is adopted.**
 
-| Interaction ID | Question: Which class is responsible for... | Answer               | Justification (with patterns)                                                                                 |
-|:-------------  |:--------------------- |:---------------------|:--------------------------------------------------------------------------------------------------------------|
-| Step 1  		 |	... interacting with the actor? | CreateTaskUI         | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
-| 			  		 |	... coordinating the US? | CreateTaskController | Controller                                                                                                    |
-| 			  		 |	... instantiating a new Task? | Organization         | Creator (Rule 1): in the DM Organization has a Task.                                                          |
-| 			  		 | ... knowing the user using the system?  | UserSession          | IE: cf. A&A component documentation.                                                                          |
-| 			  		 |							 | Organization         | IE: knows/has its own Employees                                                                               |
-| 			  		 |							 | Employee             | IE: knows its own data (e.g. email)                                                                           |
-| Step 2  		 |							 |                      |                                                                                                               |
-| Step 3  		 |	...saving the inputted data? | Task                 | IE: object created in step 1 has its own data.                                                                |
-| Step 4  		 |	...knowing the task categories to show? | System               | IE: Task Categories are defined by the Administrators.                                                        |
-| Step 5  		 |	... saving the selected category? | Task                 | IE: object created in step 1 is classified in one Category.                                                   |
-| Step 6  		 |							 |                      |                                                                                                               |              
-| Step 7  		 |	... validating all data (local validation)? | Task                 | IE: owns its data.                                                                                            | 
-| 			  		 |	... validating all data (global validation)? | Organization         | IE: knows all its tasks.                                                                                      | 
-| 			  		 |	... saving the created task? | Organization         | IE: owns all its tasks.                                                                                       | 
-| Step 8  		 |	... informing operation success?| CreateTaskUI         | IE: is responsible for user interactions.                                                                     | 
+| Interaction ID                                                                                 | Question: Which class is responsible for...                                                        | Answer                               | Justification (with patterns)                                                                                 |
+|:-----------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------|:-------------------------------------|:--------------------------------------------------------------------------------------------------------------|
+| Step 1(asks to see the list of property announcement request)                                  | ... interacting with the actor?                                                                    | PublishAnnouncementRequestUI         | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
+|                                                                                                | ... coordinating the US?                                                                           | PublishAnnouncementRequestController | Controller                                                                                                    |
+|                                                                                                | ...knowing and obtaining the email of the agent responsible for that announcement request?         | User session                         | IE: knows/has the users on the system                                                                         |
+|                                                                                                | ...obtaining the employee by email?                                                                | EmployeeRepository                   | IE:knows/has the employees                                                                                    |
+|                                                                                                | ...obtaining the announcement request list?                                                        | AnnouncementRequestRepository        | IE: knows/has its own AnnouncementRequests,Pure Fabrication                                                   |
+|                                                                                                | ...obtaining the announcement request Dto list                                                     | AnnouncementRequestMapper            | IE:Kowns/has its own AnnouncementRequestDto,Pure Fabrication,High coesion Low Coupling                        |
+|                                                                                                | ...obtaining the announcement request list?                                                        | AnnouncementRequestRepository        | IE: knows/has its own Employees,Pure Fabrication                                                              |
+| Step 2: (shows list of announcement request responsible for that agent and asks to select one) | ...displaying the list of announcements?                                                           | PublishAnnouncementRequestUI         | Pure Fabrication                                                                                              |
+|                                                                                                | ...obtaining the comission list?                                                                   | ComissionRepository                  | Information Expert,Pure Fabrication                                                                           |
+| Step 3: (selects the announcement request)                                                     | ...validating selected data?<br/><br/>...temporarily keeping the announcement request description? | PublishAnnouncementRequestUI         | Pure Fabrication                                                                                              |
+| Step 4: (shows the information of the announcement request selected and asks for confirmation) | ...display all the information before submitting?                                                  | PublishAnnouncementRequestUI         | Pure Fabrication                                                                                              |
+| Step 5: (submits data)                                                                         | ...obtaining and creating the announcement request Dto by description                              | AnnouncementRequestMapper            | IE,Creator                                                                                                    |
+|                                                                                                | ...obtaining and creating the comission by description                                             | ComissionRepository                  | IE,Creator                                                                                                    |
+|                                                                                                | ...creating the publish announcement                                                               | PublishAnnouncementRepository        | IE,Creator                                                                                                    |
+|                                                                                                | ...validating the data locally(mandatory data)?                                                    | PublishAnnouncement                  | IE                                                                                                            |
+|                                                                                                | ...adding to a collection<br/>and globally<br/>validating duplicated records                       | PublishAnnouncementRepository        | IE                                                                                                            |
+| Step 6: (shows opperation success)                                                             | ...informing operation success?                                                                    | PublishAnnouncementRequestUI         | Pure Fabrication                                                                                              |
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * Organization
- * Task
+ * PublishAnnouncement
 
 Other software classes (i.e. Pure Fabrication) identified: 
 
- * CreateTaskUI  
- * CreateTaskController
-
+ * PublishAnnouncementRequestUI
+ * PublishAnnouncementRequestController
+ * AnnouncementRequestMapper
 
 ## 3.2. Sequence Diagram (SD)
 

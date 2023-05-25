@@ -313,7 +313,7 @@ public class ResgisterUserUI implements Runnable {
 
         while (!isValidEmail(email)) {
             System.out.println("Invalid email. Please enter a valid email address like x@x.xx");
-            System.out.print("Email: ");
+            System.out.println("Email: ");
             email = input.nextLine();
         }
 
