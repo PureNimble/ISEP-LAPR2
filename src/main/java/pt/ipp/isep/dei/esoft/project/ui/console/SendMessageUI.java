@@ -71,7 +71,7 @@ public class SendMessageUI implements Runnable {
             do {
                 try {
                     System.out.println("Choose one of the properties above.");
-                    index = input.nextInt();
+                    index = input.nextInt()-1;
                 } catch (InputMismatchException e) {
                     System.out.println("Invalid input. Please enter an integer value:");
                     input.nextLine();
@@ -81,7 +81,7 @@ public class SendMessageUI implements Runnable {
 
             if (index > publishedAnnouncements.size() + 1) {
                 System.out.println(String.format("Invalid input. Please enter an value between 1 and %s:", publishedAnnouncements.size()));
-                index = input.nextInt();
+                index = input.nextInt()-1;
             }
         } while (index < 0);
         return publishedAnnouncements.get(index);
@@ -126,28 +126,22 @@ public class SendMessageUI implements Runnable {
     }
 
     private Date requestDate() {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Date of visit (dd-MM-yyyy):");
-        String dateInput = input.next();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date date = null;
 
-//        do {
-//            do {
-        try {
-            date = dateFormat.parse(dateInput);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-//            } while (date != 0);
-//
-//            Date todayDate = new Date();
-//            if (todayDate==date){
-//                System.out.println();
-//            }
-//
-//        }
-//
+        boolean correct = false;
+        do {
+            try {
+                Scanner input = new Scanner(System.in);
+                System.out.println("Date of visit (dd-MM-yyyy):");
+                String dateInput = input.next();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                date = dateFormat.parse(dateInput);
+                correct = true;
+            } catch (Exception e) {
+                System.out.println("Date is wrong, try again");
+            }
+        } while(!correct);
+
         return date;
     }
 

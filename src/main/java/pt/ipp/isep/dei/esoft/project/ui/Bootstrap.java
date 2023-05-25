@@ -6,10 +6,16 @@ import pt.ipp.isep.dei.esoft.project.repository.*;
 
 import java.util.*;
 
-public class Bootstrap implements Runnable {
+public class Bootstrap {
 
+  //  FileReaderRepository fileReaderRepository = new FileReaderRepository();
     //Add some task categories to the repository as bootstrap
-    public void run() {
+    public void run() throws Exception {
+//        try {
+//            fileReaderRepository.readAndAddToList();
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
         addRoles();
         addUsers();
         addStates();
@@ -19,14 +25,34 @@ public class Bootstrap implements Runnable {
         addComission();
         addTypeOfBusiness();
         addAvailableEquipment();
-        addAgents();
+//        try {
+            addAgents();
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
         addPublishedAnnouncement();
         addOffers();
 
     }
 
 
-    private void addAgents(){
+    private void addAgents() throws Exception {
+//        List<FileReaderClass> fileReaderClasses = fileReaderRepository.getDataFromList();
+//        for(FileReaderClass fileReaderClass: fileReaderClasses){
+//            System.out.println(fileReaderClass.getProperty_location());
+//            String[] array = fileReaderClass.getProperty_location().split(",");
+//            String street = "";
+//            String zipcode = array[array.length-1].replaceAll("[^\\d.]","");
+//            if (array.length == 4) {
+//                Address address = new Address(array[0], Integer.parseInt(zipcode), new District(array[array.length-3]), new City(array[array.length-2]), new State(array[array.length-1]));
+//            } else {
+//                for(int i=0;i<array.length-4;i++){
+//                    street = street.concat(String.valueOf(array[i]));
+//                }
+//                Address address = new Address(street, Integer.parseInt(zipcode), new District(array[array.length-4]), new City(array[array.length-3]), new State(array[array.length-2]));
+//            }
+//            //addressRepository -> guardar num novo arraylist de adresses
+//        }
         EmployeeRepository employeeRepository = Repositories.getInstance().getEmployeeRepository();
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
         Role role = new Role("Agent");

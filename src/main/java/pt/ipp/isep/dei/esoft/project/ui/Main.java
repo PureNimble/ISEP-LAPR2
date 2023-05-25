@@ -6,7 +6,11 @@ public class Main {
 
     public static void main(String[] args) {
         Bootstrap bootstrap = new Bootstrap();
-        bootstrap.run();
+        try {
+            bootstrap.run();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         try {
             MainMenuUI menu = new MainMenuUI();
