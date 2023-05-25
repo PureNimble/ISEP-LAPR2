@@ -111,7 +111,7 @@ system must state that on the screen and the order placed previously should be c
 
 * Selected data:
 
-	* None.
+	* Announcement.
 
 
 **Output Data:**
