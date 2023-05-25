@@ -59,7 +59,7 @@ ref over PublishAnnouncementRequestController
             Get AnnouncementRequest List Using DTO
 
  end ref
-
+autonumber 39
 PublishAnnouncementRequestController --> PublishAnnouncementRequestUI:listAnnouncementRequestDto
 deactivate PublishAnnouncementRequestController
 
@@ -70,7 +70,7 @@ deactivate PublishAnnouncementRequestController
             activate PublishAnnouncementRequestUI
 
 
-
+alt Accepts Announcement Request
  PublishAnnouncementRequestUI --> PublishAnnouncementRequestController : getTypeComission()
            activate PublishAnnouncementRequestController
 
@@ -79,6 +79,8 @@ deactivate PublishAnnouncementRequestController
                       Get Comission List
 
            end ref
+
+           autonumber 49
            PublishAnnouncementRequestController --> PublishAnnouncementRequestUI : Type Comission
            deactivate PublishAnnouncementRequestController
 
@@ -89,6 +91,16 @@ deactivate PublishAnnouncementRequestUI
 
 Agent -> PublishAnnouncementRequestUI:selects the respective comssion
 activate PublishAnnouncementRequestUI
+end
+
+alt reject Announcement Request
+PublishAnnouncementRequestUI --> Agent:requests data(messageJustification)
+deactivate System
+
+Agent -> PublishAnnouncementRequestUI:types request data
+activate System
+end
+
 
 PublishAnnouncementRequestUI --> Agent:shows the information of the announcement request selected and asks for confirmation
 deactivate PublishAnnouncementRequestUI
@@ -96,20 +108,21 @@ deactivate PublishAnnouncementRequestUI
  Agent -> PublishAnnouncementRequestUI : submits data
     activate PublishAnnouncementRequestUI
 
-
+alt Accepts Announcement Request
 PublishAnnouncementRequestUI -> PublishAnnouncementRequestController:publishAnnouncementRequest(publishedAnnouncementRequestDescription,comissionDescription)
 activate PublishAnnouncementRequestController
 
-PublishAnnouncementRequestController -> PublishAnnouncementRequestController:getAnnouncementRequestByDescription(announcementRequestDescription)
+PublishAnnouncementRequestController -> PublishAnnouncementRequestController:getAnnouncementRequestDtoByDescription(announcementRequestDescription)
 activate PublishAnnouncementRequestController
 
 
 ref over PublishAnnouncementRequestController
 
-                      Get Announcement Request By Description
+                      Get Announcement Request Dto By Description
 
            end ref
 
+autonumber 60
 PublishAnnouncementRequestController--> PublishAnnouncementRequestController:announcementRequest
 
 
@@ -122,6 +135,7 @@ ref over PublishAnnouncementRequestController
 
            end ref
 
+autonumber 64
 PublishAnnouncementRequestController --> PublishAnnouncementRequestController:comission
 
 PublishAnnouncementRequestController -> PublishAnnouncementRepository:createPublishedAnnouncement(announcementRequest,comission)
@@ -132,11 +146,17 @@ ref over PublishAnnouncementRepository
                       Create Published Announcement
 
            end ref
-
+autonumber 71
 PublishAnnouncementRepository --> PublishAnnouncementRequestController:publishedAnnouncement
 deactivate PublishAnnouncementRepository
 
 PublishAnnouncementRequestController --> PublishAnnouncementRequestUI:publishedAnnouncement
+end
+
+alt reject Announcement Request
+ PublishAnnouncementRequestUI -> PublishAnnouncementRequestUI: sendEmailJustification()
+
+end
 
         PublishAnnouncementRequestUI --> Agent : displays operation success
     deactivate PublishAnnouncementRequestUI

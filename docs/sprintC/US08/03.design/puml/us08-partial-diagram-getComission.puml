@@ -2,11 +2,17 @@
 'https://plantuml.com/sequence-diagram
 
 participant ":PublishAnnouncementRequestController" as PublishAnnouncementRequestController
-participant "announcementRequestRepository\n:AnnouncementRequestRepository" as AnnouncementRequestRepository
+participant "comissionRepository\n:ComissionRepository" as ComissionRepository
 
 autonumber 56
 
+activate PublishAnnouncementRequestController
+PublishAnnouncementRequestController -> PublishAnnouncementRequestController:getComissionByDescription(comissionDescription)
+
+
 Group Get Comission By Description
+
+activate PublishAnnouncementRequestController
 
 activate PublishAnnouncementRequestController
 
@@ -15,5 +21,8 @@ activate ComissionRepository
 
 PublishAnnouncementRequestController <-- ComissionRepository:comission
 deactivate ComissionRepository
+
 end
+PublishAnnouncementRequestController --> PublishAnnouncementRequestController:comisison
+
 @enduml

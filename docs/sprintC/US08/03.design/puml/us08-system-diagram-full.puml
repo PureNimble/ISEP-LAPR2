@@ -27,9 +27,9 @@ participant ":XMapper" as XMapper
 participant "listAnnouncementRequestDto:List<AnnouncementRequestDto>" as listAnnouncementRequestDto
 participant "listAnnouncementRequest:List<AnnouncementRequest>" as listAnnouncementRequest
 participant "announcementRequestDto:AnnouncementRequestDto" as AnnouncementRequestDto
-participant "publishedAnnouncementRequestRepository\n:PublishedAnnouncementRequestRepository" as PublishAnnouncementRepository
+participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as PublishAnnouncementRepository
 participant "employeeRepository\n:EmployeeRepository" as EmployeeRepository
-
+participant "PublishedAnnouncement" as PublishedAnnouncement
 
 activate Agent
 
@@ -152,7 +152,7 @@ deactivate listAnnouncementRequestDto
 end
 
 XMapper --> PublishAnnouncementRequestController: listAnnouncementRequestDto
-
+deactivate XMapper
 PublishAnnouncementRequestController --> PublishAnnouncementRequestUI:listAnnouncementRequestDto
 deactivate PublishAnnouncementRequestController
 
@@ -191,18 +191,18 @@ alt Accepts Announcement Request
 
 
 
-System --> Agent:shows the comissions available
+PublishAnnouncementRequestUI --> Agent:shows the comissions available
 deactivate System
 
-Agent -> System:select the respective comission
+Agent -> PublishAnnouncementRequestUI:select the respective comission
 deactivate System
 end
 
 alt reject Announcement Request
-System --> Agent:requests data(messageJustification)
+PublishAnnouncementRequestUI --> Agent:requests data(messageJustification)
 deactivate System
 
-Agent -> System:types request data
+Agent -> PublishAnnouncementRequestUI:types request data
 activate System
 end
 
@@ -216,17 +216,17 @@ alt Accepts Announcement Request
 PublishAnnouncementRequestUI -> PublishAnnouncementRequestController:publishAnnouncementRequest(publishedAnnouncementRequestDescription,comissionDescription)
 activate PublishAnnouncementRequestController
 
-PublishAnnouncementRequestController -> PublishAnnouncementRequestController:getAnnouncementRequestByDescription(announcementRequestDescription)
+PublishAnnouncementRequestController -> PublishAnnouncementRequestController:getAnnouncementRequestDtoByDescription(announcementRequestDescription)
 activate PublishAnnouncementRequestController
 
 
-PublishAnnouncementRequestController -> AnnouncementRequestRepository :getAnnouncementRequestByDescription()
-activate AnnouncementRequestRepository
+PublishAnnouncementRequestController -> XMapper :getAnnouncementRequestDtoByDescription()
+activate XMapper
 
-AnnouncementRequestRepository --> PublishAnnouncementRequestController:announcementRequest
-deactivate AnnouncementRequestRepository
+XMapper --> PublishAnnouncementRequestController:announcementRequestDto
+deactivate XMapper
 
-PublishAnnouncementRequestController--> PublishAnnouncementRequestController:announcementRequest
+PublishAnnouncementRequestController--> PublishAnnouncementRequestController:announcementRequestDto
 
 
 PublishAnnouncementRequestController -> PublishAnnouncementRequestController:getComissionByDescription(comissionDescription)
@@ -240,12 +240,34 @@ deactivate ComissionRepository
 
 PublishAnnouncementRequestController --> PublishAnnouncementRequestController:comission
 
-PublishAnnouncementRequestController -> PublishAnnouncementRepository:createPublishedAnnouncement(announcementRequest,comission)
+PublishAnnouncementRequestController -> PublishAnnouncementRepository:createPublishedAnnouncement(announcementRequestDto,comission)
 activate PublishAnnouncementRepository
 
-PublishAnnouncementRepository -> PublishedAnnouncement** : createPublishedAnnouncement(name,passport number,tax number \n,email ,telephone number,store\n role,adress)
+PublishAnnouncementRepository -> PublishedAnnouncement** : createPublishedAnnouncement(announcementRequestDto,comission)
+activate PublishedAnnouncement
+PublishedAnnouncement -> announcementRequestDto:date = getDate()
+activate announcementRequestDto
+deactivate announcementRequestDto
+PublishedAnnouncement -> announcementRequestDto:typeOfBusiness = getTypeOfBusiness()
+activate announcementRequestDto
+deactivate announcementRequestDto
+PublishedAnnouncement -> announcementRequestDto:property = getProperty()
+activate announcementRequestDto
+deactivate announcementRequestDto
+PublishedAnnouncement -> announcementRequestDto:propertyType = getPropertyType()
+activate announcementRequestDto
+deactivate announcementRequestDto
+PublishedAnnouncement -> announcementRequestDto:business = getBusiness()
+activate announcementRequestDto
+deactivate announcementRequestDto
+PublishedAnnouncement -> announcementRequestDto:durationOfContract = getDurationOfContract()
+activate announcementRequestDto
+deactivate announcementRequestDto
+
+deactivate PublishedAnnouncement
              PublishAnnouncementRepository -> PublishAnnouncementRepository : addPublishedAnnouncement(publishedAnnouncement)
              activate PublishAnnouncementRepository
+
              PublishAnnouncementRepository -> PublishAnnouncementRepository : validatePublishedAnnoncement(publishedAnnouncement)
               activate PublishAnnouncementRepository
                PublishAnnouncementRepository --> PublishAnnouncementRepository

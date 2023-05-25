@@ -7,14 +7,22 @@ participant "announcementRequestRepository\n:AnnouncementRequestRepository" as A
 
 autonumber 56
 
+activate PublishAnnouncementRequestController
+
+PublishAnnouncementRequestController -> PublishAnnouncementRequestController:getAnnouncementRequestDtoByDescription(announcementRequestDescription)
+activate PublishAnnouncementRequestController
+
 Group Get Announcement Request By Description
 
 activate PublishAnnouncementRequestController
 
-PublishAnnouncementRequestController -> AnnouncementRequestRepository :getAnnouncementRequestByDescription()
+PublishAnnouncementRequestController -> AnnouncementRequestRepository :getAnnouncementRequestDtoByDescription(announcementRequestDescription)
 activate AnnouncementRequestRepository
 
 AnnouncementRequestRepository --> PublishAnnouncementRequestController:announcementRequest
 deactivate AnnouncementRequestRepository
 end
+
+AnnouncementRequestRepository --> PublishAnnouncementRequestController:announcementRequest
+deactivate AnnouncementRequestRepository
 @enduml

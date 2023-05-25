@@ -19,11 +19,6 @@ Tax Number
 Passport Number
 }
 
-class PublishedAnnouncement{
-date
-duration of Contract
-}
-
 class Agent{
 }
 
@@ -114,8 +109,5 @@ Business "1" --- "1" AnnouncementRequest: has <
 
 Agent "1" -left "1" Comission: defines >
 
-PublishedAnnouncement -- Property: has >
-PublishedAnnouncement --- AnnouncementRequest: has >
-PublishedAnnouncement - Business:has >
-PublishedAnnouncement "*" -> "1..30" Photos: has >
+
 @enduml

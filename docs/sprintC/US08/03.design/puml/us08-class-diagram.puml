@@ -4,6 +4,8 @@ class PublishAnnouncementRequestUI
 
 class Adress
 
+class AnnouncementRequestMapper
+
 class PublishAnnouncementRequestController
 
 class Person
@@ -27,6 +29,25 @@ class State
 class City
 
 class District
+
+class AnnouncementRequestDto
+
+class AnnouncementRequestDto{
+-Date date
+-TypeOfBusiness typeOfBusiness
+-Property property
+-PropertyType propertyType
+-int durationOfContract
+-Employee agent
++toString()
+}
+
+class AnnouncementRequestMapper{
++List<AnnouncementRequestDto> toDto (List<AnnnouncementRequest> list)
++AnnouncementRequestDto toDto(AnnouncementRequest announcementRequest)
++getAnnouncementRequestDtoByDescription(announcementRequestDescription)
+}
+
 
 class Person{
 - String email
@@ -191,6 +212,7 @@ class PublishAnnouncementRequestController{
 +getComissionByDescription(String comissionDescription)
 +getAnnouncementRequestByDescription(int announcementRequestDescription)
 +getEmployeeeByEmail(email)
++toDto(agent)
 -getAuthenticationRepository()
 -getPublishedAnnouncementRepository()
 -getPublishedAnnouncementRequestRepository()
@@ -211,6 +233,8 @@ class Repositories{
 
 
 PublishAnnouncementRequestUI .> PublishAnnouncementRequestController
+
+PublishAnnouncementRequestController ...> AnnouncementRequestMapper
 
 PublishAnnouncementRequestController ..> AnnouncementRequestRepository: announcementRequestRepository
 
@@ -237,6 +261,10 @@ Repositories ----> AuthenticationRepository: authenticationRepository
 PublishAnnouncementRequestController .>  Repositories : repositories
 
 ComissionRepository -----> "*" Comission
+
+AnnouncementRequestMapper ........> AnnouncementRequest
+
+AnnouncementRequestMapper .....> AnnouncementRequestDto
 
 AnnouncementRequestRepository ------> "*" AnnouncementRequest
 
