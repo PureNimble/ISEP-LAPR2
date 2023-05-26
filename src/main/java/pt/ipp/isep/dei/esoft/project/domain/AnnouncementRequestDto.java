@@ -106,6 +106,7 @@ public class AnnouncementRequestDto {
         return durationOfContract == that.durationOfContract && date.equals(that.date) && typeOfBusiness.equals(that.typeOfBusiness) && property.equals(that.property) && propertyType.equals(that.propertyType) && business.equals(that.business) && agent.equals(that.agent) && status.equals(that.status);
     }
 
+
     @Override
     public int hashCode() {
         return Objects.hash(date, typeOfBusiness, property, propertyType, business, durationOfContract, agent, status);

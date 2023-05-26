@@ -121,6 +121,7 @@ public class AnnouncementRequest {
         return date;
     }
 
+
     /**
      * Gets agent.
      *

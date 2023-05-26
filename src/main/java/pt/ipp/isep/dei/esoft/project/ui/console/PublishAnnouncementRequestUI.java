@@ -90,6 +90,7 @@ public class PublishAnnouncementRequestUI implements Runnable {
             System.out.println("Aconteceu algum erro...");
         }
 
+
     }
 
     private String requestMessageJustification() {

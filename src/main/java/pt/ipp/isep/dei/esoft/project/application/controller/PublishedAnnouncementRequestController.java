@@ -270,7 +270,7 @@ public class PublishedAnnouncementRequestController {
 
         AnnouncementRequestDto announcementRequestDto =  announcementRequestMapper.getAnnouncementRequestDtoByDescription(announcementRequestDtoDescription);
 
-        announcementRequestRepository.rejectAnnouncementRequest(announcementRequestDto);
+
 
 
     }

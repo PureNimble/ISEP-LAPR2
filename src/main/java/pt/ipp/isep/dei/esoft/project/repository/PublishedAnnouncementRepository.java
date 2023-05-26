@@ -93,6 +93,7 @@ public class PublishedAnnouncementRepository {
 
         int i = 0;
 
+
         for (AnnouncementRequest announcementRequest1 : announcementRequests) {
             if (announcementRequest1.equals(announcementRequest)){
                 announcementRequests.get(i).setStatus("true");

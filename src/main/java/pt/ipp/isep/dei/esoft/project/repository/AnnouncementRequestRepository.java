@@ -140,6 +140,7 @@ public class AnnouncementRequestRepository {
                     newAnnouncementRequest.add(announcementRequest);
                 }
             }
+
         }
 
         Collections.reverse(newAnnouncementRequest);

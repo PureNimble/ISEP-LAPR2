@@ -10,6 +10,7 @@ import java.util.Optional;
 public class AnnouncementRequestMapper {
 
 
+
     private List<AnnouncementRequestDto> announcementRequestDtos = new ArrayList<>();
 
     public List<AnnouncementRequestDto> toDto(List<AnnouncementRequest> announcementRequestList) {
