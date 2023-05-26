@@ -1,11 +1,130 @@
 @startuml
-'https://plantuml.com/sequence-diagram
 
-autonumber
+title US012 - Class Diagram
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+class Role {
+    - String role
+    + Role(role)
+}
+
+class State {
+    - String stateName
+
+    + getState()
+    + getDistricts()
+    + toString()
+}
+
+class District {
+    - String districtName
+
+
+    + getDistrictName()
+    + getCities()
+    + toString()
+}
+
+class City {
+    - String cityName
+
+    - getCityName()
+}
+
+class Address {
+    - String streetName
+    - int zipCode
+
+    + verifyZipCode()
+    + getCity()
+    + getDistrict()
+    + getState()
+    + Address(state, district, city, street, zipCode)
+}
+
+
+
+class Person {
+    - String email
+    - int passportNumber
+    - int taxNumber
+    - String name
+    - Address address
+    - int phoneNumber
+
+    + User(email,passportNumber,taxNumber,name,phoneNumber)
+    + getPassportNumber()
+    + getTaxNumber()
+    + getEmail()
+    + getAdress()
+    + getName()
+    + getPhoneNumber()
+}
+
+class Employee {
+    - Store store
+    - Role role
+    + Employee(email,name,store,phoneNumber,role,\naddress,taxNumber,passportNumber)
+    + getStore()
+    + getRole()
+}
+
+class Store {
+    - String name
+    - Address address
+    - addEmployee(employee)
+    - validateEmployee(employee)
+    + Store(name,adress,contact)
+    + createEmployee(name,citizen's card number, \ntax number, address, email adress, telephone number, store, role)
+}
+
+class Repositories {
+    - Repositories()
+    + getInstance():Repositories
+    + getLegacyFilesRepository()
+}
+
+class FileReaderRepository {
+    - addFileCopy(fileInformation)
+}
+
+class ImportFileController {
+    - getFileReaderClass()
+    - getStoreInformation()
+    - getFileReaderRepository()
+}
+
+class ReadFileUI {
+}
+
+class FileReaderClass {
+    - readStoreInformations(File file)
+    - readOwnerInformations(File file)
+    - readPropertyInformations(File file)
+}
+
+class SystemAdministrator {
+
+}
+
+ReadFileUI .> ImportFileController
+ImportFileController .> Repositories : repositories
+ImportFileController ..> FileReaderRepository : fileReader
+Repositories -> Repositories : instance
+Repositories --> FileReaderRepository
+FileReaderRepository "1" --> "*" FileReaderClass
+FileReaderClass --> Employee
+Employee <-- SystemAdministrator : registers
+Employee "1" -> "*" Role : role
+Employee <|-- Person
+SystemAdministrator -->  "*" Store : registers
+Store "1" --> "*" Address : has >
+Address "1" --> "*" State : has >
+State "1" --> "*" District : has >
+District "1" --> "*" City : has >
+
+
 @enduml
