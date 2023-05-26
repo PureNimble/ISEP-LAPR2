@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.esoft.project.domain.*;
+import pt.ipp.isep.dei.esoft.project.ui.console.PublishAnnouncementRequestUI;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PublishedAnnouncementRequestControllerTest {
 
+
+    private PublishedAnnouncementRequestController controller = new PublishedAnnouncementRequestController();
 
     private PublishedAnnouncement publishedAnnouncement, publishedAnnouncement1;
 
@@ -64,9 +67,9 @@ class PublishedAnnouncementRequestControllerTest {
 
     @BeforeEach
     void setUpComission() {
-        double comissionValue = 5.0;
+        double comissionValue = 50.0;
         comission = new Comission(comissionValue);
-        double comissionValue1 = 10.0;
+        double comissionValue1 = 10.5;
         comission1 = new Comission(comissionValue1);
     }
 
@@ -121,7 +124,7 @@ class PublishedAnnouncementRequestControllerTest {
     @Test
     void getPublishedAnnouncements() {
 
-        PublishedAnnouncementRequestController controller = new PublishedAnnouncementRequestController();
+
 
         List<PublishedAnnouncement> publishedAnnouncements = new ArrayList<>();
 
@@ -135,7 +138,6 @@ class PublishedAnnouncementRequestControllerTest {
     @Test
     void getAnnouncementRequestByMostRecent() {
 
-        PublishedAnnouncementRequestController controller = new PublishedAnnouncementRequestController();
 
         List<AnnouncementRequest> announcementRequests = new ArrayList<>();
 
@@ -154,7 +156,7 @@ class PublishedAnnouncementRequestControllerTest {
     @Test
     void getComission() {
 
-        PublishedAnnouncementRequestController controller = new PublishedAnnouncementRequestController();
+
 
         List<Comission> comissions = new ArrayList<>();
 
@@ -174,15 +176,31 @@ class PublishedAnnouncementRequestControllerTest {
     @Test
     void getEmployeeByEmail() {
 
+        assertEquals(employee,controller.getEmployeeByEmail());
 
     }
 
     @Test
     void getComissionByDescription() {
+
+        double comissionValue = 50;
+        controller.comissionRepository.add(comission);
+
+        assertEquals(comission,controller.getComissionByDescription(comissionValue));
+
     }
 
     @Test
     void getAnnouncementRequestByDescription() {
+
+        int index = 0;
+
+        controller.announcementRequestRepository.add(announcementRequest);
+        controller.announcementRequestRepository.add(announcementRequest1);
+        controller.announcementRequestRepository.add(announcementRequest2);
+
+        assertEquals(announcementRequest,controller.getAnnouncementRequestByDescription(index));
+
     }
 
     @Test
