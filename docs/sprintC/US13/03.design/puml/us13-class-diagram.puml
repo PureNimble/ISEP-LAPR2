@@ -20,6 +20,15 @@ class Repositories {
 class Store {
     -int id
     -String designation
+    +List<Store>
+}
+
+class Employee {
+    +List<Employee>
+}
+
+class StoreEmployeeMapper {
+    +toDTO(StoreList, EmployeeList)
 }
 
 class DisplayStoreController {
@@ -27,6 +36,7 @@ class DisplayStoreController {
     +getStoresList()
     +getEmployeeRepository()
     +getEmployeesList()
+    +toDTO(StoreList, EmployeeList)
 }
 
 class StoreRepository {
@@ -51,6 +61,14 @@ class Person {
     -Passport Number
 }
 
+class StoreEmployeeDTO {
+    -int storeId
+    -String storeName
+    -int employeeId
+    -String employeeName
+    -String employeeRole
+}
+
 class DisplayStoreUI {
 
 }
@@ -64,6 +82,8 @@ DisplayStoreController ..> EmployeeRepository : EmployeeRepository
 DisplayStoreController ..> Store : Store
 DisplayStoreController ..> Employee : Employee
 DisplayStoreUI ..> DisplayStoreController
+StoreEmployeeDTO ..> Store: store
+StoreEmployeeDTO ..> Employee: employee
 Person <|-- User
 User <|-- Employee
 

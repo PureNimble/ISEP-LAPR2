@@ -33,6 +33,8 @@ Other software classes (i.e. Pure Fabrication) identified:
  * DisplayEmployeeController
  * StoreEmployeeMapper
  * StoreEmployeeList
+ * StoreRepository
+ * EmployeeRepository
 
 
 ## 3.2. Sequence Diagram (SD)
