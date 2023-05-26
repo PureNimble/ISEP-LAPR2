@@ -1,0 +1,37 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US09 - Sequence Diagram Partial (Properties List By Most Recent Added)
+
+autonumber 13
+
+'hide footbox
+participant ":SendMessageController" as CTRL
+participant ":Repositories" as Repository
+participant "repositories\n:Repositories" as Repository2
+participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as publish
+
+group Get Properties List By Most Recent Added
+activate CTRL
+CTRL -> Repository: getInstance()
+            activate Repository
+
+            Repository --> CTRL: Repository2
+            deactivate Repository
+
+            CTRL -> Repository2: getPublishedAnnouncementRepository()
+            activate Repository2
+
+            Repository2 --> CTRL:PublishedannouncementRepository
+            deactivate Repository2
+
+            CTRL -> publish:
+
+            activate publish
+
+            publish --> CTRL:listOfPropertiesByDate
+            deactivate publish
+end
+@enduml

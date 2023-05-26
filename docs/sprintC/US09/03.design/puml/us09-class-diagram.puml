@@ -30,6 +30,12 @@ class Repositories {
 
 }
 
+class ListOfPropertiesMapper{
++List<PropertiesDTO> toDTO (List<Properties> list)
++ListOfPropertiesDTO toDTO(Published Announcement listOfProperties)
++getPropertyDTOByDescription(PropertyDescription)
+}
+
 
 class PublishedAnnouncementRepository {
 
@@ -258,6 +264,16 @@ class Role{
 +Role(role)
 }
 
+class PropertiesDTO{
+-Date date
+-TypeOfBusiness typeOfBusiness
+-Property property
+-PropertyType propertyType
+-int durationOfContract
+-Employee agent
++toString()
+}
+
 
 
 
@@ -271,6 +287,9 @@ Repositories ---> AutheticationRepository : authentication
 SendMessageController ...> PublishedAnnouncementRepository : announcement
 SendMessageController ...> MessageRepository : message
 SendMessageController ...> AutheticationRepository : authentication
+SendMessageController ...> ListOfPropertiesMapper
+
+ListOfPropertiesMapper....> PropertiesDTO
 
 MessageRepository -down-> Message
 Agent "1" -up- "*" Message : recives a >

@@ -1,0 +1,35 @@
+
+@startuml
+ 'https://plantuml.com/sequence-diagram
+ skinparam monochrome true
+ skinparam packageStyle rectangle
+ skinparam shadowing false
+
+ title US09 - Sequence Diagram Partial (Get Properties By Description)
+
+ autonumber 45
+
+ 'hide footbox
+
+ participant ":SendMessageController" as CTRL
+ participant ":XMapper" as XMapper
+
+ autonumber
+ activate CTRL
+ CTRL -> CTRL:getPropertyDTOByDescription(PropertyDescription)
+                activate CTRL
+
+                group Get Properties DTO By Description
+
+
+
+ CTRL -> XMapper :getPropertyDTOByDescription()
+                activate XMapper
+
+                XMapper --> CTRL:PropertyDTO
+                deactivate XMapper
+
+                end
+
+                CTRL--> CTRL:PropertyDTO
+ @enduml

@@ -5,21 +5,22 @@
 ### 3.1. Rationale
 
 
-| **_Interaction ID_**                                                                                                      | **_Which class is responsible for..._**                         | **_Answer_**                    | **_Justification_**                                                                                                                           |                                   
-|:--------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------|:--------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| Step 1: asks to schedule a visit                                                                                          | ... interacting with the actor?                                 | SendMessageUI                   | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. It is a user interface concern. |
-|                                                                                                                           | ... coordinating the US?                                        | SendMessageController           | Controller                                                                                                                                    | 
-|                                                                                                                           | ... UI-related class being instantiated?                        | SendMessageUI                   | Pure Fabrication                                                                                                                              |
-| Step 2: shows a list of properties sorted from the most recent entries to the oldest                                      | ... obtaining the list of properties?                           | PublishedAnnouncementRepository | IE: knows all it's data , Pure Fabrication                                                                                                    |
-| Step 3: selects a property of his interest                                                                                | ... validating the input data?                                  | SendMessageUI                   | Pure Fabrication                                                                                                                              |
-|                                                                                                                           | ... saving input data?                                          | MessageRepository               | Creator: MessageRepository records instances of the Published Announcement, and records them.                                                 |
-| Step 4: requests the name, phone number and preferred \ndate and time slot (from x hour to y hour) for the property visit | ... displaying the UI for the client to input data?             | SendMessageUI                   | Pure Fabrication                                                                                                                              |
-|                                                                                                                           | ... validating the input data?                                  | SendMessageUI                   | Pure Fabrication                                                                                                                              |
-| Step 5: submits the requested data                                                                                        | ... saving input data?                                          | MessageRepository               | Creator                                                                                                                                       |
-| Step 6: asks to confirm the submitted data                                                                                | ... displaying the message details and requesting confirmation? | SendMessageUI                   | Pure Fabrication                                                                                                                              |
-| Step 7: confirms the submitted data                                                                                       | ... creating the message Object?                                | Message                         | Creator: the object create has its own data.                                                                                                  |
-|                                                                                                                           | ... validating the input data?                                  | SendMessageUI                   | Pure Fabrication                                                                                                                              |
-| Step 8: registers the information and shows a success message                                                             | ... displaying operation success?                               | SendMessageUI                   | Pure Fabrication                                                                                                                              |
+| **_Interaction ID_**                                                                 | **_Which class is responsible for..._**                                                | **_Answer_**                    | **_Justification_**                                                                                           |                                   
+|:-------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------|:--------------------------------|---------------------------------------------------------------------------------------------------------------|
+| Step 1: asks to schedule a visit                                                     | ... interacting with the actor?                                                        | SendMessageUI                   | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
+|                                                                                      | ... coordinating the US?                                                               | SendMessageController           | Controller                                                                                                    |
+|                                                                                      | ...knowing and obtaining the email of the client loged in?                             | User session                    | IE: knows/has its own data                                                                                    |
+|                                                                                      | ...obtaining the client by email?                                                      | ClientRepository                | IE:knows/has its own data                                                                                     |
+|                                                                                      | ...obtaining the property list?                                                        | PublishedAnnouncementRepository | IE: knows/has its own data,Pure Fabrication                                                                   |
+|                                                                                      | ...obtaining the property Dto list                                                     | ListOfPropertiesMapper          | IE:Kowns/has its own data,Pure Fabrication,High coesion Low Coupling                                          |
+|                                                                                      | ...obtaining the property list?                                                        | PublishedAnnouncementRepository | IE: knows/has its own data,Pure Fabrication                                                                   |
+| Step 2: shows a list of properties sorted from the most recent entries to the oldest | ...displaying the list of properties?                                                  | SendMessageUI                   | Pure Fabrication                                                                                              |
+| Step 3: selects a property of his interest                                           | ...validating selected data?<br/><br/>...temporarily keeping the property description? | SendMessageUI                   | Pure Fabrication                                                                                              |
+| Step 4: submits the requested data                                                   | ...obtaining and creating the list of properties Dto by description                    | PublishedAnnouncementMapper     | IE,Creator                                                                                                    |
+|                                                                                      | ...creating the message                                                                | MessageRepository               | IE,Creator                                                                                                    |
+|                                                                                      | ...validating the data?                                                                | Message                         | IE                                                                                                            |
+|                                                                                      | ...adding to a collection<br/>and globally<br/>validating duplicated records           | MessageRepository               | IE                                                                                                            |
+| Step 6: shows a success message and the message created                              | ...sending a success message?                                                          | SendMessageUI                   | Pure Fabrication                                                                                              |
 
 #### Systematization
 
@@ -29,8 +30,8 @@ The conceptual classes developed to software classes are, matching with the adop
 Other software classes identified:
 * MessageUI
 * PublishedAnnouncementRepository
-* UserRepository
 * MessageRepository
+* ListOfPropertiesMapper
 
 
 ### 3.2. Sequence Diagram (SD)
@@ -46,9 +47,21 @@ This diagram, which is divided into smaller diagrams to better describe the inte
 
 ![Sequence Diagram Split](svg/us09-sequence-diagram-split.svg)
 
-##### Get Properties
+##### Get Client
 
-![Sequence Diagram Partial Get Type Of Property](svg/us09-sequence-diagram-partial-get-properties.svg)
+![Sequence Diagram Partial Get Client](svg/us09-sequence-diagram-partial-get-client.svg)
+
+##### Get Properties By Description
+
+![Sequence Diagram Partial Get Properties By Description](svg/us09-sequence-diagram-partial-get-properties-by-description.svg)
+
+##### Get Properties List By Most Recent Added
+
+![Sequence Diagram Partial Get Properties List By Most Recent Added](svg/us09-sequence-diagram-partial-get-properties-list-by-most-recent-added.svg)
+
+##### Get Properties List By Most Recent Added Using DTO
+
+![Sequence Diagram Partial Get Properties List By Most Recent Added Using DTO](svg/us09-sequence-diagram-partial-get-properties-list-by-most-recent-added-using-dto.svg)
 
 ##### Create Message
 
