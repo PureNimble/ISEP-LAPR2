@@ -70,9 +70,9 @@ public class AnnouncementRequestRepository {
         AnnouncementRequest announcementRequest;
 
         if (property.toString().equals("Rent")) {
-            announcementRequest = new AnnouncementRequest(date, typeOfBusiness, property, propertyType, business, durationOfContract, agent);
+            announcementRequest = new AnnouncementRequest("",date, typeOfBusiness, property, propertyType, business, durationOfContract, agent);
         } else {
-            announcementRequest = new AnnouncementRequest(date, typeOfBusiness, property, propertyType, business, agent);
+            announcementRequest = new AnnouncementRequest("",date, typeOfBusiness, property, propertyType, business, agent);
         }
 
         if (addAnnouncementRequest(announcementRequest)) {
@@ -136,14 +136,8 @@ public class AnnouncementRequestRepository {
         int aux = 0;
         for (AnnouncementRequest announcementRequest : announcementRequests) {
             if (announcementRequest.getAgent().equals(agent)) {
-                for (PublishedAnnouncement publishedAnnouncement : publishedAnnouncements) {
-                    if (!announcementRequest.equals(publishedAnnouncement.getAnnouncementRequest())) {
-                        aux++;
-                    }
-                }
-                if (aux == publishedAnnouncements.size()) {
+                if (announcementRequest.getStatus().equals("")) {
                     newAnnouncementRequest.add(announcementRequest);
-                    aux = 0;
                 }
             }
         }
@@ -169,6 +163,24 @@ public class AnnouncementRequestRepository {
                     "Announcement Request requested for [" + newAnnouncementRequest.toString() + "] does not exist.");
         }
         return announcementRequest;
+    }
+
+    public void rejectAnnouncementRequest(AnnouncementRequestDto announcementRequestDto){
+
+        int i =0;
+
+        AnnouncementRequest announcementRequest = new AnnouncementRequest(announcementRequestDto);
+
+        for (AnnouncementRequest announcementRequest1: announcementRequests) {
+
+            if (announcementRequest1.equals(announcementRequest)){
+               announcementRequests.get(i).setStatus("false");
+            }
+
+            i++;
+        }
+
+
     }
 
 

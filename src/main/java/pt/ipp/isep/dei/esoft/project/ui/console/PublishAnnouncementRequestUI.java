@@ -47,6 +47,9 @@ public class PublishAnnouncementRequestUI implements Runnable {
 
 
     private void sendEmailJustification() {
+
+        controller.rejectPublishAnnouncementRequest(announcementRequestDescription);
+
         try {
             FileWriter fw = new FileWriter("emailJustificationAnnouncementRequest.txt");
             PrintWriter pw = new PrintWriter(fw);

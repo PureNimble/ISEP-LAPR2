@@ -34,7 +34,7 @@ public class PublishedAnnouncementRequestController {
      */
     AuthenticationRepository authenticationRepository = null;
 
-    AnnouncementRequestMapper announcementRequestMapper = new AnnouncementRequestMapper();
+
 
     /**
      * Instantiates a new Published announcement request controller.
@@ -130,6 +130,8 @@ public class PublishedAnnouncementRequestController {
     }
 
     private AnnouncementRequestMapper getAnnouncementRequestMapper(){
+
+        AnnouncementRequestMapper announcementRequestMapper = new AnnouncementRequestMapper();
         return announcementRequestMapper;
     }
 
@@ -162,6 +164,8 @@ public class PublishedAnnouncementRequestController {
     public List<AnnouncementRequestDto> toDto(Employee agent){
 
         List<AnnouncementRequest> announcementRequests = getAnnouncementRequestByMostRecent(agent);
+
+        AnnouncementRequestMapper announcementRequestMapper = getAnnouncementRequestMapper();
 
         return  announcementRequestMapper.toDto(announcementRequests);
     }
@@ -247,13 +251,29 @@ public class PublishedAnnouncementRequestController {
 
         Comission comission = getComissionByDescription(comissionDescription);
 
+        AnnouncementRequestRepository announcementRequestRepository = getAnnouncementRequestRepository();
+
         AnnouncementRequestMapper announcementRequestMapper = getAnnouncementRequestMapper();
 
         AnnouncementRequestDto announcementRequestDto =  announcementRequestMapper.getAnnouncementRequestDtoByDescription(announcementRequestDtoDescription);
 
-        newPublishedAnnouncement = getPublishedAnnouncementRepository().publishedAnnouncementRequest(announcementRequestDto,comission);
+        newPublishedAnnouncement = getPublishedAnnouncementRepository().publishedAnnouncementRequest(announcementRequestRepository.getAnnouncementsRequest(),announcementRequestDto,comission);
 
         return newPublishedAnnouncement;
     }
+
+    public void rejectPublishAnnouncementRequest(int announcementRequestDtoDescription){
+
+        AnnouncementRequestRepository announcementRequestRepository = getAnnouncementRequestRepository();
+
+        AnnouncementRequestMapper announcementRequestMapper = getAnnouncementRequestMapper();
+
+        AnnouncementRequestDto announcementRequestDto =  announcementRequestMapper.getAnnouncementRequestDtoByDescription(announcementRequestDtoDescription);
+
+        announcementRequestRepository.rejectAnnouncementRequest(announcementRequestDto);
+
+
+    }
+
 
 }

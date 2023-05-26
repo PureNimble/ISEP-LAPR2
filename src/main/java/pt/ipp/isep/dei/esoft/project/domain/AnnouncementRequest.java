@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
 
@@ -16,6 +17,7 @@ public class AnnouncementRequest {
 
     private Employee agent;
 
+    private String status;
     /**
 
      Creates a new AnnouncementRequest object with the given parameters.
@@ -25,13 +27,14 @@ public class AnnouncementRequest {
      @param propertyType the type of property.
      @param business the business to be advertised.
      */
-    public AnnouncementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business,Employee agent) {
+    public AnnouncementRequest(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business,Employee agent) {
         this.date = date;
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
         this.propertyType = propertyType;
         this.business = business;
         this.agent = agent;
+        this.status = status;
     }
     /**
 
@@ -43,7 +46,18 @@ public class AnnouncementRequest {
      @param business the business to be advertised.
      @param durationOfContract the duration of the contract for the advertisement.
      */
-    public AnnouncementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract,Employee agent) {
+    public AnnouncementRequest(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract,Employee agent) {
+        this.date = date;
+        this.typeOfBusiness = typeOfBusiness;
+        this.property = property;
+        this.propertyType = propertyType;
+        this.business = business;
+        this.durationOfContract = durationOfContract;
+        this.agent = agent;
+        this.status = status;
+    }
+
+    public AnnouncementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract, Employee agent) {
         this.date = date;
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
@@ -53,6 +67,25 @@ public class AnnouncementRequest {
         this.agent = agent;
     }
 
+    public AnnouncementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business,Employee agent) {
+        this.date = date;
+        this.typeOfBusiness = typeOfBusiness;
+        this.property = property;
+        this.propertyType = propertyType;
+        this.business = business;
+        this.agent = agent;
+    }
+
+    public AnnouncementRequest (AnnouncementRequestDto announcementRequestDto) {
+        this.date = announcementRequestDto.getDate();
+        this.typeOfBusiness = announcementRequestDto.getTypeOfBusiness();
+        this.property = announcementRequestDto.getProperty();
+        this.propertyType = announcementRequestDto.getPropertyType();
+        this.business = announcementRequestDto.getBusiness();
+        this.durationOfContract = announcementRequestDto.getDurationOfContract();
+        this.agent = announcementRequestDto.getAgent();
+        this.status = announcementRequestDto.getStatus();
+    }
 
     public TypeOfBusiness getTypeOfBusiness() {
         return typeOfBusiness;
@@ -97,6 +130,42 @@ public class AnnouncementRequest {
         return agent;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setTypeOfBusiness(TypeOfBusiness typeOfBusiness) {
+        this.typeOfBusiness = typeOfBusiness;
+    }
+
+    public void setProperty(Property property) {
+        this.property = property;
+    }
+
+    public void setPropertyType(PropertyType propertyType) {
+        this.propertyType = propertyType;
+    }
+
+    public void setBusiness(Business business) {
+        this.business = business;
+    }
+
+    public void setDurationOfContract(int durationOfContract) {
+        this.durationOfContract = durationOfContract;
+    }
+
+    public void setAgent(Employee agent) {
+        this.agent = agent;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     /**
 
      Returns a string representation of this AnnouncementRequest object.
@@ -123,5 +192,18 @@ public class AnnouncementRequest {
                         "DurationOfContract:%s\n" +
                         "%s",
                 date.toString(),typeOfBusiness.toString(),propertyType,business.toString(),durationOfContract,property.toString());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AnnouncementRequest that = (AnnouncementRequest) o;
+        return durationOfContract == that.durationOfContract && date.equals(that.date) && typeOfBusiness.equals(that.typeOfBusiness) && property.equals(that.property) && propertyType.equals(that.propertyType) && business.equals(that.business) && agent.equals(that.agent) && status.equals(that.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(date, typeOfBusiness, property, propertyType, business, durationOfContract, agent, status);
     }
 }

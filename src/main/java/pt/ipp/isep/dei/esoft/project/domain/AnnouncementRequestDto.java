@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class AnnouncementRequestDto {
 
@@ -12,7 +13,9 @@ public class AnnouncementRequestDto {
     private int durationOfContract;
     private Employee agent;
 
-    public AnnouncementRequestDto(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract, Employee agent) {
+    private String status;
+
+    public AnnouncementRequestDto(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract, Employee agent) {
         this.date = date;
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
@@ -20,16 +23,18 @@ public class AnnouncementRequestDto {
         this.business = business;
         this.durationOfContract = durationOfContract;
         this.agent = agent;
+        this.status = status;
     }
 
 
-    public AnnouncementRequestDto(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business,Employee agent) {
+    public AnnouncementRequestDto(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business,Employee agent) {
         this.date = date;
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
         this.propertyType = propertyType;
         this.business = business;
         this.agent = agent;
+        this.status = status;
     }
 
 
@@ -87,5 +92,22 @@ public class AnnouncementRequestDto {
 
     public Employee getAgent() {
         return agent;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AnnouncementRequestDto that = (AnnouncementRequestDto) o;
+        return durationOfContract == that.durationOfContract && date.equals(that.date) && typeOfBusiness.equals(that.typeOfBusiness) && property.equals(that.property) && propertyType.equals(that.propertyType) && business.equals(that.business) && agent.equals(that.agent) && status.equals(that.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(date, typeOfBusiness, property, propertyType, business, durationOfContract, agent, status);
     }
 }

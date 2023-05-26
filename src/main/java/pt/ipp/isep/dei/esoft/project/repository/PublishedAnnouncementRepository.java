@@ -77,20 +77,28 @@ public class PublishedAnnouncementRepository {
     /**
      * Published announcement request optional.
      *
-     * @param comission           the comission
-
+     * @param comission the comission
      * @return the optional
      */
-    public Optional<PublishedAnnouncement> publishedAnnouncementRequest( AnnouncementRequestDto announcementRequestDto, Comission comission) {
+    public Optional<PublishedAnnouncement> publishedAnnouncementRequest(List<AnnouncementRequest> announcementRequests, AnnouncementRequestDto announcementRequestDto, Comission comission) {
 
 
         Optional<PublishedAnnouncement> optionalValue = Optional.empty();
 
         PublishedAnnouncement publishedAnnouncement;
 
+        publishedAnnouncement = new PublishedAnnouncement(announcementRequestDto, comission);
 
-        publishedAnnouncement = new PublishedAnnouncement(announcementRequestDto,comission);
+        AnnouncementRequest announcementRequest = new AnnouncementRequest(announcementRequestDto);
 
+        int i = 0;
+
+        for (AnnouncementRequest announcementRequest1 : announcementRequests) {
+            if (announcementRequest1.equals(announcementRequest)){
+                announcementRequests.get(i).setStatus("true");
+            }
+                i++;
+        }
 
         if (addPublishedAnnouncement(publishedAnnouncement)) {
             optionalValue = Optional.of(publishedAnnouncement);
@@ -116,21 +124,22 @@ public class PublishedAnnouncementRepository {
         return success;
 
     }
-    /**
 
-     This method validates a published announcement, checking if it is not already present in the repository.
-     @param publishedAnnouncement the published announcement to be validated
-     @return true if the published announcement is valid, false otherwise
+    /**
+     * This method validates a published announcement, checking if it is not already present in the repository.
+     *
+     * @param publishedAnnouncement the published announcement to be validated
+     * @return true if the published announcement is valid, false otherwise
      */
     private boolean validatePublishedAnnouncement(PublishedAnnouncement publishedAnnouncement) {
         return !tasksDoNotContainAnnouncement(publishedAnnouncement);
     }
 
     /**
-
-     This method checks if a PublishedAnnouncement object is present in the list of published announcements
-     @param publishAnnouncement the PublishedAnnouncement object to check for in the list
-     @return true if the object is not present in the list, false otherwise
+     * This method checks if a PublishedAnnouncement object is present in the list of published announcements
+     *
+     * @param publishAnnouncement the PublishedAnnouncement object to check for in the list
+     * @return true if the object is not present in the list, false otherwise
      */
     private boolean tasksDoNotContainAnnouncement(PublishedAnnouncement publishAnnouncement) {
         PublishAnnouncementController controller = new PublishAnnouncementController();
