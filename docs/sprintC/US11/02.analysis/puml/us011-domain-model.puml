@@ -81,11 +81,6 @@ Area
 Distance from the city center
 }
 
-class PublishedAnnouncement {
-Contract Type
-
-}
-
 
 class Rent {
 Duration of contract
@@ -120,8 +115,6 @@ Business <|-- Rent
 Comission "1" -- "1" Business : contains <
 ComissionPercentage  --|> Comission
 
-District "1" -right- "*" City : has >
-
 House "1" --- "1" SunExposure : contains >
 
 Property <|--- Residence
@@ -133,8 +126,9 @@ PublishedAnnouncement "*" --- "*" Property: advertises >
 Residence "1" --- "*" AvailableEquipment : contains >
 Residence <|--- House
 
-State "1" -right- "*" District : has >
-State "1" -left- "*" Address : has >
+District "1" -left- "*" City : has >
+State "1" -left- "*" District : has >
+City "1" -left- "*" Address : has >
 
 TypeOfProperty "1" -right- "1" Property : defines >
 Person <|-- User

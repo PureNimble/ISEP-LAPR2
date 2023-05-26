@@ -16,12 +16,7 @@ activate agent
 
 agent -> sys : asks for a list of real estate purchase orders for every property
 activate sys
-sys --> agent : shows the list of purchase orders (Property, client's email, offer ID and offer value) and asks what property does the agent want to choose
-deactivate sys
-
-agent -> sys : chooses the property
-activate sys
-sys --> agent : shows property details and offers correspondent to the property and also asks what offer does the agent want to choose
+sys --> agent : shows the list of purchase orders (Property details, client's email, offer date and offer value) and asks what offer does the agent want to choose
 deactivate sys
 
 agent -> sys : chooses the offer
@@ -31,7 +26,7 @@ deactivate sys
 
 agent -> sys : accepts or declines the offer
 activate sys
-sys --> agent : displays operation success
+sys --> agent : displays operation success  
 deactivate sys
 
 deactivate agent
