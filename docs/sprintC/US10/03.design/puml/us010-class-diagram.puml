@@ -127,6 +127,7 @@ class Address {
 }
 
 class Client {
+Client(String email, int passportNumber, int taxNumber, String name, int phoneNumber)
 }
 
 class AvailableEquipment {
@@ -176,6 +177,28 @@ class Property {
     + toString()
 }
 
+class Person {
+    - String email
+    - int passportNumber
+    - int taxNumber
+    - String name
+    - Adress adress
+    - int phoneNumber
+
+    + User(email,passportNumber,taxNumber,name,phoneNumber)
+    + getPassportNumber()
+    + getTaxNumber()
+    + getEmail()
+    + getAdress()
+    + getName()
+    + getPhoneNumber()
+}
+
+'class Role {
+'    - String role
+'    + Role(role)
+'}
+
 
 PlaceOrderUI .> PlaceOrderController
 PlaceOrderController .> Repositories : repositories
@@ -197,15 +220,18 @@ Comission "*" -- "1" Agent : defines <
 
 Agent "1" -- "*" Offer : receives >
 
-Offer "*" -- "1" Client : sends <
+Offer "*" -up- "1" Client : sends <
 
 Announcement "1" -- "1" Property : has >
 Announcement "1" -- "1" Business : has >
 
 Property <|-- Residence
 Property "1" -- "1..30" Photos : has >
-
 Property "1" -- "1" Address : has >
+
+Person <|-- Client
+
+'Client "1" -left> "*" Role : role
 
 Address "1" -- "*" State : has >
 

@@ -5,7 +5,7 @@ skinparam shadowing false
 
 title US09 - Sequence Diagram Partial - Get Properties
 
-autonumber
+autonumber 3
 
 'hide footbox
 
@@ -14,7 +14,7 @@ participant ":Repositories" as Repository
 participant "repositories\n:Repositories" as Repository2
 participant "publishedAnnouncementRepository\n:Published Announcement Repository" as publishedAnnouncementRepository
 
-autonumber
+
 
 -> CTRL : getProperties()
             activate CTRL

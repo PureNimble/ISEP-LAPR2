@@ -12,7 +12,6 @@ title US09 - Class Diagram
 
 class SendMessageUI
 
-
 class SendMessageController {
     + sendMessageController ()
     + getMessage ()
@@ -27,8 +26,6 @@ class Repositories {
 +getInstance():Repositories
 +getPublishedAnnouncementRepository()
 +getMessageRepository()
-+getComissionRepository()
-+getPropertyTypeRepository()
 '+getUserRepository()
 
 }
@@ -40,25 +37,12 @@ class PublishedAnnouncementRepository {
 + getTypeOfBussiness()
 }
 
-class PropertyTypeRepository{
-    + getPropertyTypeByDescription(String propertyTypeDescription)
-    +add(PropertyType propertyType)
-    +getPropertyTypes()
-    -validatePropertyType(PropertyType propertyType)
-}
-
 'class UserRepository{
 '+add(User user)
 '+validateUser(User user)
 '+getUsers()
 '}
 
-class ComissionRepository{
-+getComissionByDescription(Double comissionDescription)
-+add(Comission comission)
--validateComission(Comission comission)
-+getComission()
-}
 
 class MessageRepository {
 +add(Message message)
@@ -153,6 +137,7 @@ class AvailableEquipment {
 '}
 
 class Client{
+Client(String email, int passportNumber, int taxNumber, String name, int phoneNumber)
 }
 
 class AutheticationRepository{
@@ -222,6 +207,24 @@ class Rent {
     +calculateTotalPrice()
 }
 
+class Person {
+    - String email
+    - int passportNumber
+    - int taxNumber
+    - String name
+    - Adress adress
+    - int phoneNumber
+
+    + User(email,passportNumber,taxNumber,name,phoneNumber)
+    + getPassportNumber()
+    + getTaxNumber()
+    + getEmail()
+    + getAdress()
+    + getName()
+    + getPhoneNumber()
+}
+
+
 class Announcement {
     - String initialDate
     - String finalDate
@@ -244,20 +247,28 @@ class Repositories
     + getPublishedAnnouncementRepository()
 }
 
+class Employee{
+-Role role
++Employee(email,name,store,phoneNumber,role,adress,taxNumber,passportNumber)
++getRole()
+}
+
+class Role{
+-String role
++Role(role)
+}
+
+
+
 
 
 SendMessageController .> Repositories : repositories
 Repositories ---> Repositories :instance
-'Repositories ..> UserRepository : user
-Repositories ---> ComissionRepository : comission
 Repositories ---> PublishedAnnouncementRepository : announcement
-Repositories ---> PropertyTypeRepository : propertyType
 Repositories ---> MessageRepository : message
 Repositories ---> AutheticationRepository : authentication
 
-SendMessageController ...> ComissionRepository : comission
 SendMessageController ...> PublishedAnnouncementRepository : announcement
-SendMessageController ...> PropertyTypeRepository : propertyType
 SendMessageController ...> MessageRepository : message
 SendMessageController ...> AutheticationRepository : authentication
 
@@ -267,7 +278,7 @@ Message "1" -right- "*" PublishedAnnouncementRepository: has a <
 
 
 
-PropertyTypeRepository --> Property
+
 Residence <|-down-- House
 Property <|-down-- Residence
 Property "1" -- "1..30" Photos: has >
@@ -281,20 +292,23 @@ State "*"-right- "1" Address: has a  <
 City "*"-right- "1" District: has a  <
 District "*"-right- "1" State: has a  <
 Property "1" -left- "1" Address: has an >
-'User "1" --- "1" Address: has >
-'UserRepository --> User
-PublishedAnnouncementRepository --> Business
+PublishedAnnouncementRepository --> Announcement
 Client "1"-right-"*" Message : sends a >
 
 
-ComissionRepository -down-> Comission
-Comission "*" -up "1" Agent: defines <
+
+Comission "*" -right-- "1" Agent: defines <
 Comission "1" -- "1" Business: contains <
 Property "1" - "1" Business: has a <
 Announcement "1" --- "1" Business: has >
 Announcement "1" --down- "1" Property: has a >
 Announcement "*" -up-- "1" Agent: publishes <
 Business <|--- Rent
+
+Person <|-up- Client
+Employee <|-- Agent
+Employee "1" --> "*" Role : has a >
+Person <|-- Employee
 
 
 @enduml

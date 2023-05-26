@@ -15,13 +15,13 @@ activate Admin
 Admin -> System : asks to import information from a legacy system
 activate System
 
-System --> Admin : shows the list of files to import
+System --> Admin : requests the path of the file to import
 deactivate System
 
-Admin -> System : chooses one file to import
+Admin -> System : types the path of the file and submits data
 activate System
 
-System --> Admin : saves the information and displays operation success
+System --> Admin : saves the information, show a success message \nand displays operation success
 deactivate System
 
 
