@@ -36,11 +36,7 @@ autonumber
 '
 '            activate CTRL
 '
-'            CTRL -> Repository : getInstance()
-'                activate Repository
-'
-'            Repository --> CTRL : repositories
-'                deactivate Repository
+
 '
 '            CTRL -> Repository2 : getUserInformationRepository()
 '                activate Repository2
@@ -69,6 +65,12 @@ autonumber
 
         UI -> CTRL : getProperties()
             activate CTRL
+
+            CTRL -> Repository : getInstance()
+                            activate Repository
+
+                        Repository --> CTRL : repositories
+                            deactivate Repository
 
 '            CTRL -> Repository : getInstance()
 '                activate Repository
@@ -158,12 +160,6 @@ autonumber
 
            CTRL --> UI : Message
            deactivate CTRL
-
-    UI --> Client: asks to confirm the submitted data
-        deactivate UI
-
-    Client -> UI: confirms the submitted data
-        activate UI
 
     UI --> Client: registers the information and shows a success message
         deactivate UI

@@ -103,6 +103,8 @@ autonumber
 '                deactivate publishedAnnouncementRepository
             end
 
+autonumber 10
+
         CTRL --> UI : Properties
 
             deactivate CTRL
@@ -114,13 +116,6 @@ autonumber
         activate UI
 
     '   UI --> UI : keepPropertySelected(propertyDescription)
-
-
-    UI --> Client: asks to confirm the property selected
-        deactivate UI
-
-    Client -> UI: confirms the selected data
-        activate UI
 
     UI --> Client: requests the name, phone number and preferred \ndate and time slot (from x hour to y hour) for the property visit
         deactivate UI
@@ -168,14 +163,12 @@ autonumber
 '                deactivate messageRepository
             end
 
+autonumber 28
+
            CTRL --> UI : Message
            deactivate CTRL
 
-    UI --> Client: asks to confirm the submitted data
-        deactivate UI
 
-    Client -> UI: confirms the submitted data
-        activate UI
 
     UI --> Client: registers the information and shows a success message
         deactivate UI
