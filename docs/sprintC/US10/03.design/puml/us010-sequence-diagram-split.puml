@@ -34,6 +34,8 @@ Get Published Announcement
 
 end
 
+autonumber 10
+
 Controller --> System : PublishedAnnouncementList
 deactivate Controller
 
@@ -63,6 +65,8 @@ ref over Controller
     Create Offer
 
 end
+
+autonumber 31
 
 Controller --> System : offer
 deactivate Controller
