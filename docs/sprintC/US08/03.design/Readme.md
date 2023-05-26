@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 08-See the list of property announcement requests
 
 ## 3. Design - User Story Realization 
 
