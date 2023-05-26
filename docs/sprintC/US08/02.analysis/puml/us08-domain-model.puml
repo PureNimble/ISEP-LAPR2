@@ -88,12 +88,12 @@ class Comission {
 
 
 Person <|-- Employee
-Employee <|--Agent
+Employee <-- Agent
 
 Agent "1" - "*" AnnouncementRequest:intends to see >
 
-AnnouncementRequest "1" -- Property: has >
-TypeOfProperty "1" -- Property:defines\n\n\n\n\n\n\n
+AnnouncementRequest "1" -- "1"Property: has >
+TypeOfProperty "1" -- "1" Property:defines\n\n\n\n\n\n\n
 Property <|-- Residence
 Residence <|-- House
 AnnouncementRequest "*" -> "1..30" Photos: has >
@@ -101,9 +101,9 @@ Residence -- AvailableEquipment : contains
 House --- SunExposure:contains
 
 Address "1" -right-- "1" Property: has <
-State "1" -left-- "*" District: has >
-District "1" -left-- "*" City: has >
-Address "*" -left-- "1" State: has <
+State "1" -left-- "*" District: is in <
+District "1" -left-- "*" City: is in <
+Address "*" -left-- "1" State: is in <
 
 Business "1" --- "1" AnnouncementRequest: has <
 

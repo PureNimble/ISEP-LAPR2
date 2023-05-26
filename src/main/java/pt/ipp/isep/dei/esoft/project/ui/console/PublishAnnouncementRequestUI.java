@@ -30,7 +30,7 @@ public class PublishAnnouncementRequestUI implements Runnable {
         System.out.println("Publish Announcement Request: ");
 
 
-        announcementRequestDescription = displayAndSelectAnnouncementRequests(controller.getEmployeeByEmail(controller.getCurrentSessionEmail()));
+        announcementRequestDescription = displayAndSelectAnnouncementRequests();
 
         option = requestOption();
 
@@ -62,7 +62,7 @@ public class PublishAnnouncementRequestUI implements Runnable {
             pw.println(messageJustification);
             pw.println();
             pw.println("Best regards");
-            pw.println("Contact:"+controller.getEmployeeByEmail(controller.getCurrentSessionEmail()).getEmail());
+            pw.println("Contact:");
             pw.close();
 
         } catch (IOException ex) {
@@ -111,9 +111,9 @@ public class PublishAnnouncementRequestUI implements Runnable {
      *
      * @return A double representing the selected commission rate.
      */
-    private int displayAndSelectAnnouncementRequests(Employee agent) {
+    private int displayAndSelectAnnouncementRequests() {
 
-        List<AnnouncementRequestDto> announcementRequestsDtos = controller.toDto(agent);
+        List<AnnouncementRequestDto> announcementRequestsDtos = controller.toDto();
 
 
         int listSize = announcementRequestsDtos.size();

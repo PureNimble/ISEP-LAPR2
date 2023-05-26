@@ -8,12 +8,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class AnnouncementRequestMapper {
-
-
-
-    private List<AnnouncementRequestDto> announcementRequestDtos = new ArrayList<>();
-
     public List<AnnouncementRequestDto> toDto(List<AnnouncementRequest> announcementRequestList) {
+
+         List<AnnouncementRequestDto> announcementRequestDtos = new ArrayList<>();
 
         for (AnnouncementRequest announcementRequest : announcementRequestList) {
             AnnouncementRequestDto announcementRequestDto;
@@ -54,7 +51,7 @@ public class AnnouncementRequestMapper {
         return announcementRequestDto;
     }
 
-    public AnnouncementRequestDto getAnnouncementRequestDtoByDescription(int annnouncementRequestDescription) {
+    public AnnouncementRequestDto getAnnouncementRequestDtoByDescription(List<AnnouncementRequestDto> announcementRequestDtos,int annnouncementRequestDescription) {
         AnnouncementRequestDto newAnnouncementRequestDto = announcementRequestDtos.get(annnouncementRequestDescription);
         AnnouncementRequestDto announcementRequestDto = null;
         if (announcementRequestDtos.contains(newAnnouncementRequestDto)) {

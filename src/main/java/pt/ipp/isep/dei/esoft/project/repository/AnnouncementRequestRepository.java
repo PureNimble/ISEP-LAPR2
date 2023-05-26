@@ -130,7 +130,7 @@ public class AnnouncementRequestRepository {
      * @param agent the agent
      * @return the list
      */
-    public List<AnnouncementRequest> getAnnouncementRequestsByMostRecent(Employee agent, List<PublishedAnnouncement> publishedAnnouncements) {
+    public List<AnnouncementRequest> getAnnouncementRequestsByMostRecent(Employee agent) {
         List<AnnouncementRequest> newAnnouncementRequest = new ArrayList<>();
 
         int aux = 0;

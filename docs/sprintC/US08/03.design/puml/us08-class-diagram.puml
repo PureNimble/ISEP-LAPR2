@@ -18,8 +18,6 @@ class Role
 
 class AuthenticationRepository
 
-class User
-
 class EmployeeRepository
 
 class Agent
@@ -39,12 +37,13 @@ class AnnouncementRequestDto{
 -PropertyType propertyType
 -int durationOfContract
 -Employee agent
+-String status
 +toString()
 }
 
 class AnnouncementRequestMapper{
 +List<AnnouncementRequestDto> toDto (List<AnnnouncementRequest> list)
-+AnnouncementRequestDto toDto(AnnouncementRequest announcementRequest)
++AnnouncementRequestDto toDtoObject(status, agent, property, typeOfBusiness, propertyType, business, date,durationOfContract)
 +getAnnouncementRequestDtoByDescription(announcementRequestDescription)
 }
 
@@ -184,11 +183,20 @@ class AvailableEquipment {
 }
 
 class AnnouncementRequest{
-date
+-Date date
+-String status
 }
 
 
 class PublishAnnouncementRequestUI{
+}
+
+class TypeOfProperty{
+   -String type
+}
+
+class Photos {
+    -String URI
 }
 
 class AnnouncementRequestRepository{
@@ -198,26 +206,30 @@ class AnnouncementRequestRepository{
 +getAnnouncementRequestByDescription(announcementRequestDescription)
 +getAnnouncementRequestByMostRecent()
 +getAnnouncementRequest()
++rejectAnnouncementRequest(announcementRequestDto)
 }
 
 
 
 class PublishAnnouncementRequestController{
-+createPublishAnnouncementRequestController(employeeRepository,announcementRequestRepository,publishedAnnouncementRepository,comissionRepository)
++createPublishAnnouncementRequestController(employeeRepository,announcementRequestRepository,publishedAnnouncementRepository,comissionRepository,authenticationRepository)
 +getEmployees()
 +getAnnouncementRequestByMostRecent()
 +getComissions()
 +getCurrentSessionEmail()
-+createPublishedAnnouncementRequestController(announcementRequest,comission)
++createPublishedAnnouncementRequestController(announcementRequestDescription,comissionDescription)
 +getComissionByDescription(String comissionDescription)
 +getAnnouncementRequestByDescription(int announcementRequestDescription)
-+getEmployeeeByEmail(email)
++getEmployeeeByEmail()
 +toDto(agent)
++rejectAnnouncementRequest(announcementRequestDtoDescription)
++getPublishedAnnouncements()
 -getAuthenticationRepository()
 -getPublishedAnnouncementRepository()
--getPublishedAnnouncementRequestRepository()
+-getAnnouncementRequestRepository()
 -getComissionRepository()
 -getEmployeeRepository()
+-getAnnouncementRequestMapper()
 
 }
 
@@ -248,7 +260,7 @@ PublishAnnouncementRequestController ...> PublishedAnnouncementRepository: publi
 
 Repositories -> Repositories:instance
 
-Repositories -----> PublishedAnnouncementRepository: publishedAnnouncementRepository
+Repositories ------> PublishedAnnouncementRepository: publishedAnnouncementRepository
 
 Repositories ----> AnnouncementRequestRepository: announcementRequestRepository
 
@@ -266,11 +278,9 @@ AnnouncementRequestMapper ........> AnnouncementRequest
 
 AnnouncementRequestMapper .....> AnnouncementRequestDto
 
-AnnouncementRequestRepository ------> "*" AnnouncementRequest
+AnnouncementRequestRepository ----> "*" AnnouncementRequest
 
-AnnouncementRequest "1" - "1" PublishedAnnouncement: can have <
-
-Employee <|-- Agent
+Employee <|--- Agent
 
 Employee "1" -left> "*" Role : role
 
@@ -289,7 +299,9 @@ Agent "1" - "*" AnnouncementRequest:intends to see >
 
 Adress "1" -right-- "1" Property: has <
 
+AnnouncementRequest "*" -> "1..30" Photos: has >
 
+TypeOfProperty "1" -- Property:defines\n\n\n\n\n\n\n
 
 AnnouncementRequest "1" -- Property: has >
 Property <|-- Residence
@@ -298,7 +310,6 @@ Residence <|-- House
 Residence -- AvailableEquipment : contains
 House --- SunExposure:contains
 
-PublishedAnnouncementRepository --> "*" PublishedAnnouncement
 
 
 

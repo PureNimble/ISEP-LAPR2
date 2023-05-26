@@ -84,6 +84,11 @@ It uses interaction ocurrence.
 ![Sequence Diagram - Partial - Get Employee By Email](svg/us08-sequence-diagram-partial-getEmployeeByEmail.svg)
 
 
+**Reject Announcement Request Partial SD**
+
+![Sequence Diagram - Partial - Reject Announcement Request](svg/us08-sequence-diagram-partial-rejectAnnouncementRequest.svg)
+
+
 ## 3.3. Class Diagram (CD)
 
 ![Class Diagram](svg/us08-class-diagram.svg)

@@ -3,10 +3,6 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.esoft.project.domain.*;
-import pt.ipp.isep.dei.esoft.project.repository.AnnouncementRequestRepository;
-import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
-import pt.ipp.isep.dei.esoft.project.repository.ComissionRepository;
-import pt.ipp.isep.dei.esoft.project.repository.PublishedAnnouncementRepository;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,10 +13,108 @@ import static org.junit.jupiter.api.Assertions.*;
 class PublishedAnnouncementRequestControllerTest {
 
 
+    private PublishedAnnouncement publishedAnnouncement, publishedAnnouncement1;
+
+    private House house;
+
+    private Property land;
+
+    private Residence appartment;
+
+    private PropertyType propertyType, propertyType1, propertyType2;
+
+    private Employee employee, employee1, employee2;
+
+    private AnnouncementRequest announcementRequest, announcementRequest1, announcementRequest2;
+
+    private Date date = new Date();
+
+    private TypeOfBusiness typeOfBusiness, typeOfBusiness1;
+
+    private Comission comission, comission1, comission2;
+
+    private Business business, business1, business2;
+
+    private Role role, role1;
+
+    private Address address, address1, address2;
+
+    private Store store, store1, store2;
+
 
     @BeforeEach
-    void setUp(){
+    void setUpPropertys() {
+        house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South");
+        land = new Property(5, 1000);
+        appartment = new Residence(20, 150, 3, 2, 1, new AvailableEquipment("air conditioning"));
+    }
 
+    @BeforeEach
+    void setUpPropertyTypes() {
+        propertyType = new PropertyType("House");
+        propertyType1 = new PropertyType("Appartment");
+        propertyType2 = new PropertyType("Land");
+    }
+
+    @BeforeEach
+    void setUpTypeOfBusiness() {
+        typeOfBusiness = new TypeOfBusiness("Sale");
+        typeOfBusiness1 = new TypeOfBusiness("Rent");
+    }
+
+    @BeforeEach
+    void setUpComission() {
+        double comissionValue = 5.0;
+        comission = new Comission(comissionValue);
+        double comissionValue1 = 10.0;
+        comission1 = new Comission(comissionValue1);
+    }
+
+    @BeforeEach
+    void setUpBusiness() {
+        Double price = 1000.32;
+        business = new Business(price);
+        Double price1 = 102.213;
+        business1 = new Business(price1);
+    }
+
+    @BeforeEach
+    void setUpRoles() {
+        role = new Role("Agent");
+    }
+
+    @BeforeEach
+    void setUpAddress() {
+        address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
+    }
+
+    @BeforeEach
+    void setUpStore() {
+        store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+    }
+
+
+    @BeforeEach
+    void setUpPublishedAnnouncements() {
+        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, house, propertyType, comission, business);
+        publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, land, propertyType, comission, business);
+
+    }
+
+    @BeforeEach
+    void setEmployees() {
+        List<Role> roles = new ArrayList<>();
+        roles.add(role);
+        employee = new Employee("employee@this.app", 12, 12, "nome", 1234567, store, roles, address);
+        employee1 = new Employee("employee1@this.app", 12, 12, "nome", 19191919, store, roles, address2);
+        employee2 = new Employee("employee2@this.app", 12, 12, "nome", 19191919, store, roles, address2);
+    }
+
+    @BeforeEach
+    void setUpAnnouncementRequest() {
+        announcementRequest = new AnnouncementRequest(date, typeOfBusiness, house, propertyType, business, employee);
+        announcementRequest1 = new AnnouncementRequest(date, typeOfBusiness1, land, propertyType, business, employee);
+        announcementRequest2 = new AnnouncementRequest(date, typeOfBusiness, appartment, propertyType2, business1, employee1);
     }
 
 
@@ -31,22 +125,11 @@ class PublishedAnnouncementRequestControllerTest {
 
         List<PublishedAnnouncement> publishedAnnouncements = new ArrayList<>();
 
-        Date date = new Date();
-
-        House house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South");
-        PropertyType propertyType = new PropertyType("House");
-        TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
-        Double comissionValue = 5.0;
-        Comission comission = new Comission(comissionValue);
-        Double price = 1000.32;
-        Business business = new Business(price);
-
-        PublishedAnnouncement publishedAnnouncement = new PublishedAnnouncement(date,typeOfBusiness,house,propertyType,comission,business);
         publishedAnnouncements.add(publishedAnnouncement);
 
         controller.publishedAnnouncementRepository.add(publishedAnnouncement);
 
-        assertEquals(publishedAnnouncements,controller.getPublishedAnnouncements());
+        assertEquals(publishedAnnouncements, controller.getPublishedAnnouncements());
     }
 
     @Test
@@ -56,27 +139,12 @@ class PublishedAnnouncementRequestControllerTest {
 
         List<AnnouncementRequest> announcementRequests = new ArrayList<>();
 
-        Date date = new Date();
-
-        House house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South");
-        PropertyType propertyType = new PropertyType("House");
-        TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
-        Double price = 1000.32;
-        Business business = new Business(price);
-        Role role = new Role("Agent");
-        Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
-        List<Role> roles = new ArrayList<>();
-        roles.add(role);
-        Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
-
-        AnnouncementRequest announcementRequest = new AnnouncementRequest(date, typeOfBusiness, house, propertyType, business, employee);
         announcementRequests.add(announcementRequest);
 
-       controller.announcementRequestRepository.add(announcementRequest);
+        controller.announcementRequestRepository.add(announcementRequest);
 
 
-        assertEquals(announcementRequests, controller.getAnnouncementRequestByMostRecent(employee));
+        assertEquals(announcementRequests, controller.getAnnouncementRequestByMostRecent());
     }
 
     @Test
@@ -100,17 +168,13 @@ class PublishedAnnouncementRequestControllerTest {
         controller.comissionRepository.add(new Comission(10.5));
         controller.comissionRepository.add(new Comission(23.7));
 
-        assertEquals(comissions,controller.getComission());
-    }
-
-    @Test
-    void getCurrentSessionEmail() {
-        AuthenticationRepository repository = new AuthenticationRepository();
-        assertNotNull(repository.getCurrentUserSession().getUserId().getEmail());
+        assertEquals(comissions, controller.getComission());
     }
 
     @Test
     void getEmployeeByEmail() {
+
+
     }
 
     @Test

@@ -84,7 +84,11 @@ publishes the offer so that it is visible to all clients who visit the agency an
 
 * **AC1:** The list of property announcement requests should be sorted by the date they were created, with the most recent requests appearing first.
 * **AC2:** An announcement is posted when a request is accepted. The list of requests should be refreshed, and that request should not be shown again.
-
+* **AC3:** The agent should, firstly, set the commission and then publishes the offer in the system.
+* **AC4:** An agent can decline an announcement request.
+* **AC4:** Once the offer its declined the announcement request should not be shown again to the agent.
+* **AC5:** The system should also send the message to the owner by e-mail.
+* **AC6:** The agent can only post one announcement at a time.
 
 ### 1.4. Found out Dependencies
 
@@ -100,6 +104,7 @@ publishes the offer so that it is visible to all clients who visit the agency an
 
 * Typed data:
 	* a comission
+    * a message justification
 	
 * Selected data:
 	* Classifying task category 
@@ -119,6 +124,3 @@ publishes the offer so that it is visible to all clients who visit the agency an
 
 ![System Sequence Diagram - Alternative One](svg/us08-system-sequence-diagram.svg)
 
-### 1.7 Other Relevant Remarks
-
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.

@@ -38,6 +38,9 @@ Group Create Published Announcement
              activate AnnouncementRequestDto
              deactivate AnnouncementRequestDto
 
+PublishedAnnouncement -> AnnouncementRequestDto:status = getStatus()
+             activate AnnouncementRequestDto
+             deactivate AnnouncementRequestDto
 
 deactivate PublishedAnnouncement
 

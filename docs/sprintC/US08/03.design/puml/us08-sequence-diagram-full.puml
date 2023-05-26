@@ -23,7 +23,7 @@ participant "appSession\n:ApplicationSession" as aplicationSession
 participant "currentSession\n:UserSession" as UserSession
 participant "announcementRequestRepository\n:AnnouncementRequestRepository" as AnnouncementRequestRepository
 participant "comissionRepository\n:ComissionRepository" as ComissionRepository
-participant ":XMapper" as XMapper
+participant ":AnnouncementRequestMapper" as AnnoucementRequestMapper
 participant "listAnnouncementRequestDto:List<AnnouncementRequestDto>" as listAnnouncementRequestDto
 participant "listAnnouncementRequest:List<AnnouncementRequest>" as listAnnouncementRequest
 participant "announcementRequestDto:AnnouncementRequestDto" as AnnouncementRequestDto
@@ -88,71 +88,76 @@ activate AnnouncementRequestRepository
 AnnouncementRequestRepository --> PublishAnnouncementRequestController:announcementsRequestListByAgent
 deactivate AnnouncementRequestRepository
 
-PublishAnnouncementRequestController -> XMapper: toDto(announcementsRequestListByAgent)
-activate XMapper
+PublishAnnouncementRequestController -> AnnoucementRequestMapper: toDto(announcementsRequestListByAgent)
+activate AnnoucementRequestMapper
 
-XMapper --> listAnnouncementRequestDto**: create()
+AnnoucementRequestMapper --> listAnnouncementRequestDto**: create()
 
 loop
 
-XMapper -> listAnnouncementRequest :agent = getAgent()
+AnnoucementRequestMapper -> listAnnouncementRequest :agent = getAgent()
 activate listAnnouncementRequest
 
-XMapper -[hidden]> listAnnouncementRequest
+AnnoucementRequestMapper -[hidden]> listAnnouncementRequest
 deactivate listAnnouncementRequest
 
-XMapper -> listAnnouncementRequest: property = getProperty()
+AnnoucementRequestMapper -> listAnnouncementRequest: property = getProperty()
 activate listAnnouncementRequest
 
-XMapper -[hidden]> listAnnouncementRequest
+AnnoucementRequestMapper -[hidden]> listAnnouncementRequest
 deactivate listAnnouncementRequest
 
-XMapper -> listAnnouncementRequest: typeOfBusiness = getTypeOfBusiness()
+AnnoucementRequestMapper -> listAnnouncementRequest: typeOfBusiness = getTypeOfBusiness()
 activate listAnnouncementRequest
 
-XMapper -[hidden]> listAnnouncementRequest
+AnnoucementRequestMapper -[hidden]> listAnnouncementRequest
 deactivate listAnnouncementRequest
 
-XMapper -> listAnnouncementRequest: propertyType = getPropertyType()
+AnnoucementRequestMapper -> listAnnouncementRequest: propertyType = getPropertyType()
 activate listAnnouncementRequest
 
-XMapper -[hidden]> listAnnouncementRequest
+AnnoucementRequestMapper -[hidden]> listAnnouncementRequest
 deactivate listAnnouncementRequest
 
-XMapper -> listAnnouncementRequest: business = getBusiness()
+AnnoucementRequestMapper -> listAnnouncementRequest: business = getBusiness()
 activate listAnnouncementRequest
 
-XMapper -[hidden]> listAnnouncementRequest
+AnnoucementRequestMapper -[hidden]> listAnnouncementRequest
 deactivate listAnnouncementRequest
 
-XMapper -> listAnnouncementRequest: date = geDate()
+AnnoucementRequestMapper -> listAnnouncementRequest: date = geDate()
 activate listAnnouncementRequest
 
-XMapper -[hidden]> listAnnouncementRequest
+AnnoucementRequestMapper -[hidden]> listAnnouncementRequest
 deactivate listAnnouncementRequest
 
 
-XMapper -> listAnnouncementRequest: durationOfContract = geDate()
+AnnoucementRequestMapper -> listAnnouncementRequest: durationOfContract = geDate()
 activate listAnnouncementRequest
 
-XMapper -[hidden]> listAnnouncementRequest
 deactivate listAnnouncementRequest
 
-XMapper -> XMapper : announcementsRequestDto = toDto(agent,property,typeOfBusiness,propertyType,business,date,durationOfContract)
-activate XMapper
+AnnoucementRequestMapper -> listAnnouncementRequest: status = getStatus()
+activate listAnnouncementRequest
 
-deactivate XMapper
+AnnoucementRequestMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
 
-XMapper --> AnnouncementRequestDto**: create(...)
+AnnoucementRequestMapper -> AnnoucementRequestMapper : announcementsRequestDto = toDto(agent,property,typeOfBusiness,propertyType,business,date,durationOfContract)
+activate AnnoucementRequestMapper
 
-XMapper -> listAnnouncementRequestDto: add(announcementRequestDto)
+deactivate AnnoucementRequestMapper
+
+AnnoucementRequestMapper --> AnnouncementRequestDto**: create(...)
+
+AnnoucementRequestMapper -> listAnnouncementRequestDto: add(announcementRequestDto)
 activate listAnnouncementRequestDto
 
 deactivate listAnnouncementRequestDto
 end
 
-XMapper --> PublishAnnouncementRequestController: listAnnouncementRequestDto
-deactivate XMapper
+AnnoucementRequestMapper --> PublishAnnouncementRequestController: listAnnouncementRequestDto
+deactivate AnnoucementRequestMapper
 PublishAnnouncementRequestController --> PublishAnnouncementRequestUI:listAnnouncementRequestDto
 deactivate PublishAnnouncementRequestController
 
@@ -199,6 +204,8 @@ deactivate System
 end
 
 alt reject Announcement Request
+
+
 PublishAnnouncementRequestUI --> Agent:requests data(messageJustification)
 deactivate System
 
@@ -220,11 +227,11 @@ PublishAnnouncementRequestController -> PublishAnnouncementRequestController:get
 activate PublishAnnouncementRequestController
 
 
-PublishAnnouncementRequestController -> XMapper :getAnnouncementRequestDtoByDescription()
-activate XMapper
+PublishAnnouncementRequestController -> AnnoucementRequestMapper :getAnnouncementRequestDtoByDescription()
+activate AnnoucementRequestMapper
 
-XMapper --> PublishAnnouncementRequestController:announcementRequestDto
-deactivate XMapper
+AnnoucementRequestMapper --> PublishAnnouncementRequestController:announcementRequestDto
+deactivate AnnoucementRequestMapper
 
 PublishAnnouncementRequestController--> PublishAnnouncementRequestController:announcementRequestDto
 
@@ -283,7 +290,100 @@ PublishAnnouncementRequestController --> PublishAnnouncementRequestUI:publishedA
 end
 
 alt reject Announcement Request
+
  PublishAnnouncementRequestUI -> PublishAnnouncementRequestUI: sendEmailJustification()
+
+
+PublishAnnouncementRequestUI -> PublishAnnouncementRequestController:rejectAnnouncementRequest(announcementRequestDtoDescription)
+activate PublishAnnouncementRequestController
+
+PublishAnnouncementRequestController -> AnnouncementRequestRepository:getAnnouncementRequestListByAgent(employeeByEmail)
+activate AnnouncementRequestRepository
+
+AnnouncementRequestRepository --> PublishAnnouncementRequestController:announcementsRequestListByAgent
+deactivate AnnouncementRequestRepository
+
+PublishAnnouncementRequestController -> AnnoucementRequestMapper: toDto(announcementsRequestListByAgent)
+activate AnnoucementRequestMapper
+
+AnnoucementRequestMapper --> listAnnouncementRequestDto**: create()
+
+loop
+
+AnnoucementRequestMapper -> listAnnouncementRequest :agent = getAgent()
+activate listAnnouncementRequest
+
+AnnoucementRequestMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+AnnoucementRequestMapper -> listAnnouncementRequest: property = getProperty()
+activate listAnnouncementRequest
+
+AnnoucementRequestMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+AnnoucementRequestMapper -> listAnnouncementRequest: typeOfBusiness = getTypeOfBusiness()
+activate listAnnouncementRequest
+
+AnnoucementRequestMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+AnnoucementRequestMapper -> listAnnouncementRequest: propertyType = getPropertyType()
+activate listAnnouncementRequest
+
+AnnoucementRequestMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+AnnoucementRequestMapper -> listAnnouncementRequest: business = getBusiness()
+activate listAnnouncementRequest
+
+AnnoucementRequestMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+AnnoucementRequestMapper -> listAnnouncementRequest: date = geDate()
+activate listAnnouncementRequest
+
+AnnoucementRequestMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+
+AnnoucementRequestMapper -> listAnnouncementRequest: durationOfContract = geDate()
+activate listAnnouncementRequest
+
+deactivate listAnnouncementRequest
+
+AnnoucementRequestMapper -> listAnnouncementRequest: status = geStatus()
+activate listAnnouncementRequest
+
+AnnoucementRequestMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+AnnoucementRequestMapper -> AnnoucementRequestMapper : announcementsRequestDto = toDto(agent,property,typeOfBusiness,propertyType,business,date,durationOfContract)
+activate AnnoucementRequestMapper
+
+deactivate AnnoucementRequestMapper
+
+AnnoucementRequestMapper --> AnnouncementRequestDto**: create(...)
+
+AnnoucementRequestMapper -> listAnnouncementRequestDto: add(announcementRequestDto)
+activate listAnnouncementRequestDto
+
+deactivate listAnnouncementRequestDto
+end
+
+AnnoucementRequestMapper --> PublishAnnouncementRequestController: listAnnouncementRequestDto
+deactivate AnnoucementRequestMapper
+
+PublishAnnouncementRequestController -> AnnoucementRequestMapper:getAnnouncementRequestDtoByDescription(announcementRequestDtos,announcementRequestDtoDescription)
+activate AnnoucementRequestMapper
+
+AnnoucementRequestMapper --> PublishAnnouncementRequestController: getAnnouncementRequestDtoByDescription
+deactivate AnnoucementRequestMapper
+
+PublishAnnouncementRequestController -> AnnouncementRequestRepository:rejectAnnouncementRequest(announcementRequestDto)
+activate AnnouncementRequestRepository
+deactivate AnnouncementRequestRepository
+
 
 end
 

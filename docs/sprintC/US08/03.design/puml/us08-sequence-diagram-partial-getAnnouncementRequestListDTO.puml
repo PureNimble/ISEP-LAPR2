@@ -2,7 +2,7 @@
 'https://plantuml.com/sequence-diagram
 
 participant ":PublishAnnouncementRequestController" as PublishAnnouncementRequestController
-participant ":XMapper" as XMapper
+participant ":AnnouncementRequestMapper" as AnnouncementRequestMapper
 participant "listAnnouncementRequestDto:List<AnnouncementRequestDto>" as listAnnouncementRequestDto
 participant "listAnnouncementRequest:List<AnnouncementRequest>" as listAnnouncementRequest
 participant "announcementRequestDto:AnnouncementRequestDto" as AnnouncementRequestDto
@@ -11,71 +11,76 @@ autonumber 19
 
 activate PublishAnnouncementRequestController
 
-PublishAnnouncementRequestController -> XMapper: toDto(announcementsRequestListByAgent)
-activate XMapper
+PublishAnnouncementRequestController -> AnnouncementRequestMapper: toDto(announcementsRequestListByAgent)
+activate AnnouncementRequestMapper
 
 Group Get AnnouncementRequest List Using DTO
 
-XMapper --> listAnnouncementRequestDto**: create()
+AnnouncementRequestMapper --> listAnnouncementRequestDto**: create()
 
 loop
 
-XMapper -> listAnnouncementRequest :agent = getAgent()
+AnnouncementRequestMapper -> listAnnouncementRequest :agent = getAgent()
 activate listAnnouncementRequest
 
-XMapper -[hidden]> listAnnouncementRequest
+AnnouncementRequestMapper -[hidden]> listAnnouncementRequest
 deactivate listAnnouncementRequest
 
-XMapper -> listAnnouncementRequest: property = getProperty()
+AnnouncementRequestMapper -> listAnnouncementRequest: property = getProperty()
 activate listAnnouncementRequest
 
-XMapper -[hidden]> listAnnouncementRequest
+AnnouncementRequestMapper -[hidden]> listAnnouncementRequest
 deactivate listAnnouncementRequest
 
-XMapper -> listAnnouncementRequest: typeOfBusiness = getTypeOfBusiness()
+AnnouncementRequestMapper -> listAnnouncementRequest: typeOfBusiness = getTypeOfBusiness()
 activate listAnnouncementRequest
 
-XMapper -[hidden]> listAnnouncementRequest
+AnnouncementRequestMapper -[hidden]> listAnnouncementRequest
 deactivate listAnnouncementRequest
 
-XMapper -> listAnnouncementRequest: propertyType = getPropertyType()
+AnnouncementRequestMapper -> listAnnouncementRequest: propertyType = getPropertyType()
 activate listAnnouncementRequest
 
-XMapper -[hidden]> listAnnouncementRequest
+AnnouncementRequestMapper -[hidden]> listAnnouncementRequest
 deactivate listAnnouncementRequest
 
-XMapper -> listAnnouncementRequest: business = getBusiness()
+AnnouncementRequestMapper -> listAnnouncementRequest: business = getBusiness()
 activate listAnnouncementRequest
 
-XMapper -[hidden]> listAnnouncementRequest
+AnnouncementRequestMapper -[hidden]> listAnnouncementRequest
 deactivate listAnnouncementRequest
 
-XMapper -> listAnnouncementRequest: date = geDate()
+AnnouncementRequestMapper -> listAnnouncementRequest: date = geDate()
 activate listAnnouncementRequest
 
-XMapper -[hidden]> listAnnouncementRequest
+AnnouncementRequestMapper -[hidden]> listAnnouncementRequest
 deactivate listAnnouncementRequest
 
 
-XMapper -> listAnnouncementRequest: durationOfContract = geDate()
+AnnouncementRequestMapper -> listAnnouncementRequest: durationOfContract = geDate()
 activate listAnnouncementRequest
 
-XMapper -[hidden]> listAnnouncementRequest
 deactivate listAnnouncementRequest
 
-XMapper -> XMapper : announcementsRequestDto = toDto(agent,property,typeOfBusiness,propertyType,business,date,durationOfContract)
-activate XMapper
+AnnouncementRequestMapper -> listAnnouncementRequest: status = getStatus()
+activate listAnnouncementRequest
 
-deactivate XMapper
+AnnouncementRequestMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
 
-XMapper --> AnnouncementRequestDto**: create(...)
+AnnouncementRequestMapper -> AnnouncementRequestMapper : announcementsRequestDto = toDto(agent,property,typeOfBusiness,propertyType,business,date,durationOfContract)
+activate AnnouncementRequestMapper
 
-XMapper -> listAnnouncementRequestDto: add(announcementRequestDto)
+deactivate AnnouncementRequestMapper
+
+AnnouncementRequestMapper --> AnnouncementRequestDto**: create(...)
+
+AnnouncementRequestMapper -> listAnnouncementRequestDto: add(announcementRequestDto)
 activate listAnnouncementRequestDto
 
 deactivate listAnnouncementRequestDto
 end
 end
-XMapper --> PublishAnnouncementRequestController: listAnnouncementRequestDto
+AnnouncementRequestMapper --> PublishAnnouncementRequestController: listAnnouncementRequestDto
 
 @enduml

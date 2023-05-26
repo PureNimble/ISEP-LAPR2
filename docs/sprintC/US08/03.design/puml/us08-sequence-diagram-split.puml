@@ -21,7 +21,7 @@ participant "appSession\n:ApplicationSession" as aplicationSession
 participant "currentSession\n:UserSession" as UserSession
 participant "announcementRequestRepository\n:AnnouncementRequestRepository" as AnnouncementRequestRepository
 participant "comissionRepository\n:ComissionRepository" as ComissionRepository
-participant ":XMapper" as XMapper
+participant ":AnnouncementRequestMapper" as AnnouncementRequestMapper
 participant "listAnnouncementRequestDto:List<AnnouncementRequestDto>" as listAnnouncementRequestDto
 participant "listAnnouncementRequest:List<AnnouncementRequest>" as listAnnouncementRequest
 participant "announcementRequestDto:AnnouncementRequestDto" as AnnouncementRequestDto
@@ -154,8 +154,14 @@ end
 alt reject Announcement Request
  PublishAnnouncementRequestUI -> PublishAnnouncementRequestUI: sendEmailJustification()
 
-end
+ref over PublishAnnouncementRequestController
 
+                      Reject Announcement Request
+
+           end ref
+
+end
+autonumber 106
         PublishAnnouncementRequestUI --> Agent : displays operation success
     deactivate PublishAnnouncementRequestUI
 

@@ -152,18 +152,18 @@ public class PublishedAnnouncementRequestController {
      Returns a list of all Announcement Requests.
      @return A List of AnnouncementRequest objects.
      */
-    public List<AnnouncementRequest> getAnnouncementRequestByMostRecent(Employee agent) {
+    public List<AnnouncementRequest> getAnnouncementRequestByMostRecent() {
+
+        Employee agent = getEmployeeByEmail();
 
         AnnouncementRequestRepository announcementRequestRepository = getAnnouncementRequestRepository();
 
-        List<PublishedAnnouncement> publishedAnnouncements = getPublishedAnnouncements();
-
-        return announcementRequestRepository.getAnnouncementRequestsByMostRecent(agent,publishedAnnouncements);
+        return announcementRequestRepository.getAnnouncementRequestsByMostRecent(agent);
     }
 
-    public List<AnnouncementRequestDto> toDto(Employee agent){
+    public List<AnnouncementRequestDto> toDto(){
 
-        List<AnnouncementRequest> announcementRequests = getAnnouncementRequestByMostRecent(agent);
+        List<AnnouncementRequest> announcementRequests = getAnnouncementRequestByMostRecent();
 
         AnnouncementRequestMapper announcementRequestMapper = getAnnouncementRequestMapper();
 
@@ -196,10 +196,12 @@ public class PublishedAnnouncementRequestController {
     /**
      * Get employee by email employee.
      *
-     * @param email the email
+
      * @return the employee
      */
-    public Employee getEmployeeByEmail(String email){
+    public Employee getEmployeeByEmail(){
+
+        String email = getCurrentSessionEmail();
 
         return getEmployeeRepository().getEmployeeByEmail(email);
     }
@@ -253,9 +255,11 @@ public class PublishedAnnouncementRequestController {
 
         AnnouncementRequestRepository announcementRequestRepository = getAnnouncementRequestRepository();
 
-        AnnouncementRequestMapper announcementRequestMapper = getAnnouncementRequestMapper();
+        List<AnnouncementRequestDto> announcementRequestDtos = toDto();
 
-        AnnouncementRequestDto announcementRequestDto =  announcementRequestMapper.getAnnouncementRequestDtoByDescription(announcementRequestDtoDescription);
+        AnnouncementRequestMapper announcementRequestMapper = new AnnouncementRequestMapper();
+
+        AnnouncementRequestDto announcementRequestDto =  announcementRequestMapper.getAnnouncementRequestDtoByDescription(announcementRequestDtos,announcementRequestDtoDescription);
 
         newPublishedAnnouncement = getPublishedAnnouncementRepository().publishedAnnouncementRequest(announcementRequestRepository.getAnnouncementsRequest(),announcementRequestDto,comission);
 
@@ -266,11 +270,13 @@ public class PublishedAnnouncementRequestController {
 
         AnnouncementRequestRepository announcementRequestRepository = getAnnouncementRequestRepository();
 
+        List<AnnouncementRequestDto> announcementRequestDtos = toDto();
+
         AnnouncementRequestMapper announcementRequestMapper = getAnnouncementRequestMapper();
 
-        AnnouncementRequestDto announcementRequestDto =  announcementRequestMapper.getAnnouncementRequestDtoByDescription(announcementRequestDtoDescription);
+        AnnouncementRequestDto announcementRequestDto =  announcementRequestMapper.getAnnouncementRequestDtoByDescription(announcementRequestDtos,announcementRequestDtoDescription);
 
-
+        announcementRequestRepository.rejectAnnouncementRequest(announcementRequestDto);
 
 
     }
