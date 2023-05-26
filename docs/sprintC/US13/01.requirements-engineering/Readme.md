@@ -20,9 +20,14 @@ As a network manager, I want to list all employees working in every store of the
 
 **From the client clarifications:**
 
+> **Date:** Thursday, May 4 of 2023
+>
 > **Question:** Do you want a list where the header is ID, the name of the store, and the total number of listings that the store has?
 >  
 > **Answer:** Yes.
+>
+> **Asked at:** 16:45
+>
 
 
 ### 1.3. Acceptance Criteria
@@ -36,10 +41,12 @@ As a network manager, I want to list all employees working in every store of the
 ### 1.4. Found out Dependencies
 
 
+* There is a dependency to US03 "As a system administrator, I want to register a new employee." since at least one employee must be registered in a store.
+
 * There is a dependency to US05 "As a system administrator, I want to register a store." since at least a store must be registered in the system.
 
+* There is a dependency to US07 " As an unregistered user, I want to register in the system to buy, sell or rent properties." since the Network Manager should be registered in the app.
 
-* There is a dependency to US03 "As a system administrator, I want to register a new employee." since at least one must be registered in a store.
 
 ### 1.5 Input and Output Data
 

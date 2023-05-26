@@ -1,5 +1,4 @@
-# US 006 - To create a Task 
-
+# US 13 - To list all employees working in every store of the network 
 [Requirements Engineering](01.requirements-engineering/Readme.md)
 
 [Analysis](02.analysis/Readme.md)

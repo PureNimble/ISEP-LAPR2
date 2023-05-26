@@ -10,72 +10,61 @@ skinparam linetype polyline
 
 title US13 - Class Diagram
 
-class State {
-    - String stateName
-    + List<District> districts
-}
-
-class District {
-    - String districtName
-    + List<City> cities
-}
-
-class City {
-    - String cityName
-
-}
-
-class Address {
-    -String streetName
-    -int zipCode
-}
-
-class Contacts {
-    -String phoneNumber
-    -String email
-}
-
 class Repositories {
     -Repositories()
     +getInstance():Repositories
-    +getStateRepository()
+    +getStoreRepository()
+    +getEmployeeRepository()
 }
 
 class Store {
     -int id
     -String designation
-    +addStore(store)
-    +validateStore(store)
 }
 
-class RegisterStoreController {
-    +getStates()
-    +getDistrictByDescription(state)
-    +getCityByDescription(district)
-    +registerStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
-    -getStateRepository()
+class DisplayStoreController {
+    +getStoreRepository()
+    +getStoresList()
+    +getEmployeeRepository()
+    +getEmployeesList()
 }
 
-class StateRepository {
-    +getStates()
-    +getDistrictByDescription(state)
-    +getCityByDescription(district)
+class StoreRepository {
+    +getStore(i)
+    +compare(store1, store2)
 }
 
-class RegisterStoreUI {
+class EmployeeRepository {
+    +getEmployee(i)
+    +compare(employee1, employee2)
+}
+
+class User {
+    -Password
+}
+
+class Person {
+    -Name
+    -Email
+    -Phone Number
+    -Tax Number
+    -Passport Number
+}
+
+class DisplayStoreUI {
 
 }
 
 Repositories -> Repositories:instance
-Repositories --> StateRepository: stateRepository
-RegisterStoreController ..> Repositories : repositories
-RegisterStoreController ..> StateRepository : StateRepository
-RegisterStoreController ..> Store : Store
-RegisterStoreUI .right.> RegisterStoreController
-Address "1" -left-> "*"  Store : is located at
-State "1" -up- "*" Address: has >
-District "1" -right- "*" City : has >
-State "1" -right- "*" District : has >
-Contacts "1" -up--> "1" Store: has
+Repositories --> StoreRepository: StoreRepository
+Repositories --> EmployeeRepository: EmployeeRepository
+DisplayStoreController ..> Repositories : repositories
+DisplayStoreController ..> StoreRepository : StoreRepository
+DisplayStoreController ..> EmployeeRepository : EmployeeRepository
+DisplayStoreController ..> Store : Store
+DisplayStoreController ..> Employee : Employee
+DisplayStoreUI ..> DisplayStoreController
+Person <|-- User
+User <|-- Employee
 
 @enduml

@@ -1,0 +1,49 @@
+@startuml
+
+left to right direction
+
+ :System Administrator: as admin
+ :Agent: as agent
+ :Unregistered user: as user
+ :Owner: as owner
+ :Client: as client
+ :network Manager: as manager
+ package System {
+   usecase "UC01: Display listed properties" as UC1
+   usecase "UC02: Publish any sale announcement on the system" as UC2
+   usecase "UC03: Add an employee" as UC3
+   usecase "UC04: Sell or rent properties of a company" as UC4
+   usecase "UC05: Register a new store" as UC5
+   usecase "UC06: Specify states, districts, and states in the system" as UC6
+   usecase "UC07: Register in the system to buy, sell or rent properties" as UC7
+   usecase "US08: As an agent, I intend to see the list of property announcement requests made to myself, so that I can post the announcement" as UC8
+   usecase "US09: As a client, I want to leave a message to the agent to schedule a visit to a property of my interest" as UC9
+   usecase "US10: As a client, I place an order to purchase the property, submitting the order amount" as UC10
+   usecase "US11: As an agent, I want to list real estate purchase orders to accept or decline a purchase order for a property. After accepting or declining, an email notification should be sent to the customer" as UC11
+   usecase "US12: As a system administrator, I want to import information from a legacy system that has been in use in several agencies" as UC12
+   usecase "US13: As a network manager, I want to list all employees working in every store of the network" as UC13
+   usecase "US14: As a client, I want to read the response for the appointment requests, to accept or reject it" as UC14
+ }
+ admin --> UC3
+ admin --> UC5
+ admin --> UC6
+ admin --> UC12
+
+ user --> UC1
+ user --> UC7
+
+ agent --> UC2
+ agent --> UC8
+ agent --> UC11
+
+ owner --> UC4
+
+ client --> UC9
+ client --> UC10
+ client --> UC14
+
+ manager --> UC13
+
+
+
+@enduml
