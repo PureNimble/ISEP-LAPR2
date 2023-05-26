@@ -13,10 +13,17 @@ participant ":SendMessageUI" as UI
 participant ":SendMessageController" as CTRL
 participant ":Repositories" as Repository
 participant "repositories\n:Repositories" as Repository2
-participant "UserRepository:\nUser Repository" as UserRepository
-participant "publishedAnnouncementRepository\n:Published Announcement Repository" as publishedAnnouncementRepository
+participant "appSession\n:ApplicationSession" as app
+participant "appSession\n:ApplicationSession" as App
+participant "currentSession\n:UserSession" as User
+participant "clientRepository\n:ClientRepository" as ClientRepository
+participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as publish
+participant ":XMapper" as XMapper
+participant "listOfPropertiesDTO:List<Properties>" as listProperties
+participant "propertiesDto:PropertiesDto" as PropertiesDto
 participant "messageRepository: \nMessage Repository" as messageRepository
 participant "message:\nMessage" as message
+
 
 autonumber
 
@@ -26,152 +33,75 @@ autonumber
         activate UI
 
         UI -> CTRL** : create
-'    UI --> Client : requests an identity
-'        deactivate UI
-'
-'    Client -> UI : inserts his email
-'        activate UI
-'
-'        UI -> CTRL : getUserInformation()
-'
-'            activate CTRL
-'
-'            ref over CTRL
-'
-'            Get User Information
 
-
-'            CTRL -> Repository : getInstance()
-'                activate Repository
-'
-'            Repository --> CTRL : repositories
-'                deactivate Repository
-'
-'            CTRL -> Repository2 : getUserInformationRepository()
-'                activate Repository2
-'
-'            Repository2 --> CTRL : UserInformationRepository
-'                deactivate Repository2
-'
-'            CTRL -> UserRepository : getUserInformation()
-'
-'                activate UserRepository
-'
-'            UserRepository --> CTRL : User Information
-'
-'                deactivate UserRepository
-
-          '  end
-
-'        CTRL --> UI : User Information
-'
-'            deactivate CTRL
-'
-'
-'    UI --> Client : shows User information and requests a confirmation
-'        deactivate UI
-'
-'    Client -> UI : confirms his personal information
-'        activate UI
-
-        UI -> CTRL : getProperties()
+        UI -> CTRL : getListOfProperties()
             activate CTRL
 
-            ref over CTRL
 
-                Get Properties
+    ref over CTRL
+        Get Client By Email
 
-
-'            CTRL -> Repository : getInstance()
-'                activate Repository
-'
-'            Repository --> CTRL : repositories
-'                deactivate Repository
-'
-'            CTRL -> Repository2 : getPublishedAnnouncementRepository()
-'                activate Repository2
-'
-'            Repository2 --> CTRL : PublishedAnnouncementRepository
-'                deactivate Repository2
-'
-'            CTRL -> publishedAnnouncementRepository : getProperties()
-'
-'                activate publishedAnnouncementRepository
-'
-'            publishedAnnouncementRepository --> CTRL : Properties
-'
-'                deactivate publishedAnnouncementRepository
-            end
-
-autonumber 10
-
-        CTRL --> UI : Properties
-
-            deactivate CTRL
-
-    UI --> Client: shows a list of properties sorted from the most recent entries to the oldest
-        deactivate UI
-
-    Client -> UI: selects a property of his interest
-        activate UI
-
-    '   UI --> UI : keepPropertySelected(propertyDescription)
-
-    UI --> Client: requests the name, phone number and preferred \ndate and time slot (from x hour to y hour) for the property visit
-        deactivate UI
-
-    Client -> UI: submits the requested data
-        activate UI
-
-   ' UI --> UI : keepsData(name, phone number \nand date and time slot)
-
-    UI -> CTRL: createMessage(name, phone number \nand date and time slot)
-        activate CTRL
+        end
 
         ref over CTRL
 
-        Create Message
+        Get Properties List By Most Recent added
 
-'    CTRL ->CTRL: Property Selected
-'
-'        CTRL -> Repository : getInstance()
-'            activate Repository
-'
-'        Repository --> CTRL : repositories
-'            deactivate Repository
-'
-'        CTRL -> Repository2 : getMessageRepository()
-'            activate Repository2
-'
-'        Repository2 --> CTRL : messageRepository
-'            deactivate Repository2
-'
-'            CTRL -> messageRepository : createMessage(name, phone number and date and time slot)
-'                activate messageRepository
-'
-'                messageRepository -> message** : createMessage(name, phone number \nand date and time slot)
-'
-'                messageRepository -> messageRepository : addMessage(message)
-'                activate messageRepository
-'
-'                messageRepository -> messageRepository : validateMessage(message)
-'                activate messageRepository
-'
-'                messageRepository --> CTRL : Message
-'                deactivate messageRepository
-'                deactivate messageRepository
-'                deactivate messageRepository
-            end
+        end
 
-autonumber 28
+        ref over CTRL
 
-           CTRL --> UI : Message
-           deactivate CTRL
+        Get Properties List By Most Recent Added Using DTO
+
+        end
+
+
+            CTRL --> UI:listOfPropertiesDTO
+            deactivate CTRL
+
+                 UI --> Client : shows a list of properties sorted from the most recent entries to the oldest
+                    deactivate UI
+
+              Client -> UI: selects a property of his interest
+                    activate UI
+
+               UI --> Client: requests the name, phone number and preferred \ndate and time slot (from x hour to y hour) for the property visit
+                    deactivate UI
+
+               Client -> UI: submits the requested data
+                       activate UI
+
+               UI -> CTRL:createMessage(propertyDescription, name, phone number and date and time slot)
+               activate CTRL
 
 
 
-    UI --> Client: registers the information and shows a success message
-        deactivate UI
+               CTRL -> CTRL:getPropertyDTOByDescription(PropertyDescription)
+               activate CTRL
+ref over CTRL
 
+Get Properties DTO By Description
+
+end
+               CTRL--> CTRL:PropertyDTO
+
+               CTRL -> messageRepository:createMessage(propertyDescription, name, phone number and date and time slot)
+               activate messageRepository
+
+         ref over messageRepository
+
+         Create Message
+
+         end
+
+
+               messageRepository --> CTRL:message
+               deactivate messageRepository
+
+               CTRL --> UI:message
+
+
+                       UI --> Client : shows a success message and the message created
+                   deactivate UI
 
 @enduml

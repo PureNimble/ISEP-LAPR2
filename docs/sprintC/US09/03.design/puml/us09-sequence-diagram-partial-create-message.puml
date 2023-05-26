@@ -5,64 +5,58 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-title US09 - Sequence Diagram Partial - Create Message
+title US09 - Sequence Diagram Partial (Create Message)
 
-autonumber
+autonumber 49
 
 'hide footbox
 
-participant ":SendMessageController" as CTRL
-participant ":Repositories" as Repository
-participant "repositories\n:Repositories" as Repository2
+
 participant "messageRepository: \nMessage Repository" as messageRepository
-participant "authenticationRepository\n:AuthenticationRepository" as AuthenticationRepository
-participant "message:\nMessage" as message
+participant "message:\nMessage" as Message
 
-autonumber 15
+                -> messageRepository:createMessage(propertyDescription, name, phone number and date and time slot)
+               activate messageRepository
 
--> CTRL: createMessage(name, phone number \nand date and time slot)
-        activate CTRL
+group  Create Message
 
-        group Create Message
+               messageRepository -> Message** : createMessage(propertyDescription, name, phone number and date and time slot)
+               activate Message
+               Message -> publishAnouncementDTO:date = getDate()
+               activate publishAnouncementDTO
+               deactivate publishAnouncementDTO
+               Message -> publishAnouncementDTO:typeOfBusiness = getTypeOfBusiness()
+               activate publishAnouncementDTO
+               deactivate publishAnouncementDTO
+               Message -> publishAnouncementDTO:property = getProperty()
+               activate publishAnouncementDTO
+               deactivate publishAnouncementDTO
+               Message -> publishAnouncementDTO:propertyType = getPropertyType()
+               activate publishAnouncementDTO
+               deactivate publishAnouncementDTO
+               Message -> publishAnouncementDTO:business = getBusiness()
+               activate publishAnouncementDTO
+               deactivate publishAnouncementDTO
+               Message -> publishAnouncementDTO:durationOfContract = getDurationOfContract()
+               activate publishAnouncementDTO
+               deactivate publishAnouncementDTO
 
-  CTRL ->CTRL: Property Selected
+               deactivate Message
+                            messageRepository -> messageRepository : addMessage(message)
+                            activate messageRepository
 
-      CTRL -> Repository2 : getAutenticationRepository()
-      activate Repository2
+                            messageRepository -> messageRepository : validateMessage(message)
+                             activate messageRepository
+                              messageRepository --> messageRepository
+                              deactivate messageRepository
+                               messageRepository--> messageRepository
+                               deactivate messageRepository
+end
 
-      Repository2 --> CTRL : authenticatioRepository
-      deactivate Repository2
-
-      CTRL -> AuthenticationRepository : getCurrentSession()
-      activate AuthenticationRepository
-
-      AuthenticationRepository --> CTRL : getCurrentSession
-      deactivate AuthenticationRepository
-
-          CTRL -> Repository2 : getMessageRepository()
-              activate Repository2
-
-          Repository2 --> CTRL : messageRepository
-              deactivate Repository2
-
-              CTRL -> messageRepository : createMessage(name, phone number and date and time slot)
-                  activate messageRepository
-
-                  messageRepository -> message** : createMessage(name, phone number \nand date and time slot)
-
-                  messageRepository -> messageRepository : addMessage(message)
-                  activate messageRepository
-
-                  messageRepository -> messageRepository : validateMessage(message)
-                  activate messageRepository
-
-                  messageRepository --> CTRL : Message
-                  deactivate messageRepository
-                  deactivate messageRepository
-                  deactivate messageRepository
-
-                end
+                <-- messageRepository:message
+               deactivate messageRepository
 
 
-           <-- CTRL : Message
+
+
 @enduml
