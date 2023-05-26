@@ -44,7 +44,7 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 This diagram shows the full sequence of interactions between the classes involved in the realization of this user story.
 
-![Sequence Diagram - Full](svg/US08-sequence-diagram-full.svg)
+![Sequence Diagram - Full](svg/us08-sequence-diagram-full.svg)
 
 
 ### Alternative 2 - Split Diagram
@@ -53,17 +53,17 @@ This diagram shows the same sequence of interactions between the classes involve
 
 It uses interaction ocurrence.
 
-![Sequence Diagram - split](svg/US08-sequence-diagram-split.svg)
+![Sequence Diagram - split](svg/us08-sequence-diagram-split.svg)
 
 
 **Get Comission Partial SD**
 
-![Sequence Diagram - Partial - Comission](svg/US08-sequence-diagram-partial-getComission.svg)
+![Sequence Diagram - Partial - Comission](svg/us08-sequence-diagram-partial-getComission.svg)
 
 
 **Create Published Announcement Partial SD**
 
-![Sequence Diagram - Partial - Create Published Announcement](svg/US08-sequence-diagram-partial-createPublishedAnnouncement.svg)
+![Sequence Diagram - Partial - Create Published Announcement](svg/us08-sequence-diagram-partial-createPublishedAnnouncement.svg)
 
 
 **Get Announcement Request Partial SD**
