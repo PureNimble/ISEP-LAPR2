@@ -3,19 +3,20 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.esoft.project.domain.*;
+import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
 import pt.ipp.isep.dei.esoft.project.ui.console.PublishAnnouncementRequestUI;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class PublishedAnnouncementRequestControllerTest {
 
 
-    private PublishedAnnouncementRequestController controller = new PublishedAnnouncementRequestController();
-
+    private  PublishedAnnouncementRequestController controller = new PublishedAnnouncementRequestController();
     private PublishedAnnouncement publishedAnnouncement, publishedAnnouncement1;
 
     private House house;
@@ -122,7 +123,7 @@ class PublishedAnnouncementRequestControllerTest {
 
 
     @Test
-    void getPublishedAnnouncements() {
+    void getPublishedAnnouncementsTest() {
 
 
 
@@ -136,7 +137,8 @@ class PublishedAnnouncementRequestControllerTest {
     }
 
     @Test
-    void getAnnouncementRequestByMostRecent() {
+    void getAnnouncementRequestByMostRecentTest() {
+
 
 
         List<AnnouncementRequest> announcementRequests = new ArrayList<>();
@@ -144,7 +146,6 @@ class PublishedAnnouncementRequestControllerTest {
         announcementRequests.add(announcementRequest);
 
         controller.announcementRequestRepository.add(announcementRequest);
-
 
         assertEquals(announcementRequests, controller.getAnnouncementRequestByMostRecent());
     }
@@ -154,7 +155,7 @@ class PublishedAnnouncementRequestControllerTest {
     }
 
     @Test
-    void getComission() {
+    void getComissionTest() {
 
 
 
@@ -174,14 +175,18 @@ class PublishedAnnouncementRequestControllerTest {
     }
 
     @Test
-    void getEmployeeByEmail() {
+    void getEmployeeByEmailTest() {
+
+        controller.authenticationRepository.addUserWithRole("Diogo","emailExample@this.app","123AAA","Agent");
 
         assertEquals(employee,controller.getEmployeeByEmail());
 
     }
 
     @Test
-    void getComissionByDescription() {
+    void getComissionByDescriptionTest() {
+
+
 
         double comissionValue = 50;
         controller.comissionRepository.add(comission);
@@ -191,7 +196,10 @@ class PublishedAnnouncementRequestControllerTest {
     }
 
     @Test
-    void getAnnouncementRequestByDescription() {
+    void getAnnouncementRequestByDescriptionTest() {
+
+
+
 
         int index = 0;
 
@@ -204,6 +212,27 @@ class PublishedAnnouncementRequestControllerTest {
     }
 
     @Test
-    void createPublishAnnouncementRequest() {
+    void createPublishAnnouncementRequestTest() {
+
+        Optional<PublishedAnnouncement> newPublishedAnnouncement = Optional.of(publishedAnnouncement1);
+
+        List<PublishedAnnouncement> publishedAnnouncements = new ArrayList<>();
+        controller.publishedAnnouncementRepository.add(publishedAnnouncement1);
+        publishedAnnouncements.add(publishedAnnouncement1);
+        controller.comissionRepository.add(comission);
+
+        assertEquals(newPublishedAnnouncement,controller.createPublishAnnouncementRequest(comission.getComission(),0));
+        assertEquals(publishedAnnouncements,controller.getPublishedAnnouncements());
+        assertEquals(1,controller.getPublishedAnnouncements().size());
+
+        PublishedAnnouncement publishedAnnouncement = newPublishedAnnouncement.get();
+
+        assertEquals(publishedAnnouncement1.getComission(), publishedAnnouncement.getComission());
+        assertEquals(publishedAnnouncement1.getBusiness(), publishedAnnouncement.getBusiness());
+        assertEquals(publishedAnnouncement1.getDate(), publishedAnnouncement.getDate());
+        assertEquals(publishedAnnouncement1.getProperty(),publishedAnnouncement.getProperty());
+        assertEquals(publishedAnnouncement1.getPropertyType(), publishedAnnouncement.getPropertyType());
+        assertEquals(publishedAnnouncement1.getTypeOfBusiness(), publishedAnnouncement.getTypeOfBusiness());
+
     }
 }

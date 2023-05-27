@@ -104,6 +104,26 @@ public class PublishedAnnouncement {
         return date;
     }
 
+    public TypeOfBusiness getTypeOfBusiness() {
+        return typeOfBusiness;
+    }
+
+    public PropertyType getPropertyType() {
+        return propertyType;
+    }
+
+    public Comission getComission() {
+        return comission;
+    }
+
+    public Business getBusiness() {
+        return business;
+    }
+
+    public int getDurationOfContract() {
+        return durationOfContract;
+    }
+
     /**
      * Sets date.
      *
