@@ -7,106 +7,58 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FileReaderClass {
-    public String[][] readStoreInformations(File file) {
+    public ArrayList<String[]> readInformations(File file) {
 
-        String[] storeInformations = new String[1000];
-
-        String[][] arrayInformations = new String[10000][5];
-
+        ArrayList<String[]> fileInformations = new ArrayList<>();
         try {
-            int linhas = 0;
-
             Scanner ler = new Scanner(file);
-
-            while (ler.hasNextLine()) {
-
-                String[] itens = ler.nextLine().split(";");
-
-                storeInformations[linhas] = itens[0];
-
-                int i = 25;
-                for (int item = 1; item < 6; item++) {
-
-                    arrayInformations[linhas][item - 1] = itens[i];
-                    i++;
-                }
-                linhas++;
-
+            ler.useDelimiter(";");
+            while (ler.hasNext()) {
+                String line = ler.nextLine();
+                line = line.replaceAll("\\s+", "").replaceAll("\n", "").replaceAll("\"", ""); //To remove all whitespaces and new lines and quotes
+                fileInformations.add(line.split(";"));
             }
             ler.close();
-        } catch (FileNotFoundException fileNotFoundException) {
-
+        } catch (Exception e) {
+            System.out.println("File not found");
         }
 
-        return arrayInformations;
+        return fileInformations;
+
     }
 
-    public String[][] readOwnerInformations(File file) {
+    public ArrayList<String[]> readStoreInformations(ArrayList<String[]> fileInformations) {
 
-        String[] ownerInformations = new String[1000];
+        ArrayList<String[]> storeInformations = new ArrayList<>();
 
-        String[][] arrayInformations = new String[10000][5];
+        for (String[] information: fileInformations) {
 
-        try {
-            int linhas = 0;
-
-            Scanner ler = new Scanner(file);
-
-            while (ler.hasNextLine()) {
-
-                String[] itens = ler.nextLine().split(";");
-
-                ownerInformations[linhas] = itens[0];
-
-                int i = 1;
-                for (int item = 1; item < 6; item++) {
-
-                    arrayInformations[linhas][item - 1] = itens[i];
-                    i++;
-                }
-                linhas++;
-
+            String[] storeAux = new String[5];
+            for (int i = 0; i < 5 ; i++) {
+                storeAux[i] = information[25+i];
             }
-            ler.close();
-        } catch (FileNotFoundException fileNotFoundException) {
 
+            storeInformations.add(storeAux);
         }
 
-        return arrayInformations;
+        return storeInformations;
     }
 
-    public String[][] readPropertyInformations(File file) {
+    public ArrayList<String[]> readOwnerInformations(ArrayList<String[]> fileInformations) {
 
-        String[] propertyInformations = new String[1000];
+        ArrayList<String[]> ownerInformations = new ArrayList<>();
 
-        String[][] arrayInformations = new String[10000][12];
+        for (String[] information: fileInformations) {
 
-        try {
-            int linhas = 0;
-
-            Scanner ler = new Scanner(file);
-
-            while (ler.hasNextLine()) {
-
-                String[] itens = ler.nextLine().split(";");
-
-                propertyInformations[linhas] = itens[0];
-
-                int i = 5;
-                for (int item = 1; item < 13; item++) {
-
-                    arrayInformations[linhas][item - 1] = itens[i];
-                    i++;
-                }
-                linhas++;
-
+            String[] ownerAux = new String[5];
+            for (int i = 0; i < 5 ; i++) {
+                ownerAux[i] = information[1+i];
             }
-            ler.close();
-        } catch (FileNotFoundException fileNotFoundException) {
 
+            ownerInformations.add(ownerAux);
         }
 
-        return arrayInformations;
+        return ownerInformations;
     }
 
 

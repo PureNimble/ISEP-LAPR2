@@ -24,7 +24,7 @@ class AnnouncementRequestTest {
         roles.add(role);
         Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
 
-        AnnouncementRequest announcementRequest = new AnnouncementRequest(date, typeOfBusiness, property, propertyType, business, employee);
+        AnnouncementRequest announcementRequest = new AnnouncementRequest("",date, typeOfBusiness, property, propertyType, business, employee);
 
         String expectedOutput = String.format("Date:%s\n" +
                         "Type of business:%s\n" +
@@ -51,7 +51,7 @@ class AnnouncementRequestTest {
         roles.add(role);
         Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
 
-        AnnouncementRequest announcementRequest = new AnnouncementRequest(date, typeOfBusiness, property, propertyType, business, employee);
+        AnnouncementRequest announcementRequest = new AnnouncementRequest("",date, typeOfBusiness, property, propertyType, business, employee);
 
         String expectedOutput = String.format("Date:%s\n" +
                         "Type of business:%s\n" +

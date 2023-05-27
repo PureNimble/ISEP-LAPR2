@@ -14,13 +14,7 @@ public class ReadFileUI implements Runnable {
 
         File file = new File("C:\\Users\\Utilizador\\IdeaProjects\\lei-23-s2-1dh-g37\\src\\legacyRealStateUSAMoodle.csv");
 
-       String[][] informations = fileReaderClass.readStoreInformations(file);
 
-       String[][] informations1 = fileReaderClass.readOwnerInformations(file);
-
-       String[][] informatons2 = fileReaderClass.readPropertyInformations(file);
-
-        System.out.println(informations[1][0]);
 
     }
 

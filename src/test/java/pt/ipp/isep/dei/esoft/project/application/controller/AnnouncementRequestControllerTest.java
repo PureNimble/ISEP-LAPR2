@@ -138,7 +138,7 @@ class AnnouncementRequestControllerTest {
         roles.add(role);
         Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
 
-        AnnouncementRequest announcementRequest = new AnnouncementRequest(date, typeOfBusiness, house, propertyType, business, employee);
+        AnnouncementRequest announcementRequest = new AnnouncementRequest("",date, typeOfBusiness, house, propertyType, business, employee);
         announcementRequests.add(announcementRequest);
 
         announcementRequestRepository.add(announcementRequest);
@@ -190,7 +190,7 @@ class AnnouncementRequestControllerTest {
         roles.add(role);
         Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
 
-        AnnouncementRequest announcementRequestObject = new AnnouncementRequest(date, typeOfBusiness, house, propertyType, business, employee);
+        AnnouncementRequest announcementRequestObject = new AnnouncementRequest("",date, typeOfBusiness, house, propertyType, business, employee);
 
         Optional<AnnouncementRequest> announcementRequest = Optional.of(announcementRequestObject);
 

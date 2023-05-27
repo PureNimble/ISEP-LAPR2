@@ -243,7 +243,7 @@ public class AnnouncementRequestController {
 
         Optional<AnnouncementRequest> newAnnoucementRequest = Optional.empty();
 
-        AnnouncementRequest announcementRequest = new AnnouncementRequest(date, typeOfBusiness, property, propertyType, business, durationOfContract,agent);
+        AnnouncementRequest announcementRequest = new AnnouncementRequest("",date, typeOfBusiness, property, propertyType, business, durationOfContract,agent);
 
         if (!getAnnouncementRequestRepository().getAnnouncementsRequest().contains(announcementRequest)) {
             newAnnoucementRequest = getAnnouncementRequestRepository().announcementRequest(date, typeOfBusiness, property, propertyType, business, durationOfContract,agent);

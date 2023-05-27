@@ -5,6 +5,11 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
 import pt.ipp.isep.dei.esoft.project.ui.console.PublishAnnouncementRequestUI;
+import pt.isep.lei.esoft.auth.AuthFacade;
+import pt.isep.lei.esoft.auth.UserSession;
+import pt.isep.lei.esoft.auth.domain.model.Email;
+import pt.isep.lei.esoft.auth.domain.model.Password;
+import pt.isep.lei.esoft.auth.domain.model.User;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -116,16 +121,14 @@ class PublishedAnnouncementRequestControllerTest {
 
     @BeforeEach
     void setUpAnnouncementRequest() {
-        announcementRequest = new AnnouncementRequest(date, typeOfBusiness, house, propertyType, business, employee);
-        announcementRequest1 = new AnnouncementRequest(date, typeOfBusiness1, land, propertyType, business, employee);
-        announcementRequest2 = new AnnouncementRequest(date, typeOfBusiness, appartment, propertyType2, business1, employee1);
+        announcementRequest = new AnnouncementRequest("",date, typeOfBusiness, house, propertyType, business, employee);
+        announcementRequest1 = new AnnouncementRequest("",date, typeOfBusiness1, land, propertyType, business, employee);
+        announcementRequest2 = new AnnouncementRequest("",date, typeOfBusiness, appartment, propertyType2, business1, employee1);
     }
 
 
     @Test
     void getPublishedAnnouncementsTest() {
-
-
 
         List<PublishedAnnouncement> publishedAnnouncements = new ArrayList<>();
 
@@ -138,8 +141,6 @@ class PublishedAnnouncementRequestControllerTest {
 
     @Test
     void getAnnouncementRequestByMostRecentTest() {
-
-
 
         List<AnnouncementRequest> announcementRequests = new ArrayList<>();
 
@@ -177,7 +178,13 @@ class PublishedAnnouncementRequestControllerTest {
     @Test
     void getEmployeeByEmailTest() {
 
-        controller.authenticationRepository.addUserWithRole("Diogo","emailExample@this.app","123AAA","Agent");
+
+
+        AuthFacade authFacade = new AuthFacade();
+
+        authFacade.addUser("Diogo","emailExample@this.app","1231dwadwd");
+        controller.authenticationRepository.getCurrentUserSession();
+
 
         assertEquals(employee,controller.getEmployeeByEmail());
 
@@ -197,9 +204,6 @@ class PublishedAnnouncementRequestControllerTest {
 
     @Test
     void getAnnouncementRequestByDescriptionTest() {
-
-
-
 
         int index = 0;
 

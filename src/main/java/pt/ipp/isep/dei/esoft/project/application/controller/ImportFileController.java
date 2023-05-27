@@ -22,6 +22,6 @@ public class ImportFileController {
 
 
     public String[][] getStoreInformations(File file){
-         return getFileReaderClass().readStoreInformations(file);
+         return null;
     }
 }

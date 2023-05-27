@@ -57,25 +57,6 @@ public class AnnouncementRequest {
         this.status = status;
     }
 
-    public AnnouncementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract, Employee agent) {
-        this.date = date;
-        this.typeOfBusiness = typeOfBusiness;
-        this.property = property;
-        this.propertyType = propertyType;
-        this.business = business;
-        this.durationOfContract = durationOfContract;
-        this.agent = agent;
-    }
-
-    public AnnouncementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business,Employee agent) {
-        this.date = date;
-        this.typeOfBusiness = typeOfBusiness;
-        this.property = property;
-        this.propertyType = propertyType;
-        this.business = business;
-        this.agent = agent;
-    }
-
     public AnnouncementRequest (AnnouncementRequestDto announcementRequestDto) {
         this.date = announcementRequestDto.getDate();
         this.typeOfBusiness = announcementRequestDto.getTypeOfBusiness();
