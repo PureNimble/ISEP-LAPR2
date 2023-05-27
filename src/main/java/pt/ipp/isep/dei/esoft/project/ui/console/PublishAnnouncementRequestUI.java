@@ -13,17 +13,35 @@ import java.util.*;
  */
 public class PublishAnnouncementRequestUI implements Runnable {
 
-
+    /**
+     * The Published Announcement Request Controller used for managing published announcement requests.
+     */
     private PublishedAnnouncementRequestController controller = new PublishedAnnouncementRequestController();
 
+    /**
+     * The commission description for the published announcement request.
+     */
     private Double comissionDescription;
 
+    /**
+     * The announcement request description for the published announcement request.
+     */
     private int announcementRequestDescription;
 
+    /**
+     * The option for the published announcement request.
+     */
     private String option;
 
+    /**
+     * The message justification for the published announcement request.
+     */
     private String messageJustification;
 
+    /**
+     * The run method executes the logic for publishing an announcement request.
+     * It displays options to the user, collects input, and performs the necessary operations.
+     */
     public void run() {
 
 
@@ -45,6 +63,10 @@ public class PublishAnnouncementRequestUI implements Runnable {
 
     }
 
+    /**
+     * Sends an email justification for a rejected announcement request.
+     * It rejects the announcement request and writes the justification to a file.
+     */
 
     private void sendEmailJustification() {
 
@@ -71,6 +93,9 @@ public class PublishAnnouncementRequestUI implements Runnable {
 
     }
 
+    /**
+     * Requests data for justification from the user.
+     */
 
     private void requestData() {
 
@@ -79,25 +104,41 @@ public class PublishAnnouncementRequestUI implements Runnable {
 
     }
 
+    /**
+     * Submits the data for publishing the announcement request.
+     * It creates a new published announcement request based on the provided information.
+     */
 
     private void submitData() {
 
         Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishAnnouncementRequest(comissionDescription, announcementRequestDescription);
 
         if (publishedAnnouncement.isPresent()) {
-            System.out.println("O anúncio foi publicado com êxito!!!");
+            System.out.println("The ad was published successfully!!!");
         } else {
-            System.out.println("Aconteceu algum erro...");
+            System.out.println("Something went wrong...");
         }
 
 
     }
+
+    /**
+     * Requests the message justification from the user.
+     *
+     * @return The message justification provided by the user.
+     */
 
     private String requestMessageJustification() {
         Scanner input = new Scanner(System.in);
         System.out.println("Give the reason to the owner justifying your decision");
         return input.nextLine();
     }
+
+    /**
+     * Requests the option (accept/reject) from the user.
+     *
+     * @return The option selected by the user.
+     */
 
     private String requestOption() {
         Scanner input = new Scanner(System.in);
@@ -143,7 +184,6 @@ public class PublishAnnouncementRequestUI implements Runnable {
 
     /**
      * Displays the list of Announcement Requests options to the user.
-     * <p>
      * A List of Announcement Requests objects containing the available commission values.
      */
     private void displayAnnouncementRequestOptions(List<AnnouncementRequestDto> announcementRequestDtos) {

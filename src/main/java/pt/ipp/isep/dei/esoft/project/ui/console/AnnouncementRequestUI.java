@@ -72,7 +72,7 @@ public class AnnouncementRequestUI implements Runnable {
             System.out.println(st);
 
         }else {
-            System.out.println("There is no Agents on the system for you to choose one");
+            System.out.println("There is no Agents on the system for you to choose one.");
         }
     }
 
@@ -93,7 +93,7 @@ public class AnnouncementRequestUI implements Runnable {
             Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, land, propertyType, business, durationOfContract,agent);
 
         } else {
-            if (propertyTypeDescription.equals("Appartment")) {
+            if (propertyTypeDescription.equals("Apartment")) {
 
                 AvailableEquipment availableEquipment = controller.getAvailableEquipmentByDescription(availableEquipmentDescription);
 
@@ -351,7 +351,7 @@ public class AnnouncementRequestUI implements Runnable {
             System.out.println("Basement:(Y/N)");
             basementString = input.nextLine();
             if (!basementString.equals("N") && !basementString.equals("Y")) {
-                System.out.println("Please select N if the house doesn t have basement and Y if the house have basement");
+                System.out.println("Please select N if the house doesn't have basement and Y if the house have basement");
             }
 
         } while (!basementString.equals("N") && !basementString.equals("Y"));
@@ -372,7 +372,7 @@ public class AnnouncementRequestUI implements Runnable {
             System.out.println("Inhabitable Loft(Y/N):");
             inhabitableLoftString = input.nextLine();
             if (!inhabitableLoftString.equals("N") && !inhabitableLoftString.equals("Y")) {
-                System.out.println("Please select N if the house doesn t have Inhabitable loft and Y if the house have Inhabitable Loft");
+                System.out.println("Please select N if the house doesn't have Inhabitable loft and Y if the house have Inhabitable Loft");
             }
 
         } while (!inhabitableLoftString.equals("N") && !inhabitableLoftString.equals("Y"));

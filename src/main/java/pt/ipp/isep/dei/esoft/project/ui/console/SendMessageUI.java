@@ -23,11 +23,23 @@ public class SendMessageUI implements Runnable {
      */
     public final SendMessageController controller = new SendMessageController();
 
+    /**
+     * The controller responsible for publishing announcements.
+     */
     private final PublishAnnouncementController controllerPublishAnnouncement = new PublishAnnouncementController();
 
+    /**
+     * The initial time for the announcement.
+     */
     private int initialTime;
 
-
+    /**
+     * Executes the "run" method of the class.
+     * This method is responsible for sending a message by gathering necessary information from the user and interacting with the controller and repository.
+     * It prompts the user to choose a property, enter a message, client name, phone number, date of visit, initial time, and end time.
+     * It then submits the data to the controller for processing and retrieval of messages.
+     * The retrieved messages are formatted into a StringBuilder and printed to the console.
+     */
     @Override
     public void run() {
         System.out.println("Send Message");
@@ -56,6 +68,12 @@ public class SendMessageUI implements Runnable {
         System.out.println(st);
     }
 
+    /**
+     * Requests the user to choose a property from the published announcements.
+     *
+     * @return The selected published announcement.
+     */
+
     private PublishedAnnouncement requestChooseProperty() {
         Scanner input = new Scanner(System.in);
         List<PublishedAnnouncement> publishedAnnouncements = controllerPublishAnnouncement.getPublishedAnnouncementsDesc();
@@ -71,7 +89,7 @@ public class SendMessageUI implements Runnable {
             do {
                 try {
                     System.out.println("Choose one of the properties above.");
-                    index = input.nextInt()-1;
+                    index = input.nextInt() - 1;
                 } catch (InputMismatchException e) {
                     System.out.println("Invalid input. Please enter an integer value:");
                     input.nextLine();
@@ -81,11 +99,17 @@ public class SendMessageUI implements Runnable {
 
             if (index > publishedAnnouncements.size() + 1) {
                 System.out.println(String.format("Invalid input. Please enter an value between 1 and %s:", publishedAnnouncements.size()));
-                index = input.nextInt()-1;
+                index = input.nextInt() - 1;
             }
         } while (index < 0);
         return publishedAnnouncements.get(index);
     }
+
+    /**
+     * Requests the client name from the user.
+     *
+     * @return The client name.
+     */
 
     private String requestClientName() {
         Scanner input = new Scanner(System.in);
@@ -93,11 +117,23 @@ public class SendMessageUI implements Runnable {
         return input.nextLine();
     }
 
+    /**
+     * Requests the message to be sent to the agent from the user.
+     *
+     * @return The message.
+     */
+
     private String requestMessage() {
         Scanner input = new Scanner(System.in);
         System.out.println("Write message to the agent:");
         return input.nextLine();
     }
+
+    /**
+     * Requests the client's phone number from the user.
+     *
+     * @return The client's phone number.
+     */
 
     private int requestPhoneNumber() {
         Scanner input = new Scanner(System.in);
@@ -125,6 +161,12 @@ public class SendMessageUI implements Runnable {
         return phoneNumberInt;
     }
 
+    /**
+     * Requests the date of the visit from the user.
+     *
+     * @return The date of the visit.
+     */
+
     private Date requestDate() {
         Date date = null;
 
@@ -140,10 +182,16 @@ public class SendMessageUI implements Runnable {
             } catch (Exception e) {
                 System.out.println("The date is in the wrong format, please try again.");
             }
-        } while(!correct);
+        } while (!correct);
 
         return date;
     }
+
+    /**
+     * Requests the initial time for the visit from the user.
+     *
+     * @return The initial time.
+     */
 
     private int requestInitialTime() {
         Scanner input = new Scanner(System.in);
@@ -169,6 +217,12 @@ public class SendMessageUI implements Runnable {
         } while (initialTimeInt < 0);
         return initialTimeInt;
     }
+
+    /**
+     * Requests the end time for the visit from the user.
+     *
+     * @return The end time.
+     */
 
     private int requestEndTime() {
         Scanner input = new Scanner(System.in);
@@ -205,6 +259,17 @@ public class SendMessageUI implements Runnable {
         return endTimeInt;
     }
 
+    /**
+     * Submits the collected data to create a new message to the agent.
+     *
+     * @param message            The message.
+     * @param clientName         The client name.
+     * @param clientsPhoneNumber The client's phone number.
+     * @param dateOfVisit        The date of the visit.
+     * @param initialTime        The initial time of the visit.
+     * @param endTime            The end time of the visit.
+     * @param announcement       The published announcement.
+     */
 
     private void submitData(String message, String clientName, int clientsPhoneNumber, Date dateOfVisit,
                             int initialTime, int endTime, PublishedAnnouncement announcement) {
