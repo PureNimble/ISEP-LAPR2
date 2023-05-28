@@ -13,8 +13,8 @@ class MessageRepositoryTest {
 
     String name = "John Doe";
     String name1 = "Mary Jane";
-    int phoneNumber = 1234567890;
-    int phoneNumber1 = 1122334455;
+    long phoneNumber = 1234567890;
+    long phoneNumber1 = 1122334455;
     String description = "Test message";
     String description1 = "Description Of Jane";
     Date date = new Date();

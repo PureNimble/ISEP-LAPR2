@@ -60,7 +60,7 @@ public class SendMessageController {
      * @param publishedAnnouncement the published announcement
      * @return the optional
      */
-    public Optional<Message> createNewMessageToAgent (String name, String description, int phoneNumber, Date date, int intialTime, int endTime, PublishedAnnouncement publishedAnnouncement) {
+    public Optional<Message> createNewMessageToAgent (String name, String description, long phoneNumber, Date date, int intialTime, int endTime, PublishedAnnouncement publishedAnnouncement) {
         Message messageSent = new Message();
         messageSent.setName(name);
         messageSent.setInitialDate(date);

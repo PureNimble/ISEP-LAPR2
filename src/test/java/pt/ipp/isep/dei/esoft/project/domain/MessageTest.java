@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class MessageTest {
 
     String name = "John Doe";
-    int phoneNumber = 1234567890;
+    long phoneNumber = 1234567890;
     String description = "Test message";
     Date date = new Date();
     int initialTime = 10;
@@ -45,16 +45,16 @@ class MessageTest {
 
     @Test
     void getPhoneNumber() {
-        int actualPhoneNumber = message.getPhoneNumber();
+        long actualPhoneNumber = message.getPhoneNumber();
 
         assertEquals(phoneNumber, actualPhoneNumber);
     }
 
     @Test
     void setPhoneNumber() {
-        int newPhoneNumber = 1234567890;
+        long newPhoneNumber = 1234567890;
         message.setPhoneNumber(newPhoneNumber);
-        int actualPhoneNumber = message.getPhoneNumber();
+        long actualPhoneNumber = message.getPhoneNumber();
 
         assertEquals(newPhoneNumber, actualPhoneNumber);
     }
