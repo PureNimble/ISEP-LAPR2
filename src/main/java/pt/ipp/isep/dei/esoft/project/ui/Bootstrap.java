@@ -213,7 +213,7 @@ public class Bootstrap {
         comissionRepository.add(new Comission(23.7));
 
     }
-
+//
 //    private void addOffers() {
 //
 //        OfferRepository offerRepository = Repositories.getInstance().getOfferRepository();
@@ -245,9 +245,9 @@ public class Bootstrap {
 //        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1,typeOfBusiness1, property1, propertyType1, comission1, business1);
 //        PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, property2, propertyType2, comission2, business2);
 //
-//        offerRepository.add(new Offer(200000,client1, publishedAnnouncement1));
-//        offerRepository.add(new Offer(3456, client2, publishedAnnouncement2));
+//        offerRepository.add(new Offer("Pedro", 200000, client1, publishedAnnouncement1 ));
+//        offerRepository.add(new Offer("Miguel", 3456, client2, publishedAnnouncement2));
 //    }
-
+//
 
 }

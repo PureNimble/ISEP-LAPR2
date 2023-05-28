@@ -12,11 +12,20 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+
+ The PlaceOrderUI class represents the user interface for placing an order.
+
+ It implements the Runnable interface to support concurrent execution.
+ */
 public class PlaceOrderUI implements Runnable {
 
     private final PlaceOfferController controller = new PlaceOfferController();
     private final PublishAnnouncementController publishAnnouncementController = new PublishAnnouncementController();
+    /**
 
+     Executes the logic for placing an order.
+     */
     @Override
     public void run() {
         System.out.println("Place Order");
@@ -24,9 +33,10 @@ public class PlaceOrderUI implements Runnable {
         PublishedAnnouncement publishedAnnouncement = requestChooseProperty();
 
         double offer = requestOffer();
+        String clientName = requestClientName();
 //        Client client = requestClient();
 
-        submitData(publishedAnnouncement, offer);
+        submitData(clientName, publishedAnnouncement, offer);
 
         List<Offer> offers = controller.getOffers();
 
@@ -38,7 +48,11 @@ public class PlaceOrderUI implements Runnable {
         }
         System.out.println(st);
     }
+    /**
 
+     Requests the user to choose a property from the published announcements.
+     @return the selected PublishedAnnouncement object
+     */
     private PublishedAnnouncement requestChooseProperty() {
         Scanner input = new Scanner(System.in);
         List<PublishedAnnouncement> publishedAnnouncements = publishAnnouncementController.getPublishedAnnouncementsDesc();
@@ -69,7 +83,22 @@ public class PlaceOrderUI implements Runnable {
         } while (index < 0);
         return publishedAnnouncements.get(index);
     }
+    /**
 
+     Requests the user to enter the client name.
+     @return the entered client name
+     */
+    private String requestClientName() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Name:");
+        return input.nextLine();
+    }
+    /**
+
+     Requests the user to enter the offer amount.
+
+     @return the entered offer amount
+     */
     private double requestOffer() {
         Scanner input = new Scanner(System.in);
         String offerAmountString;
@@ -95,8 +124,14 @@ public class PlaceOrderUI implements Runnable {
 //        String clientString;
 //        return null;
 //    }
+    /**
 
-    private void submitData(PublishedAnnouncement publishedAnnouncement, double offer) {
-        controller.createNewOfferToAgent(offer, publishedAnnouncement);
+     Submits the order data to the controller for creating a new offer.
+     @param name the client name
+     @param publishedAnnouncement the selected published announcement
+     @param offer the offer amount
+     */
+    private void submitData(String name, PublishedAnnouncement publishedAnnouncement, double offer) {
+        controller.createNewOfferToAgent(name, offer, publishedAnnouncement);
     }
 }
