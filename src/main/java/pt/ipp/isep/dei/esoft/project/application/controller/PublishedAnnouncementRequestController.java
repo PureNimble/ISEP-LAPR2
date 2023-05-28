@@ -48,6 +48,14 @@ public class PublishedAnnouncementRequestController {
     }
 
 
+    public PublishedAnnouncementRequestController(PublishedAnnouncementRepository publishedAnnouncementRepository, AnnouncementRequestRepository announcementRequestRepository, ComissionRepository comissionRepository, EmployeeRepository employeeRepository, AuthenticationRepository authenticationRepository) {
+        this.publishedAnnouncementRepository = publishedAnnouncementRepository;
+        this.announcementRequestRepository = announcementRequestRepository;
+        this.comissionRepository = comissionRepository;
+        this.employeeRepository = employeeRepository;
+        this.authenticationRepository = authenticationRepository;
+    }
+
     /**
 
      Returns an instance of the AuthenticationRepository.
@@ -129,7 +137,7 @@ public class PublishedAnnouncementRequestController {
         return publishedAnnouncementRepository;
     }
 
-    private AnnouncementRequestMapper getAnnouncementRequestMapper(){
+    public AnnouncementRequestMapper getAnnouncementRequestMapper(){
 
         AnnouncementRequestMapper announcementRequestMapper = new AnnouncementRequestMapper();
         return announcementRequestMapper;

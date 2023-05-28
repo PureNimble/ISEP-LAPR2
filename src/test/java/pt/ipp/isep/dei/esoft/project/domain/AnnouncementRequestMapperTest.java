@@ -1,17 +1,18 @@
-package pt.ipp.isep.dei.esoft.project.repository;
+package pt.ipp.isep.dei.esoft.project.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.esoft.project.domain.*;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PublishedAnnouncementRepositoryTest {
+class AnnouncementRequestMapperTest {
+
+
+    private AnnouncementRequestDto announcementRequestDto, announcementRequestDTO1, announcementRequestDto2;
 
     private PublishedAnnouncement publishedAnnouncement, publishedAnnouncement1;
 
@@ -43,7 +44,6 @@ class PublishedAnnouncementRepositoryTest {
 
     private Store store;
 
-    private AnnouncementRequestDto announcementRequestDto;
 
 
     @BeforeEach
@@ -134,52 +134,51 @@ class PublishedAnnouncementRepositoryTest {
     @BeforeEach
     void setUpAnnouncementRequestDto() {
         announcementRequestDto = new AnnouncementRequestDto("",date, typeOfBusiness, house, propertyType, business, employee);
-    }
-
-    @Test
-    void add() {
-        PublishedAnnouncementRepository repository = new PublishedAnnouncementRepository();
-
-        Optional<PublishedAnnouncement> addedAnnouncement = repository.add(publishedAnnouncement);
-        assertTrue(addedAnnouncement.isPresent());
-        PublishedAnnouncement publishedAnnouncementTest = addedAnnouncement.get();
-        assertEquals(publishedAnnouncementTest, publishedAnnouncementTest);
-
-        List<PublishedAnnouncement> announcements = repository.getPublishedAnnouncements();
-        assertTrue(announcements.contains(publishedAnnouncementTest));
-
-    }
-
-    @Test
-    void publishedAnnouncement() {
-        PublishedAnnouncementRepository repository = new PublishedAnnouncementRepository();
-
-        repository.add(publishedAnnouncement);
-        repository.add(publishedAnnouncement1);
-
-        List<PublishedAnnouncement> announcements = repository.getPublishedAnnouncements();
-        assertTrue(announcements.contains(publishedAnnouncement));
-        assertTrue(announcements.contains(publishedAnnouncement1));
+        announcementRequestDTO1 = new AnnouncementRequestDto("",date, typeOfBusiness1, land, propertyType, business, employee);
+        announcementRequestDto2 = new AnnouncementRequestDto("",date, typeOfBusiness, appartment, propertyType2, business1, employee1);
     }
 
 
     @Test
-    void publishedAnnouncementRequestTest() {
+    void toDto() {
 
-        PublishedAnnouncementRepository repository = new PublishedAnnouncementRepository();
-
-
+        AnnouncementRequestMapper announcementRequestMapper = new AnnouncementRequestMapper();
 
         List<AnnouncementRequest> announcementRequests = new ArrayList<>();
         announcementRequests.add(announcementRequest);
         announcementRequests.add(announcementRequest1);
+        announcementRequests.add(announcementRequest2);
 
-        Optional<PublishedAnnouncement> publishedAnnouncementExpected = Optional.of(publishedAnnouncement);
 
-        Optional<PublishedAnnouncement> publishedAnnouncementResult = repository.publishedAnnouncementRequest(announcementRequests,announcementRequestDto,comission);
+        List<AnnouncementRequestDto> announcementRequestDtos = new ArrayList<>();
+        announcementRequestDtos.add(announcementRequestDto);
+        announcementRequestDtos.add(announcementRequestDTO1);
+        announcementRequestDtos.add(announcementRequestDto2);
 
-        assertEquals("true",announcementRequest.getStatus());
-        assertEquals(publishedAnnouncementExpected,publishedAnnouncementResult);
+        assertEquals(announcementRequestDtos,announcementRequestMapper.toDto(announcementRequests));
+    }
+
+    @Test
+    void toDtoObject() {
+
+        AnnouncementRequestMapper announcementRequestMapper = new AnnouncementRequestMapper();
+
+        assertEquals(announcementRequestDto,announcementRequestMapper.toDtoObject("",employee,house,typeOfBusiness,propertyType,business,date,0));
+
+    }
+
+    @Test
+    void getAnnouncementRequestDtoByDescription() {
+
+        AnnouncementRequestMapper announcementRequestMapper = new AnnouncementRequestMapper();
+
+        List<AnnouncementRequestDto> announcementRequestDtos = new ArrayList<>();
+        announcementRequestDtos.add(announcementRequestDto);
+        announcementRequestDtos.add(announcementRequestDTO1);
+        announcementRequestDtos.add(announcementRequestDto2);
+
+        assertEquals(announcementRequestDto,announcementRequestMapper.getAnnouncementRequestDtoByDescription(announcementRequestDtos,0));
+
 
     }
 }
