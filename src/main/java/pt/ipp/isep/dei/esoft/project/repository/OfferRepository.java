@@ -1,8 +1,10 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.Offer;
+import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 /**
@@ -66,5 +68,22 @@ public class OfferRepository {
      */
     public List<Offer> getOffers() {
         return offers;
+    }
+
+    public List<Offer> getOffersByPropertyByHighestAmount(List<PublishedAnnouncement> publishedAnnouncementList){
+        List<Offer> resultList = new ArrayList<Offer>();
+
+        for (PublishedAnnouncement publishedAnnouncement: publishedAnnouncementList){
+            List<Offer> tempList = new ArrayList<Offer>();
+            for (Offer offer: offers){
+                if (offer.getPublishedAnnouncement().equals(publishedAnnouncement)){
+                    tempList.add(offer);
+                }
+            }
+            tempList.sort(Comparator.comparingDouble(Offer::getOrderAmount));
+            resultList.addAll(tempList);
+        }
+
+        return resultList;
     }
 }
