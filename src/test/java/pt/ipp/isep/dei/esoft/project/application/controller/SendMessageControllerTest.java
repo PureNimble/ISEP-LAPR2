@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SendMessageControllerTest {
 
     String name = "John Doe";
-    int phoneNumber = 1234567890;
+    long phoneNumber = 1234567890;
     String description = "Test message";
     Date date = new Date();
     int initialTime = 10;

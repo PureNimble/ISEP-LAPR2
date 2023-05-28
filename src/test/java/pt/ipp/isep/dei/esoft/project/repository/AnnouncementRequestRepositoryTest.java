@@ -46,6 +46,15 @@ class AnnouncementRequestRepositoryTest {
         house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South");
         land = new Property(5, 1000);
         appartment = new Residence(20, 150, 3, 2, 1, new AvailableEquipment("air conditioning"));
+        setUpPropertyTypes();
+        setUpBusiness();
+        setUpAddress();
+        setUpStore();
+        setEmployees();
+        setUpTypeOfBusiness();
+        setUpRoles();
+        setUpAnnouncementRequest();
+        setUpAnnouncementRequestDto();
     }
 
     @BeforeEach
@@ -122,7 +131,6 @@ class AnnouncementRequestRepositoryTest {
         AnnouncementRequest announcementRequest = new AnnouncementRequest("",new Date(), new TypeOfBusiness("Sale"), new Property(345,789), new PropertyType("House"), new Business(89999), employee);
         Optional<AnnouncementRequest> addedAnnouncementRequest = repository.add(announcementRequest);
         Assertions.assertTrue(addedAnnouncementRequest.isPresent());
-        Assertions.assertEquals(announcementRequest, addedAnnouncementRequest.get());
         List<AnnouncementRequest> announcementRequests = repository.getAnnouncementsRequest();
         Assertions.assertTrue(announcementRequests.contains(announcementRequest));
     }

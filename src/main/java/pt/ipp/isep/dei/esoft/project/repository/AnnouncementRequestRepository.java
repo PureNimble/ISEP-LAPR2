@@ -28,7 +28,7 @@ public class AnnouncementRequestRepository {
         Optional<AnnouncementRequest> newAnnouncementRequest = Optional.empty();
         boolean operationSuccess = false;
 
-        if (validateAnnouncementRequest(announcementRequest)) {
+        if (!validateAnnouncementRequest(announcementRequest)) {
             newAnnouncementRequest = Optional.of(announcementRequest);
             operationSuccess = announcementRequests.add(newAnnouncementRequest.get());
         }

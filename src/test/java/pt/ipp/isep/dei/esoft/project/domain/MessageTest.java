@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.esoft.project.repository.PublishedAnnouncementRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -14,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class MessageTest {
 
     String name = "John Doe";
-    int phoneNumber = 1234567890;
+    long phoneNumber = 1234567890;
     String description = "Test message";
     Date date = new Date();
     int initialTime = 10;
@@ -45,16 +46,16 @@ class MessageTest {
 
     @Test
     void getPhoneNumber() {
-        int actualPhoneNumber = message.getPhoneNumber();
+        long actualPhoneNumber = message.getPhoneNumber();
 
         assertEquals(phoneNumber, actualPhoneNumber);
     }
 
     @Test
     void setPhoneNumber() {
-        int newPhoneNumber = 1234567890;
+        long newPhoneNumber = 1234567890;
         message.setPhoneNumber(newPhoneNumber);
-        int actualPhoneNumber = message.getPhoneNumber();
+        long actualPhoneNumber = message.getPhoneNumber();
 
         assertEquals(newPhoneNumber, actualPhoneNumber);
     }
@@ -149,8 +150,10 @@ class MessageTest {
     @Test
     void testToString() {
         String actualString = message.toString();
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        String date1 = format.format(date);
 
-        String expectedString = "Message: \nThe client John Doe, with phone number 123456789, wants to schedule a visit from 10 until 11 at " + date.toString() + ". \n\nDescription: \nTest message \n\nProperty: \n" + p1.toString();
+        String expectedString = "Message: \nThe client John Doe, with phone number 1234567890, wants to schedule a visit from 10 until 11 at " + date1 + ". \n\nDescription: \nTest message \n\nProperty: \n" + p1.toString();
         assertEquals(expectedString, actualString);
 
     }

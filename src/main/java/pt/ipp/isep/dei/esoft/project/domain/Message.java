@@ -20,7 +20,7 @@ public class Message {
      The phone number of the client.
      */
 
-    private int phoneNumber;
+    private long phoneNumber;
 
     /**
 
@@ -64,7 +64,7 @@ public class Message {
      * @param endTime               the end time for visiting
      * @param publishedAnnouncement the published announcement
      */
-    public Message(String name, int phoneNumber, String description, Date initialDate, int initialTime, int endTime, PublishedAnnouncement publishedAnnouncement) {
+    public Message(String name, long phoneNumber, String description, Date initialDate, int initialTime, int endTime, PublishedAnnouncement publishedAnnouncement) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.description = description;
@@ -103,7 +103,7 @@ public class Message {
      *
      * @return the phone number
      */
-    public int getPhoneNumber() {
+    public long getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -112,7 +112,7 @@ public class Message {
      *
      * @param phoneNumber the phone number
      */
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

@@ -49,7 +49,7 @@ public class SendMessageUI implements Runnable {
 
         String message = requestMessage();
         String clientName = requestClientName();
-        int clientsPhoneNumber = requestPhoneNumber();
+        long clientsPhoneNumber = requestPhoneNumber();
         Date dateOfVisit = requestDate();
         initialTime = requestInitialTime();
         int endTime = requestEndTime();
@@ -135,30 +135,30 @@ public class SendMessageUI implements Runnable {
      * @return The client's phone number.
      */
 
-    private int requestPhoneNumber() {
+    private long requestPhoneNumber() {
         Scanner input = new Scanner(System.in);
         String phoneNumberString;
-        int phoneNumberInt;
+        long phoneNumberLong;
 
         do {
             do {
                 try {
                     System.out.println("Phone Number:");
-                    phoneNumberInt = input.nextInt();
+                    phoneNumberLong = input.nextLong();
                 } catch (InputMismatchException e) {
                     System.out.println("Invalid input. Please enter an integer value:");
                     input.nextLine();
-                    phoneNumberInt = -1;
+                    phoneNumberLong = -1;
                 }
-            } while (phoneNumberInt < 0);
-            phoneNumberString = Integer.toString(phoneNumberInt);
+            } while (phoneNumberLong < 0);
+            phoneNumberString = Long.toString(phoneNumberLong);
             if (phoneNumberString.length() != 10) {
                 System.out.println("A Phone Number is a number with 10 digits");
             }
 
 
         } while (phoneNumberString.length() != 10);
-        return phoneNumberInt;
+        return phoneNumberLong;
     }
 
     /**
@@ -271,7 +271,7 @@ public class SendMessageUI implements Runnable {
      * @param announcement       The published announcement.
      */
 
-    private void submitData(String message, String clientName, int clientsPhoneNumber, Date dateOfVisit,
+    private void submitData(String message, String clientName, long clientsPhoneNumber, Date dateOfVisit,
                             int initialTime, int endTime, PublishedAnnouncement announcement) {
         controller.createNewMessageToAgent(clientName, message, clientsPhoneNumber, dateOfVisit, initialTime, endTime, announcement);
     }
