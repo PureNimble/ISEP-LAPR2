@@ -17,11 +17,11 @@ import java.util.Optional;
  */
 public class PlaceOfferController {
 
-    private PublishedAnnouncementRepository publishedAnnouncementRepository = null;
+     PublishedAnnouncementRepository publishedAnnouncementRepository = null;
 
-    private AuthenticationRepository authenticationRepository = null;
+     AuthenticationRepository authenticationRepository = null;
 
-    private OfferRepository offerRepository = null;
+     OfferRepository offerRepository = null;
     /**
 
      Constructs a new instance of PlaceOfferController and initializes the repositories.

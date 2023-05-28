@@ -221,4 +221,8 @@ public class Repositories {
     public OfferRepository getOfferRepository() {
         return offerRepository;
     }
+
+    public void  setOfferRepository (OfferRepository offerRepository) {
+        this.offerRepository = offerRepository;
+    }
 }

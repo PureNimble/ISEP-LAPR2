@@ -10,7 +10,7 @@ public class Offer {
 
     private String name;
     private double orderAmount;
-    private Client client;
+//    private Client client;
     private PublishedAnnouncement publishedAnnouncement;
 
 //    private final double ORDER_AMOUNT_DEFAULT = 0;
@@ -22,13 +22,13 @@ public class Offer {
      *
      * @param name                  the name
      * @param orderAmount           the price
-     * @param client                the user
+     *                              //     * @param client                the user
      * @param publishedAnnouncement the published announcement
      */
-    public Offer(String name, double orderAmount, Client client, PublishedAnnouncement publishedAnnouncement) {
+    public Offer(String name, double orderAmount, PublishedAnnouncement publishedAnnouncement) {
         this.name = name;
         this.orderAmount = orderAmount;
-        this.client = client;
+//        this.client = client;
         this.publishedAnnouncement = publishedAnnouncement;
     }
 
@@ -54,14 +54,14 @@ public class Offer {
     public String getName() {
         return name;
     }
-    /**
-
-     Retrieves the client associated with the offer.
-     @return the client associated with the offer
-     */
-    public Client getClient() {
-        return client;
-    }
+//    /**
+//
+//     Retrieves the client associated with the offer.
+//     @return the client associated with the offer
+//     */
+//    public Client getClient() {
+//        return client;
+//    }
     /**
 
      Retrieves the published announcement associated with the offer.
@@ -86,14 +86,14 @@ public class Offer {
     public void setName(String name) {
         this.name = name;
     }
-    /**
-
-     Sets the client associated with the offer.
-     @param client the client associated with the offer
-     */
-    public void setClient(Client client) {
-        this.client = client;
-    }
+//    /**
+//
+//     Sets the client associated with the offer.
+//     @param client the client associated with the offer
+//     */
+//    public void setClient(Client client) {
+//        this.client = client;
+//    }
     /**
 
      Sets the published announcement associated with the offer.
@@ -116,7 +116,7 @@ public class Offer {
      @return a string representation of the Offer object
      */
     public String toString() {
-        return String.format("\nOffer: \nThe client %s, as submitted an offer with the following price: %s. \n\nProperty: \n%s", name, orderAmount, publishedAnnouncement.toString());
+        return String.format("\nOffer: \nThe client %s, has submitted an offer with the following price: %s. \n\nProperty: \n%s", name, orderAmount, publishedAnnouncement.toString());
 
     }
     /**
@@ -130,7 +130,7 @@ public class Offer {
         if (this == o) return true;
         if (!(o instanceof Offer)) return false;
         Offer offer = (Offer) o;
-        return Double.compare(offer.orderAmount, orderAmount) == 0 && Objects.equals(name, offer.name) && Objects.equals(client, offer.client) && Objects.equals(publishedAnnouncement, offer.publishedAnnouncement);
+        return Double.compare(offer.orderAmount, orderAmount) == 0 && Objects.equals(name, offer.name) && Objects.equals(publishedAnnouncement, offer.publishedAnnouncement);
     }
     /**
 
@@ -139,7 +139,7 @@ public class Offer {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(name, orderAmount, client, publishedAnnouncement);
+        return Objects.hash(name, orderAmount, publishedAnnouncement);
     }
 }
 
