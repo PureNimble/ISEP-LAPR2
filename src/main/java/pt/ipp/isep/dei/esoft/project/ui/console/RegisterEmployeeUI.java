@@ -25,7 +25,7 @@ public class RegisterEmployeeUI implements Runnable {
     private String street;
     private String name;
     private String employeeEmail;
-    private Integer phoneNumber;
+    private long phoneNumber;
     private String roleDescription;
     private String storeDescription;
 
@@ -283,11 +283,11 @@ public class RegisterEmployeeUI implements Runnable {
      *
      * @return the user's phone number as an integer.
      */
-    private int requestPhoneNumberDescription() {
+    private long requestPhoneNumberDescription() {
         Scanner input = new Scanner(System.in);
 
         String phoneNumberString;
-        int phoneNumberInt;
+        long phoneNumberLong;
 
         do {
 
@@ -295,17 +295,17 @@ public class RegisterEmployeeUI implements Runnable {
 
                 try {
                     System.out.println("Phone Number:");
-                    phoneNumberInt = input.nextInt();
+                    phoneNumberLong = input.nextLong();
                 } catch (InputMismatchException e) {
                     System.out.println("Invalid input. Please enter an integer value:");
                     input.nextLine();
-                    phoneNumberInt = -1;
+                    phoneNumberLong = -1;
                 }
 
-            } while (phoneNumberInt < 0);
+            } while (phoneNumberLong < 0);
 
 
-            phoneNumberString = Integer.toString(phoneNumberInt);
+            phoneNumberString = Long.toString(phoneNumberLong);
             if (phoneNumberString.length() != 10) {
                 System.out.println("A Phone Number is a number with only 10 digits");
             }
@@ -313,7 +313,7 @@ public class RegisterEmployeeUI implements Runnable {
         } while (phoneNumberString.length() != 10);
 
 
-        return phoneNumberInt;
+        return phoneNumberLong;
     }
 
     /**

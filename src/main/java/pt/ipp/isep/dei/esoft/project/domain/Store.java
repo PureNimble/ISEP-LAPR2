@@ -38,7 +38,7 @@ public class Store {
 
      The phone number of the store.
      */
-    private int phoneNumber;
+    private long phoneNumber;
     /**
 
      Constructs a {@code Store} object with a designation, an ID, an address, a phone number, and an email.
@@ -48,7 +48,7 @@ public class Store {
      @param phoneNumber the phone number of the store
      @param email the email of the store
      */
-    public Store(String designation, int id, Address address, int phoneNumber, String email) {
+    public Store(String designation, int id, Address address, long phoneNumber, String email) {
         this.designation = designation;
         this.id = id;
         this.address = address;
@@ -112,7 +112,7 @@ public class Store {
      not be added to the store
      */
     public Optional<Employee> createEmployee(String email, String name,
-                                             int phone, List<Role> roles, Store store, Address address, int passportNumber, int taxNumber) {
+                                             long phone, List<Role> roles, Store store, Address address, int passportNumber, int taxNumber) {
 
         Optional<Employee> optionalValue = Optional.empty();
 

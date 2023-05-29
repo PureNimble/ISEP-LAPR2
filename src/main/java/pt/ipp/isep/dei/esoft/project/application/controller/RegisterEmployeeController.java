@@ -183,7 +183,7 @@ public class RegisterEmployeeController {
      * @return an optional containing the new employee, or an empty optional if the Store does not exist
      */
     public Optional<Employee> createEmployee(String email, String name,
-                                             int phone, List<Role> rolesByDescription, String storeByDescription, Address address, int passportNumber, int taxNumber) {
+                                             long phone, List<Role> rolesByDescription, String storeByDescription, Address address, int passportNumber, int taxNumber) {
 
         Store store = getStoreByDescription(storeByDescription);
 

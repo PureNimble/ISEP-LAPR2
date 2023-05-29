@@ -25,7 +25,7 @@ public class Employee extends Person {
      * @param roles          the roles played by the employee
      * @param address        the address of the employee
      */
-    public Employee(String email, int passportNumber, int taxNumber, String name, int phoneNumber, Store store,
+    public Employee(String email, int passportNumber, int taxNumber, String name, long phoneNumber, Store store,
                     List<Role> roles, Address address) {
         super(email, passportNumber, taxNumber, name, address, phoneNumber);
         this.store = store;

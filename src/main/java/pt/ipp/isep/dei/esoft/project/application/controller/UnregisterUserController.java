@@ -80,7 +80,7 @@ public class UnregisterUserController {
     }
 
 
-    public void registerClient(String name, String email, int passportCardNumber, int taxNumber, int telephoneNumber, Address address) {
+    public void registerClient(String name, String email, int passportCardNumber, int taxNumber, long telephoneNumber, Address address) {
         if (address == null) {
             getUserRepository().add(new Client(email, passportCardNumber, taxNumber, name, telephoneNumber));
         }else {

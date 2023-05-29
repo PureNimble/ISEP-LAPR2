@@ -15,7 +15,7 @@ public class Client extends Person {
      * @param address        the address of the user.
      * @param phoneNumber    the phone number of the user.
      */
-    public Client(String email, int passportNumber, int taxNumber, String name, Address address, int phoneNumber) {
+    public Client(String email, int passportNumber, int taxNumber, String name, Address address, long phoneNumber) {
         super(email, passportNumber, taxNumber, name, address, phoneNumber);
     }
 
@@ -28,7 +28,7 @@ public class Client extends Person {
      * @param name           the name of the user.
      * @param phoneNumber    the phone number of the user.
      */
-    public Client(String email, int passportNumber, int taxNumber, String name, int phoneNumber) {
+    public Client(String email, int passportNumber, int taxNumber, String name, long phoneNumber) {
         super(email, passportNumber, taxNumber, name, phoneNumber);
     }
 
@@ -48,5 +48,7 @@ public class Client extends Person {
     }
 
     public String getName() { return  super.getName(); }
+
+
 }
 

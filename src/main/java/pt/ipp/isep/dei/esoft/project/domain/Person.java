@@ -13,7 +13,7 @@ public class Person {
     private int taxNumber;
     private String name;
     private Address address;
-    private int phoneNumber;
+    private long phoneNumber;
 
     /**
      * Constructs a Person object with all identifying information.
@@ -25,7 +25,7 @@ public class Person {
      * @param address        The person's address.
      * @param phoneNumber    The person's phone number.
      */
-    public Person(String email, int passportNumber, int taxNumber, String name, Address address, int phoneNumber) {
+    public Person(String email, int passportNumber, int taxNumber, String name, Address address, long phoneNumber) {
         this.email = email;
         this.passportNumber = passportNumber;
         this.taxNumber = taxNumber;
@@ -43,7 +43,7 @@ public class Person {
      * @param name           The person's name.
      * @param phoneNumber    The person's phone number.
      */
-    public Person(String email, int passportNumber, int taxNumber, String name, int phoneNumber) {
+    public Person(String email, int passportNumber, int taxNumber, String name, long phoneNumber) {
         this.email = email;
         this.passportNumber = passportNumber;
         this.taxNumber = taxNumber;
@@ -67,6 +67,46 @@ public class Person {
      */
     public String getName() {
         return name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getPassportNumber() {
+        return passportNumber;
+    }
+
+    public void setPassportNumber(int passportNumber) {
+        this.passportNumber = passportNumber;
+    }
+
+    public int getTaxNumber() {
+        return taxNumber;
+    }
+
+    public void setTaxNumber(int taxNumber) {
+        this.taxNumber = taxNumber;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public long getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(long phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     /**
