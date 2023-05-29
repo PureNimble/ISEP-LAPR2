@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <AnchorPane prefHeight="500.0" prefWidth="334.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="224.0" fitWidth="227.0" layoutX="49.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Downloads/Premium%20Vector%20_%20Home%20deal,%20house%20property%20dealer_%20icon%20template.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="23.0" layoutY="363.0" prefHeight="78.0" prefWidth="292.0" text="Real Estate App" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="500.0" prefWidth="350.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextArea layoutX="75.0" layoutY="163.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" />
+            <TextField layoutX="101.0" layoutY="225.0" promptText="Email" />
+            <PasswordField layoutX="101.0" layoutY="283.0" promptText="Password" />
+            <Button layoutX="119.0" layoutY="363.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="112.0" style="-fx-background-color: white; -fx-border-color: black;" text="LOGIN">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="17.0" layoutY="429.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="116.0" style="-fx-background-color: white; -fx-border-color: black;" text="Register">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="216.0" layoutY="429.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: white; -fx-border-color: black;" text="Dev Team">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="82.0" fitWidth="49.0" layoutX="36.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Downloads/User%20Icon%20Vector%20Illustration%20In%20Glyph%20Style%20For%20Any%20Purpose.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="76.0" fitWidth="83.0" layoutX="23.0" layoutY="263.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Downloads/Password,%20login,%20security%20icon%20-%20Free%20download%20on%20Iconfinder.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="47.0" layoutY="96.0" prefHeight="77.0" prefWidth="294.0" text="  MENU">
+               <font>
+                  <Font name="Arial Black" size="52.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>

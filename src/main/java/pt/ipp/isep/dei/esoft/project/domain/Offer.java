@@ -13,6 +13,8 @@ public class Offer {
 //    private Client client;
     private PublishedAnnouncement publishedAnnouncement;
 
+    private OfferState offerState;
+
 //    private final double ORDER_AMOUNT_DEFAULT = 0;
 //    private final String CLIENT_DEFAULT = "NO CLIENT";
 //    private final String PUBLISHED_ANNOUNCEMENT_DEFAULT = "";
@@ -25,11 +27,12 @@ public class Offer {
      *                              //     * @param client                the user
      * @param publishedAnnouncement the published announcement
      */
-    public Offer(String name, double orderAmount, PublishedAnnouncement publishedAnnouncement) {
+    public Offer(String name, double orderAmount, PublishedAnnouncement publishedAnnouncement,OfferState offerState) {
         this.name = name;
         this.orderAmount = orderAmount;
 //        this.client = client;
         this.publishedAnnouncement = publishedAnnouncement;
+        this.offerState = offerState;
     }
 
     /**
@@ -45,6 +48,15 @@ public class Offer {
 //        this.client = CLIENT_DEFAULT;
 //        this.publishedAnnouncement = PUBLISHED_ANNOUNCEMENT_DEFAULT;
 //    }
+
+
+    public OfferState getOfferState() {
+        return offerState;
+    }
+
+    public void setOfferState(OfferState offerState) {
+        this.offerState = offerState;
+    }
 
     /**
 

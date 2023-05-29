@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.domain.Offer;
 import pt.ipp.isep.dei.esoft.project.domain.Client;
+import pt.ipp.isep.dei.esoft.project.domain.OfferState;
 import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
 import pt.ipp.isep.dei.esoft.project.repository.PublishedAnnouncementRepository;
@@ -105,11 +106,12 @@ public class PlaceOfferController {
      @param publishedAnnouncement the published announcement to associate the offer with
      @return an Optional containing the created offer, or an empty Optional if the creation fails
      */
-    public Optional<Offer> createNewOfferToAgent (String name, double orderAmount, PublishedAnnouncement publishedAnnouncement) {
+    public Optional<Offer> createNewOfferToAgent (String name, double orderAmount, PublishedAnnouncement publishedAnnouncement, OfferState offerState) {
         Offer offerSent = new Offer();
         offerSent.setName(name);
         offerSent.setOrderAmount(orderAmount);
         offerSent.setPublishedAnnouncement(publishedAnnouncement);
+        offerSent.setOfferState(offerState);
         return offerRepository.add(offerSent);
     }
 }

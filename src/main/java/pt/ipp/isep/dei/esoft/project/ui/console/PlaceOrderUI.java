@@ -4,6 +4,7 @@ import pt.ipp.isep.dei.esoft.project.application.controller.PlaceOfferController
 import pt.ipp.isep.dei.esoft.project.application.controller.PublishAnnouncementController;
 import pt.ipp.isep.dei.esoft.project.domain.Client;
 import pt.ipp.isep.dei.esoft.project.domain.Offer;
+import pt.ipp.isep.dei.esoft.project.domain.OfferState;
 import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 import pt.ipp.isep.dei.esoft.project.repository.PublishedAnnouncementRepository;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
@@ -36,7 +37,7 @@ public class PlaceOrderUI implements Runnable {
         String clientName = requestClientName();
 //        Client client = requestClient();
 
-        submitData(clientName, publishedAnnouncement, offer);
+        submitData(clientName, publishedAnnouncement, offer,OfferState.pending);
 
         List<Offer> offers = controller.getOffers();
 
@@ -131,7 +132,7 @@ public class PlaceOrderUI implements Runnable {
      @param publishedAnnouncement the selected published announcement
      @param offer the offer amount
      */
-    private void submitData(String name, PublishedAnnouncement publishedAnnouncement, double offer) {
-        controller.createNewOfferToAgent(name, offer, publishedAnnouncement);
+    private void submitData(String name, PublishedAnnouncement publishedAnnouncement, double offer, OfferState offerState) {
+        controller.createNewOfferToAgent(name, offer, publishedAnnouncement,offerState);
     }
 }

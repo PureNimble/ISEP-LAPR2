@@ -1,12 +1,11 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.Offer;
+import pt.ipp.isep.dei.esoft.project.domain.OfferState;
 import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+
 /**
 
  The OfferRepository class is responsible for managing the storage and retrieval of offers.
@@ -86,4 +85,68 @@ public class OfferRepository {
 
         return resultList;
     }
+
+    public List<Offer> getOffersByAreaAscending(){
+        List<Offer> resultList = new ArrayList<Offer>();
+
+        for (Offer offer : offers) {
+            if (offer.getOfferState().equals(OfferState.accepted)){
+                resultList.add(offer);
+            }
+        }
+
+
+        resultList.sort(new Comparator<Offer>() {
+            @Override
+            public int compare(Offer o1, Offer o2) {
+                int area1 = o1.getPublishedAnnouncement().getProperty().getArea();
+
+                int area2 = o2.getPublishedAnnouncement().getProperty().getArea();
+
+                if (area1 < area2){
+                    return -1;
+                }else if (area1 > area2){
+                    return 1;
+                }else {
+                    return 0;
+                }
+
+            }
+        });
+
+
+
+        return resultList;
+    }
+
+    public List<Offer> getOffersByAreaDescending(){
+        List<Offer> resultList = new ArrayList<Offer>();
+
+        for (Offer offer : offers) {
+            if (offer.getOfferState().equals(OfferState.accepted)){
+                resultList.add(offer);
+            }
+        }
+
+        resultList.sort(new Comparator<Offer>() {
+            @Override
+            public int compare(Offer o1, Offer o2) {
+                int area1 = o1.getPublishedAnnouncement().getProperty().getArea();
+
+                int area2 = o2.getPublishedAnnouncement().getProperty().getArea();
+
+                if (area1 > area2){
+                    return -1;
+                }else if (area1 < area2){
+                    return 1;
+                }else {
+                    return 0;
+                }
+            }
+        });
+
+        return resultList;
+    }
+
+
 }

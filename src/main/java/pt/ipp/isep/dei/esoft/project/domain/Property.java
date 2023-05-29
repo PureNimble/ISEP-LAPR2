@@ -20,6 +20,15 @@ public class Property {
         this.distanceFromCityCenter = distanceFromCityCenter;
         this.area = area;
     }
+
+    public int getDistanceFromCityCenter() {
+        return distanceFromCityCenter;
+    }
+
+    public int getArea() {
+        return area;
+    }
+
     /**
 
      Returns a string representation of the Property object.
