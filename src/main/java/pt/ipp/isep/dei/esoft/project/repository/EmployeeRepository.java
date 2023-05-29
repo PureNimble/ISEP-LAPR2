@@ -1,9 +1,11 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.Employee;
+import pt.ipp.isep.dei.esoft.project.domain.Store;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Comparator;
 import java.util.Optional;
 
 /**
@@ -89,6 +91,23 @@ public class EmployeeRepository {
             }
         }
         return null;
+    }
+
+    public List<Employee> getEmployeesAllphabeticallySorted(List<Store> storesList){
+        List<Employee> resultList = new ArrayList<Employee>();
+
+        for (Store stores: storesList){
+            List<Employee> tempList = new ArrayList<Employee>();
+            for (Employee employee: employees){
+                if (employee.getStore().equals(stores)){
+                    tempList.add(employee);
+                }
+            }
+            tempList.sort(Comparator.comparing(Employee::getEmployeeName));
+            resultList.addAll(tempList);
+        }
+
+        return resultList;
     }
 
 }

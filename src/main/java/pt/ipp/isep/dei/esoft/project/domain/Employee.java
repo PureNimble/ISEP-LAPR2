@@ -61,6 +61,16 @@ public class Employee extends Person {
     }
 
 
+    /**
+     * Returns a string representation of the Employee object.
+     * 
+     * @return a string representation of the Employee object
+     */
+    public String getEmployeeName(){
+        return super.getName();
+    }
+
+
 
 
     public String toString() {
