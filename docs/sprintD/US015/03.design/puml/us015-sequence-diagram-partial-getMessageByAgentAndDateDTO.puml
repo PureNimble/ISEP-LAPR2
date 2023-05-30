@@ -1,0 +1,81 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+
+title US015 - Sequence Diagram Partial (Get Message By Agent And Date DTO)
+
+ 'hide footbox
+
+ participant ":XMapper" as Mapper
+ participant "listOfMessagesDTO:List<Messages>" as listMessagesDTO
+ participant "listOfMessages:List<Messages>" as listMessages
+
+
+autonumber 21
+        -> Mapper : toDTO(messageListByAgentAndDate)
+             activate Mapper
+
+             group Get Message By Agent And Date DTO
+
+
+             Mapper --> listMessagesDTO** : create()
+
+             loop
+
+             Mapper -> listMessages: clientName = clientName()
+             activate listMessages
+
+             Mapper -[hidden]> listMessages
+             deactivate listMessages
+
+             Mapper -> listMessages : clientPhoneNumber = clientPhoneNumber()
+             activate listMessages
+
+             Mapper -[hidden]> listMessages
+             deactivate listMessages
+
+             Mapper -> listMessages : date = date()
+             activate listMessages
+
+             Mapper -[hidden]> listMessages
+             deactivate listMessages
+
+             Mapper -> listMessages : initialTime = initialTime()
+             activate listMessages
+
+             Mapper -[hidden]> listMessages
+             deactivate listMessages
+
+              Mapper -> listMessages : endTime = endTime()
+              activate listMessages
+
+              Mapper -[hidden]> listMessages
+              deactivate listMessages
+
+              Mapper -> listMessages : description = description ()
+              activate listMessages
+
+              Mapper -[hidden]> listMessages
+              deactivate listMessages
+
+              Mapper -> Mapper : messageDTO = toDTO(clientName, clientPhoneNumber, description, date, initialTime, endTime)
+              activate Mapper
+              deactivate Mapper
+
+              Mapper --> listMessagesDTO**: create(...)
+
+              Mapper --> listMessagesDTO : add(messageDTO)
+              activate listMessagesDTO
+              deactivate listMessagesDTO
+
+             end
+
+             end
+
+ <--- Mapper : messageListByAgentAndDate
+             deactivate Mapper
+
+@enduml

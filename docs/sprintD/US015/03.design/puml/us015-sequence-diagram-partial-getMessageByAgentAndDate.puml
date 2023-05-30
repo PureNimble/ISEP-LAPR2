@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+
+ participant ":DisplayMessageController" as CTRL
+ participant ":Repositories" as Repository
+ participant "repositories\n:Repositories" as repository2
+ participant "messageRepository:\nMessageRepository" as MessageRepository
+
+ title US015 - Sequence Diagram Partial (Get Message By Agent And Date)
+
+autonumber 15
+
+group Get Message By Agent And Date
+
+activate CTRL
+    CTRL -> Repository : getInstance()
+             activate Repository
+
+             Repository --> CTRL : repositories:Repositories
+             deactivate Repository
+
+             CTRL -> repository2 : getMessageRepository()
+             activate repository2
+
+             repository2 --> CTRL : messageRepository
+             deactivate repository2
+
+             CTRL -> MessageRepository : getMessageRequestListByAgentAndDate\n(employeeByEmail, beginDate, endDate)
+             activate MessageRepository
+
+             MessageRepository --> CTRL : messageRequestListByAgentAndDate
+             deactivate MessageRepository
+
+             end
+@enduml

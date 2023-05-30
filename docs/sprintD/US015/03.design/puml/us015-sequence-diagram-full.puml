@@ -5,7 +5,7 @@ skinparam shadowing false
 
 autonumber
 
-title Sequence Diagram (SD) - US015
+title Sequence Diagram Full - US015
 
 'hide footbox
 actor "Agent" as Agent
@@ -17,9 +17,11 @@ participant "messageRepository:\nMessageRepository" as MessageRepository
 participant ":ApplicationSession" as app
 participant "appSession\n:ApplicationSession" as APP
 participant "currentSession\n:UserSession" as User
+participant "employeeRepository\n:Employee Repository" as Employee
 
-participant ":XMapper" as XMapper
-participant "listOfMessagesDTO:List<Messages>" as listMessages
+participant ":XMapper" as Mapper
+participant "listOfMessagesDTO:List<Messages>" as listMessagesDTO
+participant "listOfMessages:List<Messages>" as listMessages
 
 
 activate Agent
@@ -31,47 +33,126 @@ activate Agent
             UI -> CTRL** : create
 
              UI --> Agent : requests an initial date and an end date for list the requests
+             deactivate UI
 
+             Agent -> UI :  types requested data (begin date, end date)
+             activate UI
 
+             UI -> CTRL : getListBooking()
+             activate CTRL
 
+             CTRL -> CTRL : getAgentFromSession
 
+             CTRL -> app : getInstance()
+             activate app
 
+            app --> CTRL : appSession
+            deactivate app
 
+            CTRL -> APP : getCurrentSession()
+            activate APP
 
+            APP --> CTRL : currentSession
+            deactivate APP
 
+            CTRL -> User : email = getUserEmail()
+            activate User
 
-            UI -> CTRL : getTaskCategories()
-            activate CTRL
+            User --> CTRL : email
+            deactivate User
 
-                CTRL -> Repository : getInstance()
-                activate Repository
+            CTRL -> Employee : getAgemntByEmail()
+            activate Employee
 
-                    Repository --> CTRL: repositories
-                deactivate Repository
+            Employee --> CTRL : agentByEmail
+            deactivate Employee
 
-                CTRL -> repository2 : getTaskCategoryRepository()
-                activate repository2
+            CTRL -> Repository : getInstance()
+            activate Repository
 
-                    repository2 --> CTRL: taskCategoryRepository
-                deactivate repository2
+            Repository --> CTRL : repositories:Repositories
+            deactivate Repository
 
-                CTRL -> MessageRepository : getTaskCategories()
-                activate MessageRepository
+            CTRL -> repository2 : getMessageRepository()
+            activate repository2
 
-                    MessageRepository --> CTRL : taskCategoryList
-                deactivate MessageRepository
+            repository2 --> CTRL : messageRepository
+            deactivate repository2
 
-                CTRL --> UI : taskCategoryList
+            CTRL -> MessageRepository : getMessageRequestListByAgentAndDate\n(employeeByEmail, beginDate, endDate)
+            activate MessageRepository
+
+            MessageRepository --> CTRL : messageRequestListByAgentAndDate
+            deactivate MessageRepository
+
+            CTRL -> Mapper : toDTO(messageListByAgentAndDate)
+            activate Mapper
+
+            Mapper --> listMessagesDTO** : create()
+
+            loop
+
+            Mapper -> listMessages: clientName = clientName()
+            activate listMessages
+
+            Mapper -[hidden]> listMessages
+            deactivate listMessages
+
+            Mapper -> listMessages : clientPhoneNumber = clientPhoneNumber()
+            activate listMessages
+
+            Mapper -[hidden]> listMessages
+            deactivate listMessages
+
+            Mapper -> listMessages : date = date()
+            activate listMessages
+
+            Mapper -[hidden]> listMessages
+            deactivate listMessages
+
+            Mapper -> listMessages : initialTime = initialTime()
+            activate listMessages
+
+            Mapper -[hidden]> listMessages
+            deactivate listMessages
+
+             Mapper -> listMessages : endTime = endTime()
+             activate listMessages
+
+             Mapper -[hidden]> listMessages
+             deactivate listMessages
+
+             Mapper -> listMessages : description = description ()
+             activate listMessages
+
+             Mapper -[hidden]> listMessages
+             deactivate listMessages
+
+             Mapper -> Mapper : messageDTO = toDTO(clientName, clientPhoneNumber, description, date, initialTime, endTime)
+             activate Mapper
+             deactivate Mapper
+
+             Mapper --> listMessagesDTO**: create(...)
+
+             Mapper --> listMessagesDTO : add(messageDTO)
+             activate listMessagesDTO
+             deactivate listMessagesDTO
+
+            end
+
+            Mapper --> CTRL : messageListByAgentAndDate
+            deactivate Mapper
+
+            CTRL --> UI : messageListByAgentAndDate
             deactivate CTRL
 
-            UI --> Agent : requests an initial date and an end date for list the requests
-        deactivate UI
-
-    Agent -> UI : types requested data (begin date, end date)
-    activate UI
-
-        UI --> Agent : shows all booking requests sorted by date in ascending order
+        UI --> Agent : shows all booking requests sorted by date in ascending order\nand requests confirmation
     deactivate UI
+
+        Agent -> UI : submits data
+        activate UI
+
+        UI --> Agent : displays operation success
     deactivate Agent
 
 

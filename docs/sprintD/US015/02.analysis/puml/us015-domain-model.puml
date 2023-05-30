@@ -36,92 +36,92 @@ title Domain Model - US015
  }
 
 
-' class Address {
-'     Street
-'     Zip Code
-' }
-'
-' class City {
-'     City name
-' }
-'
-' class District {
-'     District name
-' }
-'
-' class State {
-'     State name
-' }
-'
-' State "1" -down- "*" District: has >
-' District "1" -down- "*" City: has >
-' Address "*" -down- "1" State: has <
-'class Client {
- '
- '}
- '
- '
- 'class Residence {
- '    Number of Bedrooms
- '    Number of Bathrooms
- '    Number of Parking Spaces
- '}
- '
- 'class Property {
- '    Area
- '    Photos
- '    Distance from the city center
- '}
- '
- 'class TypeOfProperty{
- '    Type
- '}
- '
- 'class Photos {
- '    URI
- '}
- '
- 'class House {
- '    Basement
- '    Inhabitable loft
- '}
- '
- 'class SunExposure {
- '    Direction
- '}
- '
- 'class AvailableEquipment {
- '    Equipment
- '}
- '
- 'Residence <|-down- House
- 'Property <|-down- Residence
- 'Property "1" -left-- "1..30" Photos: has >
- 'SunExposure "1" -up- "*" House: contains <
- 'Address "1" -up- "1" Property: has <
- 'AvailableEquipment "*" -up- "1" Residence: contains <
- 'TypeOfProperty "1" -down-- "1" Property: defines >
- '
- '
- 'class Rent {
- '    Duration of contract
- '}
- '
- 'class Business {
- '    Requested price
- '}
- '
- 'class PublishedAnnouncement {
- '    Contract type
- '}
- '
- '
- 'Property "1" --- "1" Business: has a <
- 'PublishedAnnouncement "1" --- "1" Business: has a <
- 'Business <|--- Rent
- 'Message "*" --- "1" PublishedAnnouncement: can have a <
-   'Client "1" --- "1..*" Message: leaves a >
-   'Agent "1" --- "*" PublishedAnnouncement: publishes an >
+ class Address {
+     Street
+     Zip Code
+ }
+
+ class City {
+     City name
+ }
+
+ class District {
+     District name
+ }
+
+ class State {
+     State name
+ }
+
+ State "1" -down- "*" District: has >
+ District "1" -down- "*" City: has >
+ Address "*" -down- "1" State: has <
+class Client {
+
+ }
+
+
+ class Residence {
+     Number of Bedrooms
+     Number of Bathrooms
+     Number of Parking Spaces
+ }
+
+ class Property {
+     Area
+     Photos
+     Distance from the city center
+ }
+
+ class TypeOfProperty{
+     Type
+ }
+
+ class Photos {
+     URI
+ }
+
+ class House {
+     Basement
+     Inhabitable loft
+ }
+
+ class SunExposure {
+     Direction
+ }
+
+ class AvailableEquipment {
+     Equipment
+ }
+
+ Residence <|-down- House
+ Property <|-down- Residence
+ Property "1" -left-- "1..30" Photos: has >
+ SunExposure "1" -up- "*" House: contains <
+ Address "1" -up- "1" Property: has <
+ AvailableEquipment "*" -up- "1" Residence: contains <
+ TypeOfProperty "1" -down-- "1" Property: defines >
+
+
+ class Rent {
+     Duration of contract
+ }
+
+ class Business {
+     Requested price
+ }
+
+ class PublishedAnnouncement {
+     Contract type
+ }
+
+
+ Property "1" --- "1" Business: has a <
+ PublishedAnnouncement "1" --- "1" Business: has a <
+ Business <|--- Rent
+ Message "*" --- "1" PublishedAnnouncement: can have a <
+   Client "1" --- "1..*" Message: leaves a >
+   Agent "1" --- "*" PublishedAnnouncement: publishes an >
 
 Agent "1" --- "1" Message: wants to see a list of >
 Person <|-- Employee

@@ -1,92 +1,85 @@
 @startuml
-skinparam monochrome true
-skinparam packageStyle rectangle
-skinparam shadowing false
+ skinparam monochrome true
+ skinparam packageStyle rectangle
+ skinparam shadowing false
 
-autonumber
+ autonumber
 
-'hide footbox
-actor "Organization Employee" as ADM
-participant ":CreateTaskUI" as UI
-participant ":CreateTaskController" as CTRL
-participant "organization\n:Organization" as ORG
+ title Sequence Diagram Split - US015
 
-activate ADM
+ 'hide footbox
+ actor "Agent" as Agent
+ participant ":DisplayMessageUI" as UI
+ participant ":DisplayMessageController" as CTRL
+ participant ":Repositories" as Repository
+ participant "repositories\n:Repositories" as repository2
+ participant "messageRepository:\nMessageRepository" as MessageRepository
+ participant ":ApplicationSession" as app
+ participant "appSession\n:ApplicationSession" as APP
+ participant "currentSession\n:UserSession" as User
+ participant "employeeRepository\n:Employee Repository" as Employee
+ participant ":XMapper" as Mapper
+ participant "listOfMessagesDTO:List<Messages>" as listMessagesDTO
+ participant "listOfMessages:List<Messages>" as listMessages
 
-    ADM -> UI : asks to create a new task
 
-    activate UI
+ activate Agent
 
-        UI -> CTRL** : create
-        UI -> CTRL : getTaskCategories()
-        ref over CTRL
-            Get Task Category List
+         Agent -> UI : asks to list all booking requests for properties managed by him
 
-        end ref
+         activate UI
 
-        activate CTRL
+             UI -> CTRL** : create
 
-            CTRL --> UI : taskCategoryList
-        deactivate CTRL
+              UI --> Agent : requests an initial date and an end date for list the requests
+              deactivate UI
 
-        UI --> ADM : shows task category list and asks to sleect one
-    deactivate UI
+              Agent -> UI :  types requested data (begin date, end date)
+              activate UI
 
-    ADM -> UI : selects a task category
-    activate UI
-
-        UI --> ADM : requests data
-    deactivate UI
-
-    ADM -> UI : types requested data (reference, description,\ninformal description, technical description,\nduration, cost)
-    activate UI
-
-        UI --> ADM : shows selected category and requested data
-    deactivate UI
-
-    ADM -> UI : submits data
-    activate UI
-
-        UI -> CTRL : createTask(reference, description, informalDescription,\ntechnicalDescription,duration, cost, taskCategoryDescription)
-        activate CTRL
-
-            CTRL -> CTRL : getTaskCategoryByDescription(taskCategoryDescription)
-            activate CTRL
+              UI -> CTRL : getListBooking()
+              activate CTRL
 
                 ref over CTRL
-                    Get Task Category Object
 
-                end ref
-
-                CTRL --> CTRL : taskCategory
-            deactivate CTRL
-
-            CTRL -> CTRL : getEmployeeFromSession()
-            activate CTRL
-
-                ref over CTRL
-                    Get Employee
-
-                end ref
-                CTRL -> CTRL : employee
-            deactivate CTRL
-
-            CTRL -> ORG: createTask(reference, description, informalDescription,\ntechnicalDescription, duration, cost, taskCategory, employee)
-            activate ORG
-
-                ref over ORG
-                    Create Task
+                    Get Employee By Email
 
                 end
 
-                ORG --> CTRL : task
-            deactivate ORG
 
-            CTRL --> UI: task
-            deactivate CTRL
-            UI --> ADM: displays operation success
-    deactivate UI
+             ref over CTRL
 
-deactivate ADM
+             Get Message List By Agent And Date
 
-@enduml
+             end
+
+             autonumber 21
+
+             CTRL -> Mapper : toDTO(messageListByAgentAndDate)
+             activate Mapper
+
+             ref over Mapper
+
+             Get Message By Agent And Date DTO
+
+             end
+
+             autonumber 38
+
+             Mapper --> CTRL : messageListByAgentAndDate
+             deactivate Mapper
+
+             CTRL --> UI : messageListByAgentAndDate
+             deactivate CTRL
+
+         UI --> Agent : shows all booking requests sorted by date in ascending order\nand requests confirmation
+     deactivate UI
+
+         Agent -> UI : submits data
+         activate UI
+
+         UI --> Agent : displays operation success
+     deactivate Agent
+
+
+ @enduml
