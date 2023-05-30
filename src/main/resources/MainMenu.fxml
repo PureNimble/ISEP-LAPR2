@@ -44,14 +44,14 @@
                   <Font name="Arial Black" size="12.0" />
                </font>
             </Button>
-            <ImageView fitHeight="82.0" fitWidth="49.0" layoutX="36.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="29.0" fitWidth="30.0" layoutX="61.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Photos%20App/user-icon-2098873_1280.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="76.0" fitWidth="83.0" layoutX="23.0" layoutY="263.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="49.0" fitWidth="54.0" layoutX="51.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../Downloads/Password,%20login,%20security%20icon%20-%20Free%20download%20on%20Iconfinder.png" />
+                  <Image url="@../../../Photos%20App/lock-5493998_1280.png" />
                </image>
             </ImageView>
             <Label layoutX="47.0" layoutY="96.0" prefHeight="77.0" prefWidth="294.0" text="  MENU">
