@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.esoft.project.ui;
 
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.MainMenuUI;
 
-public class Main {
+public class Main{
 
     public static void main(String[] args) {
         Bootstrap bootstrap = new Bootstrap();
