@@ -1,0 +1,78 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+title Sequence Diagram (SD) - US015
+
+'hide footbox
+actor "Agent" as Agent
+participant ":DisplayMessageUI" as UI
+participant ":DisplayMessageController" as CTRL
+participant ":Repositories" as Repository
+participant "repositories\n:Repositories" as repository2
+participant "messageRepository:\nMessageRepository" as MessageRepository
+participant ":ApplicationSession" as app
+participant "appSession\n:ApplicationSession" as APP
+participant "currentSession\n:UserSession" as User
+
+participant ":XMapper" as XMapper
+participant "listOfMessagesDTO:List<Messages>" as listMessages
+
+
+activate Agent
+
+        Agent -> UI : asks to list all booking requests for properties managed by him
+
+        activate UI
+
+            UI -> CTRL** : create
+
+             UI --> Agent : requests an initial date and an end date for list the requests
+
+
+
+
+
+
+
+
+
+            UI -> CTRL : getTaskCategories()
+            activate CTRL
+
+                CTRL -> Repository : getInstance()
+                activate Repository
+
+                    Repository --> CTRL: repositories
+                deactivate Repository
+
+                CTRL -> repository2 : getTaskCategoryRepository()
+                activate repository2
+
+                    repository2 --> CTRL: taskCategoryRepository
+                deactivate repository2
+
+                CTRL -> MessageRepository : getTaskCategories()
+                activate MessageRepository
+
+                    MessageRepository --> CTRL : taskCategoryList
+                deactivate MessageRepository
+
+                CTRL --> UI : taskCategoryList
+            deactivate CTRL
+
+            UI --> Agent : requests an initial date and an end date for list the requests
+        deactivate UI
+
+    Agent -> UI : types requested data (begin date, end date)
+    activate UI
+
+        UI --> Agent : shows all booking requests sorted by date in ascending order
+    deactivate UI
+    deactivate Agent
+
+
+@enduml

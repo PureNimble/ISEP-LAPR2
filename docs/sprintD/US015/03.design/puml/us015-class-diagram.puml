@@ -7,7 +7,7 @@ skinparam linetype polyline
 
 skinparam classAttributeIconSize 0
 
-'left to right direction
+title Class Diagram (CD) - US015
 
 class ApplicationSession
 {

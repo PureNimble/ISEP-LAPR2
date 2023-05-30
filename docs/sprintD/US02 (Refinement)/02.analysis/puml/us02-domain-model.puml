@@ -1,0 +1,138 @@
+@startuml
+
+skinparam groupInheritance 2
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+'skinparam linetype ortho
+'left to right direction
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+title US002 - Domain Model
+
+class Address {
+    Street
+    Zip Code
+}
+
+class City {
+    City name
+}
+
+class District {
+    District name
+}
+
+class State {
+    State name
+}
+
+State "1" -up-- "*" District: has >
+District "1" -up-- "*" City: has >
+Address "*" -up-- "1" State: has <
+
+
+class Contacts {
+    Phone Number
+    Email Adress
+}
+
+class Business {
+    Requested price
+}
+
+class Store {
+    ID
+    Designation
+}
+
+class User {
+    Password
+}
+
+User "1" -down-- "1" Contacts: has >
+Store "1" -right-- "1" Contacts: has >
+Address "1" -left-- "1" User: has <
+User "1" -down-- "1" Store: contacts >
+Agent "*" -up-- "1" Store: has <
+
+
+class Residence {
+    Number of Bedrooms
+    Number of Bathrooms
+    Number of Parking Spaces
+}
+
+class Property {
+    Area
+    Photos
+    Distance from the city center
+}
+
+class TypeOfProperty{
+    Type
+}
+
+class Photos {
+    URI
+}
+
+class House {
+    Basement
+    Inhabitable loft
+}
+
+class SunExposure {
+    Direction
+}
+
+class AvailableEquipment {
+    Equipment
+}
+
+Residence <|-down- House
+Property <|-down- Residence
+Property "1" -left-- "1..30" Photos: has >
+SunExposure "1" -up-- "*" House: contains <
+Address "1" -up-- "1" Property: has <
+User "1" -down-- "*" Property: has >
+AvailableEquipment "*" -up-- "1" Residence: contains <
+TypeOfProperty "1" -down-- "1" Property: defines >
+
+
+class Comission {
+    Value
+}
+
+class ComissionPercentage {
+    Percentage value
+}
+
+class Rent {
+    Duration of contract
+}
+
+class AnnouncementRequest {
+    Initial date
+}
+
+class PublishedAnnouncement {
+    Contract type
+}
+
+Comission "1" -right-- "1" Agent: defines <
+Comission "1" --- "1" Business: contains <
+User "1" --- "1" Business: requests >
+Property "1" --- "1" Business: has a <
+AnnouncementRequest "1" --- "1" Business: has >
+Agent "1" --- "1" AnnouncementRequest : reviews >
+AnnouncementRequest "1" --- "1" Property: has a >
+AnnouncementRequest  <|---  PublishedAnnouncement
+PublishedAnnouncement "*" --- "1" Agent: publishes <
+PublishedAnnouncement "1" --- "1" Business: has a <
+Business <|--- Rent
+Comission <|-- ComissionPercentage
+
+@enduml

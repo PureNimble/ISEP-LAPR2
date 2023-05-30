@@ -1,0 +1,33 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - US015
+
+autonumber
+
+actor "Agent" as Agent
+participant ":System" as System
+
+activate Agent
+
+    Agent -> System : asks to list all booking requests for properties managed by him
+    activate System
+
+        System --> Agent : requests an initial date and an end date for list the requests
+    deactivate System
+
+    Agent -> System : types requested data (begin date, end date)
+    activate System
+
+        System --> Agent : shows all booking requests sorted by date in ascending order
+    deactivate System
+
+        Agent -> System : sumbits data
+    activate System
+
+        System --> Agent : displays operation success
+    deactivate System
+
+@enduml
