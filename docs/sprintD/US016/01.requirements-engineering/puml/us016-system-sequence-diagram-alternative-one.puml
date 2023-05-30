@@ -1,0 +1,34 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US016 - System Sequence Diagram - Alternative One
+
+autonumber
+
+actor "Agent" as Agent
+participant ":System" as System
+
+activate Agent
+
+Agent -> System : asks to see the schedule requests
+activate System
+
+System --> Agent : shows the schedule requests
+deactivate System
+
+Agent -> System : selects the desired schedule request to respond
+activate System
+
+System --> Agent : shows the desired schedule request
+deactivate System
+
+Agent -> System : submits data
+activate System
+
+System --> Agent : display operation success
+deactivate System
+
+@enduml

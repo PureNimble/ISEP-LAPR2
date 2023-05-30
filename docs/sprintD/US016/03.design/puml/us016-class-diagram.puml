@@ -1,0 +1,9 @@
+@startuml
+
+title US016 - Class Diagram
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+
+@enduml
