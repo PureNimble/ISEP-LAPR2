@@ -6,7 +6,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <AnchorPane prefHeight="500.0" prefWidth="334.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
@@ -47,7 +46,7 @@
             </Button>
             <ImageView fitHeight="82.0" fitWidth="49.0" layoutX="36.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../Downloads/User%20Icon%20Vector%20Illustration%20In%20Glyph%20Style%20For%20Any%20Purpose.jpg" />
+                  <Image url="@../../../Photos%20App/user-icon-2098873_1280.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="76.0" fitWidth="83.0" layoutX="23.0" layoutY="263.0" pickOnBounds="true" preserveRatio="true">

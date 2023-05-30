@@ -1,0 +1,47 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - Alternative One
+
+autonumber
+
+actor "Network Manager" as NetworkManager
+participant ":System" as System
+
+activate NetworkManager
+
+    NetworkManager -> System : asks to see list of deals made
+    activate System
+
+        System --> NetworkManager : requests filter criteria(ascending/descending by area)
+    deactivate System
+
+alt ascending
+NetworkManager -> System : chooses ascending criteria by area
+    activate System
+
+        System --> NetworkManager : shows deals made list by ascending area
+    deactivate System
+
+end
+
+   alt descending
+   NetworkManager -> System : chooses descending criteria by area
+       activate System
+
+           System --> NetworkManager : shows deals made list by descending area
+       deactivate System
+
+   end
+
+   NetworkManager -> System : submits data
+   activate System
+
+   System --> NetworkManager : displays operation sucess
+   deactivate System
+
+
+
+@enduml
