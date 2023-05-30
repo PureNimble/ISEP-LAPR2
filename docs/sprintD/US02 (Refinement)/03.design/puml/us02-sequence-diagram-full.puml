@@ -1,0 +1,277 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US002 - Sequence Diagram Full
+
+autonumber
+
+'hide footbox
+actor "Agent" as Agent
+participant ":PublishUI" as UI
+participant ":PublishController" as CTRL
+participant ":Repositories" as Repository
+participant "repositories\n:Repositories" as Repository2
+participant "UserIdentityRepository:\nUser Identity Repository" as UserRepository
+participant "propertyTypesRepository:\nProperty Type Repository" as PropertyTypeRepository
+participant "typesComissionRepository:\n Types Commission Repository" as typesComissionRepository
+participant "typesOfBusinessRepository: \nTypes Of Business Repository" as typesOfBusinessRepository
+participant "announcementRepository\n:Announcement Repository" as announcementRepository
+participant "announcement:\nAnnouncement" as announcement
+
+activate Agent
+
+        Agent -> UI : asks to publish an announcement
+
+        activate UI
+
+            UI --> CTRL** : create
+            UI --> Agent : requests User identity
+                    deactivate UI
+
+
+
+    Agent -> UI : inserts the User email
+    activate UI
+
+            UI --> CTRL : getUserInformation()
+
+                activate CTRL
+
+                    CTRL -> Repository : getInstance()
+                    activate Repository
+
+                    Repository --> CTRL : repositories
+                    deactivate Repository
+
+                    CTRL -> Repository2 : getUserInformationRepository()
+                    activate Repository2
+
+                    Repository2 --> CTRL : UserInformationRepository
+                    deactivate Repository2
+
+                    CTRL -> UserRepository : getUserInformation()
+
+                        activate UserRepository
+
+                    UserRepository --> CTRL : User Information
+
+                       deactivate UserRepository
+
+            CTRL --> UI : User Information
+
+                deactivate CTRL
+
+
+            UI --> Agent : shows User information
+        deactivate UI
+
+    Agent -> UI : confirms User identity
+        activate UI
+
+         UI --> CTRL : getPropertyType()
+         activate CTRL
+
+        CTRL -> Repository : getInstance()
+        activate Repository
+
+        Repository --> CTRL : repositories
+        deactivate Repository
+
+        CTRL -> Repository2 : getPropertyTypeRepository()
+        activate Repository2
+
+        Repository2 --> CTRL : propertyTypeRepository
+        deactivate Repository2
+
+
+                CTRL -> PropertyTypeRepository : getPropertyType()
+                activate PropertyTypeRepository
+
+                PropertyTypeRepository --> CTRL : Property Type
+                deactivate PropertyTypeRepository
+
+            CTRL --> UI : Property Type
+            deactivate CTRL
+
+            UI --> Agent : list and request the property type
+        deactivate UI
+
+    Agent -> UI : chooses the property type
+    activate UI
+
+    UI --> UI : keepTypeOfProperty(propertyDescription)
+
+        UI --> Agent : requests property data
+    deactivate UI
+
+    Agent -> UI : types requested data [area in m^2, state, district, city, street, zip code and distance from city center]
+            activate UI
+
+            UI -->UI : keepData(area in m^2, state, district, city, street, zip code and distance from city center)
+
+        opt house, apartment
+
+            Agent -> UI : types requested data [number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning)]
+
+            UI --> UI : keepData(number of bedrooms, number of bathrooms, number \nof parking spaces, available equipment (central heating \nand/or airconditioning))
+
+            opt house
+
+                Agent -> UI : types requested data [the existence of a basement and/or inhabitable loft, sun exposure \n(North, South, East, West)]
+
+                UI-->UI : keepData(the existence of a basement and/or inhabitable loft, sun \nexposure (North, South, East, West))
+            end
+        end
+
+UI ---> Agent : saves all data and asks for photos of the property
+        deactivate UI
+
+    loop Sends photos (from 1 up to 30 pictures)
+
+        Agent -> UI : sends photos of the property
+        activate UI
+
+            UI-->UI : keepsData(propertyPhotos)
+        end
+
+           UI --> CTRL : getTypeComission()
+           activate CTRL
+
+           CTRL -> Repository : getInstance()
+           activate Repository
+
+           Repository --> CTRL : repositories
+           deactivate Repository
+
+           CTRL -> Repository2 : getTypeComissionRepository()
+           activate Repository2
+
+           Repository2 --> CTRL : typeComissionRepository
+           deactivate Repository2
+
+                CTRL -> typesComissionRepository : getTypeComission()
+                activate typesComissionRepository
+
+                typesComissionRepository --> CTRL : Type Comission
+                deactivate typesComissionRepository
+
+           CTRL --> UI : Type Comission
+           deactivate CTRL
+
+
+        UI --> Agent: asks for the Comission Type
+    deactivate UI
+
+    Agent --> UI : chooses the Comission Type
+    activate UI
+
+    UI --> UI: keepsData(typeComission)
+
+    UI --> Agent : requestes comission data
+    deactivate UI
+
+            alt percentage
+
+                Agent -> UI : inserts the percentage comission
+
+                UI --> UI : keepsData(percentage)
+                    activate UI
+
+                else value
+
+                    Agent -> UI: inserts the comission value
+
+                    UI --> UI : keepsData(value)
+
+                end
+
+                UI --> CTRL : getTypeOfBusiness()
+                activate CTRL
+
+                CTRL -> Repository : getInstance()
+                activate Repository
+
+                Repository --> CTRL : repositories
+                deactivate Repository
+
+                CTRL -> Repository2 : getTypeBusinessRepository()
+                activate Repository2
+
+                Repository2 --> CTRL : typeOfBusinessRepository
+                deactivate Repository2
+
+                CTRL --> typesOfBusinessRepository : getTypeOfBusiness()
+                activate typesOfBusinessRepository
+
+                typesOfBusinessRepository --> CTRL : Type of Business
+                deactivate typesOfBusinessRepository
+
+                CTRL --> UI : Type of Business
+                deactivate CTRL
+
+               UI-->Agent : Asks for the type of business and requested price
+                deactivate UI
+
+    alt sale
+
+            Agent -> UI : types the requested data [Requested price]
+                activate UI
+
+                UI --> UI : keepsData(typeOfBusiness, price)
+
+            else rent
+
+                Agent -> UI : types the requested data [Requested fee and contract duration]
+
+                UI --> UI : keepsData(typeOfBusiness, fee, contractDuration)
+
+        end
+
+
+        UI -> CTRL : createAnnouncement(propertyData)
+                        activate CTRL
+
+                        CTRL -> CTRL : Property Type
+
+                                CTRL -> Repository : getInstance()
+                                activate Repository
+
+                                    Repository --> CTRL: repositories
+                                deactivate Repository
+
+                                CTRL -> Repository2 : getPublishRepository()
+                                activate Repository2
+
+                                    Repository2 --> CTRL : publishRepository
+                                deactivate Repository2
+
+                                CTRL -> announcementRepository : createAnnouncement(propertyData)
+                                activate announcementRepository
+
+                                       announcementRepository -> announcement** : createAnnouncement(propertyData)
+                                       announcementRepository -> announcementRepository : addAnnouncement(announcement)
+
+                                       activate announcementRepository
+                                       announcementRepository -> announcementRepository : validateAnnouncement(announcement)
+                                       activate announcementRepository
+                                       deactivate announcementRepository
+
+                                announcementRepository --> CTRL : announcement
+                                deactivate announcementRepository
+
+            CTRL --> UI : announcement
+            deactivate CTRL
+
+            UI --> Agent : displays announcement details and requests confirmation
+            deactivate UI
+
+    Agent -> UI : confirm to publish the announcement
+            activate UI
+
+            UI --> Agent : displays operation success
+            deactivate UI
+deactivate Agent
+
+@enduml

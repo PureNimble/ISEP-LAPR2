@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant ":PublishController" as CTRL
+participant ":Repositories" as Repository
+participant "repositories\n:Repositories" as Repository2
+participant "typesOfBusinessRepository: \nTypes Of Business Repository" as typesOfBusinessRepository
+
+autonumber 52
+--> CTRL : getTypeOfBusiness()
+                activate CTRL
+
+                group Get Type Of Business
+
+                CTRL -> Repository : getInstance()
+                activate Repository
+
+                Repository --> CTRL : repositories
+                deactivate Repository
+
+                CTRL -> Repository2 : getTypeBusinessRepository()
+                activate Repository2
+
+                Repository2 --> CTRL : typeOfBusinessRepository
+                deactivate Repository2
+
+                CTRL --> typesOfBusinessRepository : getTypeOfBusiness()
+                activate typesOfBusinessRepository
+
+                typesOfBusinessRepository --> CTRL : Type of Business
+                deactivate typesOfBusinessRepository
+
+                end
+
+                 <-- CTRL : Type of Business
+                deactivate CTRL
+@enduml

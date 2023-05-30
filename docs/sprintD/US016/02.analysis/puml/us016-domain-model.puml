@@ -1,0 +1,29 @@
+@startuml
+
+title US016 - Domain Model
+
+skinparam groupInheritance 2
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam linetype polyline
+hide circle
+hide methods
+
+class Agent {
+
+}
+
+class Message {
+Name
+Phone Number
+Date
+Initial Time
+End Time
+Description
+}
+
+Agent "1" -- "*" Message : responds >
+
+@enduml
