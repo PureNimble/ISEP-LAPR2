@@ -10,9 +10,9 @@
    <left>
       <AnchorPane prefHeight="500.0" prefWidth="334.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="224.0" fitWidth="227.0" layoutX="49.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="227.0" fitWidth="222.0" layoutX="49.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../Downloads/Premium%20Vector%20_%20Home%20deal,%20house%20property%20dealer_%20icon%20template.jpg" />
+                  <Image url="@../../../Photos%20App/agreement%20(1).png" />
                </image>
             </ImageView>
             <Label layoutX="23.0" layoutY="363.0" prefHeight="78.0" prefWidth="292.0" text="Real Estate App" textFill="WHITE">
