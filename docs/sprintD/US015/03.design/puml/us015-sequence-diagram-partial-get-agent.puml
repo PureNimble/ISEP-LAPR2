@@ -1,0 +1,51 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+ participant ":DisplayMessageController" as CTRL
+ participant "messageRepository:\nMessageRepository" as MessageRepository
+ participant ":ApplicationSession" as app
+ participant "appSession\n:ApplicationSession" as APP
+ participant "currentSession\n:UserSession" as User
+ participant "employeeRepository\n:Employee Repository" as Employee
+
+
+title US015 - Squence Diagram Partial (Get Agent By Email)
+
+autonumber 5
+
+    -> CTRL : getListBooking()
+              activate CTRL
+
+              group Get Agent By Email
+
+CTRL -> CTRL : getAgentFromSession
+
+              CTRL -> app : getInstance()
+              activate app
+
+             app --> CTRL : appSession
+             deactivate app
+
+             CTRL -> APP : getCurrentSession()
+             activate APP
+
+             APP --> CTRL : currentSession
+             deactivate APP
+
+             CTRL -> User : email = getUserEmail()
+             activate User
+
+             User --> CTRL : email
+             deactivate User
+
+             CTRL -> Employee : getAgemntByEmail()
+             activate Employee
+
+             Employee --> CTRL : agentByEmail
+             deactivate Employee
+
+             end
+@enduml

@@ -14,7 +14,7 @@ As an agent, I intend to list all booking requests for properties managed by me.
 
 **From the specifications document:**
 
->	
+>	After consulting a list of properties, the client can request to schedule a visit to the real estate agent for a specific property to verify its conditions. The agent receives the request, checks the availability and sends the response. If the customer accepts the order, it is automatically scheduled in the system.
 
 **From the client clarifications:**
 
@@ -45,10 +45,11 @@ If we are to chose which one of the methods will be used, should we chose the mo
 > **Date:** 30 de May de 2023
 
 > **Question:**
+In the AC2, what do you mean by "The sorting algorithm to be used by the application must be defined through a configuration file."? Does the user select which algorithm to use?
 >
->  **Answer:**
+>  **Answer:** 
 >
-> **Date:**
+> **Date:** 30 de May de 2023
 
 
 ### 1.3. Acceptance Criteria
@@ -63,6 +64,7 @@ If we are to chose which one of the methods will be used, should we chose the mo
 
 
 * There is a dependency to "US009 As a client, I want to leave a message to the agent to schedule a visit to a property of my interest." since at least a message must exist to list the booking requests.
+* There is a dependency to "US002 As an agent, I can publish any sale annoucement on the system, for example received through a phone call." and in "US008 As an agent, I intend to see the list of property announcement requests made to myself, so that I can post the announcement" because in these US an agent is associated with each property / announcement.
 
 
 ### 1.5 Input and Output Data
@@ -89,11 +91,7 @@ If we are to chose which one of the methods will be used, should we chose the mo
 
 #### Alternative One
 
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
-
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
+![System Sequence Diagram - Alternative One](svg/us015-system-sequence-diagram.svg)
 
 ### 1.7 Other Relevant Remarks
 

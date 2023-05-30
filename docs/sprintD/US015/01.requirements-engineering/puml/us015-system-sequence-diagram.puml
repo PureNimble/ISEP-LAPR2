@@ -21,7 +21,7 @@ activate Agent
     Agent -> System : types requested data (begin date, end date)
     activate System
 
-        System --> Agent : shows all booking requests sorted by date in ascending order
+        System --> Agent : shows all booking requests sorted by date in ascending order \nand requests confirmation
     deactivate System
 
         Agent -> System : sumbits data
