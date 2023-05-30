@@ -1,0 +1,39 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - Alternative One
+
+autonumber
+
+actor "Organization Employee" as Employee
+participant ":System" as System
+
+activate Employee
+
+    Employee -> System : asks to create a new task
+    activate System
+
+        System --> Employee : requests data
+    deactivate System
+
+    Employee -> System : types requested data (reference, description, \ninformal description, technical description,\nduration, cost)
+    activate System
+
+        System --> Employee : shows task category list and asks to select one
+    deactivate System
+
+    Employee -> System : selects a task category
+    activate System
+
+        System --> Employee : shows selected category
+    deactivate System
+
+    Employee -> System : submits data
+    activate System
+
+        System --> Employee : displays operation success
+    deactivate System
+
+@enduml
