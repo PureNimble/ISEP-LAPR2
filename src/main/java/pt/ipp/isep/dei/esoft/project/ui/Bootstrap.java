@@ -10,7 +10,7 @@ public class Bootstrap {
 
   //  FileReaderRepository fileReaderRepository = new FileReaderRepository();
     //Add some task categories to the repository as bootstrap
-    public void run() throws Exception {
+    public void run() {
 //        try {
 //            fileReaderRepository.readAndAddToList();
 //        } catch (Exception e) {
@@ -25,11 +25,11 @@ public class Bootstrap {
         addComission();
         addTypeOfBusiness();
         addAvailableEquipment();
-//        try {
+        try {
             addAgents();
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
+       } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         addPublishedAnnouncement();
 //        addOffers();
 

@@ -1,0 +1,128 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+'left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+
+class Employee{
+}
+
+class Person{
+Name
+Email
+Phone Number
+Tax Number
+Passport Number
+}
+
+class NetworkManager{
+}
+
+class Offer{
+Name
+Order Ammount
+}
+
+class Address {
+Street
+Zip Code
+}
+
+class AvailableEquipment {
+Equipment
+}
+
+
+class Business {
+Total price
+}
+
+
+class City {
+City Name
+}
+
+class Comission {
+Value
+}
+
+
+class District {
+District Name
+}
+
+
+class House {
+Basement
+Inhabitable Loft
+}
+
+class Person {
+Name
+Email
+Phone Number
+Tax Number
+Passport Number
+}
+
+class Photos {
+URI
+}
+
+class Property {
+Area
+Distance from the city center
+}
+
+class PublishedAnnouncement {
+}
+
+class Residence {
+Number of Bedrooms
+Number of Bathrooms
+Number of Parking Spaces
+}
+
+
+class State {
+State Name
+}
+
+class SunExposure {
+Direction
+}
+
+class TypeOfProperty {
+Type
+}
+
+Person <|-- Employee
+Employee -- NetworkManager
+
+
+NetworkManager "*" - "*" Offer: intends to see >
+Offer "*" -- "1" PublishedAnnouncement: has >
+PublishedAnnouncement -- Property
+TypeOfProperty -- Property : has <
+Property <|-- Residence
+Photos "1..30" -- "1" Property : has <
+Residence <|-- House
+Residence "1" -- "*" AvailableEquipment : contains >
+House "1" -- "*" SunExposure: contains >
+PublishedAnnouncement "1" - "1" Comission :has >
+Business "1" -- "1" PublishedAnnouncement : has <
+
+Address "1" -right-- "1" Property: has <
+State "1" -left-- "*" District: is in <
+District "1" -left-- "*" City: is in <
+Address "*" -left-- "1" State: is in <
+
+
+@enduml
