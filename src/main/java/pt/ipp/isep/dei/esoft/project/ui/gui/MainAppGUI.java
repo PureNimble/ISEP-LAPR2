@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.ui.Bootstrap;
 
+import javax.swing.text.html.ImageView;
+import java.awt.*;
 import java.io.IOException;
 
 public class MainAppGUI extends Application {

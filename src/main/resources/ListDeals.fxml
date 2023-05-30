@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.ListDealsGUI">
+   <children>
+      <TableView fx:id="table" layoutY="66.0" prefHeight="335.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="orderAmount" prefWidth="101.0" text="Order Amount" />
+          <TableColumn fx:id="publishedAnnouncement" prefWidth="442.0" text="Published Announcement">
+               <columns>
+                  <TableColumn fx:id="area" prefWidth="46.0" text="Area" />
+                  <TableColumn fx:id="typeOfBusiness" minWidth="5.0" prefWidth="101.0" text="Type of Business" />
+                  <TableColumn fx:id="date" prefWidth="41.0" text="Date" />
+                  <TableColumn fx:id="comission" prefWidth="65.0" text="Comission" />
+                  <TableColumn fx:id="business" prefWidth="60.0" text="Business" />
+                  <TableColumn fx:id="durationOfContract" prefWidth="124.0" text="Duration of Contract" />
+               </columns>
+            </TableColumn>
+            <TableColumn fx:id="name" prefWidth="59.0" text="Name" />
+        </columns>
+      </TableView>
+      <Label layoutX="159.0" layoutY="14.0" prefHeight="40.0" prefWidth="282.0" text="List of deals Made">
+         <font>
+            <Font name="Arial Black" size="27.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
