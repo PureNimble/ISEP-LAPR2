@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 20 - To read the response for the appointment request, to accept or reject it. 
 
 [Requirements Engineering](01.requirements-engineering/Readme.md)
 

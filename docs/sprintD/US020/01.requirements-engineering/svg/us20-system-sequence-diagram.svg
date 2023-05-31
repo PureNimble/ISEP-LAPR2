@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="621px" preserveAspectRatio="none" style="width:797px;height:621px;background:#FFFFFF;" version="1.1" viewBox="0 0 797 621" width="797px" zoomAndPan="magnify"><defs/><g><rect fill="none" height="27.6094" id="_title" style="stroke:none;stroke-width:1.0;" width="238" x="280.5" y="10"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="228" x="285.5" y="29.5332">System Sequence Diagram (SSD)</text><rect fill="#FFFFFF" height="399.4063" style="stroke:#181818;stroke-width:1.0;" width="10" x="36" y="131.2188"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="743" y="153.5703"/><rect fill="#FFFFFF" height="46.7031" style="stroke:#181818;stroke-width:1.0;" width="10" x="743" y="214.2734"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="743" y="316.6797"/><rect fill="#FFFFFF" height="83.5391" style="stroke:#181818;stroke-width:1.0;" width="10" x="743" y="377.3828"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="743" y="491.2734"/><rect fill="none" height="155.5938" style="stroke:#000000;stroke-width:1.5;" width="780" x="10" y="275.9766"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="41" x2="41" y1="121.2188" y2="539.625"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="748" x2="748" y1="121.2188" y2="539.625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="36" x="20" y="118.1426">Client</text><ellipse cx="41" cy="52.1094" fill="#E3E3E3" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M41,60.1094 L41,87.1094 M28,68.1094 L54,68.1094 M41,87.1094 L28,102.1094 M41,87.1094 L54,102.1094 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="36" x="20" y="553.1582">Client</text><ellipse cx="41" cy="564.7344" fill="#E3E3E3" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M41,572.7344 L41,599.7344 M28,580.7344 L54,580.7344 M41,599.7344 L28,614.7344 M41,599.7344 L54,614.7344 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><rect fill="#E3E3E3" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="64" x="716" y="88.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="50" x="723" y="110.1426">:System</text><rect fill="#E3E3E3" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="64" x="716" y="538.625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="50" x="723" y="560.1582">:System</text><rect fill="#FFFFFF" height="399.4063" style="stroke:#181818;stroke-width:1.0;" width="10" x="36" y="131.2188"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="743" y="153.5703"/><rect fill="#FFFFFF" height="46.7031" style="stroke:#181818;stroke-width:1.0;" width="10" x="743" y="214.2734"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="743" y="316.6797"/><rect fill="#FFFFFF" height="83.5391" style="stroke:#181818;stroke-width:1.0;" width="10" x="743" y="377.3828"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="743" y="491.2734"/><polygon fill="#181818" points="731,149.5703,741,153.5703,731,157.5703,735,153.5703" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="46" x2="737" y1="153.5703" y2="153.5703"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="53" y="148.7139">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="369" x="64" y="148.7139">asks to see all responses received for the appointment requests</text><polygon fill="#181818" points="57,179.9219,47,183.9219,57,187.9219,53,183.9219" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="51" x2="747" y1="183.9219" y2="183.9219"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="63" y="179.0654">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="272" x="74" y="179.0654">shows list of responses and asks to select one</text><polygon fill="#181818" points="731,210.2734,741,214.2734,731,218.2734,735,214.2734" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="46" x2="737" y1="214.2734" y2="214.2734"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="53" y="209.417">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="182" x="64" y="209.417">selects the pretended message</text><polygon fill="#181818" points="57,256.9766,47,260.9766,57,264.9766,53,260.9766" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="51" x2="747" y1="260.9766" y2="260.9766"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="63" y="247.9443">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="662" x="74" y="239.7686">shows selected message (information about the property, date of the appointment, agent name and phone number)</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="351" x="74" y="256.1201">and asks if the client wants to accept or decline appointment</text><path d="M10,275.9766 L71,275.9766 L71,284.3281 L61,294.3281 L10,294.3281 L10,275.9766 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/><rect fill="none" height="155.5938" style="stroke:#000000;stroke-width:1.5;" width="780" x="10" y="275.9766"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="16" x="25" y="290.4717">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="128" x="86" y="289.3955">[declines appointment]</text><polygon fill="#181818" points="731,312.6797,741,316.6797,731,320.6797,735,316.6797" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="46" x2="737" y1="316.6797" y2="316.6797"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="53" y="311.8232">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="123" x="64" y="311.8232">declines appointment</text><polygon fill="#181818" points="57,343.0313,47,347.0313,57,351.0313,53,347.0313" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="51" x2="747" y1="347.0313" y2="347.0313"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="63" y="342.1748">6</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="233" x="74" y="342.1748">asks to state the reason for declinement</text><polygon fill="#181818" points="731,373.3828,741,377.3828,731,381.3828,735,377.3828" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="46" x2="737" y1="377.3828" y2="377.3828"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="53" y="372.5264">7</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="136" x="64" y="372.5264">submits requested data</text><line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="10" x2="790" y1="386.3828" y2="386.3828"/><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="124" x="15" y="397.8018">[accepts appointment]</text><polygon fill="#181818" points="731,419.5703,741,423.5703,731,427.5703,735,423.5703" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="46" x2="737" y1="423.5703" y2="423.5703"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="53" y="418.7139">8</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="121" x="64" y="418.7139">accepts appointment</text><polygon fill="#181818" points="57,456.9219,47,460.9219,57,464.9219,53,460.9219" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="51" x2="747" y1="460.9219" y2="460.9219"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="63" y="456.0654">9</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="287" x="74" y="456.0654">shows the inserted data and asks for confirmation</text><polygon fill="#181818" points="731,487.2734,741,491.2734,731,495.2734,735,491.2734" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="46" x2="737" y1="491.2734" y2="491.2734"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="53" y="486.417">10</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="78" x="71" y="486.417">confirms data</text><polygon fill="#181818" points="57,517.625,47,521.625,57,525.625,53,521.625" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="51" x2="747" y1="521.625" y2="521.625"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="63" y="516.7686">11</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="158" x="81" y="516.7686">displays operation success</text><!--MD5=[fd1e280cc27067a4db8911b3341334be]
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD)
+
+autonumber
+
+actor "Client" as Client
+participant ":System" as System
+
+activate Client
+
+    Client -> System : asks to see all responses received for the appointment requests
+    activate System
+
+        System - -> Client : shows list of responses and asks to select one
+    deactivate System
+
+    Client -> System : selects the pretended message
+    activate System
+
+        System - -> Client : shows selected message (information about the property, date of the appointment, agent name and phone number)\nand asks if the client wants to accept or decline appointment
+    deactivate System
+
+    alt declines appointment
+
+        Client -> System : declines appointment
+        activate System
+
+            System - -> Client : asks to state the reason for declinement
+        deactivate System
+
+        Client -> System : submits requested data
+        activate System
+
+    else accepts appointment
+
+        Client -> System : accepts appointment
+
+    end
+
+        System - -> Client : shows the inserted data and asks for confirmation
+    deactivate System
+
+    Client -> System : confirms data
+    activate System
+
+        System - -> Client : displays operation success
+    deactivate System
+
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 18:01:30 WEST 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>
