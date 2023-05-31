@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import pt.ipp.isep.dei.esoft.project.application.controller.ListDealsController;
 import pt.ipp.isep.dei.esoft.project.domain.State;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.NetworkManagerUI;
 
@@ -48,6 +49,7 @@ public class NetworkManagerMenuGUI implements Runnable,Initializable {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
+            listDealsLoader.setController(new ListDealsGUI());
 
         } catch (IOException e) {
             throw new RuntimeException(e);
