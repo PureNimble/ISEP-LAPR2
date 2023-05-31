@@ -19,9 +19,14 @@ As a client, I want to read the response for the appointment request, to accept 
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Date:** Wednesday, May 31 of 2023
+>
+> **Question:** The reason for declining the appointment should be selected from predefined options or entered as free text?
 >  
-> **Answer:** Duration is estimated in days.
+> **Answer:** N/A
+>
+> **Asked at:** 10:09
+>
 
 
 ### 1.3. Acceptance Criteria
@@ -66,7 +71,7 @@ property of my interest." since there is a need of having a message in order to 
 
 #### Alternative One
 
-![System Sequence Diagram](svg/us20-system-sequence-diagram-alternative.svg)
+![System Sequence Diagram](svg/us20-system-sequence-diagram.svg)
 
 ### 1.7 Other Relevant Remarks
 
