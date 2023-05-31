@@ -1,0 +1,53 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD)
+
+autonumber
+
+actor "Client" as Client
+participant ":System" as System
+
+activate Client
+
+    Client -> System : asks to see all responses received for the appointment requests
+    activate System
+
+        System --> Client : shows list of responses and asks to select one
+    deactivate System
+
+    Client -> System : selects the pretended message
+    activate System
+
+        System --> Client : shows selected message (information about the property, date of the appointment, agent name and phone number)\nand asks if the client wants to accept or decline appointment
+    deactivate System
+
+    alt declines appointment
+
+        Client -> System : declines appointment
+        activate System
+
+            System --> Client : asks to state the reason for declinement
+        deactivate System
+
+        Client -> System : submits requested data
+        activate System
+
+    else accepts appointment
+
+        Client -> System : accepts appointment
+
+    end
+
+        System --> Client : shows the inserted data and asks for confirmation
+    deactivate System
+
+    Client -> System : confirms data
+    activate System
+
+        System --> Client : displays operation success
+    deactivate System
+
+@enduml
