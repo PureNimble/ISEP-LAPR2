@@ -1,0 +1,27 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US18 - System Sequence Diagram (SSD)
+
+autonumber
+
+actor "Store Manager" as manager
+participant ":sys" as sys
+
+activate manager
+
+    manager -> sys : asks for a list of houses and apartments 
+    activate sys
+
+        sys --> manager : shows list of houses and apartments and asks to select one
+    deactivate sys
+
+    manager -> sys : selects the property
+    activate sys
+
+        sys --> manager : shows the report for the chosen property [property values/prices (sale prices and forecast prices), the regression model \n used to estimate each value, R(SLR), R2 and R2 adjusted for SLR and MLR, confidence intervals \n and hypothesis tests for regression coefficients and significance model with Anova]
+        deactivate sys
+
+@enduml

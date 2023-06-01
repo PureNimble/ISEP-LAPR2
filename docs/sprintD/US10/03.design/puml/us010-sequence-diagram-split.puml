@@ -1,0 +1,76 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US010 - Sequence Diagram Split
+
+autonumber
+
+actor "Client" as Client
+participant ":PlaceOfferUI" as System
+participant ":PlaceOfferController" as Controller
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as Repositories
+participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as PublishedAnnouncementRepository
+participant "authenticationRepository\n:AuthenticationRepository" as AuthenticationRepository
+participant "offerRepository\n:OfferRepository" as OfferRepository
+participant "Offer" as Offer
+
+activate Client
+
+Client -> System : asks to place an offer on a property
+activate System
+
+System -> Controller** : create
+
+System -> Controller : getPublishedAnnouncement()
+activate Controller
+
+ref over Controller
+
+Get Published Announcement
+
+end
+
+autonumber 10
+
+Controller --> System : PublishedAnnouncementList
+deactivate Controller
+
+System --> Client : shows the list of properties
+deactivate System
+
+Client -> System : selects the desired property
+activate System
+
+System --> Client : request the offer amount
+deactivate System
+
+Client -> System : places an offer to purchase a property by submitting the order amount
+activate System
+
+System --> Client : shows an offer to purchase a property
+deactivate System
+
+Client -> System : submits data
+activate System
+
+System -> Controller : createOffer(orderAmount)
+activate Controller
+
+ref over Controller
+
+    Create Offer
+
+end
+
+autonumber 31
+
+Controller --> System : offer
+deactivate Controller
+
+System --> Client : displays operation success
+
+@enduml
