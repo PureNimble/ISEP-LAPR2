@@ -69,14 +69,25 @@ public class OfferRepository {
         return offers;
     }
 
+    public void declineOtherOffers (Offer offer, List<Offer> offersList){
+        for(int i = 0; i < offersList.size(); i++){
+            Offer offerIndex = offersList.get(i);
+            if (!offer.equals(offerIndex) && offerIndex.getPublishedAnnouncement().equals(offer.getPublishedAnnouncement())){
+                offerIndex.setOfferState(OfferState.rejected);
+            }
+        }
+    }
+
     public List<Offer> getOffersByPropertyByHighestAmount(List<PublishedAnnouncement> publishedAnnouncementList){
         List<Offer> resultList = new ArrayList<Offer>();
 
         for (PublishedAnnouncement publishedAnnouncement: publishedAnnouncementList){
             List<Offer> tempList = new ArrayList<Offer>();
             for (Offer offer: offers){
-                if (offer.getPublishedAnnouncement().equals(publishedAnnouncement)){
-                    tempList.add(offer);
+                if (offer.getOfferState().equals(OfferState.pending)){
+                    if (offer.getPublishedAnnouncement().equals(publishedAnnouncement)){
+                        tempList.add(offer);
+                    }
                 }
             }
             tempList.sort(Comparator.comparingDouble(Offer::getOrderAmount));

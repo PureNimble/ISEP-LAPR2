@@ -129,7 +129,7 @@ public class Offer {
      @return a string representation of the Offer object
      */
     public String toString() {
-        return String.format("\nOffer: \nThe client %s, has submitted an offer with the following price: %s. \n\nProperty: \n%s", name, orderAmount, publishedAnnouncement.toString());
+        return String.format("\nOffer: \nThe client %s, has submitted an offer with the following price: %s. \nStatus: %s \n\nProperty: \n%s", name, orderAmount, offerState, publishedAnnouncement.toString());
 
     }
     /**
