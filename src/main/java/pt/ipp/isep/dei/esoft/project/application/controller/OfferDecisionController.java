@@ -68,4 +68,8 @@ import java.util.List;
         return offerRepository.getOffersByPropertyByHighestAmount(listProperty);
     }
 
+    public void declineOtherOffers(Offer offer, List<Offer> offersList){
+        offerRepository.declineOtherOffers(offer, offersList);
+    }
+
  }
