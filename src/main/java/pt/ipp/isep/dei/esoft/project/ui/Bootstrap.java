@@ -228,9 +228,17 @@ public class Bootstrap {
 
         Property property1 = new Property(185,2348);
         Property property2 = new Property(341,679);
+        House house = new House(1000,100,3,4,2,new AvailableEquipment("Air conditionating"),"Y","N","North");
+        Residence appartment = new Residence(523,50,3,4,2,new AvailableEquipment("Central Heating"));
+        Property property = new Property(3219931,55);
+        House house1 = new House(12312,50,6,6,2,new AvailableEquipment("Air conditionating"),"N","N","South");
+        House house2 = new House(500,10000,2,2,1,new AvailableEquipment("Central Heating"),"Y","N","West");
+        Residence appartment1 = new Residence(950,150,3,4,3,new AvailableEquipment("Central Heating"));
+        Property property3 = new Property(12312,3123123);
 
         PropertyType propertyType1 = new PropertyType("House");
         PropertyType propertyType2 = new PropertyType("Apartment");
+        PropertyType propertyType3 = new PropertyType("Land");
 
         TypeOfBusiness typeOfBusiness1 = new TypeOfBusiness("Sale");
         TypeOfBusiness typeOfBusiness2 = new TypeOfBusiness("Rent");
@@ -238,20 +246,42 @@ public class Bootstrap {
         Business business1 = new Business(200000);
         Business business2 = new Business(345);
 
-        Date date1 = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY,11);
+        calendar.set(Calendar.MINUTE,30);
+        calendar.set(Calendar.MONTH,2);
+        calendar.set(Calendar.YEAR,2018);
+
+        Date date1 = calendar.getTime();
         Date date2 = new GregorianCalendar(2023,Calendar.JANUARY, 2).getTime();
+        calendar.set(Calendar.HOUR_OF_DAY,9);
+        calendar.set(Calendar.MINUTE,55);
+        calendar.set(Calendar.MONTH,9);
+        calendar.set(Calendar.YEAR,2017);
+        Date date3 = calendar.getTime();
 
         Address address1 = new Address("Avenue Walmart",22334,new District("Jefferson"),new City("Ottawa"),new State("Arizona"));
-       Address address2 = new Address("Avenue Tesco", 90210, new District("Beverly Hills"), new City("Los Angeles"), new State("California"));
+        Address address2 = new Address("Avenue Tesco", 90210, new District("Beverly Hills"), new City("Los Angeles"), new State("California"));
 
         Client client1 = new Client("pedro@this.app", 123456789,123456789,"Pedro",address1,123456789);
         Client client2 = new Client("miguel@this.app", 987654321,987654321, "Miguel", address2, 987654321);
+        Client client3 = new Client("client3@this.app",129836276,123439874,"André",address1,1828288211);
 
-        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1,typeOfBusiness1, property1, propertyType1, comission1, business1);
-        PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, property2, propertyType2, comission2, business2);
 
-       offerRepository.add(new Offer("Pedro", 200000, publishedAnnouncement1,OfferState.accepted));
+        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1,typeOfBusiness1, property1, propertyType3, comission1, business1);
+        PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, property2, propertyType3, comission2, business2);
+        PublishedAnnouncement publishedAnnouncement3 = new PublishedAnnouncement(date1,typeOfBusiness2,property2,propertyType3,comission1,business1);
+        PublishedAnnouncement publishedAnnouncement4 = new PublishedAnnouncement(date3,typeOfBusiness1,property3,propertyType3,comission1,business2);
+        PublishedAnnouncement publishedAnnouncement5 = new PublishedAnnouncement(date1,typeOfBusiness1,house1,propertyType1,comission2,business1);
+        PublishedAnnouncement publishedAnnouncement6 = new PublishedAnnouncement(date1,typeOfBusiness2,house,propertyType1,comission1,business2);
+
+
+        offerRepository.add(new Offer("Pedro", 200000, publishedAnnouncement1,OfferState.accepted));
+        offerRepository.add(new Offer("André",1935000,publishedAnnouncement3,OfferState.accepted));
         offerRepository.add(new Offer("Miguel", 3456, publishedAnnouncement2,OfferState.accepted));
+        offerRepository.add(new Offer("Zé",19000,publishedAnnouncement4,OfferState.accepted));
+        offerRepository.add(new Offer("Toby",35000,publishedAnnouncement5,OfferState.accepted));
+        offerRepository.add(new Offer("Geremias",546372,publishedAnnouncement6,OfferState.accepted));
     }
 
 

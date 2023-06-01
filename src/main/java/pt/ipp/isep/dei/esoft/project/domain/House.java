@@ -48,7 +48,21 @@ public class House extends Residence {
         this.inhabitableLoft = inhabitableLoft;
         this.sunExposure = sunExposure;
     }
+
+    public String getBasement() {
+        return basement;
+    }
+
+    public String getInhabitableLoft() {
+        return inhabitableLoft;
+    }
+
+    public String getSunExposure() {
+        return sunExposure;
+    }
+
     /**
+
 
      Returns a string representation of the House object.
      @return a string representation of the House object

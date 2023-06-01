@@ -21,6 +21,10 @@ public class Property {
         this.area = area;
     }
 
+    public Property(){
+
+    }
+
     public int getDistanceFromCityCenter() {
         return distanceFromCityCenter;
     }

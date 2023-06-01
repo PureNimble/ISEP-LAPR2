@@ -7,19 +7,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.ListDealsGUI">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.ListDealsGUI">
    <children>
-      <TableView fx:id="table" layoutY="66.0" prefHeight="434.0" prefWidth="1000.0">
+      <TableView fx:id="table" layoutY="66.0" prefHeight="534.0" prefWidth="1500.0">
         <columns>
-          <TableColumn fx:id="orderAmount" prefWidth="110.0" sortable="false" text="Order Amount" />
+          <TableColumn fx:id="orderAmount" prefWidth="90.0" sortable="false" text="Order Amount" />
           <TableColumn fx:id="publishedAnnouncement" prefWidth="950.0" text="Published Announcement">
                <columns>
-                  <TableColumn fx:id="area" prefWidth="131.0" sortable="false" text="Area" />
-                  <TableColumn fx:id="typeOfBusiness" minWidth="5.0" prefWidth="150.0" sortable="false" text="Type of Business" />
-                  <TableColumn fx:id="date" prefWidth="200.0" sortable="false" text="Date" />
-                  <TableColumn fx:id="comission" prefWidth="95.0" sortable="false" text="Comission" />
-                  <TableColumn fx:id="business" prefWidth="74.0" sortable="false" text="Business" />
-                  <TableColumn fx:id="durationOfContract" prefWidth="130.0" sortable="false" text="Duration of Contract" />
+                  <TableColumn fx:id="area" prefWidth="75.0" sortable="false" text="Area" />
+                  <TableColumn fx:id="typeOfBusiness" minWidth="5.0" prefWidth="105.0" sortable="false" text="Type of Business" />
+                  <TableColumn fx:id="date" prefWidth="175.0" sortable="false" text="Date" />
+                  <TableColumn fx:id="comission" prefWidth="75.0" sortable="false" text="Comission" />
+                  <TableColumn fx:id="business" prefWidth="90.0" sortable="false" text="Business" />
+                  <TableColumn fx:id="durationOfContract" prefWidth="126.0" sortable="false" text="Duration of Contract" />
+                  <TableColumn fx:id="numberOfBedrooms" prefWidth="143.0" text="Number Of Bedrooms" />
+                  <TableColumn fx:id="availableEquipment" prefWidth="75.0" text="Available Equipment" />
+                  <TableColumn fx:id="basement" prefWidth="75.0" text="Basement" />
+                  <TableColumn fx:id="inahnitableLoft" minWidth="0.0" prefWidth="75.0" text="Inabitable Loft" />
+                  <TableColumn fx:id="sunExposure" prefWidth="75.0" text="Sun Exposure" />
+                  <TableColumn fx:id="parkingSpaces" prefWidth="75.0" text="Parking Spaces" />
+                  <TableColumn fx:id="numberOfBathrooms" prefWidth="75.0" text="Number Of Bathrooms" />
                </columns>
             </TableColumn>
             <TableColumn fx:id="name" minWidth="0.0" prefWidth="110.0" sortable="false" text="Name" />

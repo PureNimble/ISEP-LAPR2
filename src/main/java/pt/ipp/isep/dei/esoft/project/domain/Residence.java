@@ -37,6 +37,23 @@ public class Residence extends Property{
         this.parkingSpaces = parkingSpaces;
         this.availableEquipment = availableEquipment;
     }
+
+    public int getNumberOfBedrooms() {
+        return numberOfBedrooms;
+    }
+
+    public int getNumberOfBathrooms() {
+        return numberOfBathrooms;
+    }
+
+    public int getParkingSpaces() {
+        return parkingSpaces;
+    }
+
+    public AvailableEquipment getAvailableEquipment() {
+        return availableEquipment;
+    }
+
     /**
 
      Returns a string representation of the Residence object.

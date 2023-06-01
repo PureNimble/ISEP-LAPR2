@@ -29,54 +29,73 @@ public class ListDealsGUI implements Initializable {
 
 
     @FXML
-        private TableColumn<Offer, PublishedAnnouncement> area;
+    private TableColumn<Offer, PublishedAnnouncement> area;
 
-        @FXML
-        private TableColumn<Offer, PublishedAnnouncement> date;
+    @FXML
+    private TableColumn<Offer, PublishedAnnouncement> basement;
 
-        @FXML
-        private TableColumn<Offer, PublishedAnnouncement> durationOfContract;
+    @FXML
+    private TableColumn<Offer, PublishedAnnouncement> inahnitableLoft;
 
-        @FXML
-        private TableColumn<Offer, Double> orderAmount;
+    @FXML
+    private TableColumn<Offer, PublishedAnnouncement> sunExposure;
 
-        @FXML
-        private TableColumn<Offer,PublishedAnnouncement> business;
+    @FXML
+    private TableColumn<Offer, PublishedAnnouncement> availableEquipment;
 
-        @FXML
-        private TableColumn<Offer, PublishedAnnouncement> comission;
+    @FXML
+    private TableColumn<Offer, PublishedAnnouncement> date;
 
-        @FXML
-        private TableColumn<Offer, String> name;
+    @FXML
+    private TableColumn<Offer, PublishedAnnouncement> parkingSpaces;
 
-        @FXML
-        private TableColumn<Offer, PublishedAnnouncement> publishedAnnouncement;
+    @FXML
+    private TableColumn<Offer, PublishedAnnouncement> numberOfBedrooms;
 
-        @FXML
-        private TableColumn<Offer, PublishedAnnouncement> typeOfBusiness;
+    @FXML
+    private TableColumn<Offer, PublishedAnnouncement> durationOfContract;
+
+    @FXML
+    private TableColumn<Offer, Double> orderAmount;
+
+    @FXML
+    private TableColumn<Offer, PublishedAnnouncement> business;
+
+    @FXML
+    private TableColumn<Offer, PublishedAnnouncement> comission;
+
+    @FXML
+    private TableColumn<Offer, String> name;
+
+    @FXML
+    private TableColumn<Offer, PublishedAnnouncement> publishedAnnouncement;
+
+    @FXML
+    private TableColumn<Offer, PublishedAnnouncement> typeOfBusiness;
+
+    @FXML
+    private TableColumn<Offer, PublishedAnnouncement> numberOfBathrooms;
 
 
-         private final ListDealsController controller = new ListDealsController();
+    private final ListDealsController controller = new ListDealsController();
 
 
+    ObservableList<Object> listDeals = FXCollections.observableArrayList(
+            controller.getDealsByDescendinggArea()
+    );
 
-
-        ObservableList<Object> listDeals = FXCollections.observableArrayList(
-          controller.getDealsByAscendingArea()
-        );
-
-    public void initialize(URL url, ResourceBundle resourceBundle){
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
         area.setCellValueFactory(new PropertyValueFactory<>("publishedAnnouncement"));
-        area.setCellFactory(column -> new TextFieldTableCell<Offer,PublishedAnnouncement>(){
+        area.setCellFactory(column -> new TextFieldTableCell<Offer, PublishedAnnouncement>() {
             @Override
-            public void updateItem(PublishedAnnouncement publishedAnnouncement,boolean empty){
-                super.updateItem(publishedAnnouncement,empty);
-                if (empty || publishedAnnouncement == null){
+            public void updateItem(PublishedAnnouncement publishedAnnouncement, boolean empty) {
+                super.updateItem(publishedAnnouncement, empty);
+                if (empty || publishedAnnouncement == null) {
                     setText("");
-                }else {
-                    setText(""+publishedAnnouncement.getProperty().getArea());
+                } else {
+                    setText("" + publishedAnnouncement.getProperty().getArea());
                 }
             }
 
@@ -84,46 +103,45 @@ public class ListDealsGUI implements Initializable {
 
 
         date.setCellValueFactory(new PropertyValueFactory<>("publishedAnnouncement"));
-        date.setCellFactory(column -> new TextFieldTableCell<Offer,PublishedAnnouncement>(){
+        date.setCellFactory(column -> new TextFieldTableCell<Offer, PublishedAnnouncement>() {
             @Override
-            public void updateItem(PublishedAnnouncement publishedAnnouncement,boolean empty){
-                super.updateItem(publishedAnnouncement,empty);
-                if (empty || publishedAnnouncement == null){
+            public void updateItem(PublishedAnnouncement publishedAnnouncement, boolean empty) {
+                super.updateItem(publishedAnnouncement, empty);
+                if (empty || publishedAnnouncement == null) {
                     setText("");
-                }else {
-                    setText(""+publishedAnnouncement.getDate());
+                } else {
+                    setText("" + publishedAnnouncement.getDate());
                 }
             }
 
         });
-
 
 
         durationOfContract.setCellValueFactory(new PropertyValueFactory<>("publishedAnnouncement"));
-        durationOfContract.setCellFactory(column -> new TextFieldTableCell<Offer,PublishedAnnouncement>(){
+        durationOfContract.setCellFactory(column -> new TextFieldTableCell<Offer, PublishedAnnouncement>() {
             @Override
-            public void updateItem(PublishedAnnouncement publishedAnnouncement,boolean empty){
-                super.updateItem(publishedAnnouncement,empty);
-                if (empty || publishedAnnouncement == null){
+            public void updateItem(PublishedAnnouncement publishedAnnouncement, boolean empty) {
+                super.updateItem(publishedAnnouncement, empty);
+                if (empty || publishedAnnouncement == null) {
                     setText("");
-                }else {
-                    setText(""+publishedAnnouncement.getDurationOfContract());
+                } else {
+                    setText("" + publishedAnnouncement.getDurationOfContract());
                 }
             }
 
         });
 
-        orderAmount.setCellValueFactory(new PropertyValueFactory<Offer,Double>("orderAmount"));
+        orderAmount.setCellValueFactory(new PropertyValueFactory<Offer, Double>("orderAmount"));
 
         business.setCellValueFactory(new PropertyValueFactory<>("publishedAnnouncement"));
-        business.setCellFactory(column -> new TextFieldTableCell<Offer,PublishedAnnouncement>(){
+        business.setCellFactory(column -> new TextFieldTableCell<Offer, PublishedAnnouncement>() {
             @Override
-            public void updateItem(PublishedAnnouncement publishedAnnouncement,boolean empty){
-                super.updateItem(publishedAnnouncement,empty);
-                if (empty || publishedAnnouncement == null){
+            public void updateItem(PublishedAnnouncement publishedAnnouncement, boolean empty) {
+                super.updateItem(publishedAnnouncement, empty);
+                if (empty || publishedAnnouncement == null) {
                     setText("");
-                }else {
-                    setText(""+publishedAnnouncement.getBusiness());
+                } else {
+                    setText("" + publishedAnnouncement.getBusiness());
                 }
             }
 
@@ -131,33 +149,210 @@ public class ListDealsGUI implements Initializable {
 
 
         comission.setCellValueFactory(new PropertyValueFactory<>("publishedAnnouncement"));
-        comission.setCellFactory(column -> new TextFieldTableCell<Offer,PublishedAnnouncement>(){
+        comission.setCellFactory(column -> new TextFieldTableCell<Offer, PublishedAnnouncement>() {
             @Override
-            public void updateItem(PublishedAnnouncement publishedAnnouncement,boolean empty){
-                super.updateItem(publishedAnnouncement,empty);
-                if (empty || publishedAnnouncement == null){
+            public void updateItem(PublishedAnnouncement publishedAnnouncement, boolean empty) {
+                super.updateItem(publishedAnnouncement, empty);
+                if (empty || publishedAnnouncement == null) {
                     setText("");
-                }else {
-                    setText(""+publishedAnnouncement.getComission());
+                } else {
+                    setText("" + publishedAnnouncement.getComission());
                 }
             }
 
         });
-        name.setCellValueFactory(new PropertyValueFactory<Offer,String>("name"));
+        name.setCellValueFactory(new PropertyValueFactory<Offer, String>("name"));
 
         typeOfBusiness.setCellValueFactory(new PropertyValueFactory<>("publishedAnnouncement"));
-        typeOfBusiness.setCellFactory(column -> new TextFieldTableCell<Offer,PublishedAnnouncement>(){
+        typeOfBusiness.setCellFactory(column -> new TextFieldTableCell<Offer, PublishedAnnouncement>() {
             @Override
-            public void updateItem(PublishedAnnouncement publishedAnnouncement,boolean empty){
-                super.updateItem(publishedAnnouncement,empty);
-                if (empty || publishedAnnouncement == null){
+            public void updateItem(PublishedAnnouncement publishedAnnouncement, boolean empty) {
+                super.updateItem(publishedAnnouncement, empty);
+                if (empty || publishedAnnouncement == null) {
                     setText("");
-                }else {
-                    setText(""+publishedAnnouncement.getTypeOfBusiness());
+                } else {
+                    setText("" + publishedAnnouncement.getTypeOfBusiness());
                 }
             }
 
         });
+
+        basement.setCellValueFactory(new PropertyValueFactory<>("publishedAnnouncement"));
+        basement.setCellFactory(column -> new TextFieldTableCell<Offer, PublishedAnnouncement>() {
+
+            @Override
+            public void updateItem(PublishedAnnouncement publishedAnnouncement, boolean empty) {
+                super.updateItem(publishedAnnouncement, empty);
+
+                if (empty || publishedAnnouncement == null) {
+                    setText(" ");
+                } else {
+                    if (publishedAnnouncement.getProperty() instanceof House) {
+                        House house = ((House) publishedAnnouncement.getProperty());
+                        setText("" + house.getBasement());
+                    } else {
+                        setText(" ");
+                    }
+                }
+            }
+        });
+
+
+        sunExposure.setCellValueFactory(new PropertyValueFactory<>("publishedAnnouncement"));
+        sunExposure.setCellFactory(column -> new TextFieldTableCell<Offer, PublishedAnnouncement>() {
+
+            @Override
+            public void updateItem(PublishedAnnouncement publishedAnnouncement, boolean empty) {
+                super.updateItem(publishedAnnouncement, empty);
+                if (empty || publishedAnnouncement == null) {
+                    setText(" ");
+                } else {
+                    if (publishedAnnouncement.getProperty() instanceof House) {
+                        House house = ((House) publishedAnnouncement.getProperty());
+                        String sunExposure = house.getSunExposure();
+                        setText("" + sunExposure);
+                    } else {
+                        setText(" ");
+                    }
+                }
+            }
+        });
+
+        inahnitableLoft.setCellValueFactory(new PropertyValueFactory<>("publishedAnnouncement"));
+        inahnitableLoft.setCellFactory(column -> new TextFieldTableCell<Offer, PublishedAnnouncement>() {
+
+            @Override
+            public void updateItem(PublishedAnnouncement publishedAnnouncement, boolean empty) {
+                super.updateItem(publishedAnnouncement, empty);
+
+                if (empty) {
+                    setText("");
+                } else {
+                    if (publishedAnnouncement.getProperty() instanceof House) {
+                        House house = ((House) publishedAnnouncement.getProperty());
+                        String inhabitableLoft = house.getInhabitableLoft();
+                        setText("" + inhabitableLoft);
+                    } else {
+                        setText(" ");
+                    }
+                }
+            }
+        });
+
+        availableEquipment.setCellValueFactory(new PropertyValueFactory<>("publishedAnnouncement"));
+        availableEquipment.setCellFactory(column -> new TextFieldTableCell<Offer, PublishedAnnouncement>() {
+
+            @Override
+            public void updateItem(PublishedAnnouncement publishedAnnouncement, boolean empty) {
+                super.updateItem(publishedAnnouncement, empty);
+
+                if (empty) {
+                    setText("");
+                } else {
+                    if (publishedAnnouncement.getProperty() instanceof House) {
+                        House house = ((House) publishedAnnouncement.getProperty());
+                        AvailableEquipment availableEquipment = house.getAvailableEquipment();
+
+                        setText("" + availableEquipment);
+                    } else {
+                        if (publishedAnnouncement.getProperty() instanceof Residence) {
+                            Residence residence = ((Residence) publishedAnnouncement.getProperty());
+                            AvailableEquipment availableEquipment = residence.getAvailableEquipment();
+                            setText("" + availableEquipment);
+                        } else {
+                            setText(" ");
+                        }
+                    }
+                }
+            }
+        });
+
+
+        numberOfBedrooms.setCellValueFactory(new PropertyValueFactory<>("publishedAnnouncement"));
+        numberOfBedrooms.setCellFactory(column -> new TextFieldTableCell<Offer, PublishedAnnouncement>() {
+
+            @Override
+            public void updateItem(PublishedAnnouncement publishedAnnouncement, boolean empty) {
+                super.updateItem(publishedAnnouncement, empty);
+                if (empty) {
+                    setText("");
+                } else {
+                    if (publishedAnnouncement.getProperty() instanceof House) {
+                        House house = ((House) publishedAnnouncement.getProperty());
+                        int numberOfBedrooms = house.getNumberOfBedrooms();
+                        setText("" + numberOfBedrooms);
+                    } else {
+                        if (publishedAnnouncement.getProperty() instanceof Residence) {
+                            Residence residence = ((Residence) publishedAnnouncement.getProperty());
+                            int numberOfBedrooms = residence.getNumberOfBedrooms();
+                            setText("" + numberOfBedrooms);
+                        } else {
+                            setText(" ");
+                        }
+                    }
+                }
+
+
+            }
+        });
+
+        numberOfBathrooms.setCellValueFactory(new PropertyValueFactory<>("publishedAnnouncement"));
+        numberOfBathrooms.setCellFactory(column -> new TextFieldTableCell<Offer, PublishedAnnouncement>() {
+
+            @Override
+            public void updateItem(PublishedAnnouncement publishedAnnouncement, boolean empty) {
+                super.updateItem(publishedAnnouncement, empty);
+                if (empty) {
+                    setText("");
+                } else {
+                    if (publishedAnnouncement.getProperty() instanceof House) {
+                        House house = ((House) publishedAnnouncement.getProperty());
+                        int numberOfBathrooms = house.getNumberOfBathrooms();
+                        setText("" + numberOfBathrooms);
+                    } else {
+                        if (publishedAnnouncement.getProperty() instanceof Residence) {
+                            Residence residence = ((Residence) publishedAnnouncement.getProperty());
+                            int numberOfBathrooms = residence.getNumberOfBathrooms();
+
+                            setText("" + numberOfBathrooms);
+                        } else {
+                            setText(" ");
+                        }
+
+                    }
+                }
+            }
+        });
+
+
+        parkingSpaces.setCellValueFactory(new PropertyValueFactory<>("publishedAnnouncement"));
+        parkingSpaces.setCellFactory(column -> new TextFieldTableCell<Offer, PublishedAnnouncement>() {
+
+            @Override
+            public void updateItem(PublishedAnnouncement publishedAnnouncement, boolean empty) {
+                super.updateItem(publishedAnnouncement, empty);
+
+                    if (empty) {
+                        setText("");
+                    } else {
+                        if (publishedAnnouncement.getProperty() instanceof House) {
+                            House house = ((House) publishedAnnouncement.getProperty());
+                            int parkingSpaces = house.getParkingSpaces();
+                        setText("" + parkingSpaces);
+                    } else {
+                            if (publishedAnnouncement.getProperty() instanceof Residence) {
+                                Residence residence = ((Residence) publishedAnnouncement.getProperty());
+                                int parkingSpaces = residence.getParkingSpaces();
+                                setText("" + parkingSpaces);
+                            }else {
+                                setText(" ");
+                            }
+
+                        }
+                }
+            }
+        });
+
 
         table.setItems(listDeals);
     }
