@@ -1,0 +1,139 @@
+@startuml
+
+title US010 - Domain Model
+
+skinparam groupInheritance 2
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam linetype polyline
+hide circle
+hide methods
+
+
+class Address {
+Street
+Zip Code
+}
+
+class AvailableEquipment {
+Equipment
+}
+
+
+class Business {
+Total price
+}
+
+
+class City {
+City Name
+}
+
+class Comission {
+Value
+}
+'/
+
+class ComissionPercentage {
+Percentage Value
+}
+
+
+class District {
+District Name
+}
+
+
+class House {
+Basement
+Inhabitable Loft
+}
+
+class Person {
+Name
+Email
+Phone Number
+Tax Number
+Passport Number
+}
+
+class Photos {
+URI
+}
+
+class Property {
+Area
+Distance from the city center
+}
+
+class PublishedAnnouncement {
+Contract Type
+
+}
+
+
+class Rent {
+Duration of contract
+}
+
+
+class Residence {
+Number of Bedrooms
+Number of Bathrooms
+Number of Parking Spaces
+}
+
+
+class State {
+State Name
+}
+
+class SunExposure {
+Direction
+}
+
+class TypeOfProperty {
+Type
+}
+
+class User {
+Password
+}
+
+class Offer {
+Offer Value
+}
+
+Address "1" -- "1" Person : can have <
+
+Business <|-- Rent
+
+Comission "1" -- "1" Business : contains <
+ComissionPercentage  --|> Comission
+
+District "1" -right- "*" City : has >
+
+House "1" -- "1" SunExposure : contains >
+
+Offer "*" -down- "1" PublishedAnnouncement : has <
+
+Person <|-- User
+Property <|-- Residence
+Property "*" -right- "1" Address : has >
+Property "1" -- "1..30" Photos : has >
+PublishedAnnouncement "1" -left- "1" Business : has <
+PublishedAnnouncement "*" --- "*" Property: advertises >
+
+Residence "1" --- "*" AvailableEquipment : contains >
+Residence <|--- House
+
+State "1" -right- "*" District : has >
+State "1" -left- "*" Address : has >
+
+TypeOfProperty "1" -right- "1" Property : defines >
+
+User "1" -left- "*" Offer : makes >
+
+@enduml

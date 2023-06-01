@@ -25,8 +25,8 @@ class OfferRepositoryTest {
     TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
     Business business = new Business(200);
     PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business);
-    Offer offer = new Offer(name, offerAmount, publishedAnnouncement1);
-    Offer offer1 = new Offer(name1, offerAmount1, publishedAnnouncement1);
+    Offer offer = new Offer(name, offerAmount, publishedAnnouncement1, OfferState.pending);
+    Offer offer1 = new Offer(name1, offerAmount1, publishedAnnouncement1, OfferState.pending);
 
     @Test
     void addValidOffer() {

@@ -1,0 +1,60 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US010 - Sequence Diagram Partial - Create Offer
+
+participant ":PlaceOfferController" as Controller
+participant "repositories\n:Repositories" as Repositories
+participant "authenticationRepository\n:AuthenticationRepository" as AuthenticationRepository
+participant "offerRepository\n:OfferRepository" as OfferRepository
+participant "Offer" as Offer
+
+autonumber 17
+
+-> Controller : createOffer(orderAmount)
+activate Controller
+
+group Create Offer
+
+Controller -> Repositories : getAuthenticationRepository()
+activate Repositories
+
+Repositories --> Controller : authenticationRepository
+deactivate Repositories
+
+Controller -> AuthenticationRepository : getCurrentUserSession()
+activate AuthenticationRepository
+
+AuthenticationRepository --> Controller : getCurrentUserSession
+deactivate AuthenticationRepository
+
+Controller -> Repositories : getOfferRepository()
+activate Repositories
+
+Repositories --> Controller : getOfferRepository
+deactivate Repositories
+
+Controller -> OfferRepository : createOffer(orderAmount)
+activate OfferRepository
+
+OfferRepository -> Offer** : createOffer(orderAmount)
+
+OfferRepository -> OfferRepository : addOffer(offer)
+
+OfferRepository -> OfferRepository : validateOffer(offer)
+
+OfferRepository --> OfferRepository
+
+OfferRepository --> OfferRepository
+
+OfferRepository --> Controller : offer
+deactivate OfferRepository
+
+end
+
+<-- Controller : offer
+
+@enduml

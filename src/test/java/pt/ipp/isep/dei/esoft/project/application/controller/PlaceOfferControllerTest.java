@@ -26,7 +26,7 @@ class PlaceOfferControllerTest {
     TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
     Business business = new Business(200);
     PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business);
-    Offer offer = new Offer(name, offerAmount, publishedAnnouncement1);
+    Offer offer = new Offer(name, offerAmount, publishedAnnouncement1, OfferState.pending);
 
     @Test
     void getOfferFromRepository() {
@@ -52,7 +52,7 @@ class PlaceOfferControllerTest {
         Repositories.getInstance().setOfferRepository(repository);
         controller.offerRepository = repository;
 
-        Optional<Offer> result = controller.createNewOfferToAgent(name, offerAmount, publishedAnnouncement1);
+        Optional<Offer> result = controller.createNewOfferToAgent(name, offerAmount, publishedAnnouncement1, OfferState.pending);
 
         assertTrue(result.isPresent());
         Offer offer = result.get();
@@ -71,7 +71,7 @@ class PlaceOfferControllerTest {
         Repositories.getInstance().setOfferRepository(repository);
         controller.offerRepository = repository;
 
-        Optional<Offer> result = controller.createNewOfferToAgent(name, offerAmount, publishedAnnouncement1);
+        Optional<Offer> result = controller.createNewOfferToAgent(name, offerAmount, publishedAnnouncement1, OfferState.pending);
 
         assertFalse(result.isPresent());
     }
