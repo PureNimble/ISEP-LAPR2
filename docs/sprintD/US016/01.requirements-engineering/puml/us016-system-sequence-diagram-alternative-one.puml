@@ -19,10 +19,16 @@ activate System
 System --> Agent : shows the schedule requests
 deactivate System
 
-Agent -> System : selects the desired schedule request to respond
+Agent -> System : selects a schedule request to respond
 activate System
 
 System --> Agent : shows the desired schedule request
+deactivate System
+
+Agent -> System : responds to the schedule request
+activate System
+
+System --> Agent : receives the agent's response and sends email
 deactivate System
 
 Agent -> System : submits data
