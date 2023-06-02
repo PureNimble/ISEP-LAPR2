@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
-
- The State class represents a state in a country with its name and a list of its districts.
+ * The State class represents a state in a country with its name and a list of its districts.
  */
 public class State {
 
@@ -17,10 +16,10 @@ public class State {
     private  List<District> districts = new ArrayList<>();
 
     /**
-
-     Constructs a new State object with the specified state name and district list.
-     @param state the name of the state
-     @param districts the list of districts in the state
+     * Constructs a new State object with the specified state name and district list.
+     *
+     * @param state     the name of the state
+     * @param districts the list of districts in the state
      */
     public State(String state,List<District> districts) {
         this.state = state;
@@ -29,29 +28,50 @@ public class State {
 
 
     /**
-
-     Constructs a new State object with the specified state name.
-     @param state the name of the state
+     * Constructs a new State object with the specified state name.
+     *
+     * @param state the name of the state
      */
     public State(String state) {
         this.state = state;
     }
-    /**
 
-     Returns the name of the state.
-     @return the name of the state
+    /**
+     * Returns the name of the state.
+     *
+     * @return the name of the state
      */
     public String getState() {
         return state;
     }
-    /**
 
-     Returns the list of districts in the state.
-     @return the list of districts in the state
+    /**
+     * Returns the list of districts in the state.
+     *
+     * @return the list of districts in the state
      */
     public List<District> getDistricts() {
         return districts;
     }
+
+    /**
+     * Sets state.
+     *
+     * @param state the state
+     */
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    /**
+     * Sets districts.
+     *
+     * @param districts the districts
+     */
+    public void setDistricts(List<District> districts) {
+        this.districts = districts;
+    }
+
     /**
 
      Returns a string representation of the state.

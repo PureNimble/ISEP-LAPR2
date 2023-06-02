@@ -3,8 +3,7 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import java.util.Objects;
 
 /**
-
- The TypeOfBusiness class represents the type of business.
+ * The TypeOfBusiness class represents the type of business.
  */
 public class TypeOfBusiness {
 
@@ -13,10 +12,11 @@ public class TypeOfBusiness {
      The type of business.
      */
     private String typeOfBusiness;
-    /**
 
-     Creates an instance of TypeOfBusiness with the specified type of business.
-     @param typeOfBusiness the type of business.
+    /**
+     * Creates an instance of TypeOfBusiness with the specified type of business.
+     *
+     * @param typeOfBusiness the type of business.
      */
     public TypeOfBusiness(String typeOfBusiness) {
         this.typeOfBusiness = typeOfBusiness;
@@ -33,13 +33,23 @@ public class TypeOfBusiness {
 
 
     /**
-
-     Returns the type of business.
-     @return the type of business.
+     * Returns the type of business.
+     *
+     * @return the type of business.
      */
     public String getTypeOfBusiness() {
         return typeOfBusiness;
     }
+
+    /**
+     * Sets type of business.
+     *
+     * @param typeOfBusiness the type of business
+     */
+    public void setTypeOfBusiness(String typeOfBusiness) {
+        this.typeOfBusiness = typeOfBusiness;
+    }
+
     /**
 
      Indicates whether some other object is "equal to" this one.

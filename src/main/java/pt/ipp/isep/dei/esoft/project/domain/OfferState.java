@@ -1,8 +1,20 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+/**
+ * The enum Offer state.
+ */
 public enum OfferState {
+    /**
+     * Pending offer state.
+     */
     pending,
+    /**
+     * Accepted offer state.
+     */
     accepted,
+    /**
+     * Rejected offer state.
+     */
     rejected;
 
     /**

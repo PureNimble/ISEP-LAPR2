@@ -15,7 +15,7 @@ public class District {
      * Creates a new district object with a specified name and list of cities.
      *
      * @param district the name of the district
-     * @param cities the list of cities in the district
+     * @param cities   the list of cities in the district
      */
     public District(String district,List<City> cities) {
         this.district = district;
@@ -47,6 +47,24 @@ public class District {
      */
     public List<City> getCities() {
         return cities;
+    }
+
+    /**
+     * Sets district.
+     *
+     * @param district the district
+     */
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    /**
+     * Sets cities.
+     *
+     * @param cities the cities
+     */
+    public void setCities(List<City> cities) {
+        this.cities = cities;
     }
 
     /**

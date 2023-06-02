@@ -69,42 +69,92 @@ public class Person {
         return name;
     }
 
+    /**
+     * Sets email.
+     *
+     * @param email the email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     * Gets passport number.
+     *
+     * @return the passport number
+     */
     public int getPassportNumber() {
         return passportNumber;
     }
 
+    /**
+     * Sets passport number.
+     *
+     * @param passportNumber the passport number
+     */
     public void setPassportNumber(int passportNumber) {
         this.passportNumber = passportNumber;
     }
 
+    /**
+     * Gets tax number.
+     *
+     * @return the tax number
+     */
     public int getTaxNumber() {
         return taxNumber;
     }
 
+    /**
+     * Sets tax number.
+     *
+     * @param taxNumber the tax number
+     */
     public void setTaxNumber(int taxNumber) {
         this.taxNumber = taxNumber;
     }
 
+    /**
+     * Sets name.
+     *
+     * @param name the name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Gets address.
+     *
+     * @return the address
+     */
     public Address getAddress() {
         return address;
     }
 
+    /**
+     * Sets address.
+     *
+     * @param address the address
+     */
     public void setAddress(Address address) {
         this.address = address;
     }
 
+    /**
+     * Gets phone number.
+     *
+     * @return the phone number
+     */
     public long getPhoneNumber() {
         return phoneNumber;
     }
 
+    /**
+     * Sets phone number.
+     *
+     * @param phoneNumber the phone number
+     */
     public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }

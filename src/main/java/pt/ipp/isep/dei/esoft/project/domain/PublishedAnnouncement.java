@@ -19,6 +19,8 @@ public class PublishedAnnouncement {
     private Business business;
     private int durationOfContract;
 
+    private Employee agent;
+
     private AnnouncementRequest announcementRequest;
 
     /**
@@ -30,14 +32,16 @@ public class PublishedAnnouncement {
      * @param propertyType   the type of property
      * @param comission      the commission chosen by the client
      * @param business       the business representing the client
+     * @param agent          the agent
      */
-    public PublishedAnnouncement(Date date,TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType,Comission comission,Business business) {
+    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, Employee agent) {
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
         this.propertyType = propertyType;
         this.comission = comission;
-        this.date= date;
+        this.date = date;
         this.business = business;
+        this.agent = agent;
     }
 
     /**
@@ -50,8 +54,9 @@ public class PublishedAnnouncement {
      * @param comission          the commission chosen by the client
      * @param business           the business representing the client
      * @param durationOfContract the duration of the rental contract
+     * @param agent              the agent
      */
-    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract) {
+    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent) {
         this.date = date;
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
@@ -59,6 +64,7 @@ public class PublishedAnnouncement {
         this.comission = comission;
         this.business = business;
         this.durationOfContract = durationOfContract;
+        this.agent = agent;
     }
 
     /**
@@ -72,7 +78,13 @@ public class PublishedAnnouncement {
         this.announcementRequest = announcementRequest;
     }
 
-    public PublishedAnnouncement (AnnouncementRequestDto announcementRequestDto,Comission comission) {
+    /**
+     * Instantiates a new Published announcement.
+     *
+     * @param announcementRequestDto the announcement request dto
+     * @param comission              the comission
+     */
+    public PublishedAnnouncement(AnnouncementRequestDto announcementRequestDto, Comission comission) {
         this.date = announcementRequestDto.getDate();
         this.typeOfBusiness = announcementRequestDto.getTypeOfBusiness();
         this.property = announcementRequestDto.getProperty();
@@ -82,6 +94,11 @@ public class PublishedAnnouncement {
         this.comission = comission;
     }
 
+    /**
+     * Gets announcement request.
+     *
+     * @return the announcement request
+     */
     public AnnouncementRequest getAnnouncementRequest() {
         return announcementRequest;
     }
@@ -104,22 +121,47 @@ public class PublishedAnnouncement {
         return date;
     }
 
+    /**
+     * Gets type of business.
+     *
+     * @return the type of business
+     */
     public TypeOfBusiness getTypeOfBusiness() {
         return typeOfBusiness;
     }
 
+    /**
+     * Gets property type.
+     *
+     * @return the property type
+     */
     public PropertyType getPropertyType() {
         return propertyType;
     }
 
+    /**
+     * Gets comission.
+     *
+     * @return the comission
+     */
     public Comission getComission() {
         return comission;
     }
 
+    /**
+     * Gets business.
+     *
+     * @return the business
+     */
     public Business getBusiness() {
         return business;
     }
 
+    /**
+     * Gets duration of contract.
+     *
+     * @return the duration of contract
+     */
     public int getDurationOfContract() {
         return durationOfContract;
     }
@@ -134,18 +176,99 @@ public class PublishedAnnouncement {
     }
 
     /**
+     * Sets type of business.
+     *
+     * @param typeOfBusiness the type of business
+     */
+    public void setTypeOfBusiness(TypeOfBusiness typeOfBusiness) {
+        this.typeOfBusiness = typeOfBusiness;
+    }
+
+    /**
+     * Sets property.
+     *
+     * @param property the property
+     */
+    public void setProperty(Property property) {
+        this.property = property;
+    }
+
+    /**
+     * Sets property type.
+     *
+     * @param propertyType the property type
+     */
+    public void setPropertyType(PropertyType propertyType) {
+        this.propertyType = propertyType;
+    }
+
+    /**
+     * Sets comission.
+     *
+     * @param comission the comission
+     */
+    public void setComission(Comission comission) {
+        this.comission = comission;
+    }
+
+    /**
+     * Sets business.
+     *
+     * @param business the business
+     */
+    public void setBusiness(Business business) {
+        this.business = business;
+    }
+
+    /**
+     * Sets duration of contract.
+     *
+     * @param durationOfContract the duration of contract
+     */
+    public void setDurationOfContract(int durationOfContract) {
+        this.durationOfContract = durationOfContract;
+    }
+
+    /**
+     * Gets agent.
+     *
+     * @return the agent
+     */
+    public Employee getAgent() {
+        return agent;
+    }
+
+    /**
+     * Sets agent.
+     *
+     * @param agent the agent
+     */
+    public void setAgent(Employee agent) {
+        this.agent = agent;
+    }
+
+    /**
+     * Sets announcement request.
+     *
+     * @param announcementRequest the announcement request
+     */
+    public void setAnnouncementRequest(AnnouncementRequest announcementRequest) {
+        this.announcementRequest = announcementRequest;
+    }
+
+    /**
      * Returns a string representation of the announcement for sale.
      *
      * @return a string representation of the announcement for sale
      */
     public String toString() {
-        return String.format("Date:%s\n" +
+        return String.format("Date:%s\n\n" + "Responsible agent:\n" + "Name:%s\n" + "Email:%s\n" + "Phone Number:%s\n" +
                         "Type of business:%s\n" +
                         "Property Type:%s\n" +
                         "Comission Selected:%s" +
                         "Price:%s\n" +
                         "%s",
-                date.toString(),typeOfBusiness.toString(),propertyType,comission.toString(),business.toString(),property.toString());
+                date.toString(), agent.getEmployeeName(), agent.getEmployeeEmail(), agent.getPhoneNumber(), typeOfBusiness.toString(), propertyType, comission.toString(), business.toString(), property.toString());
     }
 
     /**
@@ -153,15 +276,15 @@ public class PublishedAnnouncement {
      *
      * @return a string representation of the announcement for rent
      */
-    public String toStringRent(){
-        return String.format("Date:%s\n" +
+    public String toStringRent() {
+        return String.format("Date:%s\n" +  "Responsible agent:\n" + "Name:%s\n" + "Email:%s\n" + "Phone Number:%s\n" +
                         "Type of business:%s\n" +
                         "Property Type:%s\n" +
                         "Comission Selected:%s" +
                         "Price:%s\n" +
                         "DurationOfContract:%s\n" +
                         "%s",
-                date.toString(),typeOfBusiness.toString(),propertyType,comission.toString(),business.toString(),durationOfContract,property.toString());
+                date.toString(), agent.getEmployeeName(), agent.getEmployeeEmail(), agent.getPhoneNumber(), typeOfBusiness.toString(), propertyType, comission.toString(), business.toString(), durationOfContract, property.toString());
     }
 
 }

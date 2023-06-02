@@ -2,11 +2,15 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.util.Objects;
 
+/**
+ * The type Property type.
+ */
 public class PropertyType {
     private String designation;
 
     /**
      * Constructor for PropertyType Class
+     *
      * @param designation the designation of the property type
      */
     public PropertyType(String designation) {
@@ -15,10 +19,20 @@ public class PropertyType {
 
     /**
      * Returns the designation of the property type
+     *
      * @return the designation of the property type
      */
     public String getDesignation() {
         return designation;
+    }
+
+    /**
+     * Sets designation.
+     *
+     * @param designation the designation
+     */
+    public void setDesignation(String designation) {
+        this.designation = designation;
     }
 
     /**

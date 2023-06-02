@@ -7,10 +7,8 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
-
- The {@code Store} class represents a store with a designation, an ID, an address, an email, and a phone number.
-
- It also has methods to create an employee and add it to the store.
+ * The {@code Store} class represents a store with a designation, an ID, an address, an email, and a phone number.
+ * It also has methods to create an employee and add it to the store.
  */
 public class Store {
 
@@ -39,14 +37,15 @@ public class Store {
      The phone number of the store.
      */
     private long phoneNumber;
-    /**
 
-     Constructs a {@code Store} object with a designation, an ID, an address, a phone number, and an email.
-     @param designation the designation of the store
-     @param id the ID of the store
-     @param address the address of the store
-     @param phoneNumber the phone number of the store
-     @param email the email of the store
+    /**
+     * Constructs a {@code Store} object with a designation, an ID, an address, a phone number, and an email.
+     *
+     * @param designation the designation of the store
+     * @param id          the ID of the store
+     * @param address     the address of the store
+     * @param phoneNumber the phone number of the store
+     * @param email       the email of the store
      */
     public Store(String designation, int id, Address address, long phoneNumber, String email) {
         this.designation = designation;
@@ -55,24 +54,89 @@ public class Store {
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
-    /**
 
-     Constructs an empty {@code Store} object.
+    /**
+     * Constructs an empty {@code Store} object.
      */
     public Store() {
     }
-    /**
 
-     Returns the ID of the store.
-     @return the ID of the store
+    /**
+     * Returns the ID of the store.
+     *
+     * @return the ID of the store
      */
     public int getId() {
         return id;
     }
-    /**
 
-     Returns the address of the store.
-     @return the address of the store
+    /**
+     * Sets designation.
+     *
+     * @param designation the designation
+     */
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
+
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * Sets address.
+     *
+     * @param address the address
+     */
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    /**
+     * Gets email.
+     *
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Sets email.
+     *
+     * @param email the email
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * Gets phone number.
+     *
+     * @return the phone number
+     */
+    public long getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    /**
+     * Sets phone number.
+     *
+     * @param phoneNumber the phone number
+     */
+    public void setPhoneNumber(long phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    /**
+     * Returns the address of the store.
+     *
+     * @return the address of the store
      */
     public Address getAddress() {
         return address;
@@ -85,31 +149,20 @@ public class Store {
     public String toString() {
         return String.format("Store: %s %s located at %s", id, designation, address.toString());
     }
+
     /**
-
-     Creates an employee with the given information and adds it to the store, if the employee is not already in the
-
-     store.
-
-     @param email the email of the employee
-
-     @param name the name of the employee
-
-     @param phone the phone number of the employee
-
-     @param roles the roles of the employee
-
-     @param store the store where the employee will work
-
-     @param address the address of the employee
-
-     @param passportNumber the passport number of the employee
-
-     @param taxNumber the tax number of the employee
-
-     @return an {@code Optional} containing the created employee, or an empty {@code Optional} if the employee could
-
-     not be added to the store
+     * Creates an employee with the given information and adds it to the store, if the employee is not already in the
+     * store.
+     *
+     * @param email          the email of the employee
+     * @param name           the name of the employee
+     * @param phone          the phone number of the employee
+     * @param roles          the roles of the employee
+     * @param store          the store where the employee will work
+     * @param address        the address of the employee
+     * @param passportNumber the passport number of the employee
+     * @param taxNumber      the tax number of the employee
+     * @return an {@code Optional} containing the created employee, or an empty {@code Optional} if the employee couldnot be added to the store
      */
     public Optional<Employee> createEmployee(String email, String name,
                                              long phone, List<Role> roles, Store store, Address address, int passportNumber, int taxNumber) {
@@ -182,10 +235,11 @@ public class Store {
     public int hashCode() {
         return Objects.hash(designation);
     }
-    /**
 
-     Gets the designation of the store.
-     @return The designation of the store.
+    /**
+     * Gets the designation of the store.
+     *
+     * @return The designation of the store.
      */
     public String getDesignation() {
         return designation;

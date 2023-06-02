@@ -6,7 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The type File reader class.
+ */
 public class FileReaderClass {
+    /**
+     * Read informations array list.
+     *
+     * @param file the file
+     * @return the array list
+     */
     public ArrayList<String[]> readInformations(File file) {
 
         ArrayList<String[]> fileInformations = new ArrayList<>();
@@ -27,6 +36,12 @@ public class FileReaderClass {
 
     }
 
+    /**
+     * Read store informations array list.
+     *
+     * @param fileInformations the file informations
+     * @return the array list
+     */
     public ArrayList<String[]> readStoreInformations(ArrayList<String[]> fileInformations) {
 
         ArrayList<String[]> storeInformations = new ArrayList<>();
@@ -44,6 +59,12 @@ public class FileReaderClass {
         return storeInformations;
     }
 
+    /**
+     * Read owner informations array list.
+     *
+     * @param fileInformations the file informations
+     * @return the array list
+     */
     public ArrayList<String[]> readOwnerInformations(ArrayList<String[]> fileInformations) {
 
         ArrayList<String[]> ownerInformations = new ArrayList<>();

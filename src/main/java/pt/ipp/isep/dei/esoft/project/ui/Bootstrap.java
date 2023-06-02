@@ -71,16 +71,26 @@ public class Bootstrap {
 
     private void addPublishedAnnouncement(){
 
+        Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
+        Role role = new Role("Agent");
+        Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
+        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        List<Role> roles = new ArrayList<>();
+        roles.add(new Role("Agent"));
+
+        Employee employee1 = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store,  roles, address);
+
+
         PublishedAnnouncementRepository publishedAnnouncementRepository = Repositories.getInstance().getPublishedAnnouncementRepository();
         Comission com = new Comission(25.00);
-        Property property = new Property(2,2);
+        Property property = new Property(2,2, new Photos("photos1"));
         PropertyType propertyType = new PropertyType("House");
         TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
         Business business = new Business(200);
         Date date1 = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
         Date date2 = new GregorianCalendar(2015, Calendar.FEBRUARY, 11).getTime();
-        PublishedAnnouncement p1 = new PublishedAnnouncement(date1, typeOfBusiness, property, propertyType, com, business);
-        PublishedAnnouncement p2 = new PublishedAnnouncement(date2, typeOfBusiness, property, propertyType, com, business);
+        PublishedAnnouncement p1 = new PublishedAnnouncement(date1, typeOfBusiness, property, propertyType, com, business, employee1);
+        PublishedAnnouncement p2 = new PublishedAnnouncement(date2, typeOfBusiness, property, propertyType, com, business, employee1);
         publishedAnnouncementRepository.add(p1);
         publishedAnnouncementRepository.add(p2);
 
@@ -92,6 +102,8 @@ public class Bootstrap {
 
         availableEquipmentRepository.add(new AvailableEquipment("Air conditioning"));
         availableEquipmentRepository.add(new AvailableEquipment("Central Heating"));
+        availableEquipmentRepository.add(new AvailableEquipment("None"));
+        availableEquipmentRepository.add(new AvailableEquipment("Other"));
 
     }
 
@@ -216,25 +228,38 @@ public class Bootstrap {
         comissionRepository.add(new Comission(20));
         comissionRepository.add(new Comission(10.5));
         comissionRepository.add(new Comission(23.7));
+       // comissionRepository.add(new Comission(Integer.parseInt("Other")));
 
     }
 
     private void addOffers() {
+
+        Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
+        Role role = new Role("Agent");
+        Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
+        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        List<Role> roles = new ArrayList<>();
+        roles.add(new Role("Agent"));
+
+        Employee employee1 = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store,  roles, address);
+
 
         OfferRepository offerRepository = Repositories.getInstance().getOfferRepository();
 
         Comission comission1 = new Comission(5.00);
         Comission comission2 = new Comission(10.00);
 
-        Property property1 = new Property(185,2348);
-        Property property2 = new Property(341,679);
-        House house = new House(1000,100,3,4,2,new AvailableEquipment("Air conditionating"),"Y","N","North");
-        Residence appartment = new Residence(523,50,3,4,2,new AvailableEquipment("Central Heating"));
-        Property property = new Property(3219931,55);
-        House house1 = new House(12312,50,6,6,2,new AvailableEquipment("Air conditionating"),"N","N","South");
-        House house2 = new House(500,10000,2,2,1,new AvailableEquipment("Central Heating"),"Y","N","West");
-        Residence appartment1 = new Residence(950,150,3,4,3,new AvailableEquipment("Central Heating"));
-        Property property3 = new Property(12312,3123123);
+        Property property1 = new Property(185,2348, new Photos("pjh"));
+        Property property2 = new Property(341,679, new Photos("jnc"));
+
+
+        House house = new House(1000,100,3,4,2,new AvailableEquipment("Air conditionating"),"Y","N","North", new Photos("pjh"));
+        Residence appartment = new Residence(523,50,3,4,2,new AvailableEquipment("Central Heating"), new Photos("pjh"));
+        Property property = new Property(3219931,55, new Photos("pjh"));
+        House house1 = new House(12312,50,6,6,2,new AvailableEquipment("Air conditionating"),"N","N","South", new Photos("pjh"));
+        House house2 = new House(500,10000,2,2,1,new AvailableEquipment("Central Heating"),"Y","N","West", new Photos("pjh"));
+        Residence appartment1 = new Residence(950,150,3,4,3,new AvailableEquipment("Central Heating"), new Photos("pjh"));
+        Property property3 = new Property(12312,3123123, new Photos("pjh"));
 
         PropertyType propertyType1 = new PropertyType("House");
         PropertyType propertyType2 = new PropertyType("Apartment");
@@ -261,19 +286,19 @@ public class Bootstrap {
         Date date3 = calendar.getTime();
 
         Address address1 = new Address("Avenue Walmart",22334,new District("Jefferson"),new City("Ottawa"),new State("Arizona"));
-        Address address2 = new Address("Avenue Tesco", 90210, new District("Beverly Hills"), new City("Los Angeles"), new State("California"));
+        Address address3 = new Address("Avenue Tesco", 90210, new District("Beverly Hills"), new City("Los Angeles"), new State("California"));
 
         Client client1 = new Client("pedro@this.app", 123456789,123456789,"Pedro",address1,123456789);
         Client client2 = new Client("miguel@this.app", 987654321,987654321, "Miguel", address2, 987654321);
         Client client3 = new Client("client3@this.app",129836276,123439874,"André",address1,1828288211);
 
 
-        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1,typeOfBusiness1, property1, propertyType3, comission1, business1);
-        PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, property2, propertyType3, comission2, business2);
-        PublishedAnnouncement publishedAnnouncement3 = new PublishedAnnouncement(date1,typeOfBusiness2,property2,propertyType3,comission1,business1);
-        PublishedAnnouncement publishedAnnouncement4 = new PublishedAnnouncement(date3,typeOfBusiness1,property3,propertyType3,comission1,business2);
-        PublishedAnnouncement publishedAnnouncement5 = new PublishedAnnouncement(date1,typeOfBusiness1,house1,propertyType1,comission2,business1);
-        PublishedAnnouncement publishedAnnouncement6 = new PublishedAnnouncement(date1,typeOfBusiness2,house,propertyType1,comission1,business2);
+        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1,typeOfBusiness1, property1, propertyType3, comission1, business1, employee1);
+        PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, property2, propertyType3, comission2, business2, employee1);
+        PublishedAnnouncement publishedAnnouncement3 = new PublishedAnnouncement(date1,typeOfBusiness2,property2,propertyType3,comission1,business1, employee1);
+        PublishedAnnouncement publishedAnnouncement4 = new PublishedAnnouncement(date3,typeOfBusiness1,property3,propertyType3,comission1,business2, employee1);
+        PublishedAnnouncement publishedAnnouncement5 = new PublishedAnnouncement(date1,typeOfBusiness1,house1,propertyType1,comission2,business1, employee1);
+        PublishedAnnouncement publishedAnnouncement6 = new PublishedAnnouncement(date1,typeOfBusiness2,house,propertyType1,comission1,business2, employee1);
 
 
         offerRepository.add(new Offer("Pedro", 200000, publishedAnnouncement1,OfferState.accepted));
