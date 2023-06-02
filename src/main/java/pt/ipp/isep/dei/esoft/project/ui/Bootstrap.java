@@ -55,9 +55,9 @@ public class Bootstrap {
         Role role = new Role("Agent");
         Address address1 = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
         Address address2 = new Address("Avenue Walmart",22334,new District("Jefferson"),new City("Ottawa"),new State("Arizona"));
-        Store store1 = new Store("Holloway",10234,address2,9383811,"holloway@gmail.com");
-        Store store2 = new Store("Maltip",104224,address2,9678910,"123sttore@gmail.com");
-        Store store3 = new Store("Elvis",224,address2,9437782,"dadaw@gmail.com");
+        Store store1 = new Store("Holloway",10234,address2,9383811,"holloway@gmail.com", 11);
+        Store store2 = new Store("Maltip",104224,address2,9678910,"123sttore@gmail.com", 16);
+        Store store3 = new Store("Elvis",224,address2,9437782,"dadaw@gmail.com", 3);
         
         List<Role> roles = new ArrayList<>();
         roles.add(role);
@@ -82,7 +82,7 @@ public class Bootstrap {
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
         Role role = new Role("Agent");
         Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com", 12);
         List<Role> roles = new ArrayList<>();
         roles.add(role);
 
@@ -219,10 +219,10 @@ public class Bootstrap {
 
         Address address = new Address("Avenue Walmart",22334,new District("Jefferson"),new City("Ottawa"),new State("Arizona"));
 
-        storeRepository.add(new Store("Holloway",10234,address,9383811,"holloway@gmail.com"));
-        storeRepository.add(new Store("Maltip",104224,address,9678910,"123sttore@gmail.com"));
-        storeRepository.add(new Store("Elvis",224,address,9437782,"dadaw@gmail.com"));
-        storeRepository.add(new Store("Trap",4554,address,9827612,"trappp@gmail.com"));
+        storeRepository.add(new Store("Holloway",10234,address,9383811,"holloway@gmail.com", 10));
+        storeRepository.add(new Store("Maltip",104224,address,9678910,"123sttore@gmail.com", 12));
+        storeRepository.add(new Store("Elvis",224,address,9437782,"dadaw@gmail.com", 11));
+        storeRepository.add(new Store("Trap",4554,address,9827612,"trappp@gmail.com", 3));
     }
 
     private void addPropertyTypes() {

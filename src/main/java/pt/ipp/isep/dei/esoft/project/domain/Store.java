@@ -39,6 +39,13 @@ public class Store {
     private long phoneNumber;
 
     /**
+
+     The number of properties of the store
+     */
+    private int listing;
+    
+
+    /**
      * Constructs a {@code Store} object with a designation, an ID, an address, a phone number, and an email.
      *
      * @param designation the designation of the store
@@ -47,12 +54,13 @@ public class Store {
      * @param phoneNumber the phone number of the store
      * @param email       the email of the store
      */
-    public Store(String designation, int id, Address address, long phoneNumber, String email) {
+    public Store(String designation, int id, Address address, long phoneNumber, String email, int listing) {
         this.designation = designation;
         this.id = id;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.listing = listing;
     }
 
     /**
@@ -141,6 +149,7 @@ public class Store {
     public Address getAddress() {
         return address;
     }
+
     /**
 
      Returns a string representation of the store.
@@ -243,5 +252,23 @@ public class Store {
      */
     public String getDesignation() {
         return designation;
+    }
+
+    /**
+     * Gets listing.
+     *
+     * @return
+     */
+    public int getListing() {
+        return listing;
+    }
+
+    /**
+     * Sets listing.
+     *
+     * @param listing
+     */
+    public void setListing(int listing) {
+        this.listing = listing;
     }
 }

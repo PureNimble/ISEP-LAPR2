@@ -60,7 +60,7 @@ public class DisplayEmployeeController {
     public List <Employee> getEmployeesAllphabeticallySorted() {
         StoreRepository storeRepository = getStoreRepository();
         EmployeeRepository employeeRepository = getEmployeeRepository();
-        List<Store> listStore = storeRepository.getStores();
+        List<Store> listStore = storeRepository.getStoresByMostListings();
         return employeeRepository.getEmployeesAllphabeticallySorted(listStore);
     }
 }

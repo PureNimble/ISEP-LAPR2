@@ -3,6 +3,8 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.domain.Store;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,4 +76,28 @@ public class StoreRepository {
     public List<Store> getStores() {
         return stores;
     }
+
+    public List<Store> getStoresByMostListings() {
+        List<Store> sortedStores = new ArrayList<>(stores);
+    
+        Collections.sort(sortedStores, compareToDescendingList);
+    
+        return sortedStores;
+    }
+
+    Comparator<Store> compareToDescendingList = new Comparator<Store>() {
+        @Override
+        public int compare(Store store1, Store store2) {
+            int listing1 = store1.getListing();
+            int listing2 = store2.getListing();
+    
+            if (listing2 < listing1) {
+                return -1;
+            } else if (listing2 > listing1) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+    };
 }
