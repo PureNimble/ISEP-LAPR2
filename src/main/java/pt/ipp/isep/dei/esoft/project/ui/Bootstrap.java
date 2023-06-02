@@ -31,8 +31,6 @@ public class Bootstrap {
             throw new RuntimeException(e);
         }
         addPublishedAnnouncement();
-        addOffers();
-
     }
 
 
@@ -54,19 +52,29 @@ public class Bootstrap {
 //            //addressRepository -> guardar num novo arraylist de adresses
 //        }
         EmployeeRepository employeeRepository = Repositories.getInstance().getEmployeeRepository();
-        Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
         Role role = new Role("Agent");
-        Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        Address address1 = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
+        Address address2 = new Address("Avenue Walmart",22334,new District("Jefferson"),new City("Ottawa"),new State("Arizona"));
+        Store store1 = new Store("Holloway",10234,address2,9383811,"holloway@gmail.com");
+        Store store2 = new Store("Maltip",104224,address2,9678910,"123sttore@gmail.com");
+        Store store3 = new Store("Elvis",224,address2,9437782,"dadaw@gmail.com");
+        
         List<Role> roles = new ArrayList<>();
-        roles.add(new Role("Agent"));
+        roles.add(role);
 
-        Employee agent1 = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store,  roles, address);
-
-        Employee agent2 = new Employee("agent2@this.app",12345677,12231311,"Agent 02",555661,store,roles,address);
+        Employee agent1 = new Employee("agent@this.app", 123456789, 987654321, "Agent", 5551234, store1,  roles, address1);
+        Employee agent2 = new Employee("agent2@this.app",12345677,12231311,"Agent 02",555661,store1,roles,address1);
+        Employee agent3 = new Employee("agent3@this.app", 123456432, 123456789, "Manuel", 1234567, store2,  roles, address1);
+        Employee agent4 = new Employee("agent4@this.app",12345123,124356789,"Pedro",1324567,store3,roles,address1);
+        Employee agent5 = new Employee("agent5@this.app", 123456321, 17634589, "Jorge", 1432567, store2,  roles, address1);
+        Employee agent6 = new Employee("agent6@this.app",12345687,192837465,"Ruben",9876543,store2,roles,address1);
 
         employeeRepository.add(agent1);
         employeeRepository.add(agent2);
+        employeeRepository.add(agent3);
+        employeeRepository.add(agent4);
+        employeeRepository.add(agent5);
+        employeeRepository.add(agent6);
     }
 
     private void addPublishedAnnouncement(){
@@ -76,7 +84,7 @@ public class Bootstrap {
         Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
         Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
         List<Role> roles = new ArrayList<>();
-        roles.add(new Role("Agent"));
+        roles.add(role);
 
         Employee employee1 = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store,  roles, address);
 
@@ -93,7 +101,7 @@ public class Bootstrap {
         PublishedAnnouncement p2 = new PublishedAnnouncement(date2, typeOfBusiness, property, propertyType, com, business, employee1);
         publishedAnnouncementRepository.add(p1);
         publishedAnnouncementRepository.add(p2);
-
+        addOffers(p1, p2);
     }
 
     private void addAvailableEquipment(){
@@ -101,8 +109,11 @@ public class Bootstrap {
         AvailableEquipmentRepository availableEquipmentRepository = Repositories.getInstance().getAvailableEquipmentRepository();
 
         availableEquipmentRepository.add(new AvailableEquipment("Air conditioning"));
+        
         availableEquipmentRepository.add(new AvailableEquipment("Central Heating"));
+
         availableEquipmentRepository.add(new AvailableEquipment("None"));
+
         availableEquipmentRepository.add(new AvailableEquipment("Other"));
 
     }
@@ -113,9 +124,13 @@ public class Bootstrap {
 
         //get task category repository
         RoleRepository roleRepository = Repositories.getInstance().getRoleRepository();
+
         roleRepository.add(new Role("Admin"));
+
         roleRepository.add(new Role("Agent"));
+
         roleRepository.add(new Role("Store Manager"));
+
         roleRepository.add(new Role("Store Network Manager"));
 
     }
@@ -125,6 +140,7 @@ public class Bootstrap {
         TypeOfBusinessRepository typeOfBusinessRepository = Repositories.getInstance().getTypeOfBusinessRepository();
 
         typeOfBusinessRepository.add(new TypeOfBusiness("Buy"));
+
         typeOfBusinessRepository.add(new TypeOfBusiness("Rent"));
 
     }
@@ -133,12 +149,12 @@ public class Bootstrap {
     private void addUsers() {
         //TODO: add Authentication users here: should be created for each user in the organization
 
-        Address adress = new Address("",555,new District("dwadw"),new City("dwada"),new State("WADDA"));
         AuthenticationRepository authenticationRepository = Repositories.getInstance().getAuthenticationRepository();
-        UserRepository userRepository = Repositories.getInstance().getUserRepository();
+
         authenticationRepository.addUserRole(AuthenticationController.ROLE_ADMIN, AuthenticationController.ROLE_ADMIN);
-        authenticationRepository.addUserRole(AuthenticationController.ROLE_EMPLOYEE,
-                AuthenticationController.ROLE_EMPLOYEE);
+
+        authenticationRepository.addUserRole(AuthenticationController.ROLE_EMPLOYEE, AuthenticationController.ROLE_EMPLOYEE);
+
         authenticationRepository.addUserRole(AuthenticationController.ROLE_AGENT, AuthenticationController.ROLE_AGENT);
 
         authenticationRepository.addUserRole(AuthenticationController.ROLE_OWNER, AuthenticationController.ROLE_OWNER);
@@ -147,25 +163,27 @@ public class Bootstrap {
 
         authenticationRepository.addUserRole(AuthenticationController.ROLE_NETWORK_MANAGER, AuthenticationController.ROLE_NETWORK_MANAGER);
 
-        authenticationRepository.addUserWithRole("Main Administrator", "admin@this.app", "admin",
-                AuthenticationController.ROLE_ADMIN);
+        authenticationRepository.addUserWithRole("Main Administrator", "admin@this.app", "admin", AuthenticationController.ROLE_ADMIN);
 
-        authenticationRepository.addUserWithRole("Employee", "employee@this.app", "pwd",
-                AuthenticationController.ROLE_EMPLOYEE);
+        authenticationRepository.addUserWithRole("Employee", "employee@this.app", "pwd", AuthenticationController.ROLE_EMPLOYEE);
 
-        authenticationRepository.addUserWithRole("Network Manager", "manager@this.app", "manager",
-                AuthenticationController.ROLE_NETWORK_MANAGER);
+        authenticationRepository.addUserWithRole("Network Manager", "manager@this.app", "manager", AuthenticationController.ROLE_NETWORK_MANAGER);
 
         authenticationRepository.addUserWithRole("Agent", "agent@this.app", "agent", AuthenticationController.ROLE_AGENT);
 
         authenticationRepository.addUserWithRole("Owner", "owner@this.app", "owner", AuthenticationController.ROLE_OWNER);
 
-        authenticationRepository.addUserWithRole("Agent 02","agent2@this.app","agent02",AuthenticationController.ROLE_AGENT);
+        authenticationRepository.addUserWithRole("Agent 02","agent2@this.app","agent2", AuthenticationController.ROLE_AGENT);
 
-        authenticationRepository.addUserWithRole("Client", "client@this.app", "client",
-                AuthenticationController.ROLE_CLIENT);
+        authenticationRepository.addUserWithRole("Agent 03","agent3@this.app","agent3", AuthenticationController.ROLE_AGENT);
 
+        authenticationRepository.addUserWithRole("Agent 04","agent4@this.app","agent4", AuthenticationController.ROLE_AGENT);
 
+        authenticationRepository.addUserWithRole("Agent 05","agent5@this.app","agent5", AuthenticationController.ROLE_AGENT);
+
+        authenticationRepository.addUserWithRole("Agent 06","agent6@this.app","agent6", AuthenticationController.ROLE_AGENT);
+
+        authenticationRepository.addUserWithRole("Client", "client@this.app", "client", AuthenticationController.ROLE_CLIENT);
     }
 
 
@@ -205,8 +223,6 @@ public class Bootstrap {
         storeRepository.add(new Store("Maltip",104224,address,9678910,"123sttore@gmail.com"));
         storeRepository.add(new Store("Elvis",224,address,9437782,"dadaw@gmail.com"));
         storeRepository.add(new Store("Trap",4554,address,9827612,"trappp@gmail.com"));
-
-
     }
 
     private void addPropertyTypes() {
@@ -217,8 +233,6 @@ public class Bootstrap {
         propertyTypeRepostiory.add(new PropertyType("House"));
         propertyTypeRepostiory.add(new PropertyType("Land"));
         propertyTypeRepostiory.add(new PropertyType("Appartment"));
-
-
     }
 
     private void addComission(){
@@ -229,85 +243,16 @@ public class Bootstrap {
         comissionRepository.add(new Comission(10.5));
         comissionRepository.add(new Comission(23.7));
        // comissionRepository.add(new Comission(Integer.parseInt("Other")));
-
     }
 
-    private void addOffers() {
-
-        Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
-        Role role = new Role("Agent");
-        Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
-        List<Role> roles = new ArrayList<>();
-        roles.add(new Role("Agent"));
-
-        Employee employee1 = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store,  roles, address);
-
-
+    private void addOffers(PublishedAnnouncement p1, PublishedAnnouncement p2) {
         OfferRepository offerRepository = Repositories.getInstance().getOfferRepository();
 
-        Comission comission1 = new Comission(5.00);
-        Comission comission2 = new Comission(10.00);
-
-        Property property1 = new Property(185,2348, new Photos("pjh"));
-        Property property2 = new Property(341,679, new Photos("jnc"));
-
-
-        House house = new House(1000,100,3,4,2,new AvailableEquipment("Air conditionating"),"Y","N","North", new Photos("pjh"));
-        Residence appartment = new Residence(523,50,3,4,2,new AvailableEquipment("Central Heating"), new Photos("pjh"));
-        Property property = new Property(3219931,55, new Photos("pjh"));
-        House house1 = new House(12312,50,6,6,2,new AvailableEquipment("Air conditionating"),"N","N","South", new Photos("pjh"));
-        House house2 = new House(500,10000,2,2,1,new AvailableEquipment("Central Heating"),"Y","N","West", new Photos("pjh"));
-        Residence appartment1 = new Residence(950,150,3,4,3,new AvailableEquipment("Central Heating"), new Photos("pjh"));
-        Property property3 = new Property(12312,3123123, new Photos("pjh"));
-
-        PropertyType propertyType1 = new PropertyType("House");
-        PropertyType propertyType2 = new PropertyType("Apartment");
-        PropertyType propertyType3 = new PropertyType("Land");
-
-        TypeOfBusiness typeOfBusiness1 = new TypeOfBusiness("Sale");
-        TypeOfBusiness typeOfBusiness2 = new TypeOfBusiness("Rent");
-
-        Business business1 = new Business(200000);
-        Business business2 = new Business(345);
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY,11);
-        calendar.set(Calendar.MINUTE,30);
-        calendar.set(Calendar.MONTH,2);
-        calendar.set(Calendar.YEAR,2018);
-
-        Date date1 = calendar.getTime();
-        Date date2 = new GregorianCalendar(2023,Calendar.JANUARY, 2).getTime();
-        calendar.set(Calendar.HOUR_OF_DAY,9);
-        calendar.set(Calendar.MINUTE,55);
-        calendar.set(Calendar.MONTH,9);
-        calendar.set(Calendar.YEAR,2017);
-        Date date3 = calendar.getTime();
-
-        Address address1 = new Address("Avenue Walmart",22334,new District("Jefferson"),new City("Ottawa"),new State("Arizona"));
-        Address address3 = new Address("Avenue Tesco", 90210, new District("Beverly Hills"), new City("Los Angeles"), new State("California"));
-
-        Client client1 = new Client("pedro@this.app", 123456789,123456789,"Pedro",address1,123456789);
-        Client client2 = new Client("miguel@this.app", 987654321,987654321, "Miguel", address2, 987654321);
-        Client client3 = new Client("client3@this.app",129836276,123439874,"André",address1,1828288211);
-
-
-        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1,typeOfBusiness1, property1, propertyType3, comission1, business1, employee1);
-        PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, property2, propertyType3, comission2, business2, employee1);
-        PublishedAnnouncement publishedAnnouncement3 = new PublishedAnnouncement(date1,typeOfBusiness2,property2,propertyType3,comission1,business1, employee1);
-        PublishedAnnouncement publishedAnnouncement4 = new PublishedAnnouncement(date3,typeOfBusiness1,property3,propertyType3,comission1,business2, employee1);
-        PublishedAnnouncement publishedAnnouncement5 = new PublishedAnnouncement(date1,typeOfBusiness1,house1,propertyType1,comission2,business1, employee1);
-        PublishedAnnouncement publishedAnnouncement6 = new PublishedAnnouncement(date1,typeOfBusiness2,house,propertyType1,comission1,business2, employee1);
-
-
-        offerRepository.add(new Offer("Pedro", 200000, publishedAnnouncement1,OfferState.accepted));
-        offerRepository.add(new Offer("André",1935000,publishedAnnouncement3,OfferState.accepted));
-        offerRepository.add(new Offer("Miguel", 3456, publishedAnnouncement2,OfferState.accepted));
-        offerRepository.add(new Offer("Zé",19000,publishedAnnouncement4,OfferState.accepted));
-        offerRepository.add(new Offer("Toby",35000,publishedAnnouncement5,OfferState.accepted));
-        offerRepository.add(new Offer("Geremias",546372,publishedAnnouncement6,OfferState.accepted));
+        offerRepository.add(new Offer("Pedro", 200000, p1, OfferState.pending));
+        offerRepository.add(new Offer("Miguel",1935000, p2, OfferState.pending));
+        offerRepository.add(new Offer("Rúben", 3456, p1, OfferState.pending));
+        offerRepository.add(new Offer("Zé",19000, p1, OfferState.pending));
+        offerRepository.add(new Offer("Toby",35000, p1, OfferState.pending));
+        offerRepository.add(new Offer("Geremias",546372, p2, OfferState.pending));
     }
-
-
 }
