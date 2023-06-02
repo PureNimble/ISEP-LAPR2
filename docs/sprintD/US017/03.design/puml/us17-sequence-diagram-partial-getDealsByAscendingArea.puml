@@ -7,6 +7,8 @@ participant "offerRepository\nOfferRepository" as OfferRepository
 
 autonumber 5
 
+Group getDealsByAscendingArea
+
 activate ListDealsController
 
                 ListDealsController -> RepositorySingleton : getInstance()
@@ -27,4 +29,5 @@ activate ListDealsController
                     OfferRepository --> ListDealsController : offersListMade
                 deactivate OfferRepository
 
+end
 @enduml

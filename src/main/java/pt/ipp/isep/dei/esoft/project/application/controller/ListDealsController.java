@@ -39,6 +39,13 @@ public class ListDealsController {
 
     }
 
+    public List<Offer> getOfferMostRecent(){
+        OfferRepository offerRepository = getOfferRepository();
+
+        return offerRepository.getOffersByMostRecent();
+    }
+
+
     public List<OfferDto> toDtoDescendingArea(){
         OfferMapper offerMapper = new OfferMapper();
 
@@ -52,6 +59,10 @@ public class ListDealsController {
         return offerMapper.toDto(getDealsByAscendingArea());
 
     }
+
+
+
+
 
 
 

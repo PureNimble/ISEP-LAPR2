@@ -170,16 +170,16 @@ class Residence {
 }
 
 class House {
-    Basement
-    Inhabitable loft
+    -String Basement
+    -String Inhabitable loft
 }
 
 class SunExposure {
-    Direction
+    -String Direction
 }
 
 class AvailableEquipment {
-    Equipment
+    -String Equipment
 }
 
 class AnnouncementRequest{

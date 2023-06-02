@@ -86,7 +86,7 @@ public class ListDealsGUI implements Initializable {
 
 
     ObservableList<Object> listDeals = FXCollections.observableArrayList(
-
+         controller.getOfferMostRecent()
     );
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -366,11 +366,14 @@ public class ListDealsGUI implements Initializable {
     }
 
     private void getCriteria(javafx.event.ActionEvent actionEvent) {
+
         String choiceOption = filterChoice.getValue();
+
+
         if (choiceOption.equals("Descending")) {
             listDeals.clear();
             listDeals.addAll(controller.getDealsByAscendingArea());
-        } else {
+        } else if (choiceOption.equals("Ascending")){
             listDeals.clear();
             listDeals.addAll(controller.getDealsByDescendinggArea());
         }
