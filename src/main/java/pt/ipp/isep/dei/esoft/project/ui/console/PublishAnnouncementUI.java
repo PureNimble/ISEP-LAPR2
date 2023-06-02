@@ -446,22 +446,26 @@ public class PublishAnnouncementUI implements Runnable {
         int min = 1;
         List<String> photos = new ArrayList<>();
 
-        String choice = "y";
-        while (choice.equalsIgnoreCase("y") && photos.size() < max) {
-            int nphoto = photos.size() + 1;
-            System.out.print("Please enter the URI of a photo for the property ("+ nphoto + "): \n");
-            String uri = input.nextLine();
-            photos.add(uri);
+        try {
+            String choice = "y";
+            while (choice.equalsIgnoreCase("y") && photos.size() < max) {
+                int nphoto = photos.size() + 1;
+                System.out.print("Please enter the URI of a photo for the property ("+ nphoto + "): \n");
+                String uri = input.nextLine();
+                photos.add(uri);
 
-            if (photos.size() < max) {
-                System.out.print("Do you want to add more photos? (y/n): \n");
-                choice = input.nextLine();
-            } else {
-                System.out.println("You have reached the maximum limit of " + max + " photos.\n");
+                if (photos.size() < max) {
+                    System.out.print("Do you want to add more photos? (y/n): \n");
+                    choice = input.nextLine();
+                } else {
+                    System.out.println("You have reached the maximum limit of " + max + " photos.\n");
+                }
             }
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please try again.\n");
+            input.nextLine();
         }
 
-        input.close();
         return photos.toString();
     }
 
