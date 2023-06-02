@@ -18,46 +18,69 @@ As an agent, I intend to list all booking requests for properties managed by me.
 
 **From the client clarifications:**
 
-> **Question:** Booking is a slightly vague word. Our team wants clarifications on what type of requests the word encompasses (visit requests being our strongest guess, but we are not sure).
+> **29 de May de 2023**
 > 
->  **Answer:** 
->
-> **Date:** 29 de May de 2023
+>> **Question:** Booking is a slightly vague word. Our team wants clarifications on what type of requests the word encompasses (visit requests being our strongest guess, but we are not sure).
+>>
+>> **Answer:**  It is a visit request.
 
-> **Question:** Are the "booking requests" mentioned in the US015 description the same thing as the "message [...] to schedule a visit to a property of my interest" in US009? Or are they different requests entirely?
->
->  **Answer:**
->
-> **Date:** 29 de May de 2023
 
-> **Question:** US015's AC1 states that "The list of requests must be shown for a specific period (begin date, end date)". As such, our team would like to know if you want this time period to be selected or typed, and in which format it should be in.
+>  **30 de May de 2023**
 >
->  **Answer:**
+>> **Question:** US015's AC1 states that "The list of requests must be shown for a specific period (begin date, end date)". As such, our team would like to know if you want this time period to be selected or typed, and in which format it should be in.
+>>
+>> **Answer:** The dates should be selected. The format should be DD-MM-YYYY.
 >
-> **Date:** 30 de May de 2023
+>> **Question:** US015's AC2 states that "The list of requests must be sorted by date in ascending order. The sorting algorithm to be used by the application must be defined through a configuration file. At least two sorting algorithms should be available." As such, the team would like to know if this requirement will be part of the user's interaction with this US, or if it's just there for flexibility purposes. By that we mean to ask if the client will be able to chose which sorting method they want to apply, even if the end result will always be the same, or if we will provide those methods but chose which one is actually going to sort the list, without the client's awareness, as all they did was ask to see the list and the program showed them the end result. If we are to chose which one of the methods will be used, should we chose the most efficient one? It seems like a no brainer question, but we would still like to make sure we are following your vision for the program.
+>>
+>> **Answer:** The sorting algorithm to use should be defined in a configuration file. Please study ESOFT and discuss your question with ESOFT teatchers. In AC2 of US15 we get "The list of requests must be sorted by date in ascending order. The sorting algorithm to be used by the application must be defined through a configuration file. At least two sorting algorithms should be available."
+>
+>> **Question:** In US015's AC1, it is stated that "The list of requests must be shown for a specific period (begin date, end date)." This time period caused confusion, as the team is unsure whether the "date" is referring to the date chosen by the client in the message (See US009's requirements) or the date of creation of the visit request.
+>>
+>>  **Answer:** The goal is to use the date chosen by the client (the preferred date that you can see in US9) to list booking requests.
+>
+>> **Question:** When the agent requests the booking requests list to contact the client, that list should ONLY contain the requests related to that agent?
+>>
+>>  **Answer:** Yes. Listing is a feature described in US15.Important: In US15 the Agent gets a list of booking requests (made to him). Then, the agent, may want to respond to the user (as defined in US16). US15 and US16 are executed sequentially. Even so, the agent should be able to see a list of all booking requests made to him (US15) without answer any booking request.
 
-> **Question:** US015's AC2 states that "The list of requests must be sorted by date in ascending order. The sorting algorithm to be used by the application must be defined through a configuration file. At least two sorting algorithms should be available."
-As such, the team would like to know if this requirement will be part of the user's interaction with this US, or if it's just there for flexibility purposes. By that we mean to ask if the client will be able to chose which sorting method they want to apply, even if the end result will always be the same, or if we will provide those methods but chose which one is actually going to sort the list, without the client's awareness, as all they did was ask to see the list and the program showed them the end result.
-If we are to chose which one of the methods will be used, should we chose the most efficient one? It seems like a no brainer question, but we would still like to make sure we are following your vision for the program.
+> **1 de June de 2023**
 >
->  **Answer:**
+>> **Question:** What is this config file supposed to have? name of sort methods? just a word like "asc" or "desc"?
+>>
+>> **Answer:**
 >
-> **Date:** 30 de May de 2023
+>> **Question:** Is this config file a .txt file ?
+>>
+>>  **Answer:**
+>
+>> **Question:** Should this just be a optional way of sorting the requests?
+>>
+>> **Answer:**
+
 
 > **Question:**
-In the AC2, what do you mean by "The sorting algorithm to be used by the application must be defined through a configuration file."? Does the user select which algorithm to use?
 >
->  **Answer:** 
->
-> **Date:** 30 de May de 2023
+>  **Answer:**
 
+
+> **Question:**
+>
+>  **Answer:**
+
+> **Question:**
+>
+>  **Answer:**
+
+
+> **Question:**
+>
+>  **Answer:**
 
 ### 1.3. Acceptance Criteria
 
 
 * **AC1:** The list of requests must be shown for a specific period (begin date, end date).
 * **AC2:** The list of requests must be sorted by date in ascending order. The sorting algorithm to be used by the application must be defined through a configuration file. At least two sorting algorithms should be available.
-* **AC3:** When an Agent responds to a booking request the list of booking requests should be updated to not show this request.
 
 
 ### 1.4. Found out Dependencies
