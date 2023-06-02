@@ -1,0 +1,107 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US09 - Sequence Diagram Split
+
+autonumber
+
+'hide footbox
+actor "Client" as Client
+participant ":SendMessageUI" as UI
+participant ":SendMessageController" as CTRL
+participant ":Repositories" as Repository
+participant "repositories\n:Repositories" as Repository2
+participant "appSession\n:ApplicationSession" as app
+participant "appSession\n:ApplicationSession" as App
+participant "currentSession\n:UserSession" as User
+participant "clientRepository\n:ClientRepository" as ClientRepository
+participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as publish
+participant ":XMapper" as XMapper
+participant "listOfPropertiesDTO:List<Properties>" as listProperties
+participant "propertiesDto:PropertiesDto" as PropertiesDto
+participant "messageRepository: \nMessage Repository" as messageRepository
+participant "message:\nMessage" as message
+
+
+autonumber
+
+        activate Client
+
+    Client -> UI: asks to schedule a visit
+        activate UI
+
+        UI -> CTRL** : create
+
+        UI -> CTRL : getListOfProperties()
+            activate CTRL
+
+
+    ref over CTRL
+        Get Client By Email
+
+        end
+
+        ref over CTRL
+
+        Get Properties List By Most Recent added
+
+        end
+
+        ref over CTRL
+
+        Get Properties List By Most Recent Added Using DTO
+
+        end
+
+
+            CTRL --> UI:listOfPropertiesDTO
+            deactivate CTRL
+
+                 UI --> Client : shows a list of properties sorted from the most recent entries to the oldest
+                    deactivate UI
+
+              Client -> UI: selects a property of his interest
+                    activate UI
+
+               UI --> Client: requests the name, phone number and preferred \ndate and time slot (from x hour to y hour) for the property visit
+                    deactivate UI
+
+               Client -> UI: submits the requested data
+                       activate UI
+
+               UI -> CTRL:createMessage(propertyDescription, name, phone number and date and time slot)
+               activate CTRL
+
+
+
+               CTRL -> CTRL:getPropertyDTOByDescription(PropertyDescription)
+               activate CTRL
+ref over CTRL
+
+Get Properties DTO By Description
+
+end
+               CTRL--> CTRL:PropertyDTO
+
+               CTRL -> messageRepository:createMessage(propertyDescription, name, phone number and date and time slot)
+               activate messageRepository
+
+         ref over messageRepository
+
+         Create Message
+
+         end
+
+
+               messageRepository --> CTRL:message
+               deactivate messageRepository
+
+               CTRL --> UI:message
+
+
+                       UI --> Client : shows a success message and the message created
+                   deactivate UI
+
+@enduml

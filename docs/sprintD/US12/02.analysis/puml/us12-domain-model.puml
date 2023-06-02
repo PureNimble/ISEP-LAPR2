@@ -1,0 +1,62 @@
+@startuml
+skinparam groupInheritance 2
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+'skinparam linetype ortho
+'left to right direction
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+title US012 - Domain Model
+
+class SystemAdministrator{
+}
+
+class Person{
+Name
+Email
+Phone Number
+Tax Number
+Passport Number
+}
+
+class Store {
+Designation
+
+}
+
+class Address {
+Street
+Zip Code
+}
+
+class District{
+Name
+}
+
+class City{
+Name
+}
+
+class State{
+State
+}
+
+class File{
+Name
+Information
+}
+
+
+Address "1" -right-- "1" Store: has <
+State "1" -left-- "*" District: has >
+District "1" -left-- "*" City: has >
+Address "*" -left-- "1" State: has <
+
+Person "1" -right-- "1" SystemAdministrator : is a <
+Store "1" --- "1" SystemAdministrator : has a >
+File "1..*" -up-- "1" SystemAdministrator : imported by >
+
+@enduml
