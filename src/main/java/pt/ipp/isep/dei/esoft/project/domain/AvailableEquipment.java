@@ -3,28 +3,38 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import java.util.Objects;
 
 /**
-
- The AvailableEquipment class represents the equipment that is available for use.
+ * The AvailableEquipment class represents the equipment that is available for use.
  */
 public class AvailableEquipment {
     private String availableEquipment;
 
     /**
-
-     Constructs an AvailableEquipment object with the specified availableEquipment.
-     @param availableEquipment The equipment that is available for use.
+     * Constructs an AvailableEquipment object with the specified availableEquipment.
+     *
+     * @param availableEquipment The equipment that is available for use.
      */
     public AvailableEquipment(String availableEquipment) {
         this.availableEquipment = availableEquipment;
     }
-    /**
 
-     Returns the equipment that is available for use.
-     @return The equipment that is available for use.
+    /**
+     * Returns the equipment that is available for use.
+     *
+     * @return The equipment that is available for use.
      */
     public String getAvailableEquipment() {
         return availableEquipment;
     }
+
+    /**
+     * Sets available equipment.
+     *
+     * @param availableEquipment the available equipment
+     */
+    public void setAvailableEquipment(String availableEquipment) {
+        this.availableEquipment = availableEquipment;
+    }
+
     /**
 
      Returns a string representation of the AvailableEquipment object.

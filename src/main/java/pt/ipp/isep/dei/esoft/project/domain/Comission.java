@@ -12,6 +12,7 @@ public class Comission {
 
     /**
      * Creates a new commission object with the specified amount.
+     *
      * @param comission the amount of the commission
      */
     public Comission(double comission) {
@@ -28,10 +29,20 @@ public class Comission {
 
     /**
      * Returns the amount of the commission.
+     *
      * @return the amount of the commission
      */
     public double getComission() {
         return comission;
+    }
+
+    /**
+     * Sets comission.
+     *
+     * @param comission the comission
+     */
+    public void setComission(double comission) {
+        this.comission = comission;
     }
 
     /**

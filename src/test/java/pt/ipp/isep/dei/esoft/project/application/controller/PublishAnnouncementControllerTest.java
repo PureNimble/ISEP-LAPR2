@@ -175,7 +175,7 @@ class PublishAnnouncementControllerTest {
 
         Date date = new Date();
 
-        House house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South");
+        House house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South", new Photos("pjh"));
         PropertyType propertyType = new PropertyType("House");
         TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
         Double comissionValue = 5.0;
@@ -183,7 +183,17 @@ class PublishAnnouncementControllerTest {
         Double price = 1000.32;
         Business business = new Business(price);
 
-        PublishedAnnouncement publishedAnnouncement = new PublishedAnnouncement(date,typeOfBusiness,house,propertyType,comission,business);
+        Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
+        Role role = new Role("Agent");
+        Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
+        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        List<Role> roles = new ArrayList<>();
+        roles.add(new Role("Agent"));
+
+        Employee employee1 = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store,  roles, address);
+
+
+        PublishedAnnouncement publishedAnnouncement = new PublishedAnnouncement(date,typeOfBusiness,house,propertyType,comission,business, employee1);
         publishedAnnouncements.add(publishedAnnouncement);
 
         publishedAnnouncementRepository.add(publishedAnnouncement);
@@ -215,7 +225,17 @@ class PublishAnnouncementControllerTest {
         //The result is the same but the test keeps not working
         Date date = new Date();
 
-        House house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South");
+        Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
+        Role role = new Role("Agent");
+        Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
+        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        List<Role> roles = new ArrayList<>();
+        roles.add(new Role("Agent"));
+
+        Employee employee1 = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store,  roles, address);
+
+
+        House house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South", new Photos("pjh"));
         PropertyType propertyType = new PropertyType("House");
         TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
         Double comissionValue = 5.0;
@@ -224,11 +244,11 @@ class PublishAnnouncementControllerTest {
         Business business = new Business(price);
 
 
-        PublishedAnnouncement publishedAnnouncementObject = new PublishedAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, 5);
+        PublishedAnnouncement publishedAnnouncementObject = new PublishedAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, employee1);
 
         Optional<PublishedAnnouncement> publishedAnnouncement = Optional.of(publishedAnnouncementObject);
 
-        Optional<PublishedAnnouncement> announcement = controller.createPublishmentAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, 5);
+        Optional<PublishedAnnouncement> announcement = controller.createPublishmentAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, 5,employee1);
 
 
         assertEquals(publishedAnnouncement, announcement);

@@ -3,8 +3,7 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import java.util.Objects;
 
 /**
-
- Address represents a physical address that includes the street, zipcode, district, city, and state.
+ * Address represents a physical address that includes the street, zipcode, district, city, and state.
  */
 public class Address {
 
@@ -33,14 +32,15 @@ public class Address {
      The state of the address.
      */
     private State state;
-    /**
 
-     Creates a new instance of Address with the given parameters.
-     @param street the street of the address.
-     @param zipcode the zipcode of the address.
-     @param district the district of the address.
-     @param city the city of the address.
-     @param state the state of the address.
+    /**
+     * Creates a new instance of Address with the given parameters.
+     *
+     * @param street   the street of the address.
+     * @param zipcode  the zipcode of the address.
+     * @param district the district of the address.
+     * @param city     the city of the address.
+     * @param state    the state of the address.
      */
     public Address(String street, int zipcode, District district, City city, State state) {
         this.street = street;
@@ -49,6 +49,97 @@ public class Address {
         this.city = city;
         this.state = state;
     }
+
+    /**
+     * Gets street.
+     *
+     * @return the street
+     */
+    public String getStreet() {
+        return street;
+    }
+
+    /**
+     * Sets street.
+     *
+     * @param street the street
+     */
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    /**
+     * Gets zipcode.
+     *
+     * @return the zipcode
+     */
+    public int getZipcode() {
+        return zipcode;
+    }
+
+    /**
+     * Sets zipcode.
+     *
+     * @param zipcode the zipcode
+     */
+    public void setZipcode(int zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    /**
+     * Gets district.
+     *
+     * @return the district
+     */
+    public District getDistrict() {
+        return district;
+    }
+
+    /**
+     * Sets district.
+     *
+     * @param district the district
+     */
+    public void setDistrict(District district) {
+        this.district = district;
+    }
+
+    /**
+     * Gets city.
+     *
+     * @return the city
+     */
+    public City getCity() {
+        return city;
+    }
+
+    /**
+     * Sets city.
+     *
+     * @param city the city
+     */
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    /**
+     * Gets state.
+     *
+     * @return the state
+     */
+    public State getState() {
+        return state;
+    }
+
+    /**
+     * Sets state.
+     *
+     * @param state the state
+     */
+    public void setState(State state) {
+        this.state = state;
+    }
+
     /**
 
      Returns a string representation of the address in the format "street,city,district,state,zipcode".

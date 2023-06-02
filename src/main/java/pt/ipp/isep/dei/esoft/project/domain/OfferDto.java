@@ -1,5 +1,8 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+/**
+ * The type Offer dto.
+ */
 public class OfferDto {
 
     private String name;
@@ -11,6 +14,14 @@ public class OfferDto {
     private OfferState offerState;
 
 
+    /**
+     * Instantiates a new Offer dto.
+     *
+     * @param name                  the name
+     * @param orderAmount           the order amount
+     * @param publishedAnnouncement the published announcement
+     * @param offerState            the offer state
+     */
     public OfferDto(String name, double orderAmount, PublishedAnnouncement publishedAnnouncement, OfferState offerState) {
         this.name = name;
         this.orderAmount = orderAmount;
@@ -23,18 +34,38 @@ public class OfferDto {
 
     }
 
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets order amount.
+     *
+     * @return the order amount
+     */
     public double getOrderAmount() {
         return orderAmount;
     }
 
+    /**
+     * Gets published announcement.
+     *
+     * @return the published announcement
+     */
     public PublishedAnnouncement getPublishedAnnouncement() {
         return publishedAnnouncement;
     }
 
+    /**
+     * Gets offer state.
+     *
+     * @return the offer state
+     */
     public OfferState getOfferState() {
         return offerState;
     }

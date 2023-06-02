@@ -3,23 +3,23 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 /**
-
- The PublishAnnouncementController class is responsible for handling the logic related to publishing announcements,
-
- such as retrieving user information, property types, available equipment, commissions, types of business, and published
-
- announcements. It also provides methods for creating new published announcements and retrieving them from the
-
- repository.
+ * The PublishAnnouncementController class is responsible for handling the logic related to publishing announcements,
+ * <p>
+ * such as retrieving user information, property types, available equipment, commissions, types of business, and published
+ * <p>
+ * announcements. It also provides methods for creating new published announcements and retrieving them from the
+ * <p>
+ * repository.
  */
 public class PublishAnnouncementController {
 
-    UserRepository userRepository = null;
+    private UserRepository userRepository = null;
 
     PropertyTypeRepository propertyTypeRepository = null;
 
@@ -30,49 +30,49 @@ public class PublishAnnouncementController {
     TypeOfBusinessRepository typeOfBusinessRepository = null;
 
     AvailableEquipmentRepository availableEquipmentRepository = null;
-    /**
 
-     Constructor that initializes the repository variables.
+    EmployeeRepository employeeRepository = null;
+
+    /**
+     * Constructor that initializes the repository variables.
      */
     public PublishAnnouncementController() {
         getUserRepository();
         getPropertyTypeRepository();
         getPublishedAnnouncementRepository();
     }
-    /**
 
-     Retrieves the UserRepository instance and initializes it if it is null.
-     @return UserRepository instance.
+    /**
+     * Retrieves the UserRepository instance and initializes it if it is null.
+     *
+     * @return UserRepository instance.
      */
     private UserRepository getUserRepository() {
         if (userRepository == null) {
             Repositories repositories = Repositories.getInstance();
-
-            //Get the TaskCategoryRepository
             userRepository = repositories.getUserRepository();
         }
         return userRepository;
     }
 
     /**
-
-     Retrieves the AvailableEquipmentRepository instance and initializes it if it is null.
-     @return AvailableEquipmentRepository instance.
+     * Retrieves the AvailableEquipmentRepository instance and initializes it if it is null.
+     *
+     * @return AvailableEquipmentRepository instance.
      */
     private AvailableEquipmentRepository getAvailableEquipmentRepository() {
         if (availableEquipmentRepository == null) {
             Repositories repositories = Repositories.getInstance();
-
-            //Get the TaskCategoryRepository
             availableEquipmentRepository = repositories.getAvailableEquipmentRepository();
         }
         return availableEquipmentRepository;
     }
-    /**
 
-     Retrieves an AvailableEquipment object by its description.
-     @param availableEquipmentDescription Description of the AvailableEquipment object.
-     @return AvailableEquipment object.
+    /**
+     * Retrieves an AvailableEquipment object by its description.
+     *
+     * @param availableEquipmentDescription Description of the AvailableEquipment object.
+     * @return AvailableEquipment object.
      */
     public AvailableEquipment getAvailableEquipmentByDescription(String availableEquipmentDescription) {
         AvailableEquipmentRepository availableEquipmentRepository = getAvailableEquipmentRepository();
@@ -84,10 +84,11 @@ public class PublishAnnouncementController {
         return availableEquipmentByDescription;
 
     }
-    /**
 
-     Retrieves a list of all AvailableEquipment objects.
-     @return List of AvailableEquipment objects.
+    /**
+     * Retrieves a list of all AvailableEquipment objects.
+     *
+     * @return List of AvailableEquipment objects.
      */
     public List<AvailableEquipment> getAvailableEquipment() {
         AvailableEquipmentRepository availableEquipmentRepository = getAvailableEquipmentRepository();
@@ -96,10 +97,10 @@ public class PublishAnnouncementController {
 
 
     /**
-
-     Retrieves a User object by its email.
-     @param email Email of the User object.
-     @return User object.
+     * Retrieves a User object by its email.
+     *
+     * @param email Email of the User object.
+     * @return User object.
      */
     public Client getUserByEmail(String email) {
         UserRepository userRepository = getUserRepository();
@@ -111,10 +112,11 @@ public class PublishAnnouncementController {
         }
         return null;
     }
-    /**
 
-     Retrieves the PropertyTypeRepository instance and initializes it if it is null.
-     @return PropertyTypeRepository instance.
+    /**
+     * Retrieves the PropertyTypeRepository instance and initializes it if it is null.
+     *
+     * @return PropertyTypeRepository instance.
      */
     private PropertyTypeRepository getPropertyTypeRepository() {
         if (propertyTypeRepository == null) {
@@ -127,9 +129,9 @@ public class PublishAnnouncementController {
     }
 
     /**
-
-     Retrieves the TypeOfBusinessRepository instance and initializes it if it is null.
-     @return TypeOfBusinessRepository instance.
+     * Retrieves the TypeOfBusinessRepository instance and initializes it if it is null.
+     *
+     * @return TypeOfBusinessRepository instance.
      */
     private TypeOfBusinessRepository getTypeOfBusinessRepository() {
         if (typeOfBusinessRepository == null) {
@@ -140,26 +142,26 @@ public class PublishAnnouncementController {
         }
         return typeOfBusinessRepository;
     }
-    /**
 
-     Retrieves a TypeOfBusiness object by its description.
-     @param typeOfBusinessDescription Description of the TypeOfBusiness object.
-     @return TypeOfBusiness object.
+    /**
+     * Retrieves a TypeOfBusiness object by its description.
+     *
+     * @param typeOfBusinessDescription Description of the TypeOfBusiness object.
+     * @return TypeOfBusiness object.
      */
     public TypeOfBusiness getTypeOfBusinessByDescription(String typeOfBusinessDescription) {
         TypeOfBusinessRepository typeOfBusinessRepository = getTypeOfBusinessRepository();
-
-        //Get the TaskCategory by its description
         TypeOfBusiness typeOfBusinessByDescription =
                 typeOfBusinessRepository.getTypeOfBusinessByDescription(typeOfBusinessDescription);
 
         return typeOfBusinessByDescription;
 
     }
-    /**
 
-     Returns a list of all available type of businesses.
-     @return a list of TypeOfBusiness objects
+    /**
+     * Returns a list of all available type of businesses.
+     *
+     * @return a list of TypeOfBusiness objects
      */
     public List<TypeOfBusiness> getTypeOfBusiness() {
         TypeOfBusinessRepository typeOfBusinessRepository = getTypeOfBusinessRepository();
@@ -168,38 +170,37 @@ public class PublishAnnouncementController {
 
 
     /**
-     Retrieves the ComissionRepository instance and initializes it if it is null.
-     @return ComissionRepository instance.
+     * Retrieves the ComissionRepository instance and initializes it if it is null.
+     *
+     * @return ComissionRepository instance.
      */
     private ComissionRepository getComissionRepository() {
         if (comissionRepository == null) {
             Repositories repositories = Repositories.getInstance();
-
-            //Get the TaskCategoryRepository
             comissionRepository = repositories.getComissionRepository();
         }
         return comissionRepository;
     }
-    /**
 
-     Returns the Comission object with the specified description.
-     @param comissionDescription the description of the Comission object to be retrieved
-     @return the Comission object with the specified description
+    /**
+     * Returns the Comission object with the specified description.
+     *
+     * @param comissionDescription the description of the Comission object to be retrieved
+     * @return the Comission object with the specified description
      */
     public Comission getComissionByDescription(Double comissionDescription) {
         PropertyTypeRepository comissionRepository = getPropertyTypeRepository();
-
-        //Get the TaskCategory by its description
         Comission comissionByDescription =
                 getComissionRepository().getComissionByDescription(comissionDescription);
 
         return comissionByDescription;
 
     }
-    /**
 
-     Returns a list of all available Comission objects.
-     @return a list of Comission objects
+    /**
+     * Returns a list of all available Comission objects.
+     *
+     * @return a list of Comission objects
      */
     public List<Comission> getComission() {
         ComissionRepository comissionRepository = getComissionRepository();
@@ -208,10 +209,10 @@ public class PublishAnnouncementController {
 
 
     /**
-
-     Returns the PropertyType object with the specified description.
-     @param propertyTypeDescription the description of the PropertyType object to be retrieved
-     @return the PropertyType object with the specified description
+     * Returns the PropertyType object with the specified description.
+     *
+     * @param propertyTypeDescription the description of the PropertyType object to be retrieved
+     * @return the PropertyType object with the specified description
      */
     public PropertyType getPropertyTypeByDescription(String propertyTypeDescription) {
         PropertyTypeRepository propertyTypeRepository = getPropertyTypeRepository();
@@ -223,18 +224,21 @@ public class PublishAnnouncementController {
         return propertyTypeByDescription;
 
     }
-    /**
 
-     Returns a list of all available PropertyType objects.
-     @return a list of PropertyType objects
+    /**
+     * Returns a list of all available PropertyType objects.
+     *
+     * @return a list of PropertyType objects
      */
     public List<PropertyType> getPropertyType() {
         PropertyTypeRepository propertyTypeRepository = getPropertyTypeRepository();
         return propertyTypeRepository.getPropertyTypes();
     }
+
     /**
-     Retrieves the PublishedAnnoucementRepository instance and initializes it if it is null.
-     @return PublishedAnnoucementRepository instance.
+     * Retrieves the PublishedAnnoucementRepository instance and initializes it if it is null.
+     *
+     * @return PublishedAnnoucementRepository instance.
      */
     private PublishedAnnouncementRepository getPublishedAnnouncementRepository() {
         if (publishedAnnouncementRepository == null) {
@@ -247,9 +251,9 @@ public class PublishAnnouncementController {
     }
 
     /**
-
-     Returns a list of all available PublishedAnnouncement objects.
-     @return a list of PublishedAnnouncement objects
+     * Returns a list of all available PublishedAnnouncement objects.
+     *
+     * @return a list of PublishedAnnouncement objects
      */
     public List<PublishedAnnouncement> getPublishedAnnoucement() {
         PublishedAnnouncementRepository publishedAnnouncementRepository = getPublishedAnnouncementRepository();
@@ -267,47 +271,93 @@ public class PublishAnnouncementController {
     }
 
     /**
-
-     Returns a new Business object with the specified price description.
-     @param priceDescription the description of the price for the new Business
-     @return a new Business object with the specified price description
+     * Returns a new Business object with the specified price description.
+     *
+     * @param priceDescription the description of the price for the new Business
+     * @return a new Business object with the specified price description
      */
-    public Business getBusinessByDescription(double priceDescription){
+    public Business getBusinessByDescription(double priceDescription) {
 
         Business priceByDescription = new Business(priceDescription);
 
         return priceByDescription;
 
     }
+    /**
+    Returns the EmployeeRepository instance, creating it if necessary.
+
+    @return The EmployeeRepository instance.
+     */
+    private EmployeeRepository getEmployeeRepository() {
+        if (employeeRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+
+            //Get the TaskCategoryRepository
+            employeeRepository = repositories.getEmployeeRepository();
+        }
+        return employeeRepository;
+    }
 
     /**
 
-     Creates a new published announcement for a house with the specified parameters,
-     and returns an Optional containing the new published announcement.
-     If a published announcement with the same parameters already exists,
-     an empty Optional is returned instead.
-     @param date the date of the new published announcement
-     @param typeOfBusiness the type of business for the new published announcement
-     @param property the property for the new published announcement
-     @param propertyType the property type for the new published announcement
-     @param comission the commission for the new published announcement
-     @param business the business for the new published announcement
-     @param durationOfContract the duration of the contract for the new published announcement
-     @return an Optional containing the new published announcement if it was created successfully,
-     or an empty Optional if a published announcement with the same parameters already exists
+     Returns a list of all agents.
+
+     @return A List of Employee objects representing agents.
      */
-    public Optional<PublishedAnnouncement> createPublishmentAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract) {
+    public List<Employee> getListAgents() {
+
+        List<Employee> listAgents = new ArrayList<>();
+
+        for (Employee employee: getEmployeeRepository().getEmployees()) {
+
+            for (Role roles: employee.getRoles()) {
+                if (roles.equals(new Role("Agent"))){
+                    listAgents.add(employee);
+                }
+            }
+        }
+        return listAgents;
+    }
+
+    /**
+     * Get agent by description employee.
+     *
+     * @param agentDescription the agent description
+     * @return the employee
+     */
+    public Employee getAgentByDescription(String agentDescription){
+        EmployeeRepository employeeRepository = getEmployeeRepository();
+
+        return employeeRepository.getEmployeeByString(agentDescription);
+    }
+
+    /**
+     * Creates a new published announcement for a house with the specified parameters,
+     * and returns an Optional containing the new published announcement.
+     * If a published announcement with the same parameters already exists,
+     * an empty Optional is returned instead.
+     *
+     * @param date               the date of the new published announcement
+     * @param typeOfBusiness     the type of business for the new published announcement
+     * @param property           the property for the new published announcement
+     * @param propertyType       the property type for the new published announcement
+     * @param comission          the commission for the new published announcement
+     * @param business           the business for the new published announcement
+     * @param durationOfContract the duration of the contract for the new published announcement
+     * @return an Optional containing the new published announcement if it was created successfully,
+     * or an empty Optional if a published announcement with the same parameters already exists
+     */
+    public Optional<PublishedAnnouncement> createPublishmentAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent) {
 
         Optional<PublishedAnnouncement> newPublishedAnnouncement = Optional.empty();
 
-        PublishedAnnouncement publishedAnnouncement = new PublishedAnnouncement(date,typeOfBusiness,property,propertyType,comission,business);
+        PublishedAnnouncement publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, agent);
 
         if (!getPublishedAnnouncementRepository().getPublishedAnnouncements().contains(publishedAnnouncement)) {
-            newPublishedAnnouncement = getPublishedAnnouncementRepository().publishedAnnouncement(date,typeOfBusiness,property,propertyType,comission,business,durationOfContract);
+            newPublishedAnnouncement = getPublishedAnnouncementRepository().publishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, durationOfContract, agent);
         }
         return newPublishedAnnouncement;
     }
-
 
 
 }

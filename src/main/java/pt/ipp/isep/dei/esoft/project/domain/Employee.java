@@ -55,7 +55,6 @@ public class Employee extends Person {
      *
      * @return a string representation of the Employee object
      */
-
     public String getEmployeeEmail(){
         return super.getEmail();
     }
@@ -63,7 +62,7 @@ public class Employee extends Person {
 
     /**
      * Returns a string representation of the Employee object.
-     * 
+     *
      * @return a string representation of the Employee object
      */
     public String getEmployeeName(){
@@ -71,7 +70,14 @@ public class Employee extends Person {
     }
 
 
-
+    /**
+     * Sets roles.
+     *
+     * @param roles the roles
+     */
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 
     public String toString() {
         return String.format(super.toString() + "\nEmployee of %s, who performs the role of %s", store.toString(), roles.toString());

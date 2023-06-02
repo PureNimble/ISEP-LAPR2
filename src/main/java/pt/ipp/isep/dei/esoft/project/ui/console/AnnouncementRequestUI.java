@@ -32,6 +32,7 @@ public class AnnouncementRequestUI implements Runnable {
 
     private int durationOfContract;
 
+    private Photos photos;
     /**
      * Implements the Runnable interface method to run the Announcement Request functionality.
      * <p>
@@ -88,7 +89,7 @@ public class AnnouncementRequestUI implements Runnable {
 
         if (propertyTypeDescription.equals("Land")) {
 
-            Property land = new Property(area, distanceFromCityCenter);
+            Property land = new Property(area, distanceFromCityCenter, photos);
 
             Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, land, propertyType, business, durationOfContract,agent);
 
@@ -97,13 +98,13 @@ public class AnnouncementRequestUI implements Runnable {
 
                 AvailableEquipment availableEquipment = controller.getAvailableEquipmentByDescription(availableEquipmentDescription);
 
-                Residence appartment = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment);
+                Residence appartment = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, photos);
 
                 Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, appartment, propertyType, business, durationOfContract,agent);
             } else {
                 AvailableEquipment availableEquipment = controller.getAvailableEquipmentByDescription(availableEquipmentDescription);
 
-                House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, inhabitableLoft, sunExposure);
+                House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, inhabitableLoft, sunExposure, photos);
 
                 Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, house, propertyType, business, durationOfContract,agent);
 

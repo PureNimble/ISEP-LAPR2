@@ -5,6 +5,7 @@ import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.UserRepository;
 
+import javax.naming.NamingEnumeration;
 import java.util.*;
 
 /**
@@ -39,6 +40,8 @@ public class PublishAnnouncementUI implements Runnable {
      * The number of bathrooms in the property.
      */
     private int numberOfBathrooms;
+
+    private Photos photos;
 
     /**
      * The number of parking spaces available for the property.
@@ -100,6 +103,8 @@ public class PublishAnnouncementUI implements Runnable {
      */
     private int durationOfContract;
 
+    private Employee agent;
+
     /**
      * Executes the user interface for publishing announcements of properties for sale or rent.
      * <p>
@@ -111,34 +116,40 @@ public class PublishAnnouncementUI implements Runnable {
 
         System.out.println("Publish Announcement ");
 
-        email = requestEmail();
+        if (controller.getListAgents().size() > 0) {
 
-        propertyTypeDescription = displayandselectPropertyType();
+            propertyTypeDescription = displayandselectPropertyType();
 
-        if (propertyTypeDescription.equals("Rent")) {
-            durationOfContract = requestDurationOfContract();
+            contractType = displayAndSelectTypeOfBusiness();
+
+            email = requestEmail();
+
+            if (propertyTypeDescription.equals("Rent")) {
+
+                durationOfContract = requestDurationOfContract();
+            }
+
+            requestData();
+
+            submitDataHouse();
+
+            comissionDescription = displayAndSelectComission();
+
+            List<PublishedAnnouncement> publishedAnnouncement = controller.getPublishedAnnoucement();
+
+            StringBuilder st = new StringBuilder();
+
+
+            for (PublishedAnnouncement p : publishedAnnouncement) {
+                st.append(p.toString());
+                st.append("\n");
+            }
+
+            System.out.println(st);
+
+        } else {
+            System.out.println("There is no Agents on the system for you to choose one.");
         }
-
-        comissionDescription = displayAndSelectComission();
-
-        contractType = displayAndSelectTypeOfBusiness();
-
-        requestData();
-
-        submitDataHouse();
-
-        List<PublishedAnnouncement> publishedAnnouncement = controller.getPublishedAnnoucement();
-
-        StringBuilder st = new StringBuilder();
-
-        for (PublishedAnnouncement p : publishedAnnouncement) {
-            st.append(p.toString());
-            st.append("\n");
-        }
-
-        System.out.println(st);
-
-
     }
 
     /**
@@ -161,24 +172,24 @@ public class PublishAnnouncementUI implements Runnable {
 
         if (propertyTypeDescription.equals("Land")) {
 
-            Property land = new Property(area, distanceFromCityCenter);
+            Property land = new Property(area, distanceFromCityCenter, photos);
 
-            Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, land, propertyType, comission, business, durationOfContract);
+            Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, land, propertyType, comission, business, durationOfContract, agent);
 
         } else {
             if (propertyTypeDescription.equals("Appartment")) {
 
                 AvailableEquipment availableEquipment = controller.getAvailableEquipmentByDescription(availableEquipmentDescription);
 
-                Residence appartment = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment);
+                Residence appartment = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, photos);
 
-                Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, appartment, propertyType, comission, business, durationOfContract);
+                Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, appartment, propertyType, comission, business, durationOfContract, agent);
             } else {
                 AvailableEquipment availableEquipment = controller.getAvailableEquipmentByDescription(availableEquipmentDescription);
 
-                House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, inhabitableLoft, sunExposure);
+                House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, inhabitableLoft, sunExposure, photos);
 
-                Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, durationOfContract);
+                Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, durationOfContract, agent);
 
             }
         }
@@ -196,6 +207,8 @@ public class PublishAnnouncementUI implements Runnable {
         businessDescription = requestPrice();
 
         distanceFromCityCenter = requestDistanceFromCityCenter();
+
+        Photos photos = new Photos(requestPhotos());
 
         Date now = new Date();
 
@@ -369,6 +382,40 @@ public class PublishAnnouncementUI implements Runnable {
     }
 
     /**
+     * Displays a list of agents and requests user to select one of them.
+     *
+     * @return The selected agent.
+     */
+//    private String displayAndSelectAgents() {
+//
+//        List<Employee> agents = controller.getListAgents();
+//
+//        int listSize = agents.size();
+//        int answer = -1;
+//
+//        Scanner input = new Scanner(System.in);
+//
+//        while (answer < 1 || answer > listSize) {
+//            try {
+//
+//                displayAgentOptions(agents);
+//                System.out.println("Select a Agent:");
+//                answer = input.nextInt();
+//
+//            } catch (InputMismatchException e) {
+//                System.out.println("Invalid input. Please enter an integer value:");
+//                input.nextLine();
+//                answer = -1;
+//            }
+//        }
+//
+//        String agent = agents.get(answer - 1).toString();
+//
+//        return agent;
+//
+//    }
+
+    /**
      * Requests the area of the property from the user.
      *
      * @return the area entered by the user.
@@ -391,6 +438,35 @@ public class PublishAnnouncementUI implements Runnable {
         } while (area < 0);
 
         return area;
+    }
+
+    private String requestPhotos() {
+        Scanner input = new Scanner(System.in);
+        int max = 30;
+        int min = 1;
+        List<String> photos = new ArrayList<>();
+
+        try {
+            String choice = "y";
+            while (choice.equalsIgnoreCase("y") && photos.size() < max) {
+                int nphoto = photos.size() + 1;
+                System.out.print("Please enter the URI of a photo for the property ("+ nphoto + "): \n");
+                String uri = input.nextLine();
+                photos.add(uri);
+
+                if (photos.size() < max) {
+                    System.out.print("Do you want to add more photos? (y/n): \n");
+                    choice = input.nextLine();
+                } else {
+                    System.out.println("You have reached the maximum limit of " + max + " photos.\n");
+                }
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please try again.\n");
+            input.nextLine();
+        }
+
+        return photos.toString();
     }
 
     /**
@@ -546,7 +622,22 @@ public class PublishAnnouncementUI implements Runnable {
             }
         }
 
-        Double description = comissions.get(answer - 1).getComission();
+        double description;
+
+//        if (answer != 5) {
+        description = comissions.get(answer - 1).getComission();
+
+//        } else {
+//            Scanner ler = new Scanner(System.in);
+//            System.out.println("Type the a percentage comission value.");
+//            try {
+//                description = ler.nextDouble();
+//            } catch (InputMismatchException e) {
+//                System.out.println("Invalid input. Please enter a number:");
+//                description = ler.nextDouble();
+//            }
+//        }
+
 
         return description;
 
@@ -642,7 +733,15 @@ public class PublishAnnouncementUI implements Runnable {
             }
         }
 
-        String description = availableEquipments.get(answer - 1).getAvailableEquipment();
+        String description = null;
+
+        if (answer != 4) {
+            description = availableEquipments.get(answer - 1).getAvailableEquipment();
+        } else {
+            Scanner ler = new Scanner(System.in);
+            System.out.println("Write the Other available equipment:");
+            description = ler.nextLine();
+        }
 
         return description;
 

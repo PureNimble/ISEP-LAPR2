@@ -3,8 +3,7 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import java.util.Objects;
 
 /**
-
- City represents a city in the context of an address.
+ * City represents a city in the context of an address.
  */
 public class City {
 
@@ -13,22 +12,34 @@ public class City {
      The name of the city.
      */
     private String city;
-    /**
 
-     Creates a new instance of City with the given name.
-     @param city the name of the city.
+    /**
+     * Creates a new instance of City with the given name.
+     *
+     * @param city the name of the city.
      */
     public City(String city) {
         this.city = city;
     }
-    /**
 
-     Returns the name of the city.
-     @return the name of the city.
+    /**
+     * Returns the name of the city.
+     *
+     * @return the name of the city.
      */
     public String getCity() {
         return city;
     }
+
+    /**
+     * Sets city.
+     *
+     * @param city the city
+     */
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     /**
 
      Returns a string representation of the city.

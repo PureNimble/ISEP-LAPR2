@@ -1,0 +1,83 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US09 - Sequence Diagram Partial (Get Properties List By Most Recent Added Using DTO)
+autonumber
+
+'hide footbox
+participant ":XMapper" as XMapper
+participant "listOfPropertiesDTO:List<Properties>" as listProperties
+participant "propertiesDto:PropertiesDto" as PropertiesDto
+
+
+activate CTRL
+  -> XMapper: toDTO(listOfPropertiesByDate)
+            activate XMapper
+
+            group Get Properties List By Most Recent Added Using DTO
+
+            XMapper --> listProperties**: create()
+
+            loop
+
+
+            XMapper -> listProperties: date = geDate()
+                        activate listProperties
+
+            XMapper -[hidden]> listProperties
+            deactivate listProperties
+
+            XMapper -> listProperties: property = getProperty()
+            activate listProperties
+
+            XMapper -[hidden]> listProperties
+            deactivate listProperties
+
+            XMapper -> listProperties: typeOfBusiness = getTypeOfBusiness()
+            activate listProperties
+
+            XMapper -[hidden]> listProperties
+            deactivate listProperties
+
+            XMapper -> listProperties: propertyType = getPropertyType()
+            activate listProperties
+
+            XMapper -[hidden]> listProperties
+            deactivate listProperties
+
+            XMapper -> listProperties: business = getBusiness()
+            activate listProperties
+
+            XMapper -[hidden]> listProperties
+            deactivate listProperties
+
+            XMapper -> listProperties :agent = getAgent()
+            activate listProperties
+
+            XMapper -[hidden]> listProperties
+            deactivate listProperties
+
+            XMapper -> listProperties: durationOfContract = geDate()
+            activate listProperties
+
+            XMapper -[hidden]> listProperties
+            deactivate listProperties
+
+            XMapper -> XMapper : propertiesDto = toDto(agent,property,typeOfBusiness,propertyType,business,date,durationOfContract)
+            activate XMapper
+
+            deactivate XMapper
+
+            XMapper --> PropertiesDto**: create(...)
+
+            XMapper -> listProperties: add(propertieDTO)
+            activate listProperties
+
+            deactivate listProperties
+            end
+end
+             <-- XMapper : listOfPropertiesDTO
+            deactivate XMapper
+@enduml

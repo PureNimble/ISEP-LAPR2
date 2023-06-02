@@ -3,8 +3,7 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import java.util.Objects;
 
 /**
-
- A class representing a rental contract with a certain duration.
+ * A class representing a rental contract with a certain duration.
  */
 public class Rent {
 
@@ -13,22 +12,34 @@ public class Rent {
      The duration of the rental contract, in months.
      */
     private int durationContract;
-    /**
 
-     Creates a new Rent object with the specified duration.
-     @param durationContract the duration of the rental contract, in months.
+    /**
+     * Creates a new Rent object with the specified duration.
+     *
+     * @param durationContract the duration of the rental contract, in months.
      */
     public Rent(int durationContract) {
         this.durationContract = durationContract;
     }
-    /**
 
-     Returns the duration of the rental contract.
-     @return the duration of the rental contract, in months.
+    /**
+     * Returns the duration of the rental contract.
+     *
+     * @return the duration of the rental contract, in months.
      */
     public int getDurationContract() {
         return durationContract;
     }
+
+    /**
+     * Sets duration contract.
+     *
+     * @param durationContract the duration contract
+     */
+    public void setDurationContract(int durationContract) {
+        this.durationContract = durationContract;
+    }
+
     /**
 
      Compares this Rent object to the specified object for equality.

@@ -3,28 +3,38 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import java.util.Objects;
 
 /**
-
- Business class represents a business with its price.
+ * Business class represents a business with its price.
  */
 public class Business {
     private double price;
 
     /**
-
-     Constructs a business object with the given price.
-     @param price The price of the business.
+     * Constructs a business object with the given price.
+     *
+     * @param price The price of the business.
      */
     public Business(double price) {
         this.price = price;
     }
-    /**
 
-     Gets the price of the business.
-     @return The price of the business.
+    /**
+     * Gets the price of the business.
+     *
+     * @return The price of the business.
      */
     public double getPrice() {
         return price;
     }
+
+    /**
+     * Sets price.
+     *
+     * @param price the price
+     */
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     /**
 
      Returns a string representation of the business object.

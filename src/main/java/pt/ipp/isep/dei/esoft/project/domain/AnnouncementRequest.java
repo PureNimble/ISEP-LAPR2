@@ -4,8 +4,7 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
-
- This class represents an announcement request, which is created by a user who wants to advertise their business or property.
+ * This class represents an announcement request, which is created by a user who wants to advertise their business or property.
  */
 public class AnnouncementRequest {
     private Date date;
@@ -18,14 +17,17 @@ public class AnnouncementRequest {
     private Employee agent;
 
     private String status;
-    /**
 
-     Creates a new AnnouncementRequest object with the given parameters.
-     @param date the date of the announcement request.
-     @param typeOfBusiness the type of business to be advertised.
-     @param property the property to be advertised.
-     @param propertyType the type of property.
-     @param business the business to be advertised.
+    /**
+     * Creates a new AnnouncementRequest object with the given parameters.
+     *
+     * @param status         the status
+     * @param date           the date of the announcement request.
+     * @param typeOfBusiness the type of business to be advertised.
+     * @param property       the property to be advertised.
+     * @param propertyType   the type of property.
+     * @param business       the business to be advertised.
+     * @param agent          the agent
      */
     public AnnouncementRequest(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business,Employee agent) {
         this.date = date;
@@ -36,15 +38,18 @@ public class AnnouncementRequest {
         this.agent = agent;
         this.status = status;
     }
-    /**
 
-     Creates a new AnnouncementRequest object with the given parameters.
-     @param date the date of the announcement request.
-     @param typeOfBusiness the type of business to be advertised.
-     @param property the property to be advertised.
-     @param propertyType the type of property.
-     @param business the business to be advertised.
-     @param durationOfContract the duration of the contract for the advertisement.
+    /**
+     * Creates a new AnnouncementRequest object with the given parameters.
+     *
+     * @param status             the status
+     * @param date               the date of the announcement request.
+     * @param typeOfBusiness     the type of business to be advertised.
+     * @param property           the property to be advertised.
+     * @param propertyType       the type of property.
+     * @param business           the business to be advertised.
+     * @param durationOfContract the duration of the contract for the advertisement.
+     * @param agent              the agent
      */
     public AnnouncementRequest(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract,Employee agent) {
         this.date = date;
@@ -57,6 +62,11 @@ public class AnnouncementRequest {
         this.status = status;
     }
 
+    /**
+     * Instantiates a new Announcement request.
+     *
+     * @param announcementRequestDto the announcement request dto
+     */
     public AnnouncementRequest (AnnouncementRequestDto announcementRequestDto) {
         this.date = announcementRequestDto.getDate();
         this.typeOfBusiness = announcementRequestDto.getTypeOfBusiness();
@@ -68,18 +78,38 @@ public class AnnouncementRequest {
         this.status = announcementRequestDto.getStatus();
     }
 
+    /**
+     * Gets type of business.
+     *
+     * @return the type of business
+     */
     public TypeOfBusiness getTypeOfBusiness() {
         return typeOfBusiness;
     }
 
+    /**
+     * Gets property type.
+     *
+     * @return the property type
+     */
     public PropertyType getPropertyType() {
         return propertyType;
     }
 
+    /**
+     * Gets business.
+     *
+     * @return the business
+     */
     public Business getBusiness() {
         return business;
     }
 
+    /**
+     * Gets duration of contract.
+     *
+     * @return the duration of contract
+     */
     public int getDurationOfContract() {
         return durationOfContract;
     }
@@ -112,38 +142,83 @@ public class AnnouncementRequest {
         return agent;
     }
 
+    /**
+     * Gets status.
+     *
+     * @return the status
+     */
     public String getStatus() {
         return status;
     }
 
+    /**
+     * Sets date.
+     *
+     * @param date the date
+     */
     public void setDate(Date date) {
         this.date = date;
     }
 
+    /**
+     * Sets type of business.
+     *
+     * @param typeOfBusiness the type of business
+     */
     public void setTypeOfBusiness(TypeOfBusiness typeOfBusiness) {
         this.typeOfBusiness = typeOfBusiness;
     }
 
+    /**
+     * Sets property.
+     *
+     * @param property the property
+     */
     public void setProperty(Property property) {
         this.property = property;
     }
 
+    /**
+     * Sets property type.
+     *
+     * @param propertyType the property type
+     */
     public void setPropertyType(PropertyType propertyType) {
         this.propertyType = propertyType;
     }
 
+    /**
+     * Sets business.
+     *
+     * @param business the business
+     */
     public void setBusiness(Business business) {
         this.business = business;
     }
 
+    /**
+     * Sets duration of contract.
+     *
+     * @param durationOfContract the duration of contract
+     */
     public void setDurationOfContract(int durationOfContract) {
         this.durationOfContract = durationOfContract;
     }
 
+    /**
+     * Sets agent.
+     *
+     * @param agent the agent
+     */
     public void setAgent(Employee agent) {
         this.agent = agent;
     }
 
+    /**
+     * Sets status.
+     *
+     * @param status the status
+     */
     public void setStatus(String status) {
         this.status = status;
     }
@@ -161,10 +236,11 @@ public class AnnouncementRequest {
                         "%s",
                 date.toString(),typeOfBusiness.toString(),propertyType,business.toString(),property.toString());
     }
-    /**
 
-     Returns a string representation of this AnnouncementRequest object for rental properties.
-     @return a string representation of this AnnouncementRequest object for rental properties.
+    /**
+     * Returns a string representation of this AnnouncementRequest object for rental properties.
+     *
+     * @return a string representation of this AnnouncementRequest object for rental properties.
      */
     public String toStringRent(){
         return String.format("Date:%s\n" +
