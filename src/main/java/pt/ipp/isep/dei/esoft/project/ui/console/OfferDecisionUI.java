@@ -1,10 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.OfferDecisionController;
 import pt.ipp.isep.dei.esoft.project.domain.Offer;
+import pt.ipp.isep.dei.esoft.project.domain.OfferState;
 
 public class OfferDecisionUI implements Runnable{
 
@@ -41,13 +43,13 @@ public class OfferDecisionUI implements Runnable{
         } while (choice < 0);
         */
         System.out.println("Choose an offer");
-        acceptOrDecline(offersList.get(input.nextInt() - 1));
-
+        acceptOrDecline(offersList.get(input.nextInt() - 1), offersList);
     }
 
-    private void acceptOrDecline(Offer offer){
+    private void acceptOrDecline(Offer offer, List<Offer> offersList){
         System.out.println("1. Accept");
         System.out.println("2. Decline");
+        System.out.println("0. Cancel");
 
         double choice;
 
@@ -63,6 +65,16 @@ public class OfferDecisionUI implements Runnable{
 
             if (choice > 2){
                 choice = -1;
+            }
+            else if (choice == 1){
+                offer.setOfferState(OfferState.accepted);
+                controller.declineOtherOffers(offer, offersList);
+            }
+            else if (choice == 2){
+                offer.setOfferState(OfferState.rejected);
+            }
+            else if (choice == 0){
+                break;
             }
 
         } while (choice < 0);

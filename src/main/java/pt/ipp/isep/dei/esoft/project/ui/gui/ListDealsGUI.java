@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -17,6 +18,7 @@ import pt.ipp.isep.dei.esoft.project.application.controller.ListDealsController;
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 
+import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
@@ -27,7 +29,10 @@ public class ListDealsGUI implements Initializable {
     @FXML
     private TableView<Object> table;
 
+    @FXML
+    private ChoiceBox<String> filterChoice;
 
+    private String[] filterCriteria = {"Descending", "Ascending"};
     @FXML
     private TableColumn<Offer, PublishedAnnouncement> area;
 
@@ -81,10 +86,13 @@ public class ListDealsGUI implements Initializable {
 
 
     ObservableList<Object> listDeals = FXCollections.observableArrayList(
-            controller.getDealsByDescendinggArea()
+
     );
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        filterChoice.getItems().addAll(filterCriteria);
+        filterChoice.setOnAction(this::getCriteria);
 
 
         area.setCellValueFactory(new PropertyValueFactory<>("publishedAnnouncement"));
@@ -332,29 +340,41 @@ public class ListDealsGUI implements Initializable {
             public void updateItem(PublishedAnnouncement publishedAnnouncement, boolean empty) {
                 super.updateItem(publishedAnnouncement, empty);
 
-                    if (empty) {
-                        setText("");
-                    } else {
-                        if (publishedAnnouncement.getProperty() instanceof House) {
-                            House house = ((House) publishedAnnouncement.getProperty());
-                            int parkingSpaces = house.getParkingSpaces();
+                if (empty) {
+                    setText("");
+                } else {
+                    if (publishedAnnouncement.getProperty() instanceof House) {
+                        House house = ((House) publishedAnnouncement.getProperty());
+                        int parkingSpaces = house.getParkingSpaces();
                         setText("" + parkingSpaces);
                     } else {
-                            if (publishedAnnouncement.getProperty() instanceof Residence) {
-                                Residence residence = ((Residence) publishedAnnouncement.getProperty());
-                                int parkingSpaces = residence.getParkingSpaces();
-                                setText("" + parkingSpaces);
-                            }else {
-                                setText(" ");
-                            }
-
+                        if (publishedAnnouncement.getProperty() instanceof Residence) {
+                            Residence residence = ((Residence) publishedAnnouncement.getProperty());
+                            int parkingSpaces = residence.getParkingSpaces();
+                            setText("" + parkingSpaces);
+                        } else {
+                            setText(" ");
                         }
+
+                    }
                 }
             }
         });
 
 
         table.setItems(listDeals);
+    }
+
+    private void getCriteria(javafx.event.ActionEvent actionEvent) {
+        String choiceOption = filterChoice.getValue();
+        if (choiceOption.equals("Descending")) {
+            listDeals.clear();
+            listDeals.addAll(controller.getDealsByAscendingArea());
+        } else {
+            listDeals.clear();
+            listDeals.addAll(controller.getDealsByDescendinggArea());
+        }
+
     }
 
 

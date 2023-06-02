@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.domain.Offer;
+import pt.ipp.isep.dei.esoft.project.domain.OfferDto;
+import pt.ipp.isep.dei.esoft.project.domain.OfferMapper;
 import pt.ipp.isep.dei.esoft.project.repository.OfferRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
@@ -34,6 +36,20 @@ public class ListDealsController {
         OfferRepository offerRepository = getOfferRepository();
 
         return offerRepository.getOffersByAreaDescending();
+
+    }
+
+    public List<OfferDto> toDtoDescendingArea(){
+        OfferMapper offerMapper = new OfferMapper();
+
+      return offerMapper.toDto(getDealsByDescendinggArea());
+
+    }
+
+    public List<OfferDto> toDtoAscendingArea(){
+        OfferMapper offerMapper = new OfferMapper();
+
+        return offerMapper.toDto(getDealsByAscendingArea());
 
     }
 
