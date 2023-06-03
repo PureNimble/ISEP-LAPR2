@@ -15,7 +15,7 @@ public class OfferDecisionUI implements Runnable{
     private final OfferDecisionController controller = new OfferDecisionController();
 
     public void run() {
-        System.out.println("List of Orders: ");
+        System.out.println("List of Offers: ");
 
         var offersList = controller.getOffersByPropertyByHighestAmount();
 
@@ -42,12 +42,17 @@ public class OfferDecisionUI implements Runnable{
 
         } while (choice < 0);
         */
-        System.out.println("Choose an offer: ");
-        acceptOrDecline(offersList.get(input.nextInt() - 1), offersList);
+        if(offersList.isEmpty()){
+            System.out.println("\nThere are no offers");
+        } else{
+            System.out.println("\nChoose an offer: \n");
+            acceptOrDecline(offersList.get(input.nextInt() - 1), offersList);
+        }
+        
     }
 
     private void acceptOrDecline(Offer offer, List<Offer> offersList){
-        System.out.println("1. Accept");
+        System.out.println("\n1. Accept");
         System.out.println("2. Decline");
         System.out.println("0. Cancel");
 
