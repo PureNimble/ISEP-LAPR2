@@ -128,6 +128,12 @@ activate Agent
              Mapper -[hidden]> listMessages
              deactivate listMessages
 
+             Mapper -> listMessages: publishAnnouncement = publishAnnouncement (typeOfBussiness, date, property, typeOfProperty)
+             activate listMessages
+
+             Mapper -[hidden]> listMessages
+             deactivate listMessages
+
              Mapper -> Mapper : messageDTO = toDTO(clientName, clientPhoneNumber, description, date, initialTime, endTime)
              activate Mapper
              deactivate Mapper
