@@ -174,7 +174,7 @@ public class PublishAnnouncementUI implements Runnable {
 
         if (propertyTypeDescription.equals("Land")) {
 
-            Property land = new Property(area, distanceFromCityCenter, photos, ID);
+            Property land = new Property(area, distanceFromCityCenter, photos);
 
             Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, land, propertyType, comission, business, durationOfContract, agent);
 
@@ -183,13 +183,13 @@ public class PublishAnnouncementUI implements Runnable {
 
                 AvailableEquipment availableEquipment = controller.getAvailableEquipmentByDescription(availableEquipmentDescription);
 
-                Residence appartment = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, photos, ID);
+                Residence appartment = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, photos);
 
                 Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, appartment, propertyType, comission, business, durationOfContract, agent);
             } else {
                 AvailableEquipment availableEquipment = controller.getAvailableEquipmentByDescription(availableEquipmentDescription);
 
-                House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, inhabitableLoft, sunExposure, photos, ID);
+                House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, inhabitableLoft, sunExposure, photos);
 
                 Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, durationOfContract, agent);
 
@@ -236,7 +236,7 @@ public class PublishAnnouncementUI implements Runnable {
             do {
                 sunExposure = requestSunExposure();
                 if (!sunExposure.equals("North") && !sunExposure.equals("South") && !sunExposure.equals("West") && !sunExposure.equals("East")) {
-                    System.out.println("Please select one of the coordinates (North, South, West or East).");
+                    System.out.println("Please select one of the coordinates North, South, West or East");
                 }
             } while (!sunExposure.equals("North") && !sunExposure.equals("South") && !sunExposure.equals("West") && !sunExposure.equals("East"));
 

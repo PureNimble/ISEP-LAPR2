@@ -9,7 +9,6 @@ public class Property {
     private int distanceFromCityCenter;
     private int area;
     private Photos photos;
-    private String ID;
 
     /**
      * Constructs a Property object with a given area and distance from the city center.
@@ -18,8 +17,7 @@ public class Property {
      * @param distanceFromCityCenter The distance from the city center in kilometers.
      * @param photos                 the photos
      */
-    public Property(int area, int distanceFromCityCenter, Photos photos, String ID) {
-        this.ID = ID;
+    public Property(int area, int distanceFromCityCenter, Photos photos) {
         this.distanceFromCityCenter = distanceFromCityCenter;
         this.area = area;
         this.photos = photos;
@@ -86,13 +84,6 @@ public class Property {
         this.area = area;
     }
 
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String ID) {
-        this.ID = ID;
-    }
 
     /**
      * Returns a string representation of the Property object.
@@ -100,7 +91,7 @@ public class Property {
      * @return A string representation of the Property object, including its area and distance from the city center.
      */
     public String toString() {
-        return String.format("Property ID: %s\n" + "Area: %s\n" + "DistanceFromCityCenter: %s\n" + "Photos: %s\n", ID, area, distanceFromCityCenter, photos.getUrl());
+        return String.format("Area: %s\n" + "DistanceFromCityCenter: %s\n" + "Photos: %s\n", area, distanceFromCityCenter, photos.getUrl());
     }
 
     /**
@@ -114,7 +105,7 @@ public class Property {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Property property = (Property) o;
-        return ID == property.ID && distanceFromCityCenter == property.distanceFromCityCenter && area == property.area && photos == property.photos;
+        return distanceFromCityCenter == property.distanceFromCityCenter && area == property.area && photos == property.photos;
     }
 
     /**
@@ -133,6 +124,6 @@ public class Property {
      * @return A new Property object with the same area and distance from the city center as this one.
      */
     public Property clone() {
-        return new Property(this.distanceFromCityCenter, this.area, this.photos,this.ID);
+        return new Property(this.distanceFromCityCenter, this.area, this.photos);
     }
 }
