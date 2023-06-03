@@ -107,6 +107,7 @@ public class PublishAnnouncementUI implements Runnable {
 
     private String ID;
 
+
     /**
      * Executes the user interface for publishing announcements of properties for sale or rent.
      * <p>
@@ -133,9 +134,12 @@ public class PublishAnnouncementUI implements Runnable {
 
             requestData();
 
-            submitDataHouse();
 
             comissionDescription = displayAndSelectComission();
+
+            submitDataHouse();
+
+
 
             List<PublishedAnnouncement> publishedAnnouncement = controller.getPublishedAnnoucement();
 
@@ -160,6 +164,10 @@ public class PublishAnnouncementUI implements Runnable {
     private void submitDataHouse() {
 
         Client client = controller.getUserByEmail(email);
+
+        String agentEmail = controller.getCurrentSessionEmail();
+
+        agent = controller.getAgentByDescription(agentEmail);
 
         UserRepository UserRepositories = Repositories.getInstance().getUserRepository();
 
@@ -210,7 +218,7 @@ public class PublishAnnouncementUI implements Runnable {
 
         distanceFromCityCenter = requestDistanceFromCityCenter();
 
-        Photos photos = new Photos(requestPhotos());
+        photos = new Photos(requestPhotos());
 
         Date now = new Date();
 

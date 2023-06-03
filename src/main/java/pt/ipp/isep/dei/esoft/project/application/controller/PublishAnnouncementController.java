@@ -33,6 +33,8 @@ public class PublishAnnouncementController {
 
     EmployeeRepository employeeRepository = null;
 
+    AuthenticationRepository authenticationRepository = null;
+
     /**
      * Constructor that initializes the repository variables.
      */
@@ -66,6 +68,25 @@ public class PublishAnnouncementController {
             availableEquipmentRepository = repositories.getAvailableEquipmentRepository();
         }
         return availableEquipmentRepository;
+    }
+
+    /**
+     * Retrieves the AuthenticationRepository instance and initializes it if it is null.
+     *
+     * @return AuthenticationRepository instance.
+     */
+    private AuthenticationRepository getAuthenticationRepository() {
+        if (authenticationRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+            authenticationRepository = repositories.getAuthenticationRepository();
+        }
+        return authenticationRepository;
+    }
+
+
+    public String getCurrentSessionEmail(){
+        AuthenticationRepository authenticationRepository = getAuthenticationRepository();
+        return authenticationRepository.getCurrentUserSession().getUserId().getEmail();
     }
 
     /**
@@ -328,7 +349,7 @@ public class PublishAnnouncementController {
     public Employee getAgentByDescription(String agentDescription){
         EmployeeRepository employeeRepository = getEmployeeRepository();
 
-        return employeeRepository.getEmployeeByString(agentDescription);
+        return employeeRepository.getEmployeeByEmail(agentDescription);
     }
 
     /**
