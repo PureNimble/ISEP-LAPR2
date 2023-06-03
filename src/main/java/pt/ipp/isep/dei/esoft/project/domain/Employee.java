@@ -9,7 +9,7 @@ import java.util.Objects;
  */
 public class Employee extends Person {
 
-    private final Store store;
+    private Store store;
     private List<Role> roles;
 
     /**
@@ -39,6 +39,15 @@ public class Employee extends Person {
      */
     public Store getStore() {
         return store;
+    }
+
+    /**
+     * Returns the Store where the employee works.
+     *
+     * @return the Store where the employee works
+     */
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     /**

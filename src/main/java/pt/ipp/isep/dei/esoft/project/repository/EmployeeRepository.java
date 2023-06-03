@@ -100,6 +100,7 @@ public class EmployeeRepository {
             List<Employee> tempList = new ArrayList<Employee>();
             for (Employee employee: employees){
                 if (employee.getStore().equals(stores)){
+                    employee.setStore(stores);
                     tempList.add(employee);
                 }
             }

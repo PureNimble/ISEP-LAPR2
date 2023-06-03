@@ -4,6 +4,7 @@ package pt.ipp.isep.dei.esoft.project.ui.console.menu;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
 import pt.ipp.isep.dei.esoft.project.ui.console.ReadFileUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.RegisterEmployeeUI;
+import pt.ipp.isep.dei.esoft.project.ui.console.RegisterStoreUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.ShowTextUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
@@ -21,6 +22,7 @@ public class AdminUI implements Runnable {
 
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
+        options.add(new MenuItem("Register a Store", new RegisterStoreUI()));
         options.add(new MenuItem("Register an Employee", new RegisterEmployeeUI()));
         options.add(new MenuItem("Read informations from a csv.file",new ReadFileUI()));
 

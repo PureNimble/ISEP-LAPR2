@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
+import pt.ipp.isep.dei.esoft.project.domain.Employee;
+import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 import pt.ipp.isep.dei.esoft.project.domain.Store;
 
 import java.util.ArrayList;
@@ -75,6 +77,25 @@ public class StoreRepository {
      */
     public List<Store> getStores() {
         return stores;
+    }
+
+    public void getStoresProperty(List<PublishedAnnouncement> announcementList, List<Employee> employees){
+
+        List<Store> storesList = getStores();
+        int counter = 0;
+        for (Store stores: storesList){
+            for (Employee employee: employees){
+                if (employee.getStore().equals(stores)){
+                    for (PublishedAnnouncement publishedAnnouncement: announcementList) {
+                        if (publishedAnnouncement.getAgent().equals(employee)){
+                            counter++;
+                        }
+                    }
+                }
+            }
+            stores.setListing(counter);
+            counter = 0;
+        }
     }
 
     public List<Store> getStoresByMostListings() {

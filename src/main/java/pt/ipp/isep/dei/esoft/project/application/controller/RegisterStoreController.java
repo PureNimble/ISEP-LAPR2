@@ -58,6 +58,7 @@ public class RegisterStoreController {
         }
         return stateRepository;
     }
+
     /**
 
      Registers a new store in the system.
@@ -66,17 +67,19 @@ public class RegisterStoreController {
      @param id The ID of the store to be registered.
      @param passportNumber The passport number of the store to be registered.
      @param email The email of the store to be registered.
+     @param listing The listing of the store to be registered.
      @return An Optional object containing the newly created store, or an empty Optional if the store could not be added.
      */
-    public Optional<Store> registerStore(String designation, Address address, int id,int passportNumber,String email) {
+    public Optional<Store> registerStore(int id, String designation, Address address, String email, long phoneNumber, int listing) {
 
-        Store store = getStoreByDescription(designation);
-
-        Optional<Store> newStore = Optional.empty();
-
-        newStore = getStoreRepository().add(store);
-
-        return newStore;
+        Store newStore = new Store();
+        newStore.setId(id);
+        newStore.setDesignation(designation);
+        newStore.setAddress(address);
+        newStore.setEmail(email);
+        newStore.setPhoneNumber(phoneNumber);
+        newStore.setListing(listing);
+        return storeRepository.add(newStore);
     }
     /**
      * Returns the Store that matches the given description.
@@ -112,6 +115,24 @@ public class RegisterStoreController {
         StoreRepository storeRepository = getStoreRepository();
         return storeRepository.getStores();
     }
+
+    /**
+     * Returns the State that matches the given description.
+     *
+     * @param stateDescription the description of the State to retrieve
+     * @return the State that matches the description, or null if not found
+     */
+    public State getStateByDescription(String stateDescription) {
+
+        StateRepository stateRepository = getStateRepository();
+
+        //Get the TaskCategory by its description
+        State stateByDescription =
+                stateRepository.getStateByDescription(stateDescription);
+        return stateByDescription;
+
+    }
+
     /**
      * Returns the City that matches the given description and District.
      *
