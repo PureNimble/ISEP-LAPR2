@@ -7,7 +7,8 @@ import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 import java.util.*;
 
 /**
- * The OfferRepository class is responsible for managing the storage and retrieval of offers.
+
+ The OfferRepository class is responsible for managing the storage and retrieval of offers.
  */
 public class OfferRepository {
 
@@ -26,10 +27,8 @@ public class OfferRepository {
         if (validateOffer(offer)) {
             newOffer = Optional.of(offer);
             operationSuccess = offers.add(newOffer.get());
-            System.out.println("\n\nOffer sent with success!\n\n");
         }
         if (!operationSuccess) {
-            System.out.println("The offer amount submitted has already been posted for this property. Please contact the agent that is responsible for this property.");
             newOffer = Optional.empty();
         }
         return newOffer;
@@ -159,6 +158,7 @@ public class OfferRepository {
         return resultList;
     }
 
+
     public List<Offer> getOffersByMostRecent() {
         List<Offer> resultList = new ArrayList<Offer>();
 
@@ -175,7 +175,7 @@ public class OfferRepository {
                 Date date1 = o1.getPublishedAnnouncement().getDate();
                 Date date2 = o2.getPublishedAnnouncement().getDate();
 
-            return date1.compareTo(date2);
+                return date1.compareTo(date2);
 
             }
         });

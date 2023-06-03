@@ -16,7 +16,7 @@ public class DisplayEmployeeUI implements Runnable{
 
         for (int i = 0; i < storeEmployeeList.size(); i++){
             Employee employee = storeEmployeeList.get(i);
-            System.out.println(i+1 + ". " + employee.toString() + "\n");
+            System.out.println(i+1 + " . " + employee.toString() + "\n");
         }
     }
 }

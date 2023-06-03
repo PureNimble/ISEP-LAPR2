@@ -11,6 +11,7 @@ import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 /**
@@ -29,25 +30,19 @@ public class PlaceOrderUI implements Runnable {
      */
     @Override
     public void run() {
-        System.out.println("Place Order");
+
+        System.out.println();
+        System.out.println("Place an Order: ");
+        System.out.println();
 
         PublishedAnnouncement publishedAnnouncement = requestChooseProperty();
 
         double offer = requestOffer();
         String clientName = requestClientName();
-//        Client client = requestClient();
 
-        submitData(clientName, publishedAnnouncement, offer,OfferState.pending);
-
-        List<Offer> offers = controller.getOffers();
-
-        StringBuilder st = new StringBuilder();
-
-        for (Offer o : offers) {
-            st.append(o.toString());
-            st.append("\n");
-        }
-        System.out.println(st);
+        if (submitData(clientName, publishedAnnouncement, offer,OfferState.pending).isEmpty()) {
+            System.out.println("The offer amount submitted has already been posted for this property. Please contact the agent that is responsible for this property. ");
+        } else System.out.println("\n\nOffer sent with success!\n\n");
     }
     /**
 
@@ -68,17 +63,17 @@ public class PlaceOrderUI implements Runnable {
         do {
             do {
                 try {
-                    System.out.println("Choose one of the properties above.");
+                    System.out.println("Choose one of the properties above. ");
                     index = input.nextInt() - 1;
                 } catch (InputMismatchException e) {
-                    System.out.println("Invalid input. Please enter an integer value:");
+                    System.out.println("Invalid input. Please enter an integer value: ");
                     input.nextLine();
                     index = -1;
                 }
             } while (index < 0);
 
             if (index > publishedAnnouncements.size() + 1) {
-                System.out.println(String.format("Invalid input. Please enter an value between 1 and %s:", publishedAnnouncements.size()));
+                System.out.println(String.format("Invalid input. Please enter an value between 1 and %s: ", publishedAnnouncements.size()));
                 index = input.nextInt() - 1;
             }
         } while (index < 0);
@@ -91,7 +86,7 @@ public class PlaceOrderUI implements Runnable {
      */
     private String requestClientName() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Name:");
+        System.out.println("Name: ");
         return input.nextLine();
     }
     /**
@@ -107,10 +102,10 @@ public class PlaceOrderUI implements Runnable {
 
         do {
             try {
-                System.out.println("Offer Amount:");
+                System.out.println("Offer Amount: ");
                 offerAmountDouble = input.nextDouble();
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a positive value:");
+                System.out.println("Invalid input. Please enter a positive value: ");
                 input.nextLine();
                 offerAmountDouble = -1;
             }
@@ -132,7 +127,7 @@ public class PlaceOrderUI implements Runnable {
      @param publishedAnnouncement the selected published announcement
      @param offer the offer amount
      */
-    private void submitData(String name, PublishedAnnouncement publishedAnnouncement, double offer, OfferState offerState) {
-        controller.createNewOfferToAgent(name, offer, publishedAnnouncement,offerState);
+    private Optional<Offer> submitData(String name, PublishedAnnouncement publishedAnnouncement, double offer, OfferState offerState) {
+        return controller.createNewOfferToAgent(name, offer, publishedAnnouncement,offerState);
     }
 }

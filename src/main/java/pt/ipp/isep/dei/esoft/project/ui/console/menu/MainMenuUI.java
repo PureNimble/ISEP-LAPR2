@@ -20,9 +20,9 @@ public class MainMenuUI implements Runnable {
 
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
-        options.add(new MenuItem("Do Login", new AuthenticationUI()));
+        options.add(new MenuItem("Login", new AuthenticationUI()));
         options.add(new MenuItem("Know the Development Team", new DevTeamUI()));
-        options.add(new MenuItem("Do the register",new ResgisterUserUI()));
+        options.add(new MenuItem("Register",new ResgisterUserUI()));
         int option = 0;
         do {
             option = Utils.showAndSelectIndex(options, "\n\nMain Menu");

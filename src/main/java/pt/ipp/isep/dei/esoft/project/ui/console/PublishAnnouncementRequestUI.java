@@ -76,19 +76,19 @@ public class PublishAnnouncementRequestUI implements Runnable {
             FileWriter fw = new FileWriter("emailJustificationAnnouncementRequest.txt");
             PrintWriter pw = new PrintWriter(fw);
 
-            pw.println("----------Your announcement Request was declined-----");
+            pw.println("---------- Your Announcement Request was declined -----");
             pw.println();
             pw.println(controller.getAnnouncementRequestByDescription(announcementRequestDescription).toString());
             pw.println();
-            pw.println("The following Announcement Request was rejected by the following reason/s:");
+            pw.println("The following Announcement Request was rejected by the following reason/s: ");
             pw.println(messageJustification);
             pw.println();
-            pw.println("Best regards");
-            pw.println("Contact:");
+            pw.println("Best regards,");
+            pw.println("Contact: ");
             pw.close();
 
         } catch (IOException ex) {
-            System.out.println("Error to write password to file:" + ex.getMessage());
+            System.out.println("Error to write password to file: " + ex.getMessage());
         }
 
     }
@@ -130,7 +130,7 @@ public class PublishAnnouncementRequestUI implements Runnable {
 
     private String requestMessageJustification() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Give the reason to the owner justifying your decision");
+        System.out.println("Give the reason to the owner justifying your decision.");
         return input.nextLine();
     }
 
@@ -142,7 +142,7 @@ public class PublishAnnouncementRequestUI implements Runnable {
 
     private String requestOption() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Do you want to reject or accept this announcement(A-Accept/R-Reject):");
+        System.out.println("Do you want to reject or accept this announcement (A-Accept/R-Reject): ");
         return input.nextLine();
     }
 
@@ -166,11 +166,11 @@ public class PublishAnnouncementRequestUI implements Runnable {
             try {
 
                 displayAnnouncementRequestOptions(announcementRequestsDtos);
-                System.out.println("Select a Announcement Request:");
+                System.out.println("Select a Announcement Request: ");
                 answer = input.nextInt();
 
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter an integer value:");
+                System.out.println("Invalid input. Please enter an integer value: ");
                 input.nextLine();
                 answer = -1;
             }
@@ -215,11 +215,11 @@ public class PublishAnnouncementRequestUI implements Runnable {
             try {
 
                 displayComissionOptions(comissions);
-                System.out.println("Select a Comission:");
+                System.out.println("Select a Comission: ");
                 answer = input.nextInt();
 
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter an integer value:");
+                System.out.println("Invalid input. Please enter an integer value: ");
                 input.nextLine();
                 answer = -1;
             }

@@ -105,6 +105,8 @@ public class PublishAnnouncementUI implements Runnable {
 
     private Employee agent;
 
+    private String ID;
+
     /**
      * Executes the user interface for publishing announcements of properties for sale or rent.
      * <p>
@@ -148,7 +150,7 @@ public class PublishAnnouncementUI implements Runnable {
             System.out.println(st);
 
         } else {
-            System.out.println("There is no Agents on the system for you to choose one.");
+            System.out.println("There is no Agents on the system for you to choose one. ");
         }
     }
 
@@ -172,7 +174,7 @@ public class PublishAnnouncementUI implements Runnable {
 
         if (propertyTypeDescription.equals("Land")) {
 
-            Property land = new Property(area, distanceFromCityCenter, photos);
+            Property land = new Property(area, distanceFromCityCenter, photos, ID);
 
             Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, land, propertyType, comission, business, durationOfContract, agent);
 
@@ -181,13 +183,13 @@ public class PublishAnnouncementUI implements Runnable {
 
                 AvailableEquipment availableEquipment = controller.getAvailableEquipmentByDescription(availableEquipmentDescription);
 
-                Residence appartment = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, photos);
+                Residence appartment = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, photos, ID);
 
                 Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, appartment, propertyType, comission, business, durationOfContract, agent);
             } else {
                 AvailableEquipment availableEquipment = controller.getAvailableEquipmentByDescription(availableEquipmentDescription);
 
-                House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, inhabitableLoft, sunExposure, photos);
+                House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, inhabitableLoft, sunExposure, photos, ID);
 
                 Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, durationOfContract, agent);
 
@@ -234,7 +236,7 @@ public class PublishAnnouncementUI implements Runnable {
             do {
                 sunExposure = requestSunExposure();
                 if (!sunExposure.equals("North") && !sunExposure.equals("South") && !sunExposure.equals("West") && !sunExposure.equals("East")) {
-                    System.out.println("Please select one of the coordinates North South West or East");
+                    System.out.println("Please select one of the coordinates (North, South, West or East).");
                 }
             } while (!sunExposure.equals("North") && !sunExposure.equals("South") && !sunExposure.equals("West") && !sunExposure.equals("East"));
 
@@ -251,7 +253,7 @@ public class PublishAnnouncementUI implements Runnable {
      */
     private String requestEmail() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Owner Email:");
+        System.out.println("Owner Email: ");
         return input.nextLine();
     }
 
@@ -268,10 +270,10 @@ public class PublishAnnouncementUI implements Runnable {
         do {
 
             try {
-                System.out.println("Duration of Contract:");
+                System.out.println("Duration of Contract: ");
                 durationOfContract = input.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter an integer value:");
+                System.out.println("Invalid input. Please enter an integer value: ");
                 input.nextLine();
                 durationOfContract = -1;
             }
@@ -293,10 +295,10 @@ public class PublishAnnouncementUI implements Runnable {
         do {
 
             try {
-                System.out.println("Number Of Bedrooms:");
+                System.out.println("Number Of Bedrooms: ");
                 numberOfBedrooms = input.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter an integer value:");
+                System.out.println("Invalid input. Please enter an integer value: ");
                 input.nextLine();
                 numberOfBedrooms = -1;
             }
@@ -318,10 +320,10 @@ public class PublishAnnouncementUI implements Runnable {
         do {
 
             try {
-                System.out.println("Number Of Bathrooms:");
+                System.out.println("Number Of Bathrooms: ");
                 numberOfBathrooms = input.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter an integer value:");
+                System.out.println("Invalid input. Please enter an integer value: ");
                 input.nextLine();
                 numberOfBathrooms = -1;
             }
@@ -343,10 +345,10 @@ public class PublishAnnouncementUI implements Runnable {
         do {
 
             try {
-                System.out.println("Parking Spaces:");
+                System.out.println("Parking Spaces: ");
                 parkingSpaces = input.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter an integer value:");
+                System.out.println("Invalid input. Please enter an integer value: ");
                 input.nextLine();
                 parkingSpaces = -1;
             }
@@ -368,10 +370,10 @@ public class PublishAnnouncementUI implements Runnable {
         do {
 
             try {
-                System.out.println("Distance From City Center:");
+                System.out.println("Distance From City Center: ");
                 distanceFromCityCenter = input.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter an integer value:");
+                System.out.println("Invalid input. Please enter an integer value: ");
                 input.nextLine();
                 distanceFromCityCenter = -1;
             }
@@ -427,10 +429,10 @@ public class PublishAnnouncementUI implements Runnable {
         do {
 
             try {
-                System.out.println("Area:");
+                System.out.println("Area: ");
                 area = input.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter an integer value:");
+                System.out.println("Invalid input. Please enter an integer value: ");
                 input.nextLine();
                 area = -1;
             }
@@ -447,22 +449,22 @@ public class PublishAnnouncementUI implements Runnable {
         List<String> photos = new ArrayList<>();
 
         try {
-            String choice = "y";
-            while (choice.equalsIgnoreCase("y") && photos.size() < max) {
+            String choice = "Y";
+            while (choice.equalsIgnoreCase("Y") && photos.size() < max) {
                 int nphoto = photos.size() + 1;
-                System.out.print("Please enter the URI of a photo for the property ("+ nphoto + "): \n");
+                System.out.print("Please enter the URI of a photo for the property (" + nphoto + "): \n");
                 String uri = input.nextLine();
                 photos.add(uri);
 
                 if (photos.size() < max) {
-                    System.out.print("Do you want to add more photos? (y/n): \n");
+                    System.out.print("Do you want to add more photos? (Y/N): \n");
                     choice = input.nextLine();
                 } else {
                     System.out.println("You have reached the maximum limit of " + max + " photos.\n");
                 }
             }
         } catch (InputMismatchException e) {
-            System.out.println("Invalid input. Please try again.\n");
+            System.out.println("Invalid input. Please try again. \n");
             input.nextLine();
         }
 
@@ -479,10 +481,10 @@ public class PublishAnnouncementUI implements Runnable {
         String basementString;
 
         do {
-            System.out.println("Basement:(Y/N)");
+            System.out.println("Basement (Y/N): ");
             basementString = input.nextLine();
             if (!basementString.equals("N") && !basementString.equals("Y")) {
-                System.out.println("Please select N if the house doesn t have basement and Y if the house have basement");
+                System.out.println("Please select N if the house doesn t have basement and Y if the house have basement. ");
             }
 
         } while (!basementString.equals("N") && !basementString.equals("Y"));
@@ -500,10 +502,10 @@ public class PublishAnnouncementUI implements Runnable {
         String inhabitableLoftString;
 
         do {
-            System.out.println("Inhabitable Loft(Y/N):");
+            System.out.println("Inhabitable Loft (Y/N): ");
             inhabitableLoftString = input.nextLine();
             if (!basement.equals("N") && !basement.equals("Y")) {
-                System.out.println("Please select N if the house doesn t have Inhabitable loft and Y if the house have Inhabitable Loft");
+                System.out.println("Please select N if the house doesn t have Inhabitable loft and Y if the house have Inhabitable Loft. ");
             }
 
         } while (!inhabitableLoftString.equals("N") && !inhabitableLoftString.equals("Y"));
@@ -518,7 +520,7 @@ public class PublishAnnouncementUI implements Runnable {
      */
     private String requestSunExposure() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Sun Exposure:");
+        System.out.println("Sun Exposure: ");
         return input.nextLine();
     }
 
@@ -534,10 +536,10 @@ public class PublishAnnouncementUI implements Runnable {
         do {
 
             try {
-                System.out.println("Price:");
+                System.out.println("Price: ");
                 price = input.nextDouble();
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter an integer value:");
+                System.out.println("Invalid input. Please enter an integer value: ");
                 input.nextLine();
                 price = -1;
             }
@@ -565,11 +567,11 @@ public class PublishAnnouncementUI implements Runnable {
             try {
 
                 displayPropertyTypeOptions(propertyTypes);
-                System.out.println("Select a Property Type:");
+                System.out.println("Select a Property Type: ");
                 answer = input.nextInt();
 
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter an integer value:");
+                System.out.println("Invalid input. Please enter an integer value: ");
                 input.nextLine();
                 answer = -1;
             }
@@ -612,11 +614,11 @@ public class PublishAnnouncementUI implements Runnable {
             try {
 
                 displayComissionOptions(comissions);
-                System.out.println("Select a Comission:");
+                System.out.println("Select a Comission: ");
                 answer = input.nextInt();
 
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter an integer value:");
+                System.out.println("Invalid input. Please enter an integer value: ");
                 input.nextLine();
                 answer = -1;
             }
@@ -675,11 +677,11 @@ public class PublishAnnouncementUI implements Runnable {
             try {
 
                 displayTypeOfBusinessOptions(typeOfBusinesses);
-                System.out.println("Select a Type of Business:");
+                System.out.println("Select a Type of Business: ");
                 answer = input.nextInt();
 
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter an integer value:");
+                System.out.println("Invalid input. Please enter an integer value: ");
                 input.nextLine();
                 answer = -1;
             }
@@ -723,11 +725,11 @@ public class PublishAnnouncementUI implements Runnable {
             try {
 
                 displayAvailableEquipmentOptions(availableEquipments);
-                System.out.println("Select a Available Equipment:");
+                System.out.println("Select a Available Equipment: ");
                 answer = input.nextInt();
 
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter an integer value:");
+                System.out.println("Invalid input. Please enter an integer value: ");
                 input.nextLine();
                 answer = -1;
             }
@@ -739,7 +741,7 @@ public class PublishAnnouncementUI implements Runnable {
             description = availableEquipments.get(answer - 1).getAvailableEquipment();
         } else {
             Scanner ler = new Scanner(System.in);
-            System.out.println("Write the Other available equipment:");
+            System.out.println("Write the Other available equipment: ");
             description = ler.nextLine();
         }
 

@@ -16,6 +16,7 @@ public class Offer {
 
     private OfferState offerState;
 
+
 //    private final double ORDER_AMOUNT_DEFAULT = 0;
 //    private final String CLIENT_DEFAULT = "NO CLIENT";
 //    private final String PUBLISHED_ANNOUNCEMENT_DEFAULT = "";

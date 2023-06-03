@@ -11,6 +11,7 @@ import java.util.Optional;
  * Represents a real estate announcement that has been published.
  */
 public class PublishedAnnouncement {
+
     private Date date;
     private TypeOfBusiness typeOfBusiness;
     private Property property;
@@ -256,17 +257,18 @@ public class PublishedAnnouncement {
         this.announcementRequest = announcementRequest;
     }
 
+
     /**
      * Returns a string representation of the announcement for sale.
      *
      * @return a string representation of the announcement for sale
      */
     public String toString() {
-        return String.format("Date:%s\n\n" + "Responsible agent:\n" + "Name:%s\n" + "Email:%s\n" + "Phone Number:%s\n" +
-                        "Type of business:%s\n" +
-                        "Property Type:%s\n" +
-                        "Comission Selected:%s" +
-                        "Price:%s\n" +
+        return String.format("Date: %s\n\n" + "Responsible agent - \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
+                        "Type of business: %s\n" +
+                        "Property Type: %s\n" +
+                        "Comission Selected: %s" +
+                        "Price: %s\n" +
                         "%s",
                 date.toString(), agent.getEmployeeName(), agent.getEmployeeEmail(), agent.getPhoneNumber(), typeOfBusiness.toString(), propertyType, comission.toString(), business.toString(), property.toString());
     }
@@ -277,14 +279,16 @@ public class PublishedAnnouncement {
      * @return a string representation of the announcement for rent
      */
     public String toStringRent() {
-        return String.format("Date:%s\n" +  "Responsible agent:\n" + "Name:%s\n" + "Email:%s\n" + "Phone Number:%s\n" +
-                        "Type of business:%s\n" +
-                        "Property Type:%s\n" +
-                        "Comission Selected:%s" +
-                        "Price:%s\n" +
-                        "DurationOfContract:%s\n" +
+        return String.format("Date: %s\n\n" +  "Responsible Agent - \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
+                        "Type of business: %s\n" +
+                        "Property Type: %s\n" +
+                        "Comission Selected: %s" +
+                        "Price: %s\n" +
+                        "DurationOfContract: %s\n" +
                         "%s",
-                date.toString(), agent.getEmployeeName(), agent.getEmployeeEmail(), agent.getPhoneNumber(), typeOfBusiness.toString(), propertyType, comission.toString(), business.toString(), durationOfContract, property.toString());
+                date.toString(), agent.getEmployeeName(),
+                agent.getEmployeeEmail(), agent.getPhoneNumber(), typeOfBusiness.toString(),
+                propertyType, comission.toString(), business.toString(), durationOfContract, property.toString());
     }
 
 }

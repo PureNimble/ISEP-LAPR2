@@ -129,13 +129,13 @@ public class RegisterEmployeeUI implements Runnable {
             FileWriter fw = new FileWriter("email.txt");
             PrintWriter pw = new PrintWriter(fw);
 
-            pw.println("Email:" + employeeEmail);
-            pw.println("Password:" + password);
+            pw.println("Email: " + employeeEmail);
+            pw.println("Password: " + password);
 
             pw.close();
 
         } catch (IOException ex) {
-            System.out.println("Error to write password to file:" + ex.getMessage());
+            System.out.println("Error to write password to file: " + ex.getMessage());
         }
 
 
@@ -182,7 +182,7 @@ public class RegisterEmployeeUI implements Runnable {
      */
     private String requestNameDescription() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Name:");
+        System.out.println("Name: ");
         return input.nextLine();
 
     }
@@ -196,7 +196,7 @@ public class RegisterEmployeeUI implements Runnable {
         Scanner input = new Scanner(System.in);
         String addRoles;
         do {
-            System.out.println("Do you want to add more Roles:(Y/N)");
+            System.out.println("Do you want to add more Roles (Y/N): ");
             addRoles = input.nextLine();
         } while (!addRoles.equals("Y") && !addRoles.equals("N"));
 
@@ -219,7 +219,7 @@ public class RegisterEmployeeUI implements Runnable {
             do {
 
                 try {
-                    System.out.println("Passport Number:");
+                    System.out.println("Passport Number: ");
                     passportNumberInt = input.nextInt();
                 } catch (InputMismatchException e) {
                     System.out.println("Invalid input. Please enter an integer value:");
@@ -256,7 +256,7 @@ public class RegisterEmployeeUI implements Runnable {
             do {
 
                 try {
-                    System.out.println("Tax Number:");
+                    System.out.println("Tax Number: ");
                     taxNumberInt = input.nextInt();
                 } catch (InputMismatchException e) {
                     System.out.println("Invalid input. Please enter an integer value:");
@@ -294,7 +294,7 @@ public class RegisterEmployeeUI implements Runnable {
             do {
 
                 try {
-                    System.out.println("Phone Number:");
+                    System.out.println("Phone Number: ");
                     phoneNumberLong = input.nextLong();
                 } catch (InputMismatchException e) {
                     System.out.println("Invalid input. Please enter an integer value:");
@@ -331,7 +331,7 @@ public class RegisterEmployeeUI implements Runnable {
             do {
 
                 try {
-                    System.out.println("Zip Code:");
+                    System.out.println("Zip Code: ");
                     zipCodeInt = input.nextInt();
                 } catch (InputMismatchException e) {
                     System.out.println("Invalid input. Please enter an integer value:");
@@ -357,7 +357,7 @@ public class RegisterEmployeeUI implements Runnable {
      */
     private String requestStreetDescription() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Street:");
+        System.out.println("Street: ");
         return input.nextLine();
     }
 
@@ -368,7 +368,7 @@ public class RegisterEmployeeUI implements Runnable {
      */
     private String requestEmployeeEmailDescription() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Employee Email:");
+        System.out.println("Employee Email: ");
         return input.nextLine();
     }
 
@@ -391,7 +391,7 @@ public class RegisterEmployeeUI implements Runnable {
             try {
 
                 displayRoleOptions(roles, rolesDescriptions);
-                System.out.println("Select a role:");
+                System.out.println("Select a role: ");
                 answer = input.nextInt();
 
             } catch (InputMismatchException e) {
@@ -427,7 +427,7 @@ public class RegisterEmployeeUI implements Runnable {
             try {
 
                 displayStoreOptions(stores);
-                System.out.println("Select a Store:");
+                System.out.println("Select a Store: ");
                 answer = input.nextInt();
 
             } catch (InputMismatchException e) {
@@ -465,7 +465,7 @@ public class RegisterEmployeeUI implements Runnable {
             try {
 
                 displayStateOptions(states);
-                System.out.println("Select a State:");
+                System.out.println("Select a State: ");
                 answer = input.nextInt();
 
             } catch (InputMismatchException e) {
@@ -505,7 +505,7 @@ public class RegisterEmployeeUI implements Runnable {
             try {
 
                 displayCityOptions(district);
-                System.out.println("Select a City:");
+                System.out.println("Select a City: ");
                 answer = input.nextInt();
 
             } catch (InputMismatchException e) {
@@ -545,7 +545,7 @@ public class RegisterEmployeeUI implements Runnable {
             try {
 
                 displayDistrictOptions(state);
-                System.out.println("Select a District:");
+                System.out.println("Select a District: ");
                 answer = input.nextInt();
 
             } catch (InputMismatchException e) {
@@ -605,7 +605,7 @@ public class RegisterEmployeeUI implements Runnable {
         int i = 1;
 
         for (Store store : stores) {
-            System.out.println(i + "-" + store.getId());
+            System.out.println(i + " - " + store.getId());
             i++;
         }
     }
@@ -619,7 +619,7 @@ public class RegisterEmployeeUI implements Runnable {
         int i = 1;
 
         for (City city : district.getCities()) {
-            System.out.println(i + "-" + city.getCity());
+            System.out.println(i + " - " + city.getCity());
             i++;
         }
     }
@@ -632,7 +632,7 @@ public class RegisterEmployeeUI implements Runnable {
     private void displayDistrictOptions(State state) {
         int i = 1;
         for (District district : state.getDistricts()) {
-            System.out.println(i + "-" + district.getDistrict());
+            System.out.println(i + " - " + district.getDistrict());
             i++;
 
         }
@@ -647,7 +647,7 @@ public class RegisterEmployeeUI implements Runnable {
         int i = 1;
 
         for (State state : states) {
-            System.out.println(i + "-" + state.getState());
+            System.out.println(i + " - " + state.getState());
             i++;
         }
     }

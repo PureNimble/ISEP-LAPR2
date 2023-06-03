@@ -32,7 +32,7 @@ public class AgentUI implements Runnable {
      */
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
-        options.add(new MenuItem("Publish announcement", new PublishAnnouncementUI()));
+        options.add(new MenuItem("Publish Announcement", new PublishAnnouncementUI()));
         options.add(new MenuItem("Publish Announcement Request",new PublishAnnouncementRequestUI()));
         options.add(new MenuItem("See List of Offers",new OfferDecisionUI()));
         int option = 0;

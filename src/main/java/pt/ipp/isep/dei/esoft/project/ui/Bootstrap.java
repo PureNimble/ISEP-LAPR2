@@ -53,21 +53,21 @@ public class Bootstrap {
 //        }
         EmployeeRepository employeeRepository = Repositories.getInstance().getEmployeeRepository();
         Role role = new Role("Agent");
-        Address address1 = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
+        Address address1 = new Address("Test Strett", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
         Address address2 = new Address("Avenue Walmart",22334,new District("Jefferson"),new City("Ottawa"),new State("Arizona"));
         Store store1 = new Store("Holloway",10234,address2,9383811,"holloway@gmail.com", 11);
-        Store store2 = new Store("Maltip",104224,address2,9678910,"123sttore@gmail.com", 16);
-        Store store3 = new Store("Elvis",224,address2,9437782,"dadaw@gmail.com", 3);
+        Store store2 = new Store("Maltip",104224,address2,9678910,"maltip@gmail.com", 16);
+        Store store3 = new Store("Elvis",224,address2,9437782,"elvis@gmail.com", 3);
         
         List<Role> roles = new ArrayList<>();
         roles.add(role);
 
-        Employee agent1 = new Employee("agent@this.app", 123456789, 987654321, "Agent", 5551234, store1,  roles, address1);
-        Employee agent2 = new Employee("agent2@this.app",12345677,12231311,"Agent 02",555661,store1,roles,address1);
+        Employee agent1 = new Employee("agent@this.app", 123456789, 987654321, "Miguel", 5551234, store1,  roles, address1);
+        Employee agent2 = new Employee("agent2@this.app",12345677,12231311,"Vasco ",555661, store1, roles, address1);
         Employee agent3 = new Employee("agent3@this.app", 123456432, 123456789, "Manuel", 1234567, store2,  roles, address1);
-        Employee agent4 = new Employee("agent4@this.app",12345123,124356789,"Pedro",1324567,store3,roles,address1);
+        Employee agent4 = new Employee("agent4@this.app",12345123,124356789,"Pedro",1324567, store3, roles, address1);
         Employee agent5 = new Employee("agent5@this.app", 123456321, 17634589, "Jorge", 1432567, store2,  roles, address1);
-        Employee agent6 = new Employee("agent6@this.app",12345687,192837465,"Ruben",9876543,store2,roles,address1);
+        Employee agent6 = new Employee("agent6@this.app",12345687,192837465,"Ruben",9876543, store2, roles, address1);
 
         employeeRepository.add(agent1);
         employeeRepository.add(agent2);
@@ -79,36 +79,65 @@ public class Bootstrap {
 
     private void addPublishedAnnouncement(){
 
-        Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
+        EmployeeRepository employeeRepository = Repositories.getInstance().getEmployeeRepository();
         Role role = new Role("Agent");
-        Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com", 12);
+        Address address1 = new Address("Test Strett", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
+        Address address2 = new Address("Avenue Walmart",22334,new District("Jefferson"),new City("Ottawa"),new State("Arizona"));
+        Store store1 = new Store("Holloway",10234,address2,9383811,"holloway@gmail.com", 11);
+        Store store2 = new Store("Maltip",104224,address2,9678910,"maltip@gmail.com", 16);
+        Store store3 = new Store("Elvis",224,address2,9437782,"elvis@gmail.com", 3);
+
         List<Role> roles = new ArrayList<>();
         roles.add(role);
 
-        Employee employee1 = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store,  roles, address);
+        Employee agent1 = new Employee("agent@this.app", 123456789, 987654321, "Miguel", 5551234, store1,  roles, address1);
+        Employee agent2 = new Employee("agent2@this.app",12345677,12231311,"Vasco ",555661, store1, roles, address1);
+        Employee agent3 = new Employee("agent3@this.app", 123456432, 123456789, "Manuel", 1234567, store2,  roles, address1);
+        Employee agent4 = new Employee("agent4@this.app",12345123,124356789,"Pedro",1324567, store3, roles, address1);
+        Employee agent5 = new Employee("agent5@this.app", 123456321, 17634589, "Jorge", 1432567, store2,  roles, address1);
+        Employee agent6 = new Employee("agent6@this.app",12345687,192837465,"Ruben",9876543, store2, roles, address1);
 
 
         PublishedAnnouncementRepository publishedAnnouncementRepository = Repositories.getInstance().getPublishedAnnouncementRepository();
-        Comission com = new Comission(25.00);
-        Property property = new Property(2,2, new Photos("photos1"));
-        PropertyType propertyType = new PropertyType("House");
-        TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
-        Business business = new Business(200);
-        Date date1 = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
-        Date date2 = new GregorianCalendar(2015, Calendar.FEBRUARY, 11).getTime();
-        PublishedAnnouncement p1 = new PublishedAnnouncement(date1, typeOfBusiness, property, propertyType, com, business, employee1);
-        PublishedAnnouncement p2 = new PublishedAnnouncement(date2, typeOfBusiness, property, propertyType, com, business, employee1);
-        publishedAnnouncementRepository.add(p1);
-        publishedAnnouncementRepository.add(p2);
-        addOffers(p1, p2);
+        Comission comission1 = new Comission(25.00);
+        Comission comission2 = new Comission(10.00);
+
+        Property property1 = new Property(274,2576, new Photos("https://i.maxwork.pt/l-view/listings/12325/6516582/f608e960-5797-4a79-8232-8b46739fb035.jpg"), "W234F");
+        Property property2 = new Property(313,5498,new Photos("https://i.maxwork.pt/l-view/listings/12015/6532217/13acae9a-aa32-466c-9980-e132a780c4bf.jpg"), "E461O");
+
+        PropertyType propertyType1 = new PropertyType("House");
+        PropertyType propertyType2 = new PropertyType("Appartment");
+        PropertyType propertyType3 = new PropertyType("Land");
+
+        TypeOfBusiness typeOfBusiness1 = new TypeOfBusiness("Sale");
+        TypeOfBusiness typeOfBusiness2 = new TypeOfBusiness("Rent");
+
+        Business business1 = new Business(200000);
+        Business business2 = new Business(135000);
+        Business business3 = new Business(246000);
+        Business business4 = new Business(98540);
+
+        Date date1 = new GregorianCalendar(2023, Calendar.JUNE, 1, 20,04,30).getTime();
+        Date date2 = new GregorianCalendar(2023, Calendar.MAY, 28,10,51,13).getTime();
+        Date date3 = new GregorianCalendar(2023,Calendar.MAY,30,17,31,42).getTime();
+
+
+        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property2, propertyType2, comission1, business2, agent3);
+        PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, property1, propertyType1, comission1, business4, agent5);
+        PublishedAnnouncement publishedAnnouncement3 = new PublishedAnnouncement(date3, typeOfBusiness1, property1, propertyType3, comission2, business3, agent1);
+
+        publishedAnnouncementRepository.add(publishedAnnouncement1);
+        publishedAnnouncementRepository.add(publishedAnnouncement2);
+        publishedAnnouncementRepository.add(publishedAnnouncement3);
+
+        addOffers(publishedAnnouncement1, publishedAnnouncement2, publishedAnnouncement3);
     }
 
     private void addAvailableEquipment(){
 
         AvailableEquipmentRepository availableEquipmentRepository = Repositories.getInstance().getAvailableEquipmentRepository();
 
-        availableEquipmentRepository.add(new AvailableEquipment("Air conditioning"));
+        availableEquipmentRepository.add(new AvailableEquipment("Air Conditioning"));
         
         availableEquipmentRepository.add(new AvailableEquipment("Central Heating"));
 
@@ -245,14 +274,17 @@ public class Bootstrap {
        // comissionRepository.add(new Comission(Integer.parseInt("Other")));
     }
 
-    private void addOffers(PublishedAnnouncement p1, PublishedAnnouncement p2) {
+    private void addOffers(PublishedAnnouncement publishedAnnouncement1, PublishedAnnouncement publishedAnnouncement2, PublishedAnnouncement publishedAnnouncement3) {
         OfferRepository offerRepository = Repositories.getInstance().getOfferRepository();
 
-        offerRepository.add(new Offer("Pedro", 200000, p1, OfferState.pending));
-        offerRepository.add(new Offer("Miguel",1935000, p2, OfferState.pending));
-        offerRepository.add(new Offer("Rúben", 3456, p1, OfferState.pending));
-        offerRepository.add(new Offer("Zé",19000, p1, OfferState.pending));
-        offerRepository.add(new Offer("Toby",35000, p1, OfferState.pending));
-        offerRepository.add(new Offer("Geremias",546372, p2, OfferState.pending));
+        offerRepository.add(new Offer("Pedro", 200000, publishedAnnouncement1, OfferState.pending));
+        offerRepository.add(new Offer("Miguel",1935000, publishedAnnouncement2, OfferState.pending));
+        offerRepository.add(new Offer("Rúben", 3456, publishedAnnouncement1, OfferState.pending));
+        offerRepository.add(new Offer("Zé",19000, publishedAnnouncement1, OfferState.pending));
+        offerRepository.add(new Offer("Luna", 135600,publishedAnnouncement3,OfferState.pending));
+        offerRepository.add(new Offer("Toby",35000, publishedAnnouncement1, OfferState.pending));
+        offerRepository.add(new Offer("Geremias",546372, publishedAnnouncement2, OfferState.pending));
+        offerRepository.add(new Offer("Vasco", 230000,publishedAnnouncement3,OfferState.pending));
+        offerRepository.add(new Offer("Rafael", 98000,publishedAnnouncement3,OfferState.pending));
     }
 }

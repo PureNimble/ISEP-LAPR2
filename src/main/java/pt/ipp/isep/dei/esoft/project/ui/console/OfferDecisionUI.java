@@ -42,7 +42,7 @@ public class OfferDecisionUI implements Runnable{
 
         } while (choice < 0);
         */
-        System.out.println("Choose an offer");
+        System.out.println("Choose an offer: ");
         acceptOrDecline(offersList.get(input.nextInt() - 1), offersList);
     }
 
