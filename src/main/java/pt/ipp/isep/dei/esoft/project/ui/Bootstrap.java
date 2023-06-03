@@ -279,12 +279,12 @@ public class Bootstrap {
 
         offerRepository.add(new Offer("Pedro", 200000, publishedAnnouncement1, OfferState.pending));
         offerRepository.add(new Offer("Miguel",1935000, publishedAnnouncement2, OfferState.pending));
-        offerRepository.add(new Offer("Rúben", 3456, publishedAnnouncement1, OfferState.pending));
-        offerRepository.add(new Offer("Zé",19000, publishedAnnouncement1, OfferState.pending));
+        offerRepository.add(new Offer("Rúben", 3456, publishedAnnouncement1, OfferState.accepted));
+        offerRepository.add(new Offer("Zé",19000, publishedAnnouncement1, OfferState.accepted));
         offerRepository.add(new Offer("Luna", 135600,publishedAnnouncement3,OfferState.pending));
         offerRepository.add(new Offer("Toby",35000, publishedAnnouncement1, OfferState.pending));
         offerRepository.add(new Offer("Geremias",546372, publishedAnnouncement2, OfferState.pending));
-        offerRepository.add(new Offer("Vasco", 230000,publishedAnnouncement3,OfferState.pending));
-        offerRepository.add(new Offer("Rafael", 98000,publishedAnnouncement3,OfferState.pending));
+        offerRepository.add(new Offer("Vasco", 230000,publishedAnnouncement3,OfferState.accepted));
+        offerRepository.add(new Offer("Rafael", 98000,publishedAnnouncement3,OfferState.accepted));
     }
 }

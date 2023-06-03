@@ -372,10 +372,10 @@ public class ListDealsGUI implements Initializable {
 
         if (choiceOption.equals("Descending")) {
             listDeals.clear();
-            listDeals.addAll(controller.getDealsByAscendingArea());
+            listDeals.addAll(controller.getDealsByDescendinggArea());
         } else if (choiceOption.equals("Ascending")){
             listDeals.clear();
-            listDeals.addAll(controller.getDealsByDescendinggArea());
+            listDeals.addAll(controller.getDealsByAscendingArea());
         }
 
     }

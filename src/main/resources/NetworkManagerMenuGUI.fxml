@@ -11,22 +11,44 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.NetworkManagerMenuGUI">
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="375.0" prefWidth="578.0" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane layoutX="37.0" prefHeight="400.0" prefWidth="220.0" style="-fx-background-color: gray;">
                <children>
-                  <Button layoutX="-1.0" layoutY="134.0" mnemonicParsing="false" onMouseClicked="#listDeals" prefHeight="52.0" prefWidth="175.0" style="-fx-background-color: transparent;" text="List all deals made">
+                  <Button layoutX="6.0" layoutY="155.0" mnemonicParsing="false" onMouseClicked="#listDeals" prefHeight="52.0" prefWidth="209.0" style="-fx-background-color: transparent;" text="List all deals made">
                      <font>
-                        <Font name="System Bold Italic" size="15.0" />
+                        <Font name="System Bold Italic" size="18.0" />
                      </font>
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="-3.0" prefHeight="400.0" prefWidth="48.0" style="-fx-background-color: #fff;">
+            <ImageView fitHeight="231.0" fitWidth="310.0" layoutX="270.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@PhotosApp/networkManagerMenu.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="-3.0" prefHeight="400.0" prefWidth="53.0" style="-fx-background-color: #fff;">
                <effect>
                   <DropShadow />
                </effect>
+               <children>
+                  <ImageView fitHeight="36.0" fitWidth="62.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@PhotosApp/listDeals.png" />
+                     </image>
+                  </ImageView>
+               </children>
             </AnchorPane>
+            <Label layoutX="277.0" layoutY="66.0" text="Network Manager" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Impact" size="41.0" />
+               </font>
+            </Label>
+            <Label layoutX="379.0" layoutY="117.0" text="Menu">
+               <font>
+                  <Font name="Impact" size="40.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>
