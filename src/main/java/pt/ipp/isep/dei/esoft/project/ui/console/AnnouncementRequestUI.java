@@ -77,6 +77,7 @@ public class AnnouncementRequestUI implements Runnable {
         }else {
             System.out.println("There is no Agents on the system for you to choose one.");
         }
+
     }
 
     /**
@@ -159,11 +160,12 @@ public class AnnouncementRequestUI implements Runnable {
 
 
 
-
         }
 
-
+        photos = requestPhotos();
     }
+
+    
 
     /**
      * Prompts the user to enter the duration of the rental contract, and returns the value as an integer.
@@ -394,6 +396,31 @@ public class AnnouncementRequestUI implements Runnable {
         return input.nextLine();
     }
 
+    private Photos requestPhotos() {
+        Scanner input = new Scanner(System.in);
+        List<String> listPhotos = new ArrayList<>();
+        String url;
+        int counter = 0;
+        do {
+            try {
+                System.out.print("\nPhotos URL: ");
+                url = input.nextLine();
+                listPhotos.add(url);
+                counter++;
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value: ");
+                input.nextLine();
+            }
+            if (counter == 30){
+                System.out.println("You reached the limit of photos");
+                break;
+            }
+            System.out.println("Do you want to add more photos? ");
+    
+        } while (addMorePhotos());
+
+        return new Photos(listPhotos);
+    }
 
     /**
      * Displays a list of property types and requests user to select one of them.
@@ -584,6 +611,38 @@ public class AnnouncementRequestUI implements Runnable {
             System.out.println(i + " - " + availableEquipment.getAvailableEquipment());
             i++;
         }
+    }
+
+
+    private boolean addMorePhotos(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("\n1. Yes");
+        System.out.println("2. No");
+
+        double choice;
+
+        do {
+
+            try {
+                choice = input.nextDouble();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a double value:");
+                input.nextLine();
+                choice = -1;
+            }
+
+            if (choice > 2){
+                choice = -1;
+            }
+            else if (choice == 1){
+                return true;
+            }
+            else if (choice == 2){
+                return false;
+            }
+
+        } while (choice < 0);
+        return false;
     }
 
 

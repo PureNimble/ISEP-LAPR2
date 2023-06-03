@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -9,15 +10,19 @@ public class Photos {
     /**
      * The URL of the photo.
      */
-    private String url;
+    private List<String> url;
 
     /**
      * Constructs a new `Photos` object with the specified URL.
      *
      * @param url the URL of the photo
      */
-    public Photos(String url) {
+    public Photos(List<String> url) {
         this.url = url;
+    }
+
+    public Photos(String url) {
+        this.url = List.of(url);
     }
 
     /**
@@ -25,7 +30,7 @@ public class Photos {
      *
      * @return the URL of the photo
      */
-    public String getUrl() {
+    public List<String> getUrl() {
         return url;
     }
 
@@ -34,8 +39,12 @@ public class Photos {
      *
      * @param url the URL of the photo
      */
-    public void setUrl(String url) {
+    public void setUrl(List<String> url) {
         this.url = url;
+    }
+
+    public void addUrl(String url){
+        this.url.add(url);
     }
 
     /**
