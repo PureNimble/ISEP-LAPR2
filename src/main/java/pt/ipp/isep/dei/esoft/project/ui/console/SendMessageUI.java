@@ -16,7 +16,7 @@ import java.util.Scanner;
 /**
  * The type Send message ui.
  */
-public class SendMessageUI implements Runnable {
+public class    SendMessageUI implements Runnable {
 
     /**
      * The Controller.

@@ -244,7 +244,7 @@ public class PublishAnnouncementUI implements Runnable {
             do {
                 sunExposure = requestSunExposure();
                 if (!sunExposure.equals("North") && !sunExposure.equals("South") && !sunExposure.equals("West") && !sunExposure.equals("East")) {
-                    System.out.println("Please select one of the coordinates North, South, West or East");
+                    System.out.println("Please select one of the coordinates North South West or East");
                 }
             } while (!sunExposure.equals("North") && !sunExposure.equals("South") && !sunExposure.equals("West") && !sunExposure.equals("East"));
 

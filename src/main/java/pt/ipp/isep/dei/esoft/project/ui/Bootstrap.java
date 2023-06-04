@@ -99,8 +99,8 @@ public class Bootstrap {
 
 
         PublishedAnnouncementRepository publishedAnnouncementRepository = Repositories.getInstance().getPublishedAnnouncementRepository();
-        Comission comission1 = new Comission(25.00);
-        Comission comission2 = new Comission(10.00);
+        Comission comission = new Comission(25.00);
+        Comission comission1 = new Comission(10.00);
 
         Property property1 = new Property(274,2576, new Photos("https://i.maxwork.pt/l-view/listings/12325/6516582/f608e960-5797-4a79-8232-8b46739fb035.jpg"));
         Property property2 = new Property(313,5498,new Photos("https://i.maxwork.pt/l-view/listings/12015/6532217/13acae9a-aa32-466c-9980-e132a780c4bf.jpg"));
@@ -124,7 +124,7 @@ public class Bootstrap {
 
         PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property2, propertyType2, comission1, business2, agent3);
         PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, property1, propertyType1, comission1, business4, agent5);
-        PublishedAnnouncement publishedAnnouncement3 = new PublishedAnnouncement(date3, typeOfBusiness1, property1, propertyType3, comission2, business3, agent1);
+        PublishedAnnouncement publishedAnnouncement3 = new PublishedAnnouncement(date3, typeOfBusiness1, property1, propertyType3, comission, business3, agent1);
 
         publishedAnnouncementRepository.add(publishedAnnouncement1);
         publishedAnnouncementRepository.add(publishedAnnouncement2);

@@ -18,7 +18,7 @@ public class MainAppGUI extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/MainMenu.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
-        stage.setTitle("Real Estate USA-Application");
+        stage.setTitle("Real Estate USA - Application");
         stage.setScene(scene);
         stage.show();
     }

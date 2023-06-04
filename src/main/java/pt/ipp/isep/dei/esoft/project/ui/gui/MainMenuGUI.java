@@ -23,6 +23,8 @@ public class MainMenuGUI implements Runnable,Initializable {
 
     private Scene networkManagerScene;
 
+    private Scene agentScene;
+
     @FXML
     private TextField txtEmail;
     @FXML
@@ -66,8 +68,9 @@ public class MainMenuGUI implements Runnable,Initializable {
             } else if (role.getDescription().equals(AuthenticationController.ROLE_CLIENT)) {
                 rolesUI.add(new MenuItem(AuthenticationController.ROLE_CLIENT, new MainMenuGUI()));
             } else if (role.getDescription().equals(AuthenticationController.ROLE_NETWORK_MANAGER)) {
-
                 rolesUI.add(new MenuItem(AuthenticationController.ROLE_NETWORK_MANAGER, new NetworkManagerMenuGUI()));
+            } else if (role.getDescription().equals(AuthenticationController.ROLE_AGENT)) {
+                rolesUI.add(new MenuItem(AuthenticationController.ROLE_AGENT, new AgentMenuGUI()));
             }
         }
 
@@ -91,6 +94,13 @@ public class MainMenuGUI implements Runnable,Initializable {
                     Stage mainStage = getMainStage();
                     mainStage.setScene(networkManagerScene);
                     mainStage.setTitle("Store Network Manager Menu");
+                    mainStage.show();
+                } else if (item.toString().equals(AuthenticationController.ROLE_AGENT)) {
+                    txtEmail.clear();
+                    passwordField.clear();
+                    Stage mainStage = getMainStage();
+                    mainStage.setScene(agentScene);
+                    mainStage.setTitle("Agent Menu");
                     mainStage.show();
                 }
             }
