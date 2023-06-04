@@ -14,7 +14,7 @@ public class PublishedAnnouncement {
     private Comission comission;
     private Business business;
     private int durationOfContract;
-
+    private Residence residence;
     private Employee agent;
 
     private AnnouncementRequest announcementRequest;
@@ -250,6 +250,18 @@ public class PublishedAnnouncement {
     
     public Address getAddress() {
         return address;
+    }
+    
+    public Residence getResidence() {
+        return residence;
+    }
+
+    public String getState() {
+        return address.getState().toString();
+    }
+
+    public String getCity() {
+        return address.getCity().toString();
     }
 
     public void setAddress(Address address) {

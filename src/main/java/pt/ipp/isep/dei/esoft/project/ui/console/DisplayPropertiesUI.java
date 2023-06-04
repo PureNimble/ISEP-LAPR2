@@ -26,10 +26,6 @@ public class DisplayPropertiesUI implements Runnable {
 
     private String businessType;
 
-    private String cityDescription;
-
-    private String stateDescription;
-
     private boolean method;
 
     private int sorting;
@@ -63,16 +59,26 @@ public class DisplayPropertiesUI implements Runnable {
             } 
             var sortedList = filteredList;
             System.out.println("\nDo you wish to sort the list?");
+            
             if (acceptOrDecline() == true) {
                 sorting = sortingCriteria();
                 if (method == true) {
                     if (sorting == 1) {
                         sortedList = controller.sortAnnouncementsAscPrice(filteredList);
-                    } 
+                    } else if (sorting == 2){
+                        sortedList = controller.sortAnnouncementsAscCity(filteredList);
+                    } else {
+                        sortedList = controller.sortAnnouncementsAscState(filteredList);
+                    }
+
                 } else {
                     if (sorting == 1) {
                         sortedList = controller.sortAnnouncementsDesPrice(filteredList);
-                    } 
+                    } else if (sorting == 2){
+                        sortedList = controller.sortAnnouncementsDesCity(filteredList);
+                    } else {
+                        sortedList = controller.sortAnnouncementsDesState(filteredList);
+                    }
                 }
             }
             for (int i = 0; i < sortedList.size(); i++){

@@ -106,6 +106,12 @@ public class Bootstrap {
         Property property1 = new Property(274,2576, new Photos("https://i.maxwork.pt/l-view/listings/12325/6516582/f608e960-5797-4a79-8232-8b46739fb035.jpg"));
         Property property2 = new Property(313,5498,new Photos("https://i.maxwork.pt/l-view/listings/12015/6532217/13acae9a-aa32-466c-9980-e132a780c4bf.jpg"));
 
+        AvailableEquipment equipment1 = new AvailableEquipment("Forno");
+        AvailableEquipment equipment2 = new AvailableEquipment("Máquina");
+
+        Residence residence1 = new Residence(273, 234, 13,  123, 123, equipment1, new Photos("https://i.maxwork.pt/l-view/listings/12325/6516582/f608e960-5797-4a79-8232-8b46739fb035.jpg"));
+        Residence residence2 = new Residence(21373, 212334, 1,  123, 123, equipment2, new Photos("https://i.maxwork.pt/l-view/listings/12325/6516582/f608e960-5797-4a79-8232-8b46739fb035.jpg"));
+        
         PropertyType propertyType1 = new PropertyType("House");
         PropertyType propertyType2 = new PropertyType("Appartment");
         PropertyType propertyType3 = new PropertyType("Land");
@@ -123,12 +129,12 @@ public class Bootstrap {
         Date date3 = new GregorianCalendar(2023,Calendar.MAY,30,17,31,42).getTime();
 
 
-        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property2, propertyType2, comission1, business2, agent3, address1);
-        PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, property1, propertyType1, comission1, business4, agent5, address2);
+        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, residence2, propertyType2, comission1, business2, agent3, address1);
+        PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, residence2, propertyType1, comission1, business4, agent5, address2);
         PublishedAnnouncement publishedAnnouncement3 = new PublishedAnnouncement(date3, typeOfBusiness1, property1, propertyType3, comission, business3, agent1, address1);
-        PublishedAnnouncement publishedAnnouncement4 = new PublishedAnnouncement(date3, typeOfBusiness1, property2, propertyType1, comission, business2, agent2, address1);
-        PublishedAnnouncement publishedAnnouncement5 = new PublishedAnnouncement(date3, typeOfBusiness1, property1, propertyType1, comission1, business1, agent4, address1);
-        PublishedAnnouncement publishedAnnouncement6 = new PublishedAnnouncement(date3, typeOfBusiness1, property2, propertyType1, comission, business3, agent2, address1);
+        PublishedAnnouncement publishedAnnouncement4 = new PublishedAnnouncement(date3, typeOfBusiness1, residence2, propertyType1, comission, business2, agent2, address3);
+        PublishedAnnouncement publishedAnnouncement5 = new PublishedAnnouncement(date3, typeOfBusiness1, residence1, propertyType1, comission1, business1, agent4, address3);
+        PublishedAnnouncement publishedAnnouncement6 = new PublishedAnnouncement(date3, typeOfBusiness1, residence2, propertyType1, comission, business3, agent2, address2);
 
         publishedAnnouncementRepository.add(publishedAnnouncement1);
         publishedAnnouncementRepository.add(publishedAnnouncement2);

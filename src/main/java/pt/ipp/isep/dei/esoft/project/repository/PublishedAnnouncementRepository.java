@@ -143,7 +143,6 @@ public class PublishedAnnouncementRepository {
      * @return true if the object is not present in the list, false otherwise
      */
     private boolean tasksDoNotContainAnnouncement(PublishedAnnouncement publishAnnouncement) {
-        PublishAnnouncementController controller = new PublishAnnouncementController();
         return getPublishedAnnouncements().contains(publishAnnouncement);
     }
 
@@ -242,7 +241,11 @@ public class PublishedAnnouncementRepository {
             List<PublishedAnnouncement> tempList = new ArrayList<PublishedAnnouncement>();
             if (publishedAnnouncement.getPropertyType().getDesignation().equals(propertyType)){
                 if (publishedAnnouncement.getTypeOfBusiness().getTypeOfBusiness().equals(businessType)){
-                    tempList.add(publishedAnnouncement);
+                    if (propertyType != "Land") {
+                        if (publishedAnnouncement.getProperty().getNumberOfBedrooms() == numberOfRooms){
+                            tempList.add(publishedAnnouncement);
+                        }
+                    } else tempList.add(publishedAnnouncement);
                 }
             }
             resultList.addAll(tempList);
@@ -277,6 +280,34 @@ public class PublishedAnnouncementRepository {
         return resultList;
     }
 
+    public List<PublishedAnnouncement> compareAscendingCity(List<PublishedAnnouncement> announcements) {
+
+        List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();
+        List<PublishedAnnouncement> tempList = new ArrayList<PublishedAnnouncement>();
+
+        for (PublishedAnnouncement announcement: announcements){
+            tempList.add(announcement);
+        }
+        tempList.sort(Comparator.comparing(PublishedAnnouncement::getCity));
+        resultList.addAll(tempList);
+        
+        return resultList;
+    }
+
+    public List<PublishedAnnouncement> compareAscendingState(List<PublishedAnnouncement> announcements) {
+
+        List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();
+        List<PublishedAnnouncement> tempList = new ArrayList<PublishedAnnouncement>();
+
+        for (PublishedAnnouncement announcement: announcements){
+            tempList.add(announcement);
+        }
+        tempList.sort(Comparator.comparing(PublishedAnnouncement::getState));
+        resultList.addAll(tempList);
+        
+        return resultList;
+    }
+
     public List<PublishedAnnouncement> compareDescendingPrice(List<PublishedAnnouncement> announcements) {
         List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();
 
@@ -304,5 +335,35 @@ public class PublishedAnnouncementRepository {
         
         return resultList;
     }
+
+    public List<PublishedAnnouncement> compareDescendingCity(List<PublishedAnnouncement> announcements) {
+
+        List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();
+        List<PublishedAnnouncement> tempList = new ArrayList<PublishedAnnouncement>();
+
+        for (PublishedAnnouncement announcement: announcements){
+            tempList.add(announcement);
+        }
+        tempList.sort(Comparator.comparing(PublishedAnnouncement::getCity).reversed());
+        resultList.addAll(tempList);
+        
+        return resultList;
+    }
+
+    public List<PublishedAnnouncement> compareDescendingState(List<PublishedAnnouncement> announcements) {
+
+        List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();
+        List<PublishedAnnouncement> tempList = new ArrayList<PublishedAnnouncement>();
+
+        for (PublishedAnnouncement announcement: announcements){
+            tempList.add(announcement);
+        }
+        tempList.sort(Comparator.comparing(PublishedAnnouncement::getState).reversed());
+        resultList.addAll(tempList);
+        
+        return resultList;
+    }
+
+    
 
 }

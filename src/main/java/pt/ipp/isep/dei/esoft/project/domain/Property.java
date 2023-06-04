@@ -9,6 +9,7 @@ public class Property {
     private int distanceFromCityCenter;
     private int area;
     private Photos photos;
+    private Residence residence;
 
     /**
      * Constructs a Property object with a given area and distance from the city center.
@@ -28,6 +29,16 @@ public class Property {
      */
     public Property() {
 
+    }
+
+    public Property(Residence residence) {
+        this.residence = residence;
+    }
+
+    public int getNumberOfBedrooms() {
+        if (residence != null) {
+            return residence.getNumberOfBedrooms();
+        } else return 0;
     }
 
     /**
