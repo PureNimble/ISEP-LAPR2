@@ -25,19 +25,16 @@ public class MessageRepository {
         Optional<Message> newMessage = Optional.empty();
         boolean operationSuccess = false;
 
-// Validate the Employee object and add it to the repository if it is valid
         if (validateMessage(message)) {
-            newMessage = Optional.of(message);
-            operationSuccess = messages.add(newMessage.get());
+           newMessage = Optional.of(message);
+           operationSuccess = messages.add(newMessage.get());
             System.out.println("\n\nMessage sent with success!\n\n");
         }
 
-// Return an empty Optional if the operation was not successful
         if (!operationSuccess) {
-            System.out.println("Could not send message, a visit is already scheduled for the same hours \n\n All Messages: \n");
+            System.out.println("Could not send message, a visit is already scheduled for the same hours.");
             newMessage = Optional.empty();
         }
-
         return newMessage;
     }
 
@@ -45,7 +42,15 @@ public class MessageRepository {
         for (Message message1 : messages) {
             if (message1.getPhoneNumber() == message.getPhoneNumber() && message1.getInitialDate().equals(message.getInitialDate()) &&
                     checkIfTimeOverlaps(message, message1)) {
+
                 return false;
+//            }else {
+//                Message messageSent = new Message();
+//                Optional<Message> result = add(messageSent);
+//                if (result.isPresent()) {
+//                    Message lastMessage = getLastMessageSent();
+//                    System.out.println(lastMessage.toString());
+//                }
             }
         }
         return true;
@@ -62,7 +67,6 @@ public class MessageRepository {
      * @return the messages
      */
     public List<Message> getMessages() {
-        //This is a defensive copy, so that the repository cannot be modified from the outside.
         return new ArrayList<>(messages);
     }
 
@@ -86,5 +90,17 @@ public class MessageRepository {
         return resultList;
     }
 
+    /**
+     * Gets last message sent.
+     *
+     * @return the last message sent
+     */
+//    public Message getLastMessageSent() {
+//        if (messages.isEmpty()) {
+//            return null;
+//        } else {
+//            return messages.get(messages.size() - 1);
+//        }
+//    }
 
 }

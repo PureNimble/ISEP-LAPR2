@@ -8,6 +8,8 @@ import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -176,9 +178,18 @@ public class    SendMessageUI implements Runnable {
                 Scanner input = new Scanner(System.in);
                 System.out.println("Date of visit (dd-MM-yyyy):");
                 String dateInput = input.next();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                date = dateFormat.parse(dateInput);
-                correct = true;
+
+                LocalDate currentDate = LocalDate.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                LocalDate selectedDate = LocalDate.parse(dateInput, formatter);
+
+                if (selectedDate.isAfter(currentDate)) {
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                    date = dateFormat.parse(dateInput);
+                    correct = true;
+                } else {
+                    System.out.println("That day has already passed. Please choose another date:");
+                }
             } catch (Exception e) {
                 System.out.println("The date is in the wrong format, please try again.");
             }
