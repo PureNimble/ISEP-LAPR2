@@ -235,4 +235,74 @@ public class PublishedAnnouncementRepository {
         }
     };
 
+    public List<PublishedAnnouncement> filterList(String propertyType, String businessType, int numberOfRooms){
+        List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();
+
+        for (PublishedAnnouncement publishedAnnouncement: publishedAnnouncements) {
+            List<PublishedAnnouncement> tempList = new ArrayList<PublishedAnnouncement>();
+            if (publishedAnnouncement.getPropertyType().getDesignation().equals(propertyType)){
+                if (publishedAnnouncement.getTypeOfBusiness().getTypeOfBusiness().equals(businessType)){
+                    tempList.add(publishedAnnouncement);
+                }
+            }
+            resultList.addAll(tempList);
+        }
+        return resultList;
+    }
+
+    public List<PublishedAnnouncement> compareAscendingPrice(List<PublishedAnnouncement> announcements) {
+        List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();
+
+        for (PublishedAnnouncement publishedAnnouncement : announcements) {
+            resultList.add(publishedAnnouncement);
+        }
+
+        resultList.sort(new Comparator<PublishedAnnouncement>() {
+            @Override
+            public int compare(PublishedAnnouncement p1, PublishedAnnouncement p2) {
+                double price1 = p1.getBusiness().getPrice();
+
+                double price2 = p2.getBusiness().getPrice();
+
+                if (price1 < price2) {
+                    return -1;
+                } else if (price1 > price2) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+
+            }
+        });
+        return resultList;
+    }
+
+    public List<PublishedAnnouncement> compareDescendingPrice(List<PublishedAnnouncement> announcements) {
+        List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();
+
+        for (PublishedAnnouncement publishedAnnouncement : announcements) {
+            resultList.add(publishedAnnouncement);
+        }
+
+        resultList.sort(new Comparator<PublishedAnnouncement>() {
+            @Override
+            public int compare(PublishedAnnouncement p1, PublishedAnnouncement p2) {
+                double price1 = p1.getBusiness().getPrice();
+
+                double price2 = p2.getBusiness().getPrice();
+
+                if (price1 > price2) {
+                    return -1;
+                } else if (price1 < price2) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+
+            }
+        });
+        
+        return resultList;
+    }
+
 }

@@ -122,13 +122,19 @@ public class Bootstrap {
         Date date3 = new GregorianCalendar(2023,Calendar.MAY,30,17,31,42).getTime();
 
 
-        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property2, propertyType2, comission1, business2, agent3);
-        PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, property1, propertyType1, comission1, business4, agent5);
-        PublishedAnnouncement publishedAnnouncement3 = new PublishedAnnouncement(date3, typeOfBusiness1, property1, propertyType3, comission, business3, agent1);
+        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property2, propertyType2, comission1, business2, agent3, address1);
+        PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, property1, propertyType1, comission1, business4, agent5, address2);
+        PublishedAnnouncement publishedAnnouncement3 = new PublishedAnnouncement(date3, typeOfBusiness1, property1, propertyType3, comission, business3, agent1, address1);
+        PublishedAnnouncement publishedAnnouncement4 = new PublishedAnnouncement(date3, typeOfBusiness1, property2, propertyType1, comission, business2, agent2, address1);
+        PublishedAnnouncement publishedAnnouncement5 = new PublishedAnnouncement(date3, typeOfBusiness1, property1, propertyType1, comission1, business1, agent4, address1);
+        PublishedAnnouncement publishedAnnouncement6 = new PublishedAnnouncement(date3, typeOfBusiness1, property2, propertyType1, comission, business3, agent2, address1);
 
         publishedAnnouncementRepository.add(publishedAnnouncement1);
         publishedAnnouncementRepository.add(publishedAnnouncement2);
         publishedAnnouncementRepository.add(publishedAnnouncement3);
+        publishedAnnouncementRepository.add(publishedAnnouncement6);
+        publishedAnnouncementRepository.add(publishedAnnouncement4);
+        publishedAnnouncementRepository.add(publishedAnnouncement5);
 
         addOffers(publishedAnnouncement1, publishedAnnouncement2, publishedAnnouncement3);
     }
