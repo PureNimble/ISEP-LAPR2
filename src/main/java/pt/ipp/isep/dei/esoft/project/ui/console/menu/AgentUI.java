@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.ui.console.menu;
 import pt.ipp.isep.dei.esoft.project.application.controller.OfferDecisionController;
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
+import pt.ipp.isep.dei.esoft.project.ui.console.DisplayMessageUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.PublishAnnouncementRequestUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.PublishAnnouncementUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.OfferDecisionUI;
@@ -35,6 +36,7 @@ public class AgentUI implements Runnable {
         options.add(new MenuItem("Publish Announcement", new PublishAnnouncementUI()));
         options.add(new MenuItem("Publish Announcement Request",new PublishAnnouncementRequestUI()));
         options.add(new MenuItem("See List of Offers",new OfferDecisionUI()));
+        options.add(new MenuItem("See List of Messages",new DisplayMessageUI()));
         int option = 0;
         do {
             option = Utils.showAndSelectIndex(options, "\n\nAgent Menu:");

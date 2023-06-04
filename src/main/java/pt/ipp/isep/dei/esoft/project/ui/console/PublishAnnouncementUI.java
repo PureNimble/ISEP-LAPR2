@@ -392,40 +392,6 @@ public class PublishAnnouncementUI implements Runnable {
     }
 
     /**
-     * Displays a list of agents and requests user to select one of them.
-     *
-     * @return The selected agent.
-     */
-//    private String displayAndSelectAgents() {
-//
-//        List<Employee> agents = controller.getListAgents();
-//
-//        int listSize = agents.size();
-//        int answer = -1;
-//
-//        Scanner input = new Scanner(System.in);
-//
-//        while (answer < 1 || answer > listSize) {
-//            try {
-//
-//                displayAgentOptions(agents);
-//                System.out.println("Select a Agent:");
-//                answer = input.nextInt();
-//
-//            } catch (InputMismatchException e) {
-//                System.out.println("Invalid input. Please enter an integer value:");
-//                input.nextLine();
-//                answer = -1;
-//            }
-//        }
-//
-//        String agent = agents.get(answer - 1).toString();
-//
-//        return agent;
-//
-//    }
-
-    /**
      * Requests the area of the property from the user.
      *
      * @return the area entered by the user.
