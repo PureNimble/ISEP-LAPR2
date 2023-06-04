@@ -1,11 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import pt.ipp.isep.dei.esoft.project.application.controller.PublishAnnouncementController;
-import pt.ipp.isep.dei.esoft.project.application.controller.RegisterEmployeeController;
-
 import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * Represents a real estate announcement that has been published.
@@ -23,6 +18,7 @@ public class PublishedAnnouncement {
     private Employee agent;
 
     private AnnouncementRequest announcementRequest;
+    private Address address;
 
     /**
      * Constructs a new PublishedAnnouncement object for sale.
@@ -34,8 +30,9 @@ public class PublishedAnnouncement {
      * @param comission      the commission chosen by the client
      * @param business       the business representing the client
      * @param agent          the agent
+     * @param address        the address
      */
-    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, Employee agent) {
+    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, Employee agent, Address address) {
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
         this.propertyType = propertyType;
@@ -43,6 +40,7 @@ public class PublishedAnnouncement {
         this.date = date;
         this.business = business;
         this.agent = agent;
+        this.address = address;
     }
 
     /**
@@ -56,8 +54,9 @@ public class PublishedAnnouncement {
      * @param business           the business representing the client
      * @param durationOfContract the duration of the rental contract
      * @param agent              the agent
+     * @param address        the address
      */
-    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent) {
+    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent, Address address) {
         this.date = date;
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
@@ -66,6 +65,7 @@ public class PublishedAnnouncement {
         this.business = business;
         this.durationOfContract = durationOfContract;
         this.agent = agent;
+        this.address = address;
     }
 
     /**
@@ -247,6 +247,15 @@ public class PublishedAnnouncement {
     public void setAgent(Employee agent) {
         this.agent = agent;
     }
+    
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
 
     /**
      * Sets announcement request.
@@ -257,20 +266,21 @@ public class PublishedAnnouncement {
         this.announcementRequest = announcementRequest;
     }
 
-
     /**
      * Returns a string representation of the announcement for sale.
      *
      * @return a string representation of the announcement for sale
      */
     public String toString() {
-        return String.format("Date: %s\n\n" + "Responsible agent - \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
+        return String.format("Date: %s\n\n" + "Responsible agent: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
                         "Type of business: %s\n" +
                         "Property Type: %s\n" +
                         "Comission Selected: %s" +
                         "Price: %s\n" +
-                        "%s",
-                date.toString(), agent.getEmployeeName(), agent.getEmployeeEmail(), agent.getPhoneNumber(), typeOfBusiness.toString(), propertyType, comission.toString(), business.toString(), property.toString());
+                        "%s\n" +
+                        "Address: %s",
+                        
+                date.toString(), agent.getEmployeeName(), agent.getEmployeeEmail(), agent.getPhoneNumber(), typeOfBusiness.toString(), propertyType, comission.toString(), business.toString(), property.toString(), address.toString());
     }
 
     /**
@@ -279,16 +289,18 @@ public class PublishedAnnouncement {
      * @return a string representation of the announcement for rent
      */
     public String toStringRent() {
-        return String.format("Date: %s\n\n" +  "Responsible Agent - \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
+        return String.format("Date: %s\n\n" +  "Responsible Agent: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
                         "Type of business: %s\n" +
                         "Property Type: %s\n" +
                         "Comission Selected: %s" +
                         "Price: %s\n" +
                         "DurationOfContract: %s\n" +
-                        "%s",
+                        "%s\n" +
+                        "Address: %s",
+                        
                 date.toString(), agent.getEmployeeName(),
                 agent.getEmployeeEmail(), agent.getPhoneNumber(), typeOfBusiness.toString(),
-                propertyType, comission.toString(), business.toString(), durationOfContract, property.toString());
+                propertyType, comission.toString(), business.toString(), durationOfContract, property.toString(), address.toString());
     }
 
 }

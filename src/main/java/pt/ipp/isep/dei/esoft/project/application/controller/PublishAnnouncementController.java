@@ -35,6 +35,9 @@ public class PublishAnnouncementController {
 
     AuthenticationRepository authenticationRepository = null;
 
+    private StateRepository stateRepository = null;
+
+
     /**
      * Constructor that initializes the repository variables.
      */
@@ -42,6 +45,7 @@ public class PublishAnnouncementController {
         getUserRepository();
         getPropertyTypeRepository();
         getPublishedAnnouncementRepository();
+        getStateRepository();
     }
 
     /**
@@ -55,6 +59,21 @@ public class PublishAnnouncementController {
             userRepository = repositories.getUserRepository();
         }
         return userRepository;
+    }
+
+    /**
+
+     Initializes the StateRepository instance variable.
+     @return The StateRepository object associated with this controller.
+     */
+    private StateRepository getStateRepository() {
+        if (stateRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+
+            //Get the AuthenticationRepository
+            stateRepository = repositories.getStateRepository();
+        }
+        return stateRepository;
     }
 
     /**
@@ -177,6 +196,51 @@ public class PublishAnnouncementController {
 
         return typeOfBusinessByDescription;
 
+    }
+
+    public List<State> getState() {
+        StateRepository stateRepository = getStateRepository();
+        return stateRepository.getStates();
+    }
+
+    public State getStateByDescription(String stateDescription) {
+
+        StateRepository stateRepository = getStateRepository();
+
+        //Get the TaskCategory by its description
+        State stateByDescription =
+                stateRepository.getStateByDescription(stateDescription);
+        return stateByDescription;
+
+    }
+
+    public City getCityByDescription(String cityDescription, District district) {
+
+        StateRepository stateRepository = getStateRepository();
+
+        //Get the TaskCategory by its description
+        City cityByDescription =
+                stateRepository.getCityByDescription(cityDescription,district);
+        return cityByDescription;
+
+    }
+
+    public District getDistrictByDescription(String districtDescription,State state) {
+
+        StateRepository stateRepository = getStateRepository();
+
+        //Get the TaskCategory by its description
+        District districtByDescription =
+                stateRepository.getDistrictByDescription(districtDescription,state);
+        return districtByDescription;
+    }
+
+    public List<District> getDistrict(State state){
+        return state.getDistricts();
+    }
+
+    public List<City> getCities(District district){
+        return district.getCities();
     }
 
     /**
@@ -368,14 +432,14 @@ public class PublishAnnouncementController {
      * @return an Optional containing the new published announcement if it was created successfully,
      * or an empty Optional if a published announcement with the same parameters already exists
      */
-    public Optional<PublishedAnnouncement> createPublishmentAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent) {
+    public Optional<PublishedAnnouncement> createPublishmentAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent, Address address) {
 
         Optional<PublishedAnnouncement> newPublishedAnnouncement = Optional.empty();
 
-        PublishedAnnouncement publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, agent);
+        PublishedAnnouncement publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, agent, address);
 
         if (!getPublishedAnnouncementRepository().getPublishedAnnouncements().contains(publishedAnnouncement)) {
-            newPublishedAnnouncement = getPublishedAnnouncementRepository().publishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, durationOfContract, agent);
+            newPublishedAnnouncement = getPublishedAnnouncementRepository().publishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, durationOfContract, agent, address);
         }
         return newPublishedAnnouncement;
     }

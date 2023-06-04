@@ -24,6 +24,7 @@ public class AnnouncementRequestController {
     EmployeeRepository employeeRepository = null;
     TypeOfBusinessRepository typeOfBusinessRepository = null;
     AvailableEquipmentRepository availableEquipmentRepository = null;
+    private StateRepository stateRepository = null;
 
     /**
 
@@ -33,6 +34,7 @@ public class AnnouncementRequestController {
         getUserRepository();
         getPropertyTypeRepository();
         getAnnouncementRequestRepository();
+        getStateRepository();
     }
     /**
 
@@ -57,6 +59,21 @@ public class AnnouncementRequestController {
             propertyTypeRepository = repositories.getPropertyTypeRepository();
         }
         return propertyTypeRepository;
+    }
+
+    /**
+
+     Initializes the StateRepository instance variable.
+     @return The StateRepository object associated with this controller.
+     */
+    private StateRepository getStateRepository() {
+        if (stateRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+
+            //Get the AuthenticationRepository
+            stateRepository = repositories.getStateRepository();
+        }
+        return stateRepository;
     }
     /**
 
@@ -162,6 +179,51 @@ public class AnnouncementRequestController {
         return listAgents;
     }
 
+    public List<State> getState() {
+        StateRepository stateRepository = getStateRepository();
+        return stateRepository.getStates();
+    }
+
+    public State getStateByDescription(String stateDescription) {
+
+        StateRepository stateRepository = getStateRepository();
+
+        //Get the TaskCategory by its description
+        State stateByDescription =
+                stateRepository.getStateByDescription(stateDescription);
+        return stateByDescription;
+
+    }
+
+    public City getCityByDescription(String cityDescription, District district) {
+
+        StateRepository stateRepository = getStateRepository();
+
+        //Get the TaskCategory by its description
+        City cityByDescription =
+                stateRepository.getCityByDescription(cityDescription,district);
+        return cityByDescription;
+
+    }
+
+    public District getDistrictByDescription(String districtDescription,State state) {
+
+        StateRepository stateRepository = getStateRepository();
+
+        //Get the TaskCategory by its description
+        District districtByDescription =
+                stateRepository.getDistrictByDescription(districtDescription,state);
+        return districtByDescription;
+    }
+
+    public List<District> getDistrict(State state){
+        return state.getDistricts();
+    }
+
+    public List<City> getCities(District district){
+        return district.getCities();
+    }
+
     /**
 
      Returns a list of all Announcement Requests.
@@ -239,14 +301,14 @@ public class AnnouncementRequestController {
      @param durationOfContract The duration of the contract for the announcement request.
      @return An optional containing the newly created announcement request if it was created successfully, or an empty optional if the announcement request already exists in the repository.
      */
-    public Optional<AnnouncementRequest> createAnnouncementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract,Employee agent) {
+    public Optional<AnnouncementRequest> createAnnouncementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract,Employee agent, Address address) {
 
         Optional<AnnouncementRequest> newAnnoucementRequest = Optional.empty();
 
-        AnnouncementRequest announcementRequest = new AnnouncementRequest("",date, typeOfBusiness, property, propertyType, business, durationOfContract,agent);
+        AnnouncementRequest announcementRequest = new AnnouncementRequest("",date, typeOfBusiness, property, propertyType, business, durationOfContract,agent, address);
 
         if (!getAnnouncementRequestRepository().getAnnouncementsRequest().contains(announcementRequest)) {
-            newAnnoucementRequest = getAnnouncementRequestRepository().announcementRequest(date, typeOfBusiness, property, propertyType, business, durationOfContract,agent);
+            newAnnoucementRequest = getAnnouncementRequestRepository().announcementRequest(date, typeOfBusiness, property, propertyType, business, durationOfContract,agent, address);
         }
         return newAnnoucementRequest;
     }

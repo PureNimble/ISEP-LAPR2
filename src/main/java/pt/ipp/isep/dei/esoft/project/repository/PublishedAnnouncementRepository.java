@@ -54,7 +54,7 @@ public class PublishedAnnouncementRepository {
      * @param durationOfContract the duration of the contract of the published announcement.
      * @return an Optional containing the newly added published announcement if the operation was successful,         otherwise an empty Optional.
      */
-    public Optional<PublishedAnnouncement> publishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent) {
+    public Optional<PublishedAnnouncement> publishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent, Address address) {
 
 
         Optional<PublishedAnnouncement> optionalValue = Optional.empty();
@@ -62,9 +62,9 @@ public class PublishedAnnouncementRepository {
         PublishedAnnouncement publishedAnnouncement;
 
         if (property.toString().equals("Rent")) {
-            publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, durationOfContract, agent);
+            publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, durationOfContract, agent, address);
         } else {
-            publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, agent);
+            publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, agent, address);
         }
 
         if (addPublishedAnnouncement(publishedAnnouncement)) {

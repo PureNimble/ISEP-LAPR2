@@ -25,6 +25,11 @@ public class AnnouncementRequestUI implements Runnable {
     private String inhabitableLoft;
     private String sunExposure;
     private String  responsibleAgent;
+    private String stateDescription;
+    private String districtDescription;
+    private String cityDescription;
+    private int zipCode;
+    private String street;
 
     private double businessDescription;
 
@@ -89,12 +94,17 @@ public class AnnouncementRequestUI implements Runnable {
         TypeOfBusiness typeOfBusiness = controller.getTypeOfBusinessByDescription(contractType);
         Business business = controller.getBusinessByDescription(businessDescription);
         Employee agent = controller.getAgentByDescription(responsibleAgent);
+        State state = controller.getStateByDescription(stateDescription);
+        District district = controller.getDistrictByDescription(districtDescription, state);
+        City city = controller.getCityByDescription(cityDescription, district);
+
+        Address address = new Address(street, zipCode, district, city, state);
 
         if (propertyTypeDescription.equals("Land")) {
 
             Property land = new Property(area, distanceFromCityCenter, photos);
 
-            Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, land, propertyType, business, durationOfContract,agent);
+            Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, land, propertyType, business, durationOfContract,agent, address);
 
         } else {
             if (propertyTypeDescription.equals("Apartment")) {
@@ -103,13 +113,13 @@ public class AnnouncementRequestUI implements Runnable {
 
                 Residence appartment = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, photos);
 
-                Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, appartment, propertyType, business, durationOfContract,agent);
+                Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, appartment, propertyType, business, durationOfContract,agent, address);
             } else {
                 AvailableEquipment availableEquipment = controller.getAvailableEquipmentByDescription(availableEquipmentDescription);
 
                 House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, inhabitableLoft, sunExposure, photos);
 
-                Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, house, propertyType, business, durationOfContract,agent);
+                Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, house, propertyType, business, durationOfContract,agent, address);
 
             }
         }
@@ -133,6 +143,18 @@ public class AnnouncementRequestUI implements Runnable {
 
         date = now;
 
+        stateDescription = displayAndSelectState();
+
+        districtDescription = displayAndSelectDistrict();
+
+        cityDescription = displayAndSelectCity();
+
+        //Request the Zip Code from the console
+        zipCode = requestZipcodeDescription();
+
+        //Request the Street from the console
+        street = requestStreetDescription();
+
         if (!propertyTypeDescription.equals("Land")) {
 
             numberOfBathrooms = requestNumberOfBathrooms();
@@ -154,7 +176,7 @@ public class AnnouncementRequestUI implements Runnable {
             do {
                 sunExposure = requestSunExposure();
                 if (!sunExposure.equals("North") && !sunExposure.equals("South") && !sunExposure.equals("West")&& !sunExposure.equals("East")) {
-                    System.out.println("Please select one of the coordinates North South West or East");
+                    System.out.println("Please select one of the coordinates North, South, West or East");
                 }
             } while (!sunExposure.equals("North") && !sunExposure.equals("South") && !sunExposure.equals("West")&& !sunExposure.equals("East"));
 
@@ -565,6 +587,166 @@ public class AnnouncementRequestUI implements Runnable {
         }
     }
 
+    /* Displays a list of states and prompts the user to select one.
+     *
+     * @return the string description of the selected state.
+     */
+    private String displayAndSelectState() {
+        //Display the list of task categories
+        List<State> states = controller.getState();
+
+        int listSize = states.size();
+        int answer = -1;
+
+        Scanner input = new Scanner(System.in);
+
+        while (answer < 1 || answer > listSize) {
+
+            try {
+
+                displayStateOptions(states);
+                System.out.println("Select a State: ");
+                answer = input.nextInt();
+
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value:");
+                input.nextLine();
+                answer = -1;
+            }
+
+        }
+
+        String description = states.get(answer - 1).getState();
+        return description;
+
+    }
+
+    /**
+     * Displays a list of cities and prompts the user to select one.
+     *
+     * @return the cities description of the selected state.
+     */
+    private String displayAndSelectCity() {
+        //Display the list of task categories
+
+        State state = controller.getStateByDescription(stateDescription);
+
+        District district = controller.getDistrictByDescription(districtDescription, state);
+
+        List<City> cities = district.getCities();
+
+        int listSize = cities.size();
+        int answer = -1;
+
+        Scanner input = new Scanner(System.in);
+
+        while (answer < 1 || answer > listSize) {
+
+            try {
+
+                displayCityOptions(district);
+                System.out.println("Select a City: ");
+                answer = input.nextInt();
+
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value:");
+                input.nextLine();
+                answer = -1;
+            }
+
+
+        }
+
+        String description = cities.get(answer - 1).getCity();
+
+        return description;
+
+    }
+
+    /**
+     * Displays a list of district and prompts the user to select one.
+     *
+     * @return the district description of the selected state.
+     */
+    private String displayAndSelectDistrict() {
+        //Display the list of task categories
+
+        List<State> states = controller.getState();
+
+        State state = controller.getStateByDescription(stateDescription);
+
+        int listSize = state.getDistricts().size();
+        int answer = -1;
+
+        Scanner input = new Scanner(System.in);
+
+        while ((answer < 1 || answer > listSize)) {
+
+            try {
+
+                displayDistrictOptions(state);
+                System.out.println("Select a District: ");
+                answer = input.nextInt();
+
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value:");
+                input.nextLine();
+                answer = -1;
+            }
+
+        }
+
+        String description = state.getDistricts().get(answer - 1).getDistrict();
+
+
+        return description;
+
+    }
+
+    /* Requests the zip code from the user and validates if it is a 5-digit integer.
+     *
+     * @return the integer zip code.
+     */
+    private int requestZipcodeDescription() {
+        Scanner input = new Scanner(System.in);
+        String zipCodeString;
+        int zipCodeInt;
+
+        do {
+
+            do {
+
+                try {
+                    System.out.println("Zip Code: ");
+                    zipCodeInt = input.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input. Please enter an integer value:");
+                    input.nextLine();
+                    zipCodeInt = -1;
+                }
+
+            } while (zipCodeInt < 0);
+
+            zipCodeString = Integer.toString(zipCodeInt);
+            if (zipCodeString.length() != 5) {
+                System.out.println("A zipcode is a number with only 5 digits");
+            }
+
+        } while (zipCodeString.length() != 5);
+        return zipCodeInt;
+    }
+
+    /**
+     * Requests the street designation from the user.
+     *
+     * @return the string street designation.
+     */
+    private String requestStreetDescription() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Street: ");
+        return input.nextLine();
+    }
+
     /**
      * Displays a numbered list of AvailableEquipment objects and allows the user to select an AvailableEquipment object by entering the corresponding number.
      *
@@ -609,6 +791,33 @@ public class AnnouncementRequestUI implements Runnable {
         int i = 1;
         for (AvailableEquipment availableEquipment : availableEquipments) {
             System.out.println(i + " - " + availableEquipment.getAvailableEquipment());
+            i++;
+        }
+    }
+
+    private void displayCityOptions(District district) {
+        int i = 1;
+
+        for (City city : district.getCities()) {
+            System.out.println(i + " - " + city.getCity());
+            i++;
+        }
+    }
+
+    private void displayDistrictOptions(State state) {
+        int i = 1;
+        for (District district : state.getDistricts()) {
+            System.out.println(i + " - " + district.getDistrict());
+            i++;
+
+        }
+    }
+
+    private void displayStateOptions(List<State> states) {
+        int i = 1;
+
+        for (State state : states) {
+            System.out.println(i + " - " + state.getState());
             i++;
         }
     }

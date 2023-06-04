@@ -17,6 +17,7 @@ public class AnnouncementRequest {
     private Employee agent;
 
     private String status;
+    private Address address;
 
     /**
      * Creates a new AnnouncementRequest object with the given parameters.
@@ -29,7 +30,7 @@ public class AnnouncementRequest {
      * @param business       the business to be advertised.
      * @param agent          the agent
      */
-    public AnnouncementRequest(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business,Employee agent) {
+    public AnnouncementRequest(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business,Employee agent, Address address) {
         this.date = date;
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
@@ -37,6 +38,7 @@ public class AnnouncementRequest {
         this.business = business;
         this.agent = agent;
         this.status = status;
+        this.address = address;
     }
 
     /**
@@ -50,8 +52,9 @@ public class AnnouncementRequest {
      * @param business           the business to be advertised.
      * @param durationOfContract the duration of the contract for the advertisement.
      * @param agent              the agent
+     * @param address            the address
      */
-    public AnnouncementRequest(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract,Employee agent) {
+    public AnnouncementRequest(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract, Employee agent, Address address) {
         this.date = date;
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
@@ -60,6 +63,7 @@ public class AnnouncementRequest {
         this.durationOfContract = durationOfContract;
         this.agent = agent;
         this.status = status;
+        this.address = address;
     }
 
     /**
@@ -223,6 +227,15 @@ public class AnnouncementRequest {
         this.status = status;
     }
 
+    
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     /**
 
      Returns a string representation of this AnnouncementRequest object.
@@ -233,8 +246,10 @@ public class AnnouncementRequest {
                         "Type of business:%s\n" +
                         "Property Type:%s\n" +
                         "Price:%s\n" +
-                        "%s",
-                date.toString(),typeOfBusiness.toString(),propertyType,business.toString(),property.toString());
+                        "%s\n" +
+                        "Address: %s",
+                        
+                date.toString(), typeOfBusiness.toString(), propertyType, business.toString(), property.toString(), address.toString());
     }
 
     /**
@@ -248,8 +263,10 @@ public class AnnouncementRequest {
                         "Property Type:%s\n" +
                         "Price:%s\n" +
                         "DurationOfContract:%s\n" +
-                        "%s",
-                date.toString(),typeOfBusiness.toString(),propertyType,business.toString(),durationOfContract,property.toString());
+                        "%s" +
+                        "Address: %s",
+
+                date.toString(), typeOfBusiness.toString(), propertyType, business.toString(), durationOfContract, property.toString(), address.toString());
     }
 
     @Override
@@ -257,11 +274,11 @@ public class AnnouncementRequest {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AnnouncementRequest that = (AnnouncementRequest) o;
-        return durationOfContract == that.durationOfContract && date.equals(that.date) && typeOfBusiness.equals(that.typeOfBusiness) && property.equals(that.property) && propertyType.equals(that.propertyType) && business.equals(that.business) && agent.equals(that.agent) && status.equals(that.status);
+        return durationOfContract == that.durationOfContract && date.equals(that.date) && typeOfBusiness.equals(that.typeOfBusiness) && property.equals(that.property) && propertyType.equals(that.propertyType) && business.equals(that.business) && agent.equals(that.agent) && status.equals(that.status) && address.equals((that.address));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(date, typeOfBusiness, property, propertyType, business, durationOfContract, agent, status);
+        return Objects.hash(date, typeOfBusiness, property, propertyType, business, durationOfContract, agent, status, address);
     }
 }
