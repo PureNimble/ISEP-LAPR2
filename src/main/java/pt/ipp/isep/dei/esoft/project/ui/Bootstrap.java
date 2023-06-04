@@ -81,8 +81,9 @@ public class Bootstrap {
 
         EmployeeRepository employeeRepository = Repositories.getInstance().getEmployeeRepository();
         Role role = new Role("Agent");
-        Address address1 = new Address("Test Strett", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
-        Address address2 = new Address("Avenue Walmart",22334,new District("Jefferson"),new City("Ottawa"),new State("Arizona"));
+        Address address1 = new Address("3655 S Las Vegas Blvd", 892109, new District("Paradise"), new City("Las Vegas"), new State("Nevada"));
+        Address address2 = new Address("199 W 45th St",10036,new District("Manhattan"),new City("New York"),new State("New York"));
+        Address address3 = new Address("9641 Sunset Blvd", 90210, new District("Beverly Hills"), new City("Los Angeles"), new State("California"));
         Store store1 = new Store("Holloway",10234,address2,9383811,"holloway@gmail.com", 11);
         Store store2 = new Store("Maltip",104224,address2,9678910,"maltip@gmail.com", 16);
         Store store3 = new Store("Elvis",224,address2,9437782,"elvis@gmail.com", 3);
@@ -91,10 +92,10 @@ public class Bootstrap {
         roles.add(role);
 
         Employee agent1 = new Employee("agent@this.app", 123456789, 987654321, "Miguel", 5551234, store1,  roles, address1);
-        Employee agent2 = new Employee("agent2@this.app",12345677,12231311,"Vasco ",555661, store1, roles, address1);
-        Employee agent3 = new Employee("agent3@this.app", 123456432, 123456789, "Manuel", 1234567, store2,  roles, address1);
-        Employee agent4 = new Employee("agent4@this.app",12345123,124356789,"Pedro",1324567, store3, roles, address1);
-        Employee agent5 = new Employee("agent5@this.app", 123456321, 17634589, "Jorge", 1432567, store2,  roles, address1);
+        Employee agent2 = new Employee("agent2@this.app",12345677,12231311,"Vasco ",555661, store1, roles, address2);
+        Employee agent3 = new Employee("agent3@this.app", 123456432, 123456789, "Manuel", 1234567, store2,  roles, address3);
+        Employee agent4 = new Employee("agent4@this.app",12345123,124356789,"Pedro",1324567, store3, roles, address2);
+        Employee agent5 = new Employee("agent5@this.app", 123456321, 17634589, "Jorge", 1432567, store2,  roles, address3);
         Employee agent6 = new Employee("agent6@this.app",12345687,192837465,"Ruben",9876543, store2, roles, address1);
 
 
@@ -292,5 +293,20 @@ public class Bootstrap {
         offerRepository.add(new Offer("Geremias",546372, publishedAnnouncement2, OfferState.pending));
         offerRepository.add(new Offer("Vasco", 230000,publishedAnnouncement3,OfferState.accepted));
         offerRepository.add(new Offer("Rafael", 98000,publishedAnnouncement3,OfferState.accepted));
+    }
+
+    private void addMessages(PublishedAnnouncement publishedAnnouncement1, PublishedAnnouncement publishedAnnouncement2, PublishedAnnouncement publishedAnnouncement3) {
+        MessageRepository messageRepository = Repositories.getInstance().getMessageRepository();
+
+        Date date1 = new Date(21-05-2023);
+        Date date2 = new Date(30-05-2023);
+        Date date3 = new Date(04-06-2023);
+        Date date4 = new Date(01-06-2023);
+
+        messageRepository.add(new Message("Pedro", 1234567890, "Olá, estou interessado na propriedade!", date1, 11, 12, publishedAnnouncement1));
+        messageRepository.add(new Message("Miguel", 1029384756, "Interessado.", date4, 20,21,publishedAnnouncement3));
+        messageRepository.add(new Message("Luna", 1209348756, "Estou com interesse na propriedade!", date2,15,17,publishedAnnouncement3));
+        messageRepository.add(new Message("Sofia",1038295647, "Quero!", date3,9,10,publishedAnnouncement2));
+        messageRepository.add(new Message("Vasco", 1357924680, "Podemos já fazer negócio?", date2,14,15,publishedAnnouncement3));
     }
 }

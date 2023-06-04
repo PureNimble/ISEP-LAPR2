@@ -117,10 +117,10 @@ public class Residence extends Property{
      */
     public String toString(){
         return String.format(super.toString()+
-                "Number Bedrooms: %s\n" +
-                "Number Bathrooms: %s\n" +
-                "ParkingSpaces: %s\n" +
-                "AvailableEquipment: %s\n",numberOfBedrooms,numberOfBathrooms,parkingSpaces,availableEquipment);
+                "Number Of Bedrooms: %s\n" +
+                "Number Of Bathrooms: %s\n" +
+                "Parking Spaces: %s\n" +
+                "Available Equipment: %s\n",numberOfBedrooms,numberOfBathrooms,parkingSpaces,availableEquipment);
     }
     /**
 

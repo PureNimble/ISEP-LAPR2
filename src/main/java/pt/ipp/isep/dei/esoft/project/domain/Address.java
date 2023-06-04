@@ -146,7 +146,7 @@ public class Address {
      @return a string representation of the address.
      */
     public String toString(){
-        return String.format("%s,%s,%s,%s,%s",street,city,district,state,zipcode);
+        return String.format("%s, %s, %s, %s, %s",street,city,district,state,zipcode);
     }
     /**
 

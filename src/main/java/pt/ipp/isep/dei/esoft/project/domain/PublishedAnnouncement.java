@@ -272,13 +272,13 @@ public class PublishedAnnouncement {
      * @return a string representation of the announcement for sale
      */
     public String toString() {
-        return String.format("Date: %s\n\n" + "Responsible agent: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
-                        "Type of business: %s\n" +
+        return String.format("Date: %s\n\n" + "Responsible Agent: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
+                        "Type Of Business: %s\n" +
                         "Property Type: %s\n" +
                         "Comission Selected: %s" +
                         "Price: %s\n" +
-                        "%s\n" +
-                        "Address: %s",
+                        "%s" +
+                        "Address: %s\n",
                         
                 date.toString(), agent.getEmployeeName(), agent.getEmployeeEmail(), agent.getPhoneNumber(), typeOfBusiness.toString(), propertyType, comission.toString(), business.toString(), property.toString(), address.toString());
     }
@@ -290,13 +290,13 @@ public class PublishedAnnouncement {
      */
     public String toStringRent() {
         return String.format("Date: %s\n\n" +  "Responsible Agent: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
-                        "Type of business: %s\n" +
+                        "Type Of Business: %s\n" +
                         "Property Type: %s\n" +
                         "Comission Selected: %s" +
                         "Price: %s\n" +
-                        "DurationOfContract: %s\n" +
-                        "%s\n" +
-                        "Address: %s",
+                        "Duration Of The Contract: %s\n" +
+                        "%s" +
+                        "Address: %s\n",
                         
                 date.toString(), agent.getEmployeeName(),
                 agent.getEmployeeEmail(), agent.getPhoneNumber(), typeOfBusiness.toString(),

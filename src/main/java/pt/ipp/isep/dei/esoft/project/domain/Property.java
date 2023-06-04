@@ -91,7 +91,7 @@ public class Property {
      * @return A string representation of the Property object, including its area and distance from the city center.
      */
     public String toString() {
-        return String.format("Area: %s\n" + "DistanceFromCityCenter: %s\n" + "Photos: %s\n", area, distanceFromCityCenter, photos.getUrl());
+        return String.format("Area: %s\n" + "Distance From The City Center: %s\n" + "Photos: %s\n", area, distanceFromCityCenter, photos.getUrl());
     }
 
     /**
