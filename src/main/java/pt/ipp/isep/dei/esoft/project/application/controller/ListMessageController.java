@@ -1,13 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
 
-import pt.ipp.isep.dei.esoft.project.application.session.UserSession;
 import pt.ipp.isep.dei.esoft.project.domain.Message;
 import pt.ipp.isep.dei.esoft.project.repository.*;
 
 import java.util.*;
 
-public class DisplayMessageController {
+public class ListMessageController {
     private MessageRepository messageRepository = new MessageRepository();
     private UserRepository userRepository;
 

@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
-import pt.ipp.isep.dei.esoft.project.application.controller.DisplayMessageController;
+import pt.ipp.isep.dei.esoft.project.application.controller.ListMessageController;
 import pt.ipp.isep.dei.esoft.project.domain.Message;
 
 import java.text.ParseException;
@@ -9,11 +9,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-public class DisplayMessageUI implements Runnable{
+public class ListMessageUI implements Runnable{
 
     private final Scanner input = new Scanner(System.in);
 
-    private final DisplayMessageController controller = new DisplayMessageController();
+    private final ListMessageController controller = new ListMessageController();
 
 @Override
     public void run() {
