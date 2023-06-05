@@ -34,6 +34,13 @@ public class Address {
     private State state;
 
     /**
+
+     The address from the file.
+     */
+    private String fileAdress;
+
+
+    /**
      * Creates a new instance of Address with the given parameters.
      *
      * @param street   the street of the address.
@@ -48,6 +55,11 @@ public class Address {
         this.district = district;
         this.city = city;
         this.state = state;
+    }
+
+
+    public Address(String fileAdress) {
+        this.fileAdress = fileAdress;
     }
 
     /**

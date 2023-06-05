@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
+import pt.ipp.isep.dei.esoft.project.domain.Address;
 import pt.ipp.isep.dei.esoft.project.domain.Employee;
 import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 import pt.ipp.isep.dei.esoft.project.domain.Store;
@@ -28,8 +29,8 @@ public class StoreRepository {
     public Store getStoreByDescription(String storeIDDescription) {
         Store newStore = new Store();
 
-        for (Store store: stores) {
-            if (store.getId() == Integer.parseInt(storeIDDescription)){
+        for (Store store : stores) {
+            if (store.getId() == Integer.parseInt(storeIDDescription)) {
                 newStore = store;
             }
         }
@@ -79,15 +80,15 @@ public class StoreRepository {
         return stores;
     }
 
-    public void getStoresProperty(List<PublishedAnnouncement> announcementList, List<Employee> employees){
+    public void getStoresProperty(List<PublishedAnnouncement> announcementList, List<Employee> employees) {
 
         List<Store> storesList = getStores();
         int counter = 0;
-        for (Store stores: storesList){
-            for (Employee employee: employees){
-                if (employee.getStore().equals(stores)){
-                    for (PublishedAnnouncement publishedAnnouncement: announcementList) {
-                        if (publishedAnnouncement.getAgent().equals(employee)){
+        for (Store stores : storesList) {
+            for (Employee employee : employees) {
+                if (employee.getStore().equals(stores)) {
+                    for (PublishedAnnouncement publishedAnnouncement : announcementList) {
+                        if (publishedAnnouncement.getAgent().equals(employee)) {
                             counter++;
                         }
                     }
@@ -100,9 +101,9 @@ public class StoreRepository {
 
     public List<Store> getStoresByMostListings() {
         List<Store> sortedStores = new ArrayList<>(stores);
-    
+
         Collections.sort(sortedStores, compareToDescendingList);
-    
+
         return sortedStores;
     }
 
@@ -111,7 +112,7 @@ public class StoreRepository {
         public int compare(Store store1, Store store2) {
             int listing1 = store1.getListing();
             int listing2 = store2.getListing();
-    
+
             if (listing2 < listing1) {
                 return -1;
             } else if (listing2 > listing1) {
@@ -121,4 +122,37 @@ public class StoreRepository {
             }
         }
     };
+
+    public void createStoreByFileReading(ArrayList<String[]> arrayListStoreInformations) {
+
+        int aux = 0;
+        int id = 0;
+        Address address;
+        String designation;
+        long phoneNumber;
+        String email;
+
+        for (String[] storeInformations : arrayListStoreInformations) {
+                if (aux > 0){
+                    id = Integer.parseInt(storeInformations[0]);
+                    designation = storeInformations[1];
+                    address = new Address(storeInformations[2]);
+                    phoneNumber = Long.parseLong(storeInformations[3].replaceAll("-",""));
+                    email = storeInformations[4];
+
+                    Store store = new Store(designation,id,address,phoneNumber,email,0);
+
+                    if (!stores.contains(store))
+                        stores.add(store);
+                }else {
+                    aux = 1;
+                }
+
+
+        }
+
+
+    }
+
+
 }
