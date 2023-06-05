@@ -53,20 +53,22 @@ public class Bootstrap {
 //        }
         EmployeeRepository employeeRepository = Repositories.getInstance().getEmployeeRepository();
         Role role = new Role("Agent");
-        Address address1 = new Address("Test Strett", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
-        Address address2 = new Address("Avenue Walmart",22334,new District("Jefferson"),new City("Ottawa"),new State("Arizona"));
-        Store store1 = new Store("Holloway",10234,address2,9383811,"holloway@gmail.com", 11);
+        Address address1 = new Address("3655 S Las Vegas Blvd", 892109, new District("Paradise"), new City("Las Vegas"), new State("Nevada"));
+        Address address2 = new Address("199 W 45th St",10036,new District("Manhattan"),new City("New York"),new State("New York"));
+        Address address3 = new Address("9641 Sunset Blvd", 90210, new District("Beverly Hills"), new City("Los Angeles"), new State("California"));
+        Store store1 = new Store("Holloway",10234,address1,9383811,"holloway@gmail.com", 11);
         Store store2 = new Store("Maltip",104224,address2,9678910,"maltip@gmail.com", 16);
-        Store store3 = new Store("Elvis",224,address2,9437782,"elvis@gmail.com", 3);
-        
+        Store store3 = new Store("Elvis",224,address3,9437782,"elvis@gmail.com", 3);
+
         List<Role> roles = new ArrayList<>();
         roles.add(role);
 
+        
         Employee agent1 = new Employee("agent@this.app", 123456789, 987654321, "Miguel", 5551234, store1,  roles, address1);
-        Employee agent2 = new Employee("agent2@this.app",12345677,12231311,"Vasco ",555661, store1, roles, address1);
-        Employee agent3 = new Employee("agent3@this.app", 123456432, 123456789, "Manuel", 1234567, store2,  roles, address1);
-        Employee agent4 = new Employee("agent4@this.app",12345123,124356789,"Pedro",1324567, store3, roles, address1);
-        Employee agent5 = new Employee("agent5@this.app", 123456321, 17634589, "Jorge", 1432567, store2,  roles, address1);
+        Employee agent2 = new Employee("agent2@this.app",12345677,12231311,"Vasco ",555661, store1, roles, address2);
+        Employee agent3 = new Employee("agent3@this.app", 123456432, 123456789, "Manuel", 1234567, store2,  roles, address3);
+        Employee agent4 = new Employee("agent4@this.app",12345123,124356789,"Pedro",1324567, store3, roles, address2);
+        Employee agent5 = new Employee("agent5@this.app", 123456321, 17634589, "Jorge", 1432567, store2,  roles, address3);
         Employee agent6 = new Employee("agent6@this.app",12345687,192837465,"Ruben",9876543, store2, roles, address1);
 
         employeeRepository.add(agent1);
@@ -84,9 +86,9 @@ public class Bootstrap {
         Address address1 = new Address("3655 S Las Vegas Blvd", 892109, new District("Paradise"), new City("Las Vegas"), new State("Nevada"));
         Address address2 = new Address("199 W 45th St",10036,new District("Manhattan"),new City("New York"),new State("New York"));
         Address address3 = new Address("9641 Sunset Blvd", 90210, new District("Beverly Hills"), new City("Los Angeles"), new State("California"));
-        Store store1 = new Store("Holloway",10234,address2,9383811,"holloway@gmail.com", 11);
+        Store store1 = new Store("Holloway",10234,address1,9383811,"holloway@gmail.com", 11);
         Store store2 = new Store("Maltip",104224,address2,9678910,"maltip@gmail.com", 16);
-        Store store3 = new Store("Elvis",224,address2,9437782,"elvis@gmail.com", 3);
+        Store store3 = new Store("Elvis",224,address3,9437782,"elvis@gmail.com", 3);
 
         List<Role> roles = new ArrayList<>();
         roles.add(role);
@@ -199,8 +201,6 @@ public class Bootstrap {
 
         authenticationRepository.addUserRole(AuthenticationController.ROLE_AGENT, AuthenticationController.ROLE_AGENT);
 
-        authenticationRepository.addUserRole(AuthenticationController.ROLE_OWNER, AuthenticationController.ROLE_OWNER);
-
         authenticationRepository.addUserRole(AuthenticationController.ROLE_CLIENT, AuthenticationController.ROLE_CLIENT);
 
         authenticationRepository.addUserRole(AuthenticationController.ROLE_NETWORK_MANAGER, AuthenticationController.ROLE_NETWORK_MANAGER);
@@ -213,7 +213,7 @@ public class Bootstrap {
 
         authenticationRepository.addUserWithRole("Agent", "agent@this.app", "agent", AuthenticationController.ROLE_AGENT);
 
-        authenticationRepository.addUserWithRole("Owner", "owner@this.app", "owner", AuthenticationController.ROLE_OWNER);
+        authenticationRepository.addUserWithRole("Owner", "owner@this.app", "owner", AuthenticationController.ROLE_CLIENT);
 
         authenticationRepository.addUserWithRole("Agent 02","agent2@this.app","agent2", AuthenticationController.ROLE_AGENT);
 
@@ -259,12 +259,16 @@ public class Bootstrap {
     private void addStores() {
         StoreRepository storeRepository = Repositories.getInstance().getStoreRepository();
 
-        Address address = new Address("Avenue Walmart",22334,new District("Jefferson"),new City("Ottawa"),new State("Arizona"));
+        Address address1 = new Address("3655 S Las Vegas Blvd", 892109, new District("Paradise"), new City("Las Vegas"), new State("Nevada"));
+        Address address2 = new Address("199 W 45th St",10036,new District("Manhattan"),new City("New York"),new State("New York"));
+        Address address3 = new Address("9641 Sunset Blvd", 90210, new District("Beverly Hills"), new City("Los Angeles"), new State("California"));
+        Store store1 = new Store("Holloway",10234,address1,9383811,"holloway@gmail.com", 11);
+        Store store2 = new Store("Maltip",104224,address2,9678910,"maltip@gmail.com", 16);
+        Store store3 = new Store("Elvis",224,address3,9437782,"elvis@gmail.com", 3);
 
-        storeRepository.add(new Store("Holloway",10234,address,9383811,"holloway@gmail.com", 10));
-        storeRepository.add(new Store("Maltip",104224,address,9678910,"123sttore@gmail.com", 12));
-        storeRepository.add(new Store("Elvis",224,address,9437782,"dadaw@gmail.com", 11));
-        storeRepository.add(new Store("Trap",4554,address,9827612,"trappp@gmail.com", 3));
+        storeRepository.add(store1);
+        storeRepository.add(store2);
+        storeRepository.add(store3);
     }
 
     private void addPropertyTypes() {

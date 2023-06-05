@@ -87,12 +87,14 @@ public class PublishedAnnouncement {
      */
     public PublishedAnnouncement(AnnouncementRequestDto announcementRequestDto, Comission comission) {
         this.date = announcementRequestDto.getDate();
+        this.agent = announcementRequestDto.getAgent();
         this.typeOfBusiness = announcementRequestDto.getTypeOfBusiness();
         this.property = announcementRequestDto.getProperty();
         this.propertyType = announcementRequestDto.getPropertyType();
         this.business = announcementRequestDto.getBusiness();
         this.durationOfContract = announcementRequestDto.getDurationOfContract();
         this.comission = comission;
+        this.address = announcementRequestDto.getAddress();
     }
 
     /**
