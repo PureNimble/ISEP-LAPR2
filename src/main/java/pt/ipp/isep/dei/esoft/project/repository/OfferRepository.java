@@ -7,8 +7,7 @@ import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 import java.util.*;
 
 /**
-
- The OfferRepository class is responsible for managing the storage and retrieval of offers.
+ * The OfferRepository class is responsible for managing the storage and retrieval of offers.
  */
 public class OfferRepository {
 
@@ -106,25 +105,17 @@ public class OfferRepository {
             }
         }
 
+        Offer aux;
 
-        resultList.sort(new Comparator<Offer>() {
-            @Override
-            public int compare(Offer o1, Offer o2) {
-                int area1 = o1.getPublishedAnnouncement().getProperty().getArea();
-
-                int area2 = o2.getPublishedAnnouncement().getProperty().getArea();
-
-                if (area1 < area2) {
-                    return -1;
-                } else if (area1 > area2) {
-                    return 1;
-                } else {
-                    return 0;
+        for (int i = 0; i < resultList.size() - 1; i++) {
+            for (int j = 0; j < resultList.size() - i - 1; j++) {
+                if (resultList.get(j).getPublishedAnnouncement().getProperty().getArea() > resultList.get(j+1).getPublishedAnnouncement().getProperty().getArea()) {
+                    aux = resultList.get(j);
+                    resultList.set(j,resultList.get(j+1));
+                    resultList.set(j+1,aux);
                 }
-
             }
-        });
-
+        }
 
         return resultList;
     }
@@ -138,53 +129,46 @@ public class OfferRepository {
             }
         }
 
-        resultList.sort(new Comparator<Offer>() {
-            @Override
-            public int compare(Offer o1, Offer o2) {
-                int area1 = o1.getPublishedAnnouncement().getProperty().getArea();
+        Offer aux;
 
-                int area2 = o2.getPublishedAnnouncement().getProperty().getArea();
-
-                if (area1 > area2) {
-                    return -1;
-                } else if (area1 < area2) {
-                    return 1;
-                } else {
-                    return 0;
+        for (int i = 0; i < resultList.size() - 1; i++) {
+            for (int j = 0; j < resultList.size() - i - 1; j++) {
+                if (resultList.get(j).getPublishedAnnouncement().getProperty().getArea() < resultList.get(j+1).getPublishedAnnouncement().getProperty().getArea()) {
+                    aux = resultList.get(j);
+                    resultList.set(j,resultList.get(j+1));
+                    resultList.set(j+1,aux);
                 }
             }
-        });
-
+        }
         return resultList;
     }
 
+    public List<Offer> getOffersByMostRecent () {
+            List<Offer> resultList = new ArrayList<Offer>();
 
-    public List<Offer> getOffersByMostRecent() {
-        List<Offer> resultList = new ArrayList<Offer>();
-
-        for (Offer offer : offers) {
-            if (offer.getOfferState().equals(OfferState.accepted)) {
-                resultList.add(offer);
+            for (Offer offer : offers) {
+                if (offer.getOfferState().equals(OfferState.accepted)) {
+                    resultList.add(offer);
+                }
             }
+
+
+            resultList.sort(new Comparator<Offer>() {
+                @Override
+                public int compare(Offer o1, Offer o2) {
+                    Date date1 = o1.getPublishedAnnouncement().getDate();
+                    Date date2 = o2.getPublishedAnnouncement().getDate();
+
+                    return date1.compareTo(date2);
+
+                }
+            });
+
+            Collections.reverse(resultList);
+
+
+            return resultList;
         }
 
 
-        resultList.sort(new Comparator<Offer>() {
-            @Override
-            public int compare(Offer o1, Offer o2) {
-                Date date1 = o1.getPublishedAnnouncement().getDate();
-                Date date2 = o2.getPublishedAnnouncement().getDate();
-
-                return date1.compareTo(date2);
-
-            }
-        });
-
-        Collections.reverse(resultList);
-
-
-        return resultList;
     }
-
-
-}
