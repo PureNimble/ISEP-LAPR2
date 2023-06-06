@@ -82,6 +82,7 @@ public class ListDealsGUITeste implements Initializable {
       textArea.setText(""+publishedAnnouncement);
 
 
+
         List<Image> images = new ArrayList<>();
         for (String url : publishedAnnouncement.getProperty().getPhotos().getUrl()) {
 
