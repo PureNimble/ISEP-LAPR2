@@ -60,14 +60,14 @@ public class    SendMessageUI implements Runnable {
 
         List<Message> messages = controller.getMessage();
 
-        StringBuilder st = new StringBuilder();
+        /*StringBuilder st = new StringBuilder();*/
 
-        for (Message m : messages) {
-            st.append(m.toString());
-            st.append("\n");
-        }
+//        for (Message m : messages) {
+//            st.append(m.toString());
+//            st.append("\n");
+//        }
 
-        System.out.println(st);
+//        System.out.println(st);
     }
 
     /**
