@@ -1,13 +1,9 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
-import pt.ipp.isep.dei.esoft.project.domain.Offer;
-import pt.ipp.isep.dei.esoft.project.domain.Client;
-import pt.ipp.isep.dei.esoft.project.domain.OfferState;
-import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
-import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
-import pt.ipp.isep.dei.esoft.project.repository.PublishedAnnouncementRepository;
-import pt.ipp.isep.dei.esoft.project.repository.OfferRepository;
-import pt.ipp.isep.dei.esoft.project.repository.Repositories;
+import pt.ipp.isep.dei.esoft.project.domain.*;
+import pt.ipp.isep.dei.esoft.project.repository.*;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +19,7 @@ public class PlaceOfferController {
      AuthenticationRepository authenticationRepository = null;
 
      OfferRepository offerRepository = null;
+     UserRepository userRepository = null;
     /**
 
      Constructs a new instance of PlaceOfferController and initializes the repositories.
@@ -31,6 +28,7 @@ public class PlaceOfferController {
         getPublishedAnnouncementRepository();
         getAuthenticationRepository();
         getOfferRepository();
+        getUserRepository();
     }
     /**
 
@@ -39,10 +37,11 @@ public class PlaceOfferController {
      @param offerRepository the offer repository to be used
      @param publishedAnnouncementRepository the published announcement repository to be used
      */
-    public PlaceOfferController(AuthenticationRepository authenticationRepository, OfferRepository offerRepository, PublishedAnnouncementRepository publishedAnnouncementRepository) {
+    public PlaceOfferController(AuthenticationRepository authenticationRepository, OfferRepository offerRepository, PublishedAnnouncementRepository publishedAnnouncementRepository, UserRepository userRepository) {
         this.offerRepository = offerRepository;
         this.authenticationRepository = authenticationRepository;
         this.publishedAnnouncementRepository = publishedAnnouncementRepository;
+        this.userRepository = userRepository;
     }
     /**
 
@@ -89,6 +88,16 @@ public class PlaceOfferController {
         }
         return publishedAnnouncementRepository;
     }
+
+    public UserRepository getUserRepository() {
+        if (userRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+
+            userRepository = repositories.getUserRepository();
+        }
+        return userRepository;
+    }
+
     /**
 
      Retrieves the list of offers from the offer repository.
@@ -98,6 +107,50 @@ public class PlaceOfferController {
         OfferRepository offerRepository = getOfferRepository();
         return offerRepository.getOffers();
     }
+
+    public String getCurrentSessionEmail() {
+        AuthenticationRepository authenticationRepository = getAuthenticationRepository();
+        return authenticationRepository.getCurrentUserSession().getUserId().getEmail();
+    }
+
+    public Client getClientEmail() {
+        String email = getCurrentSessionEmail();
+        return getUserRepository().getClientEmail(email);
+    }
+
+    /**
+     * Checks if the client's email has pending offers.
+     *
+     * @param email the client's email
+     * @return true if the client has pending offers, false otherwise
+     */
+    public boolean hasPendingOffersByEmail(String email) {
+        return offerRepository.hasPendingOffersByEmail(email);
+    }
+
+    /**
+     * Retrieves the list of pending offers associated with the client's email.
+     *
+     * @param email the client's email
+     * @return the list of pending offers
+     */
+    /**
+     * Retrieves the list of pending offers associated with the client's email.
+     *
+     * @param email the client's email
+     * @return the list of pending offers
+     */
+    public List<Offer> getPendingOffersByClientEmail(String email) {
+        List<Offer> pendingOffers = new ArrayList<>();
+        for (Offer offer : offerRepository.getOffers()) {
+            if (offer.getOfferState() == OfferState.pending && offer.getClient().getEmail().equals(email)) {
+                pendingOffers.add(offer);
+            }
+        }
+        return pendingOffers;
+    }
+
+
     /**
 
      Creates a new offer and associates it with the specified published announcement.
@@ -106,12 +159,17 @@ public class PlaceOfferController {
      @param publishedAnnouncement the published announcement to associate the offer with
      @return an Optional containing the created offer, or an empty Optional if the creation fails
      */
-    public Optional<Offer> createNewOfferToAgent (String name, double orderAmount, PublishedAnnouncement publishedAnnouncement, OfferState offerState) {
-        Offer offerSent = new Offer();
-        offerSent.setName(name);
-        offerSent.setOrderAmount(orderAmount);
-        offerSent.setPublishedAnnouncement(publishedAnnouncement);
-        offerSent.setOfferState(offerState);
-        return offerRepository.add(offerSent);
+    public Optional<Offer> createNewOfferToAgent (String name, Client client, double orderAmount, PublishedAnnouncement publishedAnnouncement, OfferState offerState) {
+        if (orderAmount <= publishedAnnouncement.getBusiness().getPrice()) {
+            Offer offerSent = new Offer();
+            offerSent.setName(name);
+            offerSent.setClient(client);
+            offerSent.setOrderAmount(orderAmount);
+            offerSent.setPublishedAnnouncement(publishedAnnouncement);
+            offerSent.setOfferState(offerState);
+            return offerRepository.add(offerSent);
+        } else {
+            return Optional.empty();
+        }
     }
 }

@@ -36,13 +36,27 @@ public class PlaceOrderUI implements Runnable {
         System.out.println();
 
         PublishedAnnouncement publishedAnnouncement = requestChooseProperty();
-
         double offer = requestOffer();
+        Client client = controller.getClientEmail();
         String clientName = requestClientName();
 
-        if (submitData(clientName, publishedAnnouncement, offer,OfferState.pending).isEmpty()) {
-            System.out.println("The offer amount submitted has already been posted for this property. Please contact the agent that is responsible for this property. ");
-        } else System.out.println("\n\nOffer sent with success!\n\n");
+        // Check if the client has any pending offers
+        List<Offer> pendingOffers = controller.getPendingOffersByClientEmail(client.getEmail());
+        if (!pendingOffers.isEmpty()) {
+            System.out.println("Please wait for your previous offer to be accepted or denied before making another one.");
+            return;
+        }
+
+        // Check if the offer amount is valid
+        if (offer <= publishedAnnouncement.getBusiness().getPrice()) {
+            if (submitData(clientName, client, publishedAnnouncement, offer, OfferState.pending).isEmpty()) {
+                System.out.println("The offer amount submitted has already been posted for this property. Please contact the agent that is responsible for this property.");
+            } else {
+                System.out.println("\n\nOffer sent with success!\n\n");
+            }
+        } else {
+            System.out.println("Invalid offer amount. The offer amount must be equal to or lower than the property price.");
+        }
     }
     /**
 
@@ -79,16 +93,13 @@ public class PlaceOrderUI implements Runnable {
         } while (index < 0);
         return publishedAnnouncements.get(index);
     }
-    /**
 
-     Requests the user to enter the client name.
-     @return the entered client name
-     */
     private String requestClientName() {
         Scanner input = new Scanner(System.in);
         System.out.println("Name: ");
         return input.nextLine();
     }
+
     /**
 
      Requests the user to enter the offer amount.
@@ -123,11 +134,10 @@ public class PlaceOrderUI implements Runnable {
     /**
 
      Submits the order data to the controller for creating a new offer.
-     @param name the client name
      @param publishedAnnouncement the selected published announcement
      @param offer the offer amount
      */
-    private Optional<Offer> submitData(String name, PublishedAnnouncement publishedAnnouncement, double offer, OfferState offerState) {
-        return controller.createNewOfferToAgent(name, offer, publishedAnnouncement,offerState);
+    private Optional<Offer> submitData(String name, Client client, PublishedAnnouncement publishedAnnouncement, double offer, OfferState offerState) {
+        return controller.createNewOfferToAgent(name, client, offer, publishedAnnouncement,offerState);
     }
 }

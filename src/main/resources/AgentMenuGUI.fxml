@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="AgentMenuGUI"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane layoutX="53.0" prefHeight="400.0" prefWidth="200.0" style="-fx-background-color: gray;">
+               <children>
+                  <Label layoutX="21.0" layoutY="189.0" text="See List of Messages">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font></Label>
+               </children></AnchorPane>
+            <AnchorPane prefHeight="400.0" prefWidth="0.0" style="-fx-background-color: #fff;">
+               <children>
+                  <ImageView fitHeight="54.0" fitWidth="53.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@PhotosApp/listDeals.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <effect>
+                  <DropShadow />
+               </effect></AnchorPane>
+            <ImageView fitHeight="176.0" fitWidth="196.0" layoutX="347.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@PhotosApp/estate-agent.png" />
+               </image></ImageView>
+            <Label layoutX="387.0" layoutY="60.0" prefWidth="95.0" text="Agent">
+               <font>
+                  <Font name="Impact" size="40.0" />
+               </font></Label>
+            <Label layoutX="389.0" layoutY="110.0" text="Menu">
+               <font>
+                  <Font name="Impact" size="40.0" />
+               </font></Label>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.Client;
+import pt.ipp.isep.dei.esoft.project.domain.Employee;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,5 +60,14 @@ public class UserRepository {
     public List<Client> getUsers() {
 // This is a defensive copy, so that the repository cannot be modified from the outside.
         return clients;
+    }
+
+    public Client getClientEmail(String email){
+        for (Client client: clients) {
+            if (client.getClientEmail().equals(email)){
+                return client;
+            }
+        }
+        return null;
     }
 }
