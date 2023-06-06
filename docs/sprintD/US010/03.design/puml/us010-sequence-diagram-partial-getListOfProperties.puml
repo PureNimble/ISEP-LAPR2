@@ -1,27 +1,22 @@
 @startuml
 
-skinparam monochrome true
-skinparam packageStyle rectangle
-skinparam shadowing false
-
-title US010 - Sequence Diagram Partial - Get Published Announcement
+title Sequence Diagram Partial - Get List Of Properties
 
 participant ":PlaceOfferController" as Controller
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as Repositories
 participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as PublishedAnnouncementRepository
 
-autonumber 3
+autonumber 13
 
--> Controller : getPublishedAnnouncement()
+Group Get List Of Properties
+
 activate Controller
-
-group getPublishedAnnouncement
 
 Controller -> RepositorySingleton : getInstance()
 activate RepositorySingleton
 
-RepositorySingleton --> Controller: repositories
+RepositorySingleton --> Controller : repositories
 deactivate RepositorySingleton
 
 Controller -> Repositories : getPublishedAnnouncementRepository()
@@ -30,14 +25,12 @@ activate Repositories
 Repositories --> Controller: PublishedAnnouncementRepository
 deactivate Repositories
 
-Controller -> PublishedAnnouncementRepository : getPublishedAnnouncement()
+Controller -> PublishedAnnouncementRepository : getListOfProperties()
 activate PublishedAnnouncementRepository
 
-PublishedAnnouncementRepository --> Controller : PublishedAnnouncementList
+PublishedAnnouncementRepository --> Controller : listOfProperties
 deactivate PublishedAnnouncementRepository
 
 end
 
-<-- Controller : PublishedAnnouncementList
-deactivate Controller
 @enduml

@@ -13,9 +13,16 @@ participant ":PlaceOfferUI" as System
 participant ":PlaceOfferController" as Controller
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as Repositories
+participant ":ApplicationSession" as app
+participant "appSession\n:ApplicationSession" as APP
+participant "currentSession\n:UserSession" as User
+participant "userRepository\n:UserRepository" as UserRepository
 participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as PublishedAnnouncementRepository
-participant "authenticationRepository\n:AuthenticationRepository" as AuthenticationRepository
 participant "offerRepository\n:OfferRepository" as OfferRepository
+participant ":XMapper" as XMapper
+participant "listOfPropertiesDTO:List<Properties>" as listProperties
+participant "propertiesDto:PropertiesDto" as PropertiesDto
+participant "offerDto:OfferDTO" as offerDto
 participant "Offer" as Offer
 
 activate Client
@@ -25,13 +32,39 @@ activate System
 
 System -> Controller** : create
 
-System -> Controller : getPublishedAnnouncement()
+System -> Controller : getListOfProperties()
 activate Controller
+
+Controller -> Controller : getClientFromSession
+
+Controller -> app : getInstance()
+activate app
+
+app --> Controller: appSession
+deactivate app
+
+Controller -> APP: getCurrentUserSession()
+activate APP
+
+APP --> Controller : getCurrentUserSession
+deactivate APP
+
+Controller -> User : email = getUserEmail()
+activate User
+
+User --> Controller : email
+deactivate User
+
+Controller -> UserRepository : getClientEmail()
+activate UserRepository
+
+UserRepository --> Controller : clientEmail
+deactivate UserRepository
 
 Controller -> RepositorySingleton : getInstance()
 activate RepositorySingleton
 
-RepositorySingleton --> Controller: repositories
+RepositorySingleton --> Controller : repositories
 deactivate RepositorySingleton
 
 Controller -> Repositories : getPublishedAnnouncementRepository()
@@ -40,13 +73,84 @@ activate Repositories
 Repositories --> Controller: PublishedAnnouncementRepository
 deactivate Repositories
 
-Controller -> PublishedAnnouncementRepository : getPublishedAnnouncement()
+Controller -> PublishedAnnouncementRepository : getListOfProperties()
 activate PublishedAnnouncementRepository
 
-PublishedAnnouncementRepository --> Controller : PublishedAnnouncementList
+PublishedAnnouncementRepository --> Controller : listOfProperties
 deactivate PublishedAnnouncementRepository
 
-Controller --> System : PublishedAnnouncementList
+Controller -> XMapper : toDto(listOfProperties)
+activate XMapper
+
+XMapper -> listProperties**: create()
+
+    loop
+
+    XMapper -> listProperties: date = getDate()
+    activate listProperties
+
+    XMapper -[hidden]> listProperties
+    deactivate listProperties
+
+    XMapper -> listProperties: property = getProperty()
+    activate listProperties
+
+    XMapper -[hidden]> listProperties
+    deactivate listProperties
+
+    XMapper -> listProperties: typeOfBusiness = getTypeOfBusiness()
+    activate listProperties
+
+    XMapper -[hidden]> listProperties
+    deactivate listProperties
+
+    XMapper -> listProperties: propertyType = getPropertyType()
+    activate listProperties
+
+    XMapper -[hidden]> listProperties
+    deactivate listProperties
+
+    XMapper -> listProperties: business = getBusiness()
+    activate listProperties
+
+    XMapper -[hidden]> listProperties
+    deactivate listProperties
+
+    XMapper -> listProperties :agent = getAgent()
+    activate listProperties
+
+    XMapper -[hidden]> listProperties
+    deactivate listProperties
+
+    XMapper -> listProperties: durationOfContract = getDurationOfContract()
+    activate listProperties
+
+    XMapper -[hidden]> listProperties
+    deactivate listProperties
+
+    XMapper -> listProperties: comission = getComission()
+    activate listProperties
+
+    XMapper -[hidden]> listProperties
+    deactivate listProperties
+
+    XMapper -> XMapper : propertiesDto = toDto(agent,property,typeOfBusiness,propertyType,business,date,durationOfContract, comission)
+    activate XMapper
+
+    deactivate XMapper
+
+    XMapper --> PropertiesDto**: create(...)
+
+    XMapper -> listProperties: add(propertieDTO)
+    activate listProperties
+
+    deactivate listProperties
+    end
+
+XMapper --> Controller : listOfPropertiesDTO
+deactivate XMapper
+
+Controller --> System : listOfPropertiesDTO
 deactivate Controller
 
 System --> Client : shows the list of properties
@@ -58,40 +162,51 @@ activate System
 System --> Client : request the offer amount
 deactivate System
 
-Client -> System : places an offer to purchase a property by submitting the order amount
-activate System
-
-System --> Client : shows an offer to purchase a property
-deactivate System
-
 Client -> System : submits data
 activate System
 
-System -> Controller : createOffer(orderAmount)
+System -> Controller : createOffer(propertyDescription)
 activate Controller
 
-Controller -> Repositories : getAuthenticationRepository()
-activate Repositories
+Controller -> Controller : getPropertyDTOByDescription(PropertyDescription)
 
-Repositories --> Controller : authenticationRepository
-deactivate Repositories
+Controller -> PublishedAnnouncementRepository : getPropertyDTOByDescription()
+activate PublishedAnnouncementRepository
 
-Controller -> AuthenticationRepository : getCurrentUserSession()
-activate AuthenticationRepository
+PublishedAnnouncementRepository --> Controller : PropertyDTO
+deactivate PublishedAnnouncementRepository
 
-AuthenticationRepository --> Controller : getCurrentUserSession
-deactivate AuthenticationRepository
+Controller --> Controller : PropertyDTO
 
-Controller -> Repositories : getOfferRepository()
-activate Repositories
-
-Repositories --> Controller : getOfferRepository
-deactivate Repositories
-
-Controller -> OfferRepository : createOffer(orderAmount)
+Controller -> OfferRepository : createOffer(property)
 activate OfferRepository
 
-OfferRepository -> Offer** : createOffer(orderAmount)
+OfferRepository -> Offer** : createOffer(property)
+activate Offer
+
+Offer -> offerDto : name = getName()
+activate offerDto
+deactivate offerDto
+
+Offer -> offerDto : client = getClient()
+activate offerDto
+deactivate offerDto
+
+Offer -> offerDto : orderAmount = getOrderAmount()
+activate offerDto
+deactivate offerDto
+
+Offer -> offerDto : publishedAnnouncement = getPublishedAnnouncement()
+activate offerDto
+deactivate offerDto
+
+Offer -> offerDto : offerState = getOfferState()
+activate offerDto
+deactivate offerDto
+
+deactivate Offer
+
+
 
 OfferRepository -> OfferRepository : addOffer(offer)
 
