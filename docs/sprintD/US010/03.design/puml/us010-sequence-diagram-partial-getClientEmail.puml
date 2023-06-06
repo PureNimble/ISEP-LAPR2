@@ -1,0 +1,48 @@
+@startuml
+
+title Sequence Diagram Partial - Get Client Email
+
+participant ":PlaceOfferUI" as System
+participant ":PlaceOfferController" as Controller
+participant ":ApplicationSession" as app
+participant "appSession\n:ApplicationSession" as APP
+participant "currentSession\n:UserSession" as User
+participant "userRepository\n:UserRepository" as UserRepository
+
+autonumber 3
+
+activate System
+
+System -> Controller : getListOfProperties()
+activate Controller
+
+Controller -> Controller : getClientFromSession
+
+Controller -> app : getInstance()
+activate app
+
+app --> Controller: appSession
+deactivate app
+
+Controller -> APP: getCurrentUserSession()
+activate APP
+
+APP --> Controller : getCurrentUserSession
+deactivate APP
+
+Controller -> User : email = getUserEmail()
+activate User
+
+User --> Controller : email
+deactivate User
+
+Controller -> UserRepository : getClientEmail()
+activate UserRepository
+
+UserRepository --> Controller : clientEmail
+deactivate UserRepository
+
+Controller --> System : getListOfProperties()
+deactivate Controller
+
+@enduml

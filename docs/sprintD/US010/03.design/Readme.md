@@ -63,9 +63,23 @@ It uses interaction ocurrence.
 
 ![Sequence Diagram - Partial - Create Offer](svg/us010-sequence-diagram-partial-createOffer.svg)
 
-**Get Published Announcement**
+**Get Client Email**
 
-![Sequence Diagram - Partial - Get Published Announcement](svg/us010-sequence-diagram-partial-getPublishedAnnouncement.svg)
+![Sequence Diagram - Partial - Get Client Email](svg/us010-sequence-diagram-partial-getClientEmail.svg)
+
+**Get List Of Properties**
+
+![Sequence Diagram - Partial - Get List Of Properties](svg/us010-sequence-diagram-partial-getListOfProperties.svg)
+
+**Get List Of Properties Using DTO**
+
+![Sequence Diagram - Partial - Get List Of Properties Using DTO](svg/us010-sequence-diagram-partial-getListOfPropertiesDTO.svg)
+
+**Get Property**
+
+![Sequence Diagram - Partial - Get Property](svg/us010-sequence-diagram-partial-getProperty.svg)
+
+
 
 ## 3.3. Class Diagram (CD)
 
