@@ -43,7 +43,7 @@ public class NetworkManagerMenuGUI implements Runnable,Initializable {
 
         try {
             FXMLLoader listDealsLoader = new FXMLLoader();
-            listDealsLoader.setLocation(getClass().getResource("/ListDeals.fxml"));
+            listDealsLoader.setLocation(getClass().getResource("/ListDealsGUITeste.fxml"));
             Parent root = listDealsLoader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
