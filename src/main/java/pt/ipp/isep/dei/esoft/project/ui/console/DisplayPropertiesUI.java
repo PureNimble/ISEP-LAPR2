@@ -51,39 +51,41 @@ public class DisplayPropertiesUI implements Runnable {
                 filteredList = controller.filterList(propertyType, businessType, numberOfRooms);
                 if(filteredList.isEmpty()){
                     System.out.println("\nThere are no properties matching those requirements");
-                }
-                for (int i = 0; i < filteredList.size(); i++){
-                    PublishedAnnouncement publishedAnnouncement = filteredList.get(i);
-                    System.out.println(i+1 + ". " + publishedAnnouncement.toString());
+                } else {
+                    for (int i = 0; i < filteredList.size(); i++){
+                        PublishedAnnouncement publishedAnnouncement = filteredList.get(i);
+                        System.out.println(i+1 + ". " + publishedAnnouncement.toString());
+                    }
                 }
             } 
             var sortedList = filteredList;
-            System.out.println("\nDo you wish to sort the list?");
-            
-            if (acceptOrDecline() == true) {
-                sorting = sortingCriteria();
-                if (method == true) {
-                    if (sorting == 1) {
-                        sortedList = controller.sortAnnouncementsAscPrice(filteredList);
-                    } else if (sorting == 2){
-                        sortedList = controller.sortAnnouncementsAscCity(filteredList);
+            if (!sortedList.isEmpty()) {
+                System.out.println("\nDo you wish to sort the list?");
+                if (acceptOrDecline() == true) {
+                    sorting = sortingCriteria();
+                    if (method == true) {
+                        if (sorting == 1) {
+                            sortedList = controller.sortAnnouncementsAscPrice(filteredList);
+                        } else if (sorting == 2){
+                            sortedList = controller.sortAnnouncementsAscCity(filteredList);
+                        } else {
+                            sortedList = controller.sortAnnouncementsAscState(filteredList);
+                        }
+    
                     } else {
-                        sortedList = controller.sortAnnouncementsAscState(filteredList);
+                        if (sorting == 1) {
+                            sortedList = controller.sortAnnouncementsDesPrice(filteredList);
+                        } else if (sorting == 2){
+                            sortedList = controller.sortAnnouncementsDesCity(filteredList);
+                        } else {
+                            sortedList = controller.sortAnnouncementsDesState(filteredList);
+                        }
                     }
-
-                } else {
-                    if (sorting == 1) {
-                        sortedList = controller.sortAnnouncementsDesPrice(filteredList);
-                    } else if (sorting == 2){
-                        sortedList = controller.sortAnnouncementsDesCity(filteredList);
-                    } else {
-                        sortedList = controller.sortAnnouncementsDesState(filteredList);
+                    for (int i = 0; i < sortedList.size(); i++){
+                        PublishedAnnouncement publishedAnnouncement = sortedList.get(i);
+                        System.out.println(i+1 + ". " + publishedAnnouncement.toString());
                     }
                 }
-            }
-            for (int i = 0; i < sortedList.size(); i++){
-                PublishedAnnouncement publishedAnnouncement = sortedList.get(i);
-                System.out.println(i+1 + ". " + publishedAnnouncement.toString());
             }
 
         }
@@ -93,7 +95,6 @@ public class DisplayPropertiesUI implements Runnable {
     private boolean acceptOrDecline(){
         System.out.println("\n1. Yes");
         System.out.println("2. No");
-        System.out.println("0. Cancel");
 
         double choice;
 
@@ -117,11 +118,8 @@ public class DisplayPropertiesUI implements Runnable {
             else if (choice == 2){
                 return false;
             }
-            else if (choice == 0){
-                break;
-            }
 
-        } while (choice < 0);
+        } while (choice < 1);
         return false;
     }
 
