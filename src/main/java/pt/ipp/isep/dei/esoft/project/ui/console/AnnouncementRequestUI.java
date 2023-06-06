@@ -102,24 +102,24 @@ public class AnnouncementRequestUI implements Runnable {
 
         if (propertyTypeDescription.equals("Land")) {
 
-            Property land = new Property(area, distanceFromCityCenter, photos);
+            Property land = new Property(area, distanceFromCityCenter, photos, address);
 
-            Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, land, propertyType, business, durationOfContract,agent, address);
+            Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, land, propertyType, business, durationOfContract,agent);
 
         } else {
             if (propertyTypeDescription.equals("Apartment")) {
 
                 AvailableEquipment availableEquipment = controller.getAvailableEquipmentByDescription(availableEquipmentDescription);
 
-                Residence appartment = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, photos);
+                Residence appartment = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, photos, address);
 
-                Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, appartment, propertyType, business, durationOfContract,agent, address);
+                Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, appartment, propertyType, business, durationOfContract,agent);
             } else {
                 AvailableEquipment availableEquipment = controller.getAvailableEquipmentByDescription(availableEquipmentDescription);
 
-                House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, inhabitableLoft, sunExposure, photos);
+                House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, inhabitableLoft, sunExposure, photos, address);
 
-                Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, house, propertyType, business, durationOfContract,agent, address);
+                Optional<AnnouncementRequest> announcementRequest = controller.createAnnouncementRequest(date, typeOfBusiness, house, propertyType, business, durationOfContract,agent);
 
             }
         }

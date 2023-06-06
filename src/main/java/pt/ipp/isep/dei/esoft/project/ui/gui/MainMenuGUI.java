@@ -27,6 +27,7 @@ public class MainMenuGUI implements Runnable,Initializable {
 
     @FXML
     private TextField txtEmail;
+
     @FXML
     private PasswordField passwordField;
 
@@ -47,9 +48,13 @@ public class MainMenuGUI implements Runnable,Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
             FXMLLoader networkManagerLoader = new FXMLLoader();
+            FXMLLoader agentLoader = new FXMLLoader();
             networkManagerLoader.setLocation(getClass().getResource("/NetworkManagerMenuGUI.fxml"));
+            agentLoader.setLocation(getClass().getResource("/AgentMenuGUI.fxml"));
             Parent networkManagerRoot = networkManagerLoader.load();
+            Parent agentRoot = agentLoader.load();
             networkManagerScene = new Scene(networkManagerRoot);
+            agentScene = new Scene(agentRoot);
 
 
         }catch (Exception e){

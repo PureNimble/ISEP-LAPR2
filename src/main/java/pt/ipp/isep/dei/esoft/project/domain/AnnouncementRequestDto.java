@@ -15,9 +15,7 @@ public class AnnouncementRequestDto {
 
     private String status;
 
-    private Address address;
-
-    public AnnouncementRequestDto(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract, Employee agent, Address address) {
+    public AnnouncementRequestDto(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract, Employee agent) {
         this.date = date;
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
@@ -26,11 +24,10 @@ public class AnnouncementRequestDto {
         this.durationOfContract = durationOfContract;
         this.agent = agent;
         this.status = status;
-        this.address = address;
     }
 
 
-    public AnnouncementRequestDto(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business,Employee agent, Address address) {
+    public AnnouncementRequestDto(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business,Employee agent) {
         this.date = date;
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
@@ -38,7 +35,6 @@ public class AnnouncementRequestDto {
         this.business = business;
         this.agent = agent;
         this.status = status;
-        this.address = address;
     }
 
 
@@ -52,9 +48,8 @@ public class AnnouncementRequestDto {
                         "Type of business:%s\n" +
                         "Property Type:%s\n" +
                         "Price:%s\n" +
-                        "%s" +
-                        "Address: %s",
-                date.toString(),typeOfBusiness.toString(),propertyType,business.toString(),property.toString(), address.toString());
+                        "%s\n",
+                date.toString(),typeOfBusiness.toString(),propertyType,business.toString(),property.toString());
     }
     /**
 
@@ -70,7 +65,7 @@ public class AnnouncementRequestDto {
                         "%s" +
                         "Address: %s",
 
-                date.toString(),typeOfBusiness.toString(),propertyType,business.toString(),durationOfContract,property.toString(), address.toString());
+                date.toString(),typeOfBusiness.toString(),propertyType,business.toString(),durationOfContract,property.toString());
     }
 
     public Date getDate() {
@@ -105,21 +100,17 @@ public class AnnouncementRequestDto {
         return status;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AnnouncementRequestDto that = (AnnouncementRequestDto) o;
-        return durationOfContract == that.durationOfContract && date.equals(that.date) && typeOfBusiness.equals(that.typeOfBusiness) && property.equals(that.property) && propertyType.equals(that.propertyType) && business.equals(that.business) && agent.equals(that.agent) && status.equals(that.status) && address.equals(that.address);
+        return durationOfContract == that.durationOfContract && date.equals(that.date) && typeOfBusiness.equals(that.typeOfBusiness) && property.equals(that.property) && propertyType.equals(that.propertyType) && business.equals(that.business) && agent.equals(that.agent) && status.equals(that.status);
     }
 
 
     @Override
     public int hashCode() {
-        return Objects.hash(date, typeOfBusiness, property, propertyType, business, durationOfContract, agent, status, address);
+        return Objects.hash(date, typeOfBusiness, property, propertyType, business, durationOfContract, agent, status);
     }
 }

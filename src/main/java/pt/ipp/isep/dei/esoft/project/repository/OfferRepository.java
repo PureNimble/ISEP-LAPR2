@@ -24,6 +24,11 @@ public class OfferRepository {
         boolean operationSuccess = false;
 
         if (validateOffer(offer)) {
+            String clientEmail = offer.getClient().getClientEmail();
+            if (hasPendingOffersByEmail(clientEmail)) {
+                System.out.println("Please wait for your previous offer to be accepted or denied before making another one.");
+                return newOffer;
+            }
             newOffer = Optional.of(offer);
             operationSuccess = offers.add(newOffer.get());
         }
@@ -59,6 +64,14 @@ public class OfferRepository {
         return !(offer1.getOrderAmount() < offer2.getOrderAmount());
     }
 
+    public boolean hasPendingOffersByEmail(String email) {
+        for (Offer offer : offers) {
+            if (offer.getOfferState() == OfferState.pending && offer.getClient().getClientEmail().equals(email)) {
+                return true;
+            }
+        }
+        return false;
+    }
     /**
      * Retrieves the list of offers stored in the repository.
      *

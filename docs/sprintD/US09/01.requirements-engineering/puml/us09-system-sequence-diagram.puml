@@ -19,13 +19,7 @@ deactivate System
 Client -> System: selects a property of his interest
 activate System
 
-'System --> Client: asks to confirm the property selected
-'deactivate System
-'
-'Client -> System: Confirms the selected data
-'activate System
-
-System --> Client: Requests the name, phone number \nand preferred date and time slot (from x hour to y hour) for the property visit
+System --> Client: requests the name, phone number and preferred date and time\nslot (from x hour to y hour) for the property visit
 deactivate System
 
 Client -> System: submits the requested data

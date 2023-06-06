@@ -43,11 +43,9 @@ public class Client extends Person {
     }
 
 
-    public String getEmail(){
+    public String getClientEmail(){
         return super.getEmail();
     }
-
-    public String getName() { return  super.getName(); }
 
 }
 

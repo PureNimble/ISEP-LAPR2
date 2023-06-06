@@ -10,6 +10,7 @@ public class Property {
     private int area;
     private Photos photos;
     private Residence residence;
+    private Address address;
 
     /**
      * Constructs a Property object with a given area and distance from the city center.
@@ -18,10 +19,11 @@ public class Property {
      * @param distanceFromCityCenter The distance from the city center in kilometers.
      * @param photos                 the photos
      */
-    public Property(int area, int distanceFromCityCenter, Photos photos) {
+    public Property(int area, int distanceFromCityCenter, Photos photos, Address address) {
         this.distanceFromCityCenter = distanceFromCityCenter;
         this.area = area;
         this.photos = photos;
+        this.address = address;
     }
 
     /**
@@ -95,6 +97,10 @@ public class Property {
         this.area = area;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
 
     /**
      * Returns a string representation of the Property object.
@@ -102,7 +108,7 @@ public class Property {
      * @return A string representation of the Property object, including its area and distance from the city center.
      */
     public String toString() {
-        return String.format("Area: %s\n" + "Distance From The City Center: %s\n" + "Photos: %s\n", area, distanceFromCityCenter, photos.getUrl());
+        return String.format("Area: %s\n" + "Distance From The City Center: %s\n" + "Photos: %s\n" + "Address: %s\n", area, distanceFromCityCenter, photos.getUrl(), address);
     }
 
     /**
@@ -126,7 +132,7 @@ public class Property {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(distanceFromCityCenter, area, photos);
+        return Objects.hash(distanceFromCityCenter, area, photos, address);
     }
 
     /**
@@ -135,6 +141,6 @@ public class Property {
      * @return A new Property object with the same area and distance from the city center as this one.
      */
     public Property clone() {
-        return new Property(this.distanceFromCityCenter, this.area, this.photos);
+        return new Property(this.distanceFromCityCenter, this.area, this.photos, this.address);
     }
 }

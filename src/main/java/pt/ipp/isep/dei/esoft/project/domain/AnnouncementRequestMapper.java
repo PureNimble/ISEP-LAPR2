@@ -21,12 +21,11 @@ public class AnnouncementRequestMapper {
             Business business = announcementRequest.getBusiness();
             Date date = announcementRequest.getDate();
             String status = announcementRequest.getStatus();
-            Address address = announcementRequest.getAddress();
             if (typeOfBusiness.getTypeOfBusiness().equals("Rent")) {
                 int durationOfContract = announcementRequest.getDurationOfContract();
-                announcementRequestDto = toDtoObject(status, agent, property, typeOfBusiness, propertyType, business, date, durationOfContract, address);
+                announcementRequestDto = toDtoObject(status, agent, property, typeOfBusiness, propertyType, business, date, durationOfContract);
             } else {
-                announcementRequestDto = toDtoObject(status, agent, property, typeOfBusiness, propertyType, business, date, 0, address);
+                announcementRequestDto = toDtoObject(status, agent, property, typeOfBusiness, propertyType, business, date, 0);
             }
 
 
@@ -40,14 +39,14 @@ public class AnnouncementRequestMapper {
     }
 
 
-    public AnnouncementRequestDto toDtoObject(String status, Employee agent, Property property, TypeOfBusiness typeOfBusiness, PropertyType propertyType, Business business, Date date, int durationOfContract, Address address) {
+    public AnnouncementRequestDto toDtoObject(String status, Employee agent, Property property, TypeOfBusiness typeOfBusiness, PropertyType propertyType, Business business, Date date, int durationOfContract) {
 
         AnnouncementRequestDto announcementRequestDto;
 
         if (typeOfBusiness.getTypeOfBusiness().equals("Rent")) {
-            announcementRequestDto = new AnnouncementRequestDto(status, date, typeOfBusiness, property, propertyType, business, durationOfContract, agent, address);
+            announcementRequestDto = new AnnouncementRequestDto(status, date, typeOfBusiness, property, propertyType, business, durationOfContract, agent);
         } else {
-            announcementRequestDto = new AnnouncementRequestDto(status, date, typeOfBusiness, property, propertyType, business, agent, address);
+            announcementRequestDto = new AnnouncementRequestDto(status, date, typeOfBusiness, property, propertyType, business, agent);
         }
         return announcementRequestDto;
     }

@@ -102,7 +102,7 @@ As a client, I want to leave a message to the agent to schedule a visit to a pro
 
 
 * There is a dependency to "US004 Submit a request for listing a property sale or rent." since the client has to choose a property of his interest before scheduling a visit to that property.
-* There is a dependency to "US003 As a system administrator, I want to register a store." since the client must leave a message to the agent, this agent must be registered in a store in order to schedule a visit for the client.
+* There is a dependency to "US003 As a system administrator, I want to register a new employee." since the client must leave a message to the agent, this agent must be registered in a store in order to schedule a visit for the client.
 
 
 ### 1.5 Input and Output Data

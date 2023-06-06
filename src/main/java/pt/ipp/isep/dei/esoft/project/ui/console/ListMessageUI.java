@@ -36,6 +36,15 @@ public class ListMessageUI implements Runnable{
         }
     }
 
+//    List<Message> messages = controller.getMessage();
+//      StringBuilder st = new StringBuilder();
+//
+//        for (Message m : messages) {
+//            st.append(m.toString());
+//            st.append("\n");
+//        }
+//
+//        System.out.println(st);
 }
 
     private Date parseDate(String dateString) {

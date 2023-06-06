@@ -17,6 +17,17 @@ class Address {
     Zip Code
 }
 
+class Person{
+Name
+Email
+Phone Number
+Tax Number
+Passport Number
+}
+
+class Employee{
+}
+
 class City {
     City name
 }
@@ -116,6 +127,10 @@ Message "*" --- "1" PublishedAnnouncement: can have a <
 Client "1" --- "1..*" Message: leaves a >
 Agent "1" --- "1" Message: receives a >
 Agent "1" --- "*" PublishedAnnouncement: publishes an >
+
+Person <|-- Employee
+Employee <-- Agent
+Person <|-- Client
 
 
 
