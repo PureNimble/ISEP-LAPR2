@@ -117,8 +117,14 @@ public class Bootstrap {
         AvailableEquipment equipment1 = new AvailableEquipment("Forno");
         AvailableEquipment equipment2 = new AvailableEquipment("Máquina");
 
+        List<String> strings1 = new ArrayList<>();
+        strings1.add("https://i.maxwork.pt/l-view/listings/12291/6528121/5d6cf1eb-3131-48cd-b816-7bdad18e7787.jpg");
+        strings1.add("https://i.maxwork.pt/l-view/listings/12291/6528121/a271ac18-1c04-4dec-bf32-b263fd5b6bae.jpg");
+        strings1.add("https://i.maxwork.pt/l-view/listings/12291/6528121/5890a06d-3580-4066-99d2-c3cb9bec78ac.jpg");
+        strings1.add("https://i.maxwork.pt/l-view/listings/12291/6528121/19597d8c-a2f8-44d5-85b9-cdfddc6c673b.jpg");
+
         Residence residence1 = new Residence(273, 234, 13,  123, 123, equipment1, new Photos("https://i.maxwork.pt/l-view/listings/12325/6516582/f608e960-5797-4a79-8232-8b46739fb035.jpg"),address1);
-        Residence residence2 = new Residence(21373, 212334, 1,  123, 123, equipment2, new Photos("https://i.maxwork.pt/l-view/listings/12325/6516582/f608e960-5797-4a79-8232-8b46739fb035.jpg"),address1);
+        Residence residence2 = new Residence(21373, 212334, 1,  123, 123, equipment2, new Photos(strings1),address1);
         
         PropertyType propertyType1 = new PropertyType("House");
         PropertyType propertyType2 = new PropertyType("Appartment");
@@ -139,7 +145,7 @@ public class Bootstrap {
 
 
         PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType2, comission1, business2, agent3);
-        PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, property1, propertyType1, comission1, business4, agent5);
+        PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, residence2, propertyType1, comission1, business4, agent5);
         PublishedAnnouncement publishedAnnouncement3 = new PublishedAnnouncement(date3, typeOfBusiness1, property1, propertyType3, comission, business3, agent1);
         PublishedAnnouncement publishedAnnouncement4 = new PublishedAnnouncement(date3, typeOfBusiness1, residence2, propertyType1, comission, business2, agent2);
         PublishedAnnouncement publishedAnnouncement5 = new PublishedAnnouncement(date3, typeOfBusiness1, residence1, propertyType1, comission1, business1, agent4);
@@ -302,8 +308,8 @@ public class Bootstrap {
         OfferRepository offerRepository = Repositories.getInstance().getOfferRepository();
 
         offerRepository.add(new Offer("Pedro", 200000, publishedAnnouncement1, OfferState.pending, new Client("pedro@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890)));
-        offerRepository.add(new Offer("Diogo",1935000, publishedAnnouncement2, OfferState.pending, new Client("Diogo@sapo.pt", 567890123, 567890123, "Diogo", new Address("20 W 34th Street", 10001, new District("Manhattan"), new City("New York"), new State("New York")), 1389462074)));
-        offerRepository.add(new Offer("Luna", 135600,publishedAnnouncement3,OfferState.pending, new Client("luna@outlook.com", 234567890, 234567890, "Luna", new Address("200 Santa Monica Pier", 90401, new District("Santa Monica"), new City("Los Angeles"), new State("California")), 1029384756)));
+        offerRepository.add(new Offer("Diogo",1935000, publishedAnnouncement2, OfferState.accepted, new Client("Diogo@sapo.pt", 567890123, 567890123, "Diogo", new Address("20 W 34th Street", 10001, new District("Manhattan"), new City("New York"), new State("New York")), 1389462074)));
+        offerRepository.add(new Offer("Luna", 135600,publishedAnnouncement3,OfferState.accepted, new Client("luna@outlook.com", 234567890, 234567890, "Luna", new Address("200 Santa Monica Pier", 90401, new District("Santa Monica"), new City("Los Angeles"), new State("California")), 1029384756)));
         offerRepository.add(new Offer("Vasco", 230000,publishedAnnouncement3,OfferState.accepted, new Client("vasco@yahoo.com", 345678901, 345678901, "Vasco", new Address("1200 Getty Center Drive", 90049, new District("Crestwood Hills"), new City("Los Angeles"), new State("California")), 1910384765)));
         offerRepository.add(new Offer("Rafael", 98000,publishedAnnouncement3,OfferState.accepted, new Client("rafael@yopmail.com", 456789012, 456789012, "Rafael", new Address("1000 5th Avenue", 10028, new District("Manhattan"), new City("New York"), new State("New York")), 1134685325)));
     }

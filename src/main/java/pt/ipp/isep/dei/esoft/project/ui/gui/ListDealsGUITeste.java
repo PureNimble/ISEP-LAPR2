@@ -43,6 +43,9 @@ public class ListDealsGUITeste implements Initializable {
     @FXML
     private TextArea textArea;
 
+    @FXML
+    private Label announcementLabel;
+
 
     private final ListDealsController controller = new ListDealsController();
 
@@ -55,6 +58,8 @@ public class ListDealsGUITeste implements Initializable {
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
 
         name.setCellValueFactory(new PropertyValueFactory<Offer, String>("name"));
         orderAmount.setCellValueFactory(new PropertyValueFactory<Offer, Double>("orderAmount"));
@@ -78,26 +83,37 @@ public class ListDealsGUITeste implements Initializable {
         }
 
 
-
+      textArea.setVisible(true);
       textArea.setText(""+publishedAnnouncement);
 
+        int indexStart = 0;
+        int indexEnd = 0;
 
+        for(String line : textArea.getText().split("\n")) {
+            if (line.contains("Photos:")) { //change this to whatever you need
+                indexStart = textArea.getText().indexOf(line);
+                indexEnd = indexStart + line.length();
+            }
+        }
+            textArea.deleteText(indexStart,indexEnd);
 
         List<Image> images = new ArrayList<>();
         for (String url : publishedAnnouncement.getProperty().getPhotos().getUrl()) {
 
-            images.add(new Image(url,300,300,false,false));
+            images.add(new Image(url,477,402,false,false));
 
         }
 
-       ImageView imageView = new ImageView();
+        ImageView imageView = new ImageView();
         imageView.setFitHeight(300);
         imageView.setFitWidth(300);
 
 
+        photosPagination.setVisible(true);
         photosPagination.setPageCount(publishedAnnouncement.getProperty().getPhotos().getUrl().size());
         photosPagination.setPageFactory(n -> new ImageView(images.get(n)));
 
+        announcementLabel.setVisible(true);
 
         createPage(0);
 

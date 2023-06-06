@@ -7,28 +7,41 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1380.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.ListDealsGUITeste">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.ListDealsGUITeste">
     <children>
-        <TableView fx:id="table" layoutY="66.0" onMouseClicked="#clickItem" prefHeight="534.0" prefWidth="328.0">
+        <TableView fx:id="table" layoutY="89.0" onMouseClicked="#clickItem" prefHeight="511.0" prefWidth="333.0" style="-fx-background-color: transparent;" stylesheets="@listDealsGUICSS.css">
             <columns>
                 <TableColumn fx:id="orderAmount" prefWidth="57.0" sortable="false" text="ID" />
                 <TableColumn fx:id="name" minWidth="0.0" prefWidth="94.0" sortable="false" text="Order Amount" />
-            <TableColumn prefWidth="176.0" text="Client" />
+            <TableColumn prefWidth="107.0" sortable="false" text="Client" />
             </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
         </TableView>
-        <Label layoutX="549.0" layoutY="14.0" prefHeight="40.0" prefWidth="282.0" text="List of deals Made">
+        <Label layoutX="409.0" layoutY="11.0" prefHeight="40.0" prefWidth="282.0" text="List of deals Made">
             <font>
                 <Font name="Arial Black" size="27.0" />
             </font>
         </Label>
-        <ChoiceBox fx:id="filterChoice" layoutX="154.0" layoutY="34.0" prefWidth="150.0" style="-fx-background-color: transparent;" />
-      <Label layoutX="97.0" layoutY="38.0" text="Sort By:" />
-      <Pagination fx:id="photosPagination" layoutX="344.0" layoutY="174.0" pageCount="30" prefHeight="299.0" prefWidth="359.0" />
-      <TextArea fx:id="textArea" layoutX="697.0" layoutY="145.0" prefHeight="412.0" prefWidth="318.0">
+        <ChoiceBox fx:id="filterChoice" layoutX="151.0" layoutY="18.0" prefWidth="150.0" style="-fx-background-color: transparent;" />
+      <Label layoutX="104.0" layoutY="22.0" text="Sort By:" />
+      <Pagination fx:id="photosPagination" layoutX="336.0" layoutY="153.0" pageCount="0" prefHeight="402.0" prefWidth="477.0" />
+      <TextArea fx:id="textArea" layoutX="811.0" layoutY="153.0" prefHeight="402.0" prefWidth="291.0">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </TextArea>
+      <Label layoutX="104.0" layoutY="51.0" text="Offers">
+         <font>
+            <Font name="Arial Black" size="28.0" />
+         </font>
+      </Label>
+      <Label fx:id="announcementLabel" layoutX="565.0" layoutY="89.0" text="Announcement" visible="false">
+         <font>
+            <Font name="Arial Black" size="39.0" />
+         </font>
+      </Label>
     </children>
 
 </AnchorPane>
