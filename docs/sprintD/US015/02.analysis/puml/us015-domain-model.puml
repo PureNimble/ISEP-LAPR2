@@ -120,10 +120,13 @@ class Client {
  PublishedAnnouncement "1" --- "1" Business: has a <
  Business <|--- Rent
  Message "*" --- "1" PublishedAnnouncement: can have a <
-   Client "1" --- "1..*" Message: leaves a >
+   Client "1" --right- "1..*" Message: leaves a >
    Agent "1" --- "*" PublishedAnnouncement: publishes an >
 
 Agent "1" --- "1" Message: wants to see a list of >
 Person <|-- Employee
 Employee <-- Agent
+Person <|-- Client
+
+
 @enduml

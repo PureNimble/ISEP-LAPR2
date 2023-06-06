@@ -43,20 +43,11 @@ As an agent, I intend to list all booking requests for properties managed by me.
 >>
 >>  **Answer:** Yes. Listing is a feature described in US15.Important: In US15 the Agent gets a list of booking requests (made to him). Then, the agent, may want to respond to the user (as defined in US16). US15 and US16 are executed sequentially. Even so, the agent should be able to see a list of all booking requests made to him (US15) without answer any booking request.
 
-> **1 de June de 2023**
+> **2 de June de 2023**
 >
->> **Question:** What is this config file supposed to have? name of sort methods? just a word like "asc" or "desc"?
+>> **Question:** One of our questions' answers made us believe there might have been some miscommunication, as it had some significant mistakes in phrasing and your answer wasn't clear enough. As such, here is that same question, in a simpler and clearer way: US017's AC2 states that "Two sorting algorithms should be implemented (to be chosen manually by the network manager)." US015's AC2 states that "The list of requests must be sorted by date in ascending order. The sorting algorithm to be used by the application must be defined through a configuration file. At least two sorting algorithms should be available." As such, the team would like to know if, just like in US017, the sorting methods would be chosen manually in US015.
 >>
->> **Answer:**
->
->> **Question:** Is this config file a .txt file ?
->>
->>  **Answer:**
->
->> **Question:** Should this just be a optional way of sorting the requests?
->>
->> **Answer:**
-
+>> **Answer:**  In US 15 the sorting algorithm to be used by the application must be defined through a configuration file. This is a diferent strategy from what I want in US17. Please study ESOFT.
 
 > **Question:**
 >
@@ -88,6 +79,7 @@ As an agent, I intend to list all booking requests for properties managed by me.
 
 * There is a dependency to "US009 As a client, I want to leave a message to the agent to schedule a visit to a property of my interest." since at least a message must exist to list the booking requests.
 * There is a dependency to "US002 As an agent, I can publish any sale annoucement on the system, for example received through a phone call." and in "US008 As an agent, I intend to see the list of property announcement requests made to myself, so that I can post the announcement" because in these US an agent is associated with each property / announcement.
+* There is a dependency to "US003 As a system administrator, I want to register a new employee." because the agent, in order to see the booking requests made, should be registered in the application.
 
 
 ### 1.5 Input and Output Data
@@ -96,15 +88,17 @@ As an agent, I intend to list all booking requests for properties managed by me.
 **Input Data:**
 
 * Typed data:
-	* Begin Date
-    * End Date
+	* N/a
 	
 * Selected data:
-	* N/a
+	* Begin Date
+    * End Date
 
 
 **Output Data:**
 
+* List of begin dates
+* List of end dates
 * List of booking requestes to select
 * (In)Success of the operation
 
@@ -115,7 +109,3 @@ As an agent, I intend to list all booking requests for properties managed by me.
 #### Alternative One
 
 ![System Sequence Diagram - Alternative One](svg/us015-system-sequence-diagram.svg)
-
-### 1.7 Other Relevant Remarks
-
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
