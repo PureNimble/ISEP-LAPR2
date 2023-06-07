@@ -305,16 +305,17 @@ public class Bootstrap {
     }
 
     private void addOffers(PublishedAnnouncement publishedAnnouncement1, PublishedAnnouncement publishedAnnouncement2, PublishedAnnouncement publishedAnnouncement3) {
-        OfferRepository offerRepository = Repositories.getInstance().getOfferRepository();
+       /* OfferRepository offerRepository = Repositories.getInstance().getOfferRepository();
 
         offerRepository.add(new Offer("Pedro", 200000, publishedAnnouncement1, OfferState.pending, new Client("pedro@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890)));
         offerRepository.add(new Offer("Diogo",1935000, publishedAnnouncement2, OfferState.accepted, new Client("Diogo@sapo.pt", 567890123, 567890123, "Diogo", new Address("20 W 34th Street", 10001, new District("Manhattan"), new City("New York"), new State("New York")), 1389462074)));
         offerRepository.add(new Offer("Luna", 135600,publishedAnnouncement3,OfferState.accepted, new Client("luna@outlook.com", 234567890, 234567890, "Luna", new Address("200 Santa Monica Pier", 90401, new District("Santa Monica"), new City("Los Angeles"), new State("California")), 1029384756)));
         offerRepository.add(new Offer("Vasco", 230000,publishedAnnouncement3,OfferState.accepted, new Client("vasco@yahoo.com", 345678901, 345678901, "Vasco", new Address("1200 Getty Center Drive", 90049, new District("Crestwood Hills"), new City("Los Angeles"), new State("California")), 1910384765)));
         offerRepository.add(new Offer("Rafael", 98000,publishedAnnouncement3,OfferState.accepted, new Client("rafael@yopmail.com", 456789012, 456789012, "Rafael", new Address("1000 5th Avenue", 10028, new District("Manhattan"), new City("New York"), new State("New York")), 1134685325)));
+   */
     }
 
-    private void addMessages(PublishedAnnouncement publishedAnnouncement1, PublishedAnnouncement publishedAnnouncement2, PublishedAnnouncement publishedAnnouncement3) {
+   /* private void addMessages(PublishedAnnouncement publishedAnnouncement1, PublishedAnnouncement publishedAnnouncement2, PublishedAnnouncement publishedAnnouncement3) {
         MessageRepository messageRepository = Repositories.getInstance().getMessageRepository();
 
         Date date1 = new Date(21-05-2023);
@@ -327,5 +328,5 @@ public class Bootstrap {
         messageRepository.add(new Message("Luna", 1209348756, "Estou com interesse na propriedade!", date2,15,17,publishedAnnouncement3));
         messageRepository.add(new Message("Sofia",1038295647, "Quero!", date3,9,10,publishedAnnouncement2));
         messageRepository.add(new Message("Vasco", 1357924680, "Podemos já fazer negócio?", date2,14,15,publishedAnnouncement3));
-    }
+    }*/
 }

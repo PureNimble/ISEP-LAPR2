@@ -12,7 +12,6 @@ import java.util.*;
 public class MessageRepository {
 
     private ArrayList<Message> messages = new ArrayList<>();
-    private AuthenticationRepository authenticationRepository = null;
 
     /**
      * Add optional.
@@ -76,6 +75,7 @@ public class MessageRepository {
         for (Message message : messages) {
             resultList.add(message);
         }
+
 
         resultList.sort(new Comparator<Message>() {
             @Override

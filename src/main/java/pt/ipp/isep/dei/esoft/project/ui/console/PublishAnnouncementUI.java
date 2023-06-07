@@ -4,6 +4,7 @@ import pt.ipp.isep.dei.esoft.project.application.controller.PublishAnnouncementC
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.UserRepository;
+import pt.ipp.isep.dei.esoft.project.ui.console.utils.SendSms;
 
 import javax.naming.NamingEnumeration;
 import java.util.*;
@@ -191,11 +192,12 @@ public class PublishAnnouncementUI implements Runnable {
 
         Address address = new Address(street, zipCode, district, city, state);
 
+        Optional<PublishedAnnouncement> publishedAnnouncement = null;
         if (propertyTypeDescription.equals("Land")) {
 
             Property land = new Property(area, distanceFromCityCenter, photos, address);
 
-            Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, land, propertyType, comission, business, durationOfContract, agent);
+            publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, land, propertyType, comission, business, durationOfContract, agent);
 
         } else {
             if (propertyTypeDescription.equals("Appartment")) {
@@ -204,18 +206,24 @@ public class PublishAnnouncementUI implements Runnable {
 
                 Residence appartment = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, photos, address);
 
-                Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, appartment, propertyType, comission, business, durationOfContract, agent);
+                publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, appartment, propertyType, comission, business, durationOfContract, agent);
             } else {
                 AvailableEquipment availableEquipment = controller.getAvailableEquipmentByDescription(availableEquipmentDescription);
 
                 House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, inhabitableLoft, sunExposure, photos, address);
 
-                Optional<PublishedAnnouncement> publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, durationOfContract, agent);
+                publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, durationOfContract, agent);
 
             }
         }
+        if(publishedAnnouncement.isPresent()) {
+            SendSms sendSms = new SendSms();
 
-
+            String toWriteFile = "";
+            toWriteFile = toWriteFile.concat(publishedAnnouncement.get().getDate().toString()).concat("\n").concat(publishedAnnouncement.get().getAgent().getName()).concat("\n").concat(String.valueOf(publishedAnnouncement.get().getAgent().getPhoneNumber()));
+            sendSms.createFile(publishedAnnouncement.get().getProperty().getAddress().toString());
+            sendSms.writeFile(publishedAnnouncement.get().getProperty().getAddress().toString(), toWriteFile);
+        }
     }
 
     /**

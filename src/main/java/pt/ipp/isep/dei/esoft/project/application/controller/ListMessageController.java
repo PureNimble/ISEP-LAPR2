@@ -9,11 +9,21 @@ import pt.ipp.isep.dei.esoft.project.repository.*;
 import java.util.*;
 
 public class ListMessageController {
-    private MessageRepository messageRepository = new MessageRepository();
-    private UserRepository userRepository;
+    MessageRepository messageRepository = null;
+    AuthenticationRepository authenticationRepository = null;
+    UserRepository userRepository = null;
+    //private UserRepository userRepository;
 
     public ListMessageController() {
         getMessageRepository();
+        getAuthenticationRepository();
+        getUserRepository();
+    }
+
+    public ListMessageController(MessageRepository messageRepository, AuthenticationRepository authenticationRepository, UserRepository userRepository) {
+        this.messageRepository = messageRepository;
+        this.authenticationRepository = authenticationRepository;
+        this.userRepository = userRepository;
     }
 
     private MessageRepository getMessageRepository() {
@@ -25,15 +35,39 @@ public class ListMessageController {
         return messageRepository;
     }
 
+    private AuthenticationRepository getAuthenticationRepository() {
+        if (authenticationRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+
+            authenticationRepository = repositories.getAuthenticationRepository();
+        }
+        return authenticationRepository;
+    }
+    private UserRepository getUserRepository() {
+        if (userRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+
+            userRepository = repositories.getUserRepository();
+        }
+        return userRepository;
+    }
+
     public void sortBookingRequests(List<Message> bookingRequests) {
         Collections.sort(bookingRequests, Comparator.comparing(Message::getInitialDate));
     }
 
+
+
     public List<Message> getBookingRequestsForPeriod(Date beginDate, Date endDate) {
         List<Message> bookingRequests = new ArrayList<>();
-        for (Message message : messageRepository.getMessages()) {
+        MessageRepository messageRepository1 = getMessageRepository();
+        AuthenticationRepository authenticationRepository1 = getAuthenticationRepository();
+        for (Message message : messageRepository1.getMessages()) {
             if (message.getInitialDate().compareTo(beginDate) >= 0 && message.getInitialDate().compareTo(endDate) <= 0) {
-                bookingRequests.add(message);
+                if(message.getPublishedAnnouncement().getAgent().getEmail().equals(authenticationRepository1.getCurrentUserSession().getUserId().getEmail())) {
+                    bookingRequests.add(message);
+                }
+
             }
         }
         return bookingRequests;
