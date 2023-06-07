@@ -47,6 +47,13 @@ public class House extends Residence {
         this.sunExposure = sunExposure;
     }
 
+    public House(int area, int distanceFromCityCenter, int numberOfBedrooms, int numberOfBathrooms, int parkingSpaces, AvailableEquipment availableEquipment, String basement, String inhabitableLoft, String sunExposure, Address address) {
+        super(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, address);
+        this.basement = basement;
+        this.inhabitableLoft = inhabitableLoft;
+        this.sunExposure = sunExposure;
+    }
+
     /**
      * Gets basement.
      *

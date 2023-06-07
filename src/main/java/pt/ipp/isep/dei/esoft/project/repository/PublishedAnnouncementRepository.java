@@ -3,6 +3,8 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.application.controller.PublishAnnouncementController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -95,10 +97,10 @@ public class PublishedAnnouncementRepository {
 
 
         for (AnnouncementRequest announcementRequest1 : announcementRequests) {
-            if (announcementRequest1.equals(announcementRequest)){
+            if (announcementRequest1.equals(announcementRequest)) {
                 announcementRequests.get(i).setStatus("true");
             }
-                i++;
+            i++;
         }
 
         if (addPublishedAnnouncement(publishedAnnouncement)) {
@@ -168,6 +170,208 @@ public class PublishedAnnouncementRepository {
         return publishedAnnouncements;
     }
 
+
+    public void createPublishAnnouncementByFileReading(ArrayList<String[]> arrayListOwnerInformations) {
+
+        int aux = 0;
+        String name;
+        int passportNumber;
+        long phoneNumber;
+        int taxNumber;
+        String email;
+        String propertyType;
+        int area;
+        Address propertyLocation;
+        int distanceFromCityCenter;
+        int numberOfBedrooms = 0;
+        int numberOfBathrooms = 0;
+        int parkingSpaces = 0;
+        String centralHeating = "";
+        String airConditionated = "";
+        String basement = "";
+        String loft = "";
+        String sunExposure = "";
+        double price;
+        double comission;
+        int contractDuration;
+        Date date = null;
+        int id = 0;
+        Address addressStore = null;
+        String designation;
+        long phoneNumberStore;
+        String emailStore;
+        String typeOfBusiness;
+
+        for (String[] ownerInformations : arrayListOwnerInformations) {
+
+            if (aux != 0) {
+                name = ownerInformations[1];
+                passportNumber = Integer.parseInt(ownerInformations[2].replaceAll("-", ""));
+                taxNumber = Integer.parseInt(ownerInformations[3].replaceAll("-", ""));
+                email = ownerInformations[4];
+                phoneNumber = Long.parseLong(ownerInformations[5].replaceAll("-", ""));
+                Client client = new Client(email, passportNumber, taxNumber, name, phoneNumber);
+
+
+                propertyType = ownerInformations[6];
+                area = Integer.parseInt(ownerInformations[7]);
+                String[] adressInformations = ownerInformations[8].split(",");
+                propertyLocation = createAddress(adressInformations);
+                distanceFromCityCenter = Integer.parseInt(ownerInformations[9]);
+                if (propertyType.equals("house") || propertyType.equals("appartment")) {
+                    numberOfBedrooms = Integer.parseInt(ownerInformations[10]);
+                    numberOfBathrooms = Integer.parseInt(ownerInformations[11]);
+                    parkingSpaces = Integer.parseInt(ownerInformations[12]);
+                    centralHeating = ownerInformations[13];
+                    if (propertyType.equals("house")) {
+                        basement = ownerInformations[15];
+                        loft = ownerInformations[16];
+                        sunExposure = ownerInformations[17];
+                    }
+                }
+                price = Double.parseDouble(ownerInformations[19]);
+                comission = Double.parseDouble(ownerInformations[20]);
+                if (!ownerInformations[21].equals("NA")) {
+                    contractDuration = Integer.parseInt(ownerInformations[21]);
+                } else {
+                    contractDuration = 0;
+                }
+
+                String dateString = ownerInformations[23].replaceAll("/", "-");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                try {
+                    date = dateFormat.parse(dateString);
+                } catch (Exception e) {
+
+                }
+
+
+                typeOfBusiness = ownerInformations[24];
+
+                id = Integer.parseInt(ownerInformations[25]);
+                designation = ownerInformations[26];
+                String[] addressInformations = ownerInformations[27].split(",");
+                addressStore = createAddress(addressInformations);
+                phoneNumber = Long.parseLong(ownerInformations[28].replaceAll("-", ""));
+                email = ownerInformations[29];
+
+                Store store = new Store(designation, id, addressStore, phoneNumber, email, 0);
+
+
+                TypeOfBusiness typeOfBusinessA = new TypeOfBusiness(typeOfBusiness);
+                AvailableEquipment availableEquipment = new AvailableEquipment(centralHeating);
+                PropertyType propertyTypeA = new PropertyType(propertyType);
+                Business business = new Business(price);
+                Comission comissionA = new Comission(comission);
+
+                PublishedAnnouncement publishedAnnouncement;
+                List<Role> roles = new ArrayList<>();
+                roles.add(new Role("Agent"));
+                Employee agent = new Employee("legacy@realstateUS.com", 000000000, 000000000, "Legacy Agent", 0000000000, store, roles);
+
+                if (propertyType.equals("house")) {
+                    House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, loft, sunExposure, propertyLocation);
+
+                    if (typeOfBusiness.equals("sale")) {
+                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, house, propertyTypeA, comissionA, business, agent);
+                    } else {
+                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, house, propertyTypeA, comissionA, business, contractDuration, agent);
+                    }
+
+
+                } else if (propertyType.equals("land")) {
+
+                    Property land = new Property(distanceFromCityCenter, area, propertyLocation);
+
+                    if (typeOfBusiness.equals("sale")) {
+
+                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, land, propertyTypeA, comissionA, business, agent);
+
+                    } else {
+
+                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, land, propertyTypeA, comissionA, business, contractDuration, agent);
+                    }
+
+                } else {
+
+                    Residence appartment = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, propertyLocation);
+
+                    if (typeOfBusiness.equals("sale")) {
+
+                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, appartment, propertyTypeA, comissionA, business, agent);
+
+                    } else {
+
+                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, appartment, propertyTypeA, comissionA, business, contractDuration, agent);
+
+                    }
+
+                }
+
+
+                if (!publishedAnnouncements.contains(publishedAnnouncement)) {
+                    publishedAnnouncements.add(publishedAnnouncement);
+                }
+
+            } else {
+                aux = 1;
+            }
+        }
+
+
+    }
+
+
+    public Address createAddress(String[] addressInformations) {
+
+        Address address = null;
+
+        if (addressInformations.length == 4) {
+            String street = addressInformations[0];
+            City city = new City(addressInformations[1]);
+            State state = new State(addressInformations[2]);
+            int zipCode = Integer.parseInt(addressInformations[3]);
+
+            address = new Address(street, zipCode, city, state);
+        } else if (addressInformations.length == 5) {
+
+            String street = addressInformations[0];
+            City city = new City(addressInformations[1]);
+            District district = new District(addressInformations[2]);
+            State state = new State(addressInformations[3]);
+            int zipCode = Integer.parseInt(addressInformations[4]);
+
+            address = new Address(street, zipCode, district, city, state);
+        } else if (addressInformations.length == 7) {
+
+            String street = null;
+            for (int i = 0; i < 4; i++) {
+                street = addressInformations[i] + " ";
+            }
+            City city = new City(addressInformations[4]);
+            State state = new State(addressInformations[5]);
+            int zipCode = Integer.parseInt(addressInformations[6]);
+            address = new Address(street, zipCode, city, state);
+        } else if (addressInformations.length == 8) {
+
+            String street = null;
+            for (int i = 0; i < 4; i++) {
+                street = addressInformations[i] + " ";
+            }
+            City city = new City(addressInformations[4]);
+            District district = new District(addressInformations[5]);
+            State state = new State(addressInformations[6]);
+            int zipCode = Integer.parseInt(addressInformations[7]);
+            address = new Address(street, zipCode, city, state);
+
+
+            address = new Address(street, zipCode, district, city, state);
+        }
+
+        return address;
+    }
+
+
     /**
      * A comparator that compares PublishedAnnouncement objects in ascending order based on city name.
      */
@@ -234,15 +438,15 @@ public class PublishedAnnouncementRepository {
         }
     };
 
-    public List<PublishedAnnouncement> filterList(String propertyType, String businessType, int numberOfRooms){
+    public List<PublishedAnnouncement> filterList(String propertyType, String businessType, int numberOfRooms) {
         List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();
 
-        for (PublishedAnnouncement publishedAnnouncement: publishedAnnouncements) {
+        for (PublishedAnnouncement publishedAnnouncement : publishedAnnouncements) {
             List<PublishedAnnouncement> tempList = new ArrayList<PublishedAnnouncement>();
-            if (publishedAnnouncement.getPropertyType().getDesignation().equals(propertyType)){
-                if (publishedAnnouncement.getTypeOfBusiness().getTypeOfBusiness().equals(businessType)){
+            if (publishedAnnouncement.getPropertyType().getDesignation().equals(propertyType)) {
+                if (publishedAnnouncement.getTypeOfBusiness().getTypeOfBusiness().equals(businessType)) {
                     if (propertyType != "Land") {
-                        if (publishedAnnouncement.getProperty().getNumberOfBedrooms() == numberOfRooms){
+                        if (publishedAnnouncement.getProperty().getNumberOfBedrooms() == numberOfRooms) {
                             tempList.add(publishedAnnouncement);
                         }
                     } else tempList.add(publishedAnnouncement);
@@ -285,12 +489,12 @@ public class PublishedAnnouncementRepository {
         List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();
         List<PublishedAnnouncement> tempList = new ArrayList<PublishedAnnouncement>();
 
-        for (PublishedAnnouncement announcement: announcements){
+        for (PublishedAnnouncement announcement : announcements) {
             tempList.add(announcement);
         }
         tempList.sort(Comparator.comparing(PublishedAnnouncement::getCity));
         resultList.addAll(tempList);
-        
+
         return resultList;
     }
 
@@ -299,12 +503,12 @@ public class PublishedAnnouncementRepository {
         List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();
         List<PublishedAnnouncement> tempList = new ArrayList<PublishedAnnouncement>();
 
-        for (PublishedAnnouncement announcement: announcements){
+        for (PublishedAnnouncement announcement : announcements) {
             tempList.add(announcement);
         }
         tempList.sort(Comparator.comparing(PublishedAnnouncement::getState));
         resultList.addAll(tempList);
-        
+
         return resultList;
     }
 
@@ -332,7 +536,7 @@ public class PublishedAnnouncementRepository {
 
             }
         });
-        
+
         return resultList;
     }
 
@@ -341,12 +545,12 @@ public class PublishedAnnouncementRepository {
         List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();
         List<PublishedAnnouncement> tempList = new ArrayList<PublishedAnnouncement>();
 
-        for (PublishedAnnouncement announcement: announcements){
+        for (PublishedAnnouncement announcement : announcements) {
             tempList.add(announcement);
         }
         tempList.sort(Comparator.comparing(PublishedAnnouncement::getCity).reversed());
         resultList.addAll(tempList);
-        
+
         return resultList;
     }
 
@@ -355,15 +559,14 @@ public class PublishedAnnouncementRepository {
         List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();
         List<PublishedAnnouncement> tempList = new ArrayList<PublishedAnnouncement>();
 
-        for (PublishedAnnouncement announcement: announcements){
+        for (PublishedAnnouncement announcement : announcements) {
             tempList.add(announcement);
         }
         tempList.sort(Comparator.comparing(PublishedAnnouncement::getState).reversed());
         resultList.addAll(tempList);
-        
+
         return resultList;
     }
 
-    
 
 }

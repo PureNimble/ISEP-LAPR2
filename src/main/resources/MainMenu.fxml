@@ -26,7 +26,6 @@
    <right>
       <AnchorPane prefHeight="500.0" prefWidth="358.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <TextArea layoutX="75.0" layoutY="163.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" />
             <TextField fx:id="txtEmail" layoutX="101.0" layoutY="225.0" promptText="Email" style="-fx-border-color: #000; -fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px;" />
             <PasswordField fx:id="passwordField" layoutX="101.0" layoutY="283.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: black;" />
             <Button fx:id="onBtnLogin" layoutX="119.0" layoutY="363.0" mnemonicParsing="false" onAction="#onBtLoginAcntion" prefHeight="39.0" prefWidth="112.0" style="-fx-background-color: white; -fx-border-color: black;" text="LOGIN">

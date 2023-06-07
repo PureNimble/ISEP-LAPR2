@@ -20,6 +20,8 @@ public class ReadFileUI implements Runnable {
 
        importFileController.addStore(file);
 
+       importFileController.addPublishAnnouncement(file);
+
 
 
 

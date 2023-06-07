@@ -8,36 +8,25 @@ import java.util.Objects;
 public class Address {
 
     /**
-
-     The street of the address.
+     * The street of the address.
      */
     private String street;
     /**
-
-     The zipcode of the address.
+     * The zipcode of the address.
      */
     private int zipcode;
     /**
-
-     The district of the address.
+     * The district of the address.
      */
     private District district;
     /**
-
-     The city of the address.
+     * The city of the address.
      */
     private City city;
     /**
-
-     The state of the address.
+     * The state of the address.
      */
     private State state;
-
-    /**
-
-     The address from the file.
-     */
-    private String fileAdress;
 
 
     /**
@@ -57,10 +46,13 @@ public class Address {
         this.state = state;
     }
 
-
-    public Address(String fileAdress) {
-        this.fileAdress = fileAdress;
+    public Address(String street, int zipcode, City city, State state) {
+        this.street = street;
+        this.zipcode = zipcode;
+        this.city = city;
+        this.state = state;
     }
+
 
     /**
      * Gets street.
@@ -153,18 +145,25 @@ public class Address {
     }
 
     /**
-
-     Returns a string representation of the address in the format "street,city,district,state,zipcode".
-     @return a string representation of the address.
+     * Returns a string representation of the address in the format "street,city,district,state,zipcode".
+     *
+     * @return a string representation of the address.
      */
-    public String toString(){
-        return String.format("%s, %s, %s, %s, %s",street,city,district,state,zipcode);
+    public String toString() {
+        String toString = "";
+        if (district != null) {
+            toString = String.format("%s, %s, %s, %s, %s", street, city, district, state, zipcode);
+        } else {
+            toString = String.format("%s, %s, %s, %s", street, city, state, zipcode);
+        }
+        return toString;
     }
-    /**
 
-     Indicates whether some other object is "equal to" this one.
-     @param o the object to compare this address against.
-     @return true if the given object represents an Address equivalent to this address, false otherwise.
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     *
+     * @param o the object to compare this address against.
+     * @return true if the given object represents an Address equivalent to this address, false otherwise.
      */
     @Override
     public boolean equals(Object o) {
@@ -173,10 +172,11 @@ public class Address {
         Address address = (Address) o;
         return zipcode == address.zipcode && street.equals(address.street) && district.equals(address.district) && city.equals(address.city) && state.equals(address.state);
     }
-    /**
 
-     Returns a hash code value for the address.
-     @return a hash code value for the address.
+    /**
+     * Returns a hash code value for the address.
+     *
+     * @return a hash code value for the address.
      */
     @Override
     public int hashCode() {

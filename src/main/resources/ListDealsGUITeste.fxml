@@ -26,10 +26,10 @@
         </Label>
         <ChoiceBox fx:id="filterChoice" layoutX="151.0" layoutY="18.0" prefWidth="150.0" style="-fx-background-color: transparent;" />
       <Label layoutX="104.0" layoutY="22.0" text="Sort By:" />
-      <Pagination fx:id="photosPagination" layoutX="336.0" layoutY="153.0" pageCount="0" prefHeight="402.0" prefWidth="477.0" />
-      <TextArea fx:id="textArea" layoutX="811.0" layoutY="153.0" prefHeight="402.0" prefWidth="291.0">
+      <Pagination fx:id="photosPagination" layoutX="321.0" layoutY="160.0" pageCount="0" prefHeight="370.0" prefWidth="413.0" />
+      <TextArea fx:id="textArea" layoutX="734.0" layoutY="153.0" prefHeight="402.0" prefWidth="362.0">
          <font>
-            <Font name="System Bold Italic" size="15.0" />
+            <Font name="System Bold Italic" size="11.0" />
          </font>
       </TextArea>
       <Label layoutX="104.0" layoutY="51.0" text="Offers">

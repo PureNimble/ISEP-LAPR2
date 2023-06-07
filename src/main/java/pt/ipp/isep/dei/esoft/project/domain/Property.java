@@ -33,6 +33,12 @@ public class Property {
 
     }
 
+    public Property(int distanceFromCityCenter, int area, Address address) {
+        this.distanceFromCityCenter = distanceFromCityCenter;
+        this.area = area;
+        this.address = address;
+    }
+
     public Property(Residence residence) {
         this.residence = residence;
     }
@@ -108,7 +114,13 @@ public class Property {
      * @return A string representation of the Property object, including its area and distance from the city center.
      */
     public String toString() {
-        return String.format("Area: %s\n" + "Distance From The City Center: %s\n" + "Photos: %s\n" + "Address: %s\n", area, distanceFromCityCenter, photos.getUrl(), address);
+        String toString = "";
+        if (photos != null) {
+           toString = String.format("Area: %s\n" + "Distance From The City Center: %s\n" + "Photos: %s\n" + "Address: %s\n", area, distanceFromCityCenter, photos.getUrl(), address);
+        }else {
+            toString = String.format("Area: %s\n" + "Distance From The City Center: %s\n" +  "Address: %s\n", area, distanceFromCityCenter, address);
+        }
+        return toString;
     }
 
     /**

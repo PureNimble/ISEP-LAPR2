@@ -16,8 +16,6 @@ public class PublishedAnnouncement {
     private int durationOfContract;
     private Employee agent;
 
-    private AnnouncementRequest announcementRequest;
-
     /**
      * Constructs a new PublishedAnnouncement object for sale.
      *
@@ -28,7 +26,6 @@ public class PublishedAnnouncement {
      * @param comission      the commission chosen by the client
      * @param business       the business representing the client
      * @param agent          the agent
-     * @param address        the address
      */
     public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, Employee agent) {
         this.typeOfBusiness = typeOfBusiness;
@@ -51,7 +48,6 @@ public class PublishedAnnouncement {
      * @param business           the business representing the client
      * @param durationOfContract the duration of the rental contract
      * @param agent              the agent
-     * @param address        the address
      */
     public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent) {
         this.date = date;
@@ -62,17 +58,6 @@ public class PublishedAnnouncement {
         this.business = business;
         this.durationOfContract = durationOfContract;
         this.agent = agent;
-    }
-
-    /**
-     * Instantiates a new Published announcement.
-     *
-     * @param comission           the comission
-     * @param announcementRequest the announcement request
-     */
-    public PublishedAnnouncement(Comission comission, AnnouncementRequest announcementRequest) {
-        this.comission = comission;
-        this.announcementRequest = announcementRequest;
     }
 
     /**
@@ -92,14 +77,6 @@ public class PublishedAnnouncement {
         this.comission = comission;
     }
 
-    /**
-     * Gets announcement request.
-     *
-     * @return the announcement request
-     */
-    public AnnouncementRequest getAnnouncementRequest() {
-        return announcementRequest;
-    }
 
     /**
      * Gets property.
@@ -252,15 +229,7 @@ public class PublishedAnnouncement {
     public void setAgent(Employee agent) {
         this.agent = agent;
     }
-    
-    /**
-     * Sets announcement request.
-     *
-     * @param announcementRequest the announcement request
-     */
-    public void setAnnouncementRequest(AnnouncementRequest announcementRequest) {
-        this.announcementRequest = announcementRequest;
-    }
+
 
     /**
      * Returns a string representation of the announcement for sale.

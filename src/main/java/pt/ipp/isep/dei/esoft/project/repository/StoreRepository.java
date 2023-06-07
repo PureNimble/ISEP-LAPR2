@@ -1,9 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
-import pt.ipp.isep.dei.esoft.project.domain.Address;
-import pt.ipp.isep.dei.esoft.project.domain.Employee;
-import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
-import pt.ipp.isep.dei.esoft.project.domain.Store;
+import pt.ipp.isep.dei.esoft.project.domain.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -127,7 +124,7 @@ public class StoreRepository {
 
         int aux = 0;
         int id = 0;
-        Address address;
+        Address address = null;
         String designation;
         long phoneNumber;
         String email;
@@ -136,7 +133,24 @@ public class StoreRepository {
                 if (aux > 0){
                     id = Integer.parseInt(storeInformations[0]);
                     designation = storeInformations[1];
-                    address = new Address(storeInformations[2]);
+                    String[] addressInformations =  storeInformations[2].split(",");
+
+                    if (addressInformations.length < 5){
+                       String street = addressInformations[0];
+                       City city = new City(addressInformations[1]);
+                       State state = new State(addressInformations[2]);
+                       int zipCode = Integer.parseInt(addressInformations[3]);
+
+                       address = new Address(street,zipCode,city,state);
+                    }else {
+                        String street = addressInformations[0];
+                        City city = new City(addressInformations[1]);
+                        District district = new District(addressInformations[2]);
+                        State state = new State(addressInformations[3]);
+                        int zipCode = Integer.parseInt(addressInformations[4]);
+
+                        address = new Address(street,zipCode,district,city,state);
+                    }
                     phoneNumber = Long.parseLong(storeInformations[3].replaceAll("-",""));
                     email = storeInformations[4];
 

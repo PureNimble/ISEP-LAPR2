@@ -32,6 +32,15 @@ public class Employee extends Person {
         this.roles = roles;
     }
 
+
+    public Employee(String email, int passportNumber, int taxNumber, String name, long phoneNumber, Store store,
+                    List<Role> roles) {
+        super(email, passportNumber, taxNumber, name,phoneNumber);
+        this.store = store;
+        this.roles = roles;
+    }
+
+
     /**
      * Returns the Store where the employee works.
      *

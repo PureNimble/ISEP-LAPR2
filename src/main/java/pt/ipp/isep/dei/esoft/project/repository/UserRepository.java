@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
-import pt.ipp.isep.dei.esoft.project.domain.Client;
-import pt.ipp.isep.dei.esoft.project.domain.Employee;
+import pt.ipp.isep.dei.esoft.project.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,4 +69,40 @@ public class UserRepository {
         }
         return null;
     }
+
+    public void createOwnerByFileReading(ArrayList<String[]> arrayListOwnerInformations) {
+
+        int aux = 0;
+        String name;
+        int passportNumber;
+        long phoneNumber;
+        int taxNumber;
+        String email;
+
+        for (String[] ownerInformations : arrayListOwnerInformations) {
+            if (aux > 0){
+                name = ownerInformations[1];
+                passportNumber = Integer.parseInt(ownerInformations[2]);
+                taxNumber = Integer.parseInt(ownerInformations[3].replaceAll("-",""));
+                email = ownerInformations[4];
+                phoneNumber = Long.parseLong(ownerInformations[5].replaceAll("-",""));
+
+
+                Client client = new Client(email,passportNumber,taxNumber,name,phoneNumber);
+
+                if (!clients.contains(client))
+                    clients.add(client);
+            }else {
+                aux = 1;
+            }
+
+
+        }
+
+
+    }
+
+
+
+
 }

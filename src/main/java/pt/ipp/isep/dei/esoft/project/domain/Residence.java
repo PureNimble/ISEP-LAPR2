@@ -38,6 +38,16 @@ public class Residence extends Property{
         this.availableEquipment = availableEquipment;
     }
 
+    public Residence(int area, int distanceFromCityCenter, int numberOfBedrooms, int numberOfBathrooms, int parkingSpaces, AvailableEquipment availableEquipment,Address address) {
+        super(area, distanceFromCityCenter,address);
+        this.numberOfBedrooms = numberOfBedrooms;
+        this.numberOfBathrooms = numberOfBathrooms;
+        this.parkingSpaces = parkingSpaces;
+        this.availableEquipment = availableEquipment;
+    }
+
+
+
     /**
      * Gets number of bedrooms.
      *
