@@ -2,11 +2,14 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.ListMessageController;
 import pt.ipp.isep.dei.esoft.project.domain.Message;
+import pt.ipp.isep.dei.esoft.project.ui.console.utils.MergeSort;
 
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 import java.util.Scanner;
 
 public class ListMessageUI implements Runnable{
@@ -28,7 +31,24 @@ public class ListMessageUI implements Runnable{
 
     if (beginDate != null && endDate != null) {
         List<Message> bookingRequests = controller.getBookingRequestsForPeriod(beginDate, endDate);
-        controller.sortBookingRequests(bookingRequests);
+        try (InputStream input = new FileInputStream("C:\\Users\\35193\\Desktop\\PII\\config.properties")) {
+
+            Properties prop = new Properties();
+            prop.load(input);
+            String sorting = (String) prop.getProperty("sortingAlgorithm");
+
+            if(sorting.equals("collectionsSort")){
+                controller.sortBookingRequests(bookingRequests);
+            } else if(sorting.equals("mergeSort")) {
+                MergeSort m = new MergeSort(bookingRequests);
+                m.divideArrayElements(0, bookingRequests.size() -1);
+                bookingRequests = m.getArrayAfterSorting();
+            }else {
+                controller.sortBookingRequests(bookingRequests);
+            }
+        } catch (IOException io) {
+            controller.sortBookingRequests(bookingRequests);
+        }
 
         System.out.println("Booking Requests for the specified period (sorted by date in ascending order):");
         for (Message message : bookingRequests) {
@@ -56,5 +76,8 @@ public class ListMessageUI implements Runnable{
             return null;
         }
     }
+
+
+
 
 }

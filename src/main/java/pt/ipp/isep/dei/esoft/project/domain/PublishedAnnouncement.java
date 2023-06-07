@@ -28,7 +28,6 @@ public class PublishedAnnouncement {
      * @param comission      the commission chosen by the client
      * @param business       the business representing the client
      * @param agent          the agent
-     * @param address        the address
      */
     public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, Employee agent) {
         this.typeOfBusiness = typeOfBusiness;
@@ -51,7 +50,6 @@ public class PublishedAnnouncement {
      * @param business           the business representing the client
      * @param durationOfContract the duration of the rental contract
      * @param agent              the agent
-     * @param address        the address
      */
     public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent) {
         this.date = date;

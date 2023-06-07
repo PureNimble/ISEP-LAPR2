@@ -225,4 +225,7 @@ public class Repositories {
     public void  setOfferRepository (OfferRepository offerRepository) {
         this.offerRepository = offerRepository;
     }
+
+
+
 }
