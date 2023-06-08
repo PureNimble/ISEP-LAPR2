@@ -129,8 +129,7 @@ public class Offer {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Offer)) return false;
-        Offer offer = (Offer) o;
+        if (!(o instanceof Offer offer)) return false;
         return Double.compare(offer.orderAmount, orderAmount) == 0 && Objects.equals(name, offer.name) && Objects.equals(client, offer.client) && Objects.equals(publishedAnnouncement, offer.publishedAnnouncement) && offerState == offer.offerState;
     }
 

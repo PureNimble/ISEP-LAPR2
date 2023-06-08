@@ -28,9 +28,7 @@ public class PlaceOrderUI implements Runnable {
 
      Executes the logic for placing an order.
      */
-    @Override
     public void run() {
-
         System.out.println();
         System.out.println("Place an Order: ");
         System.out.println();
@@ -40,19 +38,22 @@ public class PlaceOrderUI implements Runnable {
         Client client = controller.getClientEmail();
         String clientName = requestClientName();
 
-        // Check if the client has any pending offers
+        if (client == null) {
+            System.out.println("Invalid client. Please make sure you are logged in.");
+            return;
+        }
+
         List<Offer> pendingOffers = controller.getPendingOffersByClientEmail(client.getEmail());
         if (!pendingOffers.isEmpty()) {
             System.out.println("Please wait for your previous offer to be accepted or denied before making another one.");
             return;
         }
 
-        // Check if the offer amount is valid
         if (offer <= publishedAnnouncement.getBusiness().getPrice()) {
             if (submitData(clientName, client, publishedAnnouncement, offer, OfferState.pending).isEmpty()) {
                 System.out.println("The offer amount submitted has already been posted for this property. Please contact the agent that is responsible for this property.");
             } else {
-                System.out.println("\n\nOffer sent with success!\n\n");
+                System.out.println("\n\nOffer sent successfully!\n\n");
             }
         } else {
             System.out.println("Invalid offer amount. The offer amount must be equal to or lower than the property price.");
