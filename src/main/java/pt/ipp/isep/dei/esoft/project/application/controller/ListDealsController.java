@@ -42,14 +42,14 @@ public class ListDealsController {
     public List<Offer> getDealsByAscendingAreaSortSelection(){
         OfferRepository offerRepository = getOfferRepository();
 
-        return offerRepository.getOffersByAreaAscendingUsingBubbleSortAlgorithm();
+        return offerRepository.getOffersByAreaAscendingUsingSortSelection();
 
     }
 
     public List<Offer> getDealsByDescendingAreaSortSelection(){
         OfferRepository offerRepository = getOfferRepository();
 
-        return offerRepository.getOffersByAreaDescendingUsingBubbleSortAlgorithm();
+        return offerRepository.getOffersByAreaDescendingUsingSortSelection();
 
     }
 

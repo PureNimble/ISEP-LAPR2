@@ -7,9 +7,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.ListDealsGUITeste">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: #888888;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.ListDealsGUITeste">
     <children>
-        <TableView fx:id="table" layoutY="89.0" onMouseClicked="#clickItem" prefHeight="511.0" prefWidth="333.0" style="-fx-background-color: transparent;" stylesheets="@listDealsGUICSS.css">
+      <AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="64.0" prefWidth="1100.0" style="-fx-background-color: white; -fx-border-width: 0px 0px 6px 0px; -fx-border-color: black;">
+         <children>
+              <Label layoutX="412.0" layoutY="9.0" prefHeight="40.0" prefWidth="345.0" text="    List of deals Made">
+                  <font>
+                      <Font name="Impact" size="37.0" />
+                  </font>
+              </Label>
+            <Label layoutX="37.0" layoutY="21.0" text="Sort By:">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
+              <ChoiceBox fx:id="filterChoice" layoutX="54.0" layoutY="17.0" prefWidth="150.0" style="-fx-background-color: transparent;" />
+            <ChoiceBox fx:id="ascendOrDescendChoice" layoutX="216.0" layoutY="18.0" prefWidth="150.0" style="-fx-background-color: white;" visible="false" />
+         </children>
+      </AnchorPane>
+        <TableView fx:id="table" layoutY="111.0" onMouseClicked="#clickItem" prefHeight="489.0" prefWidth="333.0" style="-fx-background-color: transparent;" stylesheets="@listDealsGUICSS.css">
             <columns>
                 <TableColumn fx:id="orderAmount" prefWidth="57.0" sortable="false" text="ID" />
                 <TableColumn fx:id="name" minWidth="0.0" prefWidth="94.0" sortable="false" text="Order Amount" />
@@ -19,20 +35,13 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
         </TableView>
-        <Label layoutX="409.0" layoutY="11.0" prefHeight="40.0" prefWidth="282.0" text="List of deals Made">
-            <font>
-                <Font name="Arial Black" size="27.0" />
-            </font>
-        </Label>
-        <ChoiceBox fx:id="filterChoice" layoutX="92.0" layoutY="31.0" prefWidth="150.0" style="-fx-background-color: transparent;" />
-      <Label layoutX="43.0" layoutY="35.0" text="Sort By:" />
       <Pagination fx:id="photosPagination" layoutX="321.0" layoutY="160.0" pageCount="0" prefHeight="370.0" prefWidth="413.0" visible="false" />
       <TextArea fx:id="textArea" layoutX="734.0" layoutY="153.0" prefHeight="402.0" prefWidth="362.0" visible="false">
          <font>
             <Font name="System Bold Italic" size="11.0" />
          </font>
       </TextArea>
-      <Label layoutX="104.0" layoutY="51.0" text="Offers">
+      <Label layoutX="112.0" layoutY="68.0" text="Offers">
          <font>
             <Font name="Arial Black" size="28.0" />
          </font>
@@ -42,7 +51,6 @@
             <Font name="Arial Black" size="39.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="ascendOrDescendChoice" layoutX="242.0" layoutY="31.0" prefWidth="150.0" style="-fx-background-color: white;" visible="false" />
     </children>
 
 </AnchorPane>
