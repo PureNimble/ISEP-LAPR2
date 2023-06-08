@@ -28,14 +28,14 @@ public class ListDealsController {
     public List<Offer> getDealsByAscendingArea(){
         OfferRepository offerRepository = getOfferRepository();
 
-        return offerRepository.getOffersByAreaAscending();
+        return offerRepository.getOffersByAreaAscendingUsingBubbleSortAlgorithm();
 
     }
 
     public List<Offer> getDealsByDescendinggArea(){
         OfferRepository offerRepository = getOfferRepository();
 
-        return offerRepository.getOffersByAreaDescending();
+        return offerRepository.getOffersByAreaDescendingUsingBubbleSortAlgorithm();
 
     }
 

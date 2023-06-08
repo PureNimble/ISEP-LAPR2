@@ -109,7 +109,7 @@ public class OfferRepository {
         return resultList;
     }
 
-    public List<Offer> getOffersByAreaAscending() {
+    public List<Offer> getOffersByAreaAscendingUsingBubbleSortAlgorithm() {
         List<Offer> resultList = new ArrayList<Offer>();
 
         for (Offer offer : offers) {
@@ -133,7 +133,7 @@ public class OfferRepository {
         return resultList;
     }
 
-    public List<Offer> getOffersByAreaDescending() {
+    public List<Offer> getOffersByAreaDescendingUsingBubbleSortAlgorithm() {
         List<Offer> resultList = new ArrayList<Offer>();
 
         for (Offer offer : offers) {
@@ -155,6 +155,61 @@ public class OfferRepository {
         }
         return resultList;
     }
+
+    public List<Offer> getOffersByAreaAscendingUsingSortSelection() {
+        List<Offer> resultList = new ArrayList<Offer>();
+
+        for (Offer offer : offers) {
+            if (offer.getOfferState().equals(OfferState.accepted)) {
+                resultList.add(offer);
+            }
+        }
+
+        Offer aux;
+        int min_Index;
+
+        for (int i = 0; i < resultList.size() - 1; i++) {
+            min_Index = i;
+            for (int j = i+1; j < resultList.size(); j++) {
+                if (resultList.get(j).getPublishedAnnouncement().getProperty().getArea() < resultList.get(min_Index).getPublishedAnnouncement().getProperty().getArea()) {
+                  min_Index = j;
+                }
+            }
+            aux = resultList.get(min_Index);
+            resultList.set(min_Index,resultList.get(i));
+            resultList.set(i,aux);
+        }
+
+        return resultList;
+    }
+
+    public List<Offer> getOffersByAreaDescendingUsingSortSelection() {
+        List<Offer> resultList = new ArrayList<Offer>();
+
+        for (Offer offer : offers) {
+            if (offer.getOfferState().equals(OfferState.accepted)) {
+                resultList.add(offer);
+            }
+        }
+
+        Offer aux;
+        int max_Index;
+
+        for (int i = 0; i < resultList.size() - 1; i++) {
+            max_Index = i;
+            for (int j = i+1; j < resultList.size(); j++) {
+                if (resultList.get(j).getPublishedAnnouncement().getProperty().getArea() > resultList.get(max_Index).getPublishedAnnouncement().getProperty().getArea()) {
+                    max_Index = j;
+                }
+            }
+            aux = resultList.get(max_Index);
+            resultList.set(max_Index,resultList.get(i));
+            resultList.set(i,aux);
+        }
+        return resultList;
+    }
+
+
 
     public List<Offer> getOffersByMostRecent () {
             List<Offer> resultList = new ArrayList<Offer>();
