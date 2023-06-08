@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.esoft.project.ui.console.utils;
+package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.io.File;
 import java.io.FileWriter;
