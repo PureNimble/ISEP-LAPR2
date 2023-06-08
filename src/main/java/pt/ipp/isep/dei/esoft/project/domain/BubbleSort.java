@@ -1,20 +1,41 @@
-package pt.ipp.isep.dei.esoft.project.ui.console.utils;
-import pt.ipp.isep.dei.esoft.project.domain.Message;
+package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MergeSort {
+/**
+ * The type Bubble sort.
+ *
+ * @param <T> the type parameter
+ */
+public class BubbleSort<T> implements SortAlgorithm<T>  {
+
     private final List<Message> arrayToSort;
 
-    public MergeSort(List<Message> arrayToSort) {
+    /**
+     * Instantiates a new Bubble sort.
+     *
+     * @param arrayToSort the array to sort
+     */
+    public BubbleSort(List<Message> arrayToSort) {
         this.arrayToSort = arrayToSort;
     }
 
+    /**
+     * Gets array after sorting.
+     *
+     * @return the array after sorting
+     */
     public List<Message> getArrayAfterSorting() {
         return arrayToSort;
     }
 
+    /**
+     * Divide array elements.
+     *
+     * @param indexStart the index start
+     * @param indexEnd   the index end
+     */
     public void divideArrayElements(int indexStart, int indexEnd) {
 
         if (indexStart < indexEnd && (indexEnd - indexStart) >= 1) {
@@ -27,6 +48,13 @@ public class MergeSort {
         }
     }
 
+    /**
+     * Merge array elements.
+     *
+     * @param indexStart  the index start
+     * @param indexMiddle the index middle
+     * @param indexEnd    the index end
+     */
     public void mergeArrayElements(int indexStart, int indexMiddle, int indexEnd) {
 
         List<Message> tempArray = new ArrayList<>();
@@ -66,4 +94,10 @@ public class MergeSort {
         }
 
     }
+
+    @Override
+    public List<T> sort(List<T> arrayToSort) {
+        return null;
+    }
+
 }

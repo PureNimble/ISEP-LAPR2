@@ -4,9 +4,8 @@ import pt.ipp.isep.dei.esoft.project.application.controller.PublishAnnouncementC
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.UserRepository;
-import pt.ipp.isep.dei.esoft.project.ui.console.utils.SendSms;
+import pt.ipp.isep.dei.esoft.project.domain.SendSms;
 
-import javax.naming.NamingEnumeration;
 import java.util.*;
 
 /**
@@ -220,7 +219,20 @@ public class PublishAnnouncementUI implements Runnable {
             SendSms sendSms = new SendSms();
 
             String toWriteFile = "";
-            toWriteFile = toWriteFile.concat(publishedAnnouncement.get().getDate().toString()).concat("\n").concat(publishedAnnouncement.get().getAgent().getName()).concat("\n").concat(String.valueOf(publishedAnnouncement.get().getAgent().getPhoneNumber()));
+            toWriteFile = toWriteFile.concat("Your property located in ").
+                    concat(publishedAnnouncement.get().getProperty().getAddress().toString()).
+                    concat(" has been published on our website since ").
+                    concat(publishedAnnouncement.get().getDate().toString()).
+                    concat(". \nThe agent ").
+                    concat(publishedAnnouncement.get().getAgent().getName()).
+                    concat(" with phone number ").
+                    concat(String.valueOf(publishedAnnouncement.get().getAgent().getPhoneNumber())).
+                    concat(" will be responsible for your announcement. \nIf you have any doubts do not hesitate to contact us.");
+
+
+            //METER O OWNER ( NUEMERO DE TELEFONE E EMAIL NA PROPRIEDADE)
+
+
             sendSms.createFile(publishedAnnouncement.get().getProperty().getAddress().toString());
             sendSms.writeFile(publishedAnnouncement.get().getProperty().getAddress().toString(), toWriteFile);
         }

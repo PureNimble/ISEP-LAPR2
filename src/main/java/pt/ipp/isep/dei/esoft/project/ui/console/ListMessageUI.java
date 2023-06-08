@@ -1,8 +1,9 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.ListMessageController;
+import pt.ipp.isep.dei.esoft.project.domain.BubbleSort;
 import pt.ipp.isep.dei.esoft.project.domain.Message;
-import pt.ipp.isep.dei.esoft.project.ui.console.utils.MergeSort;
+import pt.ipp.isep.dei.esoft.project.domain.MergeSort;
 
 import java.io.*;
 import java.text.ParseException;
@@ -37,8 +38,10 @@ public class ListMessageUI implements Runnable{
             prop.load(input);
             String sorting = (String) prop.getProperty("sortingAlgorithm");
 
-            if(sorting.equals("collectionsSort")){
-                controller.sortBookingRequests(bookingRequests);
+            if(sorting.equals("bubbleSort")){
+                BubbleSort m = new BubbleSort(bookingRequests);
+                m.divideArrayElements(0, bookingRequests.size() -1);
+                bookingRequests = m.getArrayAfterSorting();
             } else if(sorting.equals("mergeSort")) {
                 MergeSort m = new MergeSort(bookingRequests);
                 m.divideArrayElements(0, bookingRequests.size() -1);
@@ -55,16 +58,6 @@ public class ListMessageUI implements Runnable{
             System.out.println(message);
         }
     }
-
-//    List<Message> messages = controller.getMessage();
-//      StringBuilder st = new StringBuilder();
-//
-//        for (Message m : messages) {
-//            st.append(m.toString());
-//            st.append("\n");
-//        }
-//
-//        System.out.println(st);
 }
 
     private Date parseDate(String dateString) {
