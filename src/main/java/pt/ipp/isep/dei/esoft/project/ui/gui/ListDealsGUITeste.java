@@ -35,7 +35,9 @@ public class ListDealsGUITeste implements Initializable {
     private Pagination photosPagination;
 
     @FXML
-    private ChoiceBox<?> filterChoice;
+    private ChoiceBox<String> filterChoice;
+
+    private String[] filterCriteria = {"Sort Selection Algorithm", "Bubble Sort Algorithm"};
 
     @FXML
     private TableView<Object> table;
@@ -46,6 +48,12 @@ public class ListDealsGUITeste implements Initializable {
     @FXML
     private Label announcementLabel;
 
+
+    @FXML
+    private ChoiceBox<String> ascendOrDescendChoice;
+
+
+    private String[] filterAscendOrDescend = {"Ascending", "Descending"};
 
     private final ListDealsController controller = new ListDealsController();
 
@@ -67,11 +75,16 @@ public class ListDealsGUITeste implements Initializable {
 
         table.setItems(listDeals);
 
+        filterChoice.getItems().addAll(filterCriteria);
+        ascendOrDescendChoice.getItems().addAll(filterAscendOrDescend);
+        filterChoice.setOnAction(this::getCriteria);
+
     }
 
 
     @FXML
     public void clickItem(MouseEvent mouseEvent) throws FileNotFoundException {
+
 
         System.out.println("" + table.getSelectionModel().getSelectedItem());
 
@@ -115,7 +128,7 @@ public class ListDealsGUITeste implements Initializable {
 
         announcementLabel.setVisible(true);
 
-        createPage(0);
+
 
     }
 
@@ -139,5 +152,57 @@ public class ListDealsGUITeste implements Initializable {
         }
         return vBox;
     }
+
+    private void getCriteria(javafx.event.ActionEvent actionEvent) {
+
+        String choiceOption = filterChoice.getValue();
+
+
+        if (choiceOption.equals("Sort Selection Algorithm")) {
+            listDeals.clear();
+            ascendOrDescendChoice.setVisible(true);
+            ascendOrDescendChoice.setOnAction(this::getOrderSelectionSort);
+        } else if (choiceOption.equals("Bubble Sort Algorithm")){
+            listDeals.clear();
+            ascendOrDescendChoice.setVisible(true);
+            ascendOrDescendChoice.setOnAction(this::getOrderBubbleSort);
+        }
+
+    }
+
+
+
+
+    private void getOrderBubbleSort(javafx.event.ActionEvent actionEvent) {
+
+        String choiceOption = ascendOrDescendChoice.getValue();
+
+        if (choiceOption.equals("Descending")) {
+            listDeals.clear();
+            listDeals.addAll(controller.getDealsByDescendingAreaBubbleSort());
+        } else if (choiceOption.equals("Ascending")){
+            listDeals.clear();
+            listDeals.addAll(controller.getDealsByAscendingAreaBubbleSort());
+
+        }
+
+    }
+
+    private void getOrderSelectionSort(javafx.event.ActionEvent actionEvent) {
+
+        String choiceOption = ascendOrDescendChoice.getValue();
+
+        if (choiceOption.equals("Descending")) {
+            listDeals.clear();
+            listDeals.addAll(controller.getDealsByDescendingAreaSortSelection());
+        } else if (choiceOption.equals("Ascending")){
+            listDeals.clear();
+            listDeals.addAll(controller.getDealsByAscendingAreaSortSelection());
+
+        }
+
+    }
+
+
 
 }

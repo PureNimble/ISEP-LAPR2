@@ -24,10 +24,10 @@
                 <Font name="Arial Black" size="27.0" />
             </font>
         </Label>
-        <ChoiceBox fx:id="filterChoice" layoutX="151.0" layoutY="18.0" prefWidth="150.0" style="-fx-background-color: transparent;" />
-      <Label layoutX="104.0" layoutY="22.0" text="Sort By:" />
-      <Pagination fx:id="photosPagination" layoutX="321.0" layoutY="160.0" pageCount="0" prefHeight="370.0" prefWidth="413.0" />
-      <TextArea fx:id="textArea" layoutX="734.0" layoutY="153.0" prefHeight="402.0" prefWidth="362.0">
+        <ChoiceBox fx:id="filterChoice" layoutX="92.0" layoutY="31.0" prefWidth="150.0" style="-fx-background-color: transparent;" />
+      <Label layoutX="43.0" layoutY="35.0" text="Sort By:" />
+      <Pagination fx:id="photosPagination" layoutX="321.0" layoutY="160.0" pageCount="0" prefHeight="370.0" prefWidth="413.0" visible="false" />
+      <TextArea fx:id="textArea" layoutX="734.0" layoutY="153.0" prefHeight="402.0" prefWidth="362.0" visible="false">
          <font>
             <Font name="System Bold Italic" size="11.0" />
          </font>
@@ -42,6 +42,7 @@
             <Font name="Arial Black" size="39.0" />
          </font>
       </Label>
+      <ChoiceBox fx:id="ascendOrDescendChoice" layoutX="242.0" layoutY="31.0" prefWidth="150.0" style="-fx-background-color: white;" visible="false" />
     </children>
 
 </AnchorPane>

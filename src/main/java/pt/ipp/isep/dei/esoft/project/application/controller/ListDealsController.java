@@ -25,14 +25,28 @@ public class ListDealsController {
         return offerRepository;
     }
 
-    public List<Offer> getDealsByAscendingArea(){
+    public List<Offer> getDealsByAscendingAreaBubbleSort(){
         OfferRepository offerRepository = getOfferRepository();
 
         return offerRepository.getOffersByAreaAscendingUsingBubbleSortAlgorithm();
 
     }
 
-    public List<Offer> getDealsByDescendinggArea(){
+    public List<Offer> getDealsByDescendingAreaBubbleSort(){
+        OfferRepository offerRepository = getOfferRepository();
+
+        return offerRepository.getOffersByAreaDescendingUsingBubbleSortAlgorithm();
+
+    }
+
+    public List<Offer> getDealsByAscendingAreaSortSelection(){
+        OfferRepository offerRepository = getOfferRepository();
+
+        return offerRepository.getOffersByAreaAscendingUsingBubbleSortAlgorithm();
+
+    }
+
+    public List<Offer> getDealsByDescendingAreaSortSelection(){
         OfferRepository offerRepository = getOfferRepository();
 
         return offerRepository.getOffersByAreaDescendingUsingBubbleSortAlgorithm();
@@ -49,14 +63,14 @@ public class ListDealsController {
     public List<OfferDto> toDtoDescendingArea(){
         OfferMapper offerMapper = new OfferMapper();
 
-      return offerMapper.toDto(getDealsByDescendinggArea());
+      return offerMapper.toDto(getDealsByDescendingAreaBubbleSort());
 
     }
 
     public List<OfferDto> toDtoAscendingArea(){
         OfferMapper offerMapper = new OfferMapper();
 
-        return offerMapper.toDto(getDealsByAscendingArea());
+        return offerMapper.toDto(getDealsByAscendingAreaBubbleSort());
 
     }
 

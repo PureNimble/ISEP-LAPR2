@@ -1,27 +1,19 @@
 package pt.ipp.isep.dei.esoft.project.ui.gui;
 
-import javafx.beans.Observable;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.Callback;
 import pt.ipp.isep.dei.esoft.project.application.controller.ListDealsController;
-import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 
 import java.awt.event.ActionEvent;
 import java.net.URL;
-import java.util.Date;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class ListDealsGUI implements Initializable {
@@ -372,10 +364,10 @@ public class ListDealsGUI implements Initializable {
 
         if (choiceOption.equals("Descending")) {
             listDeals.clear();
-            listDeals.addAll(controller.getDealsByDescendinggArea());
+            listDeals.addAll(controller.getDealsByDescendingAreaBubbleSort());
         } else if (choiceOption.equals("Ascending")){
             listDeals.clear();
-            listDeals.addAll(controller.getDealsByAscendingArea());
+            listDeals.addAll(controller.getDealsByAscendingAreaBubbleSort());
         }
 
     }
