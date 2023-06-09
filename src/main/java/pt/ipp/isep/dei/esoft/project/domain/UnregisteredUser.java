@@ -9,9 +9,14 @@ import java.util.Objects;
  of cookies this user has.
  */
 public class UnregisteredUser {
-
+    /**
+     * Represents the number of cookies.
+     * The value of the cookies can be modified by the program.
+     */
     private int cookies;
-
+    /**
+     * Default number of cookies when not explicitly specified.
+     */
     private static final int COOKIES_POR_OMISSAO = 0;
 
     /**

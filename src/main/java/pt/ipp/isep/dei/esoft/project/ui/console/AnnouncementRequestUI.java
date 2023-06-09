@@ -12,41 +12,124 @@ import java.util.*;
  */
 public class AnnouncementRequestUI implements Runnable {
 
+    /**
+     * Represents the controller for managing announcement requests.
+     */
     private final AnnouncementRequestController controller = new AnnouncementRequestController();
+
+    /**
+     * Represents the contract type of the property.
+     */
     private String contractType;
+
+    /**
+     * Represents the number of bedrooms in the property.
+     */
     private int numberOfBedrooms;
+
+    /**
+     * Represents the number of bathrooms in the property.
+     */
     private int numberOfBathrooms;
+
+    /**
+     * Represents the number of parking spaces available.
+     */
     private int parkingSpaces;
+
+    /**
+     * Represents the description of available equipment in the property.
+     */
     private String availableEquipmentDescription;
+
+    /**
+     * Represents the description of the property type.
+     */
     private String propertyTypeDescription;
+
+    /**
+     * Represents the distance of the property from the city center.
+     */
     private int distanceFromCityCenter;
+
+    /**
+     * Represents the area of the property.
+     */
     private int area;
+
+    /**
+     * Represents the presence of a basement in the property.
+     */
     private String basement;
+
+    /**
+     * Represents the presence of an inhabitable loft in the property.
+     */
     private String inhabitableLoft;
+
+    /**
+     * Represents the sun exposure of the property.
+     */
     private String sunExposure;
-    private String  responsibleAgent;
+
+    /**
+     * Represents the responsible agent for the announcement request.
+     */
+    private String responsibleAgent;
+
+    /**
+     * Represents the description of the state.
+     */
     private String stateDescription;
+
+    /**
+     * Represents the description of the district.
+     */
     private String districtDescription;
+
+    /**
+     * Represents the description of the city.
+     */
     private String cityDescription;
+
+    /**
+     * Represents the ZIP code of the property.
+     */
     private int zipCode;
+
+    /**
+     * Represents the street of the property.
+     */
     private String street;
 
+    /**
+     * Represents the description of the business.
+     */
     private double businessDescription;
 
+    /**
+     * Represents the date of the announcement request.
+     */
     private Date date;
 
+    /**
+     * Represents the duration of the contract for the property.
+     */
     private int durationOfContract;
 
+    /**
+     * Represents the ID of the announcement request.
+     */
     private String ID;
 
+    /**
+     * Represents the photos associated with the announcement request.
+     */
     private Photos photos;
     /**
      * Implements the Runnable interface method to run the Announcement Request functionality.
-     * <p>
      * Displays property types and available agents to the user and requests information such as the type of contract,
-     * <p>
      * the property information, and the responsible agent information. Then, submits the information to the controller
-     * <p>
      * to create a new announcement request and displays it to the user.
      */
     public void run() {
@@ -417,7 +500,11 @@ public class AnnouncementRequestUI implements Runnable {
         System.out.println("Sun Exposure: (North/South/West/East) ");
         return input.nextLine();
     }
-
+    /**
+     * Requests user input for photos and creates a new Photos object.
+     *
+     * @return The Photos object containing the list of URLs.
+     */
     private Photos requestPhotos() {
         Scanner input = new Scanner(System.in);
         List<String> listPhotos = new ArrayList<>();
@@ -587,10 +674,10 @@ public class AnnouncementRequestUI implements Runnable {
         }
     }
 
-    /* Displays a list of states and prompts the user to select one.
+    /** Displays a list of states and prompts the user to select one.
      *
      * @return the string description of the selected state.
-     */
+     **/
     private String displayAndSelectState() {
         //Display the list of task categories
         List<State> states = controller.getState();
@@ -703,7 +790,7 @@ public class AnnouncementRequestUI implements Runnable {
 
     }
 
-    /* Requests the zip code from the user and validates if it is a 5-digit integer.
+    /** Requests the zip code from the user and validates if it is a 5-digit integer.
      *
      * @return the integer zip code.
      */
@@ -794,7 +881,11 @@ public class AnnouncementRequestUI implements Runnable {
             i++;
         }
     }
-
+    /**
+     * Displays the city options for a given district.
+     *
+     * @param district The District object for which to display the city options.
+     */
     private void displayCityOptions(District district) {
         int i = 1;
 
@@ -803,7 +894,11 @@ public class AnnouncementRequestUI implements Runnable {
             i++;
         }
     }
-
+    /**
+     * Displays the district options for a given state.
+     *
+     * @param state The State object for which to display the district options.
+     */
     private void displayDistrictOptions(State state) {
         int i = 1;
         for (District district : state.getDistricts()) {
@@ -812,7 +907,11 @@ public class AnnouncementRequestUI implements Runnable {
 
         }
     }
-
+    /**
+     * Displays the state options for a given list of states.
+     *
+     * @param states The list of State objects for which to display the state options.
+     */
     private void displayStateOptions(List<State> states) {
         int i = 1;
 
@@ -822,7 +921,11 @@ public class AnnouncementRequestUI implements Runnable {
         }
     }
 
-
+    /**
+     * Prompts the user to add more photos.
+     *
+     * @return True if the user wants to add more photos, false otherwise.
+     */
     private boolean addMorePhotos(){
         Scanner input = new Scanner(System.in);
         System.out.println("\n1. Yes");
@@ -853,6 +956,4 @@ public class AnnouncementRequestUI implements Runnable {
         } while (choice < 0);
         return false;
     }
-
-
 }

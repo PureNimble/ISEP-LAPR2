@@ -10,26 +10,44 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
-
- The PlaceOrderUI class represents the user interface for placing an order.
-
- It implements the Runnable interface to support concurrent execution.
+ * The PlaceOrderUI class represents the user interface for placing an order.
+ * It implements the Runnable interface to support concurrent execution.
  */
 public class DisplayPropertiesUI implements Runnable {
-
+    /**
+     * Scanner instance for user input.
+     */
     private final Scanner input = new Scanner(System.in);
+    /**
+     * The DisplayPropertiesController instance used for retrieving and filtering property data.
+     */
     private final DisplayPropertiesController controller = new DisplayPropertiesController();
-
+    /**
+     * The type of property to search for.
+     */
     private String propertyType;
 
+    /**
+     * The number of rooms to search for.
+     */
     private int numberOfRooms;
-
+    /**
+     * The type of business associated with the property.
+     */
     private String businessType;
-
+    /**
+     * A flag indicating the search method to use.
+     */
     private boolean method;
-
+    /**
+     * The sorting option for the displayed properties.
+     */
     private int sorting;
-
+    /**
+     * Runs the property display user interface.
+     * Takes user input for property search criteria, retrieves the matching properties,
+     * and displays them according to the specified sorting option.
+     */
 
     @Override
     public void run() {
@@ -91,7 +109,11 @@ public class DisplayPropertiesUI implements Runnable {
         }
 
     }
-
+    /**
+     * Displays the options for accepting or declining.
+     *
+     * @return True if the user accepts, False if the user declines.
+     */
     private boolean acceptOrDecline(){
         System.out.println("\n1. Yes");
         System.out.println("2. No");
@@ -123,6 +145,9 @@ public class DisplayPropertiesUI implements Runnable {
         return false;
     }
 
+    /**
+     * Requests and filters the search criteria for properties.
+     */
     private void filterCriteria(){
 
         propertyType = requestPropertyType();
@@ -132,7 +157,11 @@ public class DisplayPropertiesUI implements Runnable {
         }
 
     }
-
+    /**
+     * Requests the property type from the user.
+     *
+     * @return The selected property type.
+     */
     private String requestPropertyType() {
         List<PropertyType> propertyTypes = controller.getPropertyType();
         int listSize = propertyTypes.size(), choice;
@@ -170,7 +199,11 @@ public class DisplayPropertiesUI implements Runnable {
             i++;
         }
     }
-
+    /**
+     * Requests the business type from the user.
+     *
+     * @return The selected business type.
+     */
     private String requestBusinessType() {
 
         List<TypeOfBusiness> typeOfBusinesses = controller.getTypeOfBusiness();
@@ -214,7 +247,11 @@ public class DisplayPropertiesUI implements Runnable {
             i++;
         }
     }
-
+    /**
+     * Requests the number of rooms from the user.
+     *
+     * @return The number of rooms.
+     */
     private int requestNumberOfRooms() {
 
         int roomNum;
@@ -235,7 +272,11 @@ public class DisplayPropertiesUI implements Runnable {
         return roomNum;
 
     }
-
+    /**
+     * Prompts the user to choose a sorting criteria.
+     *
+     * @return The chosen sorting criteria.
+     */
     private int sortingCriteria(){
         System.out.println("\nSorting Options: ");
         System.out.println("\n1. Price");
@@ -260,7 +301,11 @@ public class DisplayPropertiesUI implements Runnable {
         method = requestAscDes();
         return choice;
     }
-
+    /**
+     * Requests the sorting method from the user.
+     *
+     * @return The chosen sorting method.
+     */
     private boolean requestAscDes(){
         boolean meth = false;
         int choice;

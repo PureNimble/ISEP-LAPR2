@@ -8,7 +8,13 @@ import java.util.Objects;
  * The District class represents a district object that contains a name and a list of cities.
  */
 public class District {
+    /**
+     * The district associated with the object.
+     */
     private String district;
+    /**
+     * The list of cities associated with the object.
+     */
     private List<City> cities = new ArrayList<>();
 
     /**

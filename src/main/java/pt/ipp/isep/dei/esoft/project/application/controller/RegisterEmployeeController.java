@@ -8,28 +8,38 @@ import java.util.List;
 import java.util.Optional;
 
 /**
-
- The RegisterEmployeeController class is responsible for handling the registration of new employees in the system.
+ * The RegisterEmployeeController class is responsible for handling the registration of new employees in the system.
  */
 public class RegisterEmployeeController {
-
-    private RoleRepository roleRepository = null;
-
-    private AuthenticationRepository authenticationRepository = null;
-
-    private StoreRepository storeRepository = null;
-
-    private StateRepository stateRepository = null;
-
-    private EmployeeRepository employeeRepository = null;
-
-    private UserRepository userRepository = null;
     /**
-
-     Constructs a new RegisterEmployeeController object.
-     Initializes repositories using the respective getters.
+     * The RoleRepository instance.
      */
+    private RoleRepository roleRepository = null;
+    /**
+     * The AuthenticationRepository instance.
+     */
+    private AuthenticationRepository authenticationRepository = null;
+    /**
+     * The StoreRepository instance.
+     */
+    private StoreRepository storeRepository = null;
+    /**
+     * The StateRepository instance.
+     */
+    private StateRepository stateRepository = null;
+    /**
+     * The EmployeeRepository instance.
+     */
+    private EmployeeRepository employeeRepository = null;
+    /**
+     * The UserRepository instance.
+     */
+    private UserRepository userRepository = null;
 
+    /**
+     * Constructs a new RegisterEmployeeController object.
+     * Initializes repositories using the respective getters.
+     */
     public RegisterEmployeeController() {
         getRoleRepository();
         getAuthenticationRepository();
@@ -140,6 +150,7 @@ public class RegisterEmployeeController {
         return userRepository;
 
     }
+
     /**
      * Adds the given User to the UserRepository.
      *
@@ -172,14 +183,14 @@ public class RegisterEmployeeController {
     /**
      * Creates a new employee with the given parameters and associates it with a Store.
      *
-     * @param email the email address of the employee
-     * @param name the name of the employee
-     * @param phone the phone number of the employee
+     * @param email              the email address of the employee
+     * @param name               the name of the employee
+     * @param phone              the phone number of the employee
      * @param rolesByDescription the roles of the employee as a list of Role objects
      * @param storeByDescription the description of the Store to associate the employee with
-     * @param address the address of the employee
-     * @param passportNumber the passport number of the employee
-     * @param taxNumber the tax number of the employee
+     * @param address            the address of the employee
+     * @param passportNumber     the passport number of the employee
+     * @param taxNumber          the tax number of the employee
      * @return an optional containing the new employee, or an empty optional if the Store does not exist
      */
     public Optional<Employee> createEmployee(String email, String name,
@@ -234,7 +245,7 @@ public class RegisterEmployeeController {
      * Returns the City that matches the given description and District.
      *
      * @param cityDescription the description of the City to retrieve
-     * @param district the District that the City should belong to
+     * @param district        the District that the City should belong to
      * @return the City that matches the description and District, or null if not found
      */
     public City getCityByDescription(String cityDescription, District district) {
@@ -253,7 +264,7 @@ public class RegisterEmployeeController {
      * Returns the District that matches the given description and State.
      *
      * @param districtDescription the description of the District to retrieve
-     * @param state the State that the District should belong to
+     * @param state               the State that the District should belong to
      * @return the District that matches the description and State, or null if not found
      */
     public District getDistrictByDescription(String districtDescription,State state) {
@@ -267,8 +278,6 @@ public class RegisterEmployeeController {
     }
 
 
-
-
     /**
      * Returns a list of all Stores.
      *
@@ -278,6 +287,7 @@ public class RegisterEmployeeController {
         StoreRepository storeRepository = getStoreRepository();
         return storeRepository.getStores();
     }
+
     /**
      * Returns a list of all Employees.
      *
@@ -297,6 +307,7 @@ public class RegisterEmployeeController {
         StateRepository stateRepository = getStateRepository();
         return stateRepository.getStates();
     }
+
     /**
      * Returns a list of all Districts belonging to the given State.
      *
@@ -306,6 +317,7 @@ public class RegisterEmployeeController {
     public List<District> getDistrict(State state){
         return state.getDistricts();
     }
+
     /**
      * Returns a list of all Cities belonging to the given District.
      *
@@ -326,6 +338,14 @@ public class RegisterEmployeeController {
         return roleRepository.getRoles();
     }
 
+    /**
+     * Add user.
+     *
+     * @param name          the name
+     * @param employeeEmail the employee email
+     * @param password      the password
+     * @param rolesString   the roles string
+     */
     public void addUser(String name,String employeeEmail, String password, String[] rolesString){
         AuthenticationRepository authenticationRepository = getAuthenticationRepository();
         authenticationRepository.addUserWithRoles(name,employeeEmail,password,rolesString);

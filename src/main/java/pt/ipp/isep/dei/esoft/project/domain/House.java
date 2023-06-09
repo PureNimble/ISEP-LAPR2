@@ -39,6 +39,7 @@ public class House extends Residence {
      * @param inhabitableLoft        the inhabitable loft of the house
      * @param sunExposure            the sun exposure of the house
      * @param photos                 the photos
+     * @param address                the address
      */
     public House(int area, int distanceFromCityCenter, int numberOfBedrooms, int numberOfBathrooms, int parkingSpaces, AvailableEquipment availableEquipment, String basement, String inhabitableLoft, String sunExposure, Photos photos, Address address) {
         super(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, photos, address);
@@ -47,6 +48,20 @@ public class House extends Residence {
         this.sunExposure = sunExposure;
     }
 
+    /**
+     * Instantiates a new House.
+     *
+     * @param area                   the area
+     * @param distanceFromCityCenter the distance from city center
+     * @param numberOfBedrooms       the number of bedrooms
+     * @param numberOfBathrooms      the number of bathrooms
+     * @param parkingSpaces          the parking spaces
+     * @param availableEquipment     the available equipment
+     * @param basement               the basement
+     * @param inhabitableLoft        the inhabitable loft
+     * @param sunExposure            the sun exposure
+     * @param address                the address
+     */
     public House(int area, int distanceFromCityCenter, int numberOfBedrooms, int numberOfBathrooms, int parkingSpaces, AvailableEquipment availableEquipment, String basement, String inhabitableLoft, String sunExposure, Address address) {
         super(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, address);
         this.basement = basement;

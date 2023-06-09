@@ -16,21 +16,69 @@ import java.util.*;
  * It implements the Runnable interface to run the UI as a separate thread.
  */
 public class RegisterStoreUI implements Runnable {
+    /**
+     * Controller for registering a store.
+     */
     private final RegisterStoreController controller = new RegisterStoreController();
 
+    /**
+     * Controller for authentication operations.
+     */
     private final AuthenticationController authenticationController = new AuthenticationController();
 
+    /**
+     * Repository for authentication data.
+     */
     private final AuthenticationRepository authenticationRepository = new AuthenticationRepository();
 
+    /**
+     * The ID of the store.
+     */
     private int id;
+
+    /**
+     * The designation of the store.
+     */
     private String designation;
+
+    /**
+     * The email address of the store.
+     */
     private String email;
+
+    /**
+     * The phone number of the store.
+     */
     private long phoneNumber;
+
+    /**
+     * The description of the state where the store is located.
+     */
     private String stateDescription;
+
+    /**
+     * The description of the district where the store is located.
+     */
     private String districtDescription;
+
+    /**
+     * The description of the city where the store is located.
+     */
     private String cityDescription;
+
+    /**
+     * The zip code of the store's address.
+     */
     private int zipCode;
+
+    /**
+     * The street name of the store's address.
+     */
     private String street;
+
+    /**
+     * The listing of the store.
+     */
     private int listing;
 
     /**
@@ -76,11 +124,12 @@ public class RegisterStoreUI implements Runnable {
         }
 
     }
-
     /**
-     * Submits the employee data to the RegisterEmployeeController for processing.
-     *
-     * @param rolesDescriptions the list of role descriptions selected by the employee.
+     * Submits the data for store registration.
+     * Retrieves the corresponding state, district, and city based on their descriptions.
+     * Creates an address object with the provided street, zip code, district, city, and state.
+     * Registers a store with the provided data.
+     * Prints a success message if the store is registered successfully, or an error message otherwise.
      */
     private void submitData() {
 

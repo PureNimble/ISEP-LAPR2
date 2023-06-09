@@ -7,24 +7,21 @@ import java.util.List;
 import java.util.Optional;
 
 /**
-
- The TypeOfBusinessRepository class represents a repository for TypeOfBusiness objects.
-
- It provides methods to get a type of business by its description, add a type of business to the repository and retrieve a defensive copy of the list of types of businesses.
+ * The TypeOfBusinessRepository class represents a repository for TypeOfBusiness objects.
+ * It provides methods to get a type of business by its description, add a type of business to the repository and retrieve a defensive copy of the list of types of businesses.
  */
 public class TypeOfBusinessRepository {
-
+    /**
+     * Represents a list of types of businesses.
+     */
     private List<TypeOfBusiness> typeOfBusinesses = new ArrayList<>();
 
     /**
-
-     Gets a TypeOfBusiness object by its description.
-
-     @param typeOfBusinessDescription The description of the type of business to get.
-
-     @return The TypeOfBusiness object with the specified description.
-
-     @throws IllegalArgumentException if the type of business does not exist in the repository.
+     * Gets a TypeOfBusiness object by its description.
+     *
+     * @param typeOfBusinessDescription The description of the type of business to get.
+     * @return The TypeOfBusiness object with the specified description.
+     * @throws IllegalArgumentException if the type of business does not exist in the repository.
      */
     public TypeOfBusiness getTypeOfBusinessByDescription(String typeOfBusinessDescription){
 
@@ -44,12 +41,10 @@ public class TypeOfBusinessRepository {
     }
 
     /**
-
-     Adds a type of business to the repository if it is valid.
-
-     @param typeOfBusiness The TypeOfBusiness object to add to the repository.
-
-     @return An Optional object containing the added type of business if the operation is successful, empty Optional otherwise.
+     * Adds a type of business to the repository if it is valid.
+     *
+     * @param typeOfBusiness The TypeOfBusiness object to add to the repository.
+     * @return An Optional object containing the added type of business if the operation is successful, empty Optional otherwise.
      */
     public Optional<TypeOfBusiness> add(TypeOfBusiness typeOfBusiness) {
 
@@ -78,10 +73,11 @@ public class TypeOfBusinessRepository {
         boolean isValid = !typeOfBusinesses.contains(typeOfBusiness);
         return isValid;
     }
-    /**
 
-     Returns a defensive (immutable) copy of the list of types of businesses in the repository.
-     @return The list of types of businesses.
+    /**
+     * Returns a defensive (immutable) copy of the list of types of businesses in the repository.
+     *
+     * @return The list of types of businesses.
      */
     public List<TypeOfBusiness> getTypeOfBusinesses() {
 // This is a defensive copy, so that the repository cannot be modified from the outside.

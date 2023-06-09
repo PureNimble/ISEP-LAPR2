@@ -8,24 +8,51 @@ import pt.ipp.isep.dei.esoft.project.repository.*;
 
 import java.util.*;
 
+/**
+ * The type List message controller.
+ */
 public class ListMessageController {
+    /**
+     * The Message repository.
+     */
     MessageRepository messageRepository = null;
+    /**
+     * The Authentication repository.
+     */
     AuthenticationRepository authenticationRepository = null;
+    /**
+     * The User repository.
+     */
     UserRepository userRepository = null;
     //private UserRepository userRepository;
 
+    /**
+     * Instantiates a new List message controller.
+     */
     public ListMessageController() {
         getMessageRepository();
         getAuthenticationRepository();
         getUserRepository();
     }
 
+    /**
+     * Instantiates a new List message controller.
+     *
+     * @param messageRepository        the message repository
+     * @param authenticationRepository the authentication repository
+     * @param userRepository           the user repository
+     */
     public ListMessageController(MessageRepository messageRepository, AuthenticationRepository authenticationRepository, UserRepository userRepository) {
         this.messageRepository = messageRepository;
         this.authenticationRepository = authenticationRepository;
         this.userRepository = userRepository;
     }
 
+    /**
+     * Retrieves the MessageRepository instance.
+     *
+     * @return The MessageRepository instance.
+     */
     private MessageRepository getMessageRepository() {
         if (messageRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -35,6 +62,11 @@ public class ListMessageController {
         return messageRepository;
     }
 
+    /**
+     * Retrieves the AuthenticationRepository instance.
+     *
+     * @return The AuthenticationRepository instance.
+     */
     private AuthenticationRepository getAuthenticationRepository() {
         if (authenticationRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -43,6 +75,12 @@ public class ListMessageController {
         }
         return authenticationRepository;
     }
+
+    /**
+     * Retrieves the UserRepository instance.
+     *
+     * @return The UserRepository instance.
+     */
     private UserRepository getUserRepository() {
         if (userRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -52,12 +90,23 @@ public class ListMessageController {
         return userRepository;
     }
 
+    /**
+     * Sort booking requests.
+     *
+     * @param bookingRequests the booking requests
+     */
     public void sortBookingRequests(List<Message> bookingRequests) {
         Collections.sort(bookingRequests, Comparator.comparing(Message::getInitialDate));
     }
 
 
-
+    /**
+     * Gets booking requests for period.
+     *
+     * @param beginDate the begin date
+     * @param endDate   the end date
+     * @return the booking requests for period
+     */
     public List<Message> getBookingRequestsForPeriod(Date beginDate, Date endDate) {
         List<Message> bookingRequests = new ArrayList<>();
         MessageRepository messageRepository1 = getMessageRepository();
@@ -73,16 +122,24 @@ public class ListMessageController {
         return bookingRequests;
     }
 
+    /**
+     * Gets messages by ascending date.
+     *
+     * @return the messages by ascending date
+     */
     public List<Message> getMessagesByAscendingDate() {
         MessageRepository messageRepository = getMessageRepository();
         return messageRepository.getMessagesByAscendingDate();
     }
 
+    /**
+     * To dto ascending area list.
+     *
+     * @return the list
+     */
     public List<MessageDto> toDtoAscendingArea() {
         MessageMapper messageMapper = new MessageMapper();
 
         return messageMapper.toDto(getMessagesByAscendingDate());
     }
-
-
 }

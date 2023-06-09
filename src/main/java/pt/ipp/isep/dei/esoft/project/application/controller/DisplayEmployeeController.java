@@ -11,19 +11,37 @@ import pt.ipp.isep.dei.esoft.project.repository.PublishedAnnouncementRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.StoreRepository;
 
+/**
+ * The type Display employee controller.
+ */
 public class DisplayEmployeeController {
-
+    /**
+     * Retrieves the StoreRepository instance.
+     *
+     * @return The StoreRepository instance.
+     */
     private StoreRepository storeRepository = null;
-
+    /**
+     * Retrieves the AuthenticationRepository instance.
+     *
+     * @return The AuthenticationRepository instance.
+     */
     private AuthenticationRepository authenticationRepository = null;
-
+    /**
+     * Retrieves the EmployeeRepository instance.
+     *
+     * @return The EmployeeRepository instance.
+     */
     private EmployeeRepository employeeRepository = null;
-
+    /**
+     * Retrieves the PublishedAnnouncementRepository instance.
+     *
+     * @return The PublishedAnnouncementRepository instance.
+     */
     private PublishedAnnouncementRepository publishedAnnouncementRepository = null;
 
     /**
-
-     Constructs a new instance of PlaceOfferController and initializes the repositories.
+     * Constructs a new instance of PlaceOfferController and initializes the repositories.
      */
     public DisplayEmployeeController() {
         getStoreRepository();
@@ -31,7 +49,11 @@ public class DisplayEmployeeController {
         getEmployeeRepository();
         getPublishedAnnouncementRepository();
     }
-
+    /**
+     * Retrieves the StoreRepository instance.
+     *
+     * @return The StoreRepository instance.
+     */
     private StoreRepository getStoreRepository() {
         if (storeRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -41,7 +63,11 @@ public class DisplayEmployeeController {
         }
         return storeRepository;
     }
-
+    /**
+     * Retrieves the AuthenticationRepository instance.
+     *
+     * @return The AuthenticationRepository instance.
+     */
     private AuthenticationRepository getAuthenticationRepository() {
         if (authenticationRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -51,7 +77,11 @@ public class DisplayEmployeeController {
         }
         return authenticationRepository;
     }
-
+    /**
+     * Retrieves the PublishedAnnouncementRepository instance.
+     *
+     * @return The PublishedAnnouncementRepository instance.
+     */
     private PublishedAnnouncementRepository getPublishedAnnouncementRepository() {
         if (publishedAnnouncementRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -61,7 +91,11 @@ public class DisplayEmployeeController {
         }
         return publishedAnnouncementRepository;
     }
-
+    /**
+     * Retrieves the EmployeeRepository instance.
+     *
+     * @return The EmployeeRepository instance.
+     */
     private EmployeeRepository getEmployeeRepository() {
         if (employeeRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -72,6 +106,9 @@ public class DisplayEmployeeController {
         return employeeRepository;
     }
 
+    /**
+     * Gets stores property.
+     */
     public void getStoresProperty() {
         StoreRepository storeRepository = getStoreRepository();
         EmployeeRepository employeeRepository = getEmployeeRepository();
@@ -81,6 +118,11 @@ public class DisplayEmployeeController {
         storeRepository.getStoresProperty(announcementList, employeeList);
     }
 
+    /**
+     * Gets employees allphabetically sorted.
+     *
+     * @return the employees allphabetically sorted
+     */
     public List <Employee> getEmployeesAllphabeticallySorted() {
         getStoresProperty();
         StoreRepository storeRepository = getStoreRepository();

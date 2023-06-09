@@ -46,6 +46,14 @@ public class Address {
         this.state = state;
     }
 
+    /**
+     * Instantiates a new Address.
+     *
+     * @param street  the street
+     * @param zipcode the zipcode
+     * @param city    the city
+     * @param state   the state
+     */
     public Address(String street, int zipcode, City city, State state) {
         this.street = street;
         this.zipcode = zipcode;

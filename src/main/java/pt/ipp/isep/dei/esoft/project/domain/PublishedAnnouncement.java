@@ -6,15 +6,44 @@ import java.util.Date;
  * Represents a real estate announcement that has been published.
  */
 public class PublishedAnnouncement {
-
+    /**
+     * The date of the announcement request.
+     */
     private Date date;
+    /**
+     * The type of business for the announcement request.
+     */
     private TypeOfBusiness typeOfBusiness;
+    /**
+     * The property associated with the announcement request.
+     */
     private Property property;
+    /**
+     * The property type of the property.
+     */
     private PropertyType propertyType;
+    /**
+     * The commission for the announcement request.
+     */
     private Comission comission;
+    /**
+     * The business associated with the announcement request.
+     */
     private Business business;
+
+    /**
+     * The duration of the contract for the announcement request.
+     */
     private int durationOfContract;
+
+    /**
+     * The agent assigned to the announcement request.
+     */
     private Employee agent;
+
+    /**
+     * The client associated with the announcement request.
+     */
     private Client client;
 
     /**

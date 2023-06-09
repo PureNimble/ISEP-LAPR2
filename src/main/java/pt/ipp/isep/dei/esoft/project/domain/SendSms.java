@@ -4,7 +4,15 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * The type Send sms.
+ */
 public class SendSms {
+    /**
+     * Create file.
+     *
+     * @param fileName the file name
+     */
     public void createFile (String fileName) {
         try {
             File myObj = new File("filename.txt");
@@ -19,6 +27,12 @@ public class SendSms {
         }
     }
 
+    /**
+     * Write file.
+     *
+     * @param fileName    the file name
+     * @param textToWrite the text to write
+     */
     public void writeFile (String fileName, String textToWrite) {
         try {
             FileWriter myWriter = new FileWriter(fileName);

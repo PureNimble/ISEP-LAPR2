@@ -13,7 +13,9 @@ import java.util.Optional;
  * defensive copy of the list of Employee objects.
  */
 public class EmployeeRepository {
-
+    /**
+     * A list of employees associated with a specific entity.
+     */
     private List<Employee> employees = new ArrayList<>();
 
     /**
@@ -93,6 +95,12 @@ public class EmployeeRepository {
         return null;
     }
 
+    /**
+     * Get employees allphabetically sorted list.
+     *
+     * @param storesList the stores list
+     * @return the list
+     */
     public List<Employee> getEmployeesAllphabeticallySorted(List<Store> storesList){
         List<Employee> resultList = new ArrayList<Employee>();
 

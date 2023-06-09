@@ -9,22 +9,20 @@ import java.util.List;
 import java.util.Optional;
 
 /**
-
- The StateRepository class provides a repository for storing and accessing States, Districts, and Cities.
+ * The StateRepository class provides a repository for storing and accessing States, Districts, and Cities.
  */
 public class StateRepository {
-
+    /**
+     * Represents a list of states.
+     */
     private List<State> states = new ArrayList<>();
 
     /**
-
-     Retrieves a State object based on its description.
-
-     @param stateDescription the description of the State object to retrieve.
-
-     @return the State object with the specified description.
-
-     @throws IllegalArgumentException if the specified State does not exist in the repository.
+     * Retrieves a State object based on its description.
+     *
+     * @param stateDescription the description of the State object to retrieve.
+     * @return the State object with the specified description.
+     * @throws IllegalArgumentException if the specified State does not exist in the repository.
      */
     public State getStateByDescription(String stateDescription){
 
@@ -41,16 +39,12 @@ public class StateRepository {
     }
 
     /**
-
-     Retrieves a District object based on its description and the State it belongs to.
-
-     @param districtDescription the description of the District object to retrieve.
-
-     @param state the State object that the District belongs to.
-
-     @return the District object with the specified description.
-
-     @throws IllegalArgumentException if the specified District does not exist in the repository.
+     * Retrieves a District object based on its description and the State it belongs to.
+     *
+     * @param districtDescription the description of the District object to retrieve.
+     * @param state               the State object that the District belongs to.
+     * @return the District object with the specified description.
+     * @throws IllegalArgumentException if the specified District does not exist in the repository.
      */
     public District getDistrictByDescription(String districtDescription, State state){
 
@@ -68,16 +62,12 @@ public class StateRepository {
     }
 
     /**
-
-     Retrieves a City object based on its description and the District it belongs to.
-
-     @param cityDescription the description of the City object to retrieve.
-
-     @param district the District object that the City belongs to.
-
-     @return the City object with the specified description.
-
-     @throws IllegalArgumentException if the specified City does not exist in the repository.
+     * Retrieves a City object based on its description and the District it belongs to.
+     *
+     * @param cityDescription the description of the City object to retrieve.
+     * @param district        the District object that the City belongs to.
+     * @return the City object with the specified description.
+     * @throws IllegalArgumentException if the specified City does not exist in the repository.
      */
     public City getCityByDescription(String cityDescription, District district){
 
@@ -94,12 +84,10 @@ public class StateRepository {
     }
 
     /**
-
-     Adds a State object to the repository.
-
-     @param state the State object to add to the repository.
-
-     @return an Optional containing the added State object, or an empty Optional if the operation failed.
+     * Adds a State object to the repository.
+     *
+     * @param state the State object to add to the repository.
+     * @return an Optional containing the added State object, or an empty Optional if the operation failed.
      */
     public Optional<State> add(State state){
 
@@ -131,9 +119,9 @@ public class StateRepository {
     }
 
     /**
-
-     Retrieves a defensive copy of the List of all States in the repository.
-     @return a List containing all the States in the repository.
+     * Retrieves a defensive copy of the List of all States in the repository.
+     *
+     * @return a List containing all the States in the repository.
      */
     public List<State> getStates() {
         //This is a defensive copy, so that the repository cannot be modified from the outside.

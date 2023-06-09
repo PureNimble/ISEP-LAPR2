@@ -6,10 +6,25 @@ import java.util.Objects;
  * The Property class represents a real estate property with an area and a distance from the city center.
  */
 public class Property {
+    /**
+     * The distance from the city center to the property.
+     */
     private int distanceFromCityCenter;
+    /**
+     * The area of the property.
+     */
     private int area;
+    /**
+     * The photos of the property.
+     */
     private Photos photos;
+    /**
+     * The residence type of the property.
+     */
     private Residence residence;
+    /**
+     * The address of the property.
+     */
     private Address address;
 
     /**
@@ -18,6 +33,7 @@ public class Property {
      * @param area                   The area of the property.
      * @param distanceFromCityCenter The distance from the city center in kilometers.
      * @param photos                 the photos
+     * @param address                the address
      */
     public Property(int area, int distanceFromCityCenter, Photos photos, Address address) {
         this.distanceFromCityCenter = distanceFromCityCenter;
@@ -33,20 +49,64 @@ public class Property {
 
     }
 
+    /**
+     * Instantiates a new Property.
+     *
+     * @param distanceFromCityCenter the distance from city center
+     * @param area                   the area
+     * @param address                the address
+     */
     public Property(int distanceFromCityCenter, int area, Address address) {
         this.distanceFromCityCenter = distanceFromCityCenter;
         this.area = area;
         this.address = address;
     }
 
+    /**
+     * Instantiates a new Property.
+     *
+     * @param residence the residence
+     */
     public Property(Residence residence) {
         this.residence = residence;
     }
 
+    /**
+     * Gets number of bedrooms.
+     *
+     * @return the number of bedrooms
+     */
     public int getNumberOfBedrooms() {
         if (residence != null) {
             return residence.getNumberOfBedrooms();
         } else return 0;
+    }
+
+    /**
+     * Gets residence.
+     *
+     * @return the residence
+     */
+    public Residence getResidence() {
+        return residence;
+    }
+
+    /**
+     * Sets residence.
+     *
+     * @param residence the residence
+     */
+    public void setResidence(Residence residence) {
+        this.residence = residence;
+    }
+
+    /**
+     * Sets address.
+     *
+     * @param address the address
+     */
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     /**
@@ -103,6 +163,11 @@ public class Property {
         this.area = area;
     }
 
+    /**
+     * Gets address.
+     *
+     * @return the address
+     */
     public Address getAddress() {
         return address;
     }

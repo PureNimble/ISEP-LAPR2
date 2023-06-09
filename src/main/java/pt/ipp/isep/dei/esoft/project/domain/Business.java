@@ -6,6 +6,9 @@ import java.util.Objects;
  * Business class represents a business with its price.
  */
 public class Business {
+    /**
+     * The price associated with the object.
+     */
     private double price;
 
     /**

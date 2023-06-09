@@ -9,27 +9,69 @@ import java.io.PrintWriter;
 import java.util.*;
 import java.util.regex.Pattern;
 
+/**
+ * The type Resgister user ui.
+ */
 public class ResgisterUserUI implements Runnable {
 
-
+    /**
+     * Controller for unregister user
+     */
     private final UnregisterUserController controller = new UnregisterUserController();
 
+    /**
+     * The zip code of the user's address.
+     */
     private int zipCode;
+
+    /**
+     * The street name of the user's address.
+     */
     private String street;
+
+    /**
+     * The name of the user.
+     */
     private String name;
+
+    /**
+     * The email address of the user.
+     */
     private String employeeEmail;
+
+    /**
+     * The phone number of the user.
+     */
     private long phoneNumber;
 
+    /**
+     * The description of the city where the user resides.
+     */
     private String cityDescription;
 
+    /**
+     * The description of the state where the user resides.
+     */
     private String stateDescription;
 
+    /**
+     * The description of the district where the user resides.
+     */
     private String districtDescription;
 
+    /**
+     * The passport number of the user.
+     */
     private int passportNumber;
 
+    /**
+     * The tax number of the user.
+     */
     private int taxNumber;
 
+    /**
+     * The password of the user.
+     */
     private String password;
 
     /**
@@ -63,7 +105,13 @@ public class ResgisterUserUI implements Runnable {
 
     }
 
-
+    /**
+     * Submits the data provided by the user for registration.
+     * If the state description is not null, registers the client with the provided information,
+     * including the address. Otherwise, registers the client without an address.
+     * Registers the user with the provided name, email, and password.
+     * Writes the user's email and password to a file named "emailRegistration.txt".
+     */
     private void submitData() {
 
         if (stateDescription != null) {
@@ -92,7 +140,17 @@ public class ResgisterUserUI implements Runnable {
 
 
     }
-
+    /**
+     * Requests the necessary data from the user for registration.
+     * Requests the Zip Code from the console.
+     * Requests the Street from the console.
+     * Requests the Name Description from the console.
+     * Requests the Employee Email Description from the console.
+     * Requests the Phone Number from the console.
+     * Requests the Passport Number from the console.
+     * Requests the Tax Number from the console.
+     * Retrieves the password from the controller.
+     */
     private void requestData() {
 
         //Request the Zip Code from the console
@@ -119,7 +177,11 @@ public class ResgisterUserUI implements Runnable {
         password = controller.getPassword();
 
     }
-
+    /**
+     * Prompts the user to enter whether they want to register with their address.
+     *
+     * @return The user's choice of whether to register with their address as a string ("Y" or "N").
+     */
     private String enterAdress() {
         Scanner input = new Scanner(System.in);
         String addRoles;
@@ -319,7 +381,12 @@ public class ResgisterUserUI implements Runnable {
 
         return email;
     }
-
+    /**
+     * Checks if the provided email is valid based on a regular expression pattern.
+     *
+     * @param email The email to be validated.
+     * @return true if the email is valid, false otherwise.
+     */
     private boolean isValidEmail(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         Pattern pat = Pattern.compile(emailRegex);

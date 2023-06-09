@@ -13,12 +13,21 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
 
+/**
+ * The type List message ui.
+ */
 public class ListMessageUI implements Runnable{
-
+    /**
+     * Scanner instance for user input.
+     */
     private final Scanner input = new Scanner(System.in);
-
+    /**
+     * Controller for managing booking requests.
+     */
     private final ListMessageController controller = new ListMessageController();
-
+    /**
+     * Runs the message request UI.
+     */
 @Override
     public void run() {
     System.out.println("Enter the begin date (dd-MM-yyyy): ");
@@ -31,7 +40,7 @@ public class ListMessageUI implements Runnable{
     Date endDate = parseDate(endDateString);
 
     if (beginDate != null && endDate != null) {
-        List<Message> bookingRequests = controller.getBookingRequestsForPeriod(beginDate, endDate);
+        List<Message> messageRequests = controller.getBookingRequestsForPeriod(beginDate, endDate);
         try (InputStream input = new FileInputStream("C:\\Users\\35193\\Desktop\\PII\\config.properties")) {
 
             Properties prop = new Properties();
@@ -39,26 +48,31 @@ public class ListMessageUI implements Runnable{
             String sorting = (String) prop.getProperty("sortingAlgorithm");
 
             if(sorting.equals("bubbleSort")){
-                BubbleSort<Message> bubbleSort = new BubbleSort<>(bookingRequests);
-                bookingRequests = bubbleSort.sort(bookingRequests);
+                BubbleSort<Message> bubbleSort = new BubbleSort<>(messageRequests);
+                messageRequests = bubbleSort.sort(messageRequests);
             } else if(sorting.equals("mergeSort")) {
-                MergeSort m = new MergeSort(bookingRequests);
-                m.divideArrayElements(0, bookingRequests.size() -1);
-                bookingRequests = m.getArrayAfterSorting();
+                MergeSort m = new MergeSort(messageRequests);
+                m.divideArrayElements(0, messageRequests.size() -1);
+                messageRequests = m.getArrayAfterSorting();
             }else {
-                controller.sortBookingRequests(bookingRequests);
+                controller.sortBookingRequests(messageRequests);
             }
         } catch (IOException io) {
-            controller.sortBookingRequests(bookingRequests);
+            controller.sortBookingRequests(messageRequests);
         }
 
         System.out.println("Booking Requests for the specified period (sorted by date in ascending order):");
-        for (Message message : bookingRequests) {
+        for (Message message : messageRequests) {
             System.out.println(message);
         }
     }
 }
-
+    /**
+     * Parses a string to a Date object.
+     *
+     * @param dateString The string representing the date.
+     * @return The parsed Date object, or null if the parsing failed.
+     */
     private Date parseDate(String dateString) {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         try {

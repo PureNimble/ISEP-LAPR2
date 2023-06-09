@@ -15,17 +15,19 @@ import java.util.Optional;
 import java.util.Scanner;
 
 /**
-
- The PlaceOrderUI class represents the user interface for placing an order.
-
- It implements the Runnable interface to support concurrent execution.
+ * The PlaceOrderUI class represents the user interface for placing an order.
+ * It implements the Runnable interface to support concurrent execution.
  */
 public class PlaceOrderUI implements Runnable {
-
+    /**
+     * Controller for managing the placing of offers.
+     */
     private final PlaceOfferController controller = new PlaceOfferController();
+    /**
+     * Controller for managing the publishing of announcements.
+     */
     private final PublishAnnouncementController publishAnnouncementController = new PublishAnnouncementController();
     /**
-
      Executes the logic for placing an order.
      */
     public void run() {
@@ -60,7 +62,6 @@ public class PlaceOrderUI implements Runnable {
         }
     }
     /**
-
      Requests the user to choose a property from the published announcements.
      @return the selected PublishedAnnouncement object
      */
@@ -94,7 +95,10 @@ public class PlaceOrderUI implements Runnable {
         } while (index < 0);
         return publishedAnnouncements.get(index);
     }
-
+    /**
+     Requests the name of a client from the user.
+     @return The name of the client.
+     */
     private String requestClientName() {
         Scanner input = new Scanner(System.in);
         System.out.println("Name: ");

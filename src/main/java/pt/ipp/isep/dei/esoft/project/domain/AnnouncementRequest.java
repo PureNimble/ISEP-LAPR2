@@ -7,15 +7,37 @@ import java.util.Objects;
  * This class represents an announcement request, which is created by a user who wants to advertise their business or property.
  */
 public class AnnouncementRequest {
+    /**
+     * The date associated with the object.
+     */
     private Date date;
+    /**
+     * The TypeOfBusiness instance associated with the object.
+     */
     private TypeOfBusiness typeOfBusiness;
+    /**
+     * The Property instance associated with the object.
+     */
     private Property property;
+    /**
+     * The PropertyType instance associated with the object.
+     */
     private PropertyType propertyType;
+    /**
+     * The Business instance associated with the object.
+     */
     private Business business;
+    /**
+     * The duration of the contract associated with the object.
+     */
     private int durationOfContract;
-
+    /**
+     * The Employee agent associated with the object.
+     */
     private Employee agent;
-
+    /**
+     * The status associated with the object.
+     */
     private String status;
 
     /**
@@ -50,7 +72,6 @@ public class AnnouncementRequest {
      * @param business           the business to be advertised.
      * @param durationOfContract the duration of the contract for the advertisement.
      * @param agent              the agent
-     * @param address            the address
      */
     public AnnouncementRequest(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract, Employee agent) {
         this.date = date;
@@ -254,7 +275,12 @@ public class AnnouncementRequest {
 
                 date.toString(), typeOfBusiness.toString(), propertyType, business.toString(), durationOfContract, property.toString());
     }
-
+    /**
+     * Checks if this AnnouncementRequest is equal to another object.
+     *
+     * @param o The object to compare against.
+     * @return true if the objects are equal, false otherwise.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -262,7 +288,11 @@ public class AnnouncementRequest {
         AnnouncementRequest that = (AnnouncementRequest) o;
         return durationOfContract == that.durationOfContract && date.equals(that.date) && typeOfBusiness.equals(that.typeOfBusiness) && property.equals(that.property) && propertyType.equals(that.propertyType) && business.equals(that.business) && agent.equals(that.agent) && status.equals(that.status);
     }
-
+    /**
+     * Generates the hash code for this AnnouncementRequest.
+     *
+     * @return The generated hash code.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(date, typeOfBusiness, property, propertyType, business, durationOfContract, agent, status);

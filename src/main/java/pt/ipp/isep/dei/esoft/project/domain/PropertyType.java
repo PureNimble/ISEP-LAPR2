@@ -6,6 +6,9 @@ import java.util.Objects;
  * The type Property type.
  */
 public class PropertyType {
+    /**
+     * The designation of the entity.
+     */
     private String designation;
 
     /**

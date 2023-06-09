@@ -8,11 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * The type Network manager ui.
  *
  * @author Paulo Maio pam@isep.ipp.pt
  */
-
 public class NetworkManagerUI implements Runnable {
+    /**
+     * Instantiates a new Network manager ui.
+     */
     public NetworkManagerUI() {
     }
 

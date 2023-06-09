@@ -10,18 +10,36 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Import file controller.
+ */
 public class ImportFileController {
 
-     FileReaderClass fileReaderClass = new FileReaderClass();
+    /**
+     * The File reader class.
+     */
+    FileReaderClass fileReaderClass = new FileReaderClass();
 
-     StoreRepository storeRepository = null;
+    /**
+     * The Store repository.
+     */
+    StoreRepository storeRepository = null;
 
-     UserRepository userRepository =null;
+    /**
+     * The User repository.
+     */
+    UserRepository userRepository =null;
 
-     PublishedAnnouncementRepository publishedAnnouncementRepository = null;
+    /**
+     * The Published announcement repository.
+     */
+    PublishedAnnouncementRepository publishedAnnouncementRepository = null;
 
 
-     public ImportFileController(){
+    /**
+     * Instantiates a new Import file controller.
+     */
+    public ImportFileController(){
          getFileReaderClass();
          getStoreRepository();
          getUserRepository();
@@ -64,7 +82,11 @@ public class ImportFileController {
 
     }
 
-
+    /**
+     * Retrieves the PublishedAnnouncementRepository instance.
+     *
+     * @return The PublishedAnnouncementRepository instance.
+     */
     private PublishedAnnouncementRepository getPublishedAnnouncementRepository() {
         if (publishedAnnouncementRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -75,10 +97,21 @@ public class ImportFileController {
         return publishedAnnouncementRepository;
     }
 
+    /**
+     * Gets file reader class.
+     *
+     * @return the file reader class
+     */
     public FileReaderClass getFileReaderClass() {
         return fileReaderClass;
     }
 
+    /**
+     * Read informations array list.
+     *
+     * @param file the file
+     * @return the array list
+     */
     public ArrayList<String[]> readInformations(File file){
         FileReaderClass fileReaderClass = getFileReaderClass();
 
@@ -86,6 +119,12 @@ public class ImportFileController {
 
     }
 
+    /**
+     * Read store informations array list.
+     *
+     * @param file the file
+     * @return the array list
+     */
     public ArrayList<String[]> readStoreInformations(File file){
         FileReaderClass fileReaderClass = getFileReaderClass();
 
@@ -93,24 +132,45 @@ public class ImportFileController {
 
     }
 
+    /**
+     * Add store.
+     *
+     * @param file the file
+     */
     public void addStore(File file){
          StoreRepository storeRepository = getStoreRepository();
 
         storeRepository.createStoreByFileReading(readStoreInformations(file));
     }
 
+    /**
+     * Read owner informations array list.
+     *
+     * @param file the file
+     * @return the array list
+     */
     public ArrayList<String[]> readOwnerInformations(File file){
         FileReaderClass fileReaderClass = getFileReaderClass();
 
         return fileReaderClass.readOwnerInformations(readOwnerInformations(file));
     }
 
+    /**
+     * Add user.
+     *
+     * @param file the file
+     */
     public void addUser(File file){
         UserRepository userRepository = getUserRepository();
 
         userRepository.createOwnerByFileReading(readOwnerInformations(file));
     }
 
+    /**
+     * Add publish announcement.
+     *
+     * @param file the file
+     */
     public void addPublishAnnouncement(File file){
 
         PublishedAnnouncementRepository publishedAnnouncementRepository = getPublishedAnnouncementRepository();

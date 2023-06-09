@@ -7,24 +7,21 @@ import java.util.List;
 import java.util.Optional;
 
 /**
-
- The PropertyTypeRepository class represents a repository for PropertyType objects. It provides methods to retrieve,
-
- add, and return a defensive copy of the list of PropertyType objects.
+ * The PropertyTypeRepository class represents a repository for PropertyType objects. It provides methods to retrieve,
+ * add, and return a defensive copy of the list of PropertyType objects.
  */
 public class PropertyTypeRepository {
-
+    /**
+     * Represents a list of property types.
+     */
     private final List<PropertyType> propertyTypes = new ArrayList<>();
 
     /**
-
-     This method returns an existing PropertyType by its description.
-
-     @param propertyTypeDescription The description of the PropertyType to be retrieved.
-
-     @return The PropertyType object.
-
-     @throws IllegalArgumentException if the PropertyType does not exist in the repository.
+     * This method returns an existing PropertyType by its description.
+     *
+     * @param propertyTypeDescription The description of the PropertyType to be retrieved.
+     * @return The PropertyType object.
+     * @throws IllegalArgumentException if the PropertyType does not exist in the repository.
      */
     public PropertyType getPropertyTypeByDescription(String propertyTypeDescription) {
 
@@ -47,12 +44,10 @@ public class PropertyTypeRepository {
     }
 
     /**
-
-     Adds a new PropertyType to the repository.
-
-     @param propertyType The PropertyType object to be added to the repository.
-
-     @return An optional containing the cloned PropertyType object if the operation was successful, otherwise an empty Optional.
+     * Adds a new PropertyType to the repository.
+     *
+     * @param propertyType The PropertyType object to be added to the repository.
+     * @return An optional containing the cloned PropertyType object if the operation was successful, otherwise an empty Optional.
      */
     public Optional<PropertyType> add(PropertyType propertyType) {
 
@@ -83,10 +78,11 @@ public class PropertyTypeRepository {
         boolean isValid = !propertyTypes.contains(propertyType);
         return isValid;
     }
-    /**
 
-     Returns a defensive (immutable) copy of the list of PropertyType objects in the repository.
-     @return An immutable list of PropertyType objects.
+    /**
+     * Returns a defensive (immutable) copy of the list of PropertyType objects in the repository.
+     *
+     * @return An immutable list of PropertyType objects.
      */
     public List<PropertyType> getPropertyTypes() {
 // This is a defensive copy, so that the repository cannot be modified from the outside.

@@ -10,6 +10,7 @@ import java.util.Scanner;
  * The type File reader class.
  */
 public class FileReaderClass {
+
     /**
      * Read informations array list.
      *

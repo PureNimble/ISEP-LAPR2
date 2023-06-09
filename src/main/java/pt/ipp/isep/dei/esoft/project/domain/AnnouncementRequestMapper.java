@@ -7,7 +7,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Announcement request mapper.
+ */
 public class AnnouncementRequestMapper {
+    /**
+     * To dto list.
+     *
+     * @param announcementRequestList the announcement request list
+     * @return the list
+     */
     public List<AnnouncementRequestDto> toDto(List<AnnouncementRequest> announcementRequestList) {
 
          List<AnnouncementRequestDto> announcementRequestDtos = new ArrayList<>();
@@ -39,6 +48,19 @@ public class AnnouncementRequestMapper {
     }
 
 
+    /**
+     * To dto object announcement request dto.
+     *
+     * @param status             the status
+     * @param agent              the agent
+     * @param property           the property
+     * @param typeOfBusiness     the type of business
+     * @param propertyType       the property type
+     * @param business           the business
+     * @param date               the date
+     * @param durationOfContract the duration of contract
+     * @return the announcement request dto
+     */
     public AnnouncementRequestDto toDtoObject(String status, Employee agent, Property property, TypeOfBusiness typeOfBusiness, PropertyType propertyType, Business business, Date date, int durationOfContract) {
 
         AnnouncementRequestDto announcementRequestDto;
@@ -51,6 +73,13 @@ public class AnnouncementRequestMapper {
         return announcementRequestDto;
     }
 
+    /**
+     * Gets announcement request dto by description.
+     *
+     * @param announcementRequestDtos         the announcement request dtos
+     * @param annnouncementRequestDescription the annnouncement request description
+     * @return the announcement request dto by description
+     */
     public AnnouncementRequestDto getAnnouncementRequestDtoByDescription(List<AnnouncementRequestDto> announcementRequestDtos,int annnouncementRequestDescription) {
         AnnouncementRequestDto newAnnouncementRequestDto = announcementRequestDtos.get(annnouncementRequestDescription);
         AnnouncementRequestDto announcementRequestDto = null;

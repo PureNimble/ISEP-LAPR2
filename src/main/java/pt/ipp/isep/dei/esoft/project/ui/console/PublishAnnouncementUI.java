@@ -102,23 +102,39 @@ public class PublishAnnouncementUI implements Runnable {
      * The duration of the contract for the property.
      */
     private int durationOfContract;
-
+    /**
+    * Represents an agent associated with the announcement request.
+     */
     private Employee agent;
-
+    /**
+     The description of the state.
+     */
     private String stateDescription;
+    /**
+     The description of the district.
+     */
     private String districtDescription;
+    /**
+     The description of the city.
+     */
     private String cityDescription;
+    /**
+     The ZIP code of the location.
+     */
     private int zipCode;
+    /**
+     The street of the location.
+     */
     private String street;
-
+    /**
+     The ID associated with the announcement request.
+     */
     private String ID;
 
 
     /**
      * Executes the user interface for publishing announcements of properties for sale or rent.
-     * <p>
      * This method retrieves input data from the user, submits it to the controller, retrieves
-     * <p>
      * the list of published announcements from the controller, and prints them to the console.
      */
     public void run() {
@@ -337,7 +353,7 @@ public class PublishAnnouncementUI implements Runnable {
         return durationOfContract;
     }
 
-    /* Displays a list of states and prompts the user to select one.
+    /** Displays a list of states and prompts the user to select one.
      *
      * @return the string description of the selected state.
      */
@@ -453,7 +469,7 @@ public class PublishAnnouncementUI implements Runnable {
 
     }
 
-    /* Requests the zip code from the user and validates if it is a 5-digit integer.
+    /** Requests the zip code from the user and validates if it is a 5-digit integer.
      *
      * @return the integer zip code.
      */
@@ -621,7 +637,11 @@ public class PublishAnnouncementUI implements Runnable {
 
         return area;
     }
-
+    /**
+     * Requests the user to provide photos for a property.
+     *
+     * @return The list of property photos as a string representation.
+     */
     private String requestPhotos() {
         Scanner input = new Scanner(System.in);
         int max = 30;
@@ -942,7 +962,11 @@ public class PublishAnnouncementUI implements Runnable {
             i++;
         }
     }
-
+    /**
+     * Displays the available city options for a given district.
+     *
+     * @param district The district for which to display the city options.
+     */
     private void displayCityOptions(District district) {
         int i = 1;
 
@@ -951,7 +975,11 @@ public class PublishAnnouncementUI implements Runnable {
             i++;
         }
     }
-
+    /**
+     * Displays the available district options for a given state.
+     *
+     * @param state The state for which to display the district options.
+     */
     private void displayDistrictOptions(State state) {
         int i = 1;
         for (District district : state.getDistricts()) {
@@ -960,7 +988,11 @@ public class PublishAnnouncementUI implements Runnable {
 
         }
     }
-
+    /**
+     * Displays the available state options.
+     *
+     * @param states The list of states for which to display the options.
+     */
     private void displayStateOptions(List<State> states) {
         int i = 1;
 

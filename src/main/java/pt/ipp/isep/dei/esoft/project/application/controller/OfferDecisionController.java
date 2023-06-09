@@ -9,28 +9,35 @@ import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import java.util.List;
 
 /**
-
- The OfferDecisionController class is responsible for handling the operations related to accepting or declining offers.
+ * The OfferDecisionController class is responsible for handling the operations related to accepting or declining offers.
  */
-
- public class OfferDecisionController {
-
+public class OfferDecisionController {
+    /**
+     * The PublishedAnnouncementRepository instance.
+     */
     private PublishedAnnouncementRepository publishedAnnouncementRepository = null;
-
+    /**
+     * The AuthenticationRepository instance.
+     */
     private AuthenticationRepository authenticationRepository = null;
-
+    /**
+     * The OfferRepository instance.
+     */
     private OfferRepository offerRepository = null;
 
     /**
-
-     Constructs a new instance of PlaceOfferController and initializes the repositories.
+     * Constructs a new instance of PlaceOfferController and initializes the repositories.
      */
     public OfferDecisionController() {
         getPublishedAnnouncementRepository();
         getAuthenticationRepository();
         getOfferRepository();
     }
-
+    /**
+     * Retrieves the OfferRepository instance.
+     *
+     * @return The OfferRepository instance.
+     */
     private OfferRepository getOfferRepository() {
         if (offerRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -40,7 +47,11 @@ import java.util.List;
         }
         return offerRepository;
     }
-
+    /**
+     * Retrieves the AuthenticationRepository instance.
+     *
+     * @return The AuthenticationRepository instance.
+     */
     private AuthenticationRepository getAuthenticationRepository() {
         if (authenticationRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -50,7 +61,11 @@ import java.util.List;
         }
         return authenticationRepository;
     }
-
+    /**
+     * Retrieves the PublishedAnnouncementRepository instance.
+     *
+     * @return The PublishedAnnouncementRepository instance.
+     */
     private PublishedAnnouncementRepository getPublishedAnnouncementRepository() {
         if (publishedAnnouncementRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -61,6 +76,11 @@ import java.util.List;
         return publishedAnnouncementRepository;
     }
 
+    /**
+     * Gets offers by property by highest amount.
+     *
+     * @return the offers by property by highest amount
+     */
     public List <Offer> getOffersByPropertyByHighestAmount() {
         PublishedAnnouncementRepository publishedAnnouncementRepository = getPublishedAnnouncementRepository();
         OfferRepository offerRepository = getOfferRepository();
@@ -68,6 +88,12 @@ import java.util.List;
         return offerRepository.getOffersByPropertyByHighestAmount(listProperty);
     }
 
+    /**
+     * Decline other offers.
+     *
+     * @param offer      the offer
+     * @param offersList the offers list
+     */
     public void declineOtherOffers(Offer offer, List<Offer> offersList){
         offerRepository.declineOtherOffers(offer, offersList);
     }

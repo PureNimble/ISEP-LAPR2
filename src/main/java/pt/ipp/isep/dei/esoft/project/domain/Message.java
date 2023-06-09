@@ -219,7 +219,12 @@ public class Message {
         return String.format("Message: \nThe client %s, with phone number %s, wants to schedule a visit from %s until %s at %s. \n\nDescription: \n%s \n\nProperty: \n%s", name, phoneNumber, initialTime, endTime, date, description, publishedAnnouncement.toString());
     }
 
-
+    /**
+     * Checks if the given object is equal to this Message object.
+     *
+     * @param o The object to compare with.
+     * @return True if the object is equal to this Message object, false otherwise.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -227,7 +232,11 @@ public class Message {
         Message message = (Message) o;
         return getPhoneNumber() == message.getPhoneNumber() && getInitialTime() == message.getInitialTime() && getEndTime() == message.getEndTime() && Objects.equals(getName(), message.getName()) && Objects.equals(getDescription(), message.getDescription()) && Objects.equals(getInitialDate(), message.getInitialDate());
     }
-
+    /**
+     * Generates the hash code for this Message object.
+     *
+     * @return The hash code value for this Message object.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(getName(), getPhoneNumber(), getDescription(), getInitialDate(), getInitialTime(), getEndTime());

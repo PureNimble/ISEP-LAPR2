@@ -54,6 +54,8 @@ public class PublishedAnnouncementRepository {
      * @param comission          the commission of the published announcement.
      * @param business           the business of the published announcement.
      * @param durationOfContract the duration of the contract of the published announcement.
+     * @param agent              the agent
+     * @param client             the client
      * @return an Optional containing the newly added published announcement if the operation was successful,         otherwise an empty Optional.
      */
     public Optional<PublishedAnnouncement> publishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent, Client client) {
@@ -79,7 +81,9 @@ public class PublishedAnnouncementRepository {
     /**
      * Published announcement request optional.
      *
-     * @param comission the comission
+     * @param announcementRequests   the announcement requests
+     * @param announcementRequestDto the announcement request dto
+     * @param comission              the comission
      * @return the optional
      */
     public Optional<PublishedAnnouncement> publishedAnnouncementRequest(List<AnnouncementRequest> announcementRequests, AnnouncementRequestDto announcementRequestDto, Comission comission) {
@@ -171,6 +175,11 @@ public class PublishedAnnouncementRepository {
     }
 
 
+    /**
+     * Create publish announcement by file reading.
+     *
+     * @param arrayListOwnerInformations the array list owner informations
+     */
     public void createPublishAnnouncementByFileReading(ArrayList<String[]> arrayListOwnerInformations) {
 
         int aux = 0;
@@ -322,6 +331,12 @@ public class PublishedAnnouncementRepository {
     }
 
 
+    /**
+     * Create address address.
+     *
+     * @param addressInformations the address informations
+     * @return the address
+     */
     public Address createAddress(String[] addressInformations) {
 
         Address address = null;
@@ -438,6 +453,14 @@ public class PublishedAnnouncementRepository {
         }
     };
 
+    /**
+     * Filter list list.
+     *
+     * @param propertyType  the property type
+     * @param businessType  the business type
+     * @param numberOfRooms the number of rooms
+     * @return the list
+     */
     public List<PublishedAnnouncement> filterList(String propertyType, String businessType, int numberOfRooms) {
         List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();
 
@@ -457,6 +480,12 @@ public class PublishedAnnouncementRepository {
         return resultList;
     }
 
+    /**
+     * Compare ascending price list.
+     *
+     * @param announcements the announcements
+     * @return the list
+     */
     public List<PublishedAnnouncement> compareAscendingPrice(List<PublishedAnnouncement> announcements) {
         List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();
 
@@ -484,6 +513,12 @@ public class PublishedAnnouncementRepository {
         return resultList;
     }
 
+    /**
+     * Compare ascending city list.
+     *
+     * @param announcements the announcements
+     * @return the list
+     */
     public List<PublishedAnnouncement> compareAscendingCity(List<PublishedAnnouncement> announcements) {
 
         List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();
@@ -498,6 +533,12 @@ public class PublishedAnnouncementRepository {
         return resultList;
     }
 
+    /**
+     * Compare ascending state list.
+     *
+     * @param announcements the announcements
+     * @return the list
+     */
     public List<PublishedAnnouncement> compareAscendingState(List<PublishedAnnouncement> announcements) {
 
         List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();
@@ -512,6 +553,12 @@ public class PublishedAnnouncementRepository {
         return resultList;
     }
 
+    /**
+     * Compare descending price list.
+     *
+     * @param announcements the announcements
+     * @return the list
+     */
     public List<PublishedAnnouncement> compareDescendingPrice(List<PublishedAnnouncement> announcements) {
         List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();
 
@@ -540,6 +587,12 @@ public class PublishedAnnouncementRepository {
         return resultList;
     }
 
+    /**
+     * Compare descending city list.
+     *
+     * @param announcements the announcements
+     * @return the list
+     */
     public List<PublishedAnnouncement> compareDescendingCity(List<PublishedAnnouncement> announcements) {
 
         List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();
@@ -554,6 +607,12 @@ public class PublishedAnnouncementRepository {
         return resultList;
     }
 
+    /**
+     * Compare descending state list.
+     *
+     * @param announcements the announcements
+     * @return the list
+     */
     public List<PublishedAnnouncement> compareDescendingState(List<PublishedAnnouncement> announcements) {
 
         List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();

@@ -47,7 +47,15 @@ public class PublishedAnnouncementRequestController {
        getAuthenticationRepository();
     }
 
-
+    /**
+     * Constructs a new PublishedAnnouncementRequestController with the specified repositories.
+     *
+     * @param publishedAnnouncementRepository The PublishedAnnouncementRepository instance.
+     * @param announcementRequestRepository The AnnouncementRequestRepository instance.
+     * @param comissionRepository The ComissionRepository instance.
+     * @param employeeRepository The EmployeeRepository instance.
+     * @param authenticationRepository The AuthenticationRepository instance.
+     */
     public PublishedAnnouncementRequestController(PublishedAnnouncementRepository publishedAnnouncementRepository, AnnouncementRequestRepository announcementRequestRepository, ComissionRepository comissionRepository, EmployeeRepository employeeRepository, AuthenticationRepository authenticationRepository) {
         this.publishedAnnouncementRepository = publishedAnnouncementRepository;
         this.announcementRequestRepository = announcementRequestRepository;
@@ -136,7 +144,11 @@ public class PublishedAnnouncementRequestController {
         }
         return publishedAnnouncementRepository;
     }
-
+    /**
+     * Retrieves the AnnouncementRequestMapper instance.
+     *
+     * @return The AnnouncementRequestMapper instance.
+     */
     public AnnouncementRequestMapper getAnnouncementRequestMapper(){
 
         AnnouncementRequestMapper announcementRequestMapper = new AnnouncementRequestMapper();
@@ -168,7 +180,11 @@ public class PublishedAnnouncementRequestController {
 
         return announcementRequestRepository.getAnnouncementRequestsByMostRecent(agent);
     }
-
+    /**
+     * Converts the AnnouncementRequest objects to AnnouncementRequestDto objects using an AnnouncementRequestMapper.
+     *
+     * @return The list of AnnouncementRequestDto objects.
+     */
     public List<AnnouncementRequestDto> toDto(){
 
         List<AnnouncementRequest> announcementRequests = getAnnouncementRequestByMostRecent();
@@ -214,18 +230,12 @@ public class PublishedAnnouncementRequestController {
         return getEmployeeRepository().getEmployeeByEmail(email);
     }
 
+
     /**
-     * Get agent by description employee.
+     * Retrieves a Comission by its description.
      *
-     * @param agentDescription the agent description
-     * @return the employee
-     */
-
-    /**
-
-     Returns the Comission object with the specified description.
-     @param comissionDescription the description of the Comission object to be retrieved
-     @return the Comission object with the specified description
+     * @param comissionDescription The description of the Comission.
+     * @return The Comission object that matches the provided description.
      */
     public Comission getComissionByDescription(Double comissionDescription) {
        ComissionRepository comissionRepository = getComissionRepository();
@@ -254,7 +264,13 @@ public class PublishedAnnouncementRequestController {
         return announcementRequestByDescription;
 
     }
-
+    /**
+     * Creates a published announcement request based on the provided commission description and announcement request description.
+     *
+     * @param comissionDescription         The description of the commission.
+     * @param announcementRequestDtoDescription The description of the announcement request DTO.
+     * @return An Optional containing the created PublishedAnnouncement, or an empty Optional if the creation failed.
+     */
     public Optional<PublishedAnnouncement> createPublishAnnouncementRequest(double comissionDescription, int announcementRequestDtoDescription){
 
         Optional<PublishedAnnouncement> newPublishedAnnouncement = Optional.empty();
@@ -273,7 +289,11 @@ public class PublishedAnnouncementRequestController {
 
         return newPublishedAnnouncement;
     }
-
+    /**
+     * Rejects a publish announcement request based on the provided announcement request description.
+     *
+     * @param announcementRequestDtoDescription The description of the announcement request DTO.
+     */
     public void rejectPublishAnnouncementRequest(int announcementRequestDtoDescription){
 
         AnnouncementRequestRepository announcementRequestRepository = getAnnouncementRequestRepository();

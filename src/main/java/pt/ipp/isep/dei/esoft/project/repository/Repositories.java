@@ -218,10 +218,20 @@ public class Repositories {
         this.messageRepository = messageRepository;
     }
 
+    /**
+     * Gets offer repository.
+     *
+     * @return the offer repository
+     */
     public OfferRepository getOfferRepository() {
         return offerRepository;
     }
 
+    /**
+     * Sets offer repository.
+     *
+     * @param offerRepository the offer repository
+     */
     public void  setOfferRepository (OfferRepository offerRepository) {
         this.offerRepository = offerRepository;
     }

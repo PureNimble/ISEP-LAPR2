@@ -8,18 +8,45 @@ import java.util.List;
  *
  * @param <T> the type parameter
  */
-
 public class BubbleSort<T> implements SortAlgorithm<T> {
+    /**
+     * The list of Message objects to be sorted.
+     */
     private final List<Message> arrayToSort;
 
+    /**
+     * Instantiates a new Bubble sort.
+     *
+     * @param arrayToSort the array to sort
+     */
     public BubbleSort(List<Message> arrayToSort) {
         this.arrayToSort = arrayToSort;
     }
 
+    /**
+     * Gets array after sorting.
+     *
+     * @return the array after sorting
+     */
     public List<Message> getArrayAfterSorting() {
         return arrayToSort;
     }
 
+    /**
+     * Gets array to sort.
+     *
+     * @return the array to sort
+     */
+    public List<Message> getArrayToSort() {
+        return arrayToSort;
+    }
+
+    /**
+     * Sorts the given list of objects in ascending order based on their initial date.
+     *
+     * @param arrayToSort The list of objects to be sorted.
+     * @return The sorted list of objects.
+     */
     @Override
     public List<T> sort(List<T> arrayToSort) {
         int n = arrayToSort.size();

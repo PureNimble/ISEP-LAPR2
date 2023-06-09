@@ -9,20 +9,31 @@ import java.util.Optional;
 
 
 /**
-
- The PlaceOfferController class is responsible for handling the operations related to placing offers.
+ * The PlaceOfferController class is responsible for handling the operations related to placing offers.
  */
 public class PlaceOfferController {
 
-     PublishedAnnouncementRepository publishedAnnouncementRepository = null;
-
-     AuthenticationRepository authenticationRepository = null;
-
-     OfferRepository offerRepository = null;
-     UserRepository userRepository = null;
     /**
+     * The Published announcement repository.
+     */
+    PublishedAnnouncementRepository publishedAnnouncementRepository = null;
 
-     Constructs a new instance of PlaceOfferController and initializes the repositories.
+    /**
+     * The Authentication repository.
+     */
+    AuthenticationRepository authenticationRepository = null;
+
+    /**
+     * The Offer repository.
+     */
+    OfferRepository offerRepository = null;
+    /**
+     * The User repository.
+     */
+    UserRepository userRepository = null;
+
+    /**
+     * Constructs a new instance of PlaceOfferController and initializes the repositories.
      */
     public PlaceOfferController() {
         getPublishedAnnouncementRepository();
@@ -30,12 +41,14 @@ public class PlaceOfferController {
         getOfferRepository();
         getUserRepository();
     }
-    /**
 
-     Constructs a new instance of PlaceOfferController with the specified repositories.
-     @param authenticationRepository the authentication repository to be used
-     @param offerRepository the offer repository to be used
-     @param publishedAnnouncementRepository the published announcement repository to be used
+    /**
+     * Constructs a new instance of PlaceOfferController with the specified repositories.
+     *
+     * @param authenticationRepository        the authentication repository to be used
+     * @param offerRepository                 the offer repository to be used
+     * @param publishedAnnouncementRepository the published announcement repository to be used
+     * @param userRepository                  the user repository
      */
     public PlaceOfferController(AuthenticationRepository authenticationRepository, OfferRepository offerRepository, PublishedAnnouncementRepository publishedAnnouncementRepository, UserRepository userRepository) {
         this.offerRepository = offerRepository;
@@ -89,6 +102,11 @@ public class PlaceOfferController {
         return publishedAnnouncementRepository;
     }
 
+    /**
+     * Gets user repository.
+     *
+     * @return the user repository
+     */
     public UserRepository getUserRepository() {
         if (userRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -99,20 +117,30 @@ public class PlaceOfferController {
     }
 
     /**
-
-     Retrieves the list of offers from the offer repository.
-     @return the list of offers
+     * Retrieves the list of offers from the offer repository.
+     *
+     * @return the list of offers
      */
     public List <Offer> getOffers() {
         OfferRepository offerRepository = getOfferRepository();
         return offerRepository.getOffers();
     }
 
+    /**
+     * Gets current session email.
+     *
+     * @return the current session email
+     */
     public String getCurrentSessionEmail() {
         AuthenticationRepository authenticationRepository = getAuthenticationRepository();
         return authenticationRepository.getCurrentUserSession().getUserId().getEmail();
     }
 
+    /**
+     * Gets client email.
+     *
+     * @return the client email
+     */
     public Client getClientEmail() {
         String email = getCurrentSessionEmail();
         return getUserRepository().getClientEmail(email);
@@ -152,12 +180,14 @@ public class PlaceOfferController {
 
 
     /**
-
-     Creates a new offer and associates it with the specified published announcement.
-     @param name the name of the offer
-     @param orderAmount the order amount of the offer
-     @param publishedAnnouncement the published announcement to associate the offer with
-     @return an Optional containing the created offer, or an empty Optional if the creation fails
+     * Creates a new offer and associates it with the specified published announcement.
+     *
+     * @param name                  the name of the offer
+     * @param client                the client
+     * @param orderAmount           the order amount of the offer
+     * @param publishedAnnouncement the published announcement to associate the offer with
+     * @param offerState            the offer state
+     * @return an Optional containing the created offer, or an empty Optional if the creation fails
      */
     public Optional<Offer> createNewOfferToAgent (String name, Client client, double orderAmount, PublishedAnnouncement publishedAnnouncement, OfferState offerState) {
         if (orderAmount <= publishedAnnouncement.getBusiness().getPrice()) {

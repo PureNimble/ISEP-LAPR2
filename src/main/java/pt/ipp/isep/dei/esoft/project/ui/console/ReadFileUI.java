@@ -6,14 +6,19 @@ import pt.ipp.isep.dei.esoft.project.domain.FileReaderClass;
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * The type Read file ui.
+ */
 public class ReadFileUI implements Runnable {
 
-
+    /**
+     * Controller for importing files and performing operations on them.
+     */
     private ImportFileController importFileController = new ImportFileController();
 
-
-
-
+    /**
+     * Runs the file import and processing UI.
+     */
     public void run() {
         
         String filePath = "src/legacyRealStateUSAMoodle.csv";
@@ -23,10 +28,6 @@ public class ReadFileUI implements Runnable {
        importFileController.addStore(file);
 
        importFileController.addPublishAnnouncement(file);
-
-
-
-
 
     }
 

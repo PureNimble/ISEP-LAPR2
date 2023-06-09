@@ -7,12 +7,29 @@ import java.util.Objects;
  * name, address, and phone number.
  */
 public class Person {
-
+    /**
+     * The email of the person.
+     */
     private String email;
+    /**
+     * The passport number of the person.
+     */
     private int passportNumber;
+    /**
+     * The tax number of the person.
+     */
     private int taxNumber;
+    /**
+     * The name of the person.
+     */
     private String name;
+    /**
+     * The address of the person.
+     */
     private Address address;
+    /**
+     * The phone number of the person.
+     */
     private long phoneNumber;
 
     /**

@@ -77,6 +77,12 @@ public class StoreRepository {
         return stores;
     }
 
+    /**
+     * Gets stores property.
+     *
+     * @param announcementList the announcement list
+     * @param employees        the employees
+     */
     public void getStoresProperty(List<PublishedAnnouncement> announcementList, List<Employee> employees) {
 
         List<Store> storesList = getStores();
@@ -96,6 +102,11 @@ public class StoreRepository {
         }
     }
 
+    /**
+     * Gets stores by most listings.
+     *
+     * @return the stores by most listings
+     */
     public List<Store> getStoresByMostListings() {
         List<Store> sortedStores = new ArrayList<>(stores);
 
@@ -104,6 +115,9 @@ public class StoreRepository {
         return sortedStores;
     }
 
+    /**
+     * The Compare to descending list.
+     */
     Comparator<Store> compareToDescendingList = new Comparator<Store>() {
         @Override
         public int compare(Store store1, Store store2) {
@@ -120,6 +134,11 @@ public class StoreRepository {
         }
     };
 
+    /**
+     * Create store by file reading.
+     *
+     * @param arrayListStoreInformations the array list store informations
+     */
     public void createStoreByFileReading(ArrayList<String[]> arrayListStoreInformations) {
 
         int aux = 0;

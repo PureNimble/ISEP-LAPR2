@@ -61,6 +61,7 @@ public class AnnouncementRequestRepository {
      * @param propertyType       The property type for the AnnouncementRequest.
      * @param business           The business for the AnnouncementRequest.
      * @param durationOfContract The duration of the contract for the AnnouncementRequest.
+     * @param agent              the agent
      * @return An Optional containing the added AnnouncementRequest if the operation was successful, otherwise an empty Optional.
      */
     public Optional<AnnouncementRequest> announcementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract, Employee agent) {
@@ -98,7 +99,12 @@ public class AnnouncementRequestRepository {
         }
         return success;
     }
-
+    /**
+     * Validates an announcement request by checking if the tasks do not contain the request.
+     *
+     * @param announcementRequest The announcement request to be validated.
+     * @return True if the tasks do not contain the request, false otherwise.
+     */
     private boolean validate(AnnouncementRequest announcementRequest) {
         return tasksDoNotContain(announcementRequest);
     }
@@ -166,6 +172,11 @@ public class AnnouncementRequestRepository {
         return announcementRequest;
     }
 
+    /**
+     * Reject announcement request.
+     *
+     * @param announcementRequestDto the announcement request dto
+     */
     public void rejectAnnouncementRequest(AnnouncementRequestDto announcementRequestDto){
 
         int i =0;

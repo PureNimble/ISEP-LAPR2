@@ -18,22 +18,47 @@ import java.util.Optional;
  * repository.
  */
 public class PublishAnnouncementController {
-
+    /**
+     * The UserRepository instance.
+     */
     private UserRepository userRepository = null;
 
+    /**
+     * The Property type repository.
+     */
     PropertyTypeRepository propertyTypeRepository = null;
 
+    /**
+     * The Published announcement repository.
+     */
     PublishedAnnouncementRepository publishedAnnouncementRepository = null;
 
+    /**
+     * The Comission repository.
+     */
     ComissionRepository comissionRepository = null;
 
+    /**
+     * The Type of business repository.
+     */
     TypeOfBusinessRepository typeOfBusinessRepository = null;
 
+    /**
+     * The Available equipment repository.
+     */
     AvailableEquipmentRepository availableEquipmentRepository = null;
 
+    /**
+     * The Employee repository.
+     */
     EmployeeRepository employeeRepository = null;
+    /**
+     * The Authentication repository.
+     */
     AuthenticationRepository authenticationRepository = null;
-
+    /**
+     * The StateRepository instance.
+     */
     private StateRepository stateRepository = null;
 
 
@@ -102,6 +127,11 @@ public class PublishAnnouncementController {
     }
 
 
+    /**
+     * Get current session email string.
+     *
+     * @return the string
+     */
     public String getCurrentSessionEmail(){
         AuthenticationRepository authenticationRepository = getAuthenticationRepository();
         return authenticationRepository.getCurrentUserSession().getUserId().getEmail();
@@ -197,11 +227,22 @@ public class PublishAnnouncementController {
 
     }
 
+    /**
+     * Gets state.
+     *
+     * @return the state
+     */
     public List<State> getState() {
         StateRepository stateRepository = getStateRepository();
         return stateRepository.getStates();
     }
 
+    /**
+     * Gets state by description.
+     *
+     * @param stateDescription the state description
+     * @return the state by description
+     */
     public State getStateByDescription(String stateDescription) {
 
         StateRepository stateRepository = getStateRepository();
@@ -213,6 +254,13 @@ public class PublishAnnouncementController {
 
     }
 
+    /**
+     * Gets city by description.
+     *
+     * @param cityDescription the city description
+     * @param district        the district
+     * @return the city by description
+     */
     public City getCityByDescription(String cityDescription, District district) {
 
         StateRepository stateRepository = getStateRepository();
@@ -224,6 +272,13 @@ public class PublishAnnouncementController {
 
     }
 
+    /**
+     * Gets district by description.
+     *
+     * @param districtDescription the district description
+     * @param state               the state
+     * @return the district by description
+     */
     public District getDistrictByDescription(String districtDescription,State state) {
 
         StateRepository stateRepository = getStateRepository();
@@ -234,10 +289,22 @@ public class PublishAnnouncementController {
         return districtByDescription;
     }
 
+    /**
+     * Get district list.
+     *
+     * @param state the state
+     * @return the list
+     */
     public List<District> getDistrict(State state){
         return state.getDistricts();
     }
 
+    /**
+     * Get cities list.
+     *
+     * @param district the district
+     * @return the list
+     */
     public List<City> getCities(District district){
         return district.getCities();
     }
@@ -383,10 +450,9 @@ public class PublishAnnouncementController {
     }
 
     /**
-
-     Returns a list of all agents.
-
-     @return A List of Employee objects representing agents.
+     * Returns a list of all agents.
+     *
+     * @return A List of Employee objects representing agents.
      */
     public List<Employee> getListAgents() {
 
@@ -429,8 +495,9 @@ public class PublishAnnouncementController {
      * @param comission          the commission for the new published announcement
      * @param business           the business for the new published announcement
      * @param durationOfContract the duration of the contract for the new published announcement
-     * @return an Optional containing the new published announcement if it was created successfully,
-     * or an empty Optional if a published announcement with the same parameters already exists
+     * @param agent              the agent
+     * @param client             the client
+     * @return an Optional containing the new published announcement if it was created successfully, or an empty Optional if a published announcement with the same parameters already exists
      */
     public Optional<PublishedAnnouncement> createPublishmentAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent, Client client) {
 

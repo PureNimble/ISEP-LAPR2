@@ -15,30 +15,80 @@ import java.util.*;
  * It implements the Runnable interface to run the UI as a separate thread.
  */
 public class RegisterEmployeeUI implements Runnable {
+    /**
+     * Controller for registering an employee.
+     */
     private final RegisterEmployeeController controller = new RegisterEmployeeController();
 
+    /**
+     * Controller for authentication operations.
+     */
     private final AuthenticationController authenticationController = new AuthenticationController();
 
+    /**
+     * Repository for authentication data.
+     */
     private final AuthenticationRepository authenticationRepository = new AuthenticationRepository();
 
+    /**
+     * The zip code of the employee's address.
+     */
     private int zipCode;
+
+    /**
+     * The street name of the employee's address.
+     */
     private String street;
+
+    /**
+     * The name of the employee.
+     */
     private String name;
+
+    /**
+     * The email address of the employee.
+     */
     private String employeeEmail;
+
+    /**
+     * The phone number of the employee.
+     */
     private long phoneNumber;
+
+    /**
+     * The description of the employee's role.
+     */
     private String roleDescription;
+
+    /**
+     * The description of the store where the employee works.
+     */
     private String storeDescription;
 
+    /**
+     * The description of the city where the employee resides.
+     */
     private String cityDescription;
 
+    /**
+     * The description of the state where the employee resides.
+     */
     private String stateDescription;
 
+    /**
+     * The description of the district where the employee resides.
+     */
     private String districtDescription;
 
+    /**
+     * The passport number of the employee.
+     */
     private int passportNumber;
 
+    /**
+     * The tax number of the employee.
+     */
     private int taxNumber;
-
     /**
      * Returns the RegisterEmployeeController instance associated with the UI.
      *

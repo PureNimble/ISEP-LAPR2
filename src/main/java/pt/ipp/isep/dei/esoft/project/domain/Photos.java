@@ -21,6 +21,11 @@ public class Photos {
         this.url = url;
     }
 
+    /**
+     * Instantiates a new Photos.
+     *
+     * @param url the url
+     */
     public Photos(String url) {
         this.url = List.of(url);
     }
@@ -43,6 +48,11 @@ public class Photos {
         this.url = url;
     }
 
+    /**
+     * Add url.
+     *
+     * @param url the url
+     */
     public void addUrl(String url){
         this.url.add(url);
     }

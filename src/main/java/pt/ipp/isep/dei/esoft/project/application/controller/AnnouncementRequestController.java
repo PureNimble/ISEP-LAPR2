@@ -9,26 +9,37 @@ import java.util.List;
 import java.util.Optional;
 
 /**
-
- The AnnouncementRequestController class is responsible for managing announcement requests.
-
- It interacts with the UserRepository, PropertyTypeRepository, AnnouncementRequestRepository,
-
- EmployeeRepository, TypeOfBusinessRepository, and AvailableEquipmentRepository to perform its operations.
+ * The AnnouncementRequestController class is responsible for managing announcement requests.
+ * It interacts with the UserRepository, PropertyTypeRepository, AnnouncementRequestRepository,
+ * EmployeeRepository, TypeOfBusinessRepository, and AvailableEquipmentRepository to perform its operations.
  */
 public class AnnouncementRequestController {
 
     private UserRepository userRepository = null;
+    /**
+     * The Property type repository.
+     */
     PropertyTypeRepository propertyTypeRepository = null;
+    /**
+     * The Announcement request repository.
+     */
     AnnouncementRequestRepository announcementRequestRepository = null;
+    /**
+     * The Employee repository.
+     */
     EmployeeRepository employeeRepository = null;
+    /**
+     * The Type of business repository.
+     */
     TypeOfBusinessRepository typeOfBusinessRepository = null;
+    /**
+     * The Available equipment repository.
+     */
     AvailableEquipmentRepository availableEquipmentRepository = null;
     private StateRepository stateRepository = null;
 
     /**
-
-     Constructor for AnnouncementRequestController that initializes the required repositories.
+     * Constructor for AnnouncementRequestController that initializes the required repositories.
      */
     public AnnouncementRequestController() {
         getUserRepository();
@@ -75,21 +86,23 @@ public class AnnouncementRequestController {
         }
         return stateRepository;
     }
-    /**
 
-     Method to get a PropertyType instance by its description.
-     @param propertyTypeDescription The description of the property type.
-     @return PropertyType instance
+    /**
+     * Method to get a PropertyType instance by its description.
+     *
+     * @param propertyTypeDescription The description of the property type.
+     * @return PropertyType instance
      */
     public PropertyType getPropertyTypeByDescription(String propertyTypeDescription) {
         PropertyTypeRepository propertyTypeRepository = getPropertyTypeRepository();
         PropertyType propertyTypeByDescription = getPropertyTypeRepository().getPropertyTypeByDescription(propertyTypeDescription);
         return propertyTypeByDescription;
     }
-    /**
 
-     Method to get a list of all PropertyType instances.
-     @return List of PropertyType instances
+    /**
+     * Method to get a list of all PropertyType instances.
+     *
+     * @return List of PropertyType instances
      */
     public List<PropertyType> getPropertyType() {
         PropertyTypeRepository propertyTypeRepository = getPropertyTypeRepository();
@@ -107,21 +120,23 @@ public class AnnouncementRequestController {
         }
         return typeOfBusinessRepository;
     }
-    /**
 
-     Method to get a TypeOfBusiness instance by its description.
-     @param typeOfBusinessDescription The description of the type of business.
-     @return TypeOfBusiness instance
+    /**
+     * Method to get a TypeOfBusiness instance by its description.
+     *
+     * @param typeOfBusinessDescription The description of the type of business.
+     * @return TypeOfBusiness instance
      */
     public TypeOfBusiness getTypeOfBusinessByDescription(String typeOfBusinessDescription) {
         TypeOfBusinessRepository typeOfBusinessRepository = getTypeOfBusinessRepository();
         TypeOfBusiness typeOfBusinessByDescription = typeOfBusinessRepository.getTypeOfBusinessByDescription(typeOfBusinessDescription);
         return typeOfBusinessByDescription;
     }
-    /**
 
-     Method to get a list of all TypeOfBusiness instances.
-     @return List of TypeOfBusiness instances
+    /**
+     * Method to get a list of all TypeOfBusiness instances.
+     *
+     * @return List of TypeOfBusiness instances
      */
     public List<TypeOfBusiness> getTypeOfBusiness() {
         TypeOfBusinessRepository typeOfBusinessRepository = getTypeOfBusinessRepository();
@@ -159,10 +174,9 @@ public class AnnouncementRequestController {
     }
 
     /**
-
-     Returns a list of all agents.
-
-     @return A List of Employee objects representing agents.
+     * Returns a list of all agents.
+     *
+     * @return A List of Employee objects representing agents.
      */
     public List<Employee> getListAgents() {
 
@@ -179,11 +193,22 @@ public class AnnouncementRequestController {
         return listAgents;
     }
 
+    /**
+     * Gets state.
+     *
+     * @return the state
+     */
     public List<State> getState() {
         StateRepository stateRepository = getStateRepository();
         return stateRepository.getStates();
     }
 
+    /**
+     * Gets state by description.
+     *
+     * @param stateDescription the state description
+     * @return the state by description
+     */
     public State getStateByDescription(String stateDescription) {
 
         StateRepository stateRepository = getStateRepository();
@@ -195,6 +220,13 @@ public class AnnouncementRequestController {
 
     }
 
+    /**
+     * Gets city by description.
+     *
+     * @param cityDescription the city description
+     * @param district        the district
+     * @return the city by description
+     */
     public City getCityByDescription(String cityDescription, District district) {
 
         StateRepository stateRepository = getStateRepository();
@@ -206,6 +238,13 @@ public class AnnouncementRequestController {
 
     }
 
+    /**
+     * Gets district by description.
+     *
+     * @param districtDescription the district description
+     * @param state               the state
+     * @return the district by description
+     */
     public District getDistrictByDescription(String districtDescription,State state) {
 
         StateRepository stateRepository = getStateRepository();
@@ -216,30 +255,41 @@ public class AnnouncementRequestController {
         return districtByDescription;
     }
 
+    /**
+     * Get district list.
+     *
+     * @param state the state
+     * @return the list
+     */
     public List<District> getDistrict(State state){
         return state.getDistricts();
     }
 
+    /**
+     * Get cities list.
+     *
+     * @param district the district
+     * @return the list
+     */
     public List<City> getCities(District district){
         return district.getCities();
     }
 
     /**
-
-     Returns a list of all Announcement Requests.
-     @return A List of AnnouncementRequest objects.
+     * Returns a list of all Announcement Requests.
+     *
+     * @return A List of AnnouncementRequest objects.
      */
     public List<AnnouncementRequest> getAnnouncementRequest() {
         AnnouncementRequestRepository announcementRequestRepository = getAnnouncementRequestRepository();
         return announcementRequestRepository.getAnnouncementsRequest();
     }
+
     /**
-
-     Returns a Business object by its description.
-
-     @param priceDescription The price description of the Business object.
-
-     @return The Business object with the specified price description.
+     * Returns a Business object by its description.
+     *
+     * @param priceDescription The price description of the Business object.
+     * @return The Business object with the specified price description.
      */
     public Business getBusinessByDescription(double priceDescription){
 
@@ -263,13 +313,12 @@ public class AnnouncementRequestController {
         }
         return availableEquipmentRepository;
     }
+
     /**
-
-     Returns an AvailableEquipment object by its description.
-
-     @param availableEquipmentDescription The description of the AvailableEquipment object.
-
-     @return The AvailableEquipment object with the specified description.
+     * Returns an AvailableEquipment object by its description.
+     *
+     * @param availableEquipmentDescription The description of the AvailableEquipment object.
+     * @return The AvailableEquipment object with the specified description.
      */
     public AvailableEquipment getAvailableEquipmentByDescription(String availableEquipmentDescription) {
         AvailableEquipmentRepository availableEquipmentRepository = getAvailableEquipmentRepository();
@@ -281,25 +330,28 @@ public class AnnouncementRequestController {
         return availableEquipmentByDescription;
 
     }
-    /**
 
-     Returns a list of all Available Equipment objects.
-     @return A List of AvailableEquipment objects.
+    /**
+     * Returns a list of all Available Equipment objects.
+     *
+     * @return A List of AvailableEquipment objects.
      */
     public List<AvailableEquipment> getAvailableEquipment() {
         AvailableEquipmentRepository availableEquipmentRepository = getAvailableEquipmentRepository();
         return availableEquipmentRepository.getAvailableEquipments();
     }
-    /**
 
-     Creates a new announcement request with the given parameters.
-     @param date The date of the announcement request.
-     @param typeOfBusiness The type of business for the announcement request.
-     @param property The property for the announcement request.
-     @param propertyType The property type for the announcement request.
-     @param business The business for the announcement request.
-     @param durationOfContract The duration of the contract for the announcement request.
-     @return An optional containing the newly created announcement request if it was created successfully, or an empty optional if the announcement request already exists in the repository.
+    /**
+     * Creates a new announcement request with the given parameters.
+     *
+     * @param date               The date of the announcement request.
+     * @param typeOfBusiness     The type of business for the announcement request.
+     * @param property           The property for the announcement request.
+     * @param propertyType       The property type for the announcement request.
+     * @param business           The business for the announcement request.
+     * @param durationOfContract The duration of the contract for the announcement request.
+     * @param agent              the agent
+     * @return An optional containing the newly created announcement request if it was created successfully, or an empty optional if the announcement request already exists in the repository.
      */
     public Optional<AnnouncementRequest> createAnnouncementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract,Employee agent) {
 

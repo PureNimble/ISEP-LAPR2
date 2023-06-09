@@ -26,7 +26,11 @@ public class SendMessageController {
     public SendMessageController() {
         getMessageRepository();
     }
-
+    /**
+     * Retrieves the MessageRepository instance.
+     *
+     * @return The MessageRepository instance.
+     */
     private MessageRepository getMessageRepository() {
         if (messageRepository == null) {
             Repositories repositories = Repositories.getInstance();

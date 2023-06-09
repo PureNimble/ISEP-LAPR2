@@ -6,6 +6,9 @@ import java.util.Objects;
  * The AvailableEquipment class represents the equipment that is available for use.
  */
 public class AvailableEquipment {
+    /**
+     * The available equipment associated with the object.
+     */
     private String availableEquipment;
 
     /**

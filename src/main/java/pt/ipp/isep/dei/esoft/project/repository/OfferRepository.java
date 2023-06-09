@@ -10,7 +10,9 @@ import java.util.*;
  * The OfferRepository class is responsible for managing the storage and retrieval of offers.
  */
 public class OfferRepository {
-
+    /**
+     * List of offers associated with this object.
+     */
     private final List<Offer> offers = new ArrayList<>();
 
     /**
@@ -64,6 +66,12 @@ public class OfferRepository {
         return !(offer1.getOrderAmount() < offer2.getOrderAmount());
     }
 
+    /**
+     * Has pending offers by email boolean.
+     *
+     * @param email the email
+     * @return the boolean
+     */
     public boolean hasPendingOffersByEmail(String email) {
         for (Offer offer : offers) {
             if (offer.getOfferState() == OfferState.pending && offer.getClient().getClientEmail().equals(email)) {
@@ -72,6 +80,7 @@ public class OfferRepository {
         }
         return false;
     }
+
     /**
      * Retrieves the list of offers stored in the repository.
      *
@@ -81,6 +90,12 @@ public class OfferRepository {
         return offers;
     }
 
+    /**
+     * Decline other offers.
+     *
+     * @param offer      the offer
+     * @param offersList the offers list
+     */
     public void declineOtherOffers(Offer offer, List<Offer> offersList) {
         for (int i = 0; i < offersList.size(); i++) {
             Offer offerIndex = offersList.get(i);
@@ -90,6 +105,12 @@ public class OfferRepository {
         }
     }
 
+    /**
+     * Gets offers by property by highest amount.
+     *
+     * @param publishedAnnouncementList the published announcement list
+     * @return the offers by property by highest amount
+     */
     public List<Offer> getOffersByPropertyByHighestAmount(List<PublishedAnnouncement> publishedAnnouncementList) {
         List<Offer> resultList = new ArrayList<Offer>();
 
@@ -109,6 +130,11 @@ public class OfferRepository {
         return resultList;
     }
 
+    /**
+     * Gets offers by area ascending using bubble sort algorithm.
+     *
+     * @return the offers by area ascending using bubble sort algorithm
+     */
     public List<Offer> getOffersByAreaAscendingUsingBubbleSortAlgorithm() {
         List<Offer> resultList = new ArrayList<Offer>();
 
@@ -133,6 +159,11 @@ public class OfferRepository {
         return resultList;
     }
 
+    /**
+     * Gets offers by area descending using bubble sort algorithm.
+     *
+     * @return the offers by area descending using bubble sort algorithm
+     */
     public List<Offer> getOffersByAreaDescendingUsingBubbleSortAlgorithm() {
         List<Offer> resultList = new ArrayList<Offer>();
 
@@ -156,6 +187,11 @@ public class OfferRepository {
         return resultList;
     }
 
+    /**
+     * Gets offers by area ascending using sort selection.
+     *
+     * @return the offers by area ascending using sort selection
+     */
     public List<Offer> getOffersByAreaAscendingUsingSortSelection() {
         List<Offer> resultList = new ArrayList<Offer>();
 
@@ -183,6 +219,11 @@ public class OfferRepository {
         return resultList;
     }
 
+    /**
+     * Gets offers by area descending using sort selection.
+     *
+     * @return the offers by area descending using sort selection
+     */
     public List<Offer> getOffersByAreaDescendingUsingSortSelection() {
         List<Offer> resultList = new ArrayList<Offer>();
 
@@ -210,7 +251,11 @@ public class OfferRepository {
     }
 
 
-
+    /**
+     * Gets offers by most recent.
+     *
+     * @return the offers by most recent
+     */
     public List<Offer> getOffersByMostRecent () {
             List<Offer> resultList = new ArrayList<Offer>();
 
@@ -220,7 +265,13 @@ public class OfferRepository {
                 }
             }
 
-
+/**
+ * Sorts the list of offers by the date of the associated published announcements in ascending order,
+ * and then reverses the list to obtain a descending order by date.
+ *
+ * @param resultList The list of offers to be sorted.
+ * @return The sorted list of offers in descending order by date.
+ */
             resultList.sort(new Comparator<Offer>() {
                 @Override
                 public int compare(Offer o1, Offer o2) {

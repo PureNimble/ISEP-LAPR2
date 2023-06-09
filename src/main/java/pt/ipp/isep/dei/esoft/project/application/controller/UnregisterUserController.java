@@ -10,11 +10,17 @@ import java.util.List;
  * A controller class for handling user registration.
  */
 public class UnregisterUserController {
-
+    /**
+     * The StateRepository instance.
+     */
     private StateRepository stateRepository = null;
-
+    /**
+     * The AuthenticationRepository instance.
+     */
     private AuthenticationRepository authenticationRepository = null;
-
+    /**
+     * The UserRepository instance.
+     */
     private UserRepository userRepository = null;
 
     /**
@@ -80,6 +86,16 @@ public class UnregisterUserController {
     }
 
 
+    /**
+     * Register client.
+     *
+     * @param name               the name
+     * @param email              the email
+     * @param passportCardNumber the passport card number
+     * @param taxNumber          the tax number
+     * @param telephoneNumber    the telephone number
+     * @param address            the address
+     */
     public void registerClient(String name, String email, int passportCardNumber, int taxNumber, long telephoneNumber, Address address) {
         if (address == null) {
             getUserRepository().add(new Client(email, passportCardNumber, taxNumber, name, telephoneNumber));
@@ -89,10 +105,23 @@ public class UnregisterUserController {
     }
 
 
+    /**
+     * Gets password.
+     *
+     * @return the password
+     */
     public String getPassword() {
        return getAuthenticationRepository().passwordGenerator();
     }
 
+    /**
+     * Register user.
+     *
+     * @param name     the name
+     * @param email    the email
+     * @param password the password
+     * @param role     the role
+     */
     public void registerUser(String name, String email, String password, String role) {
         getAuthenticationRepository().addUserWithRole(name, email, password, role);
     }

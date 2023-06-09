@@ -12,12 +12,16 @@ import java.util.List;
 import java.util.Objects;
 
 /**
+ * The type Authentication ui.
+ *
  * @author Paulo Maio pam@isep.ipp.pt
  */
-
 public class AuthenticationUI implements Runnable {
     private final AuthenticationController ctrl;
 
+    /**
+     * Instantiates a new Authentication ui.
+     */
     public AuthenticationUI() {
         ctrl = new AuthenticationController();
     }

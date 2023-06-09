@@ -8,8 +8,13 @@ import java.util.Objects;
  * It extends the User class and adds a reference to the Store the employee works at and the roles they play.
  */
 public class Employee extends Person {
-
+    /**
+     * The store associated with the object.
+     */
     private Store store;
+    /**
+     * The list of roles associated with the object.
+     */
     private List<Role> roles;
 
     /**
@@ -33,6 +38,17 @@ public class Employee extends Person {
     }
 
 
+    /**
+     * Instantiates a new Employee.
+     *
+     * @param email          the email
+     * @param passportNumber the passport number
+     * @param taxNumber      the tax number
+     * @param name           the name
+     * @param phoneNumber    the phone number
+     * @param store          the store
+     * @param roles          the roles
+     */
     public Employee(String email, int passportNumber, int taxNumber, String name, long phoneNumber, Store store,
                     List<Role> roles) {
         super(email, passportNumber, taxNumber, name,phoneNumber);
@@ -53,6 +69,7 @@ public class Employee extends Person {
     /**
      * Returns the Store where the employee works.
      *
+     * @param store the store
      * @return the Store where the employee works
      */
     public void setStore(Store store) {

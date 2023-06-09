@@ -8,18 +8,20 @@ import pt.ipp.isep.dei.esoft.project.repository.StoreRepository;
 
 import java.util.List;
 import java.util.Optional;
-/**
 
- The RegisterStoreController class is responsible for registering a new store in the system.
- It provides a method for registering a store to initialize its
- StoreRepository and StateRepository instance variables.
+/**
+ * The RegisterStoreController class is responsible for registering a new store in the system.
+ * It provides a method for registering a store to initialize its
+ * StoreRepository and StateRepository instance variables.
  */
 public class RegisterStoreController {
-
-
-
+    /**
+     * The StoreRepository instance.
+     */
     private StoreRepository storeRepository = null;
-
+    /**
+     * The StateRepository instance.
+     */
     private StateRepository stateRepository = null;
 
 
@@ -60,15 +62,15 @@ public class RegisterStoreController {
     }
 
     /**
-
-     Registers a new store in the system.
-     @param designation The designation of the store to be registered.
-     @param address The address of the store to be registered.
-     @param id The ID of the store to be registered.
-     @param passportNumber The passport number of the store to be registered.
-     @param email The email of the store to be registered.
-     @param listing The listing of the store to be registered.
-     @return An Optional object containing the newly created store, or an empty Optional if the store could not be added.
+     * Registers a new store in the system.
+     *
+     * @param id          The ID of the store to be registered.
+     * @param designation The designation of the store to be registered.
+     * @param address     The address of the store to be registered.
+     * @param email       The email of the store to be registered.
+     * @param phoneNumber the phone number
+     * @param listing     The listing of the store to be registered.
+     * @return An Optional object containing the newly created store, or an empty Optional if the store could not be added.
      */
     public Optional<Store> registerStore(int id, String designation, Address address, String email, long phoneNumber, int listing) {
 
@@ -97,6 +99,7 @@ public class RegisterStoreController {
         return storeByDescription;
 
     }
+
     /**
      * Returns a list of all States.
      *
@@ -106,6 +109,7 @@ public class RegisterStoreController {
         StateRepository stateRepository = getStateRepository();
         return stateRepository.getStates();
     }
+
     /**
      * Returns a list of all Stores.
      *
@@ -137,7 +141,7 @@ public class RegisterStoreController {
      * Returns the City that matches the given description and District.
      *
      * @param cityDescription the description of the City to retrieve
-     * @param district the District that the City should belong to
+     * @param district        the District that the City should belong to
      * @return the City that matches the description and District, or null if not found
      */
     public City getCityByDescription(String cityDescription, District district) {
@@ -150,11 +154,12 @@ public class RegisterStoreController {
         return cityByDescription;
 
     }
+
     /**
      * Returns the District that matches the given description and State.
      *
      * @param districtDescription the description of the District to retrieve
-     * @param state the State that the District should belong to
+     * @param state               the State that the District should belong to
      * @return the District that matches the description and State, or null if not found
      */
     public District getDistrictByDescription(String districtDescription,State state) {
@@ -166,6 +171,7 @@ public class RegisterStoreController {
                 stateRepository.getDistrictByDescription(districtDescription,state);
         return districtByDescription;
     }
+
     /**
      * Returns a list of all Districts belonging to the given State.
      *
@@ -175,6 +181,7 @@ public class RegisterStoreController {
     public List<District> getDistrict(State state){
         return state.getDistricts();
     }
+
     /**
      * Returns a list of all Cities belonging to the given District.
      *

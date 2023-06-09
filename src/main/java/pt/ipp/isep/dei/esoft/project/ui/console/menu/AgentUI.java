@@ -10,16 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-
- The AgentUI class is responsible for displaying the main menu of the agent application
-
- and executing the user-selected options. It implements the Runnable interface.
+ * The AgentUI class is responsible for displaying the main menu of the agent application
+ * and executing the user-selected options. It implements the Runnable interface.
  */
 public class AgentUI implements Runnable {
 
     /**
-
-     Constructor for the AgentUI class.
+     * Constructor for the AgentUI class.
      */
     public AgentUI() {
     }

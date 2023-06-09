@@ -42,7 +42,11 @@ public class Client extends Person {
         return super.compare(email);
     }
 
-
+    /**
+     * Retrieves the email address of the client.
+     *
+     * @return The email address of the client.
+     */
     public String getClientEmail(){
         return super.getEmail();
     }

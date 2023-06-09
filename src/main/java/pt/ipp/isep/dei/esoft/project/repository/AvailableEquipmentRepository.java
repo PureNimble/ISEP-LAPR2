@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
-
- The AvailableEquipmentRepository class represents a repository of available equipment.
+ * The AvailableEquipmentRepository class represents a repository of available equipment.
  */
 public class AvailableEquipmentRepository {
 
@@ -17,15 +16,13 @@ public class AvailableEquipmentRepository {
      The list of available equipment objects.
      */
     private List<AvailableEquipment> availableEquipments = new ArrayList<>();
+
     /**
-
-     Returns an AvailableEquipment object that matches the specified description.
-
-     @param availableEquipmentDescription The description of the available equipment to search for.
-
-     @return The AvailableEquipment object that matches the description.
-
-     @throws IllegalArgumentException If the type of business requested for the given description does not exist.
+     * Returns an AvailableEquipment object that matches the specified description.
+     *
+     * @param availableEquipmentDescription The description of the available equipment to search for.
+     * @return The AvailableEquipment object that matches the description.
+     * @throws IllegalArgumentException If the type of business requested for the given description does not exist.
      */
     public AvailableEquipment getAvailableEquipmentByDescription(String availableEquipmentDescription) throws IllegalArgumentException {
 
@@ -43,12 +40,10 @@ public class AvailableEquipmentRepository {
     }
 
     /**
-
-     Adds an AvailableEquipment object to the repository.
-
-     @param availableEquipment The AvailableEquipment object to add to the repository.
-
-     @return An optional AvailableEquipment object representing the newly added equipment.
+     * Adds an AvailableEquipment object to the repository.
+     *
+     * @param availableEquipment The AvailableEquipment object to add to the repository.
+     * @return An optional AvailableEquipment object representing the newly added equipment.
      */
     public Optional<AvailableEquipment> add(AvailableEquipment availableEquipment) {
 
@@ -77,10 +72,11 @@ public class AvailableEquipmentRepository {
         boolean isValid = !availableEquipments.contains(availableEquipment);
         return isValid;
     }
-    /**
 
-     Returns an immutable copy of the list of available equipment objects.
-     @return An immutable copy of the list of available equipment objects.
+    /**
+     * Returns an immutable copy of the list of available equipment objects.
+     *
+     * @return An immutable copy of the list of available equipment objects.
      */
     public List<AvailableEquipment> getAvailableEquipments() {
 //This is a defensive copy, so that the repository cannot be modified from the outside.

@@ -8,12 +8,22 @@ import pt.ipp.isep.dei.esoft.project.application.controller.OfferDecisionControl
 import pt.ipp.isep.dei.esoft.project.domain.Offer;
 import pt.ipp.isep.dei.esoft.project.domain.OfferState;
 
+/**
+ * The type Offer decision ui.
+ */
 public class OfferDecisionUI implements Runnable{
 
-
+    /**
+     * Scanner instance for user input.
+     */
     private final Scanner input = new Scanner(System.in);
+    /**
+     * Controller for managing offer decisions.
+     */
     private final OfferDecisionController controller = new OfferDecisionController();
-
+    /**
+     * Runs the offer decision UI.
+     */
     public void run() {
         System.out.println("List of Offers: ");
 
@@ -50,7 +60,12 @@ public class OfferDecisionUI implements Runnable{
         }
         
     }
-
+    /**
+     * Prompts the user to accept or decline an offer.
+     *
+     * @param offer      The offer to accept or decline.
+     * @param offersList The list of offers.
+     */
     private void acceptOrDecline(Offer offer, List<Offer> offersList){
         System.out.println("\n1. Accept");
         System.out.println("2. Decline");

@@ -4,13 +4,21 @@ package pt.ipp.isep.dei.esoft.project.domain;
  * The type Offer dto.
  */
 public class OfferDto {
-
+    /**
+     * The name of the offer.
+     */
     private String name;
-
+    /**
+     * The order amount for the offer.
+     */
     private double orderAmount;
-
+    /**
+     * The published announcement associated with the offer.
+     */
     private PublishedAnnouncement publishedAnnouncement;
-
+    /**
+     * The state of the offer.
+     */
     private OfferState offerState;
 
 
@@ -28,7 +36,11 @@ public class OfferDto {
         this.publishedAnnouncement = publishedAnnouncement;
         this.offerState = offerState;
     }
-
+    /**
+     * Returns a string representation of the Offer object.
+     *
+     * @return A formatted string containing the offer details.
+     */
     public String toString() {
         return String.format("\nOffer: \nThe client %s, has submitted an offer with the following price: %s. \n\nProperty: \n%s", name, orderAmount, publishedAnnouncement.toString());
 
@@ -50,6 +62,42 @@ public class OfferDto {
      */
     public double getOrderAmount() {
         return orderAmount;
+    }
+
+    /**
+     * Sets name.
+     *
+     * @param name the name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Sets order amount.
+     *
+     * @param orderAmount the order amount
+     */
+    public void setOrderAmount(double orderAmount) {
+        this.orderAmount = orderAmount;
+    }
+
+    /**
+     * Sets published announcement.
+     *
+     * @param publishedAnnouncement the published announcement
+     */
+    public void setPublishedAnnouncement(PublishedAnnouncement publishedAnnouncement) {
+        this.publishedAnnouncement = publishedAnnouncement;
+    }
+
+    /**
+     * Sets offer state.
+     *
+     * @param offerState the offer state
+     */
+    public void setOfferState(OfferState offerState) {
+        this.offerState = offerState;
     }
 
     /**

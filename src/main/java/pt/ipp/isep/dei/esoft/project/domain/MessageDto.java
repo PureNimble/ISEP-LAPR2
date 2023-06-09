@@ -7,13 +7,33 @@ import java.util.Date;
  * The type Message dto.
  */
 public class MessageDto {
-
+    /**
+     * The name of the client.
+     */
     private String name;
+    /**
+     * The phone number of the client.
+     */
     private long phoneNumber;
+    /**
+     * The description of the message.
+     */
     private String description;
+    /**
+     * The initial date of the message.
+     */
     private Date initialDate;
+    /**
+     * The initial time of the message.
+     */
     private int initialTime;
+    /**
+     * The end time of the message.
+     */
     private int endTime;
+    /**
+     * The published announcement associated with the message.
+     */
     private PublishedAnnouncement publishedAnnouncement;
 
     /**
@@ -168,7 +188,11 @@ public class MessageDto {
     public void setPublishedAnnouncement(PublishedAnnouncement publishedAnnouncement) {
         this.publishedAnnouncement = publishedAnnouncement;
     }
-
+    /**
+     * Returns a string representation of the Message object.
+     *
+     * @return A string representation of the Message object.
+     */
     @Override
     public String toString() {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
