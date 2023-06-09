@@ -113,7 +113,7 @@ public class ListDealsGUITeste implements Initializable {
         List<Image> images = new ArrayList<>();
         for (String url : publishedAnnouncement.getProperty().getPhotos().getUrl()) {
 
-            images.add(new Image(url,477,402,false,false));
+            images.add(new Image(url,395,335,false,false));
 
         }
 
@@ -132,38 +132,15 @@ public class ListDealsGUITeste implements Initializable {
 
     }
 
-
-
-    public VBox createPage(int pageIndex){
-
-        VBox vBox = new VBox();
-
-        for (String url : publishedAnnouncement.getProperty().getPhotos().getUrl()) {
-
-            Image image = new Image(url);
-            ImageView imageView = new ImageView();
-
-            imageView.setFitHeight(300);
-            imageView.setFitWidth(300);
-
-            imageView.setImage(image);
-
-            vBox.getChildren().add(imageView);
-        }
-        return vBox;
-    }
-
     private void getCriteria(javafx.event.ActionEvent actionEvent) {
 
         String choiceOption = filterChoice.getValue();
 
 
         if (choiceOption.equals("Sort Selection Algorithm")) {
-            listDeals.clear();
             ascendOrDescendChoice.setVisible(true);
             ascendOrDescendChoice.setOnAction(this::getOrderSelectionSort);
         } else if (choiceOption.equals("Bubble Sort Algorithm")){
-            listDeals.clear();
             ascendOrDescendChoice.setVisible(true);
             ascendOrDescendChoice.setOnAction(this::getOrderBubbleSort);
         }

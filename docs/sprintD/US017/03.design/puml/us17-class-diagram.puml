@@ -34,6 +34,13 @@ class Offer{
 -String orderAmount
 }
 
+enum  OfferState {
+-String Accepted
+-String Pending
+-String Rejected
+}
+
+
 class Adress{
  -String streetName
     -int zipCode
@@ -196,7 +203,7 @@ ListDealsController ..> OfferRepository
 OfferRepository -----> Offer
 
 
-
+Offer --> OfferState
 
 
 
