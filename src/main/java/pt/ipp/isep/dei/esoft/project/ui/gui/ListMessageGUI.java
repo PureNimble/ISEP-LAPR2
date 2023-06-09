@@ -4,16 +4,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import pt.ipp.isep.dei.esoft.project.application.controller.ListMessageController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ListMessageGUI implements Initializable {
@@ -23,8 +28,6 @@ public class ListMessageGUI implements Initializable {
 
     @FXML
     private ChoiceBox<String> filterChoice;
-
-    private String[] filterCriteria = {"Ascending Date"};
 
     @FXML
     private TableColumn<Message, String> name;
@@ -45,7 +48,16 @@ public class ListMessageGUI implements Initializable {
     private TableColumn<Message, Integer> endTime;
 
     @FXML
-    private TableColumn<Message, PublishedAnnouncement> publishedAnnouncement;
+    private Pagination photosPagination;
+
+    @FXML
+    private TextArea textArea;
+    @FXML
+    private Label announcementLabel;
+
+    private PublishedAnnouncement publishedAnnouncement = null;
+
+
 
     private final ListMessageController controller = new ListMessageController();
 
@@ -53,26 +65,9 @@ public class ListMessageGUI implements Initializable {
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        filterChoice.getItems().addAll(filterCriteria);
-        filterChoice.setOnAction(this::getCriteria);
-
         name.setCellValueFactory(new PropertyValueFactory<Message, String>("name"));
 
         phoneNumber.setCellValueFactory(new PropertyValueFactory<Message, Long>("phoneNumber"));
-//        phoneNumber.setCellFactory(column -> new TextFieldTableCell<Message, PublishedAnnouncement>() {
-//
-//            @Override
-//            public void updateItem(PublishedAnnouncement publishedAnnouncement, boolean empty) {
-//                super.updateItem(publishedAnnouncement, empty);
-//                if (empty || publishedAnnouncement == null) {
-//                    setText("");
-//                } else {
-//                    setText("" + publishedAnnouncement.get);
-//                }
-//            }
-//
-//
-//        });
 
         description.setCellValueFactory(new PropertyValueFactory<Message, String>("description"));
 
@@ -82,26 +77,68 @@ public class ListMessageGUI implements Initializable {
 
         endTime.setCellValueFactory(new PropertyValueFactory<Message, Integer>("endTime"));
 
-        publishedAnnouncement.setCellValueFactory(new PropertyValueFactory<Message, PublishedAnnouncement>("publishedAnnouncement"));
-
         table.setItems(listMessages);
 
-
     }
 
-    private void getCriteria(javafx.event.ActionEvent actionEvent) {
-        String choiceOption = filterChoice.getValue();
+    @FXML
+    public void clickItem(MouseEvent mouseEvent) throws FileNotFoundException {
+        System.out.println("" + table.getSelectionModel().getSelectedItem());
 
-        if (choiceOption.equals("Ascending Date")) {
-            listMessages.clear();
-            listMessages.addAll(controller.getMessagesByAscendingDate());
+        for (Object messages : listMessages) {
+            if (messages.toString().equals(table.getSelectionModel().getSelectedItem().toString())) {
+                Message message = (Message) table.getSelectionModel().getSelectedItem();
+                publishedAnnouncement = message.getPublishedAnnouncement();
+            }
         }
+
+        textArea.setVisible(true);
+        textArea.setText(""+publishedAnnouncement);
+
+        int indexStart = 0;
+        int indexEnd = 0;
+
+        for (String line : textArea.getText().split("\n")) {
+            if (line.contains("Photos:")) {
+                indexStart = textArea.getText().indexOf(line);
+                indexEnd = indexStart + line.length();
+            }
+        }
+        textArea.deleteText(indexStart,indexEnd);
+
+        List<Image> images = new ArrayList<>();
+        for (String url : publishedAnnouncement.getProperty().getPhotos().getUrl()) {
+            images.add(new Image(url, 477, 402, false, false));
+        }
+
+        ImageView imageView = new ImageView();
+        imageView.setFitHeight(300);
+        imageView.setFitWidth(300);
+
+        photosPagination.setVisible(true);
+        photosPagination.setPageCount(publishedAnnouncement.getProperty().getPhotos().getUrl().size());
+        photosPagination.setPageFactory(n -> new ImageView(images.get(n)));
+        announcementLabel.setVisible(true);
+
     }
 
+    public VBox createPage(int pageIndex){
 
+        VBox vBox = new VBox();
 
+        for (String url : publishedAnnouncement.getProperty().getPhotos().getUrl()) {
 
+            Image image = new Image(url);
+            ImageView imageView = new ImageView();
 
+            imageView.setFitHeight(300);
+            imageView.setFitWidth(300);
 
+            imageView.setImage(image);
+
+            vBox.getChildren().add(imageView);
+        }
+        return vBox;
+    }
 
 }
