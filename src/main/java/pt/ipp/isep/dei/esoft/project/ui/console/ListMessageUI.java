@@ -39,9 +39,8 @@ public class ListMessageUI implements Runnable{
             String sorting = (String) prop.getProperty("sortingAlgorithm");
 
             if(sorting.equals("bubbleSort")){
-                BubbleSort m = new BubbleSort(bookingRequests);
-                m.divideArrayElements(0, bookingRequests.size() -1);
-                bookingRequests = m.getArrayAfterSorting();
+                BubbleSort<Message> bubbleSort = new BubbleSort<>(bookingRequests);
+                bookingRequests = bubbleSort.sort(bookingRequests);
             } else if(sorting.equals("mergeSort")) {
                 MergeSort m = new MergeSort(bookingRequests);
                 m.divideArrayElements(0, bookingRequests.size() -1);
