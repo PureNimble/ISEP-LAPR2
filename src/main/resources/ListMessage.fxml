@@ -2,17 +2,36 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ListMessage">
+<AnchorPane prefHeight="535.0" prefWidth="1337.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.ListMessageGUI">
    <children>
-      <TableView prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane prefHeight="60.0" prefWidth="1337.0" style="-fx-background-color: grey; -fx-border-color: black;">
+         <children>
+            <Label layoutX="567.0" layoutY="12.0" text="List Of Messages">
+               <font>
+                  <Font name="Impact" size="30.0" />
+               </font></Label>
+         </children></AnchorPane>
+      <TableView layoutX="14.0" layoutY="123.0" onMouseClicked="#clickItem" prefHeight="383.0" prefWidth="642.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn prefWidth="62.0" sortable="false" text="Name" />
+          <TableColumn prefWidth="102.0" sortable="false" text="Phone Number" />
+            <TableColumn prefWidth="295.0" sortable="false" text="Description" />
+            <TableColumn minWidth="0.0" prefWidth="48.0" text="Date" />
+            <TableColumn prefWidth="73.0" sortable="false" text="initialTime" />
+            <TableColumn prefWidth="61.0" sortable="false" text="endTime" />
         </columns>
       </TableView>
-      <Label text="Label" />
-      <ChoiceBox prefWidth="150.0" />
+      <Pagination fx:id="photosPagination" layoutX="686.0" layoutY="158.0" prefHeight="314.0" prefWidth="305.0" style="-fx-border-color: black;" />
+      <TextArea fx:id="textArea" layoutX="1021.0" layoutY="123.0" prefHeight="383.0" prefWidth="283.0" style="-fx-border-color: black;" />
+      <Label alignment="CENTER" layoutX="269.0" layoutY="89.0" prefHeight="26.0" prefWidth="133.0" text="MESSAGES">
+         <font>
+            <Font name="Impact" size="20.0" />
+         </font></Label>
+      <Label alignment="CENTER" layoutX="1096.0" layoutY="89.0" prefHeight="26.0" prefWidth="133.0" text="ANNOUNCEMENT" textAlignment="CENTER" textOverrun="CLIP">
+         <font>
+            <Font name="Impact" size="20.0" />
+         </font></Label>
    </children>
 </AnchorPane>

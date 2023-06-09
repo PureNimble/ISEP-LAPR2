@@ -56,7 +56,7 @@ public class PublishedAnnouncementRepository {
      * @param durationOfContract the duration of the contract of the published announcement.
      * @return an Optional containing the newly added published announcement if the operation was successful,         otherwise an empty Optional.
      */
-    public Optional<PublishedAnnouncement> publishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent) {
+    public Optional<PublishedAnnouncement> publishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent, Client client) {
 
 
         Optional<PublishedAnnouncement> optionalValue = Optional.empty();
@@ -64,9 +64,9 @@ public class PublishedAnnouncementRepository {
         PublishedAnnouncement publishedAnnouncement;
 
         if (property.toString().equals("Rent")) {
-            publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, durationOfContract, agent);
+            publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, durationOfContract, agent, client);
         } else {
-            publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, agent);
+            publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, agent, client);
         }
 
         if (addPublishedAnnouncement(publishedAnnouncement)) {
@@ -273,9 +273,9 @@ public class PublishedAnnouncementRepository {
                     House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, loft, sunExposure, propertyLocation);
 
                     if (typeOfBusiness.equals("sale")) {
-                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, house, propertyTypeA, comissionA, business, agent);
+                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, house, propertyTypeA, comissionA, business, agent, client);
                     } else {
-                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, house, propertyTypeA, comissionA, business, contractDuration, agent);
+                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, house, propertyTypeA, comissionA, business, contractDuration, agent, client);
                     }
 
 
@@ -285,11 +285,11 @@ public class PublishedAnnouncementRepository {
 
                     if (typeOfBusiness.equals("sale")) {
 
-                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, land, propertyTypeA, comissionA, business, agent);
+                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, land, propertyTypeA, comissionA, business, agent, client);
 
                     } else {
 
-                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, land, propertyTypeA, comissionA, business, contractDuration, agent);
+                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, land, propertyTypeA, comissionA, business, contractDuration, agent, client);
                     }
 
                 } else {
@@ -298,11 +298,11 @@ public class PublishedAnnouncementRepository {
 
                     if (typeOfBusiness.equals("sale")) {
 
-                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, appartment, propertyTypeA, comissionA, business, agent);
+                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, appartment, propertyTypeA, comissionA, business, agent, client);
 
                     } else {
 
-                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, appartment, propertyTypeA, comissionA, business, contractDuration, agent);
+                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, appartment, propertyTypeA, comissionA, business, contractDuration, agent, client);
 
                     }
 
@@ -443,8 +443,8 @@ public class PublishedAnnouncementRepository {
 
         for (PublishedAnnouncement publishedAnnouncement : publishedAnnouncements) {
             List<PublishedAnnouncement> tempList = new ArrayList<PublishedAnnouncement>();
-            if (publishedAnnouncement.getPropertyType().getDesignation().equals(propertyType)) {
-                if (publishedAnnouncement.getTypeOfBusiness().getTypeOfBusiness().equals(businessType)) {
+            if (publishedAnnouncement.getPropertyType().getDesignation().equalsIgnoreCase(propertyType)) {
+                if (publishedAnnouncement.getTypeOfBusiness().getTypeOfBusiness().equalsIgnoreCase(businessType)) {
                     if (propertyType != "Land") {
                         if (publishedAnnouncement.getProperty().getNumberOfBedrooms() == numberOfRooms) {
                             tempList.add(publishedAnnouncement);

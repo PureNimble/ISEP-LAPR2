@@ -196,7 +196,7 @@ public class PublishAnnouncementUI implements Runnable {
 
             Property land = new Property(area, distanceFromCityCenter, photos, address);
 
-            publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, land, propertyType, comission, business, durationOfContract, agent);
+            publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, land, propertyType, comission, business, durationOfContract, agent, client);
 
         } else {
             if (propertyTypeDescription.equals("Appartment")) {
@@ -205,13 +205,13 @@ public class PublishAnnouncementUI implements Runnable {
 
                 Residence appartment = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, photos, address);
 
-                publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, appartment, propertyType, comission, business, durationOfContract, agent);
+                publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, appartment, propertyType, comission, business, durationOfContract, agent, client);
             } else {
                 AvailableEquipment availableEquipment = controller.getAvailableEquipmentByDescription(availableEquipmentDescription);
 
                 House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, inhabitableLoft, sunExposure, photos, address);
 
-                publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, durationOfContract, agent);
+                publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, durationOfContract, agent, client);
 
             }
         }
@@ -219,22 +219,25 @@ public class PublishAnnouncementUI implements Runnable {
             SendSms sendSms = new SendSms();
 
             String toWriteFile = "";
-            toWriteFile = toWriteFile.concat("Your property located in ").
+            toWriteFile = toWriteFile.
+                    concat("Dear client ").
+                    concat(publishedAnnouncement.get().getClient().getName()).
+                    concat(",\n\nYour property located in ").
                     concat(publishedAnnouncement.get().getProperty().getAddress().toString()).
                     concat(" has been published on our website since ").
                     concat(publishedAnnouncement.get().getDate().toString()).
-                    concat(". \nThe agent ").
+                    concat(". \n\nThe agent ").
                     concat(publishedAnnouncement.get().getAgent().getName()).
                     concat(" with phone number ").
                     concat(String.valueOf(publishedAnnouncement.get().getAgent().getPhoneNumber())).
-                    concat(" will be responsible for your announcement. \nIf you have any doubts do not hesitate to contact us.");
+                    concat(" will be responsible for your announcement. \nIf you have any doubts do not hesitate to contact us.\n\nBest regards,\nReal Estate USA");
 
 
             //METER O OWNER ( NUEMERO DE TELEFONE E EMAIL NA PROPRIEDADE)
 
 
-            sendSms.createFile(publishedAnnouncement.get().getProperty().getAddress().toString());
-            sendSms.writeFile(publishedAnnouncement.get().getProperty().getAddress().toString(), toWriteFile);
+            sendSms.createFile(String.valueOf(publishedAnnouncement.get().getClient().getPhoneNumber()));
+            sendSms.writeFile(String.valueOf(publishedAnnouncement.get().getClient().getPhoneNumber()), toWriteFile);
         }
     }
 

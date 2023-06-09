@@ -15,8 +15,10 @@ public class ReadFileUI implements Runnable {
 
 
     public void run() {
-
-        File file = new File("C:\\Users\\Utilizador\\IdeaProjects\\lei-23-s2-1dh-g37\\src\\legacyRealStateUSAMoodle.csv");
+        
+        String filePath = "src/legacyRealStateUSAMoodle.csv";
+        File file = new File(filePath);
+        
 
        importFileController.addStore(file);
 
