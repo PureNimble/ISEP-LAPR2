@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: #888888;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.ListDealsGUITeste">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: #DDDDDD;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.ListDealsGUITeste">
     <children>
       <AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="64.0" prefWidth="1100.0" style="-fx-background-color: white; -fx-border-width: 0px 0px 6px 0px; -fx-border-color: black;">
          <children>
@@ -16,13 +16,13 @@
                       <Font name="Impact" size="37.0" />
                   </font>
               </Label>
-            <Label layoutX="37.0" layoutY="21.0" text="Sort By:">
+            <Label layoutX="14.0" layoutY="30.0" text="Sort By:">
                <font>
-                  <Font name="System Bold Italic" size="12.0" />
+                  <Font name="System Bold Italic" size="15.0" />
                </font>
             </Label>
-              <ChoiceBox fx:id="filterChoice" layoutX="54.0" layoutY="17.0" prefWidth="150.0" style="-fx-background-color: transparent;" />
-            <ChoiceBox fx:id="ascendOrDescendChoice" layoutX="216.0" layoutY="18.0" prefWidth="150.0" style="-fx-background-color: white;" visible="false" />
+              <ChoiceBox fx:id="filterChoice" layoutX="74.0" layoutY="26.0" prefWidth="150.0" style="-fx-background-color: transparent;" />
+            <ChoiceBox fx:id="ascendOrDescendChoice" layoutX="255.0" layoutY="26.0" prefWidth="150.0" style="-fx-background-color: white;" visible="false" />
          </children>
       </AnchorPane>
         <TableView fx:id="table" layoutY="111.0" onMouseClicked="#clickItem" prefHeight="489.0" prefWidth="333.0" style="-fx-background-color: transparent;" stylesheets="@listDealsGUICSS.css">
@@ -35,20 +35,20 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
         </TableView>
-      <Pagination fx:id="photosPagination" layoutX="321.0" layoutY="160.0" pageCount="0" prefHeight="370.0" prefWidth="413.0" visible="false" />
-      <TextArea fx:id="textArea" layoutX="734.0" layoutY="153.0" prefHeight="402.0" prefWidth="362.0" visible="false">
+      <Pagination fx:id="photosPagination" layoutX="314.0" layoutY="171.0" pageCount="0" prefHeight="328.0" prefWidth="404.0" visible="false" />
+      <TextArea fx:id="textArea" layoutX="716.0" layoutY="173.0" prefHeight="328.0" prefWidth="385.0" visible="false">
          <font>
             <Font name="System Bold Italic" size="11.0" />
          </font>
       </TextArea>
       <Label layoutX="112.0" layoutY="68.0" text="Offers">
          <font>
-            <Font name="Arial Black" size="28.0" />
+            <Font name="Impact" size="32.0" />
          </font>
       </Label>
       <Label fx:id="announcementLabel" layoutX="565.0" layoutY="89.0" text="Announcement" visible="false">
          <font>
-            <Font name="Arial Black" size="39.0" />
+            <Font name="Impact" size="39.0" />
          </font>
       </Label>
     </children>
