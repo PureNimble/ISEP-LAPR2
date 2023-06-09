@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
-import org.controlsfx.control.ListActionView;
 import pt.ipp.isep.dei.esoft.project.domain.Message;
 
 

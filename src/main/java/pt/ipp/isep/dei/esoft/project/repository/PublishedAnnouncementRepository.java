@@ -443,8 +443,8 @@ public class PublishedAnnouncementRepository {
 
         for (PublishedAnnouncement publishedAnnouncement : publishedAnnouncements) {
             List<PublishedAnnouncement> tempList = new ArrayList<PublishedAnnouncement>();
-            if (publishedAnnouncement.getPropertyType().getDesignation().equals(propertyType)) {
-                if (publishedAnnouncement.getTypeOfBusiness().getTypeOfBusiness().equals(businessType)) {
+            if (publishedAnnouncement.getPropertyType().getDesignation().equalsIgnoreCase(propertyType)) {
+                if (publishedAnnouncement.getTypeOfBusiness().getTypeOfBusiness().equalsIgnoreCase(businessType)) {
                     if (propertyType != "Land") {
                         if (publishedAnnouncement.getProperty().getNumberOfBedrooms() == numberOfRooms) {
                             tempList.add(publishedAnnouncement);

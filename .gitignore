@@ -231,3 +231,4 @@ nbdist/
 
 # End of https://www.toptal.com/developers/gitignore/api/maven,intellij+all,eclipse,git,netbeans,java
 ~$*
+pom.xml
