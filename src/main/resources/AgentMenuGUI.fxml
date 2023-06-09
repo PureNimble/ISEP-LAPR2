@@ -6,16 +6,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.AgentMenuGUI">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane layoutX="53.0" prefHeight="400.0" prefWidth="200.0" style="-fx-background-color: gray;">
                <children>
-                  <Label layoutX="21.0" layoutY="189.0" text="See List of Messages">
+                  <Button layoutY="183.0" mnemonicParsing="false" onMouseClicked="#listMessages" prefHeight="35.0" prefWidth="204.0" style="-fx-background-color: transparent;" text="See List Of Messages" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold Italic" size="18.0" />
-                     </font></Label>
+                     </font>
+                  </Button>
                </children></AnchorPane>
             <AnchorPane prefHeight="400.0" prefWidth="0.0" style="-fx-background-color: #fff;">
                <children>

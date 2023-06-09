@@ -33,7 +33,7 @@ public class AgentMenuGUI implements Runnable, Initializable {
     private void loadPage() {
         try {
             FXMLLoader listMessagesLoader = new FXMLLoader();
-            listMessagesLoader.setLocation(getClass().getResource("/ListMessages.fxml"));
+            listMessagesLoader.setLocation(getClass().getResource("/ListMessage.fxml"));
             Parent root = listMessagesLoader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
