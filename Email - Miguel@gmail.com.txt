@@ -1,4 +1,0 @@
-From: no-reply@this.app
-To: Miguel@gmail.com
-Subject: Booking Request Response
-Body: Miguel
