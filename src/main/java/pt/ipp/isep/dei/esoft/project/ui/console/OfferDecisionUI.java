@@ -33,25 +33,6 @@ public class OfferDecisionUI implements Runnable{
             Offer offer = offersList.get(i);
             System.out.println(i+1 + ". " + offer.toString());
         }
-        /*
-        int choice;
-
-        do {
-
-            try {
-                choice = input.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a double value:");
-                input.nextLine();
-                choice = -1;
-            }
-
-            if (choice >= offersList.size()){
-                choice = -1;
-            }
-
-        } while (choice < 0);
-        */
         if(offersList.isEmpty()){
             System.out.println("\nThere are no offers");
         } else{
