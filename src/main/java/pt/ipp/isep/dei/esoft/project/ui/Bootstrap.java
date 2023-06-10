@@ -56,9 +56,9 @@ public class Bootstrap {
         Address address1 = new Address("3655 S Las Vegas Blvd", 892109, new District("Paradise"), new City("Las Vegas"), new State("Nevada"));
         Address address2 = new Address("199 W 45th St",10036,new District("Manhattan"),new City("New York"),new State("New York"));
         Address address3 = new Address("9641 Sunset Blvd", 90210, new District("Beverly Hills"), new City("Los Angeles"), new State("California"));
-        Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 11);
-        Store store2 = new Store("Maltip",104224,address2,1133542456,"maltip@gmail.com", 16);
-        Store store3 = new Store("Elvis",224,address3,1274567809,"elvis@gmail.com", 3);
+        Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 0);
+        Store store2 = new Store("Maltip",104224,address2,1133542456,"maltip@gmail.com", 0);
+        Store store3 = new Store("Elvis",224,address3,1274567809,"elvis@gmail.com", 0);
 
         List<Role> roles = new ArrayList<>();
         roles.add(role);
@@ -86,9 +86,9 @@ public class Bootstrap {
         Address address1 = new Address("3655 S Las Vegas Blvd", 892109, new District("Paradise"), new City("Las Vegas"), new State("Nevada"));
         Address address2 = new Address("199 W 45th St",10036,new District("Manhattan"),new City("New York"),new State("New York"));
         Address address3 = new Address("9641 Sunset Blvd", 90210, new District("Beverly Hills"), new City("Los Angeles"), new State("California"));
-        Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 11);
-        Store store2 = new Store("Maltip",104224,address2,1133542456,"maltip@gmail.com", 16);
-        Store store3 = new Store("Elvis",224,address3,1274567809,"elvis@gmail.com", 3);
+        Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 0);
+        Store store2 = new Store("Maltip",104224,address2,1133542456,"maltip@gmail.com", 0);
+        Store store3 = new Store("Elvis",224,address3,1274567809,"elvis@gmail.com", 0);
 
         List<Role> roles = new ArrayList<>();
         roles.add(role);
@@ -292,9 +292,9 @@ public class Bootstrap {
         Address address1 = new Address("3655 S Las Vegas Blvd", 892109, new District("Paradise"), new City("Las Vegas"), new State("Nevada"));
         Address address2 = new Address("199 W 45th St",10036,new District("Manhattan"),new City("New York"),new State("New York"));
         Address address3 = new Address("9641 Sunset Blvd", 90210, new District("Beverly Hills"), new City("Los Angeles"), new State("California"));
-        Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 11);
-        Store store2 = new Store("Maltip",104224,address2,1133542456,"maltip@gmail.com", 16);
-        Store store3 = new Store("Elvis",224,address3,1274567809,"elvis@gmail.com", 3);
+        Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 0);
+        Store store2 = new Store("Maltip",104224,address2,1133542456,"maltip@gmail.com", 0);
+        Store store3 = new Store("Elvis",224,address3,1274567809,"elvis@gmail.com", 0);
 
         storeRepository.add(store1);
         storeRepository.add(store2);

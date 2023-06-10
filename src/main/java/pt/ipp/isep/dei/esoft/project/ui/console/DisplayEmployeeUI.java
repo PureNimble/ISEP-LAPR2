@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 
 
 import pt.ipp.isep.dei.esoft.project.application.controller.DisplayEmployeeController;
-import pt.ipp.isep.dei.esoft.project.domain.Employee;
 import pt.ipp.isep.dei.esoft.project.domain.StoreEmployeeDTO;
 
 /**
@@ -21,7 +20,7 @@ public class DisplayEmployeeUI implements Runnable{
     public void run() {
         System.out.println("\nList of Employees:\n");
 
-        var storeEmployeeList = controller.getFinalList();
+        var storeEmployeeList = controller.toDTO();
         int storeCount = 1, employeeCount = 1;
         for (int i = 0; i < storeEmployeeList.size(); i++){
             StoreEmployeeDTO StoreEmployeeDTO = storeEmployeeList.get(i);
