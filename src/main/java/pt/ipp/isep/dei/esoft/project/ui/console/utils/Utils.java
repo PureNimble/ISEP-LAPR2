@@ -2,12 +2,12 @@ package pt.ipp.isep.dei.esoft.project.ui.console.utils;
 
 import pt.isep.lei.esoft.auth.mappers.dto.UserRoleDTO;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -232,5 +232,42 @@ public class Utils {
         } while (value < 0 || value > list.size());
 
         return value - 1;
+    }
+
+    public static Boolean sendEmail(String mail, String subject, String body) {
+        try{
+            Properties prop = loadPropertiesFromFile("config.properties");
+            String host = prop.getProperty("host");
+            String port = prop.getProperty("port");
+            String user = prop.getProperty("user");
+            String pass = prop.getProperty("password");
+            String from = prop.getProperty("from");
+
+            FileWriter myWriter = new FileWriter("emailNotification.txt");
+            myWriter.write("From: " + from + "\n");
+            myWriter.write("To: " + mail + "\n");
+            myWriter.write("Subject: " + subject + "\n");
+            myWriter.write("Body: " + body + "\n");
+            myWriter.close();
+            return true;
+        }catch (Exception e){
+            System.out.println("An error occurred." + e.getMessage());
+            return false;
+        }
+    }
+
+    public static Properties loadPropertiesFromFile(String fileName) {
+        Properties prop = new Properties();
+        try (InputStream input = Utils.class.getClassLoader().getResourceAsStream(fileName)) {
+
+            if (input == null) {
+                System.out.println("Error finding file");
+                return null;
+            }
+            prop.load(input);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return prop;
     }
 }

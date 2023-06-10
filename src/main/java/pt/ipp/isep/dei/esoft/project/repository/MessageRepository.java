@@ -38,18 +38,24 @@ public class MessageRepository {
 
     private boolean validateMessage(Message message) {
         for (Message message1 : messages) {
-            if (message1.getPhoneNumber() == message.getPhoneNumber() && message1.getInitialDate().equals(message.getInitialDate()) &&
-                    checkIfTimeOverlaps(message, message1)) {
-
+            if (message1.getPhoneNumber() == message.getPhoneNumber() && checkIfDateTimeOverlaps(message, message1)) {
                 return false;
             }
         }
         return true;
     }
 
+    private boolean checkIfDateTimeOverlaps(Message message1, Message message2) {
+        Date initialDate1 = message1.getInitialDate();
+        int initialTime1 = message1.getInitialTime();
+        int endTime1 = message1.getEndTime();
 
-    private boolean checkIfTimeOverlaps(Message message1, Message message2) {
-        return !(message1.getEndTime() < message2.getInitialTime()) && !(message1.getInitialTime() > message2.getEndTime());
+        Date initialDate2 = message2.getInitialDate();
+        int initialTime2 = message2.getInitialTime();
+        int endTime2 = message2.getEndTime();
+
+        // Check if the time ranges overlap
+        return !(endTime1 <= initialTime2 || initialTime1 >= endTime2);
     }
 
     /**
@@ -90,6 +96,10 @@ public class MessageRepository {
             }
         });
         return resultList;
+    }
+
+    public boolean removeMessage(Message message) {
+        return messages.remove(message);
     }
 
 }

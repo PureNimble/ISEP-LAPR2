@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.domain.Message;
+import pt.ipp.isep.dei.esoft.project.domain.MessageState;
 import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 import pt.ipp.isep.dei.esoft.project.repository.MessageRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
@@ -64,7 +65,7 @@ public class SendMessageController {
      * @param publishedAnnouncement the published announcement
      * @return the optional
      */
-    public Optional<Message> createNewMessageToAgent (String name, String description, long phoneNumber, Date date, int intialTime, int endTime, PublishedAnnouncement publishedAnnouncement) {
+    public Optional<Message> createNewMessageToAgent (String name, String description, long phoneNumber, Date date, int intialTime, int endTime, PublishedAnnouncement publishedAnnouncement, MessageState messageState) {
         Message messageSent = new Message();
         messageSent.setName(name);
         messageSent.setInitialDate(date);
@@ -73,6 +74,7 @@ public class SendMessageController {
         messageSent.setEndTime(endTime);
         messageSent.setPhoneNumber(phoneNumber);
         messageSent.setPublishedAnnouncement(publishedAnnouncement);
+        messageSent.setMessageState(messageState);
         return messageRepository.add(messageSent);
     }
 }

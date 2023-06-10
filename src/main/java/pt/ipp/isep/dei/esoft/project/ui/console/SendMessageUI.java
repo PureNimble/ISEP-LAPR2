@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 import pt.ipp.isep.dei.esoft.project.application.controller.PublishAnnouncementController;
 import pt.ipp.isep.dei.esoft.project.application.controller.SendMessageController;
 import pt.ipp.isep.dei.esoft.project.domain.Message;
+import pt.ipp.isep.dei.esoft.project.domain.MessageState;
 import pt.ipp.isep.dei.esoft.project.domain.Property;
 import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 
@@ -56,7 +57,7 @@ public class    SendMessageUI implements Runnable {
         initialTime = requestInitialTime();
         int endTime = requestEndTime();
 
-        submitData(message, clientName, clientsPhoneNumber, dateOfVisit, initialTime, endTime, announcement);
+        submitData(message, clientName, clientsPhoneNumber, dateOfVisit, initialTime, endTime, announcement, MessageState.UNANSWERED);
 
         List<Message> messages = controller.getMessage();
 
@@ -283,7 +284,7 @@ public class    SendMessageUI implements Runnable {
      */
 
     private void submitData(String message, String clientName, long clientsPhoneNumber, Date dateOfVisit,
-                            int initialTime, int endTime, PublishedAnnouncement announcement) {
-        controller.createNewMessageToAgent(clientName, message, clientsPhoneNumber, dateOfVisit, initialTime, endTime, announcement);
+                            int initialTime, int endTime, PublishedAnnouncement announcement, MessageState messageState) {
+        controller.createNewMessageToAgent(clientName, message, clientsPhoneNumber, dateOfVisit, initialTime, endTime, announcement, messageState);
     }
 }
