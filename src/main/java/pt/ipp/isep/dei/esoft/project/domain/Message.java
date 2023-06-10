@@ -53,6 +53,7 @@
         private PublishedAnnouncement publishedAnnouncement;
 
         private MessageState messageState;
+        private boolean isApprovedByAgent;
 
 
         /**
@@ -66,7 +67,7 @@
          * @param endTime               the end time for visiting
          * @param publishedAnnouncement the published announcement
          */
-        public Message(String name, long phoneNumber, String description, Date initialDate, int initialTime, int endTime, PublishedAnnouncement publishedAnnouncement, MessageState messageState) {
+        public Message(String name, long phoneNumber, String description, Date initialDate, int initialTime, int endTime, PublishedAnnouncement publishedAnnouncement, MessageState messageState, boolean isApprovedByAgent) {
             this.name = name;
             this.phoneNumber = phoneNumber;
             this.description = description;
@@ -75,6 +76,7 @@
             this.endTime = endTime;
             this.publishedAnnouncement = publishedAnnouncement;
             this.messageState = messageState;
+            this.isApprovedByAgent = isApprovedByAgent;
         }
 
         /**
@@ -215,6 +217,14 @@
 
         public void setMessageState(MessageState messageState) {
             this.messageState = messageState;
+        }
+
+        public boolean isApprovedByAgent() {
+            return isApprovedByAgent;
+        }
+
+        public void setApprovedByAgent(boolean approvedByAgent) {
+            isApprovedByAgent = approvedByAgent;
         }
 
         /**

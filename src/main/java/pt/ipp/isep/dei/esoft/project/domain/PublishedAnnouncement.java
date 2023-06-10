@@ -46,6 +46,8 @@ public class PublishedAnnouncement {
      */
     private Client client;
 
+    private int propertyID;
+
     /**
      * Constructs a new PublishedAnnouncement object for sale.
      *
@@ -58,7 +60,7 @@ public class PublishedAnnouncement {
      * @param agent          the agent
      * @param client         the client
      */
-    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, Employee agent, Client client) {
+    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, Employee agent, Client client, int propertyID) {
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
         this.propertyType = propertyType;
@@ -67,6 +69,7 @@ public class PublishedAnnouncement {
         this.business = business;
         this.agent = agent;
         this.client = client;
+        this.propertyID = propertyID;
     }
 
     /**
@@ -82,7 +85,7 @@ public class PublishedAnnouncement {
      * @param agent              the agent
      * @param client             the client
      */
-    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent, Client client) {
+    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent, Client client, int propertyID) {
         this.date = date;
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
@@ -92,6 +95,7 @@ public class PublishedAnnouncement {
         this.durationOfContract = durationOfContract;
         this.agent = agent;
         this.client = client;
+        this.propertyID = propertyID;
     }
 
     /**
@@ -292,6 +296,13 @@ public class PublishedAnnouncement {
         this.agent = agent;
     }
 
+    public int getPropertyID() {
+        return propertyID;
+    }
+
+    public void setPropertyID(int propertyID) {
+        this.propertyID = propertyID;
+    }
 
     /**
      * Returns a string representation of the announcement for sale.
@@ -301,13 +312,14 @@ public class PublishedAnnouncement {
     public String toString() {
         return String.format("Date: %s\n\n" + "Responsible Agent: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
                         "Client: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
+                        "Property ID: %s\n" +
                         "Type Of Business: %s\n" +
                         "Property Type: %s\n" +
                         "Comission Selected: %s" +
                         "Price: %s\n" +
                         "%s\n",
                         
-                date.toString(), agent.getEmployeeName(), agent.getEmployeeEmail(), agent.getPhoneNumber(), client.getName(), client.getEmail(), client.getPhoneNumber(), typeOfBusiness.toString(), propertyType, comission.toString(), business.toString(), property.toString());
+                date.toString(), agent.getEmployeeName(), agent.getEmployeeEmail(), agent.getPhoneNumber(), client.getName(), client.getEmail(), client.getPhoneNumber(), propertyID, typeOfBusiness.toString(), propertyType, comission.toString(), business.toString(), property.toString());
     }
 
     /**
@@ -318,6 +330,7 @@ public class PublishedAnnouncement {
     public String toStringRent() {
         return String.format("Date: %s\n\n" +  "Responsible Agent: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
                 "Client: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
+                        "Property ID: %s\n" +
                         "Type Of Business: %s\n" +
                         "Property Type: %s\n" +
                         "Comission Selected: %s" +
@@ -328,7 +341,7 @@ public class PublishedAnnouncement {
                 date.toString(), agent.getEmployeeName(),
                 agent.getEmployeeEmail(), agent.getPhoneNumber(),
                 client.getName(), client.getEmail(), client.getPhoneNumber(),
-                typeOfBusiness.toString(),
+                propertyID, typeOfBusiness.toString(),
                 propertyType, comission.toString(), business.toString(), durationOfContract, property.toString());
     }
 

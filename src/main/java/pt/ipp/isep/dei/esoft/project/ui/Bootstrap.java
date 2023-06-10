@@ -152,12 +152,12 @@ public class Bootstrap {
 
 
 
-        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType2, comission1, business2, agent3, client1);
-        PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, residence2, propertyType1, comission1, business4, agent5, client2);
-        PublishedAnnouncement publishedAnnouncement3 = new PublishedAnnouncement(date3, typeOfBusiness1, property1, propertyType3, comission, business3, agent1, client3);
-        PublishedAnnouncement publishedAnnouncement4 = new PublishedAnnouncement(date3, typeOfBusiness1, residence2, propertyType1, comission, business2, agent2, client4);
-        PublishedAnnouncement publishedAnnouncement5 = new PublishedAnnouncement(date3, typeOfBusiness1, residence1, propertyType1, comission1, business1, agent4, client1);
-        PublishedAnnouncement publishedAnnouncement6 = new PublishedAnnouncement(date3, typeOfBusiness1, residence2, propertyType1, comission, business3, agent2, client2);
+        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType2, comission1, business2, agent3, client1, 1);
+        PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, residence2, propertyType1, comission1, business4, agent5, client2, 2);
+        PublishedAnnouncement publishedAnnouncement3 = new PublishedAnnouncement(date3, typeOfBusiness1, property1, propertyType3, comission, business3, agent1, client3,3);
+        PublishedAnnouncement publishedAnnouncement4 = new PublishedAnnouncement(date3, typeOfBusiness1, residence2, propertyType1, comission, business2, agent2, client4,4);
+        PublishedAnnouncement publishedAnnouncement5 = new PublishedAnnouncement(date3, typeOfBusiness1, residence1, propertyType1, comission1, business1, agent4, client1,5);
+        PublishedAnnouncement publishedAnnouncement6 = new PublishedAnnouncement(date3, typeOfBusiness1, residence2, propertyType1, comission, business3, agent2, client2,6);
 
         publishedAnnouncementRepository.add(publishedAnnouncement1);
         publishedAnnouncementRepository.add(publishedAnnouncement2);
@@ -334,10 +334,10 @@ public class Bootstrap {
     private void addMessages(PublishedAnnouncement publishedAnnouncement1, PublishedAnnouncement publishedAnnouncement2, PublishedAnnouncement publishedAnnouncement3, PublishedAnnouncement publishedAnnouncement4, Date date1, Date date2, Date date3) {
         MessageRepository messageRepository = Repositories.getInstance().getMessageRepository();
 
-        messageRepository.add(new Message("Pedro", 1234567890, "Olá, estou interessado na propriedade!", date1, 11, 12, publishedAnnouncement1, MessageState.UNANSWERED));
-        messageRepository.add(new Message("Miguel", 1029384756, "Interessado.", date3, 20,21,publishedAnnouncement4, MessageState.UNANSWERED));
-        messageRepository.add(new Message("Luna", 1209348756, "Estou com interesse na propriedade!", date2,15,17,publishedAnnouncement2, MessageState.UNANSWERED));
-        messageRepository.add(new Message("Sofia",1038295647, "Quero!", date3,9,10,publishedAnnouncement2, MessageState.ANSWERED));
-        messageRepository.add(new Message("Vasco", 1357924680, "Podemos já fazer negócio?", date2,14,15,publishedAnnouncement3, MessageState.ANSWERED));
+        messageRepository.add(new Message("Pedro", 1234567890, "Olá, estou interessado na propriedade!", date1, 11, 12, publishedAnnouncement1, MessageState.UNANSWERED,false));
+        messageRepository.add(new Message("Miguel", 1029384756, "Interessado.", date3, 20,21,publishedAnnouncement4, MessageState.UNANSWERED, false));
+        messageRepository.add(new Message("Luna", 1209348756, "Estou com interesse na propriedade!", date2,15,17,publishedAnnouncement2, MessageState.UNANSWERED, false));
+        messageRepository.add(new Message("Sofia",1038295647, "Quero!", date3,9,10,publishedAnnouncement2, MessageState.ANSWERED, false));
+        messageRepository.add(new Message("Vasco", 1357924680, "Podemos já fazer negócio?", date2,14,15,publishedAnnouncement3, MessageState.ANSWERED, false));
     }
 }
