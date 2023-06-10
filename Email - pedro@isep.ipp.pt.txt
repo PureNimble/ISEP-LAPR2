@@ -1,0 +1,4 @@
+From: no-reply@this.app
+To: pedro@isep.ipp.pt
+Subject: Booking Request Response
+Body: pedro
