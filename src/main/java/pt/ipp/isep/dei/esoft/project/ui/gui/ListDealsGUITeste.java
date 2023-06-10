@@ -10,11 +10,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import pt.ipp.isep.dei.esoft.project.application.controller.ListDealsController;
+import pt.ipp.isep.dei.esoft.project.domain.House;
 import pt.ipp.isep.dei.esoft.project.domain.Offer;
 import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
+import pt.ipp.isep.dei.esoft.project.domain.Residence;
 
 import java.io.FileNotFoundException;
 import java.net.URL;
@@ -29,8 +32,39 @@ public class ListDealsGUITeste implements Initializable {
     private TableColumn<Offer, Double> orderAmount;
 
     @FXML
+    private Label labelNumberOfBathrooms;
+
+
+    @FXML
+    private Label labelparkingSpaces;
+
+    @FXML
+    private Label typeOfProperrtyLabel;
+
+    @FXML
+    private Label adressLabel;
+
+    @FXML
+    private Label dateLabel;
+
+    @FXML
+    private Label typeOfBusinessLabel;
+
+
+    @FXML
+    private AnchorPane announcementAnchorPane;
+    @FXML
+    private Label labelNumberOfBedrooms;
+
+    @FXML
     private TableColumn<Offer, String> name;
 
+
+    @FXML
+    private Label agentDescription;
+
+    @FXML
+    private Label clientDescription;
     @FXML
     private Pagination photosPagination;
 
@@ -44,6 +78,8 @@ public class ListDealsGUITeste implements Initializable {
 
     @FXML
     private TextArea textArea;
+    @FXML
+    private Label priceLabel;
 
     @FXML
     private Label announcementLabel;
@@ -53,11 +89,41 @@ public class ListDealsGUITeste implements Initializable {
     private ChoiceBox<String> ascendOrDescendChoice;
 
 
+    @FXML
+    private ImageView numberBathroomsIcon;
+
+    @FXML
+    private ImageView SunExposureIcon;
+    @FXML
+    private ImageView parkingSpacesIcon;
+
+
+    @FXML
+    private ImageView numberBedroomsIcon;
+
+    @FXML
+    private ImageView basementICon;
+
+    @FXML
+    private Label labelBasement;
+
+    @FXML
+    private Label labelSunExposure;
+
+
+
     private String[] filterAscendOrDescend = {"Ascending", "Descending"};
 
     private final ListDealsController controller = new ListDealsController();
 
     private PublishedAnnouncement publishedAnnouncement = null;
+
+
+    @FXML
+    private Label labelDistanceCenter;
+
+    @FXML
+    private Label labelArea;
 
 
     ObservableList<Object> listDeals = FXCollections.observableArrayList(
@@ -88,32 +154,90 @@ public class ListDealsGUITeste implements Initializable {
 
         System.out.println("" + table.getSelectionModel().getSelectedItem());
 
+        Offer offer;
+
         for (Object offers : listDeals) {
             if (offers.toString().equals(table.getSelectionModel().getSelectedItem().toString())) {
-                Offer offer = (Offer) table.getSelectionModel().getSelectedItem();
+                offer = (Offer) table.getSelectionModel().getSelectedItem();
                 publishedAnnouncement = offer.getPublishedAnnouncement();
             }
         }
 
 
-      textArea.setVisible(true);
-      textArea.setText(""+publishedAnnouncement);
 
-        int indexStart = 0;
-        int indexEnd = 0;
+        announcementAnchorPane.setVisible(true);
 
-        for(String line : textArea.getText().split("\n")) {
-            if (line.contains("Photos:")) { //change this to whatever you need
-                indexStart = textArea.getText().indexOf(line);
-                indexEnd = indexStart + line.length();
-            }
+
+        clientDescription.setText(""+publishedAnnouncement.getClient().getName()+" "+publishedAnnouncement.getClient().getClientEmail() +" "+publishedAnnouncement.getClient().getPhoneNumber());
+        agentDescription.setText(""+publishedAnnouncement.getAgent().getName()+" "+publishedAnnouncement.getAgent().getEmail()+" "+publishedAnnouncement.getAgent().getPhoneNumber());
+        priceLabel.setText("" + publishedAnnouncement.getBusiness());
+        labelDistanceCenter.setText(""+publishedAnnouncement.getProperty().getDistanceFromCityCenter());
+        adressLabel.setText("" + publishedAnnouncement.getProperty().getAddress());
+        typeOfBusinessLabel.setText("" + publishedAnnouncement.getTypeOfBusiness());
+        typeOfProperrtyLabel.setText("" + publishedAnnouncement.getPropertyType());
+        dateLabel.setText("" + publishedAnnouncement.getDate());
+        labelArea.setText(""+publishedAnnouncement.getProperty().getArea());
+
+
+        if (publishedAnnouncement.getPropertyType().getDesignation().equals("House")){
+            Residence residence = (Residence) publishedAnnouncement.getProperty();
+
+            numberBedroomsIcon.setVisible(true);
+            labelNumberOfBedrooms.setVisible(true);
+            labelNumberOfBedrooms.setText("" +residence.getNumberOfBedrooms());
+
+            parkingSpacesIcon.setVisible(true);
+            labelparkingSpaces.setVisible(true);
+            labelparkingSpaces.setText(""+residence.getParkingSpaces());
+
+            numberBathroomsIcon.setVisible(true);
+            labelNumberOfBathrooms.setVisible(true);
+            labelNumberOfBathrooms.setText(""+residence.getNumberOfBathrooms());
+
+    }else if (publishedAnnouncement.getPropertyType().getDesignation().equals("Appartment")){
+
+            Residence residence = (Residence) publishedAnnouncement.getProperty();
+
+            SunExposureIcon.setVisible(false);
+            labelSunExposure.setVisible(false);
+            basementICon.setVisible(false);
+            labelBasement.setVisible(false);
+
+
+            numberBedroomsIcon.setVisible(true);
+            labelNumberOfBedrooms.setVisible(true);
+            labelNumberOfBedrooms.setText("" +residence.getNumberOfBedrooms());
+
+            parkingSpacesIcon.setVisible(true);
+            labelparkingSpaces.setVisible(true);
+            labelparkingSpaces.setText(""+residence.getParkingSpaces());
+
+            numberBathroomsIcon.setVisible(true);
+            labelNumberOfBathrooms.setVisible(true);
+            labelNumberOfBathrooms.setText(""+residence.getNumberOfBathrooms());
+        }else {
+            SunExposureIcon.setVisible(false);
+            labelSunExposure.setVisible(false);
+            basementICon.setVisible(false);
+            labelBasement.setVisible(false);
+
+
+            numberBedroomsIcon.setVisible(false);
+            labelNumberOfBedrooms.setVisible(false);
+
+
+            numberBathroomsIcon.setVisible(false);
+            labelNumberOfBathrooms.setVisible(false);
+
+            parkingSpacesIcon.setVisible(false);
+            labelparkingSpaces.setVisible(false);
         }
-            textArea.deleteText(indexStart,indexEnd);
+
 
         List<Image> images = new ArrayList<>();
         for (String url : publishedAnnouncement.getProperty().getPhotos().getUrl()) {
 
-            images.add(new Image(url,395,335,false,false));
+            images.add(new Image(url,658,219,false,false));
 
         }
 
