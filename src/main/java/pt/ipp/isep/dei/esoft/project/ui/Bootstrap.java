@@ -56,20 +56,20 @@ public class Bootstrap {
         Address address1 = new Address("3655 S Las Vegas Blvd", 892109, new District("Paradise"), new City("Las Vegas"), new State("Nevada"));
         Address address2 = new Address("199 W 45th St",10036,new District("Manhattan"),new City("New York"),new State("New York"));
         Address address3 = new Address("9641 Sunset Blvd", 90210, new District("Beverly Hills"), new City("Los Angeles"), new State("California"));
-        Store store1 = new Store("Holloway",10234,address1,9383811,"holloway@gmail.com", 11);
-        Store store2 = new Store("Maltip",104224,address2,9678910,"maltip@gmail.com", 16);
-        Store store3 = new Store("Elvis",224,address3,9437782,"elvis@gmail.com", 3);
+        Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 0);
+        Store store2 = new Store("Maltip",104224,address2,1133542456,"maltip@gmail.com", 0);
+        Store store3 = new Store("Elvis",224,address3,1274567809,"elvis@gmail.com", 0);
 
         List<Role> roles = new ArrayList<>();
         roles.add(role);
 
         
-        Employee agent1 = new Employee("agent@this.app", 123456789, 987654321, "Miguel", 5551234, store1,  roles, address1);
-        Employee agent2 = new Employee("agent2@this.app",12345677,12231311,"Vasco ",555661, store1, roles, address2);
-        Employee agent3 = new Employee("agent3@this.app", 123456432, 123456789, "Manuel", 1234567, store2,  roles, address3);
-        Employee agent4 = new Employee("agent4@this.app",12345123,124356789,"Pedro",1324567, store3, roles, address2);
-        Employee agent5 = new Employee("agent5@this.app", 123456321, 17634589, "Jorge", 1432567, store2,  roles, address3);
-        Employee agent6 = new Employee("agent6@this.app",12345687,192837465,"Ruben",9876543, store2, roles, address1);
+        Employee agent1 = new Employee("agent@this.app", 123456789, 987654321, "Miguel", 1234567890, store1,  roles, address1);
+        Employee agent2 = new Employee("agent2@this.app",12345677,12231311,"Vasco ",1123456789, store1, roles, address2);
+        Employee agent3 = new Employee("agent3@this.app", 123456432, 123456789, "Manuel", 1234567892, store2,  roles, address3);
+        Employee agent4 = new Employee("agent4@this.app",12345123,124356789,"Pedro",1643267806, store3, roles, address2);
+        Employee agent5 = new Employee("agent5@this.app", 123456321, 17634589, "Jorge", 1345678901, store2,  roles, address3);
+        Employee agent6 = new Employee("agent6@this.app",12345687,192837465,"Ruben",1765432345, store2, roles, address1);
 
         employeeRepository.add(agent1);
         employeeRepository.add(agent2);
@@ -86,19 +86,19 @@ public class Bootstrap {
         Address address1 = new Address("3655 S Las Vegas Blvd", 892109, new District("Paradise"), new City("Las Vegas"), new State("Nevada"));
         Address address2 = new Address("199 W 45th St",10036,new District("Manhattan"),new City("New York"),new State("New York"));
         Address address3 = new Address("9641 Sunset Blvd", 90210, new District("Beverly Hills"), new City("Los Angeles"), new State("California"));
-        Store store1 = new Store("Holloway",10234,address1,9383811,"holloway@gmail.com", 11);
-        Store store2 = new Store("Maltip",104224,address2,9678910,"maltip@gmail.com", 16);
-        Store store3 = new Store("Elvis",224,address3,9437782,"elvis@gmail.com", 3);
+        Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 0);
+        Store store2 = new Store("Maltip",104224,address2,1133542456,"maltip@gmail.com", 0);
+        Store store3 = new Store("Elvis",224,address3,1274567809,"elvis@gmail.com", 0);
 
         List<Role> roles = new ArrayList<>();
         roles.add(role);
 
-        Employee agent1 = new Employee("agent@this.app", 123456789, 987654321, "Miguel", 5551234, store1,  roles, address1);
-        Employee agent2 = new Employee("agent2@this.app",12345677,12231311,"Vasco ",555661, store1, roles, address2);
-        Employee agent3 = new Employee("agent3@this.app", 123456432, 123456789, "Manuel", 1234567, store2,  roles, address3);
-        Employee agent4 = new Employee("agent4@this.app",12345123,124356789,"Pedro",1324567, store3, roles, address2);
-        Employee agent5 = new Employee("agent5@this.app", 123456321, 17634589, "Jorge", 1432567, store2,  roles, address3);
-        Employee agent6 = new Employee("agent6@this.app",12345687,192837465,"Ruben",9876543, store2, roles, address1);
+        Employee agent1 = new Employee("agent@this.app", 123456789, 987654321, "Miguel", 1234567890, store1,  roles, address1);
+        Employee agent2 = new Employee("agent2@this.app",12345677,12231311,"Vasco ",1123456789, store1, roles, address2);
+        Employee agent3 = new Employee("agent3@this.app", 123456432, 123456789, "Manuel", 1234567892, store2,  roles, address3);
+        Employee agent4 = new Employee("agent4@this.app",12345123,124356789,"Pedro",1643267806, store3, roles, address2);
+        Employee agent5 = new Employee("agent5@this.app", 123456321, 17634589, "Jorge", 1345678901, store2,  roles, address3);
+        Employee agent6 = new Employee("agent6@this.app",12345687,192837465,"Ruben",1765432345, store2, roles, address1);
 
 
         PublishedAnnouncementRepository publishedAnnouncementRepository = Repositories.getInstance().getPublishedAnnouncementRepository();
@@ -114,8 +114,10 @@ public class Bootstrap {
         Property property2 = new Property(313,5498,new Photos("https://i.maxwork.pt/l-view/listings/12015/6532217/13acae9a-aa32-466c-9980-e132a780c4bf.jpg"),address2);
 
 
-        AvailableEquipment equipment1 = new AvailableEquipment("Forno");
-        AvailableEquipment equipment2 = new AvailableEquipment("Máquina");
+        AvailableEquipment equipment1 = new AvailableEquipment("Air Conditioning");
+        AvailableEquipment equipment2 = new AvailableEquipment("Central Heating");
+        AvailableEquipment equipment3 = new AvailableEquipment("None");
+        AvailableEquipment equipment4 = new AvailableEquipment("Pool");
 
         List<String> strings1 = new ArrayList<>();
         strings1.add("https://i.maxwork.pt/l-view/listings/12291/6528121/5d6cf1eb-3131-48cd-b816-7bdad18e7787.jpg");
@@ -124,7 +126,7 @@ public class Bootstrap {
         strings1.add("https://i.maxwork.pt/l-view/listings/12291/6528121/19597d8c-a2f8-44d5-85b9-cdfddc6c673b.jpg");
 
         Residence residence1 = new Residence(273, 234, 13,  123, 123, equipment1, new Photos("https://i.maxwork.pt/l-view/listings/12325/6516582/f608e960-5797-4a79-8232-8b46739fb035.jpg"),address1);
-        Residence residence2 = new Residence(21373, 212334, 1,  123, 123, equipment2, new Photos(strings1),address1);
+        Residence residence2 = new Residence(21373, 212334, 1,  123, 123, equipment3, new Photos(strings1),address1);
         
         PropertyType propertyType1 = new PropertyType("House");
         PropertyType propertyType2 = new PropertyType("Appartment");
@@ -143,16 +145,19 @@ public class Bootstrap {
         Date date3 = new GregorianCalendar(2023,Calendar.MAY,30,17,31,42).getTime();
 
 
-        Client client = new Client("owner@this.app", 111111111, 111111111, "Maria", address1, 1111111111);
+        Client client1 = new Client("pedro@isep.ipp.pt", 123456789, 987654321, "Pedro", address1, 1234567890);
+        Client client2 = new Client("luna@hotmail.com", 987654321, 123456789, "Luna", address2, 1987654321);
+        Client client3 = new Client("diogo@yahoo.com", 876543219, 234567891, "Diogo", address3, 1345678901);
+        Client client4 = new Client("miguel@gmail.com", 765432198, 345678901, "Miguel", address1, 1112345689);
 
 
 
-        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType2, comission1, business2, agent3, client);
-        PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, residence2, propertyType1, comission1, business4, agent5, client);
-        PublishedAnnouncement publishedAnnouncement3 = new PublishedAnnouncement(date3, typeOfBusiness1, property1, propertyType3, comission, business3, agent1, client);
-        PublishedAnnouncement publishedAnnouncement4 = new PublishedAnnouncement(date3, typeOfBusiness1, residence2, propertyType1, comission, business2, agent2, client);
-        PublishedAnnouncement publishedAnnouncement5 = new PublishedAnnouncement(date3, typeOfBusiness1, residence1, propertyType1, comission1, business1, agent4, client);
-        PublishedAnnouncement publishedAnnouncement6 = new PublishedAnnouncement(date3, typeOfBusiness1, residence2, propertyType1, comission, business3, agent2, client);
+        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType2, comission1, business2, agent3, client1, 1);
+        PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, residence2, propertyType1, comission1, business4, agent5, client2, 2);
+        PublishedAnnouncement publishedAnnouncement3 = new PublishedAnnouncement(date3, typeOfBusiness1, property1, propertyType3, comission, business3, agent1, client3,3);
+        PublishedAnnouncement publishedAnnouncement4 = new PublishedAnnouncement(date3, typeOfBusiness1, residence2, propertyType1, comission, business2, agent2, client4,4);
+        PublishedAnnouncement publishedAnnouncement5 = new PublishedAnnouncement(date3, typeOfBusiness1, residence1, propertyType1, comission1, business1, agent4, client1,5);
+        PublishedAnnouncement publishedAnnouncement6 = new PublishedAnnouncement(date3, typeOfBusiness1, residence2, propertyType1, comission, business3, agent2, client2,6);
 
         publishedAnnouncementRepository.add(publishedAnnouncement1);
         publishedAnnouncementRepository.add(publishedAnnouncement2);
@@ -162,7 +167,7 @@ public class Bootstrap {
         publishedAnnouncementRepository.add(publishedAnnouncement5);
 
         addOffers(publishedAnnouncement1, publishedAnnouncement2, publishedAnnouncement3);
-//        addMessages(publishedAnnouncement1, publishedAnnouncement2, publishedAnnouncement3, date1, date2, date3);
+        addMessages(publishedAnnouncement1, publishedAnnouncement2, publishedAnnouncement3, publishedAnnouncement4, date1, date2, date3);
     }
 
     private void addAvailableEquipment(){
@@ -287,9 +292,9 @@ public class Bootstrap {
         Address address1 = new Address("3655 S Las Vegas Blvd", 892109, new District("Paradise"), new City("Las Vegas"), new State("Nevada"));
         Address address2 = new Address("199 W 45th St",10036,new District("Manhattan"),new City("New York"),new State("New York"));
         Address address3 = new Address("9641 Sunset Blvd", 90210, new District("Beverly Hills"), new City("Los Angeles"), new State("California"));
-        Store store1 = new Store("Holloway",10234,address1,9383811,"holloway@gmail.com", 11);
-        Store store2 = new Store("Maltip",104224,address2,9678910,"maltip@gmail.com", 16);
-        Store store3 = new Store("Elvis",224,address3,9437782,"elvis@gmail.com", 3);
+        Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 0);
+        Store store2 = new Store("Maltip",104224,address2,1133542456,"maltip@gmail.com", 0);
+        Store store3 = new Store("Elvis",224,address3,1274567809,"elvis@gmail.com", 0);
 
         storeRepository.add(store1);
         storeRepository.add(store2);
@@ -320,19 +325,19 @@ public class Bootstrap {
         OfferRepository offerRepository = Repositories.getInstance().getOfferRepository();
 
         offerRepository.add(new Offer("Pedro", 130000, publishedAnnouncement1, OfferState.pending, new Client("pedro@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890)));
-        offerRepository.add(new Offer("Diogo",97000, publishedAnnouncement2, OfferState.pending, new Client("diogo@sapo.pt", 567890123, 567890123, "Diogo", new Address("20 W 34th Street", 10001, new District("Manhattan"), new City("New York"), new State("New York")), 1389462074)));
-        offerRepository.add(new Offer("Luna", 135600,publishedAnnouncement3,OfferState.accepted, new Client("luna@outlook.com", 234567890, 234567890, "Luna", new Address("200 Santa Monica Pier", 90401, new District("Santa Monica"), new City("Los Angeles"), new State("California")), 1029384756)));
+        offerRepository.add(new Offer("Diogo",97000, publishedAnnouncement3, OfferState.pending, new Client("diogo@sapo.pt", 567890123, 567890123, "Diogo", new Address("20 W 34th Street", 10001, new District("Manhattan"), new City("New York"), new State("New York")), 1389462074)));
+        offerRepository.add(new Offer("Luna", 135600,publishedAnnouncement2,OfferState.pending, new Client("luna@outlook.com", 234567890, 234567890, "Luna", new Address("200 Santa Monica Pier", 90401, new District("Santa Monica"), new City("Los Angeles"), new State("California")), 1029384756)));
         offerRepository.add(new Offer("Vasco", 230000,publishedAnnouncement3,OfferState.accepted, new Client("vasco@yahoo.com", 345678901, 345678901, "Vasco", new Address("1200 Getty Center Drive", 90049, new District("Crestwood Hills"), new City("Los Angeles"), new State("California")), 1910384765)));
         offerRepository.add(new Offer("Rafael", 98000,publishedAnnouncement3,OfferState.accepted, new Client("rafael@yopmail.com", 456789012, 456789012, "Rafael", new Address("1000 5th Avenue", 10028, new District("Manhattan"), new City("New York"), new State("New York")), 1134685325)));
     }
 
-//    private void addMessages(PublishedAnnouncement publishedAnnouncement1, PublishedAnnouncement publishedAnnouncement2, PublishedAnnouncement publishedAnnouncement3, Date date1, Date date2, Date date3) {
-//        MessageRepository messageRepository = Repositories.getInstance().getMessageRepository();
-//
-//        messageRepository.add(new Message("Pedro", 1234567890, "Olá, estou interessado na propriedade!", date1, 11, 12, publishedAnnouncement1));
-//        messageRepository.add(new Message("Miguel", 1029384756, "Interessado.", date3, 20,21,publishedAnnouncement3));
-//        messageRepository.add(new Message("Luna", 1209348756, "Estou com interesse na propriedade!", date2,15,17,publishedAnnouncement3));
-//        messageRepository.add(new Message("Sofia",1038295647, "Quero!", date3,9,10,publishedAnnouncement2));
-//        messageRepository.add(new Message("Vasco", 1357924680, "Podemos já fazer negócio?", date2,14,15,publishedAnnouncement3));
-//    }
+    private void addMessages(PublishedAnnouncement publishedAnnouncement1, PublishedAnnouncement publishedAnnouncement2, PublishedAnnouncement publishedAnnouncement3, PublishedAnnouncement publishedAnnouncement4, Date date1, Date date2, Date date3) {
+        MessageRepository messageRepository = Repositories.getInstance().getMessageRepository();
+
+        messageRepository.add(new Message("Pedro", 1234567890, "Olá, estou interessado na propriedade!", date1, 11, 12, publishedAnnouncement1, MessageState.UNANSWERED,false));
+        messageRepository.add(new Message("Miguel", 1029384756, "Interessado.", date3, 20,21,publishedAnnouncement4, MessageState.UNANSWERED, false));
+        messageRepository.add(new Message("Luna", 1209348756, "Estou com interesse na propriedade!", date2,15,17,publishedAnnouncement2, MessageState.UNANSWERED, false));
+        messageRepository.add(new Message("Sofia",1038295647, "Quero!", date3,9,10,publishedAnnouncement2, MessageState.ANSWERED, false));
+        messageRepository.add(new Message("Vasco", 1357924680, "Podemos já fazer negócio?", date2,14,15,publishedAnnouncement3, MessageState.ANSWERED, false));
+    }
 }

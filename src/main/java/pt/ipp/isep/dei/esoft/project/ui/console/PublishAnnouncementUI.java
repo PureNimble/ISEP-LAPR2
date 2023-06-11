@@ -129,7 +129,7 @@ public class PublishAnnouncementUI implements Runnable {
     /**
      The ID associated with the announcement request.
      */
-    private String ID;
+    private int propertyID;
 
 
     /**
@@ -212,7 +212,7 @@ public class PublishAnnouncementUI implements Runnable {
 
             Property land = new Property(area, distanceFromCityCenter, photos, address);
 
-            publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, land, propertyType, comission, business, durationOfContract, agent, client);
+            publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, land, propertyType, comission, business, durationOfContract, agent, client, propertyID);
 
         } else {
             if (propertyTypeDescription.equals("Appartment")) {
@@ -221,13 +221,13 @@ public class PublishAnnouncementUI implements Runnable {
 
                 Residence appartment = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, photos, address);
 
-                publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, appartment, propertyType, comission, business, durationOfContract, agent, client);
+                publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, appartment, propertyType, comission, business, durationOfContract, agent, client, propertyID);
             } else {
                 AvailableEquipment availableEquipment = controller.getAvailableEquipmentByDescription(availableEquipmentDescription);
 
                 House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, inhabitableLoft, sunExposure, photos, address);
 
-                publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, durationOfContract, agent, client);
+                publishedAnnouncement = controller.createPublishmentAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, durationOfContract, agent, client, propertyID);
 
             }
         }

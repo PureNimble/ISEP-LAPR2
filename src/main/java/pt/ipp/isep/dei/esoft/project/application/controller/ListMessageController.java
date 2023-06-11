@@ -108,17 +108,15 @@ public class ListMessageController {
      * @return the booking requests for period
      */
     public List<Message> getBookingRequestsForPeriod(Date beginDate, Date endDate) {
+        MessageRepository messageRepository = getMessageRepository();
         List<Message> bookingRequests = new ArrayList<>();
-        MessageRepository messageRepository1 = getMessageRepository();
-        AuthenticationRepository authenticationRepository1 = getAuthenticationRepository();
-        for (Message message : messageRepository1.getMessages()) {
-            if (message.getInitialDate().compareTo(beginDate) >= 0 && message.getInitialDate().compareTo(endDate) <= 0) {
-                if(message.getPublishedAnnouncement().getAgent().getEmail().equals(authenticationRepository1.getCurrentUserSession().getUserId().getEmail())) {
-                    bookingRequests.add(message);
-                }
 
+        for (Message message : messageRepository.getMessages()) {
+            if (message.getInitialDate().compareTo(beginDate) >= 0 && message.getInitialDate().compareTo(endDate) <= 0) {
+                bookingRequests.add(message);
             }
         }
+
         return bookingRequests;
     }
 
@@ -142,4 +140,23 @@ public class ListMessageController {
 
         return messageMapper.toDto(getMessagesByAscendingDate());
     }
+
+    public boolean isValidEmailDomain(String email) {
+        String domain = getEmailDomain(email);
+        return domain.equals("isep.ipp.pt") || domain.equals("gmail.com") || domain.equals("hotmail.com") || domain.equals("yahoo.com");
+    }
+
+    private String getEmailDomain(String email) {
+        int atIndex = email.lastIndexOf("@");
+        if (atIndex != -1) {
+            return email.substring(atIndex + 1);
+        }
+        throw new IllegalArgumentException("Invalid email address: " + email);
+    }
+
+    public void removeBookingRequest(Message message) {
+        MessageRepository messageRepository = getMessageRepository();
+        messageRepository.removeMessage(message);
+    }
+
 }

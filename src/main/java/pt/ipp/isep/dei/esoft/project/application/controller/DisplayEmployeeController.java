@@ -5,6 +5,8 @@ import java.util.List;
 import pt.ipp.isep.dei.esoft.project.domain.Employee;
 import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 import pt.ipp.isep.dei.esoft.project.domain.Store;
+import pt.ipp.isep.dei.esoft.project.domain.StoreEmployeeDTO;
+import pt.ipp.isep.dei.esoft.project.domain.StoreEmployeeMapper;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
 import pt.ipp.isep.dei.esoft.project.repository.EmployeeRepository;
 import pt.ipp.isep.dei.esoft.project.repository.PublishedAnnouncementRepository;
@@ -123,11 +125,11 @@ public class DisplayEmployeeController {
      *
      * @return the employees allphabetically sorted
      */
-    public List <Employee> getEmployeesAllphabeticallySorted() {
+    public List <StoreEmployeeDTO> toDTO() {
         getStoresProperty();
-        StoreRepository storeRepository = getStoreRepository();
-        EmployeeRepository employeeRepository = getEmployeeRepository();
+        StoreEmployeeMapper storeEmployeeMapper = new StoreEmployeeMapper();
         List<Store> listStore = storeRepository.getStoresByMostListings();
-        return employeeRepository.getEmployeesAllphabeticallySorted(listStore);
+        List<Employee> listEmployee = employeeRepository.getEmployeesAllphabeticallySorted();
+        return storeEmployeeMapper.toDTO(listStore, listEmployee);
     }
 }

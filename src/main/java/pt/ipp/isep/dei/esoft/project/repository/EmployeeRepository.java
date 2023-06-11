@@ -101,20 +101,16 @@ public class EmployeeRepository {
      * @param storesList the stores list
      * @return the list
      */
-    public List<Employee> getEmployeesAllphabeticallySorted(List<Store> storesList){
+    public List<Employee> getEmployeesAllphabeticallySorted(){
         List<Employee> resultList = new ArrayList<Employee>();
 
-        for (Store stores: storesList){
-            List<Employee> tempList = new ArrayList<Employee>();
-            for (Employee employee: employees){
-                if (employee.getStore().equals(stores)){
-                    employee.setStore(stores);
-                    tempList.add(employee);
-                }
-            }
-            tempList.sort(Comparator.comparing(Employee::getEmployeeName));
-            resultList.addAll(tempList);
+        List<Employee> tempList = new ArrayList<Employee>();
+        for (Employee employee: employees){
+            
+            tempList.add(employee);
         }
+        tempList.sort(Comparator.comparing(Employee::getEmployeeName));
+        resultList.addAll(tempList);
 
         return resultList;
     }
