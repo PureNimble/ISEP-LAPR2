@@ -37,6 +37,7 @@ public class AgentMenuGUI implements Runnable, Initializable {
             Parent root = listMessagesLoader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
+            stage.setTitle("Agent Menu");
             stage.setScene(scene);
             stage.show();
             listMessagesLoader.setController(new ListMessageGUI());

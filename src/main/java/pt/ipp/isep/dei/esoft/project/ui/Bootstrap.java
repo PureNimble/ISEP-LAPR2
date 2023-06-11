@@ -140,9 +140,12 @@ public class Bootstrap {
         Business business3 = new Business(246000);
         Business business4 = new Business(98540);
 
-        Date date1 = new GregorianCalendar(2023, Calendar.JUNE, 1, 20,04,30).getTime();
-        Date date2 = new GregorianCalendar(2023, Calendar.MAY, 28,10,51,13).getTime();
-        Date date3 = new GregorianCalendar(2023,Calendar.MAY,30,17,31,42).getTime();
+        Date date1 = new GregorianCalendar(2023, Calendar.JUNE, 20).getTime();
+        Date date2 = new GregorianCalendar(2023, Calendar.JUNE, 21).getTime();
+        Date date3 = new GregorianCalendar(2023,Calendar.JUNE,22).getTime();
+        Date date4 = new GregorianCalendar(2023, Calendar.JUNE, 23).getTime();
+        Date date5 = new GregorianCalendar(2023, Calendar.JUNE, 24).getTime();
+        Date date6 = new GregorianCalendar(2023,Calendar.JUNE,25).getTime();
 
 
         Client client1 = new Client("pedro@isep.ipp.pt", 123456789, 987654321, "Pedro", address1, 1234567890);
@@ -153,12 +156,12 @@ public class Bootstrap {
         AnnouncementState state1 = AnnouncementState.available;
         AnnouncementState state2 = AnnouncementState.sold;
 
-        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType2, comission1, business2, agent3, client1, 1, state1);
-        PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, residence2, propertyType1, comission1, business4, agent5, client2, 2, state1);
-        PublishedAnnouncement publishedAnnouncement3 = new PublishedAnnouncement(date3, typeOfBusiness1, property1, propertyType3, comission, business3, agent1, client3,3, state1);
-        PublishedAnnouncement publishedAnnouncement4 = new PublishedAnnouncement(date3, typeOfBusiness1, residence2, propertyType1, comission, business2, agent2, client4,4, state2);
-        PublishedAnnouncement publishedAnnouncement5 = new PublishedAnnouncement(date3, typeOfBusiness1, residence1, propertyType1, comission1, business1, agent4, client1,5, state2);
-        PublishedAnnouncement publishedAnnouncement6 = new PublishedAnnouncement(date3, typeOfBusiness1, residence2, propertyType1, comission, business3, agent2, client2,6, state1);
+        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType1, comission1, business1, agent1, client1, 1, state1);
+        PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, residence2, propertyType2, comission, business2, agent2, client2, 2, state1);
+        PublishedAnnouncement publishedAnnouncement3 = new PublishedAnnouncement(date3, typeOfBusiness1, property1, propertyType1, comission1, business3, agent3, client3,3, state1);
+        PublishedAnnouncement publishedAnnouncement4 = new PublishedAnnouncement(date4, typeOfBusiness1, residence2, propertyType2, comission, business4, agent4, client4,4, state1);
+        PublishedAnnouncement publishedAnnouncement5 = new PublishedAnnouncement(date5, typeOfBusiness1, property1, propertyType1, comission1, business1, agent5, client1,5, state1);
+        PublishedAnnouncement publishedAnnouncement6 = new PublishedAnnouncement(date6, typeOfBusiness1, residence2, propertyType3, comission, business2, agent6, client2,6, state2);
 
         publishedAnnouncementRepository.add(publishedAnnouncement1);
         publishedAnnouncementRepository.add(publishedAnnouncement2);
@@ -167,8 +170,8 @@ public class Bootstrap {
         publishedAnnouncementRepository.add(publishedAnnouncement4);
         publishedAnnouncementRepository.add(publishedAnnouncement5);
 
-        addOffers(publishedAnnouncement1, publishedAnnouncement2, publishedAnnouncement3);
-        addMessages(publishedAnnouncement1, publishedAnnouncement2, publishedAnnouncement3, publishedAnnouncement4, date1, date2, date3);
+        addOffers(publishedAnnouncement1, publishedAnnouncement2, publishedAnnouncement3, publishedAnnouncement4, publishedAnnouncement5);
+        addMessages(publishedAnnouncement1, publishedAnnouncement2, publishedAnnouncement3, publishedAnnouncement4, publishedAnnouncement5, date1, date2, date3, date4, date5);
     }
 
     private void addAvailableEquipment(){
@@ -322,23 +325,23 @@ public class Bootstrap {
        // comissionRepository.add(new Comission(Integer.parseInt("Other")));
     }
 
-    private void addOffers(PublishedAnnouncement publishedAnnouncement1, PublishedAnnouncement publishedAnnouncement2, PublishedAnnouncement publishedAnnouncement3) {
+    private void addOffers(PublishedAnnouncement publishedAnnouncement1, PublishedAnnouncement publishedAnnouncement2, PublishedAnnouncement publishedAnnouncement3, PublishedAnnouncement publishedAnnouncement4, PublishedAnnouncement publishedAnnouncement5) {
         OfferRepository offerRepository = Repositories.getInstance().getOfferRepository();
 
         offerRepository.add(new Offer("Pedro", 130000, publishedAnnouncement1, OfferState.pending, new Client("pedro@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890)));
-        offerRepository.add(new Offer("Diogo",97000, publishedAnnouncement3, OfferState.pending, new Client("diogo@sapo.pt", 567890123, 567890123, "Diogo", new Address("20 W 34th Street", 10001, new District("Manhattan"), new City("New York"), new State("New York")), 1389462074)));
-        offerRepository.add(new Offer("Luna", 135600,publishedAnnouncement2,OfferState.pending, new Client("luna@outlook.com", 234567890, 234567890, "Luna", new Address("200 Santa Monica Pier", 90401, new District("Santa Monica"), new City("Los Angeles"), new State("California")), 1029384756)));
-        offerRepository.add(new Offer("Vasco", 230000,publishedAnnouncement3,OfferState.accepted, new Client("vasco@yahoo.com", 345678901, 345678901, "Vasco", new Address("1200 Getty Center Drive", 90049, new District("Crestwood Hills"), new City("Los Angeles"), new State("California")), 1910384765)));
-        offerRepository.add(new Offer("Rafael", 98000,publishedAnnouncement3,OfferState.accepted, new Client("rafael@yopmail.com", 456789012, 456789012, "Rafael", new Address("1000 5th Avenue", 10028, new District("Manhattan"), new City("New York"), new State("New York")), 1134685325)));
+        offerRepository.add(new Offer("Diogo",97000, publishedAnnouncement2, OfferState.pending, new Client("diogo@sapo.pt", 567890123, 567890123, "Diogo", new Address("20 W 34th Street", 10001, new District("Manhattan"), new City("New York"), new State("New York")), 1389462074)));
+        offerRepository.add(new Offer("Luna", 135600,publishedAnnouncement3,OfferState.pending, new Client("luna@outlook.com", 234567890, 234567890, "Luna", new Address("200 Santa Monica Pier", 90401, new District("Santa Monica"), new City("Los Angeles"), new State("California")), 1029384756)));
+        offerRepository.add(new Offer("Vasco", 230000,publishedAnnouncement4,OfferState.accepted, new Client("vasco@yahoo.com", 345678901, 345678901, "Vasco", new Address("1200 Getty Center Drive", 90049, new District("Crestwood Hills"), new City("Los Angeles"), new State("California")), 1910384765)));
+        offerRepository.add(new Offer("Rafael", 98000,publishedAnnouncement5,OfferState.accepted, new Client("rafael@yopmail.com", 456789012, 456789012, "Rafael", new Address("1000 5th Avenue", 10028, new District("Manhattan"), new City("New York"), new State("New York")), 1134685325)));
     }
 
-    private void addMessages(PublishedAnnouncement publishedAnnouncement1, PublishedAnnouncement publishedAnnouncement2, PublishedAnnouncement publishedAnnouncement3, PublishedAnnouncement publishedAnnouncement4, Date date1, Date date2, Date date3) {
+    private void addMessages(PublishedAnnouncement publishedAnnouncement1, PublishedAnnouncement publishedAnnouncement2, PublishedAnnouncement publishedAnnouncement3, PublishedAnnouncement publishedAnnouncement4, PublishedAnnouncement publishedAnnouncement5, Date date1, Date date2, Date date3, Date date4, Date date5) {
         MessageRepository messageRepository = Repositories.getInstance().getMessageRepository();
 
         messageRepository.add(new Message("Pedro", 1234567890, "Olá, estou interessado na propriedade!", date1, 11, 12, publishedAnnouncement1, MessageState.UNANSWERED,false));
-        messageRepository.add(new Message("Miguel", 1029384756, "Interessado.", date3, 20,21,publishedAnnouncement4, MessageState.UNANSWERED, false));
-        messageRepository.add(new Message("Luna", 1209348756, "Estou com interesse na propriedade!", date2,15,17,publishedAnnouncement2, MessageState.UNANSWERED, false));
-        messageRepository.add(new Message("Sofia",1038295647, "Quero!", date3,9,10,publishedAnnouncement2, MessageState.ANSWERED, false));
-        messageRepository.add(new Message("Vasco", 1357924680, "Podemos já fazer negócio?", date2,14,15,publishedAnnouncement3, MessageState.ANSWERED, false));
+        messageRepository.add(new Message("Miguel", 1029384756, "Interessado.", date2, 20,21,publishedAnnouncement2, MessageState.UNANSWERED, false));
+        messageRepository.add(new Message("Luna", 1209348756, "Estou com interesse na propriedade!", date3,15,17,publishedAnnouncement3, MessageState.UNANSWERED, false));
+        messageRepository.add(new Message("Sofia",1038295647, "Quero!", date4,9,10,publishedAnnouncement4, MessageState.ANSWERED, false));
+        messageRepository.add(new Message("Vasco", 1357924680, "Podemos já fazer negócio?", date5,14,15,publishedAnnouncement5, MessageState.ANSWERED, false));
     }
 }
