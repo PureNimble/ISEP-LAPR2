@@ -150,14 +150,15 @@ public class Bootstrap {
         Client client3 = new Client("diogo@yahoo.com", 876543219, 234567891, "Diogo", address3, 1345678901);
         Client client4 = new Client("miguel@gmail.com", 765432198, 345678901, "Miguel", address1, 1112345689);
 
+        AnnouncementState state1 = AnnouncementState.available;
+        AnnouncementState state2 = AnnouncementState.sold;
 
-
-        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType2, comission1, business2, agent3, client1, 1);
-        PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, residence2, propertyType1, comission1, business4, agent5, client2, 2);
-        PublishedAnnouncement publishedAnnouncement3 = new PublishedAnnouncement(date3, typeOfBusiness1, property1, propertyType3, comission, business3, agent1, client3,3);
-        PublishedAnnouncement publishedAnnouncement4 = new PublishedAnnouncement(date3, typeOfBusiness1, residence2, propertyType1, comission, business2, agent2, client4,4);
-        PublishedAnnouncement publishedAnnouncement5 = new PublishedAnnouncement(date3, typeOfBusiness1, residence1, propertyType1, comission1, business1, agent4, client1,5);
-        PublishedAnnouncement publishedAnnouncement6 = new PublishedAnnouncement(date3, typeOfBusiness1, residence2, propertyType1, comission, business3, agent2, client2,6);
+        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType2, comission1, business2, agent3, client1, 1, state1);
+        PublishedAnnouncement publishedAnnouncement2 = new PublishedAnnouncement(date2, typeOfBusiness2, residence2, propertyType1, comission1, business4, agent5, client2, 2, state1);
+        PublishedAnnouncement publishedAnnouncement3 = new PublishedAnnouncement(date3, typeOfBusiness1, property1, propertyType3, comission, business3, agent1, client3,3, state1);
+        PublishedAnnouncement publishedAnnouncement4 = new PublishedAnnouncement(date3, typeOfBusiness1, residence2, propertyType1, comission, business2, agent2, client4,4, state2);
+        PublishedAnnouncement publishedAnnouncement5 = new PublishedAnnouncement(date3, typeOfBusiness1, residence1, propertyType1, comission1, business1, agent4, client1,5, state2);
+        PublishedAnnouncement publishedAnnouncement6 = new PublishedAnnouncement(date3, typeOfBusiness1, residence2, propertyType1, comission, business3, agent2, client2,6, state1);
 
         publishedAnnouncementRepository.add(publishedAnnouncement1);
         publishedAnnouncementRepository.add(publishedAnnouncement2);

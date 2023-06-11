@@ -15,7 +15,6 @@ public class AnnouncementOffersMapper {
         for (PublishedAnnouncement publishedAnnouncement : publishedAnnouncementsList) {
             List<OfferDto> offersListToDTO = new ArrayList<>();
             AnnouncementOffersDTO announcementOffersDto;
-            int counter = 0;
             for (Offer offer : offersList) {
                 if (offer.getPublishedAnnouncement().equals(publishedAnnouncement)) {
                     OfferDto offerDto;
@@ -27,15 +26,8 @@ public class AnnouncementOffersMapper {
                     offersListToDTO.add(offerDto);
                 }
             }
-            for (OfferDto offerDto : offersListToDTO) {
-                if (offerDto.getOfferState().equals(OfferState.accepted)) {
-                    counter++;
-                }
-            }
-            if (counter == 0){
-                announcementOffersDto = toDtoObject(publishedAnnouncement, offersListToDTO);
-                announcementOffersDTO.add(announcementOffersDto);
-            }
+            announcementOffersDto = toDtoObject(publishedAnnouncement, offersListToDTO);
+            announcementOffersDTO.add(announcementOffersDto);
         }
 
         return announcementOffersDTO;

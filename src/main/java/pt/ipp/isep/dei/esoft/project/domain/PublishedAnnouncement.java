@@ -48,6 +48,8 @@ public class PublishedAnnouncement {
 
     private int propertyID;
 
+    private AnnouncementState state;
+
     /**
      * Constructs a new PublishedAnnouncement object for sale.
      *
@@ -60,7 +62,7 @@ public class PublishedAnnouncement {
      * @param agent          the agent
      * @param client         the client
      */
-    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, Employee agent, Client client, int propertyID) {
+    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, Employee agent, Client client, int propertyID, AnnouncementState state) {
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
         this.propertyType = propertyType;
@@ -70,6 +72,7 @@ public class PublishedAnnouncement {
         this.agent = agent;
         this.client = client;
         this.propertyID = propertyID;
+        this.state = state;
     }
 
     /**
@@ -85,7 +88,7 @@ public class PublishedAnnouncement {
      * @param agent              the agent
      * @param client             the client
      */
-    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent, Client client, int propertyID) {
+    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent, Client client, int propertyID, AnnouncementState state) {
         this.date = date;
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
@@ -96,6 +99,7 @@ public class PublishedAnnouncement {
         this.agent = agent;
         this.client = client;
         this.propertyID = propertyID;
+        this.state = state;
     }
 
     /**
@@ -168,6 +172,24 @@ public class PublishedAnnouncement {
      */
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    /**
+     * Gets client.
+     *
+     * @return the client
+     */
+    public AnnouncementState getAnnouncementState() {
+        return state;
+    }
+
+    /**
+     * Sets client.
+     *
+     * @param client the client
+     */
+    public void setAnnouncementState(AnnouncementState state) {
+        this.state = state;
     }
 
     /**

@@ -1,28 +1,31 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 public class StoreEmployeeDTO {
     
-    private Employee employee;
+    private List<Employee> employees;
 
     private String storeDesignation;
     private int storeId;
     private int storeListing;
 
-    public StoreEmployeeDTO(String designation, int id, int listing, Employee employee) {
+    public StoreEmployeeDTO(String designation, int id, int listing, List<Employee> employees) {
         this.storeDesignation = designation;
         this.storeId = id;
         this.storeListing = listing;
-        this.employee = employee;
+        this.employees = employees;
     }
 
     public String toStringStore() {
-        return String.format("Name of the store: " + storeDesignation + " Id: " + storeId + " Number of properties: " + storeListing);
+        return String.format("Name of the store: %s Id: %s Number of properties: %s", storeDesignation, storeId, storeListing);
     }
 
-    public String toStringEmployee(){
-        return String.format("Name: " + employee.getName() + " Passport: " + employee.getPassportNumber() + " Tax: " + employee.getTaxNumber() + " Phone Number: " + employee.getPhoneNumber() + " Address: " + employee.getAddress() + " Roles: " + employee.getRoles());
+    public String toStringEmployee(Employee employee) {
+        return String.format("Name: %s Passport: %s Tax: %s Phone Number: %s Address: %s Roles: %s",
+                employee.getName(), employee.getPassportNumber(), employee.getTaxNumber(),
+                employee.getPhoneNumber(), employee.getAddress(), employee.getRoles());
     }
 
     public String getStoreDesignation() {
@@ -49,12 +52,12 @@ public class StoreEmployeeDTO {
         this.storeListing = storeListing;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public List<Employee> getEmployees() {
+        return employees;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(storeDesignation, storeId, storeListing, employee);
+        return Objects.hash(storeDesignation, storeId, storeListing, employees);
     }
 }

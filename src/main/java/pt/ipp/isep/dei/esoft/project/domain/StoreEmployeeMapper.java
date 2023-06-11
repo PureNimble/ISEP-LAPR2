@@ -13,23 +13,21 @@ public class StoreEmployeeMapper {
             String storeName = store.getDesignation();
             int storeId = store.getId();
             int storeListing = store.getListing();
-            storeEmployeeDTO = toDtoObject(storeName, storeId, storeListing, null);
-            storeEmployeeDTOs.add(storeEmployeeDTO);
             
-            List<StoreEmployeeDTO> tempEmployeeDTOs = new ArrayList<>();
+            List<Employee> employees = new ArrayList<>();
             for (Employee employee : employeeList) {
                 if (employee.getStore().getDesignation().equals(storeName)) {
-                    storeEmployeeDTO = toDtoObject(null, 0, 0, employee);
-                    tempEmployeeDTOs.add(storeEmployeeDTO);
+                    employees.add(employee);
                 }
             }
-            storeEmployeeDTOs.addAll(tempEmployeeDTOs);
+            storeEmployeeDTO = toDtoObject(storeName, storeId, storeListing, employees);
+            storeEmployeeDTOs.add(storeEmployeeDTO);
         }
 
         return storeEmployeeDTOs;
     }
 
-    public StoreEmployeeDTO toDtoObject(String storeName, int storeId, int storeListing, Employee employee) {
+    public StoreEmployeeDTO toDtoObject(String storeName, int storeId, int storeListing, List<Employee> employee) {
 
         StoreEmployeeDTO storeEmployeeDTO;
         storeEmployeeDTO = new StoreEmployeeDTO(storeName, storeId, storeListing, employee);

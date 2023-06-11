@@ -92,7 +92,7 @@ public class OfferDecisionController {
         AnnouncementOffersMapper announcementOffersMapper = new AnnouncementOffersMapper();
         PublishedAnnouncementRepository publishedAnnouncementRepository = getPublishedAnnouncementRepository();
         OfferRepository offerRepository = getOfferRepository();
-        List<PublishedAnnouncement> listProperty = publishedAnnouncementRepository.getPublishedAnnouncementsDesc();
+        List<PublishedAnnouncement> listProperty = publishedAnnouncementRepository.getAvailablePublishedAnnouncementsDesc();
         List<Offer> offersList = offerRepository.getOffersByHighestAmount();
         return announcementOffersMapper.toDto(listProperty, offersList);
     }

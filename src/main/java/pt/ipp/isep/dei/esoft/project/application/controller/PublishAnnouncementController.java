@@ -174,7 +174,7 @@ public class PublishAnnouncementController {
     public Client getUserByEmail(String email) {
         UserRepository userRepository = getUserRepository();
 
-        for (Client client : getUserRepository().getUsers()) {
+        for (Client client : userRepository.getUsers()) {
             if (client.compare(email) == 0) {
                 return client;
             }
@@ -340,7 +340,6 @@ public class PublishAnnouncementController {
      * @return the Comission object with the specified description
      */
     public Comission getComissionByDescription(Double comissionDescription) {
-        PropertyTypeRepository comissionRepository = getPropertyTypeRepository();
         Comission comissionByDescription =
                 getComissionRepository().getComissionByDescription(comissionDescription);
 
@@ -370,7 +369,7 @@ public class PublishAnnouncementController {
 
         //Get the TaskCategory by its description
         PropertyType propertyTypeByDescription =
-                getPropertyTypeRepository().getPropertyTypeByDescription(propertyTypeDescription);
+                propertyTypeRepository.getPropertyTypeByDescription(propertyTypeDescription);
 
         return propertyTypeByDescription;
 
@@ -499,14 +498,14 @@ public class PublishAnnouncementController {
      * @param client             the client
      * @return an Optional containing the new published announcement if it was created successfully, or an empty Optional if a published announcement with the same parameters already exists
      */
-    public Optional<PublishedAnnouncement> createPublishmentAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent, Client client, int propertyID) {
+    public Optional<PublishedAnnouncement> createPublishmentAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent, Client client, int propertyID, AnnouncementState state) {
 
         Optional<PublishedAnnouncement> newPublishedAnnouncement = Optional.empty();
 
-        PublishedAnnouncement publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, agent, client,propertyID);
+        PublishedAnnouncement publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, agent, client,propertyID, state);
 
         if (!getPublishedAnnouncementRepository().getPublishedAnnouncements().contains(publishedAnnouncement)) {
-            newPublishedAnnouncement = getPublishedAnnouncementRepository().publishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, durationOfContract, agent, client, propertyID);
+            newPublishedAnnouncement = getPublishedAnnouncementRepository().publishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, durationOfContract, agent, client, propertyID, state);
         }
         return newPublishedAnnouncement;
     }
