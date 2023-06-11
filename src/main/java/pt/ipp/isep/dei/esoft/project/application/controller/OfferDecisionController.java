@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
+import pt.ipp.isep.dei.esoft.project.domain.AnnouncementOffersDTO;
+import pt.ipp.isep.dei.esoft.project.domain.AnnouncementOffersMapper;
 import pt.ipp.isep.dei.esoft.project.domain.Offer;
 import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
@@ -76,16 +78,23 @@ public class OfferDecisionController {
         return publishedAnnouncementRepository;
     }
 
+    public List<Offer> getOffers(){
+        OfferRepository offerRepository = getOfferRepository();
+        return offerRepository.getPendingOffers();
+    }
+
     /**
      * Gets offers by property by highest amount.
      *
      * @return the offers by property by highest amount
      */
-    public List <Offer> getOffersByPropertyByHighestAmount() {
+    public List <AnnouncementOffersDTO> getOffersByPropertyByHighestAmount() {
+        AnnouncementOffersMapper announcementOffersMapper = new AnnouncementOffersMapper();
         PublishedAnnouncementRepository publishedAnnouncementRepository = getPublishedAnnouncementRepository();
         OfferRepository offerRepository = getOfferRepository();
         List<PublishedAnnouncement> listProperty = publishedAnnouncementRepository.getPublishedAnnouncementsDesc();
-        return offerRepository.getOffersByPropertyByHighestAmount(listProperty);
+        List<Offer> offersList = offerRepository.getOffersByHighestAmount();
+        return announcementOffersMapper.toDto(listProperty, offersList);
     }
 
     /**

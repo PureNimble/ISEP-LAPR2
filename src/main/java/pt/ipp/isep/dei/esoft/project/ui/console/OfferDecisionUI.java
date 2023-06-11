@@ -5,7 +5,10 @@ import java.util.List;
 import java.util.Scanner;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.OfferDecisionController;
+import pt.ipp.isep.dei.esoft.project.domain.AnnouncementOffersDTO;
+import pt.ipp.isep.dei.esoft.project.domain.Client;
 import pt.ipp.isep.dei.esoft.project.domain.Offer;
+import pt.ipp.isep.dei.esoft.project.domain.OfferDto;
 import pt.ipp.isep.dei.esoft.project.domain.OfferState;
 
 /**
@@ -24,80 +27,94 @@ public class OfferDecisionUI implements Runnable{
     /**
      * Runs the offer decision UI.
      */
+    List<Offer> offers = controller.getOffers();
+
     public void run() {
-        System.out.println("List of Offers: ");
+    System.out.println("List of Offers: ");
 
-        var offersList = controller.getOffersByPropertyByHighestAmount();
-
-        for (int i = 0; i < offersList.size(); i++){
-            Offer offer = offersList.get(i);
-            System.out.println(i+1 + ". " + offer.toString());
-        }
-        /*
-        int choice;
-
-        do {
-
-            try {
-                choice = input.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a double value:");
-                input.nextLine();
-                choice = -1;
+    List<AnnouncementOffersDTO> announcementOffersList = controller.getOffersByPropertyByHighestAmount();
+        if (announcementOffersList.isEmpty()) {
+            System.out.println("There are no offers");
+        } else {
+            int announcementIndex = 1;
+            for (AnnouncementOffersDTO announcementOffers : announcementOffersList) {
+                System.out.println(announcementIndex + ". " + announcementOffers.getPublishedAnnouncementDto().toString());
+                List<OfferDto> offerDtoList = announcementOffers.getListOffersDto();
+                if (offerDtoList.isEmpty()) {
+                    System.out.println("\tNo offers for this announcement\n");
+                } else {
+                    int offerIndex = 1;
+                    for (OfferDto offerDto : offerDtoList) {
+                        System.out.println("\t" + offerIndex + ". " + offerDto.toString());
+                        offerIndex++;
+                    }
+                }
+                announcementIndex++;
             }
 
-            if (choice >= offersList.size()){
-                choice = -1;
-            }
+        System.out.println("\nChoose an announcement: ");
+        int selectedAnnouncementIndex = input.nextInt() - 1;
+        AnnouncementOffersDTO selectedAnnouncement = announcementOffersList.get(selectedAnnouncementIndex);
 
-        } while (choice < 0);
-        */
-        if(offersList.isEmpty()){
-            System.out.println("\nThere are no offers");
-        } else{
-            System.out.println("\nChoose an offer: \n");
-            acceptOrDecline(offersList.get(input.nextInt() - 1), offersList);
-        }
-        
+        List<OfferDto> offerDtoList = selectedAnnouncement.getListOffersDto();
+        if (offerDtoList.isEmpty()) {
+            System.out.println("No offers for this announcement.");
+        } else {
+                System.out.println("\nChoose an offer: ");
+                int selectedOfferIndex = input.nextInt() - 1;
+                OfferDto selectedOfferDto = offerDtoList.get(selectedOfferIndex);
+
+                Offer selectedOffer = findOffer(selectedOfferDto.getName(), selectedOfferDto.getClient(), selectedOfferDto.getOrderAmount());
+                if (selectedOffer == null) {
+                    System.out.println("Offer not found.");
+                } else {
+                    acceptOrDecline(selectedOffer, offers);
+                }
+            }
+        }   
     }
-    /**
-     * Prompts the user to accept or decline an offer.
-     *
-     * @param offer      The offer to accept or decline.
-     * @param offersList The list of offers.
-     */
-    private void acceptOrDecline(Offer offer, List<Offer> offersList){
+
+        private void acceptOrDecline(Offer offer, List<Offer> offersList) {
         System.out.println("\n1. Accept");
         System.out.println("2. Decline");
         System.out.println("0. Cancel");
 
-        double choice;
+        int choice;
 
         do {
-
             try {
-                choice = input.nextDouble();
+                choice = input.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a double value:");
+                System.out.println("Invalid input. Please enter an integer value:");
                 input.nextLine();
                 choice = -1;
             }
 
-            if (choice > 2){
-                choice = -1;
-            }
-            else if (choice == 1){
+            if (choice > 2 || choice < 0) {
+                System.out.println("Invalid choice. Please choose a valid option.");
+            } else if (choice == 1) {
                 offer.setOfferState(OfferState.accepted);
                 controller.declineOtherOffers(offer, offersList);
-            }
-            else if (choice == 2){
+                return;
+            } else if (choice == 2) {
                 offer.setOfferState(OfferState.rejected);
-            }
-            else if (choice == 0){
+                return;
+            } else if (choice == 0) {
                 break;
             }
-
-        } while (choice < 0);
-
+        } while (true);
     }
+
+
+        private Offer findOffer(String name, Client client, double orderAmount) {
+
+        for (Offer offer : offers) {
+            if (offer.getName().equals(name) && offer.getClient().equals(client) && offer.getOrderAmount() == orderAmount) {
+                return offer;
+            }
+        }
+
+        return null; // Offer not found
+    }
+
 }

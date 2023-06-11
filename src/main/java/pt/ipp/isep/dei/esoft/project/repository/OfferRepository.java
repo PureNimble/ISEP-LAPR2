@@ -90,6 +90,16 @@ public class OfferRepository {
         return offers;
     }
 
+    public List<Offer> getPendingOffers(){
+        List<Offer> resultList = new ArrayList<Offer>();
+        for (Offer offer : offers) {
+            if (offer.getOfferState().equals(OfferState.pending)) {
+                resultList.add(offer);
+            }
+        }
+        return resultList;
+    }
+
     /**
      * Decline other offers.
      *
@@ -111,21 +121,16 @@ public class OfferRepository {
      * @param publishedAnnouncementList the published announcement list
      * @return the offers by property by highest amount
      */
-    public List<Offer> getOffersByPropertyByHighestAmount(List<PublishedAnnouncement> publishedAnnouncementList) {
+    public List<Offer> getOffersByHighestAmount() {
         List<Offer> resultList = new ArrayList<Offer>();
-
-        for (PublishedAnnouncement publishedAnnouncement : publishedAnnouncementList) {
             List<Offer> tempList = new ArrayList<Offer>();
             for (Offer offer : offers) {
                 if (offer.getOfferState().equals(OfferState.pending)) {
-                    if (offer.getPublishedAnnouncement().equals(publishedAnnouncement)) {
-                        tempList.add(offer);
-                    }
+                    tempList.add(offer);
                 }
             }
             tempList.sort(Comparator.comparingDouble(Offer::getOrderAmount));
             resultList.addAll(tempList);
-        }
 
         return resultList;
     }
