@@ -248,7 +248,8 @@
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
-            if (!(o instanceof Message message)) return false;
+            if (!(o instanceof Message )) return false;
+            Message message = (Message) o;
             return phoneNumber == message.phoneNumber && initialTime == message.initialTime && endTime == message.endTime && Objects.equals(name, message.name) && Objects.equals(description, message.description) && Objects.equals(initialDate, message.initialDate) && Objects.equals(publishedAnnouncement, message.publishedAnnouncement) && messageState == message.messageState;
         }
         /**
