@@ -53,6 +53,7 @@
         private PublishedAnnouncement publishedAnnouncement;
 
         private MessageState messageState;
+        private boolean isApprovedByAgent;
 
 
         /**
@@ -66,7 +67,7 @@
          * @param endTime               the end time for visiting
          * @param publishedAnnouncement the published announcement
          */
-        public Message(String name, long phoneNumber, String description, Date initialDate, int initialTime, int endTime, PublishedAnnouncement publishedAnnouncement, MessageState messageState) {
+        public Message(String name, long phoneNumber, String description, Date initialDate, int initialTime, int endTime, PublishedAnnouncement publishedAnnouncement, MessageState messageState, boolean isApprovedByAgent) {
             this.name = name;
             this.phoneNumber = phoneNumber;
             this.description = description;
@@ -75,6 +76,7 @@
             this.endTime = endTime;
             this.publishedAnnouncement = publishedAnnouncement;
             this.messageState = messageState;
+            this.isApprovedByAgent = isApprovedByAgent;
         }
 
         /**
@@ -217,6 +219,14 @@
             this.messageState = messageState;
         }
 
+        public boolean isApprovedByAgent() {
+            return isApprovedByAgent;
+        }
+
+        public void setApprovedByAgent(boolean approvedByAgent) {
+            isApprovedByAgent = approvedByAgent;
+        }
+
         /**
          * Returns a string representation of the Message object.
          *
@@ -238,7 +248,8 @@
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
-            if (!(o instanceof Message message)) return false;
+            if (!(o instanceof Message )) return false;
+            Message message = (Message) o;
             return phoneNumber == message.phoneNumber && initialTime == message.initialTime && endTime == message.endTime && Objects.equals(name, message.name) && Objects.equals(description, message.description) && Objects.equals(initialDate, message.initialDate) && Objects.equals(publishedAnnouncement, message.publishedAnnouncement) && messageState == message.messageState;
         }
         /**

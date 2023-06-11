@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
 
+import java.util.List;
+
 import pt.ipp.isep.dei.esoft.project.application.controller.DisplayEmployeeController;
 import pt.ipp.isep.dei.esoft.project.domain.Employee;
 import pt.ipp.isep.dei.esoft.project.domain.StoreEmployeeDTO;
@@ -21,18 +23,18 @@ public class DisplayEmployeeUI implements Runnable{
     public void run() {
         System.out.println("\nList of Employees:\n");
 
-        var storeEmployeeList = controller.getFinalList();
+        List<StoreEmployeeDTO> storeEmployeeList = controller.toDTO();
         int storeCount = 1, employeeCount = 1;
         for (int i = 0; i < storeEmployeeList.size(); i++){
-            StoreEmployeeDTO StoreEmployeeDTO = storeEmployeeList.get(i);
-            if (StoreEmployeeDTO.getStoreDesignation() == null) {
-                System.out.println("    " + employeeCount + " . " + StoreEmployeeDTO.toStringEmployee() + "\n");
+            StoreEmployeeDTO storeEmployeeDTO = storeEmployeeList.get(i);
+            System.out.println(storeCount + " . " + storeEmployeeDTO.toStringStore() + "\n");
+            storeCount++;
+            employeeCount = 1;
+
+            for (Employee employee : storeEmployeeDTO.getEmployees()) {
+                System.out.println("\t" + employeeCount + " . " + storeEmployeeDTO.toStringEmployee(employee) + "\n");
                 employeeCount++;
-            } else {
-                System.out.println(storeCount + " . " + StoreEmployeeDTO.toStringStore() + "\n");
-                storeCount++;
-                employeeCount = 1;
-            }            
+            }     
         }
     }
 }

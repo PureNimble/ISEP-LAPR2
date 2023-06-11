@@ -21,6 +21,9 @@ public class OfferDto {
      */
     private OfferState offerState;
 
+    private Client client;
+    public Object getOfferState;
+
 
     /**
      * Instantiates a new Offer dto.
@@ -36,15 +39,29 @@ public class OfferDto {
         this.publishedAnnouncement = publishedAnnouncement;
         this.offerState = offerState;
     }
+
+    public OfferDto( String name, Client client, double orderAmount,OfferState offerState) {
+        this.name = name;
+        this.client = client;
+        this.orderAmount = orderAmount;
+        this.offerState = offerState;
+    }
+
     /**
      * Returns a string representation of the Offer object.
      *
      * @return A formatted string containing the offer details.
      */
     public String toString() {
-        return String.format("\nOffer: \nThe client %s, has submitted an offer with the following price: %s. \n\nProperty: \n%s", name, orderAmount, publishedAnnouncement.toString());
+        if(publishedAnnouncement == null){
+            return String.format("Offer: The client %s, has submitted an offer with the following price: %s. \n\n", name, orderAmount);
+        }
+        else{
+            return String.format("\nOffer: \nThe client %s, has submitted an offer with the following price: %s. \n\nProperty: \n%s", name, orderAmount, publishedAnnouncement.toString());
 
+        }
     }
+
 
     /**
      * Gets name.
@@ -53,6 +70,10 @@ public class OfferDto {
      */
     public String getName() {
         return name;
+    }
+
+    public Client getClient() {
+        return client;
     }
 
     /**
@@ -71,6 +92,10 @@ public class OfferDto {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     /**

@@ -19,7 +19,7 @@ public class AnnouncementRequestMapper {
      */
     public List<AnnouncementRequestDto> toDto(List<AnnouncementRequest> announcementRequestList) {
 
-         List<AnnouncementRequestDto> announcementRequestDtos = new ArrayList<>();
+        List<AnnouncementRequestDto> announcementRequestDtos = new ArrayList<>();
 
         for (AnnouncementRequest announcementRequest : announcementRequestList) {
             AnnouncementRequestDto announcementRequestDto;

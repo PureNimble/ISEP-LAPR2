@@ -1,0 +1,43 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber 21
+
+title US015 - Sequence Diagram Partial (Create Sort Algorithm)
+
+'hide footbox
+
+participant ":ListMessageController" as CTRL
+participant ":sortAlgorithm" as STALG
+
+activate CTRL
+ CTRL -> CTRL : getSortedMessageRequestList(messageRequestList)
+            activate CTRL
+
+
+group Create Sort Algorithm
+CTRL ->  STALG** : create()
+
+            note over STALG
+
+            SortAlgorithm implementation will depend
+            on the sorting algorithm specified in the
+            configuration file.
+
+            end note
+
+            CTRL -> STALG :getSortedMessageRequestList(messageRequestList)
+            activate STALG
+
+            STALG --> CTRL : sortedMessageRequestList
+            deactivate STALG
+
+            end
+
+            CTRL --> CTRL : sortedMessageRequestList
+                        deactivate CTRL
+
+
+@enduml
