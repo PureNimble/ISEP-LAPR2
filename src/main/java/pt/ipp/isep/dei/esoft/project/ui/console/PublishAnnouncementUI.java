@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.PublishAnnouncementController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
+import pt.ipp.isep.dei.esoft.project.repository.*;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.UserRepository;
 import pt.ipp.isep.dei.esoft.project.domain.SendSms;
@@ -944,6 +945,11 @@ public class PublishAnnouncementUI implements Runnable {
             Scanner ler = new Scanner(System.in);
             System.out.println("Write the Other available equipment: ");
             description = ler.nextLine();
+
+            AvailableEquipment newEquipment = new AvailableEquipment(description);
+
+            Optional<AvailableEquipment> addedEquipment = controller.getAvailableEquipmentRepository().add(newEquipment);
+
         }
 
         return description;

@@ -29,25 +29,35 @@ public class ListMessageUI implements Runnable {
         String beginDateString = input.nextLine();
 
         Date beginDate = parseDate(beginDateString);
+
         System.out.println("Enter the end date (dd-MM-yyyy): ");
         String endDateString = input.nextLine();
         Date endDate = parseDate(endDateString);
 
         if (beginDate != null && endDate != null) {
-            List<Message> messageRequests = controller.getBookingRequestsForPeriod(beginDate, endDate);
-            try (InputStream input = new FileInputStream("config.properties")) {
+            if (endDate.before(beginDate)) {
+                System.out.println("\n\nInvalid date range. The end date must be after the begin date.");
+                return;
+            }
 
+            List<Message> messageRequests = controller.getBookingRequestsForPeriod(beginDate, endDate);
+
+            if (messageRequests.isEmpty()) {
+                System.out.println("\n\nNo booking requests found for the specified period.");
+                return;
+            }
+
+            try (InputStream input = new FileInputStream("C:\\Users\\35193\\Desktop\\PII\\config.properties")) {
                 Properties prop = new Properties();
                 prop.load(input);
-                String sorting = (String) prop.getProperty("sortingAlgorithm");
+                String sorting = prop.getProperty("sortingAlgorithm");
 
                 if (sorting.equals("bubbleSort")) {
                     BubbleSort<Message> bubbleSort = new BubbleSort<>(messageRequests);
                     messageRequests = bubbleSort.sort(messageRequests);
                 } else if (sorting.equals("mergeSort")) {
-                    MergeSort m = new MergeSort(messageRequests);
-                    m.divideArrayElements(0, messageRequests.size() - 1);
-                    messageRequests = m.getArrayAfterSorting();
+                    MergeSort<Message> mergeSort = new MergeSort<>(messageRequests);
+                    messageRequests = mergeSort.sort(messageRequests);
                 } else {
                     controller.sortBookingRequests(messageRequests);
                 }
@@ -55,7 +65,7 @@ public class ListMessageUI implements Runnable {
                 controller.sortBookingRequests(messageRequests);
             }
 
-            System.out.println("Booking Requests for the specified period (sorted by date in ascending order):\n");
+            System.out.println("\n\nBooking Requests for the specified period (sorted by date in ascending order):\n");
             for (int i = 0; i < messageRequests.size(); i++) {
                 Message message = messageRequests.get(i);
                 System.out.println((i + 1) + ". " + message.toString());

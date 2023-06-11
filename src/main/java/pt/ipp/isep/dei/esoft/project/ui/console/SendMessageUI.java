@@ -223,7 +223,7 @@ public class    SendMessageUI implements Runnable {
 
             } while (initialTimeInt < 0);
 
-            if (initialTimeInt >= 25) {
+            if (initialTimeInt >= 24) {
                 System.out.println("Please insert an hour from 0 to 24.");
             }
         } while (initialTimeInt < 0);

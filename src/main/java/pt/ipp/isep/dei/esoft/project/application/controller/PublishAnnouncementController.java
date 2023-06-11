@@ -105,7 +105,7 @@ public class PublishAnnouncementController {
      *
      * @return AvailableEquipmentRepository instance.
      */
-    private AvailableEquipmentRepository getAvailableEquipmentRepository() {
+    public AvailableEquipmentRepository getAvailableEquipmentRepository() {
         if (availableEquipmentRepository == null) {
             Repositories repositories = Repositories.getInstance();
             availableEquipmentRepository = repositories.getAvailableEquipmentRepository();
