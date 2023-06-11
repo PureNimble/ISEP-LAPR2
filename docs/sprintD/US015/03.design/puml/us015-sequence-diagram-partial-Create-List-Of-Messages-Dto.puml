@@ -1,0 +1,89 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber 26
+
+title US015 - Sequence Diagram Partial (Create List Of Messages Dto)
+
+'hide footbox
+
+participant ":MessageMapper" as Mapper
+participant "message:Message" as Messages
+participant "listOfMessagesDto:List<Messages>" as listMessagesDTO
+
+
+
+
+             -> Mapper : toDTO(messageRequestList)
+            activate Mapper
+
+group Create List Of Messages Dto
+
+ Mapper --> listMessagesDTO** : create()
+
+            loop for each message request
+
+            Mapper -> Mapper: toDto(Message)
+            activate Mapper
+
+            Mapper -> Messages: getClientName()
+            activate Messages
+
+            Messages --> Mapper: clientName
+            deactivate Messages
+
+            Mapper -> Messages : getClientPhoneNumber()
+            activate Messages
+
+            Messages --> Mapper: clientPhoneNumber
+            deactivate Messages
+
+            Mapper -> Messages : getDate()
+            activate Messages
+
+            Messages --> Mapper : date
+            deactivate Messages
+
+            Mapper -> Messages : getInitialTime()
+            activate Messages
+
+            Messages --> Mapper : initialTime
+            deactivate Messages
+
+             Mapper -> Messages : getEndTime()
+             activate Messages
+
+             Messages --> Mapper : endTime
+             deactivate Messages
+
+             Mapper -> Messages : getDescription()
+             activate Messages
+
+             Messages --> Mapper: description
+             deactivate Messages
+
+             Mapper -> Messages: getPublishAnnouncement()
+             activate Messages
+
+             Messages --> Mapper: publishAnnouncement
+             deactivate Messages
+
+             Mapper -> Mapper : messageDto = toDto(clientName, \nclientPhoneNumber, description, date,\ninitialTime, endTime)
+             activate Mapper
+             deactivate Mapper
+
+             Mapper --> listMessagesDTO : add(messageDto)
+             activate listMessagesDTO
+             deactivate listMessagesDTO
+
+            end
+
+            end
+
+
+            <-- Mapper  : messageRequestList
+            deactivate Mapper
+            deactivate Mapper
+@enduml

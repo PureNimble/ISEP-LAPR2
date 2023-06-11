@@ -1,85 +1,99 @@
 @startuml
- skinparam monochrome true
- skinparam packageStyle rectangle
- skinparam shadowing false
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
 
- autonumber
+autonumber
 
- title Sequence Diagram Split - US015
+title Sequence Diagram Split - US015
 
- 'hide footbox
- actor "Agent" as Agent
- participant ":DisplayMessageUI" as UI
- participant ":DisplayMessageController" as CTRL
- participant ":Repositories" as Repository
- participant "repositories\n:Repositories" as repository2
- participant "messageRepository:\nMessageRepository" as MessageRepository
- participant ":ApplicationSession" as app
- participant "appSession\n:ApplicationSession" as APP
- participant "currentSession\n:UserSession" as User
- participant "employeeRepository\n:Employee Repository" as Employee
- participant ":XMapper" as Mapper
- participant "listOfMessagesDTO:List<Messages>" as listMessagesDTO
- participant "listOfMessages:List<Messages>" as listMessages
+'hide footbox
+actor "Agent" as Agent
+participant ":ListMessageUI" as UI
+participant ":ListMessageController" as CTRL
+participant ":Repositories" as Repository
+participant "repositories\n:Repositories" as repository2
+participant "messageRepository:\nMessageRepository" as MessageRepository
+participant ":ApplicationSession" as app
+participant "appSession\n:ApplicationSession" as APP
+participant "currentSession\n:UserSession" as User
+participant "employeeRepository\n:Employee Repository" as Employee
+participant ":sortAlgorithm" as STALG
+participant ":MessageMapper" as Mapper
+participant "message:Message" as Messages
+participant "listOfMessagesDto:List<Messages>" as listMessagesDTO
 
 
- activate Agent
 
-         Agent -> UI : asks to list all booking requests for properties managed by him
+activate Agent
 
-         activate UI
+        Agent -> UI : asks to list all booking requests for properties managed by him
 
-             UI -> CTRL** : create
+        activate UI
 
-              UI --> Agent : requests an initial date and an end date for list the requests
-              deactivate UI
+            UI -> CTRL** : create
 
-              Agent -> UI :  types requested data (begin date, end date)
-              activate UI
+             UI --> Agent : requests an initial date and an end date for list the requests
+             deactivate UI
 
-              UI -> CTRL : getListBooking()
-              activate CTRL
+             Agent -> UI :  selects requested data (begin date, end date)
+             activate UI
 
-                ref over CTRL
-
-                    Get Employee By Email
-
-                end
-
+             UI -> CTRL : getListMessage()
+             activate CTRL
 
              ref over CTRL
 
-             Get Message List By Agent And Date
+                Get Agent By Email
 
              end
 
-             autonumber 21
+            ref over CTRL
 
-             CTRL -> Mapper : toDTO(messageListByAgentAndDate)
-             activate Mapper
+            Get Message Request List
 
-             ref over Mapper
+            end
 
-             Get Message By Agent And Date DTO
+            autonumber 21
 
-             end
+            CTRL -> CTRL : getSortedMessageRequestList\n(messageRequestList)
+            activate CTRL
 
-             autonumber 38
+            ref over CTRL
 
-             Mapper --> CTRL : messageListByAgentAndDate
-             deactivate Mapper
+Create Sort Algorithm
 
-             CTRL --> UI : messageListByAgentAndDate
-             deactivate CTRL
+            end
 
-         UI --> Agent : shows all booking requests sorted by date in ascending order\nand requests confirmation
-     deactivate UI
+            autonumber 25
 
-         Agent -> UI : submits data
-         activate UI
-
-         UI --> Agent : displays operation success
-     deactivate Agent
+            CTRL --> CTRL : sortedMessageRequestList
+            deactivate CTRL
 
 
- @enduml
+            CTRL -> Mapper : toDTO(messageRequestList)
+            activate Mapper
+
+            ref over Mapper
+
+            Create List Of Messages Dto
+
+           end
+
+            autonumber 45
+
+
+            Mapper --> CTRL : messageRequestList
+            deactivate Mapper
+            deactivate Mapper
+
+            CTRL --> UI : messageRequestList
+            deactivate CTRL
+
+        UI --> Agent : shows all message requests sorted by date in ascending order\nand displays operation success
+    deactivate UI
+
+       deactivate Agent
+
+
+@enduml

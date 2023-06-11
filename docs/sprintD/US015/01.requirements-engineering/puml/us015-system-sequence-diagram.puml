@@ -15,17 +15,12 @@ activate Agent
     Agent -> System : asks to list all booking requests for properties managed by him
     activate System
 
-        System --> Agent : requests to select an initial date
+        System --> Agent : requests to select an initial date and end date
     deactivate System
 
-    Agent -> System : selects an initial date
+    Agent -> System : selects requested data (begin date, end date)
     activate System
 
-        System --> Agent : requests to select an end date
-        deactivate System
-
-    Agent -> System : selects an end date
-    activate System
 
         System --> Agent : shows all booking requests sorted by date in ascending order \nand displays operation success
     deactivate System

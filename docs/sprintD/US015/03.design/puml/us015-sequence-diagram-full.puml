@@ -1,4 +1,4 @@
-US015@startuml
+@startuml
 skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
@@ -36,7 +36,7 @@ activate Agent
              UI --> Agent : requests an initial date and an end date for list the requests
              deactivate UI
 
-             Agent -> UI :  types requested data (begin date, end date)
+             Agent -> UI :  selects requested data (begin date, end date)
              activate UI
 
              UI -> CTRL : getListMessage()
@@ -164,8 +164,6 @@ activate Agent
              Mapper -> Mapper : messageDto = toDto(clientName, \nclientPhoneNumber, description, date,\ninitialTime, endTime)
              activate Mapper
              deactivate Mapper
-
-             Mapper --> listMessagesDTO**: create(...)
 
              Mapper --> listMessagesDTO : add(messageDto)
              activate listMessagesDTO
