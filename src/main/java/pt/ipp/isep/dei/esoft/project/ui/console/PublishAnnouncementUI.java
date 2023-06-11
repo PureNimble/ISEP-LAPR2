@@ -647,7 +647,6 @@ public class PublishAnnouncementUI implements Runnable {
     private String requestPhotos() {
         Scanner input = new Scanner(System.in);
         int max = 30;
-        int min = 1;
         List<String> photos = new ArrayList<>();
 
         try {
@@ -659,8 +658,19 @@ public class PublishAnnouncementUI implements Runnable {
                 photos.add(uri);
 
                 if (photos.size() < max) {
-                    System.out.print("Do you want to add more photos? (Y/N): \n");
-                    choice = input.nextLine();
+                    boolean validChoice = false;
+                    while (!validChoice) {
+                        System.out.print("Do you want to add more photos? (Y/N): \n");
+                        choice = input.nextLine();
+                        try {
+                            if (!choice.equalsIgnoreCase("Y") && !choice.equalsIgnoreCase("N")) {
+                                throw new InputMismatchException();
+                            }
+                            validChoice = true;
+                        } catch (InputMismatchException e) {
+                            System.out.println("Invalid input. Please answer with \"Y\" if you want to add another photo and with \"N\" if you don't.\n");
+                        }
+                    }
                 } else {
                     System.out.println("You have reached the maximum limit of " + max + " photos.\n");
                 }

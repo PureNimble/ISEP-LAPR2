@@ -40,7 +40,7 @@ public class ListMessageUI implements Runnable {
                 return;
             }
 
-            List<Message> messageRequests = controller.getBookingRequestsForPeriod(beginDate, endDate);
+            List<Message> messageRequests = controller.getMessageRequestsForPeriod(beginDate, endDate);
 
             if (messageRequests.isEmpty()) {
                 System.out.println("\n\nNo booking requests found for the specified period.");
@@ -59,10 +59,10 @@ public class ListMessageUI implements Runnable {
                     MergeSort<Message> mergeSort = new MergeSort<>(messageRequests);
                     messageRequests = mergeSort.sort(messageRequests);
                 } else {
-                    controller.sortBookingRequests(messageRequests);
+                    controller.sortMessageRequests(messageRequests);
                 }
             } catch (IOException e) {
-                controller.sortBookingRequests(messageRequests);
+                controller.sortMessageRequests(messageRequests);
             }
 
             System.out.println("\n\nBooking Requests for the specified period (sorted by date in ascending order):\n");

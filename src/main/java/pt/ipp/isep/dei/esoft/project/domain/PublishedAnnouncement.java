@@ -3,47 +3,20 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import java.util.Date;
 
 /**
- * Represents a real estate announcement that has been published.
+ * The type Published announcement.
  */
 public class PublishedAnnouncement {
-    /**
-     * The date of the announcement request.
-     */
     private Date date;
-    /**
-     * The type of business for the announcement request.
-     */
     private TypeOfBusiness typeOfBusiness;
-    /**
-     * The property associated with the announcement request.
-     */
     private Property property;
-    /**
-     * The property type of the property.
-     */
     private PropertyType propertyType;
-    /**
-     * The commission for the announcement request.
-     */
     private Comission comission;
-    /**
-     * The business associated with the announcement request.
-     */
     private Business business;
 
-    /**
-     * The duration of the contract for the announcement request.
-     */
     private int durationOfContract;
 
-    /**
-     * The agent assigned to the announcement request.
-     */
     private Employee agent;
 
-    /**
-     * The client associated with the announcement request.
-     */
     private Client client;
 
     private int propertyID;
@@ -51,16 +24,18 @@ public class PublishedAnnouncement {
     private AnnouncementState state;
 
     /**
-     * Constructs a new PublishedAnnouncement object for sale.
+     * Instantiates a new Published announcement.
      *
-     * @param date           the date the announcement was published
-     * @param typeOfBusiness the type of business (buying or selling)
-     * @param property       the property being advertised
-     * @param propertyType   the type of property
-     * @param comission      the commission chosen by the client
-     * @param business       the business representing the client
+     * @param date           the date
+     * @param typeOfBusiness the type of business
+     * @param property       the property
+     * @param propertyType   the property type
+     * @param comission      the comission
+     * @param business       the business
      * @param agent          the agent
      * @param client         the client
+     * @param propertyID     the property id
+     * @param state          the state
      */
     public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, Employee agent, Client client, int propertyID, AnnouncementState state) {
         this.typeOfBusiness = typeOfBusiness;
@@ -76,17 +51,19 @@ public class PublishedAnnouncement {
     }
 
     /**
-     * Constructs a new PublishedAnnouncement object for rent.
+     * Instantiates a new Published announcement.
      *
-     * @param date               the date the announcement was published
-     * @param typeOfBusiness     the type of business (renting)
-     * @param property           the property being advertised
-     * @param propertyType       the type of property
-     * @param comission          the commission chosen by the client
-     * @param business           the business representing the client
-     * @param durationOfContract the duration of the rental contract
+     * @param date               the date
+     * @param typeOfBusiness     the type of business
+     * @param property           the property
+     * @param propertyType       the property type
+     * @param comission          the comission
+     * @param business           the business
+     * @param durationOfContract the duration of contract
      * @param agent              the agent
      * @param client             the client
+     * @param propertyID         the property id
+     * @param state              the state
      */
     public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent, Client client, int propertyID, AnnouncementState state) {
         this.date = date;
@@ -175,18 +152,18 @@ public class PublishedAnnouncement {
     }
 
     /**
-     * Gets client.
+     * Gets announcement state.
      *
-     * @return the client
+     * @return the announcement state
      */
     public AnnouncementState getAnnouncementState() {
         return state;
     }
 
     /**
-     * Sets client.
+     * Sets announcement state.
      *
-     * @param client the client
+     * @param state the state
      */
     public void setAnnouncementState(AnnouncementState state) {
         this.state = state;
@@ -318,19 +295,24 @@ public class PublishedAnnouncement {
         this.agent = agent;
     }
 
+    /**
+     * Gets property id.
+     *
+     * @return the property id
+     */
     public int getPropertyID() {
         return propertyID;
     }
 
+    /**
+     * Sets property id.
+     *
+     * @param propertyID the property id
+     */
     public void setPropertyID(int propertyID) {
         this.propertyID = propertyID;
     }
 
-    /**
-     * Returns a string representation of the announcement for sale.
-     *
-     * @return a string representation of the announcement for sale
-     */
     public String toString() {
         return String.format("Date: %s\n\n" + "Responsible Agent: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
                         "Client: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
@@ -345,9 +327,9 @@ public class PublishedAnnouncement {
     }
 
     /**
-     * Returns a string representation of the announcement for rent.
+     * To string rent string.
      *
-     * @return a string representation of the announcement for rent
+     * @return the string
      */
     public String toStringRent() {
         return String.format("Date: %s\n\n" +  "Responsible Agent: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +

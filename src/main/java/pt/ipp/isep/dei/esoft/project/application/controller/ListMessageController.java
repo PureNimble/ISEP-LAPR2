@@ -93,10 +93,10 @@ public class ListMessageController {
     /**
      * Sort booking requests.
      *
-     * @param bookingRequests the booking requests
+     * @param messageRequests the booking requests
      */
-    public void sortBookingRequests(List<Message> bookingRequests) {
-        Collections.sort(bookingRequests, Comparator.comparing(Message::getInitialDate));
+    public void sortMessageRequests(List<Message> messageRequests) {
+        Collections.sort(messageRequests, Comparator.comparing(Message::getInitialDate));
     }
 
 
@@ -107,17 +107,17 @@ public class ListMessageController {
      * @param endDate   the end date
      * @return the booking requests for period
      */
-    public List<Message> getBookingRequestsForPeriod(Date beginDate, Date endDate) {
+    public List<Message> getMessageRequestsForPeriod(Date beginDate, Date endDate) {
         MessageRepository messageRepository = getMessageRepository();
-        List<Message> bookingRequests = new ArrayList<>();
+        List<Message> messageRequests = new ArrayList<>();
 
         for (Message message : messageRepository.getMessages()) {
             if (message.getInitialDate().compareTo(beginDate) >= 0 && message.getInitialDate().compareTo(endDate) <= 0) {
-                bookingRequests.add(message);
+                messageRequests.add(message);
             }
         }
 
-        return bookingRequests;
+        return messageRequests;
     }
 
     /**
@@ -135,7 +135,7 @@ public class ListMessageController {
      *
      * @return the list
      */
-    public List<MessageDto> toDtoAscendingArea() {
+    public List<MessageDto> toDtoMessagesByAscendingDate() {
         MessageMapper messageMapper = new MessageMapper();
 
         return messageMapper.toDto(getMessagesByAscendingDate());

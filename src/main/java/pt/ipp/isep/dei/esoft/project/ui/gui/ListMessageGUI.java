@@ -160,7 +160,7 @@ public class ListMessageGUI implements Initializable {
         Date endDate = Date.from(dpEndDate.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
 
         // Call the ListMessageController to get the filtered list of messages
-        List<Message> filteredMessages = controller.getBookingRequestsForPeriod(startDate, endDate);
+        List<Message> filteredMessages = controller.getMessageRequestsForPeriod(startDate, endDate);
 
         // Update the listMessages observable list with the filtered messages
         listMessages.setAll(filteredMessages);
