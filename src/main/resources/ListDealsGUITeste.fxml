@@ -12,62 +12,62 @@
     <children>
       <AnchorPane fx:id="announcementAnchorPane" layoutX="401.0" layoutY="111.0" prefHeight="489.0" prefWidth="658.0" style="-fx-background-color: white;" visible="false">
          <children>
-            <ImageView fitHeight="77.0" fitWidth="115.0" layoutX="505.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="77.0" fitWidth="115.0" layoutX="505.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@PhotosApp/Ruler%20linear%20icon.jpg" />
                </image>
             </ImageView>
-            <Pagination fx:id="photosPagination" layoutX="-1.0" pageCount="0" prefHeight="219.0" prefWidth="658.0" />
-            <Label fx:id="adressLabel" layoutX="27.0" layoutY="301.0" prefHeight="27.0" prefWidth="605.0" text="Label">
+            <Pagination fx:id="photosPagination" pageCount="0" prefHeight="237.0" prefWidth="659.0" />
+            <Label fx:id="adressLabel" layoutX="27.0" layoutY="307.0" prefHeight="27.0" prefWidth="605.0" text="Label">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="typeOfBusinessLabel" layoutX="32.0" layoutY="237.0" text="Label">
+            <Label fx:id="typeOfBusinessLabel" layoutX="34.0" layoutY="243.0" text="Label">
                <font>
                   <Font name="System Bold Italic" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="priceLabel" layoutX="26.0" layoutY="259.0" prefHeight="40.0" prefWidth="351.0" text="Label">
+            <Label fx:id="priceLabel" layoutX="27.0" layoutY="268.0" prefHeight="40.0" prefWidth="351.0" text="Label">
                <font>
                   <Font name="System Bold Italic" size="24.0" />
                </font>
             </Label>
-            <ImageView fx:id="numberBedroomsIcon" fitHeight="47.0" fitWidth="55.0" layoutX="18.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="numberBedroomsIcon" fitHeight="47.0" fitWidth="55.0" layoutX="20.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@PhotosApp/Bedroom%20icon%20in%20Simple%20Small%20Style.png" />
                </image>
             </ImageView>
-            <Label fx:id="labelNumberOfBedrooms" layoutX="73.0" layoutY="437.0" text="Label" visible="false">
+            <Label fx:id="labelNumberOfBedrooms" layoutX="75.0" layoutY="451.0" text="Label" visible="false">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font></Label>
-            <ImageView fitHeight="27.0" fitWidth="28.0" layoutX="549.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="27.0" fitWidth="28.0" layoutX="549.0" layoutY="255.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@PhotosApp/Esquadro%20ícones%20gratuitos%20criados%20por%20Pixel%20perfect.png" />
                </image>
             </ImageView>
-            <Label fx:id="priceLabel1" layoutX="544.0" layoutY="260.0" prefHeight="0.0" prefWidth="38.0" text="Area">
+            <Label fx:id="priceLabel1" layoutX="544.0" layoutY="280.0" prefHeight="0.0" prefWidth="38.0" text="Area">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font></Label>
-            <Label fx:id="labelArea" layoutX="592.0" layoutY="251.0" text="Label" />
-            <ImageView fx:id="numberBathroomsIcon" fitHeight="34.0" fitWidth="49.0" layoutX="137.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <Label fx:id="labelArea" layoutX="582.0" layoutY="263.0" text="Label" />
+            <ImageView fx:id="numberBathroomsIcon" fitHeight="34.0" fitWidth="49.0" layoutX="133.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@PhotosApp/Bathtub%20free%20vector%20icons%20designed%20by%20Smashicons.png" />
                </image>
             </ImageView>
-            <Label fx:id="labelNumberOfBathrooms" layoutX="186.0" layoutY="437.0" text="Label" visible="false">
+            <Label fx:id="labelNumberOfBathrooms" layoutX="177.0" layoutY="451.0" text="Label" visible="false">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
             </Label>
-            <ImageView fx:id="parkingSpacesIcon" fitHeight="34.0" fitWidth="35.0" layoutX="249.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="parkingSpacesIcon" fitHeight="34.0" fitWidth="35.0" layoutX="230.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@PhotosApp/Garage%20Clipart%20Transparent%20Background,%20Garage%20Line%20Icon%20Vector,%20Line%20Icons,%20Garage%20Icons,%20Garage%20PNG%20Image%20For%20Free%20Download.jpg" />
                </image>
             </ImageView>
-            <Label fx:id="labelparkingSpaces" layoutX="301.0" layoutY="437.0" text="Label" visible="false">
+            <Label fx:id="labelparkingSpaces" layoutX="277.0" layoutY="451.0" text="Label" visible="false">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
@@ -82,32 +82,32 @@
                   <Font name="System Bold Italic" size="15.0" />
                </font>
             </Label>
-            <ImageView fx:id="SunExposureIcon" fitHeight="40.0" fitWidth="55.0" layoutX="359.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="SunExposureIcon" fitHeight="40.0" fitWidth="55.0" layoutX="317.0" layoutY="438.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@PhotosApp/Black%20Simple%20Sun%20Icon.jpg" />
                </image>
             </ImageView>
-            <Label fx:id="labelSunExposure" layoutX="414.0" layoutY="437.0" text="Label" visible="false" />
-            <ImageView fx:id="basementICon" fitHeight="49.0" fitWidth="55.0" layoutX="459.0" layoutY="416.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <Label fx:id="labelSunExposure" layoutX="377.0" layoutY="451.0" text="Label" visible="false" />
+            <ImageView fx:id="basementICon" fitHeight="49.0" fitWidth="55.0" layoutX="422.0" layoutY="433.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@PhotosApp/Down%20Stair%20Vector%20Hd%20PNG%20Images,%20Construction%20Down%20Home%20Stair%20Line%20Icon%20Vector,%20Home%20Icons,%20Line%20Icons,%20Construction%20Icons%20PNG%20Image%20For%20Free%20Download.jpg" />
                </image></ImageView>
-            <Label fx:id="labelBasement" layoutX="514.0" layoutY="437.0" text="Label" visible="false" />
-            <Label fx:id="agentDescription" layoutX="27.0" layoutY="379.0" prefHeight="17.0" prefWidth="605.0" text="Label">
+            <Label fx:id="labelBasement" layoutX="484.0" layoutY="449.0" text="Label" visible="false" />
+            <Label fx:id="agentDescription" layoutX="27.0" layoutY="372.0" prefHeight="17.0" prefWidth="605.0" text="Label">
                <font>
-                  <Font name="System Bold Italic" size="16.0" />
+                  <Font name="System Bold Italic" size="15.0" />
                </font></Label>
             <Label fx:id="clientDescription" layoutX="27.0" layoutY="404.0" prefHeight="17.0" prefWidth="580.0" text="Label">
                <font>
-                  <Font name="System Bold Italic" size="16.0" />
+                  <Font name="System Bold Italic" size="15.0" />
                </font></Label>
-            <Label layoutX="484.0" layoutY="306.0" text="Distance from city center">
+            <Label layoutX="484.0" layoutY="320.0" text="Distance from city center">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="labelDistanceCenter" layoutX="592.0" layoutY="291.0" text="Label" />
-            <AnchorPane layoutX="10.0" layoutY="241.0" prefHeight="17.0" prefWidth="16.0" style="-fx-background-color: green;" />
+            <Label fx:id="labelDistanceCenter" layoutX="592.0" layoutY="300.0" text="Label" />
+            <AnchorPane layoutX="12.0" layoutY="247.0" prefHeight="17.0" prefWidth="16.0" style="-fx-background-color: green;" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="64.0" prefWidth="1100.0" style="-fx-background-color: white; -fx-border-width: 6px 0px 6px 0px; -fx-border-color: black;">
@@ -141,7 +141,7 @@
             <Font name="Impact" size="32.0" />
          </font>
       </Label>
-      <Label fx:id="announcementLabel" layoutX="594.0" layoutY="64.0" text="Announcement">
+      <Label fx:id="announcementLabel" layoutX="594.0" layoutY="64.0" text="Announcement" visible="false">
          <font>
             <Font name="Impact" size="39.0" />
          </font>

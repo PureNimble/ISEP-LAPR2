@@ -6,23 +6,19 @@
 
 **SSD - Alternative 1 is adopted.**
 
-| Interaction ID | Question: Which class is responsible for... | Answer               | Justification (with patterns)                                                                                 |
-|:-------------  |:--------------------- |:---------------------|:--------------------------------------------------------------------------------------------------------------|
-| Step 1  		 |	... interacting with the actor? | CreateTaskUI         | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
-| 			  		 |	... coordinating the US? | CreateTaskController | Controller                                                                                                    |
-| 			  		 |	... instantiating a new Task? | Organization         | Creator (Rule 1): in the DM Organization has a Task.                                                          |
-| 			  		 | ... knowing the user using the system?  | UserSession          | IE: cf. A&A component documentation.                                                                          |
-| 			  		 |							 | Organization         | IE: knows/has its own Employees                                                                               |
-| 			  		 |							 | Employee             | IE: knows its own data (e.g. email)                                                                           |
-| Step 2  		 |							 |                      |                                                                                                               |
-| Step 3  		 |	...saving the inputted data? | Task                 | IE: object created in step 1 has its own data.                                                                |
-| Step 4  		 |	...knowing the task categories to show? | System               | IE: Task Categories are defined by the Administrators.                                                        |
-| Step 5  		 |	... saving the selected category? | Task                 | IE: object created in step 1 is classified in one Category.                                                   |
-| Step 6  		 |							 |                      |                                                                                                               |              
-| Step 7  		 |	... validating all data (local validation)? | Task                 | IE: owns its data.                                                                                            | 
-| 			  		 |	... validating all data (global validation)? | Organization         | IE: knows all its tasks.                                                                                      | 
-| 			  		 |	... saving the created task? | Organization         | IE: owns all its tasks.                                                                                       | 
-| Step 8  		 |	... informing operation success?| CreateTaskUI         | IE: is responsible for user interactions.                                                                     | 
+| Interaction ID                                                   | Question: Which class is responsible for...                                            | Answer                        | Justification (with patterns)                                                                                 |
+|:-----------------------------------------------------------------|:---------------------------------------------------------------------------------------|:------------------------------|:--------------------------------------------------------------------------------------------------------------|
+| Step 1(asks to see the list of deals made)                       | ... interacting with the actor?                                                        | ListDealsUI                   | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
+|                                                                  | ... coordinating the US?                                                               | ListDealsController           | Controller                                                                                                    |
+| Step 2: (requests filter criteria(ascending/descending by area)) | ...requesting the criteria?                                                            | ListDealsUI                   | Pure Fabrication                                                                                              |
+|                                                                  | ...obtaining the comission list?                                                       | ComissionRepository           | Information Expert,Pure Fabrication                                                                           |
+| Step 3: (chooses criteria)                                       | ...validating selected data?<br/><br/>...temporarily keeping the criteria description? | ListDealsUI                   | Pure Fabrication                                                                                              |
+|                                                                  | ...obtaining the List of Deals Dto list                                                | ListDealsMapper               | IE:Kowns/has its own DealsDto,Pure Fabrication,High coesion Low Coupling                                      |
+| Step 4: (shows the list deals made)                              | ...display all the information before submitting?                                      | PublishAnnouncementRequestUI  | Pure Fabrication                                                                                              |
+| Step 5: (submits data)                                           | ...obtaining and creating the announcement request Dto by description                  | AnnouncementRequestMapper     | IE,Creator                                                                                                    |
+|                                                                  | ...validating the data locally(mandatory data)?                                        | PublishAnnouncement           | IE                                                                                                            |
+|                                                                  | ...adding to a collection<br/>and globally<br/>validating duplicated records           | PublishAnnouncementRepository | IE                                                                                                            |
+| Step 6: (shows opperation success)                               | ...informing operation success?                                                        | PublishAnnouncementRequestUI  | Pure Fabrication                                                                                              |
 
 ### Systematization ##
 

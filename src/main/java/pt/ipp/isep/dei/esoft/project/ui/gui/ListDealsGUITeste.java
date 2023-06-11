@@ -168,9 +168,9 @@ public class ListDealsGUITeste implements Initializable {
         announcementAnchorPane.setVisible(true);
 
 
-        clientDescription.setText(""+publishedAnnouncement.getClient().getName()+" "+publishedAnnouncement.getClient().getClientEmail() +" "+publishedAnnouncement.getClient().getPhoneNumber());
-        agentDescription.setText(""+publishedAnnouncement.getAgent().getName()+" "+publishedAnnouncement.getAgent().getEmail()+" "+publishedAnnouncement.getAgent().getPhoneNumber());
-        priceLabel.setText("" + publishedAnnouncement.getBusiness());
+        clientDescription.setText("Client: "+publishedAnnouncement.getClient().getName()+" "+publishedAnnouncement.getClient().getClientEmail() +" "+publishedAnnouncement.getClient().getPhoneNumber());
+        agentDescription.setText("Responsible Agent: "+publishedAnnouncement.getAgent().getName()+" "+publishedAnnouncement.getAgent().getEmail()+" "+publishedAnnouncement.getAgent().getPhoneNumber());
+        priceLabel.setText("" + publishedAnnouncement.getBusiness()+" $");
         labelDistanceCenter.setText(""+publishedAnnouncement.getProperty().getDistanceFromCityCenter());
         adressLabel.setText("" + publishedAnnouncement.getProperty().getAddress());
         typeOfBusinessLabel.setText("" + publishedAnnouncement.getTypeOfBusiness());
@@ -237,7 +237,7 @@ public class ListDealsGUITeste implements Initializable {
         List<Image> images = new ArrayList<>();
         for (String url : publishedAnnouncement.getProperty().getPhotos().getUrl()) {
 
-            images.add(new Image(url,658,219,false,false));
+            images.add(new Image(url,659,237,false,false));
 
         }
 
