@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.Offer;
 import pt.ipp.isep.dei.esoft.project.domain.OfferState;
-import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 
 import java.util.*;
 

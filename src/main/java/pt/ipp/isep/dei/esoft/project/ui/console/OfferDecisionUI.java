@@ -11,6 +11,7 @@ import pt.ipp.isep.dei.esoft.project.domain.Client;
 import pt.ipp.isep.dei.esoft.project.domain.Offer;
 import pt.ipp.isep.dei.esoft.project.domain.OfferDto;
 import pt.ipp.isep.dei.esoft.project.domain.OfferState;
+import pt.ipp.isep.dei.esoft.project.domain.SendEmail;
 
 /**
  * The type Offer decision ui.
@@ -102,9 +103,11 @@ public class OfferDecisionUI implements Runnable{
                 offer.setOfferState(OfferState.accepted);
                 controller.declineOtherOffers(offer, offersList);
                 offer.getPublishedAnnouncement().setAnnouncementState(AnnouncementState.sold);
+                sendEmail(offer);
             }
             else if (choice == 2){
                 offer.setOfferState(OfferState.rejected);
+                sendEmail(offer);
             }
             else if (choice == 0){
                 break;
@@ -121,6 +124,35 @@ public class OfferDecisionUI implements Runnable{
         }
 
         return null; // Offer not found
+    }
+
+    private void sendEmail(Offer offer){
+        String decision = "";
+        if(offer.getOfferState().equals(OfferState.accepted) && offer.getPublishedAnnouncement().getAnnouncementState().equals(AnnouncementState.sold)) {
+            decision = "accepted";
+        }
+        else if(offer.getOfferState().equals(OfferState.rejected) && offer.getPublishedAnnouncement().getAnnouncementState().equals(AnnouncementState.available)){
+            decision = "rejected";
+        }
+        SendEmail sendEmail = new SendEmail();
+        String toWriteFile = "";
+        toWriteFile = toWriteFile.
+                concat("From: no-reply@this.app\n" + 
+                        "To: ").
+                concat(offer.getClient().getEmail()).
+                concat("\nSubject: Offer Decision Update.\nBody: " +
+                        "Dear ").
+                concat(offer.getClient().getName()).
+                concat(",\n\nYour offer for the property located in ").
+                concat(offer.getPublishedAnnouncement().getProperty().getAddress().toString()).
+                concat(" has been " + decision + ".").
+                concat("\nPlease contact us in order to finish all the paperwork and so that you can start this new chapter of your life as soon as possible.\n\nBest regards,\nReal Estate USA");
+
+
+        //METER O OWNER ( NUEMERO DE TELEFONE E EMAIL NA PROPRIEDADE)
+        String filename = String.valueOf("EmailNotification - " + offer.getClient().getEmail() + ".txt");
+        sendEmail.createFile(filename);
+        sendEmail.writeFile(filename, toWriteFile);
     }
 
 }
