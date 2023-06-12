@@ -86,14 +86,14 @@ public class PublishedAnnouncementRepository {
      * @param comission              the comission
      * @return the optional
      */
-    public Optional<PublishedAnnouncement> publishedAnnouncementRequest(List<AnnouncementRequest> announcementRequests, AnnouncementRequestDto announcementRequestDto, Comission comission) {
+    public Optional<PublishedAnnouncement> publishedAnnouncementRequest(List<AnnouncementRequest> announcementRequests, AnnouncementRequestDto announcementRequestDto, Comission comission, Store store) {
 
 
         Optional<PublishedAnnouncement> optionalValue = Optional.empty();
 
         PublishedAnnouncement publishedAnnouncement;
 
-        publishedAnnouncement = new PublishedAnnouncement(announcementRequestDto, comission);
+        publishedAnnouncement = new PublishedAnnouncement(announcementRequestDto, comission, store);
 
         AnnouncementRequest announcementRequest = new AnnouncementRequest(announcementRequestDto);
 

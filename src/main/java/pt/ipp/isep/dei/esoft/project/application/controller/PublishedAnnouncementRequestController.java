@@ -285,7 +285,9 @@ public class PublishedAnnouncementRequestController {
 
         AnnouncementRequestDto announcementRequestDto =  announcementRequestMapper.getAnnouncementRequestDtoByDescription(announcementRequestDtos,announcementRequestDtoDescription);
 
-        newPublishedAnnouncement = getPublishedAnnouncementRepository().publishedAnnouncementRequest(announcementRequestRepository.getAnnouncementsRequest(),announcementRequestDto,comission);
+        Store store = announcementRequestDto.getAgent().getStore();
+
+        newPublishedAnnouncement = getPublishedAnnouncementRepository().publishedAnnouncementRequest(announcementRequestRepository.getAnnouncementsRequest(),announcementRequestDto,comission, store);
 
         return newPublishedAnnouncement;
     }
