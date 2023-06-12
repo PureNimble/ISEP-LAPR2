@@ -141,23 +141,5 @@ public class ListMessageController {
         return messageMapper.toDto(getMessagesByAscendingDate());
     }
 
-    public static boolean isValidEmailDomain(String email) {
-        String domain = getEmailDomain(email);
-        return domain.equals("isep.ipp.pt") || domain.equals("gmail.com") || domain.equals("hotmail.com") || domain.equals("yahoo.com");
-    }
-
-    private static String getEmailDomain(String email) {
-        int atIndex = email.lastIndexOf("@");
-        if (atIndex != -1) {
-            return email.substring(atIndex + 1);
-        }
-        throw new IllegalArgumentException("Invalid email address: " + email);
-    }
-
-    public void removeBookingRequest(Message message) {
-        MessageRepository messageRepository = getMessageRepository();
-        messageRepository.removeMessage(message);
-    }
-
 
 }

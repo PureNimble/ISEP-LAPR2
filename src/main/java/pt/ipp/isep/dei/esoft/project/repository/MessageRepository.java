@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.Message;
+import pt.ipp.isep.dei.esoft.project.domain.MessageState;
+import pt.ipp.isep.dei.esoft.project.domain.OfferState;
 
 
 import java.util.*;
@@ -74,7 +76,9 @@ public class MessageRepository {
         List<Message> resultList = new ArrayList<Message>();
 
         for (Message message : messages) {
-            resultList.add(message);
+            if (message.getMessageState().equals(MessageState.UNANSWERED)) {
+                resultList.add(message);
+            }
         }
 
 /**

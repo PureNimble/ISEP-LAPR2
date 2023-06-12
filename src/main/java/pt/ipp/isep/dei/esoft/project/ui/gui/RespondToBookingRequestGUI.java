@@ -10,7 +10,9 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.application.controller.ListMessageController;
 import pt.ipp.isep.dei.esoft.project.domain.Message;
+import pt.ipp.isep.dei.esoft.project.domain.MessageState;
 import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
+import pt.ipp.isep.dei.esoft.project.domain.adapters.EmailNotificationAdapter;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -85,7 +87,7 @@ public class RespondToBookingRequestGUI implements Runnable,Initializable {
         // Perform any necessary operations with the entered data
         // ...
 
-        boolean isValidEmailDomain = ListMessageController.isValidEmailDomain(email);
+        boolean isValidEmailDomain = EmailNotificationAdapter.isValidEmailDomain(email);
         if (!isValidEmailDomain) {
             // Display error pop-up for invalid email domain
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -153,7 +155,7 @@ public class RespondToBookingRequestGUI implements Runnable,Initializable {
         }
 
         if (listMessageController != null && selectedMessage != null) {
-            listMessageController.removeMessage(selectedMessage);
+            selectedMessage.setMessageState(MessageState.ANSWERED);
         }
 
 

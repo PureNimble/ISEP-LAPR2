@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.ListMessageController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
-
+import pt.ipp.isep.dei.esoft.project.domain.adapters.EmailNotificationAdapter;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -106,13 +106,13 @@ public class ListMessageUI implements Runnable {
                     do {
                         System.out.println("Enter client email: ");
                         email = input.nextLine();
-                        isValidDomain = controller.isValidEmailDomain(email);
+                        isValidDomain = EmailNotificationAdapter.isValidEmailDomain(email);
                         if (!isValidDomain) {
                             System.out.println("Invalid client email domain. Please provide an email with one of the supported domains.");
                         }
                     } while (!isValidDomain);
 
-                    if (controller.isValidEmailDomain(email)) {
+                    if (EmailNotificationAdapter.isValidEmailDomain(email)) {
                         // Continue with the code for responding to the message
                         String subject = null;
                         String body = null;
@@ -172,8 +172,8 @@ public class ListMessageUI implements Runnable {
                         } while (responseChoice != 1 && responseChoice != 2);
 
                         // Send the email
-                        sendEmail(email, subject, body);
-                        controller.removeBookingRequest(message);
+                        EmailNotificationAdapter.sendEmail(email, subject, body);
+                        EmailNotificationAdapter.removeBookingRequest(message);
                         return;
                     } else {
                         System.out.println("Invalid client email domain. Please provide an email with one of the supported domains.");
@@ -187,29 +187,6 @@ public class ListMessageUI implements Runnable {
                     break;
             }
         } while (true);
-    }
-
-
-    private void sendEmail(String clientEmail, String subject, String body) {
-        String fileName = "EmailNotification - " + clientEmail + ".txt";
-        Properties properties = new Properties();
-        try (FileInputStream fileInputStream = new FileInputStream("config.properties")) {
-            properties.load(fileInputStream);
-        } catch (IOException e) {
-            System.out.println("An error occurred while reading the configuration file: " + e.getMessage());
-            return;
-        }
-
-        // Get the agent's email from the properties file
-        String agentEmail = properties.getProperty("from");
-        try (PrintWriter writer = new PrintWriter(fileName)) {
-            writer.println("From: " + agentEmail);
-            writer.println("To: " + clientEmail);
-            writer.println("Subject: " + subject);
-            writer.println("Body: " + body);
-        } catch (FileNotFoundException e) {
-            System.out.println("Failed to write email to file: " + e.getMessage());
-        }
     }
 
     /**

@@ -1,147 +1,76 @@
 package pt.ipp.isep.dei.esoft.project.domain.adapters;
 
-import pt.ipp.isep.dei.esoft.project.domain.EmailNotification;
+import pt.ipp.isep.dei.esoft.project.domain.Message;
 import pt.ipp.isep.dei.esoft.project.domain.emailServices.*;
+import pt.ipp.isep.dei.esoft.project.repository.MessageRepository;
+import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Properties;
 
 public class EmailNotificationAdapter implements EmailNotification {
-    private EmailDEI emailDEI;
-    private EmailGMAIL emailGMAIL;
-    private EmailHOTMAIL emailHOTMAIL;
-    private EmailYAHOO emailYAHOO;
 
-    public EmailNotificationAdapter(String deiEmailAddress, String gmailEmailAddress, String hotmailEmailAddress, String yahooEmailAddress) {
-        this.emailDEI = new EmailDEI(deiEmailAddress);
-        this.emailGMAIL = new EmailGMAIL(gmailEmailAddress);
-        this.emailHOTMAIL = new EmailHOTMAIL(hotmailEmailAddress);
-        this.emailYAHOO = new EmailYAHOO(yahooEmailAddress);
-    }
-
-    @Override
-    public void sendEmail(String from, String to, String subject, String body) {
-        String domain = getEmailDomain(to);
-
-        switch (domain) {
-            case "isep.ipp.pt":
-                if (!emailDEI.isValidDEIAddress()) {
-                    throw new IllegalArgumentException("Invalid DEI email address: " + to);
-                }
-                sendEmailViaDEI(from, to, subject, body);
-                break;
-            case "gmail.com":
-                if (!emailGMAIL.isValidGmailAddress()) {
-                    throw new IllegalArgumentException("Invalid Gmail address: " + to);
-                }
-                sendEmailViaGmail(from, to, subject, body);
-                break;
-            case "hotmail.com":
-                if (!emailHOTMAIL.isValidHotmailAddress()) {
-                    throw new IllegalArgumentException("Invalid Hotmail address: " + to);
-                }
-                sendEmailViaHotmail(from, to, subject, body);
-                break;
-            case "yahoo.com":
-                if (!emailYAHOO.isValidYahooAddress()) {
-                    throw new IllegalArgumentException("Invalid Yahoo address: " + to);
-                }
-                sendEmailViaYahoo(from, to, subject, body);
-                break;
-            default:
-                throw new IllegalArgumentException("Unsupported email domain: " + domain);
-        }
-    }
-
-    private String getEmailDomain(String email) {
-        int atIndex = email.lastIndexOf("@");
-        if (atIndex != -1) {
-            return email.substring(atIndex + 1);
-        }
-        throw new IllegalArgumentException("Invalid email address: " + email);
-    }
-
-    private void sendEmailViaDEI(String from, String to, String subject, String body) {
-        // Implement code to send the email using the DEI email service
-
-        // Create the email content
-        String emailContent = createEmailContent(from, to, subject, body);
-
-        // Write the email content to a file
-        String fileName = "Email - " + getEmailAddressWithoutDomain(to) + ".txt";
-        writeToFile(fileName, emailContent);
-    }
-
-    private void sendEmailViaGmail(String from, String to, String subject, String body) {
-        // Implement code to send the email using the Gmail email service
-
-        // Create the email content
-        String emailContent = createEmailContent(from, to, subject, body);
-
-        // Write the email content to a file
-        String fileName = "Email - " + getEmailAddressWithoutDomain(to) + ".txt";
-        writeToFile(fileName, emailContent);
-    }
-
-    private void sendEmailViaHotmail(String from, String to, String subject, String body) {
-        // Implement code to send the email using the Hotmail email service
-
-        // Create the email content
-        String emailContent = createEmailContent(from, to, subject, body);
-
-        // Write the email content to a file
-        String fileName = "Email - " + getEmailAddressWithoutDomain(to) + ".txt";
-        writeToFile(fileName, emailContent);
-    }
-
-    private void sendEmailViaYahoo(String from, String to, String subject, String body) {
-        // Implement code to send the email using the Yahoo email service
-
-        // Create the email content
-        String emailContent = createEmailContent(from, to, subject, body);
-
-        // Write the email content to a file
-        String fileName = "Email - " + getEmailAddressWithoutDomain(to) + ".txt";
-        writeToFile(fileName, emailContent);
-    }
-
-    private String getEmailAddressWithoutDomain(String email) {
-        int atIndex = email.lastIndexOf("@");
-        if (atIndex != -1) {
-            return email.substring(0, atIndex);
-        }
-        throw new IllegalArgumentException("Invalid email address: " + email);
-    }
-
-    private String createEmailContent(String from, String to, String subject, String body) {
-        StringBuilder content = new StringBuilder();
-        content.append("From: ").append(from).append("\n");
-        content.append("To: ").append(to).append("\n");
-        content.append("Subject: ").append(subject).append("\n");
-        content.append("Body: ").append(body).append("\n");
-        return content.toString();
-    }
-
-    private void writeToFile(String fileName, String content) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            writer.write(content);
+    public static void sendEmail(String email, String subject, String body) {
+        String fileName = "EmailNotification - " + email + ".txt";
+        Properties properties = new Properties();
+        try (FileInputStream fileInputStream = new FileInputStream("config.properties")) {
+            properties.load(fileInputStream);
         } catch (IOException e) {
-            throw new RuntimeException("Failed to write email content to file: " + fileName, e);
+            System.out.println("An error occurred while reading the configuration file: " + e.getMessage());
+            return;
+        }
+
+        // Get the agent's email from the properties file
+        String from = properties.getProperty("from");
+        try (PrintWriter writer = new PrintWriter(fileName)) {
+            writer.println("From: " + from);
+            writer.println("To: " + email);
+            writer.println("Subject: " + subject);
+            writer.println("Body: " + body);
+        } catch (FileNotFoundException e) {
+            System.out.println("Failed to write email to file: " + e.getMessage());
         }
     }
+    public static boolean isValidEmailDomain(String email) {
+        EmailDomainValidator[] validators = {
+                new EmailDEI(),
+                new EmailGMAIL(),
+                new EmailHOTMAIL(),
+                new EmailYAHOO()
+        };
+
+        for (EmailDomainValidator validator : validators) {
+            try {
+                if (validator.isValid(email)) {
+                    return true;
+                }
+            } catch (IllegalArgumentException e) {
+                return false;
+            }
+        }
+
+        return false;
+    }
+
+    public static void removeBookingRequest(Message message) {
+        MessageRepository messageRepository = getMessageRepository();
+        messageRepository.removeMessage(message);
+    }
+
+    private static MessageRepository getMessageRepository() {
+        if (messageRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+
+            messageRepository = repositories.getMessageRepository();
+        }
+        return messageRepository;
+    }
+
+    static MessageRepository messageRepository = null;
+
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
