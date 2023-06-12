@@ -40,6 +40,8 @@ public class AnnouncementRequest {
      */
     private String status;
 
+    private Client client;
+
     /**
      * Creates a new AnnouncementRequest object with the given parameters.
      *
@@ -51,7 +53,7 @@ public class AnnouncementRequest {
      * @param business       the business to be advertised.
      * @param agent          the agent
      */
-    public AnnouncementRequest(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business,Employee agent) {
+    public AnnouncementRequest(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business,Employee agent, Client client) {
         this.date = date;
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
@@ -59,6 +61,7 @@ public class AnnouncementRequest {
         this.business = business;
         this.agent = agent;
         this.status = status;
+        this.client = client;
     }
 
     /**
@@ -73,7 +76,7 @@ public class AnnouncementRequest {
      * @param durationOfContract the duration of the contract for the advertisement.
      * @param agent              the agent
      */
-    public AnnouncementRequest(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract, Employee agent) {
+    public AnnouncementRequest(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract, Employee agent, Client client) {
         this.date = date;
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
@@ -82,6 +85,7 @@ public class AnnouncementRequest {
         this.durationOfContract = durationOfContract;
         this.agent = agent;
         this.status = status;
+        this.client = client;
     }
 
     /**
@@ -98,6 +102,7 @@ public class AnnouncementRequest {
         this.durationOfContract = announcementRequestDto.getDurationOfContract();
         this.agent = announcementRequestDto.getAgent();
         this.status = announcementRequestDto.getStatus();
+        this.client = announcementRequestDto.getClient();
     }
 
     /**
@@ -198,6 +203,14 @@ public class AnnouncementRequest {
      */
     public void setProperty(Property property) {
         this.property = property;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     /**

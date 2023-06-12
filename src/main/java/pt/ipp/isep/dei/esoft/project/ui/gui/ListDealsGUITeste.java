@@ -179,20 +179,28 @@ public class ListDealsGUITeste implements Initializable {
         labelArea.setText(""+publishedAnnouncement.getProperty().getArea());
 
 
-        if (publishedAnnouncement.getPropertyType().getDesignation().equals("House")){
-            Residence residence = (Residence) publishedAnnouncement.getProperty();
+        if (publishedAnnouncement.getProperty() instanceof House){
+            House house = (House) publishedAnnouncement.getProperty();
+
+            labelBasement.setVisible(true);
+            basementICon.setVisible(true);
+            labelBasement.setText(""+house.getBasement());
+
+            SunExposureIcon.setVisible(true);
+            labelSunExposure.setVisible(true);
+            labelSunExposure.setText(""+house.getSunExposure());
 
             numberBedroomsIcon.setVisible(true);
             labelNumberOfBedrooms.setVisible(true);
-            labelNumberOfBedrooms.setText("" +residence.getNumberOfBedrooms());
+            labelNumberOfBedrooms.setText("" +house.getNumberOfBedrooms());
 
             parkingSpacesIcon.setVisible(true);
             labelparkingSpaces.setVisible(true);
-            labelparkingSpaces.setText(""+residence.getParkingSpaces());
+            labelparkingSpaces.setText(""+house.getParkingSpaces());
 
             numberBathroomsIcon.setVisible(true);
             labelNumberOfBathrooms.setVisible(true);
-            labelNumberOfBathrooms.setText(""+residence.getNumberOfBathrooms());
+            labelNumberOfBathrooms.setText(""+house.getNumberOfBathrooms());
 
     }else if (publishedAnnouncement.getPropertyType().getDesignation().equals("Appartment")){
 

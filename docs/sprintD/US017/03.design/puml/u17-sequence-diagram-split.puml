@@ -20,17 +20,23 @@ participant "offerDto:OfferDto" as OfferDto
 activate NetworkManager
 
         NetworkManager -> ListDealsUI : asks to see list of deals made
-        activate ListDealsUI
+                activate ListDealsUI
 
-        ListDealsUI --> NetworkManager: requests filter criteria(asceding/descending by area)
-        deactivate ListDealsUI
+                ListDealsUI --> NetworkManager: requests algorithm(bubble sort/selection sort) to use to list the deals
+                deactivate ListDealsUI
 
+                 NetworkManager -> ListDealsUI : chooses the algorithm to list the deals made
+                        activate ListDealsUI
+
+                        ListDealsUI --> NetworkManager: requests sorting criteria(ascending/descending)
+                        deactivate ListDealsUI
+
+             NetworkManager -> ListDealsUI : chooses the criteria to sort the deals made
+                        activate ListDealsUI
+alt bubble sort
 alt ascending
- NetworkManager -> ListDealsUI : chooses ascending criteria by area
- activate ListDealsUI
 
-'            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
-            'create CTRL
+
             ListDealsUI -> ListDealsController** : create
 
             ListDealsUI -> ListDealsController : getOffersListDeals()
@@ -38,13 +44,13 @@ alt ascending
 
 ref over ListDealsController
 
-            Get Deals By Ascending Area
+            Get Deals By Ascending Area Using Bubble Sort
 
 end ref
 
 ref over ListDealsController
 
-            Get DTO Deals By Ascending Area
+            Get DTO Deals
 
 end ref
 
@@ -52,13 +58,103 @@ autonumber 22
 
 ListDealsController --> ListDealsUI: offersDTOListMade
 
-            ListDealsUI --> NetworkManager : shows deals made list by ascending area
-        deactivate ListDealsUI
+
+
 end
 
 alt descending
- NetworkManager -> ListDealsUI : chooses ascending criteria by area
- activate ListDealsUI
+
+
+'
+
+            ListDealsUI -> ListDealsController : getOffersListDeals()
+            activate ListDealsController
+
+
+ref over ListDealsController
+
+            Get Deals By Descending Area Using Bubble Sort
+
+end ref
+
+ref over ListDealsController
+
+            Get DTO Deals
+
+end ref
+
+autonumber 42
+                ListDealsController --> ListDealsUI : offersDTOListMade
+            deactivate ListDealsController
+
+
+  end
+end
+
+
+
+alt sort selection
+
+alt ascending
+
+
+
+            ListDealsUI -> ListDealsController** : create
+
+            ListDealsUI -> ListDealsController : getOffersListDeals()
+            activate ListDealsController
+
+ref over ListDealsController
+
+            Get Deals By Ascending Area Using Sort Selection
+
+end ref
+
+ref over ListDealsController
+
+            Get DTO Deals
+
+end ref
+
+autonumber 22
+
+ListDealsController --> ListDealsUI: offersDTOListMade
+
+
+end
+
+alt descending
+
+
+'
+
+            ListDealsUI -> ListDealsController : getOffersListDeals()
+            activate ListDealsController
+
+
+ref over ListDealsController
+
+            Get Deals By Descending Area Using Sort Selection
+
+end ref
+
+ref over ListDealsController
+
+            Get DTO Deals
+
+end ref
+
+autonumber 42
+                ListDealsController --> ListDealsUI : offersDTOListMade
+            deactivate ListDealsController
+
+
+end
+end
+
+
+alt by default sorting
+
 
 '            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
             'create CTRL
@@ -69,13 +165,13 @@ alt descending
 
 ref over ListDealsController
 
-            Get Deals By Descending Area
+            Get Deals By Most Recent
 
 end ref
 
 ref over ListDealsController
 
-            Get DTO Deals By Ascending Area
+            Get DTO Deals
 
 end ref
 
@@ -83,9 +179,14 @@ autonumber 42
                 ListDealsController --> ListDealsUI : offersDTOListMade
             deactivate ListDealsController
 
-            ListDealsUI --> NetworkManager : shows deals made list by descending area
-        deactivate ListDealsUI
+
 end
+
+
+
+
+ ListDealsUI --> NetworkManager : shows list deals made by the selected algorithm and criteria
+        deactivate ListDealsUI
     NetworkManager -> ListDealsUI : submits data
     activate ListDealsUI
 

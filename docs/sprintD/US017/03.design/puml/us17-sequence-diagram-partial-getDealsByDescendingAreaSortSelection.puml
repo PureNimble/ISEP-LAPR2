@@ -5,9 +5,9 @@ participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
 participant "offerRepository\nOfferRepository" as OfferRepository
 
-autonumber 5
+autonumber  26
 
-Group Get Deals By Ascending Area Using Bubble Sort
+Group Get Deals By Descending Area Using Sort Selection
 
 activate ListDealsController
 
@@ -23,11 +23,12 @@ activate ListDealsController
                     PLAT --> ListDealsController: offerRepository
                 deactivate PLAT
 
-                ListDealsController -> OfferRepository : getDealsByAscendingAreaBubbleSort()
+                ListDealsController -> OfferRepository : getDealsByDescendingAreaBubbleSort()
                 activate OfferRepository
 
                     OfferRepository --> ListDealsController : offersListMade
                 deactivate OfferRepository
 
 end
+
 @enduml

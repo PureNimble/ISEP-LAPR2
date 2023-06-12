@@ -1,4 +1,4 @@
- @startuml
+@startuml
 
 'left to right direction
 class Employee{

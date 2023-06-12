@@ -15,26 +15,21 @@ activate NetworkManager
     NetworkManager -> System : asks to see list of deals made
     activate System
 
-        System --> NetworkManager : requests filter criteria(ascending/descending by area)
+        System --> NetworkManager : requests algorithm(bubble sort/selection sort) to use to list the deals
     deactivate System
 
-alt ascending
-NetworkManager -> System : chooses ascending criteria by area
-    activate System
+    NetworkManager -> System : chooses the algorithm to list the deals made
+        activate System
 
-        System --> NetworkManager : shows deals made list by ascending area
-    deactivate System
+         System --> NetworkManager : requests sorting criteria(ascending/descending)
+        deactivate System
 
-end
+        NetworkManager -> System : chooses the criteria to sort the deals made
+                activate System
 
-   alt descending
-   NetworkManager -> System : chooses descending criteria by area
-       activate System
-
-           System --> NetworkManager : shows deals made list by descending area
+           System --> NetworkManager : shows list deals made by the selected algorithm and criteria
        deactivate System
 
-   end
 
    NetworkManager -> System : submits data
    activate System
