@@ -18,7 +18,7 @@ participant "appSession\n:ApplicationSession" as App
 participant "currentSession\n:UserSession" as User
 participant "clientRepository\n:ClientRepository" as ClientRepository
 participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as publish
-participant ":XMapper" as XMapper
+participant ":MessageMapper" as MessageMapper
 participant "listOfPropertiesDTO:List<Properties>" as listProperties
 participant "propertiesDto:PropertiesDto" as PropertiesDto
 participant "messageRepository: \nMessage Repository" as messageRepository

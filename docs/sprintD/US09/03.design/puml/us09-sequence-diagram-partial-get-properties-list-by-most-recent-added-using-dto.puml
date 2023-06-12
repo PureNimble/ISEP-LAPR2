@@ -7,77 +7,77 @@ title US09 - Sequence Diagram Partial (Get Properties List By Most Recent Added 
 autonumber
 
 'hide footbox
-participant ":XMapper" as XMapper
+participant ":MessageMapper" as MessageMapper
 participant "listOfPropertiesDTO:List<Properties>" as listProperties
 participant "propertiesDto:PropertiesDto" as PropertiesDto
 
 
 activate CTRL
-  -> XMapper: toDTO(listOfPropertiesByDate)
-            activate XMapper
+  -> MessageMapper: toDTO(listOfPropertiesByDate)
+            activate MessageMapper
 
             group Get Properties List By Most Recent Added Using DTO
 
-            XMapper --> listProperties**: create()
+            MessageMapper --> listProperties**: create()
 
             loop
 
 
-            XMapper -> listProperties: date = geDate()
+            MessageMapper -> listProperties: date = geDate()
                         activate listProperties
 
-            XMapper -[hidden]> listProperties
+            MessageMapper -[hidden]> listProperties
             deactivate listProperties
 
-            XMapper -> listProperties: property = getProperty()
+            MessageMapper -> listProperties: property = getProperty()
             activate listProperties
 
-            XMapper -[hidden]> listProperties
+            MessageMapper -[hidden]> listProperties
             deactivate listProperties
 
-            XMapper -> listProperties: typeOfBusiness = getTypeOfBusiness()
+            MessageMapper -> listProperties: typeOfBusiness = getTypeOfBusiness()
             activate listProperties
 
-            XMapper -[hidden]> listProperties
+            MessageMapper -[hidden]> listProperties
             deactivate listProperties
 
-            XMapper -> listProperties: propertyType = getPropertyType()
+            MessageMapper -> listProperties: propertyType = getPropertyType()
             activate listProperties
 
-            XMapper -[hidden]> listProperties
+            MessageMapper -[hidden]> listProperties
             deactivate listProperties
 
-            XMapper -> listProperties: business = getBusiness()
+            MessageMapper -> listProperties: business = getBusiness()
             activate listProperties
 
-            XMapper -[hidden]> listProperties
+            MessageMapper -[hidden]> listProperties
             deactivate listProperties
 
-            XMapper -> listProperties :agent = getAgent()
+            MessageMapper -> listProperties :agent = getAgent()
             activate listProperties
 
-            XMapper -[hidden]> listProperties
+            MessageMapper -[hidden]> listProperties
             deactivate listProperties
 
-            XMapper -> listProperties: durationOfContract = geDate()
+            MessageMapper -> listProperties: durationOfContract = geDate()
             activate listProperties
 
-            XMapper -[hidden]> listProperties
+            MessageMapper -[hidden]> listProperties
             deactivate listProperties
 
-            XMapper -> XMapper : propertiesDto = toDto(agent,property,typeOfBusiness,propertyType,business,date,durationOfContract)
-            activate XMapper
+            MessageMapper -> MessageMapper : propertiesDto = toDto(agent,property,typeOfBusiness,propertyType,business,date,durationOfContract)
+            activate MessageMapper
 
-            deactivate XMapper
+            deactivate MessageMapper
 
-            XMapper --> PropertiesDto**: create(...)
+            MessageMapper --> PropertiesDto**: create(...)
 
-            XMapper -> listProperties: add(propertieDTO)
+            MessageMapper -> listProperties: add(propertieDTO)
             activate listProperties
 
             deactivate listProperties
             end
 end
-             <-- XMapper : listOfPropertiesDTO
-            deactivate XMapper
+             <-- MessageMapper : listOfPropertiesDTO
+            deactivate MessageMapper
 @enduml

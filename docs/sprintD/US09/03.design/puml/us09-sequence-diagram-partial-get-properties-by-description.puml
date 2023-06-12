@@ -12,7 +12,7 @@
  'hide footbox
 
  participant ":SendMessageController" as CTRL
- participant ":XMapper" as XMapper
+ participant ":MessageMapper" as MessageMapper
 
  autonumber
  activate CTRL
@@ -23,11 +23,11 @@
 
 
 
- CTRL -> XMapper :getPropertyDTOByDescription()
-                activate XMapper
+ CTRL -> MessageMapper :getPropertyDTOByDescription()
+                activate MessageMapper
 
-                XMapper --> CTRL:PropertyDTO
-                deactivate XMapper
+                MessageMapper --> CTRL:PropertyDTO
+                deactivate MessageMapper
 
                 end
 

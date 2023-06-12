@@ -19,8 +19,8 @@ participant "currentSession\n:UserSession" as User
 participant "clientRepository\n:ClientRepository" as ClientRepository
 participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as publish
 participant ":XMapper" as XMapper
-participant "listOfPropertiesDTO:List<Properties>" as listProperties
-participant "propertiesDto:PropertiesDto" as PropertiesDto
+participant "announcementListDto:List<AnnouncementDto>" as ListPublishAnnouncements
+participant "announcementDto:AnnouncementDto" as AnnouncementDto
 participant "messageRepository: \nMessage Repository" as messageRepository
 participant "message:\nMessage" as message
 
@@ -86,64 +86,64 @@ autonumber
             CTRL -> XMapper: toDTO(listOfPropertiesByDate)
             activate XMapper
 
-            XMapper --> listProperties**: create()
+            XMapper --> ListPublishAnnouncements**: create()
 
             loop
 
 
-            XMapper -> listProperties: date = geDate()
-                        activate listProperties
+            XMapper -> ListPublishAnnouncements: date = getDate()
+                        activate ListPublishAnnouncements
 
-            XMapper -[hidden]> listProperties
-            deactivate listProperties
+            XMapper -[hidden]> ListPublishAnnouncements
+            deactivate ListPublishAnnouncements
 
-            XMapper -> listProperties: property = getProperty()
-            activate listProperties
+            XMapper -> ListPublishAnnouncements: property = getProperty()
+            activate ListPublishAnnouncements
 
-            XMapper -[hidden]> listProperties
-            deactivate listProperties
+            XMapper -[hidden]> ListPublishAnnouncements
+            deactivate ListPublishAnnouncements
 
-            XMapper -> listProperties: typeOfBusiness = getTypeOfBusiness()
-            activate listProperties
+            XMapper -> ListPublishAnnouncements: typeOfBusiness = getTypeOfBusiness()
+            activate ListPublishAnnouncements
 
-            XMapper -[hidden]> listProperties
-            deactivate listProperties
+            XMapper -[hidden]> ListPublishAnnouncements
+            deactivate ListPublishAnnouncements
 
-            XMapper -> listProperties: propertyType = getPropertyType()
-            activate listProperties
+            XMapper -> ListPublishAnnouncements: propertyType = getPropertyType()
+            activate ListPublishAnnouncements
 
-            XMapper -[hidden]> listProperties
-            deactivate listProperties
+            XMapper -[hidden]> ListPublishAnnouncements
+            deactivate ListPublishAnnouncements
 
-            XMapper -> listProperties: business = getBusiness()
-            activate listProperties
+            XMapper -> ListPublishAnnouncements: business = getBusiness()
+            activate ListPublishAnnouncements
 
-            XMapper -[hidden]> listProperties
-            deactivate listProperties
+            XMapper -[hidden]> ListPublishAnnouncements
+            deactivate ListPublishAnnouncements
 
-            XMapper -> listProperties :agent = getAgent()
-            activate listProperties
+            XMapper -> ListPublishAnnouncements :agent = getAgent()
+            activate ListPublishAnnouncements
 
-            XMapper -[hidden]> listProperties
-            deactivate listProperties
+            XMapper -[hidden]> ListPublishAnnouncements
+            deactivate ListPublishAnnouncements
 
-            XMapper -> listProperties: durationOfContract = geDate()
-            activate listProperties
+            XMapper -> ListPublishAnnouncements: durationOfContract = getDate()
+            activate ListPublishAnnouncements
 
-            XMapper -[hidden]> listProperties
-            deactivate listProperties
+            XMapper -[hidden]> ListPublishAnnouncements
+            deactivate ListPublishAnnouncements
 
             XMapper -> XMapper : propertiesDto = toDto(agent,property,typeOfBusiness,propertyType,business,date,durationOfContract)
             activate XMapper
 
             deactivate XMapper
 
-            XMapper --> PropertiesDto**: create(...)
+            XMapper --> AnnouncementDto**: create(...)
 
-            XMapper -> listProperties: add(propertieDTO)
-            activate listProperties
+            XMapper -> ListPublishAnnouncements: add(propertieDTO)
+            activate ListPublishAnnouncements
 
-            deactivate listProperties
+            deactivate ListPublishAnnouncements
             end
 
             XMapper --> CTRL: listOfPropertiesDTO
@@ -166,14 +166,14 @@ autonumber
                UI -> CTRL:createMessage(propertyDescription, name, phone number and date and time slot)
                activate CTRL
 
-               CTRL -> CTRL:getPropertyDTOByDescription(PropertyDescription)
+               CTRL -> CTRL:getPropertyDtoByDescription(PropertyDescription)
                activate CTRL
 
 
-               CTRL -> XMapper :getPropertyDTOByDescription()
+               CTRL -> XMapper :getPropertyDtoByDescription()
                activate XMapper
 
-               XMapper --> CTRL:PropertyDTO
+               XMapper --> CTRL:PropertyDto
                deactivate XMapper
 
                CTRL--> CTRL:PropertyDTO
@@ -220,7 +220,7 @@ autonumber
                CTRL --> UI:message
 
 
-                       UI --> Client : shows a success message and the message created
+                       UI --> Client : shows a success message
                    deactivate UI
 
 @enduml

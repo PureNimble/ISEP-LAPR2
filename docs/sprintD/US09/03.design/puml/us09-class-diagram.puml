@@ -43,12 +43,6 @@ class PublishedAnnouncementRepository {
 + getTypeOfBussiness()
 }
 
-'class UserRepository{
-'+add(User user)
-'+validateUser(User user)
-'+getUsers()
-'}
-
 
 class MessageRepository {
 +add(Message message)
@@ -125,22 +119,6 @@ class AvailableEquipment {
     +getAvailableEquipment()
     + toString()
 }
-
-
-
-
-'class User{
-'-String name
-'-int tax number
-'-int phone number
-'-String email
-'
-'+getName()
-'+User(email,taxNumber,name,phoneNumber)
-'+getEmail()
-'+getPhoneNumber()
-'+getTaxNumber()
-'}
 
 class Client{
 Client(String email, int passportNumber, int taxNumber, String name, int phoneNumber)
@@ -303,7 +281,6 @@ Property <|-down-- Residence
 Property "1" -- "1..30" Photos: has >
 SunExposure "1" --right- "*" House: contains <
 AvailableEquipment "*" -left- "1" Residence: contains <
-
 
 
 
