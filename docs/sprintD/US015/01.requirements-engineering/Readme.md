@@ -49,9 +49,11 @@ As an agent, I intend to list all booking requests for properties managed by me.
 >>
 >> **Answer:**  In US 15 the sorting algorithm to be used by the application must be defined through a configuration file. This is a diferent strategy from what I want in US17. Please study ESOFT.
 
-> **Question:**
+> ** 6 de June de 2023**
+> 
+> **Question:** The US15 does the listing and in US16 we are already responsing to one booking request. That said, were is the selection part being done?
 >
->  **Answer:**
+>  **Answer:** In US15 the Agent gets a list of booking requests (made to him). Then, the agent, may want to respond to the user (as defined in US16). US15 and US16 are executed sequentially. Even so, the agent should be able to see a list of all booking requests made to him (US15) without answer any booking request. In US16 the agent selects the booking request.
 
 
 > **Question:**

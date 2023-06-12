@@ -87,6 +87,13 @@ As a client, I want to leave a message to the agent to schedule a visit to a pro
 >>
 >>  **Answer:** The client can only schedule a visit to one property at a time. Each time the client schedules a visit, the client should specify, for each day, one or multiple time slots. The time slots should not overlap. If the client wants to visit more properties, the client should use/run again the visit scheduling feature available in the system.
 
+> **6 de June de 2023**
+> 
+>> **Question:** When the client send a message to the agent, this should be sent directly from the client email to the agent email? Or should we have an agency email that will make this connection? Because, according to the library that our group is using, we need to have real email and password for the sender, so the email can be send successfully.
+> >
+> >**Answer:** In US9 there is no email message to be sent to the agent. Please check carefully the USs introduced in Sprint D and discuss your question with your teachers.
+
+
 
 
 ### 1.3. Acceptance Criteria
@@ -101,7 +108,7 @@ As a client, I want to leave a message to the agent to schedule a visit to a pro
 ### 1.4. Found out Dependencies
 
 
-* There is a dependency to "US004 Submit a request for listing a property sale or rent." since the client has to choose a property of his interest before scheduling a visit to that property.
+* There is a dependency to "US004 Submit a request for listing a property sale or rent." and "US002 As an agent, I can publish any sale announcement on the system, for example received through a phone call." since the client has to choose a property of his interest before scheduling a visit to that property.
 * There is a dependency to "US003 As a system administrator, I want to register a new employee." since the client must leave a message to the agent, this agent must be registered in a store in order to schedule a visit for the client.
 
 
@@ -129,6 +136,4 @@ As a client, I want to leave a message to the agent to schedule a visit to a pro
 **Other alternatives might exist.**
 
 ![System Sequence Diagram - Alternative One](svg/us09-system-sequence-diagram.svg)
-
-### 1.7 Other Relevant Remarks
 

@@ -250,10 +250,6 @@ public class PublishAnnouncementUI implements Runnable {
                     concat(String.valueOf(publishedAnnouncement.get().getAgent().getPhoneNumber())).
                     concat(" will be responsible for your announcement. \nIf you have any doubts do not hesitate to contact us.\n\nBest regards,\nReal Estate USA");
 
-
-            //METER O OWNER ( NUEMERO DE TELEFONE E EMAIL NA PROPRIEDADE)
-
-
             sendSms.createFile(String.valueOf(publishedAnnouncement.get().getClient().getPhoneNumber()));
             sendSms.writeFile(String.valueOf(publishedAnnouncement.get().getClient().getPhoneNumber()), toWriteFile);
         }
