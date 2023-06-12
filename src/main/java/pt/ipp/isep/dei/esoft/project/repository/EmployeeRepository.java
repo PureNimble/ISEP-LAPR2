@@ -98,7 +98,6 @@ public class EmployeeRepository {
     /**
      * Get employees allphabetically sorted list.
      *
-     * @param storesList the stores list
      * @return the list
      */
     public List<Employee> getEmployeesAllphabeticallySorted(){
