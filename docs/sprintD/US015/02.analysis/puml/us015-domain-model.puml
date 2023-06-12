@@ -115,12 +115,13 @@ class Client {
      Contract type
  }
 
+
+
  class Role{
 
  }
 
-
- Property "1" --- "1" Business: has a <
+ PublishedAnnouncement "*" --- "*" Property: advertises >
  PublishedAnnouncement "1" --- "1" Business: has a <
  Business <|--- Rent
  Message "*" --- "1" PublishedAnnouncement: can have a <
@@ -132,6 +133,9 @@ Agent "1" --- "1" Message: wants to see a list of >
 Person <|-- Employee
 Employee <|-- Agent
 Person <|-- Client
+
+Comission "1" -- "1" Business : contains <
+
 
 
 @enduml

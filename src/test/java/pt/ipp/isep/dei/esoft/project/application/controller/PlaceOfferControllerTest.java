@@ -7,10 +7,7 @@ import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.OfferRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,13 +17,28 @@ class PlaceOfferControllerTest {
     double offerAmount = 200000;
 
     Date date = new Date();
-    Comission com = new Comission(25.00);
-    Property property = new Property(2, 2);
-    PropertyType propertyType = new PropertyType("House");
-    TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
-    Business business = new Business(200);
-    PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business);
-    Offer offer = new Offer(name, offerAmount, publishedAnnouncement1, OfferState.pending);
+    Comission comission1 = new Comission(25.00);
+    Role role = new Role("Agent");
+
+    AvailableEquipment equipment1 = new AvailableEquipment("Air Conditioning");
+    Address address1 = new Address("3655 S Las Vegas Blvd", 892109, new District("Paradise"), new City("Las Vegas"), new State("Nevada"));
+
+    Property property1 = new Property(274,2576, new Photos("url"),address1);
+
+    Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 0);
+
+    Employee agent1 = new Employee("agent@this.app", 123456789, 987654321, "Miguel", 1234567890L, store1, (List<Role>) role, address1);
+
+
+    PropertyType propertyType1 = new PropertyType("House");
+    TypeOfBusiness typeOfBusiness1 = new TypeOfBusiness("Sale");
+    Business business1 = new Business(200000);
+    Date date1 = new GregorianCalendar(2023, Calendar.JUNE, 20).getTime();
+    Client client1 = new Client("pedro@isep.ipp.pt", 123456789, 987654321, "Pedro", address1, 1234567890);
+    AnnouncementState state1 = AnnouncementState.available;
+    PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType1, comission1, business1, agent1, client1, 1, state1, store1);
+
+    Offer offer = new Offer("Pedro", 130000, publishedAnnouncement1, OfferState.pending, new Client("pedro@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890));
 
     @Test
     void getOfferFromRepository() {
@@ -52,7 +64,7 @@ class PlaceOfferControllerTest {
         Repositories.getInstance().setOfferRepository(repository);
         controller.offerRepository = repository;
 
-        Optional<Offer> result = controller.createNewOfferToAgent(name, offerAmount, publishedAnnouncement1, OfferState.pending);
+        Optional<Offer> result = controller.createNewOfferToAgent(name, client1, 130000, publishedAnnouncement1,OfferState.pending);
 
         assertTrue(result.isPresent());
         Offer offer = result.get();
@@ -71,7 +83,7 @@ class PlaceOfferControllerTest {
         Repositories.getInstance().setOfferRepository(repository);
         controller.offerRepository = repository;
 
-        Optional<Offer> result = controller.createNewOfferToAgent(name, offerAmount, publishedAnnouncement1, OfferState.pending);
+        Optional<Offer> result = controller.createNewOfferToAgent(name, client1, 130000, publishedAnnouncement1,OfferState.pending);
 
         assertFalse(result.isPresent());
     }

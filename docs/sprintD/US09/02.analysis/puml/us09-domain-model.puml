@@ -27,6 +27,14 @@ Passport Number
 
 class Employee{
 }
+class Comission {
+Value
+}
+'/
+
+class ComissionPercentage {
+Percentage Value
+}
 
 class City {
     City name
@@ -105,7 +113,7 @@ class PublishedAnnouncement {
 }
 
 
-Property "1" --- "1" Business: has a <
+PublishedAnnouncement "*" --- "*" Property: advertises >
 PublishedAnnouncement "1" --- "1" Business: has a <
 Business <|--- Rent
 
@@ -132,6 +140,9 @@ Person <|-- Employee
 Employee <-- Agent
 Person <|-- Client
 
+
+Comission "1" -- "1" Business : contains <
+ComissionPercentage  --|> Comission
 
 
 

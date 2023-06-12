@@ -101,7 +101,7 @@ class AnnouncementRequestControllerTest {
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
         Role role = new Role("Agent");
         Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        Store store = new Store("Elvis",224,address,1274567809,"elvis@gmail.com", 0);
         List<Role> roles = new ArrayList<>();
         roles.add(role);
 
@@ -126,14 +126,16 @@ class AnnouncementRequestControllerTest {
 
         Date date = new Date();
 
-        House house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South");
+        Address address = new Address("vevt", 1234, new District("District"), new City("City"), new State("State"));
+        House house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Y", "N", "South", new Photos("url"), address);
+
         PropertyType propertyType = new PropertyType("House");
         TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
         Double price = 1000.32;
         Business business = new Business(price);
         Role role = new Role("Agent");
         Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        Store store = new Store("Elvis",224,address2,1274567809,"elvis@gmail.com", 0);
         List<Role> roles = new ArrayList<>();
         roles.add(role);
         Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
@@ -176,7 +178,8 @@ class AnnouncementRequestControllerTest {
         //The result is the same but the test keeps not working
         Date date = new Date();
 
-        House house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South");
+        Address address = new Address("vevt", 1234, new District("District"), new City("City"), new State("State"));
+        House house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Y", "N", "South", new Photos("url"), address);
         PropertyType propertyType = new PropertyType("House");
         TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
         Double price = 1000.32;
@@ -185,7 +188,7 @@ class AnnouncementRequestControllerTest {
 
         Role role = new Role("Agent");
         Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        Store store = new Store("Elvis",224,address2,1274567809,"elvis@gmail.com", 0);
         List<Role> roles = new ArrayList<>();
         roles.add(role);
         Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);

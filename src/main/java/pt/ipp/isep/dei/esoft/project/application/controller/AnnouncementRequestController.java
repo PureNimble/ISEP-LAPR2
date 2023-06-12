@@ -25,6 +25,10 @@ public class AnnouncementRequestController {
      */
     AnnouncementRequestRepository announcementRequestRepository = null;
     /**
+     * The Authentication repository.
+     */
+    AuthenticationRepository authenticationRepository = null;
+    /**
      * The Employee repository.
      */
     EmployeeRepository employeeRepository = null;
@@ -44,6 +48,7 @@ public class AnnouncementRequestController {
     public AnnouncementRequestController() {
         getUserRepository();
         getPropertyTypeRepository();
+        getAuthenticationRepository();
         getAnnouncementRequestRepository();
         getStateRepository();
     }
@@ -70,6 +75,22 @@ public class AnnouncementRequestController {
             propertyTypeRepository = repositories.getPropertyTypeRepository();
         }
         return propertyTypeRepository;
+    }
+
+    /**
+
+     Retrieves the authentication repository instance. If it is not initialized, it will retrieve it from the Repositories instance.
+
+     @return the authentication repository instance
+     */
+    private AuthenticationRepository getAuthenticationRepository() {
+        if (authenticationRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+
+            //Get the AuthenticationRepository
+            authenticationRepository = repositories.getAuthenticationRepository();
+        }
+        return authenticationRepository;
     }
 
     /**
@@ -239,6 +260,26 @@ public class AnnouncementRequestController {
     }
 
     /**
+     * Gets current session email.
+     *
+     * @return the current session email
+     */
+    public String getCurrentSessionEmail() {
+        AuthenticationRepository authenticationRepository = getAuthenticationRepository();
+        return authenticationRepository.getCurrentUserSession().getUserId().getEmail();
+    }
+
+    /**
+     * Gets client email.
+     *
+     * @return the client email
+     */
+    public Client getClientEmail() {
+        String email = getCurrentSessionEmail();
+        return getUserRepository().getClientEmail(email);
+    }
+
+    /**
      * Gets district by description.
      *
      * @param districtDescription the district description
@@ -353,14 +394,14 @@ public class AnnouncementRequestController {
      * @param agent              the agent
      * @return An optional containing the newly created announcement request if it was created successfully, or an empty optional if the announcement request already exists in the repository.
      */
-    public Optional<AnnouncementRequest> createAnnouncementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract,Employee agent) {
+    public Optional<AnnouncementRequest> createAnnouncementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract,Employee agent, Client client) {
 
         Optional<AnnouncementRequest> newAnnoucementRequest = Optional.empty();
 
-        AnnouncementRequest announcementRequest = new AnnouncementRequest("",date, typeOfBusiness, property, propertyType, business, durationOfContract,agent);
+        AnnouncementRequest announcementRequest = new AnnouncementRequest("",date, typeOfBusiness, property, propertyType, business, durationOfContract,agent, client);
 
         if (!getAnnouncementRequestRepository().getAnnouncementsRequest().contains(announcementRequest)) {
-            newAnnoucementRequest = getAnnouncementRequestRepository().announcementRequest(date, typeOfBusiness, property, propertyType, business, durationOfContract,agent);
+            newAnnoucementRequest = getAnnouncementRequestRepository().announcementRequest(date, typeOfBusiness, property, propertyType, business, durationOfContract,agent, client);
         }
         return newAnnoucementRequest;
     }
