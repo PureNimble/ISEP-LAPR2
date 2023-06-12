@@ -10,9 +10,9 @@ public class SendEmail {
      *
      * @param fileName the file name
      */
-    public void createFile (String fileName) {
+    public void createFile(String fileName) {
         try {
-            File myObj = new File("filename.txt");
+            File myObj = new File(fileName); // Use the fileName parameter here
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
@@ -23,7 +23,6 @@ public class SendEmail {
             e.printStackTrace();
         }
     }
-
     /**
      * Write file.
      *
