@@ -36,9 +36,9 @@ Value
 }
 '/
 
-class ComissionPercentage {
-Percentage Value
-}
+'class ComissionPercentage {
+'Percentage Value
+'}
 
 
 class District {
@@ -98,20 +98,19 @@ class TypeOfProperty {
 Type
 }
 
-class User {
-Password
+class Client {
 }
 
 class Offer {
 Offer Value
 }
 
-Address "1" -- "1" Person : can have <
+'Address "1" -- "1" Person : can have <
 
 Business <|-- Rent
 
-Comission "1" -- "1" Business : contains <
-ComissionPercentage  --|> Comission
+Comission "1" --- "1" Business : contains <
+'ComissionPercentage  --|> Comission
 
 District "1" -right- "*" City : has >
 
@@ -119,7 +118,7 @@ House "1" -- "1" SunExposure : contains >
 
 Offer "*" -down- "1" PublishedAnnouncement : has <
 
-Person <|-- User
+Person <|-- Client
 Property <|-- Residence
 Property "*" -right- "1" Address : has >
 Property "1" -- "1..30" Photos : has >
@@ -134,6 +133,6 @@ State "1" -left- "*" Address : has >
 
 TypeOfProperty "1" -right- "1" Property : defines >
 
-User "1" -left- "*" Offer : makes >
+Client "1" -left- "*" Offer : makes >
 
 @enduml

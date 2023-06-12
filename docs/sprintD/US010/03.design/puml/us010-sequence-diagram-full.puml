@@ -20,10 +20,10 @@ participant "userRepository\n:UserRepository" as UserRepository
 participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as PublishedAnnouncementRepository
 participant "offerRepository\n:OfferRepository" as OfferRepository
 participant ":XMapper" as XMapper
-participant "listOfPropertiesDTO:List<Properties>" as listProperties
-participant "propertiesDto:PropertiesDto" as PropertiesDto
-participant "offerDto:OfferDTO" as offerDto
+participant "announcementListDTO:List<AnnouncementDto>" as ListPublishAnnouncement
+participant "announcementDto:AnnouncementDto" as AnnouncementDto
 participant "Offer" as Offer
+participant "offerDto:OfferDTO" as offerDto
 
 activate Client
 
@@ -82,69 +82,63 @@ deactivate PublishedAnnouncementRepository
 Controller -> XMapper : toDto(listOfProperties)
 activate XMapper
 
-XMapper -> listProperties**: create()
+XMapper -> ListPublishAnnouncement**: create()
 
     loop
 
-    XMapper -> listProperties: date = getDate()
-    activate listProperties
+    XMapper -> ListPublishAnnouncement: date = getDate()
+    activate ListPublishAnnouncement
 
-    XMapper -[hidden]> listProperties
-    deactivate listProperties
+    XMapper -[hidden]> ListPublishAnnouncement
+    deactivate ListPublishAnnouncement
 
-    XMapper -> listProperties: property = getProperty()
-    activate listProperties
+    XMapper -> ListPublishAnnouncement: property = getProperty()
+    activate ListPublishAnnouncement
 
-    XMapper -[hidden]> listProperties
-    deactivate listProperties
+    XMapper -[hidden]> ListPublishAnnouncement
+    deactivate ListPublishAnnouncement
 
-    XMapper -> listProperties: typeOfBusiness = getTypeOfBusiness()
-    activate listProperties
+    XMapper -> ListPublishAnnouncement: typeOfBusiness = getTypeOfBusiness()
+    activate ListPublishAnnouncement
 
-    XMapper -[hidden]> listProperties
-    deactivate listProperties
+    XMapper -[hidden]> ListPublishAnnouncement
+    deactivate ListPublishAnnouncement
 
-    XMapper -> listProperties: propertyType = getPropertyType()
-    activate listProperties
+    XMapper -> ListPublishAnnouncement: propertyType = getPropertyType()
+    activate ListPublishAnnouncement
 
-    XMapper -[hidden]> listProperties
-    deactivate listProperties
+    XMapper -[hidden]> ListPublishAnnouncement
+    deactivate ListPublishAnnouncement
 
-    XMapper -> listProperties: business = getBusiness()
-    activate listProperties
+    XMapper -> ListPublishAnnouncement: business = getBusiness()
+    activate ListPublishAnnouncement
 
-    XMapper -[hidden]> listProperties
-    deactivate listProperties
+    XMapper -[hidden]> ListPublishAnnouncement
+    deactivate ListPublishAnnouncement
 
-    XMapper -> listProperties :agent = getAgent()
-    activate listProperties
+    XMapper -> ListPublishAnnouncement :agent = getAgent()
+    activate ListPublishAnnouncement
 
-    XMapper -[hidden]> listProperties
-    deactivate listProperties
+    XMapper -[hidden]> ListPublishAnnouncement
+    deactivate ListPublishAnnouncement
 
-    XMapper -> listProperties: durationOfContract = getDurationOfContract()
-    activate listProperties
+    XMapper -> ListPublishAnnouncement: durationOfContract = getDurationOfContract()
+    activate ListPublishAnnouncement
 
-    XMapper -[hidden]> listProperties
-    deactivate listProperties
+    XMapper -[hidden]> ListPublishAnnouncement
+    deactivate ListPublishAnnouncement
 
-    XMapper -> listProperties: comission = getComission()
-    activate listProperties
-
-    XMapper -[hidden]> listProperties
-    deactivate listProperties
-
-    XMapper -> XMapper : propertiesDto = toDto(agent,property,typeOfBusiness,propertyType,business,date,durationOfContract, comission)
+    XMapper -> XMapper : propertiesDto = toDto(agent,property,typeOfBusiness,propertyType,business,date,durationOfContract)
     activate XMapper
 
     deactivate XMapper
 
-    XMapper --> PropertiesDto**: create(...)
+    XMapper --> AnnouncementDto**: create(...)
 
-    XMapper -> listProperties: add(propertieDTO)
-    activate listProperties
+    XMapper -> ListPublishAnnouncement: add(propertieDTO)
+    activate ListPublishAnnouncement
 
-    deactivate listProperties
+    deactivate ListPublishAnnouncement
     end
 
 XMapper --> Controller : listOfPropertiesDTO
@@ -165,7 +159,7 @@ deactivate System
 Client -> System : submits data
 activate System
 
-System -> Controller : createOffer(propertyDescription)
+System -> Controller : createOffer(propertyDescription, name, orderAmount, client)
 activate Controller
 
 Controller -> Controller : getPropertyDTOByDescription(PropertyDescription)
@@ -178,10 +172,11 @@ deactivate PublishedAnnouncementRepository
 
 Controller --> Controller : PropertyDTO
 
-Controller -> OfferRepository : createOffer(property)
+Controller -> OfferRepository : createOffer(property, name, orderAmount, client)
 activate OfferRepository
 
-OfferRepository -> Offer** : createOffer(property)
+
+OfferRepository -> Offer** : createOffer(property, name, orderAmount, client)
 activate Offer
 
 Offer -> offerDto : name = getName()

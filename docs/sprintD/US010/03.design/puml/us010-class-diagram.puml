@@ -8,35 +8,55 @@ skinparam shadowing false
 skinparam linetype polyline
 
 class PlaceOrderUI {
-
+    + run()
+    + requestChooseProperty()
+    + requestClientName()
+    + requestOffer()
+    + submitData(String name, Client client, Announcement \npublishedAnnouncement, double offer, OfferState offerState)
 }
 
 class PlaceOrderController {
-    + getPublishedAnnouncement()
-    + createNewOfferToAgent(orderAmount, publishedAnnouncement)
+    + getOfferRepository()
+    + getAuthenticationRepository()
+    + getPublishedAnnouncementRepository()
+    + getUserRepository()
+    + getOffers()
+    + getCurrentSessionEmail()
+    + getClientEmail()
+    + hasPendingOffersByEmail(String email)
+    + List<Offer> getPendingOffersByClientEmail(String email)
+    + Optional<Offer> createNewOfferToAgent (String name, \nClient client, double orderAmount, Announcement \npublishedAnnouncement, OfferState offerState)
 }
 
-class PublishedAnnouncemtRepository {
-    - List <PublishedAnnouncement> publishedAnnouncement
-    + getPublishedAnnouncement()
+class PublishedAnnouncementRepository {
+    + Optional <Announcement> publishedAnnouncement(Date date, \nTypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, \nComission comission, Business business, int durationOfContract, Employee agent, \nClient client, int propertyID, AnnouncementState state, Store store)
 }
 
 class AuthenticationRepository {
     + doLogin(email,pwd)
     + doLogout()
-    + getCurrentSession()
+    + getCurrentUserSession()
     + addUserRole()
     + addUserWithRole()
+    + addUserWithRoles()
     + passwordGenerator()
     - shuffleString(input,random)
     - randomCharacter(characters,random)
 }
 
 class OfferRepository {
-    + add(Offer offer)
-    + getOffers()
-    - validateOffer(Offer offer)
-    - checkOffer(Offer offer)
+    + Optional<Offer> add(Offer offer)
+    + validateOffer(Offer offer)
+    - checkOffer(Offer offer1, Offer offer2)
+    + hasPendingOffersByEmail(String email)
+    + List<Offer> getOffers()
+}
+
+class UserRepository {
+    + Optional<Client> add(Client client)
+    - validateUser(Client client)
+    + List<Client> getUsers()
+    + getClientEmail(String email)
 }
 
 class Repositories {
@@ -45,15 +65,20 @@ class Repositories {
     + getPublishedAnnouncementRepository()
     + getAuthenticationRepository()
     + getOfferRepository()
+    + getUserRepository()
 }
 
 class Offer {
+ - String name
  - Client client
- - PublishedAnnouncement publishedAnnouncement
+ - Announcement publishedAnnouncement
  - double orderAmount
+ - OfferState OfferState
 
- + Offer (Client client, PublishedAnnouncement \npublishedAnnouncement, double orderAmount)
+ + Offer Offer(String name, double orderAmount, Announcement \npublishedAnnouncement,OfferState offerState, Client client)
  + Offer()
+ + getOfferState()
+ + getName()
  + getOrderAmount()
  + getPublishedAnnouncement()
  + getClient()
@@ -64,7 +89,7 @@ class Announcement {
     - String finalDate
     - String contractType
 
-    + PublishedAnnouncement(initialDate, finalDate, AnnouncementRequest)
+    + Announcement(initialDate, finalDate, AnnouncementRequest)
 }
 
 class Business {
@@ -127,7 +152,7 @@ class Address {
 }
 
 class Client {
-Client(String email, int passportNumber, int taxNumber, String name, int phoneNumber)
+    - Client(String email, int passportNumber, int taxNumber, String name, int phoneNumber)
 }
 
 class AvailableEquipment {
@@ -202,15 +227,17 @@ class Person {
 
 PlaceOrderUI .> PlaceOrderController
 PlaceOrderController .> Repositories : repositories
-PlaceOrderController ..> PublishedAnnouncemtRepository : publishedAnnouncementRepository
+PlaceOrderController ..> PublishedAnnouncementRepository : publishedAnnouncementRepository
 PlaceOrderController ..> AuthenticationRepository : authenticationRepository
 PlaceOrderController ..> OfferRepository : offerRepository
+PlaceOrderController ..> UserRepository : userRepository
 Repositories --> Repositories : instance
-Repositories --> PublishedAnnouncemtRepository
+Repositories --> PublishedAnnouncementRepository
 Repositories --> AuthenticationRepository
 Repositories --> OfferRepository
+Repositories --> UserRepository
 OfferRepository --> Offer
-PublishedAnnouncemtRepository --> Business
+PublishedAnnouncementRepository --> Announcement
 
 Business <|-- Rent
 Business "1" -- "1" Property : has >
@@ -223,7 +250,7 @@ Agent "1" -- "*" Offer : receives >
 Offer "*" -up- "1" Client : sends <
 
 Announcement "1" -- "1" Property : has >
-Announcement "1" -- "1" Business : has >
+Announcement "1" --- "1" Business : has >
 
 Property <|-- Residence
 Property "1" -- "1..30" Photos : has >

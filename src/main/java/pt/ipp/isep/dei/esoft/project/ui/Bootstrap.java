@@ -125,7 +125,7 @@ public class Bootstrap {
         strings1.add("https://i.maxwork.pt/l-view/listings/12291/6528121/19597d8c-a2f8-44d5-85b9-cdfddc6c673b.jpg");
 
         Residence residence1 = new Residence(273, 234, 13,  123, 123, equipment1, new Photos("https://i.maxwork.pt/l-view/listings/12325/6516582/f608e960-5797-4a79-8232-8b46739fb035.jpg"),address1);
-        Residence residence2 = new Residence(21373, 212334, 1,  123, 123, equipment3, new Photos(strings1),address1);
+        Residence residence2 = new Residence(21373, 212334, 1,  123, 123, equipment3, new Photos(strings1),address2);
         
         PropertyType propertyType1 = new PropertyType("House");
         PropertyType propertyType2 = new PropertyType("Appartment");

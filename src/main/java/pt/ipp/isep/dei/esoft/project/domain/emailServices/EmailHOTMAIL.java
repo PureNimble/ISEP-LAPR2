@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain.emailServices;
 
-public class EmailHOTMAIL implements EmailDomainValidator {
-    @Override
+public class EmailHOTMAIL {
     public boolean isValid(String email) {
         String domain = getEmailDomain(email);
         return domain.equals("hotmail.com");

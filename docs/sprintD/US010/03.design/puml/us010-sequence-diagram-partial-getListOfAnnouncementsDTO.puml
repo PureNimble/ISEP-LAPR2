@@ -1,0 +1,82 @@
+@startuml
+
+title Sequence Diagram Partial - Get List Of Announcements Using DTO
+
+participant ":PlaceOfferController" as Controller
+participant ":XMapper" as XMapper
+participant "announcementListDTO:List<AnnouncementDto>" as ListPublishAnnouncement
+participant "announcementDto:AnnouncementDto" as AnnouncementDto
+
+autonumber 19
+
+activate Controller
+
+Controller -> XMapper : toDto(listOfProperties)
+activate XMapper
+
+Group Get Announcement List Using DTO
+
+XMapper -> ListPublishAnnouncement**: create()
+
+    loop
+
+    XMapper -> ListPublishAnnouncement: date = getDate()
+    activate ListPublishAnnouncement
+
+    XMapper -[hidden]> ListPublishAnnouncement
+    deactivate ListPublishAnnouncement
+
+    XMapper -> ListPublishAnnouncement: property = getProperty()
+    activate ListPublishAnnouncement
+
+    XMapper -[hidden]> ListPublishAnnouncement
+    deactivate ListPublishAnnouncement
+
+    XMapper -> ListPublishAnnouncement: typeOfBusiness = getTypeOfBusiness()
+    activate ListPublishAnnouncement
+
+    XMapper -[hidden]> ListPublishAnnouncement
+    deactivate ListPublishAnnouncement
+
+    XMapper -> ListPublishAnnouncement: propertyType = getPropertyType()
+    activate ListPublishAnnouncement
+
+    XMapper -[hidden]> ListPublishAnnouncement
+    deactivate ListPublishAnnouncement
+
+    XMapper -> ListPublishAnnouncement: business = getBusiness()
+    activate ListPublishAnnouncement
+
+    XMapper -[hidden]> ListPublishAnnouncement
+    deactivate ListPublishAnnouncement
+
+    XMapper -> ListPublishAnnouncement :agent = getAgent()
+    activate ListPublishAnnouncement
+
+    XMapper -[hidden]> ListPublishAnnouncement
+    deactivate ListPublishAnnouncement
+
+    XMapper -> ListPublishAnnouncement: durationOfContract = getDurationOfContract()
+    activate ListPublishAnnouncement
+
+    XMapper -[hidden]> ListPublishAnnouncement
+    deactivate ListPublishAnnouncement
+
+    XMapper -> XMapper : propertiesDto = toDto(agent,property,typeOfBusiness,propertyType,business,date,durationOfContract)
+    activate XMapper
+
+    deactivate XMapper
+
+    XMapper --> AnnouncementDto**: create(...)
+
+    XMapper -> ListPublishAnnouncement: add(propertieDTO)
+    activate ListPublishAnnouncement
+
+    deactivate ListPublishAnnouncement
+    end
+
+end
+
+XMapper --> Controller : listOfPropertiesDTO
+deactivate XMapper
+@enduml
