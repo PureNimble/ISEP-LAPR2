@@ -7,7 +7,7 @@ participant "offerRepository\nOfferRepository" as OfferRepository
 
 autonumber  26
 
-Group getDealsByDescendingArea
+Group Get Deals By Descending Area Using Bubble Sort
 
 activate ListDealsController
 
@@ -23,7 +23,7 @@ activate ListDealsController
                     PLAT --> ListDealsController: offerRepository
                 deactivate PLAT
 
-                ListDealsController -> OfferRepository : getDealsByDescendingArea()
+                ListDealsController -> OfferRepository : getDealsByDescendingAreaBubbleSort()
                 activate OfferRepository
 
                     OfferRepository --> ListDealsController : offersListMade

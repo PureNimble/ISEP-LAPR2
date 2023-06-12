@@ -77,7 +77,7 @@
                   <Font name="System Bold Italic" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="dateLabel" layoutX="104.0" layoutY="343.0" prefHeight="17.0" prefWidth="377.0" text="Label">
+            <Label fx:id="dateLabel" layoutX="150.0" layoutY="343.0" prefHeight="17.0" prefWidth="377.0" text="Label">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>

@@ -64,13 +64,6 @@ Basement
 Inhabitable Loft
 }
 
-class Person {
-Name
-Email
-Phone Number
-Tax Number
-Passport Number
-}
 
 class Photos {
 URI

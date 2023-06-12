@@ -1,20 +1,22 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
+
 participant ":ListDealsController" as ListDealsController
 participant ":OfferMapper" as OfferMapper
 participant "listOfferDTO:List<OfferDTO>" as ListOfferDto
 participant "listOffer:List<Offer>" as ListOffer
 participant "offerDto:OfferDto" as OfferDto
 
-autonumber 12
+
+autonumber 32
 
 activate ListDealsController
 
 
 ListDealsController --> OfferMapper : toDto(offersListMade)
                 activate OfferMapper
-Group Get Dto Deals List By Ascending Area
+Group Get DTO Deals
 
 
                 OfferMapper -> ListOfferDto** : create(...)
