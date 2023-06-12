@@ -4,16 +4,15 @@ import pt.ipp.isep.dei.esoft.project.application.controller.PublishAnnouncementC
 import pt.ipp.isep.dei.esoft.project.application.controller.SendMessageController;
 import pt.ipp.isep.dei.esoft.project.domain.Message;
 import pt.ipp.isep.dei.esoft.project.domain.MessageState;
-import pt.ipp.isep.dei.esoft.project.domain.Property;
 import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 /**
@@ -79,7 +78,7 @@ public class    SendMessageUI implements Runnable {
 
     private PublishedAnnouncement requestChooseProperty() {
         Scanner input = new Scanner(System.in);
-        List<PublishedAnnouncement> publishedAnnouncements = controllerPublishAnnouncement.getPublishedAnnouncementsDesc();
+        List<PublishedAnnouncement> publishedAnnouncements = controllerPublishAnnouncement.getAvailablePublishedAnnouncementsDesc();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < publishedAnnouncements.size(); i++) {
             sb.append(i + 1 + " - ");
@@ -89,22 +88,19 @@ public class    SendMessageUI implements Runnable {
         System.out.println(sb);
         int index;
         do {
-            do {
-                try {
-                    System.out.println("Choose one of the properties above.");
-                    index = input.nextInt() - 1;
-                } catch (InputMismatchException e) {
-                    System.out.println("Invalid input. Please enter an integer value:");
-                    input.nextLine();
-                    index = -1;
-                }
-            } while (index < 0);
-
-            if (index > publishedAnnouncements.size() + 1) {
-                System.out.println(String.format("Invalid input. Please enter an value between 1 and %s:", publishedAnnouncements.size()));
+            
+            try {
+                System.out.println("Choose one of the properties above.");
                 index = input.nextInt() - 1;
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value");
+                input.nextLine();
+                index = -1;
             }
-        } while (index < 0);
+
+            if (index > publishedAnnouncements.size() - 1) System.out.println(String.format("Invalid input. Please enter an value between 1 and %s", publishedAnnouncements.size()));
+
+        } while (index < 0 || index > publishedAnnouncements.size() - 1);
         return publishedAnnouncements.get(index);
     }
 
@@ -285,6 +281,9 @@ public class    SendMessageUI implements Runnable {
 
     private void submitData(String message, String clientName, long clientsPhoneNumber, Date dateOfVisit,
                             int initialTime, int endTime, PublishedAnnouncement announcement, MessageState messageState) {
-        controller.createNewMessageToAgent(clientName, message, clientsPhoneNumber, dateOfVisit, initialTime, endTime, announcement, messageState);
+        Optional<Message> receivedMessage = controller.createNewMessageToAgent(clientName, message, clientsPhoneNumber, dateOfVisit, initialTime, endTime, announcement, messageState);
+        if (receivedMessage.isEmpty()) {
+            System.out.println("Could not send message, a visit is already scheduled for the same hours.");
+        } else System.out.println("\n\nMessage sent with success!\n\n");
     }
 }

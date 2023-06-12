@@ -69,9 +69,9 @@ public class DisplayPropertiesController {
      *
      * @return the published announcements desc
      */
-    public List <PublishedAnnouncement> getPublishedAnnouncementsDesc() {
+    public List <PublishedAnnouncement> getAvailablePublishedAnnouncementsDesc() {
         PublishedAnnouncementRepository publishedAnnouncementRepository = getPublishedAnnouncementRepository();
-        return publishedAnnouncementRepository.getPublishedAnnouncementsDesc();
+        return publishedAnnouncementRepository.getAvailablePublishedAnnouncementsDesc();
     }
 
     /**
@@ -82,9 +82,9 @@ public class DisplayPropertiesController {
      * @param numberOfRooms the number of rooms
      * @return the list
      */
-    public List<PublishedAnnouncement> filterList(String propertyType, String businessType, int numberOfRooms) {
+    public List<PublishedAnnouncement> filterList(String propertyType, String businessType, int numberOfRooms, List<PublishedAnnouncement> publishedAnnouncements) {
         PublishedAnnouncementRepository publishedAnnouncementRepository = getPublishedAnnouncementRepository();
-        return publishedAnnouncementRepository.filterList(propertyType, businessType, numberOfRooms);
+        return publishedAnnouncementRepository.filterList(propertyType, businessType, numberOfRooms, publishedAnnouncements);
     }
 
     /**

@@ -477,21 +477,23 @@ public class PublishedAnnouncementRepository {
      * @param numberOfRooms the number of rooms
      * @return the list
      */
-    public List<PublishedAnnouncement> filterList(String propertyType, String businessType, int numberOfRooms) {
+    public List<PublishedAnnouncement> filterList(String propertyType, String businessType, int numberOfRooms, List<PublishedAnnouncement> publishedAnnouncements) {
         List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();
 
         for (PublishedAnnouncement publishedAnnouncement : publishedAnnouncements) {
             List<PublishedAnnouncement> tempList = new ArrayList<PublishedAnnouncement>();
-            if (publishedAnnouncement.getPropertyType().getDesignation().equalsIgnoreCase(propertyType)) {
-                if (publishedAnnouncement.getTypeOfBusiness().getTypeOfBusiness().equalsIgnoreCase(businessType)) {
-                    if (propertyType != "Land") {
-                        if (publishedAnnouncement.getProperty().getNumberOfBedrooms() == numberOfRooms) {
-                            tempList.add(publishedAnnouncement);
-                        }
-                    } else tempList.add(publishedAnnouncement);
+            if (publishedAnnouncement.getAnnouncementState().equals(AnnouncementState.available)) {
+                if (publishedAnnouncement.getPropertyType().getDesignation().equalsIgnoreCase(propertyType)) {
+                    if (publishedAnnouncement.getTypeOfBusiness().getTypeOfBusiness().equalsIgnoreCase(businessType)) {
+                        if (propertyType != "Land") {
+                            if (publishedAnnouncement.getProperty().getNumberOfBedrooms() == numberOfRooms) {
+                                tempList.add(publishedAnnouncement);
+                            }
+                        } else tempList.add(publishedAnnouncement);
+                    }
                 }
+                resultList.addAll(tempList);
             }
-            resultList.addAll(tempList);
         }
         return resultList;
     }

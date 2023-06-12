@@ -60,6 +60,7 @@ public class OfferDecisionUI implements Runnable{
                     selectedAnnouncementIndex = input.nextInt() - 1;
                 } catch (InputMismatchException e) {
                     System.out.println("Invalid input. Please enter an integer value:");
+                    input.nextLine();
                 }
             } while (selectedAnnouncementIndex < 0 || selectedAnnouncementIndex > announcementOffersList.size() - 1);
             AnnouncementOffersDTO selectedAnnouncement = announcementOffersList.get(selectedAnnouncementIndex);

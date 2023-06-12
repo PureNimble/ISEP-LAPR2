@@ -40,11 +40,6 @@ public class PlaceOrderUI implements Runnable {
         Client client = controller.getClientEmail();
         String clientName = requestClientName();
 
-        if (client == null) {
-            System.out.println("Invalid client. Please make sure you are logged in.");
-            return;
-        }
-
         List<Offer> pendingOffers = controller.getPendingOffersByClientEmail(client.getEmail());
         if (!pendingOffers.isEmpty()) {
             System.out.println("Please wait for your previous offer to be accepted or denied before making another one.");
@@ -67,7 +62,7 @@ public class PlaceOrderUI implements Runnable {
      */
     private PublishedAnnouncement requestChooseProperty() {
         Scanner input = new Scanner(System.in);
-        List<PublishedAnnouncement> publishedAnnouncements = publishAnnouncementController.getPublishedAnnouncementsDesc();
+        List<PublishedAnnouncement> publishedAnnouncements = publishAnnouncementController.getAvailablePublishedAnnouncementsDesc();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < publishedAnnouncements.size(); i++) {
             sb.append(i + 1 + " - ");
@@ -77,22 +72,19 @@ public class PlaceOrderUI implements Runnable {
         System.out.println(sb);
         int index;
         do {
-            do {
-                try {
-                    System.out.println("Choose one of the properties above. ");
-                    index = input.nextInt() - 1;
-                } catch (InputMismatchException e) {
-                    System.out.println("Invalid input. Please enter an integer value: ");
-                    input.nextLine();
-                    index = -1;
-                }
-            } while (index < 0);
-
-            if (index > publishedAnnouncements.size() + 1) {
-                System.out.println(String.format("Invalid input. Please enter an value between 1 and %s: ", publishedAnnouncements.size()));
+            
+            try {
+                System.out.println("Choose one of the properties above.");
                 index = input.nextInt() - 1;
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value");
+                input.nextLine();
+                index = -1;
             }
-        } while (index < 0);
+
+            if (index > publishedAnnouncements.size() - 1) System.out.println(String.format("Invalid input. Please enter an value between 1 and %s", publishedAnnouncements.size()));
+
+        } while (index < 0 || index > publishedAnnouncements.size() - 1);
         return publishedAnnouncements.get(index);
     }
     /**

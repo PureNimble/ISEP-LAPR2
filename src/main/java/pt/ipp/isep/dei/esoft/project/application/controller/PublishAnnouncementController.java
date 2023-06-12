@@ -415,9 +415,9 @@ public class PublishAnnouncementController {
      *
      * @return the published announcements desc
      */
-    public List<PublishedAnnouncement> getPublishedAnnouncementsDesc() {
+    public List<PublishedAnnouncement> getAvailablePublishedAnnouncementsDesc() {
         PublishedAnnouncementRepository publishedAnnouncementRepository = getPublishedAnnouncementRepository();
-        return publishedAnnouncementRepository.getPublishedAnnouncementsDesc();
+        return publishedAnnouncementRepository.getAvailablePublishedAnnouncementsDesc();
     }
 
     /**

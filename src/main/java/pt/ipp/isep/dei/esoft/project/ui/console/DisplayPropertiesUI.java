@@ -53,7 +53,7 @@ public class DisplayPropertiesUI implements Runnable {
     public void run() {
         System.out.println("\nList of Properties (Sorted By most recent):");
 
-        var filteredList = controller.getPublishedAnnouncementsDesc();
+        var filteredList = controller.getAvailablePublishedAnnouncementsDesc();
 
         for (int i = 0; i < filteredList.size(); i++){
             PublishedAnnouncement publishedAnnouncement = filteredList.get(i);
@@ -66,7 +66,7 @@ public class DisplayPropertiesUI implements Runnable {
             System.out.println("\nDo you wish to filter the list?");
             if (acceptOrDecline() == true) {
                 filterCriteria();
-                filteredList = controller.filterList(propertyType, businessType, numberOfRooms);
+                filteredList = controller.filterList(propertyType, businessType, numberOfRooms, filteredList);
                 if(filteredList.isEmpty()){
                     System.out.println("\nThere are no properties matching those requirements");
                 } else {

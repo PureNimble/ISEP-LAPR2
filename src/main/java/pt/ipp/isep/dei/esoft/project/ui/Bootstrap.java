@@ -20,7 +20,6 @@ public class Bootstrap {
         addUsers();
         addStates();
         addStores();
-        addUsers();
         addPropertyTypes();
         addComission();
         addTypeOfBusiness();
@@ -241,7 +240,13 @@ public class Bootstrap {
 
         authenticationRepository.addUserWithRole("Agent", "agent@this.app", "agent", AuthenticationController.ROLE_AGENT);
 
+        authenticationRepository.addUserWithRole("Client", "client@this.app", "client", AuthenticationController.ROLE_CLIENT);
         authenticationRepository.addUserWithRole("Owner", "owner@this.app", "owner", AuthenticationController.ROLE_CLIENT);
+        authenticationRepository.addUserWithRole("Pedro", "pedro@gmail.com", "pedro", AuthenticationController.ROLE_CLIENT);
+        authenticationRepository.addUserWithRole("Luna", "luna@outlook.com", "luna", AuthenticationController.ROLE_CLIENT);
+        authenticationRepository.addUserWithRole("Vasco", "vasco@yahoo.com", "vasco", AuthenticationController.ROLE_CLIENT);
+        authenticationRepository.addUserWithRole("Rafael", "rafael@yopmail.com", "rafael", AuthenticationController.ROLE_CLIENT);
+        authenticationRepository.addUserWithRole("Diogo", "Diogo@sapo.pt", "diogo", AuthenticationController.ROLE_CLIENT);
 
         authenticationRepository.addUserWithRole("Agent 02","agent2@this.app","agent2", AuthenticationController.ROLE_AGENT);
 
@@ -253,8 +258,7 @@ public class Bootstrap {
 
         authenticationRepository.addUserWithRole("Agent 06","agent6@this.app","agent6", AuthenticationController.ROLE_AGENT);
 
-        authenticationRepository.addUserWithRole("Client", "client@this.app", "client", AuthenticationController.ROLE_CLIENT);
-
+        userRepository.add(new Client("owner@this.app", 143256743, 222222222,"Owner",new Address("Test Avenue", 12345, new District("TEST"), new City("TEST"), new State("TEST")), 1234567891));
         userRepository.add(new Client("client@this.app", 111111111, 111111111,"Client",new Address("Test Avenue", 00000, new District("TEST"), new City("TEST"), new State("TEST")), 1234567890));
         userRepository.add(new Client("pedro@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890));
         userRepository.add(new Client("luna@outlook.com", 234567890, 234567890, "Luna", new Address("200 Santa Monica Pier", 90401, new District("Santa Monica"), new City("Los Angeles"), new State("California")), 1029384756));

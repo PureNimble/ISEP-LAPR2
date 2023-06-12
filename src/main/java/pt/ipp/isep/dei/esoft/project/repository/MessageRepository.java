@@ -26,11 +26,9 @@ public class MessageRepository {
         if (validateMessage(message)) {
            newMessage = Optional.of(message);
            operationSuccess = messages.add(newMessage.get());
-            System.out.println("\n\nMessage sent with success!\n\n");
         }
 
         if (!operationSuccess) {
-            System.out.println("Could not send message, a visit is already scheduled for the same hours.");
             newMessage = Optional.empty();
         }
         return newMessage;
