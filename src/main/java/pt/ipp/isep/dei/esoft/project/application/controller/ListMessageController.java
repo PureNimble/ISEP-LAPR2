@@ -141,12 +141,12 @@ public class ListMessageController {
         return messageMapper.toDto(getMessagesByAscendingDate());
     }
 
-    public boolean isValidEmailDomain(String email) {
+    public static boolean isValidEmailDomain(String email) {
         String domain = getEmailDomain(email);
         return domain.equals("isep.ipp.pt") || domain.equals("gmail.com") || domain.equals("hotmail.com") || domain.equals("yahoo.com");
     }
 
-    private String getEmailDomain(String email) {
+    private static String getEmailDomain(String email) {
         int atIndex = email.lastIndexOf("@");
         if (atIndex != -1) {
             return email.substring(atIndex + 1);
@@ -158,5 +158,6 @@ public class ListMessageController {
         MessageRepository messageRepository = getMessageRepository();
         messageRepository.removeMessage(message);
     }
+
 
 }

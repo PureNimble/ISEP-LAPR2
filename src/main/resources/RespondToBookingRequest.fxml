@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.RespondToBookingRequestGUI">
+
+    <Label alignment="CENTER" layoutX="183.0" layoutY="35.0" prefHeight="26.0" prefWidth="234.0" text="Respond to Booking Request">
+        <font>
+            <Font size="19.0" />
+        </font>
+    </Label>
+
+    <VBox layoutY="80.0" prefHeight="323.0" prefWidth="594.0" spacing="10">
+        <Label text="Client Email:" />
+        <TextField fx:id="nameField" prefHeight="0.0" prefWidth="639.0" />
+        <Label text="Response:" />
+        <RadioButton fx:id="acceptRadioButton" text="Accept" />
+        <RadioButton fx:id="declineRadioButton" text="Decline" />
+        <Label text="Reason for Decline:" />
+        <TextArea fx:id="reasonTextArea" disable="true" />
+        <HBox alignment="CENTER" spacing="10">
+            <Button fx:id="submitButton" onAction="#handleSubmitButtonPressed" text="Submit" />
+            <Button fx:id="btReturn" text="Return" onAction="#onBtReturn"/>
+        </HBox>
+    </VBox>
+
+</AnchorPane>

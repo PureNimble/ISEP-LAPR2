@@ -12,7 +12,7 @@
          <children>
             <AnchorPane layoutX="53.0" prefHeight="400.0" prefWidth="200.0" style="-fx-background-color: gray;">
                <children>
-                  <Button layoutY="183.0" mnemonicParsing="false" onMouseClicked="#listMessages" prefHeight="35.0" prefWidth="204.0" style="-fx-background-color: transparent;" text="See List Of Messages" textAlignment="CENTER">
+                  <Button layoutY="182.0" mnemonicParsing="false" onMouseClicked="#listMessages" prefHeight="37.0" prefWidth="210.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="See List Of Messages" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold Italic" size="18.0" />
                      </font>
