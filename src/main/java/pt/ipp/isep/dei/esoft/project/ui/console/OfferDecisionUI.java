@@ -128,11 +128,14 @@ public class OfferDecisionUI implements Runnable{
 
     private void sendEmail(Offer offer){
         String decision = "";
+        String finalMessage = "";
         if(offer.getOfferState().equals(OfferState.accepted) && offer.getPublishedAnnouncement().getAnnouncementState().equals(AnnouncementState.sold)) {
             decision = "accepted";
+            finalMessage = "Please contact us in order to finish all the paperwork and so that you can start this new chapter of your life as soon as possible.";
         }
         else if(offer.getOfferState().equals(OfferState.rejected) && offer.getPublishedAnnouncement().getAnnouncementState().equals(AnnouncementState.available)){
             decision = "rejected";
+            finalMessage = "Please contact us if you have any doubts.";
         }
         SendEmail sendEmail = new SendEmail();
         String toWriteFile = "";
@@ -146,7 +149,7 @@ public class OfferDecisionUI implements Runnable{
                 concat(",\n\nYour offer for the property located in ").
                 concat(offer.getPublishedAnnouncement().getProperty().getAddress().toString()).
                 concat(" has been " + decision + ".").
-                concat("\nPlease contact us in order to finish all the paperwork and so that you can start this new chapter of your life as soon as possible.\n\nBest regards,\nReal Estate USA");
+                concat("\n" + finalMessage + "\n\nBest regards,\nReal Estate USA");
 
 
         //METER O OWNER ( NUEMERO DE TELEFONE E EMAIL NA PROPRIEDADE)
