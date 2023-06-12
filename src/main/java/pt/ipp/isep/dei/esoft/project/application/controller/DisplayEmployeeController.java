@@ -113,11 +113,11 @@ public class DisplayEmployeeController {
      */
     public void getStoresProperty() {
         StoreRepository storeRepository = getStoreRepository();
-        EmployeeRepository employeeRepository = getEmployeeRepository();
+        //EmployeeRepository employeeRepository = getEmployeeRepository();
         PublishedAnnouncementRepository announcementRepository = getPublishedAnnouncementRepository();
         List<PublishedAnnouncement> announcementList = announcementRepository.getPublishedAnnouncements();
-        List<Employee> employeeList = employeeRepository.getEmployees();
-        storeRepository.getStoresProperty(announcementList, employeeList);
+        //List<Employee> employeeList = employeeRepository.getEmployees();
+        storeRepository.getStoresProperty(announcementList);
     }
 
     /**

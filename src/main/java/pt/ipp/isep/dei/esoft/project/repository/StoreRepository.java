@@ -83,17 +83,15 @@ public class StoreRepository {
      * @param announcementList the announcement list
      * @param employees        the employees
      */
-    public void getStoresProperty(List<PublishedAnnouncement> announcementList, List<Employee> employees) {
+    public void getStoresProperty(List<PublishedAnnouncement> publishedAnnouncements) {
 
         List<Store> storesList = getStores();
         int counter = 0;
         for (Store stores : storesList) {
-            for (Employee employee : employees) {
-                if (employee.getStore().equals(stores)) {
-                    for (PublishedAnnouncement publishedAnnouncement : announcementList) {
-                        if (publishedAnnouncement.getAgent().equals(employee)) {
-                            counter++;
-                        }
+            for (PublishedAnnouncement publishedAnnouncement : publishedAnnouncements) {
+                if (publishedAnnouncement.getAnnouncementState().equals(AnnouncementState.available)) {
+                    if (publishedAnnouncement.getStore().equals(stores)) {
+                        counter++;
                     }
                 }
             }

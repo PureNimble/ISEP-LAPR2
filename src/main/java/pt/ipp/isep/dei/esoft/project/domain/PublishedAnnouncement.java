@@ -23,6 +23,8 @@ public class PublishedAnnouncement {
 
     private AnnouncementState state;
 
+    private Store store;
+
     /**
      * Instantiates a new Published announcement.
      *
@@ -37,7 +39,7 @@ public class PublishedAnnouncement {
      * @param propertyID     the property id
      * @param state          the state
      */
-    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, Employee agent, Client client, int propertyID, AnnouncementState state) {
+    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, Employee agent, Client client, int propertyID, AnnouncementState state, Store store) {
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
         this.propertyType = propertyType;
@@ -48,6 +50,7 @@ public class PublishedAnnouncement {
         this.client = client;
         this.propertyID = propertyID;
         this.state = state;
+        this.store = store;
     }
 
     /**
@@ -65,7 +68,7 @@ public class PublishedAnnouncement {
      * @param propertyID         the property id
      * @param state              the state
      */
-    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent, Client client, int propertyID, AnnouncementState state) {
+    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent, Client client, int propertyID, AnnouncementState state, Store store) {
         this.date = date;
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
@@ -77,6 +80,7 @@ public class PublishedAnnouncement {
         this.client = client;
         this.propertyID = propertyID;
         this.state = state;
+        this.store = store;
     }
 
     /**
@@ -94,6 +98,7 @@ public class PublishedAnnouncement {
         this.business = announcementRequestDto.getBusiness();
         this.durationOfContract = announcementRequestDto.getDurationOfContract();
         this.comission = comission;
+        
     }
 
 
@@ -293,6 +298,14 @@ public class PublishedAnnouncement {
      */
     public void setAgent(Employee agent) {
         this.agent = agent;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     /**

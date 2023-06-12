@@ -34,6 +34,9 @@ public class DisplayEmployeeUI implements Runnable{
             for (Employee employee : storeEmployeeDTO.getEmployees()) {
                 System.out.println("\t" + employeeCount + " . " + storeEmployeeDTO.toStringEmployee(employee) + "\n");
                 employeeCount++;
+            }
+            if (employeeCount == 1) {
+                System.out.println("\tNo employees currently working at this store\n");
             }     
         }
     }
