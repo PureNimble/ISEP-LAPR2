@@ -1,18 +1,17 @@
-    package pt.ipp.isep.dei.esoft.project.domain.emailServices;
-    import java.util.regex.Pattern;
+package pt.ipp.isep.dei.esoft.project.domain.emailServices;
 
-    public class EmailGMAIL {
-
-        private static final String GMAIL_ADDRESS_REGEX = "^([a-zA-Z0-9]+[.-])*[a-zA-Z0-9]+@gmail\\.com$";
-
-        private String emailAddress;
-
-        public EmailGMAIL(String emailAddress) {
-            this.emailAddress = emailAddress;
-        }
-
-        public boolean isValidGmailAddress() {
-            Pattern pattern = Pattern.compile(GMAIL_ADDRESS_REGEX);
-            return pattern.matcher(emailAddress).matches();
-        }
+public class EmailGMAIL implements EmailDomainValidator {
+    @Override
+    public boolean isValid(String email) {
+        String domain = getEmailDomain(email);
+        return domain.equals("gmail.com");
     }
+
+    private String getEmailDomain(String email) {
+        int atIndex = email.lastIndexOf("@");
+        if (atIndex != -1) {
+            return email.substring(atIndex + 1);
+        }
+        throw new IllegalArgumentException("Invalid email address: " + email);
+    }
+}

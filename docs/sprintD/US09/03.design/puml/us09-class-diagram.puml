@@ -270,7 +270,7 @@ SendMessageController ...> ListOfPropertiesMapper
 ListOfPropertiesMapper....> PropertiesDTO
 
 MessageRepository -down-> Message
-Agent "1" -up- "*" Message : recives a >
+Agent "1" -- "*" Message : recives a >
 Message "1" -right- "*" PublishedAnnouncementRepository: has a <
 
 
@@ -293,11 +293,11 @@ Client "1"-right-"*" Message : sends a >
 
 
 
-Comission "*" -right-- "1" Agent: defines <
+Comission "*" --- "1" Agent: defines <
 Comission "1" -- "1" Business: contains <
-Property "1" - "1" Business: has a <
+
 Announcement "1" --- "1" Business: has >
-Announcement "1" --down- "1" Property: has a >
+Announcement "*" --down- "*" Property: advertises >
 Announcement "*" -up-- "1" Agent: publishes <
 Business <|--- Rent
 

@@ -41,6 +41,8 @@ public class AnnouncementRequestDto {
      */
     private String status;
 
+    private Client client;
+
     /**
      * Instantiates a new Announcement request dto.
      *
@@ -53,7 +55,7 @@ public class AnnouncementRequestDto {
      * @param durationOfContract the duration of contract
      * @param agent              the agent
      */
-    public AnnouncementRequestDto(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract, Employee agent) {
+    public AnnouncementRequestDto(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract, Employee agent, Client client) {
         this.date = date;
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
@@ -62,6 +64,7 @@ public class AnnouncementRequestDto {
         this.durationOfContract = durationOfContract;
         this.agent = agent;
         this.status = status;
+        this.client = client;
     }
 
 
@@ -76,7 +79,7 @@ public class AnnouncementRequestDto {
      * @param business       the business
      * @param agent          the agent
      */
-    public AnnouncementRequestDto(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business,Employee agent) {
+    public AnnouncementRequestDto(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business,Employee agent, Client client) {
         this.date = date;
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
@@ -84,6 +87,7 @@ public class AnnouncementRequestDto {
         this.business = business;
         this.agent = agent;
         this.status = status;
+        this.client = client;
     }
 
 
@@ -188,6 +192,14 @@ public class AnnouncementRequestDto {
      */
     public String getStatus() {
         return status;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     /**

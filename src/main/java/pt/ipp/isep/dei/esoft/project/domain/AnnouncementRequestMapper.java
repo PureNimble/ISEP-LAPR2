@@ -30,11 +30,12 @@ public class AnnouncementRequestMapper {
             Business business = announcementRequest.getBusiness();
             Date date = announcementRequest.getDate();
             String status = announcementRequest.getStatus();
+            Client client = announcementRequest.getClient();
             if (typeOfBusiness.getTypeOfBusiness().equals("Rent")) {
                 int durationOfContract = announcementRequest.getDurationOfContract();
-                announcementRequestDto = toDtoObject(status, agent, property, typeOfBusiness, propertyType, business, date, durationOfContract);
+                announcementRequestDto = toDtoObject(status, agent, property, typeOfBusiness, propertyType, business, date, durationOfContract, client);
             } else {
-                announcementRequestDto = toDtoObject(status, agent, property, typeOfBusiness, propertyType, business, date, 0);
+                announcementRequestDto = toDtoObject(status, agent, property, typeOfBusiness, propertyType, business, date, 0, client);
             }
 
 
@@ -61,14 +62,14 @@ public class AnnouncementRequestMapper {
      * @param durationOfContract the duration of contract
      * @return the announcement request dto
      */
-    public AnnouncementRequestDto toDtoObject(String status, Employee agent, Property property, TypeOfBusiness typeOfBusiness, PropertyType propertyType, Business business, Date date, int durationOfContract) {
+    public AnnouncementRequestDto toDtoObject(String status, Employee agent, Property property, TypeOfBusiness typeOfBusiness, PropertyType propertyType, Business business, Date date, int durationOfContract, Client client) {
 
         AnnouncementRequestDto announcementRequestDto;
 
         if (typeOfBusiness.getTypeOfBusiness().equals("Rent")) {
-            announcementRequestDto = new AnnouncementRequestDto(status, date, typeOfBusiness, property, propertyType, business, durationOfContract, agent);
+            announcementRequestDto = new AnnouncementRequestDto(status, date, typeOfBusiness, property, propertyType, business, durationOfContract, agent, client);
         } else {
-            announcementRequestDto = new AnnouncementRequestDto(status, date, typeOfBusiness, property, propertyType, business, agent);
+            announcementRequestDto = new AnnouncementRequestDto(status, date, typeOfBusiness, property, propertyType, business, agent, client);
         }
         return announcementRequestDto;
     }

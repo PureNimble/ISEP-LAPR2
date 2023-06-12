@@ -64,16 +64,16 @@ public class AnnouncementRequestRepository {
      * @param agent              the agent
      * @return An Optional containing the added AnnouncementRequest if the operation was successful, otherwise an empty Optional.
      */
-    public Optional<AnnouncementRequest> announcementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract, Employee agent) {
+    public Optional<AnnouncementRequest> announcementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract, Employee agent, Client client) {
 
         Optional<AnnouncementRequest> optionalValue = Optional.empty();
 
         AnnouncementRequest announcementRequest;
 
         if (property.toString().equals("Rent")) {
-            announcementRequest = new AnnouncementRequest("",date, typeOfBusiness, property, propertyType, business, durationOfContract, agent);
+            announcementRequest = new AnnouncementRequest("",date, typeOfBusiness, property, propertyType, business, durationOfContract, agent, client);
         } else {
-            announcementRequest = new AnnouncementRequest("",date, typeOfBusiness, property, propertyType, business, agent);
+            announcementRequest = new AnnouncementRequest("",date, typeOfBusiness, property, propertyType, business, agent, client);
         }
 
         if (addAnnouncementRequest(announcementRequest)) {
