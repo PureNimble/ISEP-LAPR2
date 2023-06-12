@@ -24,6 +24,8 @@ class ListMessageController {
 }
 
 class ListMessageUI {
++ run()
+-parseDate(String dateString)
 }
 
 class Repositories {
@@ -273,6 +275,11 @@ class BubbleSort{
 +List<T> sort(List<T> arrayToSort)
 }
 
+class Comission {
+ Value
+ }
+
+
 class MergeSort{
 -List<Message> arrayToSort
 
@@ -307,12 +314,13 @@ EmployeeRepository -down-> Employee
  Property "1" -up "1..30" Photos: has >
  SunExposure "1" -up- "*" House: contains <
  AvailableEquipment "*" -left- "1" Residence: contains <
- Property "1" --- "1" Business: has a <
+ PublishedAnnouncement "*" --- "*" Property: advertises >
 PublishedAnnouncement "1" --- "1" Business: has a <
   Business <|--- Rent
   Message "*" --- "1" PublishedAnnouncement: can have a <
     Agent "1" --- "*" PublishedAnnouncement: publishes an >
     Employee "*" -right-- "1" Role: has a >
+    Comission "1" -- "1" Business : contains <
 
 
 State "*"-left- "1" Address: has a  <

@@ -12,10 +12,7 @@ import pt.isep.lei.esoft.auth.domain.model.Email;
 import pt.isep.lei.esoft.auth.domain.model.Password;
 import pt.isep.lei.esoft.auth.domain.model.User;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -56,9 +53,9 @@ class PublishedAnnouncementRequestControllerTest {
 
     @BeforeEach
     void setUpPropertys() {
-        house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South");
-        land = new Property(5, 1000);
-        appartment = new Residence(20, 150, 3, 2, 1, new AvailableEquipment("air conditioning"));
+        house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South", new Photos("pjh"), address2);
+        land = new Property(5, 1000, new Photos("urlll"),address2);
+        appartment = new Residence(20, 150, 3, 2, 1, new AvailableEquipment("air conditioning"), new Photos("urllll"), address2);
         setUpPropertyTypes();
         setUpBusiness();
         setUpAddress();
@@ -116,14 +113,38 @@ class PublishedAnnouncementRequestControllerTest {
 
     @BeforeEach
     void setUpStore() {
-        store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        store = new Store("Test Store", 1, address2, 5551234, "test@store.com",5);
     }
 
 
     @BeforeEach
     void setUpPublishedAnnouncements() {
-        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, house, propertyType, comission, business);
-        publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, land, propertyType, comission, business);
+        Comission comission1 = new Comission(25.00);
+        Role role = new Role("Agent");
+        AvailableEquipment equipment1 = new AvailableEquipment("Air Conditioning");
+        Address address1 = new Address("3655 S Las Vegas Blvd", 892109, new District("Paradise"), new City("Las Vegas"), new State("Nevada"));
+        Property property1 = new Property(274,2576, new Photos("url"),address1);
+        Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 0);
+        Employee agent1 = new Employee("agent@this.app", 123456789, 987654321, "Miguel", 1234567890L, store1, (List<Role>) role, address1);
+        PropertyType propertyType1 = new PropertyType("House");
+        TypeOfBusiness typeOfBusiness1 = new TypeOfBusiness("Sale");
+        Business business1 = new Business(200000);
+        Date date1 = new GregorianCalendar(2023, Calendar.JUNE, 20).getTime();
+        Client client1 = new Client("pedro@isep.ipp.pt", 123456789, 987654321, "Pedro", address1, 1234567890);
+        AnnouncementState state1 = AnnouncementState.available;
+       publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType1, comission1, business1, agent1, client1, 1, state1, store1);
+
+        Comission comission2 = new Comission(26.00);
+        AvailableEquipment equipment2 = new AvailableEquipment("Air Frosting");
+        Address address2 = new Address("Las Vegas Blvd", 892100, new District("gambas"), new City("portooo"), new State("Neves"));
+        Property property2 = new Property(277,2576, new Photos("url"),address1);
+        Employee agent2 = new Employee("age@this.app", 123446789, 987658321, "Miguelito", 1234587890L, store1, (List<Role>) role, address1);
+        Business business2 = new Business(2000);
+        Date date2 = new GregorianCalendar(2024, Calendar.JUNE, 20).getTime();
+        Client client2 = new Client("luna@isep.ipp.pt", 123450789, 987654021, "Luna", address2, 1234567090);
+        publishedAnnouncement = new PublishedAnnouncement(date2, typeOfBusiness1, property2, propertyType1, comission2, business2, agent2, client2, 1, state1, store1);
+
+
 
     }
 
