@@ -66,7 +66,19 @@ public class RespondToBookingRequestGUI implements Runnable,Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Add initialization logic here
-        submitButton.setOnAction(event -> handleSubmitButtonPressed());
+        submitButton.setOnAction(event -> {
+            if (acceptRadioButton.isSelected() || declineRadioButton.isSelected()) {
+                handleSubmitButtonPressed();
+            } else {
+                // Display an error message or perform any other desired action
+                // when neither radio button is selected
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Selection Required");
+                alert.setHeaderText(null);
+                alert.setContentText("Please select either Accept or Decline.");
+                alert.showAndWait();
+            }
+        });
         responseToggleGroup = new ToggleGroup();
         acceptRadioButton.setToggleGroup(responseToggleGroup);
         declineRadioButton.setToggleGroup(responseToggleGroup);

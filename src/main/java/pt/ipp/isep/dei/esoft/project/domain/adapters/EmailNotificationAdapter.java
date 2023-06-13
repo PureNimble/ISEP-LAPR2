@@ -13,6 +13,9 @@ import java.util.Properties;
 
 public class EmailNotificationAdapter implements EmailNotification {
 
+    static MessageRepository messageRepository = null;
+
+
     public static void sendEmail(String email, String subject, String body) {
         String fileName = "EmailNotification - " + email + ".txt";
         Properties properties = new Properties();
@@ -35,24 +38,23 @@ public class EmailNotificationAdapter implements EmailNotification {
         }
     }
     public static boolean isValidEmailDomain(String email) {
-        EmailDomainValidator[] validators = {
-                new EmailDEI(),
-                new EmailGMAIL(),
-                new EmailHOTMAIL(),
-                new EmailYAHOO()
-        };
+        return isEmailDomainValid(email);
+    }
 
-        for (EmailDomainValidator validator : validators) {
-            try {
-                if (validator.isValid(email)) {
-                    return true;
-                }
-            } catch (IllegalArgumentException e) {
-                return false;
-            }
+    protected static boolean isEmailDomainValid(String email) {
+        EmailDEI emailDEI = new EmailDEI();
+        EmailGMAIL emailGMAIL = new EmailGMAIL();
+        EmailHOTMAIL emailHOTMAIL = new EmailHOTMAIL();
+        EmailYAHOO emailYAHOO = new EmailYAHOO();
+
+        try {
+            return emailDEI.isValid(email) ||
+                    emailGMAIL.isValid(email) ||
+                    emailHOTMAIL.isValid(email) ||
+                    emailYAHOO.isValid(email);
+        } catch (IllegalArgumentException e) {
+            return false;
         }
-
-        return false;
     }
 
     public static void removeBookingRequest(Message message) {
@@ -68,9 +70,5 @@ public class EmailNotificationAdapter implements EmailNotification {
         }
         return messageRepository;
     }
-
-    static MessageRepository messageRepository = null;
-
-
 
 }

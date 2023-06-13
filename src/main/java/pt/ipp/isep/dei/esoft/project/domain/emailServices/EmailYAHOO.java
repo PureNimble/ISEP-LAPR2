@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain.emailServices;
 
-public class EmailYAHOO implements EmailDomainValidator {
-    @Override
+public class EmailYAHOO {
     public boolean isValid(String email) {
         String domain = getEmailDomain(email);
         return domain.equals("yahoo.com");

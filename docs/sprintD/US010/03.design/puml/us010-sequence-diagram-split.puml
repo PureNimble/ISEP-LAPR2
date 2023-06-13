@@ -20,10 +20,10 @@ participant "userRepository\n:UserRepository" as UserRepository
 participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as PublishedAnnouncementRepository
 participant "offerRepository\n:OfferRepository" as OfferRepository
 participant ":XMapper" as XMapper
-participant "listOfPropertiesDTO:List<Properties>" as listProperties
-participant "propertiesDto:PropertiesDto" as PropertiesDto
-participant "offerDto:OfferDTO" as offerDto
+participant "announcementListDTO:List<AnnouncementDto>" as ListPublishAnnouncement
+participant "announcementDto:AnnouncementDto" as AnnouncementDto
 participant "Offer" as Offer
+participant "offerDto:OfferDTO" as offerDto
 
 activate Client
 
@@ -52,7 +52,7 @@ activate Controller
 
     ref over Controller
 
-    Get List Of Properties Using DTO
+    Get List Of Announcements Using DTO
 
     end
 
@@ -72,7 +72,7 @@ deactivate System
 Client -> System : submits data
 activate System
 
-System -> Controller : createOffer(propertyDescription)
+System -> Controller : createOffer(propertyDescription, name, orderAmount, client)
 activate Controller
 
 
@@ -82,7 +82,7 @@ activate Controller
 
     end
 
-Controller -> OfferRepository : createOffer(property)
+Controller -> OfferRepository : createOffer(property, name, orderAmount, client)
 activate OfferRepository
 
     ref over OfferRepository

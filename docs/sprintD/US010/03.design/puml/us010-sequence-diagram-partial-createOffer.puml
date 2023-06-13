@@ -10,11 +10,11 @@ participant "offerRepository\n:OfferRepository" as OfferRepository
 participant "Offer" as Offer
 participant "offerDto:OfferDTO" as offerDto
 
-autonumber 51
+autonumber 50
 
 activate OfferRepository
 
-OfferRepository -> Offer** : createOffer(property)
+OfferRepository -> Offer** : createOffer(property, name, orderAmount, client)
 activate Offer
 
 Offer -> offerDto : name = getName()
@@ -38,6 +38,8 @@ activate offerDto
 deactivate offerDto
 
 deactivate Offer
+
+
 
 OfferRepository -> OfferRepository : addOffer(offer)
 
