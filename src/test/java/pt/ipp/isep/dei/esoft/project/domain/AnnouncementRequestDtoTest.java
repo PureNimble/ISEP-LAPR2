@@ -40,9 +40,13 @@ class AnnouncementRequestDtoTest {
 
     @BeforeEach
     void setUpPropertys() {
-        house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South");
-        land = new Property(5, 1000);
-        appartment = new Residence(20, 150, 3, 2, 1, new AvailableEquipment("air conditioning"));
+        Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
+        Address address1 = new Address("Test", 45172, new District("District"), new City("City"), new State("State"));
+        Address address2 = new Address("Streett", 45172, new District("Test"), new City("Test"), new State("Tes"));
+
+        house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South",new Photos("url"),address);
+        land = new Property(5, 1000,new Photos("urlll"), address1);
+        appartment = new Residence(20, 150, 3, 2, 1, new AvailableEquipment("air conditioning"), new Photos("urrrrl"), address2);
     }
 
     @BeforeEach
@@ -78,7 +82,7 @@ class AnnouncementRequestDtoTest {
 
     @BeforeEach
     void setUpStore() {
-        store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        store = new Store("Test Store", 1, address2, 5551234, "test@store.com",9);
     }
 
 
@@ -94,9 +98,9 @@ class AnnouncementRequestDtoTest {
 
     @BeforeEach
     void setUpAnnouncementRequestDto() {
-        announcementRequestDto = new AnnouncementRequestDto("",date, typeOfBusiness, house, propertyType, business, employee);
-        announcementRequestDTO1 = new AnnouncementRequestDto("",date, typeOfBusiness1, land, propertyType, business, employee);
-        announcementRequestDto2 = new AnnouncementRequestDto("",date, typeOfBusiness, appartment, propertyType2, business1, employee1);
+        announcementRequestDto = new AnnouncementRequestDto("announcement",date, typeOfBusiness, house, propertyType, business, employee,new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L));
+        announcementRequestDTO1 = new AnnouncementRequestDto("announcemnt1",date, typeOfBusiness1, land, propertyType, business, employee, new Client("clientttt@this.app", 123256789,1232567890,"clientttt",address2,1234563890L));
+        announcementRequestDto2 = new AnnouncementRequestDto("announcement3",date, typeOfBusiness, appartment, propertyType2, business1, employee1, new Client("client@this.app", 123456389,1234567390,"clie",address2,12345367890L));
     }
 
     @Test

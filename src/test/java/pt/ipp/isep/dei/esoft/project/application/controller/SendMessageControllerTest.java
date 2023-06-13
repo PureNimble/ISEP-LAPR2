@@ -21,14 +21,16 @@ class SendMessageControllerTest {
     int initialTime = 10;
     int endTime = 11;
     Comission com = new Comission(25.00);
+    Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
 
-    Store store = new Store("Holloway",10234,address,1234567890,"holloway@gmail.com", 0);
+    Store store = new Store("Holloway",10234,address2,1234567890,"holloway@gmail.com", 0);
 
     Role role = new Role("Agent");
 
     List<Role> roles = new ArrayList<>();
 
-    Employee employee =  new Employee("age@this.app", 123446789, 987658321, "Miguelito", 1234587890L, store,  roles.add(role), address);
+
+    Employee employee =  new Employee("age@this.app", 123446789, 987658321, "Miguelito", 1234587890L, store, roles , address2);
 
     Address address = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
 
@@ -36,7 +38,7 @@ class SendMessageControllerTest {
     PropertyType propertyType = new PropertyType("House");
     TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
     Business business = new Business(200);
-    PublishedAnnouncement p1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business,employee,);
+    PublishedAnnouncement p1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business,employee,new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L),55,AnnouncementState.available,store);
     Message message = new Message(name, phoneNumber, description, date, initialTime, endTime, p1,MessageState.UNANSWERED,false);
 
 
