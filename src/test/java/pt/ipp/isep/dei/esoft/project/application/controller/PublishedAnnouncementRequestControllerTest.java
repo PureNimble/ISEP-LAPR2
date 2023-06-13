@@ -71,7 +71,7 @@ class PublishedAnnouncementRequestControllerTest {
 
     @BeforeEach
     void setUpAnnouncementRequestDto() {
-        announcementRequestDto = new AnnouncementRequestDto("",date, typeOfBusiness, house, propertyType, business, employee);
+        announcementRequestDto = new AnnouncementRequestDto("uigig",date, typeOfBusiness, house, propertyType, business, employee,new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L));
     }
 
     @BeforeEach
@@ -160,9 +160,9 @@ class PublishedAnnouncementRequestControllerTest {
 
     @BeforeEach
     void setUpAnnouncementRequest() {
-        announcementRequest = new AnnouncementRequest("", date, typeOfBusiness, house, propertyType, business, employee);
-        announcementRequest1 = new AnnouncementRequest("", date, typeOfBusiness, land, propertyType, business, employee);
-        announcementRequest2 = new AnnouncementRequest("", date, typeOfBusiness, appartment, propertyType2, business1, employee1);
+        announcementRequest = new AnnouncementRequest("", date, typeOfBusiness, house, propertyType, business, employee, new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L));
+        announcementRequest1 = new AnnouncementRequest("", date, typeOfBusiness, land, propertyType, business, employee, new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L));
+        announcementRequest2 = new AnnouncementRequest("", date, typeOfBusiness, appartment, propertyType2, business1, employee1, new Client("clienttt@this.app", 121456789,1234167890,"clierrrnt",address2,1234517890L));
     }
 
     @Test

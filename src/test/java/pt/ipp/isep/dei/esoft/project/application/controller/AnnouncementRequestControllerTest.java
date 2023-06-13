@@ -140,7 +140,7 @@ class AnnouncementRequestControllerTest {
         roles.add(role);
         Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
 
-        AnnouncementRequest announcementRequest = new AnnouncementRequest("",date, typeOfBusiness, house, propertyType, business, employee);
+        AnnouncementRequest announcementRequest = new AnnouncementRequest("announcemeny",date, typeOfBusiness, house, propertyType, business, employee, new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L));
         announcementRequests.add(announcementRequest);
 
         announcementRequestRepository.add(announcementRequest);
@@ -193,11 +193,11 @@ class AnnouncementRequestControllerTest {
         roles.add(role);
         Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
 
-        AnnouncementRequest announcementRequestObject = new AnnouncementRequest("",date, typeOfBusiness, house, propertyType, business, employee);
+        AnnouncementRequest announcementRequestObject = new AnnouncementRequest("announcemnt",date, typeOfBusiness, house, propertyType, business, employee, new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L));
 
         Optional<AnnouncementRequest> announcementRequest = Optional.of(announcementRequestObject);
 
-        Optional<AnnouncementRequest> announcementRequest1 = controller.createAnnouncementRequest(date, typeOfBusiness, house, propertyType, business, 5, employee);
+        Optional<AnnouncementRequest> announcementRequest1 = controller.createAnnouncementRequest(date, typeOfBusiness, house, propertyType, business, 5, employee, new Client("clientt@this.app", 128456789,1234067890,"clientttt",address2,1234567490L));
 
         assertEquals(announcementRequest.get(), announcementRequest1.get());
 
