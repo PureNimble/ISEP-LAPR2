@@ -265,37 +265,33 @@ class Client {
     Client(String email, int passportNumber, \nint taxNumber, String name, int phoneNumber)
 }
 
-interface EmailNotification {
+interface EmailService {
     sendEmail(String email, String subject, String body)
 }
 
-class EmailDEI {
-    + isValid(String email)
-    - getEmailDomain(String email)
-}
-
-class EmailGMAIL {
-    + isValid(String email)
-    - getEmailDomain(String email)
-}
-
-class EmailHOTMAIL {
-    + isValid(String email)
-    - getEmailDomain(String email)
-}
-
-class EmailYAHOO {
-    + isValid(String email)
-    - getEmailDomain(String email)
-}
-
-class EmailNotificationAdapter {
+class DEIService {
     + sendEmail(String email, String subject, String body)
-    + isValidEmailDomain(String email)
-    ~ isValidEmailDomain(String email)
-    + removeBookingRequest(Message message)
-    - getMessageRepository()
 }
+
+class GmailService {
+    + sendEmail(String email, String subject, String body)
+}
+
+class HotmailService {
+    + sendEmail(String email, String subject, String body)
+}
+
+class YahooService {
+    + sendEmail(String email, String subject, String body)
+}
+
+'class EmailNotificationAdapter {
+'    + sendEmail(String email, String subject, String body)
+'    + isValidEmailDomain(String email)
+'    ~ isValidEmailDomain(String email)
+'    + removeBookingRequest(Message message)
+'    - getMessageRepository()
+'}
 
 class TypeOfProperty {
     - String type
@@ -317,14 +313,12 @@ ListMessageController ..> AuthenticationRepository : authenticationRepository
 ListMessageController ..> MessageRepository : messageRepository
 ListMessageController ..> EmployeeRepository : employeeRepository
 ListMessageController ..> MessageMapper
-ListMessageController "*" -up- "1" EmailNotification
+ListMessageController "*" -up- "1" EmailService
 
-EmailNotification <|-up- EmailNotificationAdapter
-
-EmailNotificationAdapter --> EmailDEI
-EmailNotificationAdapter --> EmailGMAIL
-EmailNotificationAdapter --> EmailHOTMAIL
-EmailNotificationAdapter --> EmailYAHOO
+EmailService <.up. DEIService
+EmailService <.up. GmailService
+EmailService <.up. HotmailService
+EmailService <.up. YahooService
 
 Repositories --> Repositories : instance
 Repositories --> AuthenticationRepository

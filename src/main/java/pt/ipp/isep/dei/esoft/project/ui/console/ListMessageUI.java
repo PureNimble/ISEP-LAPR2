@@ -2,8 +2,6 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.ListMessageController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
-import pt.ipp.isep.dei.esoft.project.domain.adapters.EmailNotificationAdapter;
-import pt.ipp.isep.dei.esoft.project.domain.emailServices.EmailNotification;
 import pt.ipp.isep.dei.esoft.project.domain.emailServices.EmailService;
 
 import java.io.*;
@@ -114,10 +112,10 @@ public class ListMessageUI implements Runnable {
                         email = input.nextLine();
 
                         // Validate email format
-                        if (email.matches("[^@]+@[^@]+")) {
+                        if (email.matches("[^@]+@[^@]+\\.[^.]+")) {
                             isValidEmail = true;
                         } else {
-                            System.out.println("Invalid email format. Please enter a valid email address.");
+                            System.out.println("Please enter a valid email address (e.g., example@example.com).");
                         }
                     }
 

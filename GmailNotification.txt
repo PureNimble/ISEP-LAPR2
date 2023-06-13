@@ -1,0 +1,58 @@
+From: no-reply@this.app
+To: 1220688@isep.ipp.pt
+Subject: Your Visit Booking Request Has Been Accepted
+Body: Dear Customer, 
+
+Thank you for your interest in the property listed with ID: 1 and located at: 3655 S Las Vegas Blvd, Las Vegas, Paradise, Nevada, 892109.
+
+You had requested a visit for the date: Tue Jun 20 00:00:00 WEST 2023 with a start time at: 11 and ending at: 12.
+
+We are pleased to inform you that your booking request has been accepted. You will be greeted by our agent Miguel.
+In case of any changes or queries, you may contact them at the following number: 1234567890.
+
+We look forward to welcoming you for the visit.
+
+Best Regards,
+Miguel
+
+-----------------------------------------------------------------------
+
+From: no-reply@this.app
+To: 1221184@isep.ipp.pt
+Subject: Your Visit Booking Request Has Been Accepted
+Body: Dear Customer, 
+
+Thank you for your interest in the property listed with ID: 1 and located at: 3655 S Las Vegas Blvd, Las Vegas, Paradise, Nevada, 892109.
+
+You had requested a visit for the date: Tue Jun 20 00:00:00 WEST 2023 with a start time at: 11 and ending at: 12.
+
+We are pleased to inform you that your booking request has been accepted. You will be greeted by our agent Miguel.
+In case of any changes or queries, you may contact them at the following number: 1234567890.
+
+We look forward to welcoming you for the visit.
+
+Best Regards,
+Miguel
+
+-----------------------------------------------------------------------
+
+From: no-reply@this.app
+To: 1221014@isep.ipp.pt
+Subject: Your Visit Booking Request Has Been Rejected
+Body: Dear Customer, 
+
+Thank you for your interest in the property listed with ID: 1 and located at: 3655 S Las Vegas Blvd, Las Vegas, Paradise, Nevada, 892109.
+
+You had requested a visit for the date: Tue Jun 20 00:00:00 WEST 2023 with a start time at: 11 and ending at: 12.
+
+We regret to inform you that your booking request has been rejected for the following reason:
+
+The property has just been sold!
+
+If you have any doubts and need help, you may contact the agent Miguel with the following number: 1234567890.
+
+Best Regards,
+Miguel
+
+-----------------------------------------------------------------------
+

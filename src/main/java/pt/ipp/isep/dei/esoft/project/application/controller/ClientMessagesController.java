@@ -4,7 +4,6 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 import pt.ipp.isep.dei.esoft.project.domain.Client;
 import pt.ipp.isep.dei.esoft.project.domain.Message;
 import pt.ipp.isep.dei.esoft.project.domain.MessageState;
-import pt.ipp.isep.dei.esoft.project.domain.adapters.EmailNotificationAdapter;
 import pt.ipp.isep.dei.esoft.project.repository.*;
 
 import java.util.*;
@@ -73,9 +72,9 @@ public class ClientMessagesController {
         return userRepository;
     }
 
-    public void sendVisualizedEmail(String email, String subject, String body) {
+/*    public void sendVisualizedEmail(String email, String subject, String body) {
         EmailNotificationAdapter.sendEmail(email, subject, body);
-    }
+    }*/
 
     public Client getClient() {
         String email = getCurrentSessionEmail();
