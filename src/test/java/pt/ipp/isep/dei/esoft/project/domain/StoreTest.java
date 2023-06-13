@@ -11,27 +11,27 @@ import static org.junit.jupiter.api.Assertions.*;
 class StoreTest {
 
     private final Address address = new Address("Test Street", 12345, new District("Test District"), new City("Test City"), new State("Test State"));
-    private final Store store = new Store("Test Store", 1, address, 5551234, "test@store.com");
+    private final Store store = new Store("Test Store", 1, address, 5551234, "test@store.com",0);
 
 
     @Test
     void getId() {
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Store1", 1, address, 123456789, "store1@test.com");
+        Store store = new Store("Store1", 1, address, 123456789, "store1@test.com",0);
         assertEquals(1, store.getId());
     }
 
     @Test
     void getAddress() {
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Store1", 1, address, 123456789, "store1@test.com");
+        Store store = new Store("Store1", 1, address, 123456789, "store1@test.com",0);
         assertEquals(address, store.getAddress());
     }
 
     @Test
     void testToString() {
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Store1", 1, address, 123456789, "store1@test.com");
+        Store store = new Store("Store1", 1, address, 123456789, "store1@test.com",0);
         String expected = "Loja: 1 Store1 localizada em Streett Test,Test City,Test District,Test State,45672";
         assertEquals(expected, store.toString());
     }
@@ -72,28 +72,28 @@ class StoreTest {
 
         //for equal objects
         Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store2 = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        Store store2 = new Store("Test Store", 1, address2, 5551234, "test@store.com",0);
         assertEquals(store, store2);
 
         //for different objects
-        Store store3 = new Store("Test Store", 2, address, 5551234, "test@store.com");
+        Store store3 = new Store("Test Store", 2, address, 5551234, "test@store.com",0);
         assertNotEquals(store, store3);
     }
 
     @Test
     void testHashCode() {
         Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store2 = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        Store store2 = new Store("Test Store", 1, address2, 5551234, "test@store.com",0);
         assertEquals(store.hashCode(), store2.hashCode());
 
-        Store store3 = new Store("Testt Store", 2, address, 5558234, "test@store.com");
+        Store store3 = new Store("Testt Store", 2, address, 5558234, "test@store.com",0);
         assertNotEquals(store.hashCode(), store3.hashCode());
     }
 
     @Test
     void getDesignation() {
         Address address = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Store1", 1, address, 123456789, "store1@test.com");
+        Store store = new Store("Store1", 1, address, 123456789, "store1@test.com",0);
         assertEquals("Store1", store.getDesignation());
     }
 }

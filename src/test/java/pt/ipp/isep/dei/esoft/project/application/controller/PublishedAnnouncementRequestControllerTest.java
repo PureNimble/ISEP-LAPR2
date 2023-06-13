@@ -6,11 +6,7 @@ import pt.ipp.isep.dei.esoft.project.application.controller.authorization.Authen
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.*;
 import pt.ipp.isep.dei.esoft.project.ui.console.PublishAnnouncementRequestUI;
-import pt.isep.lei.esoft.auth.AuthFacade;
-import pt.isep.lei.esoft.auth.UserSession;
-import pt.isep.lei.esoft.auth.domain.model.Email;
-import pt.isep.lei.esoft.auth.domain.model.Password;
-import pt.isep.lei.esoft.auth.domain.model.User;
+
 
 import java.util.*;
 

@@ -127,6 +127,8 @@ class ListDealsControllerTest {
         TypeOfBusiness typeOfBusiness1 = new TypeOfBusiness("Sale");
         Business business1 = new Business(200000);
         Date date1 = new GregorianCalendar(2023, Calendar.JUNE, 20).getTime();
+        Date date3 = new GregorianCalendar(2023, Calendar.APRIL, 20).getTime();
+        Date date4 = new GregorianCalendar(2023, Calendar.JANUARY, 20).getTime();
         AnnouncementState state1 = AnnouncementState.available;
         publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType1, comission1, business1, agent1, client1, 1, state1, store1);
 
@@ -140,8 +142,8 @@ class ListDealsControllerTest {
         publishedAnnouncement = new PublishedAnnouncement(date2, typeOfBusiness1, property2, propertyType1, comission2, business2, agent2, client2, 1, state1, store1);
 
 
-        publishedAnnouncement2 = new PublishedAnnouncement(date2,typeOfBusiness1,land,propertyType2,comission1,business1,agent1,client1,6,AnnouncementState.sold,store);
-        publishedAnnouncement3 = new PublishedAnnouncement(date1,typeOfBusiness1,appartment,propertyType3,comission2,business1,agent2,client2,5,AnnouncementState.sold,store1);
+        publishedAnnouncement2 = new PublishedAnnouncement(date3,typeOfBusiness1,land,propertyType2,comission1,business1,agent1,client1,6,AnnouncementState.sold,store);
+        publishedAnnouncement3 = new PublishedAnnouncement(date4,typeOfBusiness1,appartment,propertyType3,comission2,business1,agent2,client2,5,AnnouncementState.sold,store1);
 
     }
 
@@ -189,17 +191,95 @@ class ListDealsControllerTest {
 
     @Test
     void getDealsByDescendingAreaBubbleSort() {
+
+
+        OfferRepository offerRepository = new OfferRepository();
+
+        offerRepository.add(offer);
+        offerRepository.add(offer1);
+        offerRepository.add(offer2);
+        offerRepository.add(offer3);
+
+
+        List<Offer> offersResult = new ArrayList<>();
+        offersResult.add(offer1);
+        offersResult.add(offer);
+        offersResult.add(offer3);
+        offersResult.add(offer2);
+
+        assertEquals(offersResult,offerRepository.getOffersByAreaDescendingUsingBubbleSortAlgorithm());
+
+
     }
 
     @Test
     void getDealsByAscendingAreaSortSelection() {
+
+        OfferRepository offerRepository = new OfferRepository();
+
+        offerRepository.add(offer);
+        offerRepository.add(offer1);
+        offerRepository.add(offer2);
+        offerRepository.add(offer3);
+
+
+        List<Offer> offersResult = new ArrayList<>();
+        offersResult.add(offer2);
+        offersResult.add(offer3);
+        offersResult.add(offer);
+        offersResult.add(offer1);
+
+        assertEquals(offersResult,offerRepository.getOffersByAreaAscendingUsingSortSelection());
+
+
     }
 
     @Test
     void getDealsByDescendingAreaSortSelection() {
+
+
+
+        OfferRepository offerRepository = new OfferRepository();
+
+        offerRepository.add(offer);
+        offerRepository.add(offer1);
+        offerRepository.add(offer2);
+        offerRepository.add(offer3);
+
+
+        List<Offer> offersResult = new ArrayList<>();
+        offersResult.add(offer1);
+        offersResult.add(offer);
+        offersResult.add(offer3);
+        offersResult.add(offer2);
+
+        assertEquals(offersResult,offerRepository.getOffersByAreaDescendingUsingSortSelection());
+
+
+
     }
 
     @Test
     void getOfferMostRecent() {
+
+        OfferRepository offerRepository = new OfferRepository();
+
+        offerRepository.add(offer);
+        offerRepository.add(offer1);
+        offerRepository.add(offer2);
+        offerRepository.add(offer3);
+
+
+        List<Offer> offersResult = new ArrayList<>();
+        offersResult.add(offer);
+        offersResult.add(offer1);
+        offersResult.add(offer2);
+        offersResult.add(offer3);
+
+        assertEquals(offersResult,offerRepository.getOffersByMostRecent());
+
+
+
+
     }
 }
