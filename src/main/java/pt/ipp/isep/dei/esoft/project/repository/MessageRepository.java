@@ -101,6 +101,22 @@ public class MessageRepository {
     }
 
     /**
+     * @return A List of Message objects representing the answered message requests.
+     */
+    public List<Message> getMessageRequests() {
+        List<Message> messageList = messages;
+        List<Message> messageRequests = new ArrayList<>();
+        
+        for (Message message : messageList) {
+            if (message.getMessageState().equals(MessageState.ANSWERED)) {
+                messageRequests.add(message);
+            }
+        }
+
+        return messageRequests;
+    }
+
+    /**
      * Remove message boolean.
      *
      * @param message the message
