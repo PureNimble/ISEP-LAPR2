@@ -105,6 +105,14 @@
             this.name = name;
         }
 
+        public Boolean getIsApprovedByAgent() {
+            return isApprovedByAgent;
+        }
+
+        public void setIsApprovedByAgent(Boolean isApprovedByAgent) {
+            this.isApprovedByAgent = isApprovedByAgent;
+        }
+
         /**
          * Gets phone number.
          *

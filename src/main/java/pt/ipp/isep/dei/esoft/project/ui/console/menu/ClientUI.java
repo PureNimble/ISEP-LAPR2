@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.ui.console.menu;
 
 import pt.ipp.isep.dei.esoft.project.ui.console.AnnouncementRequestUI;
+import pt.ipp.isep.dei.esoft.project.ui.console.ClientMessagesUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.PlaceOrderUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.SendMessageUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
@@ -28,6 +29,7 @@ public class ClientUI implements Runnable{
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
         options.add(new MenuItem("Send a message to an agent", new SendMessageUI()));
+        options.add(new MenuItem("Inbox", new ClientMessagesUI()));
         options.add(new MenuItem("Request an Announcement", new AnnouncementRequestUI()));
         options.add(new MenuItem("Place an Order", new PlaceOrderUI()));
 
