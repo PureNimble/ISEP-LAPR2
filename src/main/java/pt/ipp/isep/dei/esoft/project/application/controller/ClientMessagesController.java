@@ -4,8 +4,11 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 import pt.ipp.isep.dei.esoft.project.domain.Client;
 import pt.ipp.isep.dei.esoft.project.domain.Message;
 import pt.ipp.isep.dei.esoft.project.domain.MessageState;
+import pt.ipp.isep.dei.esoft.project.domain.emailServices.EmailService;
 import pt.ipp.isep.dei.esoft.project.repository.*;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -72,9 +75,37 @@ public class ClientMessagesController {
         return userRepository;
     }
 
-/*    public void sendVisualizedEmail(String email, String subject, String body) {
-        EmailNotificationAdapter.sendEmail(email, subject, body);
-    }*/
+    public boolean sendVisualizedEmail(String email, String subject, String body) {
+        // Load configuration properties
+        Properties properties = new Properties();
+        try (FileInputStream fileInputStream = new FileInputStream("config.properties")) {
+            properties.load(fileInputStream);
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading the configuration file: " + e.getMessage());
+            return false;
+        }
+
+        // Retrieve the email service class name from properties
+        String emailServiceClass = properties.getProperty("emailService");
+
+        // Instantiate the email service
+        EmailService emailService;
+        try {
+            Class<?> serviceClass = Class.forName(emailServiceClass);
+            emailService = (EmailService) serviceClass.newInstance();
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+            System.out.println("Failed to instantiate the email service: " + e.getMessage());
+            return false;
+        }
+
+        if (email == null) {
+            return false;
+        } else {
+            // Send the email using the email service
+            emailService.sendEmail(email, subject, body);
+        }
+        return true;
+    }
 
     /**
      * Gets client.
@@ -103,15 +134,7 @@ public class ClientMessagesController {
      */
     public List<Message> getMessageRequests() {
         MessageRepository messageRepository = getMessageRepository();
-        List<Message> messageList = messageRepository.getMessages();
-        List<Message> messageRequests = new ArrayList<>();
-        
-        for (Message message : messageList) {
-            if (message.getMessageState().equals(MessageState.ANSWERED)) {
-                messageRequests.add(message);
-            }
-        }
-
+        List<Message> messageRequests = messageRepository.getMessageRequests();
         return messageRequests;
     }
 

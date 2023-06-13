@@ -58,19 +58,18 @@ public class ClientMessagesUI implements Runnable {
             PublishedAnnouncement publishedAnnouncement = selectedMessage.getPublishedAnnouncement();
             Client client = controller.getClient();
             String email = publishedAnnouncement.getAgent().getEmail();
-            String subject = "Your messages has been opened";
+            String subject = "Your message has been opened";
             String body = "\nYour message for the client " + client.getName() + " has been opened!" +
-                    "\n\nProperty ID: " + publishedAnnouncement.getPropertyID() +
+                    "\n\nVisit Details:" +
+                    "\nProperty ID: " + publishedAnnouncement.getPropertyID() +
                     "\nLocated at: " + publishedAnnouncement.getProperty().getAddress().toString() +
                     "\nDate of visit: " + selectedMessage.getInitialDate() +
                     "\nStarting time at " + selectedMessage.getInitialTime() +
-                    " and ending at " + selectedMessage.getEndTime() + 
+                    " and ending at " + selectedMessage.getEndTime() + "\nClient Name: " + client.getName() +
                     "\n\nThis is an automatically generated email. Please do not reply";
 
-            System.out.println(messageList.get(choice).toString()); 
-/*
+            System.out.println(messageList.get(choice).toString());
             controller.sendVisualizedEmail(email, subject, body);
-*/
 
         } else System.out.println("No new messages available\n");
         
@@ -116,26 +115,31 @@ public class ClientMessagesUI implements Runnable {
             } while (responseChoice < 1 || responseChoice > 2);
 
             if (responseChoice == 1) {
-                subject = "Your Visit Booking Has Been Confirmed";
+                subject = "Your Booked Visit Has Been Confirmed";
                 body = "Dear " + publishedAnnouncement.getAgent().getName() + ",\n" +
-                        "Ill be there," + "\n\nBest Regards,\n" + client.getName();
+                        "Your Booked Visit has been confirmed" + "\n\nVisit Details:" +
+                        "\nProperty ID: " + publishedAnnouncement.getPropertyID() +
+                        "\nLocated at: " + publishedAnnouncement.getProperty().getAddress().toString() +
+                        "\nDate of visit: " + message.getInitialDate() + "\nStarting time at " + message.getInitialTime() +
+                        " and ending at " + message.getEndTime() + "\nClient Name: " + client.getName() + "\n\nBest Regards,\n" + client.getName();
 
             } else {
-                subject = "Your Visit Booking Has Been Rejected";
+                subject = "Your Booked Visit Has Been Rejected";
                 System.out.println("Reason for denying the visit request: ");
                 input.nextLine();
                 String reason = input.nextLine();
                 body = "Dear " + publishedAnnouncement.getAgent().getName() + ",\n" +
                         "I am unable to attend the scheduled property visit that was planned." +
-                        "\nReason: " + reason + "\n\nProperty ID: " + publishedAnnouncement.getPropertyID() +
+                        "\nReason: " + reason + "\n\nVisit Details:" + "\nProperty ID: " + publishedAnnouncement.getPropertyID() +
                         "\nLocated at: " + publishedAnnouncement.getProperty().getAddress().toString() +
                         "\nDate of visit: " + message.getInitialDate() + "\nStarting time at " + message.getInitialTime() +
-                        " and ending at " + message.getEndTime() + "\n\nBest Regards,\n" + client.getName();
+                        " and ending at " + message.getEndTime() + "\nClient Name: " + client.getName() + "\n\nBest Regards,\n" + client.getName();
             }
 
-/*
-            controller.sendVisualizedEmail(email, subject, body);
-*/
+            if (controller.sendVisualizedEmail(email, subject, body) == false) {
+                System.out.println("Couldn't send the email.");
+            } else System.out.println("Email sent successfully.");
+
             System.out.println("Email successfully sent!");
         }
     }

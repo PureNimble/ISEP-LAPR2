@@ -70,11 +70,11 @@ public class Bootstrap {
 
         
         Employee agent1 = new Employee("agent@this.app", 123456789, 987654321, "Miguel", 1234567890, store1,  roles, address1);
-        Employee agent2 = new Employee("agent2@this.app",12345677,12231311,"Vasco ",1123456789, store1, roles, address2);
+        Employee agent2 = new Employee("agent2@gmail.com",12345677,12231311,"Vasco ",1123456789, store1, roles, address2);
         Employee agent3 = new Employee("agent3@this.app", 123456432, 123456789, "Manuel", 1234567892, store2,  roles, address3);
-        Employee agent4 = new Employee("agent4@this.app",12345123,124356789,"Pedro",1643267806, store3, roles, address2);
-        Employee agent5 = new Employee("agent5@this.app", 123456321, 17634589, "Jorge", 1345678901, store2,  roles, address3);
-        Employee agent6 = new Employee("agent6@this.app",12345687,192837465,"Ruben",1765432345, store2, roles, address1);
+        Employee agent4 = new Employee("agent4@hotmail.app",12345123,124356789,"Pedro",1643267806, store3, roles, address2);
+        Employee agent5 = new Employee("agent5@gmail.com", 123456321, 17634589, "Jorge", 1345678901, store2,  roles, address3);
+        Employee agent6 = new Employee("agent6@hotmail.app",12345687,192837465,"Ruben",1765432345, store2, roles, address1);
 
         employeeRepository.add(agent1);
         employeeRepository.add(agent2);
@@ -99,11 +99,11 @@ public class Bootstrap {
         roles.add(role);
 
         Employee agent1 = new Employee("agent@this.app", 123456789, 987654321, "Miguel", 1234567890, store1,  roles, address1);
-        Employee agent2 = new Employee("agent2@this.app",12345677,12231311,"Vasco ",1123456789, store1, roles, address2);
+        Employee agent2 = new Employee("agent2@gmail.com",12345677,12231311,"Vasco ",1123456789, store1, roles, address2);
         Employee agent3 = new Employee("agent3@this.app", 123456432, 123456789, "Manuel", 1234567892, store2,  roles, address3);
-        Employee agent4 = new Employee("agent4@this.app",12345123,124356789,"Pedro",1643267806, store3, roles, address2);
-        Employee agent5 = new Employee("agent5@this.app", 123456321, 17634589, "Jorge", 1345678901, store2,  roles, address3);
-        Employee agent6 = new Employee("agent6@this.app",12345687,192837465,"Ruben",1765432345, store2, roles, address1);
+        Employee agent4 = new Employee("agent4@hotmail.app",12345123,124356789,"Pedro",1643267806, store3, roles, address2);
+        Employee agent5 = new Employee("agent5@gmail.com", 123456321, 17634589, "Jorge", 1345678901, store2,  roles, address3);
+        Employee agent6 = new Employee("agent6@hotmail.app",12345687,192837465,"Ruben",1765432345, store2, roles, address1);
 
 
         PublishedAnnouncementRepository publishedAnnouncementRepository = Repositories.getInstance().getPublishedAnnouncementRepository();
@@ -252,26 +252,26 @@ public class Bootstrap {
         authenticationRepository.addUserWithRole("Owner", "owner@this.app", "owner", AuthenticationController.ROLE_CLIENT);
         authenticationRepository.addUserWithRole("Pedro", "pedro@gmail.com", "pedro", AuthenticationController.ROLE_CLIENT);
         authenticationRepository.addUserWithRole("Luna", "luna@outlook.com", "luna", AuthenticationController.ROLE_CLIENT);
-        authenticationRepository.addUserWithRole("Vasco", "vasco@yahoo.com", "vasco", AuthenticationController.ROLE_CLIENT);
-        authenticationRepository.addUserWithRole("Rafael", "rafael@yopmail.com", "rafael", AuthenticationController.ROLE_CLIENT);
+        authenticationRepository.addUserWithRole("Vasco", "vasco@gmail.com", "vasco", AuthenticationController.ROLE_CLIENT);
+        authenticationRepository.addUserWithRole("Rafael", "rafael@gmail.com", "rafael", AuthenticationController.ROLE_CLIENT);
         authenticationRepository.addUserWithRole("Diogo", "Diogo@sapo.pt", "diogo", AuthenticationController.ROLE_CLIENT);
 
-        authenticationRepository.addUserWithRole("Agent 02","agent2@this.app","agent2", AuthenticationController.ROLE_AGENT);
+        authenticationRepository.addUserWithRole("Agent 02","agent2@gmail.com","agent2", AuthenticationController.ROLE_AGENT);
 
         authenticationRepository.addUserWithRole("Agent 03","agent3@this.app","agent3", AuthenticationController.ROLE_AGENT);
 
-        authenticationRepository.addUserWithRole("Agent 04","agent4@this.app","agent4", AuthenticationController.ROLE_AGENT);
+        authenticationRepository.addUserWithRole("Agent 04","agent4@hotmail.app","agent4", AuthenticationController.ROLE_AGENT);
 
-        authenticationRepository.addUserWithRole("Agent 05","agent5@this.app","agent5", AuthenticationController.ROLE_AGENT);
+        authenticationRepository.addUserWithRole("Agent 05","agent5@gmail.com","agent5", AuthenticationController.ROLE_AGENT);
 
-        authenticationRepository.addUserWithRole("Agent 06","agent6@this.app","agent6", AuthenticationController.ROLE_AGENT);
+        authenticationRepository.addUserWithRole("Agent 06","agent6@hotmail.app","agent6", AuthenticationController.ROLE_AGENT);
 
         userRepository.add(new Client("owner@this.app", 143256743, 222222222,"Owner",new Address("Test Avenue", 12345, new District("TEST"), new City("TEST"), new State("TEST")), 1234567891));
         userRepository.add(new Client("client@this.app", 111111111, 111111111,"Client",new Address("Test Avenue", 00000, new District("TEST"), new City("TEST"), new State("TEST")), 1234567890));
         userRepository.add(new Client("pedro@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890));
         userRepository.add(new Client("luna@outlook.com", 234567890, 234567890, "Luna", new Address("200 Santa Monica Pier", 90401, new District("Santa Monica"), new City("Los Angeles"), new State("California")), 1029384756));
-        userRepository.add(new Client("vasco@yahoo.com", 345678901, 345678901, "Vasco", new Address("1200 Getty Center Drive", 90049, new District("Crestwood Hills"), new City("Los Angeles"), new State("California")), 1910384765));
-        userRepository.add(new Client("rafael@yopmail.com", 456789012, 456789012, "Rafael", new Address("1000 5th Avenue", 10028, new District("Manhattan"), new City("New York"), new State("New York")), 1425432897));
+        userRepository.add(new Client("vasco@gmail.com", 345678901, 345678901, "Vasco", new Address("1200 Getty Center Drive", 90049, new District("Crestwood Hills"), new City("Los Angeles"), new State("California")), 1910384765));
+        userRepository.add(new Client("rafael@gmail.com", 456789012, 456789012, "Rafael", new Address("1000 5th Avenue", 10028, new District("Manhattan"), new City("New York"), new State("New York")), 1425432897));
         userRepository.add(new Client("Diogo@sapo.pt", 567890123, 567890123, "Diogo", new Address("20 W 34th Street", 10001, new District("Manhattan"), new City("New York"), new State("New York")), 1389462074));
     }
 
@@ -344,8 +344,8 @@ public class Bootstrap {
         offerRepository.add(new Offer("Pedro", 130000, publishedAnnouncement1, OfferState.accepted, new Client("pedro@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890),1));
         offerRepository.add(new Offer("Diogo",97000, publishedAnnouncement2, OfferState.accepted, new Client("diogo@sapo.pt", 567890123, 567890123, "Diogo", new Address("20 W 34th Street", 10001, new District("Manhattan"), new City("New York"), new State("New York")), 1345678901),24));
         offerRepository.add(new Offer("Luna", 135600,publishedAnnouncement3,OfferState.accepted, new Client("luna@outlook.com", 234567890, 234567890, "Luna", new Address("200 Santa Monica Pier", 90401, new District("Santa Monica"), new City("Los Angeles"), new State("California")), 1987654321),16));
-        offerRepository.add(new Offer("Vasco", 230000,publishedAnnouncement4,OfferState.accepted, new Client("vasco@yahoo.com", 345678901, 345678901, "Vasco", new Address("1200 Getty Center Drive", 90049, new District("Crestwood Hills"), new City("Los Angeles"), new State("California")), 1112345689),18));
-        offerRepository.add(new Offer("Rafael", 98000,publishedAnnouncement5,OfferState.accepted, new Client("rafael@yopmail.com", 456789012, 456789012, "Rafael", new Address("1000 5th Avenue", 10028, new District("Manhattan"), new City("New York"), new State("New York")), 1425432897),12));
+        offerRepository.add(new Offer("Vasco", 230000,publishedAnnouncement4,OfferState.accepted, new Client("vasco@gmail.com", 345678901, 345678901, "Vasco", new Address("1200 Getty Center Drive", 90049, new District("Crestwood Hills"), new City("Los Angeles"), new State("California")), 1112345689),18));
+        offerRepository.add(new Offer("Rafael", 98000,publishedAnnouncement5,OfferState.accepted, new Client("rafael@gmail.com", 456789012, 456789012, "Rafael", new Address("1000 5th Avenue", 10028, new District("Manhattan"), new City("New York"), new State("New York")), 1425432897),12));
     }
 
     private void addMessages(PublishedAnnouncement publishedAnnouncement1, PublishedAnnouncement publishedAnnouncement2, PublishedAnnouncement publishedAnnouncement3, PublishedAnnouncement publishedAnnouncement4, PublishedAnnouncement publishedAnnouncement5, Date date1, Date date2, Date date3, Date date4, Date date5) {
