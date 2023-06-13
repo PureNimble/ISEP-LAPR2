@@ -72,9 +72,9 @@ public class ClientMessagesController {
         return userRepository;
     }
 
-//    public void sendVisualizedEmail(String email, String subject, String body) {
-//        EmailNotificationAdapter.sendEmail(email, subject, body);
-//    }
+/*    public void sendVisualizedEmail(String email, String subject, String body) {
+        EmailNotificationAdapter.sendEmail(email, subject, body);
+    }*/
 
     public Client getClient() {
         String email = getCurrentSessionEmail();

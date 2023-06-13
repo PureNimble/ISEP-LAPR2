@@ -68,7 +68,9 @@ public class ClientMessagesUI implements Runnable {
                     "\n\nThis is an automatically generated email. Please do not reply";
 
             System.out.println(messageList.get(choice).toString()); 
+/*
             controller.sendVisualizedEmail(email, subject, body);
+*/
 
         } else System.out.println("No new messages available\n");
         
@@ -131,7 +133,9 @@ public class ClientMessagesUI implements Runnable {
                         " and ending at " + message.getEndTime() + "\n\nBest Regards,\n" + client.getName();
             }
 
+/*
             controller.sendVisualizedEmail(email, subject, body);
+*/
             System.out.println("Email successfully sent!");
         }
     }
