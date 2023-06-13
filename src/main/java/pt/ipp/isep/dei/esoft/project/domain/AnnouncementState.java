@@ -5,8 +5,14 @@ package pt.ipp.isep.dei.esoft.project.domain;
  */
 public enum AnnouncementState {
 
+    /**
+     * Available announcement state.
+     */
     available,
-    
+
+    /**
+     * Sold announcement state.
+     */
     sold;
 
     /**

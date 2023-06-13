@@ -92,6 +92,12 @@ public class ListMessageUI implements Runnable {
         }
     }
 
+    /**
+     * Respond to client or no.
+     *
+     * @param message               the message
+     * @param publishedAnnouncement the published announcement
+     */
     public void respondToClientOrNo(Message message, PublishedAnnouncement publishedAnnouncement) {
         System.out.println("\n1. Respond");
         System.out.println("2. Cancel");

@@ -16,11 +16,19 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * The type Network manager menu gui.
+ */
 public class NetworkManagerMenuGUI implements Runnable,Initializable {
 
     @FXML
     private Label labelNetworkManagerMenu;
 
+    /**
+     * List deals.
+     *
+     * @param mouseEvent the mouse event
+     */
     public void listDeals(javafx.scene.input.MouseEvent mouseEvent) {
         loadPage();
     }

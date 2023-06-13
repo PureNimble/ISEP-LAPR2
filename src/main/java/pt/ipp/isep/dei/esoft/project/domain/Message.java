@@ -67,6 +67,8 @@
          * @param initialTime           the initial time for visiting
          * @param endTime               the end time for visiting
          * @param publishedAnnouncement the published announcement
+         * @param messageState          the message state
+         * @param isApprovedByAgent     the is approved by agent
          */
         public Message(String name, long phoneNumber, String description, Date initialDate, int initialTime, int endTime, PublishedAnnouncement publishedAnnouncement, MessageState messageState, boolean isApprovedByAgent) {
             this.name = name;
@@ -105,10 +107,20 @@
             this.name = name;
         }
 
+        /**
+         * Gets is approved by agent.
+         *
+         * @return the is approved by agent
+         */
         public Boolean getIsApprovedByAgent() {
             return isApprovedByAgent;
         }
 
+        /**
+         * Sets is approved by agent.
+         *
+         * @param isApprovedByAgent the is approved by agent
+         */
         public void setIsApprovedByAgent(Boolean isApprovedByAgent) {
             this.isApprovedByAgent = isApprovedByAgent;
         }
@@ -221,17 +233,38 @@
             this.publishedAnnouncement = publishedAnnouncement;
         }
 
+        /**
+         * Gets message state.
+         *
+         * @return the message state
+         */
         public MessageState getMessageState() {
             return messageState;
         }
 
+        /**
+         * Sets message state.
+         *
+         * @param messageState the message state
+         */
         public void setMessageState(MessageState messageState) {
             this.messageState = messageState;
         }
 
+        /**
+         * Is approved by agent boolean.
+         *
+         * @return the boolean
+         */
         public boolean isApprovedByAgent() {
             return isApprovedByAgent;
         }
+
+        /**
+         * Sets approved by agent.
+         *
+         * @param approvedByAgent the approved by agent
+         */
         public void setApprovedByAgent(boolean approvedByAgent) {
             isApprovedByAgent = approvedByAgent;
         }

@@ -9,9 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * The AnnouncementRequestController class is responsible for managing announcement requests.
- * It interacts with the UserRepository, PropertyTypeRepository, AnnouncementRequestRepository,
- * EmployeeRepository, TypeOfBusinessRepository, and AvailableEquipmentRepository to perform its operations.
+ * The type Announcement request controller.
  */
 public class AnnouncementRequestController {
 
@@ -43,7 +41,7 @@ public class AnnouncementRequestController {
     private StateRepository stateRepository = null;
 
     /**
-     * Constructor for AnnouncementRequestController that initializes the required repositories.
+     * Instantiates a new Announcement request controller.
      */
     public AnnouncementRequestController() {
         getUserRepository();
@@ -52,11 +50,6 @@ public class AnnouncementRequestController {
         getAnnouncementRequestRepository();
         getStateRepository();
     }
-    /**
-
-     Method to get the UserRepository instance.
-     @return UserRepository instance
-     */
     private UserRepository getUserRepository() {
         if (userRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -64,11 +57,6 @@ public class AnnouncementRequestController {
         }
         return userRepository;
     }
-    /**
-
-     Method to get the PropertyTypeRepository instance.
-     @return PropertyTypeRepository instance
-     */
     private PropertyTypeRepository getPropertyTypeRepository() {
         if (propertyTypeRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -77,12 +65,6 @@ public class AnnouncementRequestController {
         return propertyTypeRepository;
     }
 
-    /**
-
-     Retrieves the authentication repository instance. If it is not initialized, it will retrieve it from the Repositories instance.
-
-     @return the authentication repository instance
-     */
     private AuthenticationRepository getAuthenticationRepository() {
         if (authenticationRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -93,11 +75,6 @@ public class AnnouncementRequestController {
         return authenticationRepository;
     }
 
-    /**
-
-     Initializes the StateRepository instance variable.
-     @return The StateRepository object associated with this controller.
-     */
     private StateRepository getStateRepository() {
         if (stateRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -109,10 +86,10 @@ public class AnnouncementRequestController {
     }
 
     /**
-     * Method to get a PropertyType instance by its description.
+     * Gets property type by description.
      *
-     * @param propertyTypeDescription The description of the property type.
-     * @return PropertyType instance
+     * @param propertyTypeDescription the property type description
+     * @return the property type by description
      */
     public PropertyType getPropertyTypeByDescription(String propertyTypeDescription) {
         PropertyTypeRepository propertyTypeRepository = getPropertyTypeRepository();
@@ -121,19 +98,14 @@ public class AnnouncementRequestController {
     }
 
     /**
-     * Method to get a list of all PropertyType instances.
+     * Gets property type.
      *
-     * @return List of PropertyType instances
+     * @return the property type
      */
     public List<PropertyType> getPropertyType() {
         PropertyTypeRepository propertyTypeRepository = getPropertyTypeRepository();
         return propertyTypeRepository.getPropertyTypes();
     }
-    /**
-
-     Method to get the TypeOfBusinessRepository instance.
-     @return TypeOfBusinessRepository instance
-     */
     private TypeOfBusinessRepository getTypeOfBusinessRepository() {
         if (typeOfBusinessRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -143,10 +115,10 @@ public class AnnouncementRequestController {
     }
 
     /**
-     * Method to get a TypeOfBusiness instance by its description.
+     * Gets type of business by description.
      *
-     * @param typeOfBusinessDescription The description of the type of business.
-     * @return TypeOfBusiness instance
+     * @param typeOfBusinessDescription the type of business description
+     * @return the type of business by description
      */
     public TypeOfBusiness getTypeOfBusinessByDescription(String typeOfBusinessDescription) {
         TypeOfBusinessRepository typeOfBusinessRepository = getTypeOfBusinessRepository();
@@ -155,20 +127,14 @@ public class AnnouncementRequestController {
     }
 
     /**
-     * Method to get a list of all TypeOfBusiness instances.
+     * Gets type of business.
      *
-     * @return List of TypeOfBusiness instances
+     * @return the type of business
      */
     public List<TypeOfBusiness> getTypeOfBusiness() {
         TypeOfBusinessRepository typeOfBusinessRepository = getTypeOfBusinessRepository();
         return typeOfBusinessRepository.getTypeOfBusinesses();
     }
-    /**
-
-     Returns the AnnouncementRequestRepository instance, creating it if necessary.
-
-     @return The AnnouncementRequestRepository instance.
-     */
     private AnnouncementRequestRepository getAnnouncementRequestRepository() {
         if (announcementRequestRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -178,12 +144,6 @@ public class AnnouncementRequestController {
         }
         return announcementRequestRepository;
     }
-    /**
-
-     Returns the EmployeeRepository instance, creating it if necessary.
-
-     @return The EmployeeRepository instance.
-     */
     private EmployeeRepository getEmployeeRepository() {
         if (employeeRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -195,9 +155,9 @@ public class AnnouncementRequestController {
     }
 
     /**
-     * Returns a list of all agents.
+     * Gets list agents.
      *
-     * @return A List of Employee objects representing agents.
+     * @return the list agents
      */
     public List<Employee> getListAgents() {
 
@@ -317,9 +277,9 @@ public class AnnouncementRequestController {
     }
 
     /**
-     * Returns a list of all Announcement Requests.
+     * Gets announcement request.
      *
-     * @return A List of AnnouncementRequest objects.
+     * @return the announcement request
      */
     public List<AnnouncementRequest> getAnnouncementRequest() {
         AnnouncementRequestRepository announcementRequestRepository = getAnnouncementRequestRepository();
@@ -327,10 +287,10 @@ public class AnnouncementRequestController {
     }
 
     /**
-     * Returns a Business object by its description.
+     * Get business by description business.
      *
-     * @param priceDescription The price description of the Business object.
-     * @return The Business object with the specified price description.
+     * @param priceDescription the price description
+     * @return the business
      */
     public Business getBusinessByDescription(double priceDescription){
 
@@ -339,12 +299,6 @@ public class AnnouncementRequestController {
         return priceByDescription;
 
     }
-    /**
-
-     Returns the AvailableEquipmentRepository instance, creating it if necessary.
-
-     @return The AvailableEquipmentRepository instance.
-     */
     private AvailableEquipmentRepository getAvailableEquipmentRepository() {
         if (availableEquipmentRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -356,10 +310,10 @@ public class AnnouncementRequestController {
     }
 
     /**
-     * Returns an AvailableEquipment object by its description.
+     * Gets available equipment by description.
      *
-     * @param availableEquipmentDescription The description of the AvailableEquipment object.
-     * @return The AvailableEquipment object with the specified description.
+     * @param availableEquipmentDescription the available equipment description
+     * @return the available equipment by description
      */
     public AvailableEquipment getAvailableEquipmentByDescription(String availableEquipmentDescription) {
         AvailableEquipmentRepository availableEquipmentRepository = getAvailableEquipmentRepository();
@@ -373,9 +327,9 @@ public class AnnouncementRequestController {
     }
 
     /**
-     * Returns a list of all Available Equipment objects.
+     * Gets available equipment.
      *
-     * @return A List of AvailableEquipment objects.
+     * @return the available equipment
      */
     public List<AvailableEquipment> getAvailableEquipment() {
         AvailableEquipmentRepository availableEquipmentRepository = getAvailableEquipmentRepository();
@@ -383,16 +337,17 @@ public class AnnouncementRequestController {
     }
 
     /**
-     * Creates a new announcement request with the given parameters.
+     * Create announcement request optional.
      *
-     * @param date               The date of the announcement request.
-     * @param typeOfBusiness     The type of business for the announcement request.
-     * @param property           The property for the announcement request.
-     * @param propertyType       The property type for the announcement request.
-     * @param business           The business for the announcement request.
-     * @param durationOfContract The duration of the contract for the announcement request.
+     * @param date               the date
+     * @param typeOfBusiness     the type of business
+     * @param property           the property
+     * @param propertyType       the property type
+     * @param business           the business
+     * @param durationOfContract the duration of contract
      * @param agent              the agent
-     * @return An optional containing the newly created announcement request if it was created successfully, or an empty optional if the announcement request already exists in the repository.
+     * @param client             the client
+     * @return the optional
      */
     public Optional<AnnouncementRequest> createAnnouncementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract,Employee agent, Client client) {
 

@@ -14,10 +14,18 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * The type Agent menu gui.
+ */
 public class AgentMenuGUI implements Runnable, Initializable {
 
     private Label labelAgentMenu;
 
+    /**
+     * List messages.
+     *
+     * @param mouseEvent the mouse event
+     */
     public void listMessages(javafx.scene.input.MouseEvent mouseEvent) {
         loadPage();
     }

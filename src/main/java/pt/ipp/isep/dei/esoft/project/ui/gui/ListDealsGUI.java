@@ -16,6 +16,9 @@ import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * The type List deals gui.
+ */
 public class ListDealsGUI implements Initializable {
 
     @FXML
@@ -77,6 +80,9 @@ public class ListDealsGUI implements Initializable {
     private final ListDealsController controller = new ListDealsController();
 
 
+    /**
+     * The List deals.
+     */
     ObservableList<Object> listDeals = FXCollections.observableArrayList(
          controller.getOfferMostRecent()
     );

@@ -43,7 +43,7 @@ public class Store {
      The number of properties of the store
      */
     private int listing;
-    
+
 
     /**
      * Constructs a {@code Store} object with a designation, an ID, an address, a phone number, and an email.
@@ -53,6 +53,7 @@ public class Store {
      * @param address     the address of the store
      * @param phoneNumber the phone number of the store
      * @param email       the email of the store
+     * @param listing     the listing
      */
     public Store(String designation, int id, Address address, long phoneNumber, String email, int listing) {
         this.designation = designation;
@@ -257,7 +258,7 @@ public class Store {
     /**
      * Gets listing.
      *
-     * @return
+     * @return listing
      */
     public int getListing() {
         return listing;
@@ -266,7 +267,7 @@ public class Store {
     /**
      * Sets listing.
      *
-     * @param listing
+     * @param listing the listing
      */
     public void setListing(int listing) {
         this.listing = listing;

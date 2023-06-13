@@ -77,9 +77,10 @@ public class DisplayPropertiesController {
     /**
      * Filter list list.
      *
-     * @param propertyType  the property type
-     * @param businessType  the business type
-     * @param numberOfRooms the number of rooms
+     * @param propertyType           the property type
+     * @param businessType           the business type
+     * @param numberOfRooms          the number of rooms
+     * @param publishedAnnouncements the published announcements
      * @return the list
      */
     public List<PublishedAnnouncement> filterList(String propertyType, String businessType, int numberOfRooms, List<PublishedAnnouncement> publishedAnnouncements) {

@@ -52,6 +52,7 @@ public class AnnouncementRequest {
      * @param propertyType   the type of property.
      * @param business       the business to be advertised.
      * @param agent          the agent
+     * @param client         the client
      */
     public AnnouncementRequest(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business,Employee agent, Client client) {
         this.date = date;
@@ -75,6 +76,7 @@ public class AnnouncementRequest {
      * @param business           the business to be advertised.
      * @param durationOfContract the duration of the contract for the advertisement.
      * @param agent              the agent
+     * @param client             the client
      */
     public AnnouncementRequest(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract, Employee agent, Client client) {
         this.date = date;
@@ -205,10 +207,20 @@ public class AnnouncementRequest {
         this.property = property;
     }
 
+    /**
+     * Gets client.
+     *
+     * @return the client
+     */
     public Client getClient() {
         return client;
     }
 
+    /**
+     * Sets client.
+     *
+     * @param client the client
+     */
     public void setClient(Client client) {
         this.client = client;
     }

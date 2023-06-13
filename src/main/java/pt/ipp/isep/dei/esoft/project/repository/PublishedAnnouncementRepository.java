@@ -56,6 +56,9 @@ public class PublishedAnnouncementRepository {
      * @param durationOfContract the duration of the contract of the published announcement.
      * @param agent              the agent
      * @param client             the client
+     * @param propertyID         the property id
+     * @param state              the state
+     * @param store              the store
      * @return an Optional containing the newly added published announcement if the operation was successful,         otherwise an empty Optional.
      */
     public Optional<PublishedAnnouncement> publishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent, Client client, int propertyID, AnnouncementState state, Store store) {
@@ -84,6 +87,7 @@ public class PublishedAnnouncementRepository {
      * @param announcementRequests   the announcement requests
      * @param announcementRequestDto the announcement request dto
      * @param comission              the comission
+     * @param store                  the store
      * @return the optional
      */
     public Optional<PublishedAnnouncement> publishedAnnouncementRequest(List<AnnouncementRequest> announcementRequests, AnnouncementRequestDto announcementRequestDto, Comission comission, Store store) {
@@ -174,6 +178,11 @@ public class PublishedAnnouncementRepository {
         return publishedAnnouncements;
     }
 
+    /**
+     * Gets available published announcements desc.
+     *
+     * @return the available published announcements desc
+     */
     public List<PublishedAnnouncement> getAvailablePublishedAnnouncementsDesc() {
         //This is a defensive copy, so that the repository cannot be modified from the outside.
         List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();
@@ -472,9 +481,10 @@ public class PublishedAnnouncementRepository {
     /**
      * Filter list list.
      *
-     * @param propertyType  the property type
-     * @param businessType  the business type
-     * @param numberOfRooms the number of rooms
+     * @param propertyType           the property type
+     * @param businessType           the business type
+     * @param numberOfRooms          the number of rooms
+     * @param publishedAnnouncements the published announcements
      * @return the list
      */
     public List<PublishedAnnouncement> filterList(String propertyType, String businessType, int numberOfRooms, List<PublishedAnnouncement> publishedAnnouncements) {

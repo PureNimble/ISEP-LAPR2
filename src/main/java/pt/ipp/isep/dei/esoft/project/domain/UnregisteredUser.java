@@ -3,10 +3,8 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import java.util.Objects;
 
 /**
-
- The UnregisteredUser class represents an unregistered user of a website. It holds information about the number
-
- of cookies this user has.
+ * The UnregisteredUser class represents an unregistered user of a website. It holds information about the number
+ * of cookies this user has.
  */
 public class UnregisteredUser {
     /**
@@ -20,32 +18,34 @@ public class UnregisteredUser {
     private static final int COOKIES_POR_OMISSAO = 0;
 
     /**
-
-     Constructs an UnregisteredUser object with a specified number of cookies.
-     @param cookies the number of cookies the user has
+     * Constructs an UnregisteredUser object with a specified number of cookies.
+     *
+     * @param cookies the number of cookies the user has
      */
     public UnregisteredUser(int cookies) {
         this.cookies = cookies;
     }
-    /**
 
-     Constructs an UnregisteredUser object with a default number of cookies.
+    /**
+     * Constructs an UnregisteredUser object with a default number of cookies.
      */
     public UnregisteredUser() {
         this.cookies = COOKIES_POR_OMISSAO;
     }
-    /**
 
-     Returns the number of cookies the user has.
-     @return the number of cookies
+    /**
+     * Returns the number of cookies the user has.
+     *
+     * @return the number of cookies
      */
     public int getCookies() {
         return cookies;
     }
-    /**
 
-     Sets the number of cookies the user has.
-     @param cookies the new number of cookies
+    /**
+     * Sets the number of cookies the user has.
+     *
+     * @param cookies the new number of cookies
      */
     public void setCookies(int cookies) {
         this.cookies = cookies;

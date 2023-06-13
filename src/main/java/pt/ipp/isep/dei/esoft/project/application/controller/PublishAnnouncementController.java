@@ -496,6 +496,9 @@ public class PublishAnnouncementController {
      * @param durationOfContract the duration of the contract for the new published announcement
      * @param agent              the agent
      * @param client             the client
+     * @param propertyID         the property id
+     * @param state              the state
+     * @param store              the store
      * @return an Optional containing the new published announcement if it was created successfully, or an empty Optional if a published announcement with the same parameters already exists
      */
     public Optional<PublishedAnnouncement> createPublishmentAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent, Client client, int propertyID, AnnouncementState state, Store store) {

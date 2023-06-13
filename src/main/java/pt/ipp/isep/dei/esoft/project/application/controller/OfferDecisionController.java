@@ -78,6 +78,11 @@ public class OfferDecisionController {
         return publishedAnnouncementRepository;
     }
 
+    /**
+     * Get offers list.
+     *
+     * @return the list
+     */
     public List<Offer> getOffers(){
         OfferRepository offerRepository = getOfferRepository();
         return offerRepository.getPendingOffers();

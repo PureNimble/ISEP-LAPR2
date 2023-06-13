@@ -29,6 +29,7 @@ public class Residence extends Property{
      * @param parkingSpaces          The number of parking spaces in the residence.
      * @param availableEquipment     The available equipment in the residence.
      * @param photos                 the photos
+     * @param address                the address
      */
     public Residence(int area, int distanceFromCityCenter, int numberOfBedrooms, int numberOfBathrooms, int parkingSpaces, AvailableEquipment availableEquipment, Photos photos, Address address) {
         super(area, distanceFromCityCenter, photos, address);
@@ -37,16 +38,17 @@ public class Residence extends Property{
         this.parkingSpaces = parkingSpaces;
         this.availableEquipment = availableEquipment;
     }
+
     /**
      * Constructs a new Residence object with the specified parameters.
      *
-     * @param area                 The area of the residence.
+     * @param area                   The area of the residence.
      * @param distanceFromCityCenter The distance from the city center of the residence.
-     * @param numberOfBedrooms     The number of bedrooms in the residence.
-     * @param numberOfBathrooms    The number of bathrooms in the residence.
-     * @param parkingSpaces        The number of parking spaces available in the residence.
-     * @param availableEquipment   The available equipment in the residence.
-     * @param address              The address of the residence.
+     * @param numberOfBedrooms       The number of bedrooms in the residence.
+     * @param numberOfBathrooms      The number of bathrooms in the residence.
+     * @param parkingSpaces          The number of parking spaces available in the residence.
+     * @param availableEquipment     The available equipment in the residence.
+     * @param address                The address of the residence.
      */
     public Residence(int area, int distanceFromCityCenter, int numberOfBedrooms, int numberOfBathrooms, int parkingSpaces, AvailableEquipment availableEquipment,Address address) {
         super(area, distanceFromCityCenter,address);

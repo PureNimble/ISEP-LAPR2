@@ -89,6 +89,11 @@ public class OfferRepository {
         return offers;
     }
 
+    /**
+     * Get pending offers list.
+     *
+     * @return the list
+     */
     public List<Offer> getPendingOffers(){
         List<Offer> resultList = new ArrayList<Offer>();
         for (Offer offer : offers) {

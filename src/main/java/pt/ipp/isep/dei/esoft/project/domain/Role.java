@@ -3,8 +3,7 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import java.util.Objects;
 
 /**
-
- A class representing a role with a description.
+ * A class representing a role with a description.
  */
 public class Role {
 
@@ -13,10 +12,11 @@ public class Role {
      The description of the role.
      */
     private final String description;
-    /**
 
-     Creates a new Role object with the specified description.
-     @param description the description of the role.
+    /**
+     * Creates a new Role object with the specified description.
+     *
+     * @param description the description of the role.
      */
     public Role(String description) {
         this.description = description;
@@ -55,10 +55,11 @@ public class Role {
     public int hashCode() {
         return Objects.hash(description);
     }
-    /**
 
-     Returns the description of the role.
-     @return the description of the role.
+    /**
+     * Returns the description of the role.
+     *
+     * @return the description of the role.
      */
     public String getDescription() {
         return description;

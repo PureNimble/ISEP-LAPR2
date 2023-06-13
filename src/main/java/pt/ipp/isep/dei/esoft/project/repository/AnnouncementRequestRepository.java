@@ -62,6 +62,7 @@ public class AnnouncementRequestRepository {
      * @param business           The business for the AnnouncementRequest.
      * @param durationOfContract The duration of the contract for the AnnouncementRequest.
      * @param agent              the agent
+     * @param client             the client
      * @return An Optional containing the added AnnouncementRequest if the operation was successful, otherwise an empty Optional.
      */
     public Optional<AnnouncementRequest> announcementRequest(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract, Employee agent, Client client) {

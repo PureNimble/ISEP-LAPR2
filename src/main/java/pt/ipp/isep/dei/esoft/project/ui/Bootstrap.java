@@ -6,9 +6,15 @@ import pt.ipp.isep.dei.esoft.project.repository.*;
 
 import java.util.*;
 
+/**
+ * The type Bootstrap.
+ */
 public class Bootstrap {
 
-  //  FileReaderRepository fileReaderRepository = new FileReaderRepository();
+    /**
+     * Run.
+     */
+//  FileReaderRepository fileReaderRepository = new FileReaderRepository();
     //Add some task categories to the repository as bootstrap
     public void run() {
 //        try {

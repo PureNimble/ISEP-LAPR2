@@ -60,6 +60,7 @@ public class AnnouncementRequestMapper {
      * @param business           the business
      * @param date               the date
      * @param durationOfContract the duration of contract
+     * @param client             the client
      * @return the announcement request dto
      */
     public AnnouncementRequestDto toDtoObject(String status, Employee agent, Property property, TypeOfBusiness typeOfBusiness, PropertyType propertyType, Business business, Date date, int durationOfContract, Client client) {

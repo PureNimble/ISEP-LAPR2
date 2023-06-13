@@ -25,6 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * The type List deals gui teste.
+ */
 public class ListDealsGUITeste implements Initializable {
 
 
@@ -131,6 +134,9 @@ public class ListDealsGUITeste implements Initializable {
     private Label labelArea;
 
 
+    /**
+     * The List deals.
+     */
     ObservableList<Object> listDeals = FXCollections.observableArrayList(
             controller.getOfferMostRecent()
     );
@@ -153,6 +159,12 @@ public class ListDealsGUITeste implements Initializable {
     }
 
 
+    /**
+     * Click item.
+     *
+     * @param mouseEvent the mouse event
+     * @throws FileNotFoundException the file not found exception
+     */
     @FXML
     public void clickItem(MouseEvent mouseEvent) throws FileNotFoundException {
 

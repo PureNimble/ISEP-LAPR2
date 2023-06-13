@@ -54,6 +54,7 @@ public class AnnouncementRequestDto {
      * @param business           the business
      * @param durationOfContract the duration of contract
      * @param agent              the agent
+     * @param client             the client
      */
     public AnnouncementRequestDto(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business, int durationOfContract, Employee agent, Client client) {
         this.date = date;
@@ -78,6 +79,7 @@ public class AnnouncementRequestDto {
      * @param propertyType   the property type
      * @param business       the business
      * @param agent          the agent
+     * @param client         the client
      */
     public AnnouncementRequestDto(String status,Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Business business,Employee agent, Client client) {
         this.date = date;
@@ -194,10 +196,20 @@ public class AnnouncementRequestDto {
         return status;
     }
 
+    /**
+     * Gets client.
+     *
+     * @return the client
+     */
     public Client getClient() {
         return client;
     }
 
+    /**
+     * Sets client.
+     *
+     * @param client the client
+     */
     public void setClient(Client client) {
         this.client = client;
     }

@@ -76,16 +76,31 @@ public class ClientMessagesController {
         EmailNotificationAdapter.sendEmail(email, subject, body);
     }*/
 
+    /**
+     * Gets client.
+     *
+     * @return the client
+     */
     public Client getClient() {
         String email = getCurrentSessionEmail();
         return getUserRepository().getClientEmail(email);
     }
 
+    /**
+     * Gets current session email.
+     *
+     * @return the current session email
+     */
     public String getCurrentSessionEmail() {
         AuthenticationRepository authenticationRepository = getAuthenticationRepository();
         return authenticationRepository.getCurrentUserSession().getUserId().getEmail();
     }
 
+    /**
+     * Gets message requests.
+     *
+     * @return the message requests
+     */
     public List<Message> getMessageRequests() {
         MessageRepository messageRepository = getMessageRepository();
         List<Message> messageList = messageRepository.getMessages();

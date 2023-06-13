@@ -7,6 +7,9 @@ import java.util.AbstractCollection;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Published announcement request controller.
+ */
 public class PublishedAnnouncementRequestController {
 
     /**
@@ -35,7 +38,6 @@ public class PublishedAnnouncementRequestController {
     AuthenticationRepository authenticationRepository = null;
 
 
-
     /**
      * Instantiates a new Published announcement request controller.
      */
@@ -51,10 +53,10 @@ public class PublishedAnnouncementRequestController {
      * Constructs a new PublishedAnnouncementRequestController with the specified repositories.
      *
      * @param publishedAnnouncementRepository The PublishedAnnouncementRepository instance.
-     * @param announcementRequestRepository The AnnouncementRequestRepository instance.
-     * @param comissionRepository The ComissionRepository instance.
-     * @param employeeRepository The EmployeeRepository instance.
-     * @param authenticationRepository The AuthenticationRepository instance.
+     * @param announcementRequestRepository   The AnnouncementRequestRepository instance.
+     * @param comissionRepository             The ComissionRepository instance.
+     * @param employeeRepository              The EmployeeRepository instance.
+     * @param authenticationRepository        The AuthenticationRepository instance.
      */
     public PublishedAnnouncementRequestController(PublishedAnnouncementRepository publishedAnnouncementRepository, AnnouncementRequestRepository announcementRequestRepository, ComissionRepository comissionRepository, EmployeeRepository employeeRepository, AuthenticationRepository authenticationRepository) {
         this.publishedAnnouncementRepository = publishedAnnouncementRepository;
@@ -144,6 +146,7 @@ public class PublishedAnnouncementRequestController {
         }
         return publishedAnnouncementRepository;
     }
+
     /**
      * Retrieves the AnnouncementRequestMapper instance.
      *
@@ -157,9 +160,9 @@ public class PublishedAnnouncementRequestController {
 
 
     /**
-
-     Returns a list of all Published Announcements.
-     @return A List of Published Announcements objects.
+     * Returns a list of all Published Announcements.
+     *
+     * @return A List of Published Announcements objects.
      */
     public List<PublishedAnnouncement> getPublishedAnnouncements() {
         PublishedAnnouncementRepository publishedAnnouncementRepository = getPublishedAnnouncementRepository();
@@ -168,9 +171,9 @@ public class PublishedAnnouncementRequestController {
 
 
     /**
-
-     Returns a list of all Announcement Requests.
-     @return A List of AnnouncementRequest objects.
+     * Returns a list of all Announcement Requests.
+     *
+     * @return A List of AnnouncementRequest objects.
      */
     public List<AnnouncementRequest> getAnnouncementRequestByMostRecent() {
 
@@ -180,6 +183,7 @@ public class PublishedAnnouncementRequestController {
 
         return announcementRequestRepository.getAnnouncementRequestsByMostRecent(agent);
     }
+
     /**
      * Converts the AnnouncementRequest objects to AnnouncementRequestDto objects using an AnnouncementRequestMapper.
      *
@@ -196,11 +200,10 @@ public class PublishedAnnouncementRequestController {
 
 
     /**
-
-     Returns a list of all available Comission objects.
-     @return a list of Comission objects
+     * Returns a list of all available Comission objects.
+     *
+     * @return a list of Comission objects
      */
-
     public List<Comission> getComission() {
         ComissionRepository comissionRepository = getComissionRepository();
         return comissionRepository.getComission();
@@ -220,7 +223,6 @@ public class PublishedAnnouncementRequestController {
     /**
      * Get employee by email employee.
      *
-
      * @return the employee
      */
     public Employee getEmployeeByEmail(){
@@ -264,10 +266,11 @@ public class PublishedAnnouncementRequestController {
         return announcementRequestByDescription;
 
     }
+
     /**
      * Creates a published announcement request based on the provided commission description and announcement request description.
      *
-     * @param comissionDescription         The description of the commission.
+     * @param comissionDescription              The description of the commission.
      * @param announcementRequestDtoDescription The description of the announcement request DTO.
      * @return An Optional containing the created PublishedAnnouncement, or an empty Optional if the creation failed.
      */
@@ -291,6 +294,7 @@ public class PublishedAnnouncementRequestController {
 
         return newPublishedAnnouncement;
     }
+
     /**
      * Rejects a publish announcement request based on the provided announcement request description.
      *

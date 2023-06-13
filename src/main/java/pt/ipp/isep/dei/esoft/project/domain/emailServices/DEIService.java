@@ -3,6 +3,9 @@ package pt.ipp.isep.dei.esoft.project.domain.emailServices;
 import java.io.*;
 import java.util.Properties;
 
+/**
+ * The type Dei service.
+ */
 public class DEIService implements EmailService {
 
     private static final String FILE_NAME = "DEINotification.txt";

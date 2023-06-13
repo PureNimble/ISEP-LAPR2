@@ -2,15 +2,12 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 
 
 /**
-
- The DevTeamUI class is responsible for displaying the names and emails of the development team.
-
- It implements the Runnable interface, allowing it to be run on a separate thread.
+ * The DevTeamUI class is responsible for displaying the names and emails of the development team.
+ * It implements the Runnable interface, allowing it to be run on a separate thread.
  */
 public class DevTeamUI implements Runnable {
     /**
-
-     Constructs a DevTeamUI object.
+     * Constructs a DevTeamUI object.
      */
     public DevTeamUI() {
 

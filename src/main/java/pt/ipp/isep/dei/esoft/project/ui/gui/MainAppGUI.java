@@ -11,6 +11,9 @@ import javax.swing.text.html.ImageView;
 import java.awt.*;
 import java.io.IOException;
 
+/**
+ * The type Main app gui.
+ */
 public class MainAppGUI extends Application {
 
 
@@ -24,6 +27,11 @@ public class MainAppGUI extends Application {
     }
 
 
+    /**
+     * Main.
+     *
+     * @param args the args
+     */
     public static void main(String[] args){
             Bootstrap bootstrap = new Bootstrap();
             bootstrap.run();

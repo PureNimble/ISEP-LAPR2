@@ -22,6 +22,9 @@ public class OfferDto {
     private OfferState offerState;
 
     private Client client;
+    /**
+     * The Get offer state.
+     */
     public Object getOfferState;
 
 
@@ -40,6 +43,14 @@ public class OfferDto {
         this.offerState = offerState;
     }
 
+    /**
+     * Instantiates a new Offer dto.
+     *
+     * @param name        the name
+     * @param client      the client
+     * @param orderAmount the order amount
+     * @param offerState  the offer state
+     */
     public OfferDto( String name, Client client, double orderAmount,OfferState offerState) {
         this.name = name;
         this.client = client;
@@ -72,6 +83,11 @@ public class OfferDto {
         return name;
     }
 
+    /**
+     * Gets client.
+     *
+     * @return the client
+     */
     public Client getClient() {
         return client;
     }
@@ -94,6 +110,11 @@ public class OfferDto {
         this.name = name;
     }
 
+    /**
+     * Sets client.
+     *
+     * @param client the client
+     */
     public void setClient(Client client) {
         this.client = client;
     }

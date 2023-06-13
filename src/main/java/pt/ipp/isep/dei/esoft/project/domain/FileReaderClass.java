@@ -14,7 +14,7 @@ public class FileReaderClass {
     /**
      * Read informations array list.
      *
-     * @param fileDescription the file
+     * @param fileDescription the file description
      * @return the array list
      */
     public ArrayList<String[]> readInformations(String fileDescription) {

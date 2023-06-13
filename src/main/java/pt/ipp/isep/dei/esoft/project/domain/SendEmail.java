@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * The type Send email.
+ */
 public class SendEmail {
     /**
      * Create file.
@@ -23,6 +26,7 @@ public class SendEmail {
             e.printStackTrace();
         }
     }
+
     /**
      * Write file.
      *

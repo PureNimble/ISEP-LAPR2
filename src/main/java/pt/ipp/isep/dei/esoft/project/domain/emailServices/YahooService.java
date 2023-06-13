@@ -3,6 +3,9 @@ package pt.ipp.isep.dei.esoft.project.domain.emailServices;
 import java.io.*;
 import java.util.Properties;
 
+/**
+ * The type Yahoo service.
+ */
 public class YahooService implements EmailService {
 
     private static final String FILE_NAME = "YahooNotification.txt";
