@@ -37,15 +37,14 @@ class AnnouncementRequestRepositoryTest {
     private Residence appartment;
 
     private PropertyType propertyType, propertyType1, propertyType2;
+
+    private Client client;
     private AnnouncementRequest announcementRequest, announcementRequest1, announcementRequest2;
 
     private AnnouncementRequestDto announcementRequestDto;
 
     @BeforeEach
     void setUpPropertys() {
-        house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South");
-        land = new Property(5, 1000);
-        appartment = new Residence(20, 150, 3, 2, 1, new AvailableEquipment("air conditioning"));
         setUpPropertyTypes();
         setUpBusiness();
         setUpAddress();
@@ -55,6 +54,9 @@ class AnnouncementRequestRepositoryTest {
         setUpRoles();
         setUpAnnouncementRequest();
         setUpAnnouncementRequestDto();
+        house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South",address2);
+        land = new Property(5, 1000,address2);
+        appartment = new Residence(20, 150, 3, 2, 1, new AvailableEquipment("air conditioning"),address2);
     }
 
     @BeforeEach
@@ -63,6 +65,12 @@ class AnnouncementRequestRepositoryTest {
         propertyType1 = new PropertyType("Appartment");
         propertyType2 = new PropertyType("Land");
     }
+
+    @BeforeEach
+    void setUpClient() {
+       client = new Client("pedro@isep.ipp.pt", 123456789, 987654321, "Pedro", address2, 1234567890);
+    }
+
 
     @BeforeEach
     void setUpTypeOfBusiness() {
@@ -91,7 +99,7 @@ class AnnouncementRequestRepositoryTest {
 
     @BeforeEach
     void setUpStore() {
-        store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        store = new Store("Test Store", 1, address2, 5551234, "test@store.com",0);
     }
 
     @BeforeEach
@@ -104,17 +112,19 @@ class AnnouncementRequestRepositoryTest {
     }
 
 
+
+
     @BeforeEach
     void setUpAnnouncementRequest() {
-            announcementRequest = new AnnouncementRequest("",date, typeOfBusiness, house, propertyType, business, employee);
-            announcementRequest1 = new AnnouncementRequest("",date, typeOfBusiness1, land, propertyType, business, employee);
-            announcementRequest2 = new AnnouncementRequest("",date, typeOfBusiness, appartment, propertyType2, business1, employee);
+            announcementRequest = new AnnouncementRequest("",date, typeOfBusiness, house, propertyType, business, employee,client);
+            announcementRequest1 = new AnnouncementRequest("",date, typeOfBusiness1, land, propertyType, business, employee,client);
+            announcementRequest2 = new AnnouncementRequest("",date, typeOfBusiness, appartment, propertyType2, business1, employee,client);
 
     }
 
     @BeforeEach
     void setUpAnnouncementRequestDto() {
-        announcementRequestDto = new AnnouncementRequestDto("",date, typeOfBusiness, house, propertyType, business, employee);
+        announcementRequestDto = new AnnouncementRequestDto("",date, typeOfBusiness, house, propertyType, business, employee,client);
     }
 
     @Test
@@ -123,12 +133,12 @@ class AnnouncementRequestRepositoryTest {
 
         Role role = new Role("Agent");
         Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com",0);
         List<Role> roles = new ArrayList<>();
         roles.add(role);
         Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
 
-        AnnouncementRequest announcementRequest = new AnnouncementRequest("",new Date(), new TypeOfBusiness("Sale"), new Property(345,789), new PropertyType("House"), new Business(89999), employee);
+        AnnouncementRequest announcementRequest = new AnnouncementRequest("",new Date(), new TypeOfBusiness("Sale"), new Property(345,789,address2), new PropertyType("House"), new Business(89999), employee,client);
         Optional<AnnouncementRequest> addedAnnouncementRequest = repository.add(announcementRequest);
         Assertions.assertTrue(addedAnnouncementRequest.isPresent());
         List<AnnouncementRequest> announcementRequests = repository.getAnnouncementsRequest();
@@ -141,12 +151,12 @@ class AnnouncementRequestRepositoryTest {
         AnnouncementRequestRepository repository = new AnnouncementRequestRepository();
         Role role = new Role("Agent");
         Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com",0);
         List<Role> roles = new ArrayList<>();
         roles.add(role);
         Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
 
-        AnnouncementRequest announcementRequest = new AnnouncementRequest("",new Date(), new TypeOfBusiness("Sale"), new Property(345,789), new PropertyType("House"), new Business(89999), employee);
+        AnnouncementRequest announcementRequest = new AnnouncementRequest("",new Date(), new TypeOfBusiness("Sale"), new Property(345,789,address2), new PropertyType("House"), new Business(89999), employee,client);
         List<AnnouncementRequest> announcementRequests = repository.getAnnouncementsRequest();
         Assertions.assertFalse(announcementRequests.contains(announcementRequest));
     }
@@ -157,7 +167,7 @@ class AnnouncementRequestRepositoryTest {
 
         Role role = new Role("Agent");
         Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com",0);
         List<Role> roles = new ArrayList<>();
         roles.add(role);
         Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
@@ -168,20 +178,22 @@ class AnnouncementRequestRepositoryTest {
                 "",
                 new Date(),
                 new TypeOfBusiness("Rent"),
-                new Property(567,89),
+                new Property(567,89,address2),
                 new PropertyType("House"),
                 new Business(45666),
-                employee
+                employee,
+                client
         );
 
         AnnouncementRequest announcementRequest2 = new AnnouncementRequest(
                 "",
                 new Date(),
                 new TypeOfBusiness("Rent"),
-                new Property(967,89),
+                new Property(967,89,address2),
                 new PropertyType("Land"),
                 new Business(666),
-                employee
+                employee,
+                client
         );
 
         repository.add(announcementRequest1);
