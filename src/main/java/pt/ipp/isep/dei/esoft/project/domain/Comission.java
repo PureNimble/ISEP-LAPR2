@@ -1,11 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Represents the commission charged for a business transaction.
  */
-public class Comission {
+public class Comission implements Serializable {
 
     /** The amount of the commission. */
     private double comission;

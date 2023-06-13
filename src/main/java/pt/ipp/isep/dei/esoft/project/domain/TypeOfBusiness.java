@@ -1,11 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * The TypeOfBusiness class represents the type of business.
  */
-public class TypeOfBusiness {
+public class TypeOfBusiness implements Serializable {
 
     /**
 

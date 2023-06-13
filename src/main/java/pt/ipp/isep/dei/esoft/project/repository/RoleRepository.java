@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.Role;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +10,7 @@ import java.util.Optional;
 /**
  * The RoleRepository class provides functionality to manage roles, including creating, retrieving and validating roles.
  */
-public class RoleRepository {
+public class RoleRepository implements Serializable {
 
     /**
      * Represents a list of roles.

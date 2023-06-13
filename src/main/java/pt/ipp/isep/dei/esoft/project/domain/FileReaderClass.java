@@ -9,7 +9,7 @@ import java.util.Scanner;
 /**
  * The type File reader class.
  */
-public class FileReaderClass {
+public class FileReaderClass implements Serializable{
 
     /**
      * Read informations array list.

@@ -43,6 +43,8 @@ class ListDealsControllerTest {
 
     private Client client1,client2;
 
+    private int offerID;
+
 
 
     @BeforeEach
@@ -110,6 +112,10 @@ class ListDealsControllerTest {
     }
 
     @BeforeEach
+    void setUpOfferID() {
+        offerID = 1;
+    }
+    @BeforeEach
     void setUpStore() {
         store = new Store("Test Store", 1, address2, 5551234, "test@store.com",5);
     }
@@ -162,10 +168,10 @@ class ListDealsControllerTest {
 
     @BeforeEach
     void setDeals() {
-        offer = new Offer("Name",2100,publishedAnnouncement,OfferState.accepted,client1);
-        offer1 = new Offer("Almeida",21000,publishedAnnouncement1,OfferState.accepted,client2);
-        offer2 = new Offer("Miguel",21500,publishedAnnouncement2,OfferState.accepted,client1);
-        offer3 = new Offer("Zé",20500,publishedAnnouncement3,OfferState.accepted,client2);
+        offer = new Offer("Name",2100,publishedAnnouncement,OfferState.accepted,client1, offerID);
+        offer1 = new Offer("Almeida",21000,publishedAnnouncement1,OfferState.accepted,client2,offerID);
+        offer2 = new Offer("Miguel",21500,publishedAnnouncement2,OfferState.accepted,client1,offerID);
+        offer3 = new Offer("Zé",20500,publishedAnnouncement3,OfferState.accepted,client2,offerID);
     }
 
 

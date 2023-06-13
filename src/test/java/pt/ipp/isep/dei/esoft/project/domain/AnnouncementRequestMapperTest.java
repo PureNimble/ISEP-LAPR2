@@ -144,7 +144,7 @@ class AnnouncementRequestMapperTest {
     @BeforeEach
     void setUpAnnouncementRequestDto() {
         announcementRequestDto = new AnnouncementRequestDto("",date, typeOfBusiness, house, propertyType, business, employee,new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L));
-        announcementRequestDTO1 = new AnnouncementRequestDto("",date, typeOfBusiness1, land, propertyType, business, employee, new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L));
+        announcementRequestDTO1 = new AnnouncementRequestDto("",date, typeOfBusiness, land, propertyType, business, employee, new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L));
         announcementRequestDto2 = new AnnouncementRequestDto("",date, typeOfBusiness, appartment, propertyType2, business1, employee1, new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L));
     }
 

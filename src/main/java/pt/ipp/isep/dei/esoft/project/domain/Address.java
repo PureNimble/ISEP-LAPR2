@@ -1,11 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Address represents a physical address that includes the street, zipcode, district, city, and state.
  */
-public class Address {
+public class Address implements Serializable {
 
     /**
      * The street of the address.

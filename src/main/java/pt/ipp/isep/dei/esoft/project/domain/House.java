@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Objects;
  * It extends the Residence class and inherits its properties (area, distanceFromCityCenter, numberOfBedrooms,
  * numberOfBathrooms, parkingSpaces, availableEquipment).
  */
-public class House extends Residence {
+public class House extends Residence implements Serializable {
 
     /**
 

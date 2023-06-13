@@ -1,12 +1,13 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
 /**
  * The `Photos` class represents a photo with a URL.
  */
-public class Photos {
+public class Photos implements Serializable {
     /**
      * The URL of the photo.
      */

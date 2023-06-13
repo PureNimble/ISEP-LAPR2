@@ -1,11 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * A class representing a rental contract with a certain duration.
  */
-public class Rent {
+public class Rent implements Serializable {
 
     /**
 

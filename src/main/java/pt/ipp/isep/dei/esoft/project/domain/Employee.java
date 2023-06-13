@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
@@ -7,7 +8,7 @@ import java.util.Objects;
  * The Employee class represents an employee in the system.
  * It extends the User class and adds a reference to the Store the employee works at and the roles they play.
  */
-public class Employee extends Person {
+public class Employee extends Person implements Serializable {
     /**
      * The store associated with the object.
      */

@@ -1,12 +1,13 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
 /**
  * This class represents an announcement request, which is created by a user who wants to advertise their business or property.
  */
-public class AnnouncementRequest {
+public class AnnouncementRequest implements Serializable {
     /**
      * The date associated with the object.
      */

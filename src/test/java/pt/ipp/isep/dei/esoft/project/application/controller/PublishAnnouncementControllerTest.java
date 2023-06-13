@@ -25,6 +25,8 @@ class PublishAnnouncementControllerTest {
     String name = "John Doe";
     double offerAmount = 200000;
 
+    int offerID = 1;
+
     Date date = new Date();
     Comission comission1 = new Comission(25.00);
     Role role = new Role("Agent");
@@ -47,7 +49,7 @@ class PublishAnnouncementControllerTest {
     AnnouncementState state1 = AnnouncementState.available;
     PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType1, comission1, business1, agent1, client1, 1, state1, store1);
 
-    Offer offer = new Offer("Pedro", 130000, publishedAnnouncement1, OfferState.pending, new Client("pedro@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890));
+    Offer offer = new Offer("Pedro", 130000, publishedAnnouncement1, OfferState.pending, new Client("pedro@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890), offerID);
 
 
     @BeforeEach

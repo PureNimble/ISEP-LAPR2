@@ -1,12 +1,13 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * The UnregisteredUser class represents an unregistered user of a website. It holds information about the number
  * of cookies this user has.
  */
-public class UnregisteredUser {
+public class UnregisteredUser implements Serializable {
     /**
      * Represents the number of cookies.
      * The value of the cookies can be modified by the program.

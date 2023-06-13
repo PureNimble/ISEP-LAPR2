@@ -1,11 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * The Offer class represents an offer made by a client for a published announcement.
  */
-public class Offer {
+public class Offer implements Serializable {
     /**
      * The name associated with the offer.
      */

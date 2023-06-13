@@ -5,12 +5,13 @@ import pt.ipp.isep.dei.esoft.project.domain.MessageState;
 import pt.ipp.isep.dei.esoft.project.domain.OfferState;
 
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * The type Message repository.
  */
-public class MessageRepository {
+public class MessageRepository implements Serializable {
 
     private ArrayList<Message> messages = new ArrayList<>();
 

@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -7,7 +8,7 @@ import java.util.Objects;
 /**
  * The State class represents a state in a country with its name and a list of its districts.
  */
-public class State {
+public class State implements Serializable {
 
     /** The name of the state. */
     private String state;

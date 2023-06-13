@@ -1,23 +1,26 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.esoft.project.repository.PublishedAnnouncementRepository;
-import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MessageTest {
+class MessageDtoTest {
 
     String name = "John Doe";
+
     long phoneNumber = 1234567890;
-    boolean isApprovedByAgent = true;
-    MessageState messageState = MessageState.ANSWERED;
+
     String description = "Test message";
+
     Date date = new Date();
+
     Photos photos = new Photos("urlll");
     int initialTime = 10;
     int endTime = 11;
@@ -36,8 +39,6 @@ class MessageTest {
 
     PublishedAnnouncement p1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business,employee,client,77,AnnouncementState.available,store);
     Message message = new Message(name, phoneNumber, description, date, initialTime, endTime, p1,MessageState.ANSWERED,true);
-
-
 
     @Test
     void getName() {
@@ -69,34 +70,6 @@ class MessageTest {
         long actualPhoneNumber = message.getPhoneNumber();
 
         assertEquals(newPhoneNumber, actualPhoneNumber);
-    }
-
-    @Test
-    void isApprovedByAgent() {
-        boolean actualIsApprovedByAgent = message.getIsApprovedByAgent();
-        assertEquals(isApprovedByAgent, actualIsApprovedByAgent);
-    }
-
-    @Test
-    void setIsApprovedByAgent() {
-        boolean newIsApprovedByAgent = true;
-        message.setApprovedByAgent(newIsApprovedByAgent);
-        boolean actualIsApprovedByAgent = message.isApprovedByAgent();
-        assertEquals(newIsApprovedByAgent, actualIsApprovedByAgent);
-    }
-
-    @Test
-    void getMessageState() {
-        MessageState actualMessageState = message.getMessageState();
-        assertEquals(messageState, actualMessageState);
-    }
-
-    @Test
-    void setMessageState() {
-        MessageState newMessageState = MessageState.ANSWERED;
-        message.setMessageState(newMessageState);
-        MessageState actualMessageState = message.getMessageState();
-        assertEquals(newMessageState, actualMessageState);
     }
 
     @Test
@@ -194,26 +167,5 @@ class MessageTest {
 
         String expectedString = "Message: \nThe client John Doe, with phone number 1234567890, wants to schedule a visit from 10 until 11 at " + date1 + ". \n\nDescription: \nTest message \n\nProperty: \n" + p1.toString();
         assertEquals(expectedString, actualString);
-
-    }
-
-    @Test
-    void testEquals() {
-        Message message1 = new Message(name, phoneNumber, description, date, initialTime, endTime, p1,MessageState.ANSWERED,true);
-        Message message2 = new Message(name, phoneNumber, description, date, initialTime, endTime, p1,MessageState.ANSWERED,true);
-
-        boolean isEqual = message1.equals(message2);
-
-        assertEquals(true, isEqual);
-    }
-
-    @Test
-    void testHashCode() {
-        int expectedHashCode = message.hashCode();
-
-        int actualHashCode = message.hashCode();
-
-        assertEquals(expectedHashCode, actualHashCode);
-
     }
 }

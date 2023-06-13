@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -10,7 +11,7 @@ import java.util.Optional;
  * The UserRepository class represents a repository for User objects.
  * It provides methods to add a user to the repository and retrieve a defensive copy of the list of users.
  */
-public class UserRepository {
+public class UserRepository implements Serializable {
     /**
      * Represents a list of clients.
      */

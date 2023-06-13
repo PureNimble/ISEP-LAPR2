@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.domain.Comission;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +13,7 @@ import java.util.Optional;
  * It provides methods to add new Comission objects to the collection,
  * retrieve a specific Comission object by description, and get an immutable copy of the entire collection.
  */
-public class ComissionRepository {
+public class ComissionRepository implements Serializable {
 
     private final List<Comission> comissions = new ArrayList<>();
 

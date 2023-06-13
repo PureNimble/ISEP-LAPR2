@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterEmployeeController;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -10,7 +11,7 @@ import java.util.Optional;
  * The {@code Store} class represents a store with a designation, an ID, an address, an email, and a phone number.
  * It also has methods to create an employee and add it to the store.
  */
-public class Store {
+public class Store implements Serializable {
 
     /**
 

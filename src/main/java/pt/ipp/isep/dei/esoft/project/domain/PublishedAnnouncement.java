@@ -1,11 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * The type Published announcement.
  */
-public class PublishedAnnouncement {
+public class PublishedAnnouncement implements Serializable {
     private Date date;
     private TypeOfBusiness typeOfBusiness;
     private Property property;

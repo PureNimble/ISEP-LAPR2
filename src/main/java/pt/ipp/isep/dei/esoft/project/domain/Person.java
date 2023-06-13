@@ -1,12 +1,13 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Represents a person with identifying information such as email, passport and tax numbers,
  * name, address, and phone number.
  */
-public class Person {
+public class Person implements Serializable {
     /**
      * The email of the person.
      */

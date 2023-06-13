@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.domain.Employee;
 import pt.ipp.isep.dei.esoft.project.domain.Store;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Comparator;
@@ -12,7 +13,7 @@ import java.util.Optional;
  * The EmployeeRepository class represents a repository for Employee objects. It provides methods to add and return a
  * defensive copy of the list of Employee objects.
  */
-public class EmployeeRepository {
+public class EmployeeRepository implements Serializable {
     /**
      * A list of employees associated with a specific entity.
      */

@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.application.controller.AnnouncementRequestController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -10,7 +11,7 @@ import java.util.*;
  * <p>
  * It provides methods to add an AnnouncementRequest to the list, retrieve a list of AnnouncementRequest objects, and validate that an AnnouncementRequest is not already in the list.
  */
-public class AnnouncementRequestRepository {
+public class AnnouncementRequestRepository implements Serializable {
 
     /**
      * The list of AnnouncementRequest objects.

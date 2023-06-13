@@ -4,6 +4,7 @@ import pt.ipp.isep.dei.esoft.project.domain.City;
 import pt.ipp.isep.dei.esoft.project.domain.District;
 import pt.ipp.isep.dei.esoft.project.domain.State;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -11,7 +12,7 @@ import java.util.Optional;
 /**
  * The StateRepository class provides a repository for storing and accessing States, Districts, and Cities.
  */
-public class StateRepository {
+public class StateRepository implements Serializable {
     /**
      * Represents a list of states.
      */

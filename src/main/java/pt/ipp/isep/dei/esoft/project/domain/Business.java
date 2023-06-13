@@ -1,11 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Business class represents a business with its price.
  */
-public class Business {
+public class Business implements Serializable {
     /**
      * The price associated with the object.
      */

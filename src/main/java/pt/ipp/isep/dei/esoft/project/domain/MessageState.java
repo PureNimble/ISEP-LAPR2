@@ -1,9 +1,11 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
+
 /**
  * The enum Message state.
  */
-public enum MessageState {
+public enum MessageState implements Serializable {
     /**
      * Unanswered message state.
      */

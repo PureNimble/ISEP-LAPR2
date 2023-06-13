@@ -4,12 +4,13 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.isep.lei.esoft.auth.AuthFacade;
 import pt.isep.lei.esoft.auth.UserSession;
 
+import java.io.Serializable;
 import java.security.SecureRandom;
 
 /**
  * This class represents a repository for authentication-related operations.
  */
-public class AuthenticationRepository {
+public class AuthenticationRepository implements Serializable {
 
     private final AuthFacade authenticationFacade = new AuthFacade();
 

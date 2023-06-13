@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.AvailableEquipment;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +10,7 @@ import java.util.Optional;
 /**
  * The AvailableEquipmentRepository class represents a repository of available equipment.
  */
-public class AvailableEquipmentRepository {
+public class AvailableEquipmentRepository implements Serializable {
 
     /**
 

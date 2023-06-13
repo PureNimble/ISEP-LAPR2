@@ -1,9 +1,11 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
+
 /**
  * The User class represents a user and extends the Person class.
  */
-public class Client extends Person {
+public class Client extends Person implements Serializable {
 
     /**
      * Constructs a User object with the specified email, passport number, tax number, name, address, and phone number.

@@ -1,11 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * The AvailableEquipment class represents the equipment that is available for use.
  */
-public class AvailableEquipment {
+public class AvailableEquipment implements Serializable {
     /**
      * The available equipment associated with the object.
      */

@@ -1,11 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * The Property class represents a real estate property with an area and a distance from the city center.
  */
-public class Property {
+public class Property implements Serializable {
     /**
      * The distance from the city center to the property.
      */

@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.TypeOfBusiness;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -10,7 +11,7 @@ import java.util.Optional;
  * The TypeOfBusinessRepository class represents a repository for TypeOfBusiness objects.
  * It provides methods to get a type of business by its description, add a type of business to the repository and retrieve a defensive copy of the list of types of businesses.
  */
-public class TypeOfBusinessRepository {
+public class TypeOfBusinessRepository implements Serializable {
     /**
      * Represents a list of types of businesses.
      */

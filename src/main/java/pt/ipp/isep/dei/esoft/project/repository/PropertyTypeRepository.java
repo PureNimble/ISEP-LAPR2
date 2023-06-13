@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.PropertyType;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -10,7 +11,7 @@ import java.util.Optional;
  * The PropertyTypeRepository class represents a repository for PropertyType objects. It provides methods to retrieve,
  * add, and return a defensive copy of the list of PropertyType objects.
  */
-public class PropertyTypeRepository {
+public class PropertyTypeRepository implements Serializable {
     /**
      * Represents a list of property types.
      */

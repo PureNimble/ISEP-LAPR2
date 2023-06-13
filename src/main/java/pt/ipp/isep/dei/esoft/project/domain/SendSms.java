@@ -3,11 +3,12 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * The type Send sms.
  */
-public class SendSms {
+public class SendSms implements Serializable {
     /**
      * Create file.
      *

@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.application.controller.PublishAnnouncementController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -10,7 +11,7 @@ import java.util.*;
 /**
  * A repository for storing and managing PublishedAnnouncement objects.
  */
-public class PublishedAnnouncementRepository {
+public class PublishedAnnouncementRepository implements Serializable {
     /**
      * A list of published announcements.
      */

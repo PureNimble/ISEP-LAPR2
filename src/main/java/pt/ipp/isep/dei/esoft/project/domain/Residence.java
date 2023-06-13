@@ -1,11 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Represents a residential property.
  */
-public class Residence extends Property{
+public class Residence extends Property implements Serializable {
 
     /** The number of bedrooms in the residence */
     private int numberOfBedrooms;

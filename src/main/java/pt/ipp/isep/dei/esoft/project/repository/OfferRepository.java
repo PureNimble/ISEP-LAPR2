@@ -3,12 +3,13 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.domain.Offer;
 import pt.ipp.isep.dei.esoft.project.domain.OfferState;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * The OfferRepository class is responsible for managing the storage and retrieval of offers.
  */
-public class OfferRepository {
+public class OfferRepository implements Serializable {
     /**
      * List of offers associated with this object.
      */
@@ -119,11 +120,11 @@ public class OfferRepository {
         }
     }
 
+
     /**
-     * Gets offers by property by highest amount.
+     * Gets offers by highest amount.
      *
-     * @param publishedAnnouncementList the published announcement list
-     * @return the offers by property by highest amount
+     * @return the offers by highest amount
      */
     public List<Offer> getOffersByHighestAmount() {
         List<Offer> resultList = new ArrayList<Offer>();

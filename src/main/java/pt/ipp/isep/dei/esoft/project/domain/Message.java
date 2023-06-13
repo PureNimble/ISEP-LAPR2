@@ -1,5 +1,6 @@
     package pt.ipp.isep.dei.esoft.project.domain;
 
+    import java.io.Serializable;
     import java.text.SimpleDateFormat;
     import java.util.Date;
     import java.util.Objects;
@@ -7,7 +8,7 @@
     /**
      * The Message class represents a messsage with a description, a name, a phone number, an initial date, initial time, an end date and an end time.
      */
-    public class Message {
+    public class Message implements Serializable {
 
         /**
          The name of the client.

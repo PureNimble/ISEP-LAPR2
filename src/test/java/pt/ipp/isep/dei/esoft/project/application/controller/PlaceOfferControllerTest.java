@@ -3,9 +3,9 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
-import pt.ipp.isep.dei.esoft.project.repository.OfferRepository;
-import pt.ipp.isep.dei.esoft.project.repository.Repositories;
+import pt.ipp.isep.dei.esoft.project.repository.*;
 
 import java.util.*;
 
@@ -15,6 +15,10 @@ class PlaceOfferControllerTest {
 
     String name = "John Doe";
     double offerAmount = 200000;
+
+    List<Role> roles = new ArrayList<>();
+
+    int offerID = 1;
 
     Date date = new Date();
     Comission comission1 = new Comission(25.00);
@@ -27,31 +31,48 @@ class PlaceOfferControllerTest {
 
     Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 0);
 
-    Employee agent1 = new Employee("agent@this.app", 123456789, 987654321, "Miguel", 1234567890L, store1, (List<Role>) role, address1);
+    @BeforeEach
+    void setUp() {
+
+        roles.add(role);
+
+    }
+
+    Employee agent1 = new Employee("agent@this.app", 123456789, 987654321, "Miguel", 1234567890L, store1, roles, address1);
 
 
     PropertyType propertyType1 = new PropertyType("House");
     TypeOfBusiness typeOfBusiness1 = new TypeOfBusiness("Sale");
     Business business1 = new Business(200000);
     Date date1 = new GregorianCalendar(2023, Calendar.JUNE, 20).getTime();
-    Client client1 = new Client("pedro@isep.ipp.pt", 123456789, 987654321, "Pedro", address1, 1234567890);
+    Client client1 = new Client("pedro@gmail.com", 123456789, 987654321, "Pedro", address1, 1234567890);
     AnnouncementState state1 = AnnouncementState.available;
     PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType1, comission1, business1, agent1, client1, 1, state1, store1);
 
-    Offer offer = new Offer("Pedro", 130000, publishedAnnouncement1, OfferState.pending, new Client("pedro@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890));
+    Offer offer = new Offer("chbieicbeibcibc", 12345678, publishedAnnouncement1, OfferState.pending, new Client("pedro123456@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890), offerID);
+    Offer offer1 = new Offer("Pedro", 130000, publishedAnnouncement1, OfferState.pending, new Client("iceirciherbcihbrihbcihrbi@gmail.com", 124566789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890), offerID);
+    Offer offer2 = new Offer("ehbfehbcurbc", 130034500, publishedAnnouncement1, OfferState.pending, new Client("pedro456378457438@gmail.com", 222256789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890), offerID);
+
+
 
     @Test
     void getOfferFromRepository() {
-        PlaceOfferController controller = new PlaceOfferController();
-        List<Offer> expectedOffers = createSampleOffers();
-        OfferRepository repository = new OfferRepository();
-        repository.add(expectedOffers.get(0));
-        repository.add(expectedOffers.get(1));
-        Repositories.getInstance().setOfferRepository(repository);
-        controller.offerRepository = repository;
-
+        OfferRepository offerRepository = new OfferRepository();
+        PublishedAnnouncementRepository publishedAnnouncementRepository = new PublishedAnnouncementRepository();
+        UserRepository userRepository = new UserRepository();
+        AuthenticationRepository authenticationRepository = new AuthenticationRepository();
+        authenticationRepository.addUserRole(AuthenticationController.ROLE_CLIENT, AuthenticationController.ROLE_CLIENT);
+        authenticationRepository.addUserWithRole("Diogo", "pedro@gmail.com", "1231dwadwd", AuthenticationController.ROLE_CLIENT);
+        authenticationRepository.doLogin("pedro@gmail.com", "1231dwadwd");
+        PlaceOfferController controller = new PlaceOfferController(authenticationRepository,offerRepository, publishedAnnouncementRepository, userRepository);
+        List<Offer> expectedOffers = new ArrayList<>();
+        expectedOffers.add(offer);
+        expectedOffers.add(offer1);
+        expectedOffers.add(offer2);
+        offerRepository.add(offer);
+        offerRepository.add(offer1);
+        offerRepository.add(offer2);
         List<Offer> offers = controller.getOffers();
-
         assertEquals(expectedOffers, offers);
 
     }
@@ -64,7 +85,7 @@ class PlaceOfferControllerTest {
         Repositories.getInstance().setOfferRepository(repository);
         controller.offerRepository = repository;
 
-        Optional<Offer> result = controller.createNewOfferToAgent(name, client1, 130000, publishedAnnouncement1,OfferState.pending);
+        Optional<Offer> result = controller.createNewOfferToAgent(name, client1, 200000, publishedAnnouncement1,OfferState.pending);
 
         assertTrue(result.isPresent());
         Offer offer = result.get();
@@ -83,24 +104,9 @@ class PlaceOfferControllerTest {
         Repositories.getInstance().setOfferRepository(repository);
         controller.offerRepository = repository;
 
-        Optional<Offer> result = controller.createNewOfferToAgent(name, client1, 130000, publishedAnnouncement1,OfferState.pending);
+        Optional<Offer> result = controller.createNewOfferToAgent(name, client1, 1300000, publishedAnnouncement1,OfferState.pending);
 
         assertFalse(result.isPresent());
-    }
-
-    private List<Offer> createSampleOffers() {
-        List<Offer> offers = new ArrayList<>();
-        offers.add(createSampleOffer("John Doe", 20000, null));
-        offers.add(createSampleOffer("Jane Smith", 30000, null));
-        return offers;
-    }
-
-    private Offer createSampleOffer(String name, double offerAmount, PublishedAnnouncement publishedAnnouncement) {
-        Offer offer = new Offer();
-        offer.setName(name);
-        offer.setOrderAmount(offerAmount);
-        offer.setPublishedAnnouncement(publishedAnnouncement);
-        return offer;
     }
 
 

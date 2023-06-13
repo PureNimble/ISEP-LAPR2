@@ -1,11 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * A class representing a role with a description.
  */
-public class Role {
+public class Role implements Serializable {
 
     /**
 

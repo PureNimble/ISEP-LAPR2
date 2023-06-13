@@ -1,11 +1,13 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
 
+import java.io.Serializable;
+
 /**
  * The Repositories class represents a singleton instance that manages all the repositories.
  * This class contains methods to retrieve instances of each repository.
  */
-public class Repositories {
+public class Repositories implements Serializable {
 
     /**
 

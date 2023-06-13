@@ -7,7 +7,7 @@ import java.util.List;
  *
  * @param <T> the type parameter
  */
-public interface SortAlgorithm <T>{
+public interface SortAlgorithm <T> {
     /**
      * Sort list.
      *

@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -7,7 +8,7 @@ import java.util.Objects;
 /**
  * The District class represents a district object that contains a name and a list of cities.
  */
-public class District {
+public class District implements Serializable {
     /**
      * The district associated with the object.
      */

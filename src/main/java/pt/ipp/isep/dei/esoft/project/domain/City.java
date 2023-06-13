@@ -1,11 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * City represents a city in the context of an address.
  */
-public class City {
+public class City implements Serializable {
 
     /**
 

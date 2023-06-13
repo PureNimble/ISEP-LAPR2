@@ -1,9 +1,11 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
+
 /**
  * The enum Offer state.
  */
-public enum OfferState {
+public enum OfferState implements Serializable {
     /**
      * Pending offer state.
      */
