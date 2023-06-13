@@ -7,6 +7,8 @@ import pt.ipp.isep.dei.esoft.project.domain.emailServices.EmailNotification;
 import pt.ipp.isep.dei.esoft.project.domain.emailServices.EmailService;
 
 import java.io.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -53,18 +55,18 @@ public class ListMessageUI implements Runnable {
             try (InputStream input = new FileInputStream("config.properties")) {
                 Properties prop = new Properties();
                 prop.load(input);
-                String sorting = prop.getProperty("sortingAlgorithm");
+                String sortingClass = prop.getProperty("sortingAlgorithmClass");
 
-                if (sorting.equals("bubbleSort")) {
-                    BubbleSort<Message> bubbleSort = new BubbleSort<>(messageRequests);
-                    messageRequests = bubbleSort.sort(messageRequests);
-                } else if (sorting.equals("mergeSort")) {
-                    MergeSort<Message> mergeSort = new MergeSort<>(messageRequests);
-                    messageRequests = mergeSort.sort(messageRequests);
+                if (sortingClass != null) {
+                    Class<?> sortAlgorithmClass = Class.forName(sortingClass);
+                    Constructor<?> constructor = sortAlgorithmClass.getConstructor(List.class);
+                    SortAlgorithm<Message> sortAlgorithm = (SortAlgorithm<Message>) constructor.newInstance(messageRequests);
+                    messageRequests = sortAlgorithm.sort(messageRequests);
                 } else {
                     controller.sortMessageRequests(messageRequests);
                 }
-            } catch (IOException e) {
+            } catch (IOException | ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException |
+                     InvocationTargetException e) {
                 controller.sortMessageRequests(messageRequests);
             }
 
