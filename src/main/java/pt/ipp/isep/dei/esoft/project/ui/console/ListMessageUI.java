@@ -3,8 +3,6 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 import pt.ipp.isep.dei.esoft.project.application.controller.ListMessageController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.domain.adapters.EmailNotificationAdapter;
-import pt.ipp.isep.dei.esoft.project.domain.emailServices.EmailNotification;
-
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -174,7 +172,7 @@ public class ListMessageUI implements Runnable {
                         } while (responseChoice != 1 && responseChoice != 2);
 
                         // Send the email
-                        EmailNotification.sendEmail(email, subject, body);
+                        EmailNotificationAdapter.sendEmail(email, subject, body);
                         EmailNotificationAdapter.removeBookingRequest(message);
                         return;
                     } else {
