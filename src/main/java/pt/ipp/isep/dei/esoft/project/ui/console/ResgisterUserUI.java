@@ -74,6 +74,8 @@ public class ResgisterUserUI implements Runnable {
      */
     private String password;
 
+    private String confirmacao;
+
     /**
      * Returns the RegisterEmployeeController instance associated with the UI.
      *
@@ -89,7 +91,7 @@ public class ResgisterUserUI implements Runnable {
     public void run() {
         System.out.println("Register");
 
-        String confirmacao = enterAdress();
+         confirmacao = enterAdress();
 
         if (!confirmacao.equals("N")) {
             stateDescription = displayAndSelectState();
@@ -153,12 +155,13 @@ public class ResgisterUserUI implements Runnable {
      */
     private void requestData() {
 
-        //Request the Zip Code from the console
-        zipCode = requestZipcodeDescription();
+        if (!confirmacao.equals("N")) {
+            //Request the Zip Code from the console
+            zipCode = requestZipcodeDescription();
 
-        //Request the Street from the console
-        street = requestStreetDescription();
-
+            //Request the Street from the console
+            street = requestStreetDescription();
+        }
         //Request the Name Description from the console
         name = requestNameDescription();
 
@@ -174,9 +177,44 @@ public class ResgisterUserUI implements Runnable {
         //Request the Tax Number from the console
         taxNumber = requestTaxNumberDescription();
 
-        password = controller.getPassword();
+        password = requestsPassword();
 
     }
+
+
+    /**
+     * Prompts the user to enter whether they want to register with their address.
+     *
+     * @return The user's choice of whether to register with their address as a string ("Y" or "N").
+     */
+    private String requestsPassword() {
+        Scanner input = new Scanner(System.in);
+        String password;
+        int sumCapitalCharacters;
+        int digits;
+        do {
+            System.out.println("Choose your password(7 characters,3 capital letters,2 digits):");
+            password = input.nextLine();
+
+            digits = 0;
+            sumCapitalCharacters = 0;
+
+            for (int i = 0; i < password.length() ; i++) {
+                if (Character.isUpperCase(password.charAt(i))){
+                    sumCapitalCharacters++;
+                }else if (Character.isDigit(password.charAt(i))){
+                    digits++;
+                }
+            }
+
+
+        } while (password.length() != 7 || sumCapitalCharacters != 3 || digits != 2);
+
+        return password;
+    }
+
+
+
     /**
      * Prompts the user to enter whether they want to register with their address.
      *
@@ -184,13 +222,13 @@ public class ResgisterUserUI implements Runnable {
      */
     private String enterAdress() {
         Scanner input = new Scanner(System.in);
-        String addRoles;
+        String address;
         do {
             System.out.println("Do you want to register with you address:(Y/N)");
-            addRoles = input.nextLine();
-        } while (!addRoles.equals("Y") && !addRoles.equals("N"));
+            address = input.nextLine();
+        } while (!address.equals("Y") && !address.equals("N"));
 
-        return addRoles;
+        return address;
     }
 
     /**

@@ -6,31 +6,32 @@
 
 **SSD - Alternative 1 is adopted.**
 
-| Interaction ID                                                   | Question: Which class is responsible for...                                            | Answer                        | Justification (with patterns)                                                                                 |
-|:-----------------------------------------------------------------|:---------------------------------------------------------------------------------------|:------------------------------|:--------------------------------------------------------------------------------------------------------------|
-| Step 1(asks to see the list of deals made)                       | ... interacting with the actor?                                                        | ListDealsUI                   | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
-|                                                                  | ... coordinating the US?                                                               | ListDealsController           | Controller                                                                                                    |
-| Step 2: (requests filter criteria(ascending/descending by area)) | ...requesting the criteria?                                                            | ListDealsUI                   | Pure Fabrication                                                                                              |
-|                                                                  | ...obtaining the comission list?                                                       | ComissionRepository           | Information Expert,Pure Fabrication                                                                           |
-| Step 3: (chooses criteria)                                       | ...validating selected data?<br/><br/>...temporarily keeping the criteria description? | ListDealsUI                   | Pure Fabrication                                                                                              |
-|                                                                  | ...obtaining the List of Deals Dto list                                                | ListDealsMapper               | IE:Kowns/has its own DealsDto,Pure Fabrication,High coesion Low Coupling                                      |
-| Step 4: (shows the list deals made)                              | ...display all the information before submitting?                                      | PublishAnnouncementRequestUI  | Pure Fabrication                                                                                              |
-| Step 5: (submits data)                                           | ...obtaining and creating the announcement request Dto by description                  | AnnouncementRequestMapper     | IE,Creator                                                                                                    |
-|                                                                  | ...validating the data locally(mandatory data)?                                        | PublishAnnouncement           | IE                                                                                                            |
-|                                                                  | ...adding to a collection<br/>and globally<br/>validating duplicated records           | PublishAnnouncementRepository | IE                                                                                                            |
-| Step 6: (shows opperation success)                               | ...informing operation success?                                                        | PublishAnnouncementRequestUI  | Pure Fabrication                                                                                              |
+| Interaction ID                                                                 | Question: Which class is responsible for...                                            | Answer                        | Justification (with patterns)                                                                                 |
+|:-------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------|:------------------------------|:--------------------------------------------------------------------------------------------------------------|
+| Step 1(asks to see the list of deals made)                                     | ... interacting with the actor?                                                        | ListDealsUI                   | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
+|                                                                                | ... coordinating the US?                                                               | ListDealsController           | Controller                                                                                                    |
+| Step 2: requests algorithm(bubble sort/selection sort) to use to list the deal | ...displaying the UI for the actor to input data?                                      | ListDealsUI                   | Pure Fabrication                                                                                              |
+| Step 3: (chooses the algorithm to list the deals made)                         | ...validating selected data?<br/><br/>...temporarily keeping the criteria description? | ListDealsUI                   | Pure Fabrication                                                                                              |
+| Step 4: (requests sorting criteria(ascending/descending))                      | ...displaying the UI for the actor to input data?                                      | ListDealsUI                   | Pure Fabrication                                                                                              |
+| Step 5: chooses the criteria to sort the deals made                            | ...validating selected data?<br/><br/>...temporarily keeping the criteria description? | ListDealsUI                   | Pure Fabrication                                                                                              |
+|                                                                                | ...obtaining the List of Deals Dto list                                                | OfferMapper                   | IE:Kowns/has its own DealsDto,Pure Fabrication,High coesion Low Coupling                                      |
+| Step 6: (shows list deals made by the selected algorithm and criteria)         | ...obtaining and creating the announcement request Dto by description                  | OfferMapper                   | IE,Creator                                                                                                    |
+|                                                                                | ...validating the data locally(mandatory data)?                                        | PublishAnnouncement           | IE                                                                                                            |
+|                                                                                | ...adding to a collection<br/>and globally<br/>validating duplicated records           | PublishAnnouncementRepository | IE                                                                                                            |
+| Step 7: (submits data)                                                         | ...informing operation success?                                                        | PublishAnnouncementRequestUI  | Pure Fabrication                                                                                              |
+| Step 8: (displays operation sucess)                                            | ...informing operation success?                                                        | PublishAnnouncementRequestUI  | Pure Fabrication                                                                                              |
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * Organization
- * Task
+ * Offer
 
 Other software classes (i.e. Pure Fabrication) identified: 
 
- * CreateTaskUI  
- * CreateTaskController
+* ListDealsUI
+* ListDealsController
+* OfferMapper
 
 
 ## 3.2. Sequence Diagram (SD)
