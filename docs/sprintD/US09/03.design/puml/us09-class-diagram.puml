@@ -38,9 +38,7 @@ class ListOfPropertiesMapper{
 
 
 class PublishedAnnouncementRepository {
-
-+ getTypeOfProperty()
-+ getTypeOfBussiness()
++publishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness,\nProperty property, PropertyType propertyType, \nComission comission, Business business, \nint durationOfContract, Employee agent, \nClient client, int propertyID, \nAnnouncementState state, Store store)
 }
 
 

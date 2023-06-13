@@ -48,9 +48,10 @@ class AnnouncementRequestMapperTest {
 
     @BeforeEach
     void setUpPropertys() {
-        house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South");
-        land = new Property(5, 1000);
-        appartment = new Residence(20, 150, 3, 2, 1, new AvailableEquipment("air conditioning"));
+        Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
+        house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South",address);
+        land = new Property(5, 1000,new Photos("url"), address2);
+        appartment = new Residence(20, 150, 3, 2, 1, new AvailableEquipment("air conditioning"), new Photos("urllll"), address);
         setUpPropertyTypes();
         setUpBusiness();
         setUpAddress();
@@ -103,14 +104,23 @@ class AnnouncementRequestMapperTest {
 
     @BeforeEach
     void setUpStore() {
-        store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        store = new Store("Test Store", 1, address2, 5551234, "test@store.com",9);
     }
 
 
     @BeforeEach
     void setUpPublishedAnnouncements() {
-        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, house, propertyType, comission, business);
-        publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, land, propertyType, comission, business);
+        Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
+        Role role = new Role("Agent");
+        Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
+        Store store = new Store("Elvis",224,address,1274567809,"elvis@gmail.com", 0);
+        List<Role> roles = new ArrayList<>();
+        roles.add(new Role("Agent"));
+        Employee employee1 = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store,  roles, address);
+        Store store1 = new Store("Store1", 1, address, 123456789, "store1@test.com",9);
+
+        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, employee1, new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L),77,AnnouncementState.available, store1);
+        publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, land, propertyType, comission, business, employee,new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L),88,AnnouncementState.available,store);
 
     }
 
@@ -126,16 +136,16 @@ class AnnouncementRequestMapperTest {
 
     @BeforeEach
     void setUpAnnouncementRequest() {
-        announcementRequest = new AnnouncementRequest("", date, typeOfBusiness, house, propertyType, business, employee);
-        announcementRequest1 = new AnnouncementRequest("", date, typeOfBusiness, land, propertyType, business, employee);
-        announcementRequest2 = new AnnouncementRequest("", date, typeOfBusiness, appartment, propertyType2, business1, employee1);
+        announcementRequest = new AnnouncementRequest("", date, typeOfBusiness, house, propertyType, business, employee,new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L));
+        announcementRequest1 = new AnnouncementRequest("", date, typeOfBusiness, land, propertyType, business, employee, new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L));
+        announcementRequest2 = new AnnouncementRequest("", date, typeOfBusiness, appartment, propertyType2, business1, employee1, new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L));
     }
 
     @BeforeEach
     void setUpAnnouncementRequestDto() {
-        announcementRequestDto = new AnnouncementRequestDto("",date, typeOfBusiness, house, propertyType, business, employee);
-        announcementRequestDTO1 = new AnnouncementRequestDto("",date, typeOfBusiness1, land, propertyType, business, employee);
-        announcementRequestDto2 = new AnnouncementRequestDto("",date, typeOfBusiness, appartment, propertyType2, business1, employee1);
+        announcementRequestDto = new AnnouncementRequestDto("",date, typeOfBusiness, house, propertyType, business, employee,new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L));
+        announcementRequestDTO1 = new AnnouncementRequestDto("",date, typeOfBusiness1, land, propertyType, business, employee, new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L));
+        announcementRequestDto2 = new AnnouncementRequestDto("",date, typeOfBusiness, appartment, propertyType2, business1, employee1, new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L));
     }
 
 
@@ -163,7 +173,7 @@ class AnnouncementRequestMapperTest {
 
         AnnouncementRequestMapper announcementRequestMapper = new AnnouncementRequestMapper();
 
-        assertEquals(announcementRequestDto,announcementRequestMapper.toDtoObject("",employee,house,typeOfBusiness,propertyType,business,date,0));
+        assertEquals(announcementRequestDto,announcementRequestMapper.toDtoObject("",employee,house,typeOfBusiness,propertyType,business,date,0,new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L)),"messsage");
 
     }
 

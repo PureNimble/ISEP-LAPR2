@@ -4,7 +4,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,15 +14,23 @@ class OfferTest {
 
     String name = "John Doe";
     double offerAmount = 200000;
+    Photos photos = new Photos("urlll");
+    Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
+    Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9);
+
+    List<Role> roles = new ArrayList<>();
+    Employee employee = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store, roles, new Address("123 Main St", 12345, new District("Test District"), new City("Test City"), new State("Test State")));
+    Client client = new Client("client@this.app",123456789,123456789,"client",address,1234567890L);
+
 
     Date date = new Date();
     Comission com = new Comission(25.00);
-    Property property = new Property(2, 2);
+    Property property = new Property(2, 2,photos,address);
     PropertyType propertyType = new PropertyType("House");
     TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
     Business business = new Business(200);
-    PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business);
-    Offer offer = new Offer(name, offerAmount, publishedAnnouncement1, OfferState.pending);
+    PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business,employee,client,99,AnnouncementState.available,store);
+    Offer offer = new Offer(name, offerAmount, publishedAnnouncement1, OfferState.pending,client);
 
 
     @Test
@@ -56,11 +66,11 @@ class OfferTest {
     @Test
     void setPublishedAnnouncement() {
         Comission com = new Comission(25.00);
-        Property property = new Property(2, 2);
+        Property property = new Property(2, 2,photos,address);
         PropertyType propertyType = new PropertyType("House");
         TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
         Business business = new Business(200);
-        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business);
+        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business,employee,client,11,AnnouncementState.available,store);
         offer.setPublishedAnnouncement(publishedAnnouncement1);
         PublishedAnnouncement actualPublishedAnnouncement = offer.getPublishedAnnouncement();
 
@@ -87,8 +97,8 @@ class OfferTest {
 
     @Test
     void testEquals() {
-        Offer offer1 = new Offer(name, offerAmount, publishedAnnouncement1, OfferState.pending);
-        Offer offer2 = new Offer(name, offerAmount, publishedAnnouncement1, OfferState.pending);
+        Offer offer1 = new Offer(name, offerAmount, publishedAnnouncement1, OfferState.pending,client);
+        Offer offer2 = new Offer(name, offerAmount, publishedAnnouncement1, OfferState.pending,client);
 
         boolean isEqual = offer1.equals(offer2);
 

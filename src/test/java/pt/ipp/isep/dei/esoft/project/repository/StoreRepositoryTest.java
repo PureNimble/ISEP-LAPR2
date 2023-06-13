@@ -24,8 +24,8 @@ class StoreRepositoryTest {
     void getStoreByDescription() {
 
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store1 = new Store("Store1", 1, address, 123456789, "store1@test.com");
-        Store store2 = new Store("Test Store", 2, address, 5551234, "test@store.com");
+        Store store1 = new Store("Store1", 1, address, 123456789, "store1@test.com",0);
+        Store store2 = new Store("Test Store", 2, address, 5551234, "test@store.com",0);
 
         stores.add(store1);
         stores.add(store2);
@@ -41,7 +41,7 @@ class StoreRepositoryTest {
     void add() {
 
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Store1", 1, address, 123456789, "store1@test.com");
+        Store store = new Store("Store1", 1, address, 123456789, "store1@test.com",0);
         Optional<Store> result = storeRepository.add(store);
 
         assertTrue(storeRepository.getStores().contains(store));
@@ -53,8 +53,8 @@ class StoreRepositoryTest {
     void getStores() {
 
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store1 = new Store("Store1", 1, address, 123456789, "store1@test.com");
-        Store store2 = new Store("Test Store", 2, address, 5551234, "test@store.com");
+        Store store1 = new Store("Store1", 1, address, 123456789, "store1@test.com",0);
+        Store store2 = new Store("Test Store", 2, address, 5551234, "test@store.com",0);
         stores.add(store1);
         stores.add(store2);
         storeRepository.add(store1);

@@ -11,14 +11,18 @@ class HouseTest {
     private House house2;
     private House house3;
 
+    Photos photos = new Photos("url");
+    Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
+
+
     @BeforeEach
     void setUp() {
         AvailableEquipment equipment1 = new AvailableEquipment("air conditioning");
         AvailableEquipment equipment2 = new AvailableEquipment("centra heating");
 
-        house1 = new House(120, 10, 3, 2, 2, equipment1, "No", "Yes", "south");
-        house2 = new House(120, 10, 3, 2, 2, equipment1, "No", "Yes", "south");
-        house3 = new House(100, 5, 2, 1, 1, equipment2, "Yes", "No", "west");
+        house1 = new House(120, 10, 3, 2, 2, equipment1, "No", "Yes", "south",photos, address);
+        house2 = new House(120, 10, 3, 2, 2, equipment1, "No", "Yes", "south",photos, address);
+        house3 = new House(100, 5, 2, 1, 1, equipment2, "Yes", "No", "west",photos, address);
     }
 
     @Test

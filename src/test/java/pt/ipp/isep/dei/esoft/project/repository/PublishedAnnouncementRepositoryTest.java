@@ -37,6 +37,8 @@ class PublishedAnnouncementRepositoryTest {
 
     private Business business, business1;
 
+    private Client client;
+
     private Role role;
 
     private Address address2;
@@ -48,9 +50,6 @@ class PublishedAnnouncementRepositoryTest {
 
     @BeforeEach
     void setUpPropertys() {
-        house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South");
-        land = new Property(5, 1000);
-        appartment = new Residence(20, 150, 3, 2, 1, new AvailableEquipment("air conditioning"));
         setUpPropertyTypes();
         setUpBusiness();
         setUpAddress();
@@ -62,6 +61,9 @@ class PublishedAnnouncementRepositoryTest {
         setUpPublishedAnnouncements();
         setUpComission();
         setUpAnnouncementRequestDto();
+        house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South",address2);
+        land = new Property(5, 1000,address2);
+        appartment = new Residence(20, 150, 3, 2, 1, new AvailableEquipment("air conditioning"),address2);
     }
 
     @BeforeEach
@@ -92,6 +94,11 @@ class PublishedAnnouncementRepositoryTest {
     }
 
     @BeforeEach
+    void setUpClient() {
+        client = new Client("pedro@isep.ipp.pt", 123456789, 987654321, "Pedro", address2, 1234567890);
+    }
+
+    @BeforeEach
     void setUpRoles() {
         role = new Role("Agent");
     }
@@ -103,14 +110,14 @@ class PublishedAnnouncementRepositoryTest {
 
     @BeforeEach
     void setUpStore() {
-        store = new Store("Test Store", 1, address2, 5551234, "test@store.com");
+        store = new Store("Test Store", 1, address2, 5551234, "test@store.com",0);
     }
 
 
     @BeforeEach
     void setUpPublishedAnnouncements() {
-        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, house, propertyType, comission, business);
-        publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, land, propertyType, comission, business);
+        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, house, propertyType, comission, business,employee,client,67,AnnouncementState.available,store);
+        publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, land, propertyType, comission, business,employee1,client,81,AnnouncementState.available,store);
 
     }
 
@@ -126,14 +133,14 @@ class PublishedAnnouncementRepositoryTest {
 
     @BeforeEach
     void setUpAnnouncementRequest() {
-        announcementRequest = new AnnouncementRequest("", date, typeOfBusiness, house, propertyType, business, employee);
-        announcementRequest1 = new AnnouncementRequest("", date, typeOfBusiness, land, propertyType, business, employee);
-        announcementRequest2 = new AnnouncementRequest("", date, typeOfBusiness, appartment, propertyType2, business1, employee1);
+        announcementRequest = new AnnouncementRequest("", date, typeOfBusiness, house, propertyType, business, employee,client);
+        announcementRequest1 = new AnnouncementRequest("", date, typeOfBusiness, land, propertyType, business, employee,client);
+        announcementRequest2 = new AnnouncementRequest("", date, typeOfBusiness, appartment, propertyType2, business1, employee1,client);
     }
 
     @BeforeEach
     void setUpAnnouncementRequestDto() {
-        announcementRequestDto = new AnnouncementRequestDto("",date, typeOfBusiness, house, propertyType, business, employee);
+        announcementRequestDto = new AnnouncementRequestDto("",date, typeOfBusiness, house, propertyType, business, employee,client);
     }
 
     @Test
@@ -176,7 +183,7 @@ class PublishedAnnouncementRepositoryTest {
 
         Optional<PublishedAnnouncement> publishedAnnouncementExpected = Optional.of(publishedAnnouncement);
 
-        Optional<PublishedAnnouncement> publishedAnnouncementResult = repository.publishedAnnouncementRequest(announcementRequests,announcementRequestDto,comission);
+        Optional<PublishedAnnouncement> publishedAnnouncementResult = repository.publishedAnnouncementRequest(announcementRequests,announcementRequestDto,comission,store);
 
         assertEquals("true",announcementRequest.getStatus());
         assertEquals(publishedAnnouncementExpected,publishedAnnouncementResult);
