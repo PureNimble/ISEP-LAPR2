@@ -8,11 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import pt.ipp.isep.dei.esoft.project.application.controller.ListMessageController;
 import pt.ipp.isep.dei.esoft.project.domain.Message;
 import pt.ipp.isep.dei.esoft.project.domain.MessageState;
 import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
-import pt.ipp.isep.dei.esoft.project.domain.adapters.EmailNotificationAdapter;
+import pt.ipp.isep.dei.esoft.project.domain.emailServices.EmailService;
 
 import java.io.*;
 import java.net.URL;
@@ -110,41 +109,50 @@ public class RespondToBookingRequestGUI implements Runnable,Initializable {
     private void handleSubmitButtonPressed() {
         // Handle the submit button action
         String email = nameField.getText();
+        if (!isValidEmail(email)) {
+            // Display an error message or perform any other desired action
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Email");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter a valid email address (e.g., example@example.com).");
+            alert.showAndWait();
+            return;
+        }
         String response = acceptRadioButton.isSelected() ? "Accept" : "Decline";
         String reason = declineRadioButton.isSelected() ? reasonTextArea.getText() : "";
-
 
         // Perform any necessary operations with the entered data
         // ...
 
-        boolean isValidEmailDomain = EmailNotificationAdapter.isValidEmailDomain(email);
-        if (!isValidEmailDomain) {
-            // Display error pop-up for invalid email domain
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Invalid Email Domain");
-            alert.setHeaderText(null);
-            alert.setContentText("Invalid email domain. Please enter a valid email domain (isep.ipp.pt, gmail.com, hotmail.com, or yahoo.com).");
-            alert.showAndWait();
+        Properties properties = new Properties();
+        try (FileInputStream fileInputStream = new FileInputStream("config.properties")) {
+            properties.load(fileInputStream);
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading the configuration file: " + e.getMessage());
             return;
         }
 
-        if (isValidEmailDomain) {
-            Properties properties = new Properties();
-            try (FileInputStream fileInputStream = new FileInputStream("config.properties")) {
-                properties.load(fileInputStream);
-            } catch (IOException e) {
-                System.out.println("An error occurred while reading the configuration file: " + e.getMessage());
-                return;
-            }
+        String emailServiceClass = properties.getProperty("emailService");
+
+        // Instantiate the email service
+        EmailService emailService;
+        try {
+            Class<?> serviceClass = Class.forName(emailServiceClass);
+            emailService = (EmailService) serviceClass.newInstance();
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+            System.out.println("Failed to instantiate the email service: " + e.getMessage());
+            return;
+        }
 
             // Get the agent's email from the properties file
-            String agentEmail = properties.getProperty("emailService");
+            String agentEmail = properties.getProperty("from");
             String subject;
             String body;
 
             if (response.equals("Accept")) {
                 // Accept the visitation
                 subject = "Your Visit Booking Request Has Been Accepted";
+                // Construct the body of the email
                 body = "Dear Customer, \n\n" +
                         "Thank you for your interest in the property listed with ID: " + publishedAnnouncement.getPropertyID() +
                         " and located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
@@ -159,6 +167,7 @@ public class RespondToBookingRequestGUI implements Runnable,Initializable {
             } else {
                 // Deny the visitation
                 subject = "Your Visit Booking Request Has Been Rejected";
+                // Construct the body of the email
                 body = "Dear Customer, \n\n" +
                         "Thank you for your interest in the property listed with ID: " + publishedAnnouncement.getPropertyID() +
                         " and located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
@@ -171,30 +180,21 @@ public class RespondToBookingRequestGUI implements Runnable,Initializable {
                         " with the following number: " + publishedAnnouncement.getAgent().getPhoneNumber() + ".\n\n" +
                         "Best Regards,\n" +
                         publishedAnnouncement.getAgent().getName();
+
             }
 
-            try (PrintWriter writer = new PrintWriter(new FileOutputStream(FILE_NAME, true))) {
-                writer.println("From: " + agentEmail);
-                writer.println("To: " + email);
-                writer.println("Subject: " + subject);
-                writer.println("Body: " + body);
-                writer.println();
-                writer.println("-----------------------------------------------------------------------");
-                writer.println();
-            } catch (FileNotFoundException e) {
-                System.out.println("Failed to write email to file: " + e.getMessage());
-            }
-        }
+        emailService.sendEmail(email, subject, body);
 
         if (listMessageController != null && selectedMessage != null) {
             selectedMessage.setMessageState(MessageState.ANSWERED);
         }
 
-
         // Optionally, you can close the current window/stage if needed
         Stage stage = (Stage) submitButton.getScene().getWindow();
         stage.close();
     }
+
+
 
     @FXML
     private void handleAcceptRadioButtonPressed() {
@@ -233,7 +233,9 @@ public class RespondToBookingRequestGUI implements Runnable,Initializable {
         return (Stage) btReturn.getScene().getWindow();
     }
 
-
+    private boolean isValidEmail(String email) {
+        return email.contains("@") && email.contains(".");
+    }
 
     /**
      * Runs this operation.
