@@ -14,10 +14,16 @@ public class FileReaderClass {
     /**
      * Read informations array list.
      *
-     * @param file the file
+     * @param fileDescription the file
      * @return the array list
      */
-    public ArrayList<String[]> readInformations(File file) {
+    public ArrayList<String[]> readInformations(String fileDescription) {
+
+
+
+        File file = new File(fileDescription);
+
+
 
         ArrayList<String[]> fileInformations = new ArrayList<>();
         try {

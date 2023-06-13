@@ -112,7 +112,7 @@ public class ImportFileController {
      * @param file the file
      * @return the array list
      */
-    public ArrayList<String[]> readInformations(File file){
+    public ArrayList<String[]> readInformations(String file){
         FileReaderClass fileReaderClass = getFileReaderClass();
 
         return fileReaderClass.readInformations(file);
@@ -125,7 +125,7 @@ public class ImportFileController {
      * @param file the file
      * @return the array list
      */
-    public ArrayList<String[]> readStoreInformations(File file){
+    public ArrayList<String[]> readStoreInformations(String file){
         FileReaderClass fileReaderClass = getFileReaderClass();
 
         return fileReaderClass.readStoreInformations(readInformations(file));
@@ -137,7 +137,7 @@ public class ImportFileController {
      *
      * @param file the file
      */
-    public void addStore(File file){
+    public void addStore(String file){
          StoreRepository storeRepository = getStoreRepository();
 
         storeRepository.createStoreByFileReading(readStoreInformations(file));
@@ -149,10 +149,10 @@ public class ImportFileController {
      * @param file the file
      * @return the array list
      */
-    public ArrayList<String[]> readOwnerInformations(File file){
+    public ArrayList<String[]> readOwnerInformations(String file){
         FileReaderClass fileReaderClass = getFileReaderClass();
 
-        return fileReaderClass.readOwnerInformations(readOwnerInformations(file));
+        return fileReaderClass.readOwnerInformations(readInformations(file));
     }
 
     /**
@@ -160,7 +160,7 @@ public class ImportFileController {
      *
      * @param file the file
      */
-    public void addUser(File file){
+    public void addUser(String file){
         UserRepository userRepository = getUserRepository();
 
         userRepository.createOwnerByFileReading(readOwnerInformations(file));
@@ -171,7 +171,7 @@ public class ImportFileController {
      *
      * @param file the file
      */
-    public void addPublishAnnouncement(File file){
+    public void addPublishAnnouncement(String file){
 
         PublishedAnnouncementRepository publishedAnnouncementRepository = getPublishedAnnouncementRepository();
 

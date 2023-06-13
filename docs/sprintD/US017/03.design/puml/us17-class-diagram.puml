@@ -167,8 +167,10 @@ class Repositories {
 
 class ListDealsController {
     + ListDealsController(offerRepository)
-    + getDealsByAscendingArea()
-    + getDealsByDescendingArea()
+    + getDealsByAscendingAreaBubbleSort()
+    + getDealsByDescendingAreaBubbleSort()
+    + getDealsByAscendingAreaSortSelection()
+    + getDealsByDescendingAreaSortSelection()
     + toDtoAscendingArea()
     + toDtoDescendingArea()
     - getOfferRepository()
@@ -178,10 +180,10 @@ class ListDealsUI {
 }
 
 class OfferDto{
--name
--orderAmount
--publishedAnnouncement
--offerState
+-String name
+-String orderAmount
+-String publishedAnnouncement
+-String offerState
 }
 
 

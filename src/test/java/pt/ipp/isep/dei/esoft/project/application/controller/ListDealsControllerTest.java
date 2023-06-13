@@ -47,9 +47,6 @@ class ListDealsControllerTest {
 
     @BeforeEach
     void setUpPropertys() {
-        house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South", new Photos("pjh"), address2);
-        land = new Property(5, 1000, new Photos("urlll"),address2);
-        appartment = new Residence(20, 150, 3, 2, 1, new AvailableEquipment("air conditioning"), new Photos("urllll"), address2);
         setUpPropertyTypes();
         setUpBusiness();
         setUpAddress();
@@ -59,7 +56,11 @@ class ListDealsControllerTest {
         setUpRoles();
         setUpPublishedAnnouncements();
         setUpComission();
+        house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South", new Photos("pjh"), address2);
+        land = new Property(5, 1000, new Photos("urlll"),address2);
+        appartment = new Residence(20, 150, 3, 2, 1, new AvailableEquipment("air conditioning"), new Photos("urllll"), address2);
         setDeals();
+
     }
 
     @BeforeEach
@@ -118,11 +119,13 @@ class ListDealsControllerTest {
     void setUpPublishedAnnouncements() {
         Comission comission1 = new Comission(25.00);
         Role role = new Role("Agent");
+        List<Role> roles = new ArrayList<>();
+        roles.add(role);
         AvailableEquipment equipment1 = new AvailableEquipment("Air Conditioning");
         Address address1 = new Address("3655 S Las Vegas Blvd", 892109, new District("Paradise"), new City("Las Vegas"), new State("Nevada"));
         Property property1 = new Property(274,2576, new Photos("url"),address1);
         Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 0);
-        Employee agent1 = new Employee("agent@this.app", 123456789, 987654321, "Miguel", 1234567890L, store1, (List<Role>) role, address1);
+        Employee agent1 = new Employee("agent@this.app", 123456789, 987654321, "Miguel", 1234567890L, store1, roles, address1);
         PropertyType propertyType1 = new PropertyType("House");
         TypeOfBusiness typeOfBusiness1 = new TypeOfBusiness("Sale");
         Business business1 = new Business(200000);
@@ -136,7 +139,7 @@ class ListDealsControllerTest {
         AvailableEquipment equipment2 = new AvailableEquipment("Air Frosting");
         Address address2 = new Address("Las Vegas Blvd", 892100, new District("gambas"), new City("portooo"), new State("Neves"));
         Property property2 = new Property(277,2576, new Photos("url"),address1);
-        Employee agent2 = new Employee("age@this.app", 123446789, 987658321, "Miguelito", 1234587890L, store1, (List<Role>) role, address1);
+        Employee agent2 = new Employee("age@this.app", 123446789, 987658321, "Miguelito", 1234587890L, store1,  roles, address1);
         Business business2 = new Business(2000);
         Date date2 = new GregorianCalendar(2024, Calendar.JUNE, 20).getTime();
         publishedAnnouncement = new PublishedAnnouncement(date2, typeOfBusiness1, property2, propertyType1, comission2, business2, agent2, client2, 1, state1, store1);
@@ -160,8 +163,8 @@ class ListDealsControllerTest {
     @BeforeEach
     void setDeals() {
         offer = new Offer("Name",2100,publishedAnnouncement,OfferState.accepted,client1);
-        offer1 = new Offer("Name",2100,publishedAnnouncement1,OfferState.accepted,client1);
-        offer2 = new Offer("Miguel",21000,publishedAnnouncement2,OfferState.accepted,client1);
+        offer1 = new Offer("Almeida",21000,publishedAnnouncement1,OfferState.accepted,client2);
+        offer2 = new Offer("Miguel",21500,publishedAnnouncement2,OfferState.accepted,client1);
         offer3 = new Offer("Zé",20500,publishedAnnouncement3,OfferState.accepted,client2);
     }
 
@@ -178,13 +181,15 @@ class ListDealsControllerTest {
         offerRepository.add(offer3);
 
 
-        List<Offer> offersResult = new ArrayList<>();
-        offersResult.add(offer2);
-        offersResult.add(offer3);
-        offersResult.add(offer);
-        offersResult.add(offer1);
+        List<Offer> offersExpected = new ArrayList<>();
+        offersExpected.add(offer2);
+        offersExpected.add(offer3);
+        offersExpected.add(offer1);
+        offersExpected.add(offer);
 
-        assertEquals(offersResult,offerRepository.getOffersByAreaAscendingUsingBubbleSortAlgorithm());
+        List<Offer> offersResult = offerRepository.getOffersByAreaAscendingUsingBubbleSortAlgorithm();
+
+        assertEquals(offersExpected,offersResult);
 
 
     }
@@ -201,13 +206,15 @@ class ListDealsControllerTest {
         offerRepository.add(offer3);
 
 
-        List<Offer> offersResult = new ArrayList<>();
-        offersResult.add(offer1);
-        offersResult.add(offer);
-        offersResult.add(offer3);
-        offersResult.add(offer2);
+        List<Offer> offersExpected = new ArrayList<>();
+        offersExpected.add(offer);
+        offersExpected.add(offer1);
+        offersExpected.add(offer3);
+        offersExpected.add(offer2);
 
-        assertEquals(offersResult,offerRepository.getOffersByAreaDescendingUsingBubbleSortAlgorithm());
+        List<Offer> offersResult = offerRepository.getOffersByAreaDescendingUsingBubbleSortAlgorithm();
+
+        assertEquals(offersExpected,offersResult);
 
 
     }
@@ -223,13 +230,16 @@ class ListDealsControllerTest {
         offerRepository.add(offer3);
 
 
-        List<Offer> offersResult = new ArrayList<>();
-        offersResult.add(offer2);
-        offersResult.add(offer3);
-        offersResult.add(offer);
-        offersResult.add(offer1);
+        List<Offer> offersExpected = new ArrayList<>();
+        offersExpected.add(offer);
+        offersExpected.add(offer1);
+        offersExpected.add(offer3);
+        offersExpected.add(offer2);
 
-        assertEquals(offersResult,offerRepository.getOffersByAreaAscendingUsingSortSelection());
+
+        List<Offer> offersResult = offerRepository.getOffersByAreaDescendingUsingSortSelection();
+
+        assertEquals(offersExpected,offersResult);
 
 
     }
@@ -247,13 +257,15 @@ class ListDealsControllerTest {
         offerRepository.add(offer3);
 
 
-        List<Offer> offersResult = new ArrayList<>();
-        offersResult.add(offer1);
-        offersResult.add(offer);
-        offersResult.add(offer3);
-        offersResult.add(offer2);
+        List<Offer> offersExpected = new ArrayList<>();
+        offersExpected.add(offer);
+        offersExpected.add(offer1);
+        offersExpected.add(offer3);
+        offersExpected.add(offer2);
 
-        assertEquals(offersResult,offerRepository.getOffersByAreaDescendingUsingSortSelection());
+        List<Offer> offersResult = offerRepository.getOffersByAreaDescendingUsingSortSelection();
+
+        assertEquals(offersExpected,offersResult);
 
 
 

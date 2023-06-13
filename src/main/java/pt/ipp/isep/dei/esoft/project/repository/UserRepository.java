@@ -91,11 +91,11 @@ public class UserRepository {
 
         for (String[] ownerInformations : arrayListOwnerInformations) {
             if (aux > 0){
-                name = ownerInformations[1];
-                passportNumber = Integer.parseInt(ownerInformations[2]);
-                taxNumber = Integer.parseInt(ownerInformations[3].replaceAll("-",""));
-                email = ownerInformations[4];
-                phoneNumber = Long.parseLong(ownerInformations[5].replaceAll("-",""));
+                name = ownerInformations[0];
+                passportNumber = Integer.parseInt(ownerInformations[1].replaceAll("-",""));
+                taxNumber = Integer.parseInt(ownerInformations[2].replaceAll("-",""));
+                email = ownerInformations[3];
+                phoneNumber = Long.parseLong(ownerInformations[4].replaceAll("-",""));
 
 
                 Client client = new Client(email,passportNumber,taxNumber,name,phoneNumber);

@@ -110,7 +110,12 @@ public class ListDealsGUITeste implements Initializable {
     @FXML
     private Label labelSunExposure;
 
+    @FXML
+    private Label labelLoft;
 
+
+    @FXML
+    private ImageView loftIcon;
 
     private String[] filterAscendOrDescend = {"Ascending", "Descending"};
 
@@ -182,6 +187,12 @@ public class ListDealsGUITeste implements Initializable {
         if (publishedAnnouncement.getProperty() instanceof House){
             House house = (House) publishedAnnouncement.getProperty();
 
+
+            labelLoft.setVisible(true);
+            loftIcon.setVisible(true);
+            labelLoft.setText(""+house.getInhabitableLoft());
+
+
             labelBasement.setVisible(true);
             basementICon.setVisible(true);
             labelBasement.setText(""+house.getBasement());
@@ -210,6 +221,9 @@ public class ListDealsGUITeste implements Initializable {
             labelSunExposure.setVisible(false);
             basementICon.setVisible(false);
             labelBasement.setVisible(false);
+            labelLoft.setVisible(false);
+            loftIcon.setVisible(false);
+
 
 
             numberBedroomsIcon.setVisible(true);
@@ -228,7 +242,8 @@ public class ListDealsGUITeste implements Initializable {
             labelSunExposure.setVisible(false);
             basementICon.setVisible(false);
             labelBasement.setVisible(false);
-
+            labelLoft.setVisible(false);
+            loftIcon.setVisible(false);
 
             numberBedroomsIcon.setVisible(false);
             labelNumberOfBedrooms.setVisible(false);
@@ -245,7 +260,7 @@ public class ListDealsGUITeste implements Initializable {
         List<Image> images = new ArrayList<>();
         for (String url : publishedAnnouncement.getProperty().getPhotos().getUrl()) {
 
-            images.add(new Image(url,659,237,false,false));
+            images.add(new Image(url,658,258,false,false));
 
         }
 
