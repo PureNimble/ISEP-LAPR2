@@ -23,7 +23,7 @@ public class DealAnalysesUI implements Runnable {
 
     public void run() {
 
-        System.out.println("\nDeal Analysis:\n");
+        System.out.println("\nDeal Analysis:");
 
         String regressionModel = requestRegression();
 
@@ -32,7 +32,7 @@ public class DealAnalysesUI implements Runnable {
             if (regressionModel == "SimpleLinear") {
                 param = requestData();
             }
-            controller.regressionModel(regressionModel, param);
+            if (param != -1) controller.regressionModel(regressionModel, param);
         }
 
     }
@@ -43,10 +43,11 @@ public class DealAnalysesUI implements Runnable {
 
         do {
 
-            System.out.println("Which regression model do you wish to use?\n");
+            System.out.println("\nWhich regression model do you wish to use?\n");
             System.out.println("1. Multi-Linear Regression");
             System.out.println("2. Simple Linear Regression");
             System.out.println("0. Cancel\n");
+            System.out.print("Type your option: ");
             try {
                 choice = input.nextInt();
             } catch (InputMismatchException e) {
@@ -76,6 +77,8 @@ public class DealAnalysesUI implements Runnable {
             System.out.println("3. Number of Bedrooms\n");
             System.out.println("4. Number of Bathrooms\n");
             System.out.println("5. Number of Parking Spaces\n");
+            System.out.println("0. Cancel\n");
+            System.out.print("Type your option: ");
 
             try {
                 option = input.nextInt();
@@ -84,7 +87,9 @@ public class DealAnalysesUI implements Runnable {
                 input.nextLine();
             }
 
-        } while (option < 1 || option > 5);
+        } while (option < 0 || option > 5);
+
+        if (option == 0) option = -1;
 
         return option;
     }
