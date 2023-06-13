@@ -2,6 +2,8 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PhotosTest {
@@ -15,7 +17,7 @@ class PhotosTest {
     @Test
     void setUrl() {
         Photos p = new Photos("https://example.com/imagee.jpg");
-        p.setUrl("https://example.com/imagee2.jpg");
+        p.setUrl(Collections.singletonList("https://example.com/imagee2.jpg"));
         assertEquals("https://example.com/imagee2.jpg", p.getUrl());
     }
 

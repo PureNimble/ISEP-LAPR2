@@ -6,9 +6,7 @@ import pt.ipp.isep.dei.esoft.project.repository.PublishedAnnouncementRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,15 +16,24 @@ class MessageTest {
     long phoneNumber = 1234567890;
     String description = "Test message";
     Date date = new Date();
+    Photos photos = new Photos("urlll");
     int initialTime = 10;
     int endTime = 11;
     Comission com = new Comission(25.00);
-    Property property = new Property(2, 2);
+    Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
+
+    Property property = new Property(2, 2,address);
     PropertyType propertyType = new PropertyType("House");
     TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
     Business business = new Business(200);
-    PublishedAnnouncement p1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business);
-    Message message = new Message(name, phoneNumber, description, date, initialTime, endTime, p1);
+    Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9);
+
+    List<Role> roles = new ArrayList<>();
+    Employee employee = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store, roles, new Address("123 Main St", 12345, new District("Test District"), new City("Test City"), new State("Test State")));
+    Client client = new Client("client@this.app",123456789,123456789,"client",address,1234567890L);
+
+    PublishedAnnouncement p1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business,employee,client,77,AnnouncementState.available,store);
+    Message message = new Message(name, phoneNumber, description, date, initialTime, endTime, p1,MessageState.ANSWERED,true);
 
     @Test
     void getName() {
@@ -136,11 +143,11 @@ class MessageTest {
     @Test
     void setPublishedAnnouncement() {
         Comission com = new Comission(25.00);
-        Property property = new Property(2, 2);
+        Property property = new Property(2, 2,photos,address);
         PropertyType propertyType = new PropertyType("House");
         TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
         Business business = new Business(200);
-        PublishedAnnouncement p1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business);
+        PublishedAnnouncement p1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business,employee,client,99,AnnouncementState.available,store);
         message.setPublishedAnnouncement(p1);
         PublishedAnnouncement actualPublishedAnnouncement = message.getPublishedAnnouncement();
 
@@ -160,8 +167,8 @@ class MessageTest {
 
     @Test
     void testEquals() {
-        Message message1 = new Message(name, phoneNumber, description, date, initialTime, endTime, p1);
-        Message message2 = new Message(name, phoneNumber, description, date, initialTime, endTime, p1);
+        Message message1 = new Message(name, phoneNumber, description, date, initialTime, endTime, p1,MessageState.ANSWERED,true);
+        Message message2 = new Message(name, phoneNumber, description, date, initialTime, endTime, p1,MessageState.ANSWERED,true);
 
         boolean isEqual = message1.equals(message2);
 
