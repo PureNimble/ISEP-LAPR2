@@ -23,6 +23,16 @@ class ListMessageController {
 
 }
 
+class Address {
+-String street
+-int zipcode
+
++Address(String street, int zipcode,\nDistrict district, City city, \nState state)
++getStreet()
++getZipcode()
++toString()
+}
+
 class ListMessageUI {
 + run()
 -parseDate(String dateString)
