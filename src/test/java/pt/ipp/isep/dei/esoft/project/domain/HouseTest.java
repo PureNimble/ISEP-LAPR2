@@ -20,9 +20,9 @@ class HouseTest {
         AvailableEquipment equipment1 = new AvailableEquipment("air conditioning");
         AvailableEquipment equipment2 = new AvailableEquipment("centra heating");
 
-        house1 = new House(120, 10, 3, 2, 2, equipment1, "No", "Yes", "south",photos);
-        house2 = new House(120, 10, 3, 2, 2, equipment1, "No", "Yes", "south",photos);
-        house3 = new House(100, 5, 2, 1, 1, equipment2, "Yes", "No", "west");
+        house1 = new House(120, 10, 3, 2, 2, equipment1, "No", "Yes", "south",photos, address);
+        house2 = new House(120, 10, 3, 2, 2, equipment1, "No", "Yes", "south",photos, address);
+        house3 = new House(100, 5, 2, 1, 1, equipment2, "Yes", "No", "west",photos, address);
     }
 
     @Test
