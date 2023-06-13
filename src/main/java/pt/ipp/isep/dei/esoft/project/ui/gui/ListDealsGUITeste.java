@@ -60,7 +60,10 @@ public class ListDealsGUITeste implements Initializable {
     private Label labelNumberOfBedrooms;
 
     @FXML
-    private TableColumn<Offer, String> name;
+    private TableColumn<Offer, String>  clientName;
+
+    @FXML
+    private TableColumn<Offer, Integer> idOffer;
 
 
     @FXML
@@ -79,8 +82,6 @@ public class ListDealsGUITeste implements Initializable {
     @FXML
     private TableView<Object> table;
 
-    @FXML
-    private TextArea textArea;
     @FXML
     private Label priceLabel;
 
@@ -146,8 +147,9 @@ public class ListDealsGUITeste implements Initializable {
 
 
 
-        name.setCellValueFactory(new PropertyValueFactory<Offer, String>("name"));
+        clientName.setCellValueFactory(new PropertyValueFactory<Offer, String>("name"));
         orderAmount.setCellValueFactory(new PropertyValueFactory<Offer, Double>("orderAmount"));
+        idOffer.setCellValueFactory(new PropertyValueFactory<Offer, Integer>("offerID"));
 
 
         table.setItems(listDeals);

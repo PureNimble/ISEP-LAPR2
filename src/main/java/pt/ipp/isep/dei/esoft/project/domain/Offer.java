@@ -27,6 +27,12 @@ public class Offer {
      */
     private OfferState offerState;
 
+    /**
+     * The id of the offer.
+     */
+
+    private int offerID;
+
 
     /**
      * Instantiates a new Offer.
@@ -36,13 +42,15 @@ public class Offer {
      * @param publishedAnnouncement the published announcement
      * @param offerState            the offer state
      * @param client                the client
+     * @param offerID               the offerID
      */
-    public Offer(String name, double orderAmount, PublishedAnnouncement publishedAnnouncement,OfferState offerState, Client client) {
+    public Offer(String name, double orderAmount, PublishedAnnouncement publishedAnnouncement,OfferState offerState, Client client,int offerID) {
         this.name = name;
         this.client = client;
         this.orderAmount = orderAmount;
         this.publishedAnnouncement = publishedAnnouncement;
         this.offerState = offerState;
+        this.offerID = offerID;
     }
 
     /**
@@ -52,6 +60,23 @@ public class Offer {
 
     }
 
+    /**
+     * Gets offer id.
+     *
+     * @return the offer id
+     */
+    public int getOfferID() {
+        return offerID;
+    }
+
+    /**
+     * Sets offer id.
+     *
+     * @param offerID the offer state
+     */
+    public void setOfferID(int offerID) {
+        this.offerID = offerID;
+    }
 
     /**
      * Gets offer state.
