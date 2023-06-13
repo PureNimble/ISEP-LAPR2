@@ -5,19 +5,30 @@ import pt.ipp.isep.dei.esoft.project.domain.emailServices.*;
 import pt.ipp.isep.dei.esoft.project.repository.MessageRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Properties;
 
+/**
+ * The type Email notification adapter.
+ */
 public class EmailNotificationAdapter implements EmailNotification {
 
+    /**
+     * The Message repository.
+     */
     static MessageRepository messageRepository = null;
 
+    private static final String FILE_NAME = "EmailNotification.txt";
 
+
+    /**
+     * Send email.
+     *
+     * @param email   the email
+     * @param subject the subject
+     * @param body    the body
+     */
     public static void sendEmail(String email, String subject, String body) {
-        String fileName = "EmailNotification - " + email + ".txt";
         Properties properties = new Properties();
         try (FileInputStream fileInputStream = new FileInputStream("config.properties")) {
             properties.load(fileInputStream);
@@ -28,19 +39,35 @@ public class EmailNotificationAdapter implements EmailNotification {
 
         // Get the agent's email from the properties file
         String from = properties.getProperty("from");
-        try (PrintWriter writer = new PrintWriter(fileName)) {
+        try (PrintWriter writer = new PrintWriter(new FileOutputStream(FILE_NAME, true))) {
             writer.println("From: " + from);
             writer.println("To: " + email);
             writer.println("Subject: " + subject);
             writer.println("Body: " + body);
+            writer.println();
+            writer.println("-----------------------------------------------------------------------");
+            writer.println();
         } catch (FileNotFoundException e) {
             System.out.println("Failed to write email to file: " + e.getMessage());
         }
     }
+
+    /**
+     * Is valid email domain boolean.
+     *
+     * @param email the email
+     * @return the boolean
+     */
     public static boolean isValidEmailDomain(String email) {
         return isEmailDomainValid(email);
     }
 
+    /**
+     * Is email domain valid boolean.
+     *
+     * @param email the email
+     * @return the boolean
+     */
     protected static boolean isEmailDomainValid(String email) {
         EmailDEI emailDEI = new EmailDEI();
         EmailGMAIL emailGMAIL = new EmailGMAIL();
@@ -57,6 +84,11 @@ public class EmailNotificationAdapter implements EmailNotification {
         }
     }
 
+    /**
+     * Remove booking request.
+     *
+     * @param message the message
+     */
     public static void removeBookingRequest(Message message) {
         MessageRepository messageRepository = getMessageRepository();
         messageRepository.removeMessage(message);

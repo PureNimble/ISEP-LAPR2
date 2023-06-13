@@ -14,14 +14,14 @@ import pt.ipp.isep.dei.esoft.project.domain.MessageState;
 import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 import pt.ipp.isep.dei.esoft.project.domain.adapters.EmailNotificationAdapter;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.URL;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
+/**
+ * The type Respond to booking request gui.
+ */
 public class RespondToBookingRequestGUI implements Runnable,Initializable {
     @FXML
     private Button submitButton;
@@ -48,10 +48,23 @@ public class RespondToBookingRequestGUI implements Runnable,Initializable {
     @FXML
     private Button btReturn;
 
+    private static final String FILE_NAME = "EmailNotification.txt";
+
+
+    /**
+     * Sets list message controller.
+     *
+     * @param listMessageController the list message controller
+     */
     public void setListMessageController(ListMessageGUI listMessageController) {
         this.listMessageController = listMessageController;
     }
 
+    /**
+     * Sets selected message.
+     *
+     * @param selectedMessage the selected message
+     */
     public void setSelectedMessage(Message selectedMessage) {
         this.selectedMessage = selectedMessage;
 
@@ -60,6 +73,11 @@ public class RespondToBookingRequestGUI implements Runnable,Initializable {
         // ...
     }
 
+    /**
+     * Sets published announcement.
+     *
+     * @param publishedAnnouncement the published announcement
+     */
     public void setPublishedAnnouncement(PublishedAnnouncement publishedAnnouncement) {
         this.publishedAnnouncement = publishedAnnouncement;
     }
@@ -111,7 +129,6 @@ public class RespondToBookingRequestGUI implements Runnable,Initializable {
         }
 
         if (isValidEmailDomain) {
-            String fileName = "EmailNotification - " + email + ".txt";
             Properties properties = new Properties();
             try (FileInputStream fileInputStream = new FileInputStream("config.properties")) {
                 properties.load(fileInputStream);
@@ -121,7 +138,7 @@ public class RespondToBookingRequestGUI implements Runnable,Initializable {
             }
 
             // Get the agent's email from the properties file
-            String agentEmail = properties.getProperty("from");
+            String agentEmail = properties.getProperty("emailService");
             String subject;
             String body;
 
@@ -156,11 +173,14 @@ public class RespondToBookingRequestGUI implements Runnable,Initializable {
                         publishedAnnouncement.getAgent().getName();
             }
 
-            try (PrintWriter writer = new PrintWriter(fileName)) {
+            try (PrintWriter writer = new PrintWriter(new FileOutputStream(FILE_NAME, true))) {
                 writer.println("From: " + agentEmail);
                 writer.println("To: " + email);
                 writer.println("Subject: " + subject);
                 writer.println("Body: " + body);
+                writer.println();
+                writer.println("-----------------------------------------------------------------------");
+                writer.println();
             } catch (FileNotFoundException e) {
                 System.out.println("Failed to write email to file: " + e.getMessage());
             }
@@ -188,6 +208,11 @@ public class RespondToBookingRequestGUI implements Runnable,Initializable {
         reasonTextArea.setDisable(false);
     }
 
+    /**
+     * On bt return.
+     *
+     * @param actionEvent the action event
+     */
     @FXML
     public void onBtReturn(ActionEvent actionEvent) {
         Stage stage = getStage();

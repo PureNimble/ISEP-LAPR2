@@ -31,6 +31,9 @@
     import java.time.ZoneId;
     import java.util.*;
 
+    /**
+     * The type List message gui.
+     */
     public class ListMessageGUI implements Initializable {
 
         @FXML
@@ -87,6 +90,9 @@
 
         private final ListMessageController controller = new ListMessageController();
 
+        /**
+         * The List messages.
+         */
         ObservableList<Object> listMessages = FXCollections.observableArrayList(controller.getMessagesByAscendingDate());
 
         public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -119,6 +125,12 @@
             btFilterSchedules.setOnAction(event -> handleFilterButtonPressed());
         }
 
+        /**
+         * Click item.
+         *
+         * @param mouseEvent the mouse event
+         * @throws FileNotFoundException the file not found exception
+         */
         @FXML
         public void clickItem(MouseEvent mouseEvent) throws FileNotFoundException {
             System.out.println("" + tvBookingRequests.getSelectionModel().getSelectedItem());
@@ -173,11 +185,19 @@
             listMessages.setAll(filteredMessages);
         }
 
+        /**
+         * Handle filter button pressed.
+         */
         @FXML
         public void handleFilterButtonPressed() {
             updateFilteredMessages();
         }
 
+        /**
+         * On bt return.
+         *
+         * @param actionEvent the action event
+         */
         @FXML
         public void onBtReturn(ActionEvent actionEvent) {
             Stage stage = getStage();
@@ -198,6 +218,9 @@
             return (Stage) btReturn.getScene().getWindow();
         }
 
+        /**
+         * On bt respond.
+         */
         public void onBtRespond() {
             Message selectedMessage = (Message) tvBookingRequests.getSelectionModel().getSelectedItem();
             if (selectedMessage != null) {
@@ -227,10 +250,20 @@
             }
         }
 
+        /**
+         * On key enter bt respond.
+         *
+         * @param mouseEvent the mouse event
+         */
         public void onKeyEnterBtRespond(MouseEvent mouseEvent) {
                 onBtRespond();
         }
 
+        /**
+         * Remove message.
+         *
+         * @param message the message
+         */
         public void removeMessage(Message message) {
             listMessages.remove(message);
         }

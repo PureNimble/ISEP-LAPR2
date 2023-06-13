@@ -3,6 +3,9 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 import pt.ipp.isep.dei.esoft.project.application.controller.ListMessageController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.domain.adapters.EmailNotificationAdapter;
+import pt.ipp.isep.dei.esoft.project.domain.emailServices.EmailNotification;
+import pt.ipp.isep.dei.esoft.project.domain.emailServices.EmailService;
+
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -47,7 +50,7 @@ public class ListMessageUI implements Runnable {
                 return;
             }
 
-            try (InputStream input = new FileInputStream("C:\\Users\\35193\\Desktop\\PII\\config.properties")) {
+            try (InputStream input = new FileInputStream("config.properties")) {
                 Properties prop = new Properties();
                 prop.load(input);
                 String sorting = prop.getProperty("sortingAlgorithm");
@@ -89,7 +92,7 @@ public class ListMessageUI implements Runnable {
         }
     }
 
-    private void respondToClientOrNo(Message message, PublishedAnnouncement publishedAnnouncement) {
+    public void respondToClientOrNo(Message message, PublishedAnnouncement publishedAnnouncement) {
         System.out.println("\n1. Respond");
         System.out.println("2. Cancel");
 
@@ -101,92 +104,116 @@ public class ListMessageUI implements Runnable {
 
             switch (choice) {
                 case 1:
-                    boolean isValidDomain = false;
-                    String email;
-                    do {
+                    String email = null;
+                    boolean isValidEmail = false;
+
+                    while (!isValidEmail) {
                         System.out.println("Enter client email: ");
                         email = input.nextLine();
-                        isValidDomain = EmailNotificationAdapter.isValidEmailDomain(email);
-                        if (!isValidDomain) {
-                            System.out.println("Invalid client email domain. Please provide an email with one of the supported domains.");
+
+                        // Validate email format
+                        if (email.matches("[^@]+@[^@]+")) {
+                            isValidEmail = true;
+                        } else {
+                            System.out.println("Invalid email format. Please enter a valid email address.");
                         }
-                    } while (!isValidDomain);
+                    }
 
-                    if (EmailNotificationAdapter.isValidEmailDomain(email)) {
-                        // Continue with the code for responding to the message
-                        String subject = null;
-                        String body = null;
+                    String subject = null;
+                    String body = null;
 
-                        // Prompt for acceptance or denial
-                        System.out.println("\n1. Accept");
-                        System.out.println("2. Deny");
+                    // Prompt for acceptance or denial
+                    System.out.println("\n1. Accept");
+                    System.out.println("2. Deny");
 
-                        int responseChoice;
-                        do {
-                            System.out.println("Enter your response: ");
-                            responseChoice = input.nextInt();
-                            input.nextLine(); // Consume the newline character
+                    int responseChoice;
+                    do {
+                        System.out.println("Enter your response: ");
+                        responseChoice = input.nextInt();
+                        input.nextLine(); // Consume the newline character
 
-                            switch (responseChoice) {
-                                case 1:
-                                    // Accept the visitation
-                                    subject = "Your Visit Booking Request Has Been Accepted";
-                                    body = "Dear Customer, \n\n" +
-                                            "Thank you for your interest in the property listed with ID: " + publishedAnnouncement.getPropertyID() +
-                                            " and located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
-                                            "You had requested a visit for the date: " + message.getInitialDate() +
-                                            " with a start time at: " + message.getInitialTime() +
-                                            " and ending at: " + message.getEndTime() + ".\n\n" +
-                                            "We are pleased to inform you that your booking request has been accepted. You will be greeted by our agent " + publishedAnnouncement.getAgent().getName() + ".\n" +
-                                            "In case of any changes or queries, you may contact them at the following number: " + publishedAnnouncement.getAgent().getPhoneNumber() + ".\n\n" +
-                                            "We look forward to welcoming you for the visit.\n\n" +
-                                            "Best Regards,\n" +
-                                            publishedAnnouncement.getAgent().getName();
+                        switch (responseChoice) {
+                            case 1:
+                                // Accept the visitation
+                                subject = "Your Visit Booking Request Has Been Accepted";
+                                body = "Dear Customer, \n\n" +
+                                        "Thank you for your interest in the property listed with ID: " + publishedAnnouncement.getPropertyID() +
+                                        " and located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
+                                        "You had requested a visit for the date: " + message.getInitialDate() +
+                                        " with a start time at: " + message.getInitialTime() +
+                                        " and ending at: " + message.getEndTime() + ".\n\n" +
+                                        "We are pleased to inform you that your booking request has been accepted. You will be greeted by our agent " + publishedAnnouncement.getAgent().getName() + ".\n" +
+                                        "In case of any changes or queries, you may contact them at the following number: " + publishedAnnouncement.getAgent().getPhoneNumber() + ".\n\n" +
+                                        "We look forward to welcoming you for the visit.\n\n" +
+                                        "Best Regards,\n" +
+                                        publishedAnnouncement.getAgent().getName();
 
-                                    message.setApprovedByAgent(true);
-                                    break;
-                                case 2:
-                                    // Deny the visitation
-                                    subject = "Your Visit Booking Request Has Been Rejected";
-                                    System.out.println("Reason for denying the visit request: ");
-                                    String reason = input.nextLine();
-                                    body = "Dear Customer, \n\n" +
-                                            "Thank you for your interest in the property listed with ID: " + publishedAnnouncement.getPropertyID() +
-                                            " and located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
-                                            "You had requested a visit for the date: " + message.getInitialDate() +
-                                            " with a start time at: " + message.getInitialTime() +
-                                            " and ending at: " + message.getEndTime() + ".\n\n" +
-                                            "We regret to inform you that your booking request has been rejected for the following reason:\n\n" +
-                                            reason + "\n\n" +
-                                            "If you have any doubts and need help, you may contact the agent " + publishedAnnouncement.getAgent().getName() +
-                                            " with the following number: " + publishedAnnouncement.getAgent().getPhoneNumber() + ".\n\n" +
-                                            "Best Regards,\n" +
-                                            publishedAnnouncement.getAgent().getName();
+                                message.setApprovedByAgent(true);
+                                break;
+                            case 2:
+                                // Deny the visitation
+                                subject = "Your Visit Booking Request Has Been Rejected";
+                                System.out.println("Reason for denying the visit request: ");
+                                String reason = input.nextLine();
+                                body = "Dear Customer, \n\n" +
+                                        "Thank you for your interest in the property listed with ID: " + publishedAnnouncement.getPropertyID() +
+                                        " and located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
+                                        "You had requested a visit for the date: " + message.getInitialDate() +
+                                        " with a start time at: " + message.getInitialTime() +
+                                        " and ending at: " + message.getEndTime() + ".\n\n" +
+                                        "We regret to inform you that your booking request has been rejected for the following reason:\n\n" +
+                                        reason + "\n\n" +
+                                        "If you have any doubts and need help, you may contact the agent " + publishedAnnouncement.getAgent().getName() +
+                                        " at the following number: " + publishedAnnouncement.getAgent().getPhoneNumber() + ".\n\n" +
+                                        "Thank you for your understanding.\n\n" +
+                                        "Best Regards,\n" +
+                                        publishedAnnouncement.getAgent().getName();
 
-                                    message.setApprovedByAgent(false);
-                                    break;
-                                default:
-                                    System.out.println("Invalid response. Please enter 1 or 2.");
-                                    break;
-                            }
-                        } while (responseChoice != 1 && responseChoice != 2);
+                                message.setApprovedByAgent(false);
+                                break;
+                            default:
+                                System.out.println("Invalid choice. Please enter a valid response choice.");
+                                break;
+                        }
+                    } while (responseChoice != 1 && responseChoice != 2);
 
-                        // Send the email
-                        EmailNotificationAdapter.sendEmail(email, subject, body);
-                        EmailNotificationAdapter.removeBookingRequest(message);
+                    // Load configuration properties
+                    Properties properties = new Properties();
+                    try (FileInputStream fileInputStream = new FileInputStream("config.properties")) {
+                        properties.load(fileInputStream);
+                    } catch (IOException e) {
+                        System.out.println("An error occurred while reading the configuration file: " + e.getMessage());
                         return;
-                    } else {
-                        System.out.println("Invalid client email domain. Please provide an email with one of the supported domains.");
+                    }
+
+                    // Retrieve the email service class name from properties
+                    String emailServiceClass = properties.getProperty("emailService");
+
+                    // Instantiate the email service
+                    EmailService emailService;
+                    try {
+                        Class<?> serviceClass = Class.forName(emailServiceClass);
+                        emailService = (EmailService) serviceClass.newInstance();
+                    } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+                        System.out.println("Failed to instantiate the email service: " + e.getMessage());
+                        return;
+                    }
+
+                    if (email != null) {
+                        // Send the email using the email service
+                        emailService.sendEmail(email, subject, body);
+                        System.out.println("Email sent successfully.");
                     }
                     break;
                 case 2:
-                    // Cancel and return to the menu
-                    return;
+                    // Cancel the operation
+                    System.out.println("Operation canceled.");
+                    break;
                 default:
-                    System.out.println("Invalid choice. Please enter 1 or 2.");
+                    System.out.println("Invalid choice. Please enter a valid option.");
                     break;
             }
-        } while (true);
+        } while (choice != 1 && choice != 2);
     }
 
     /**
