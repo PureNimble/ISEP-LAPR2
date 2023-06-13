@@ -15,7 +15,7 @@ public class ApplicationSession {
     /**
      * The AuthenticationRepository instance.
      */
-    private AuthenticationRepository authenticationRepository=null;
+    private AuthenticationRepository authenticationRepository = null;
     /**
      * The filename for the configuration file.
      */
@@ -91,6 +91,4 @@ public class ApplicationSession {
         }
         return singleton;
     }
-
-
 }

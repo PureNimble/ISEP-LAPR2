@@ -28,16 +28,17 @@ public class PublishedAnnouncement {
     /**
      * Instantiates a new Published announcement.
      *
-     * @param date           the date
-     * @param typeOfBusiness the type of business
-     * @param property       the property
-     * @param propertyType   the property type
-     * @param comission      the comission
-     * @param business       the business
-     * @param agent          the agent
-     * @param client         the client
-     * @param propertyID     the property id
-     * @param state          the state
+     * @param date              the date
+     * @param typeOfBusiness    the type of business
+     * @param property          the property
+     * @param propertyType      the property type
+     * @param comission         the comission
+     * @param business          the business
+     * @param agent             the agent
+     * @param client            the client
+     * @param propertyID        the property id
+     * @param announcementState the announcement state
+     * @param store             the store
      */
     public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, Employee agent, Client client, int propertyID, AnnouncementState announcementState, Store store) {
         this.typeOfBusiness = typeOfBusiness;
@@ -66,7 +67,8 @@ public class PublishedAnnouncement {
      * @param agent              the agent
      * @param client             the client
      * @param propertyID         the property id
-     * @param state              the state
+     * @param announcementState  the announcement state
+     * @param store              the store
      */
     public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent, Client client, int propertyID, AnnouncementState announcementState, Store store) {
         this.date = date;
@@ -88,6 +90,7 @@ public class PublishedAnnouncement {
      *
      * @param announcementRequestDto the announcement request dto
      * @param comission              the comission
+     * @param store                  the store
      */
     public PublishedAnnouncement(AnnouncementRequestDto announcementRequestDto, Comission comission, Store store) {
         this.date = announcementRequestDto.getDate();
@@ -303,10 +306,20 @@ public class PublishedAnnouncement {
         this.agent = agent;
     }
 
+    /**
+     * Gets store.
+     *
+     * @return the store
+     */
     public Store getStore() {
         return store;
     }
 
+    /**
+     * Sets store.
+     *
+     * @param store the store
+     */
     public void setStore(Store store) {
         this.store = store;
     }

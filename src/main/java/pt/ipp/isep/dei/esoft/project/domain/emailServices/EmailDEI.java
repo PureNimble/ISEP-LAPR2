@@ -1,7 +1,16 @@
 package pt.ipp.isep.dei.esoft.project.domain.emailServices;
 
+/**
+ * The type Email dei.
+ */
 public class EmailDEI {
 
+    /**
+     * Is valid boolean.
+     *
+     * @param email the email
+     * @return the boolean
+     */
     public boolean isValid(String email) {
         String domain = getEmailDomain(email);
         return domain.equals("isep.ipp.pt");

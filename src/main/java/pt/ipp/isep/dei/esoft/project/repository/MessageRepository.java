@@ -100,6 +100,12 @@ public class MessageRepository {
         return resultList;
     }
 
+    /**
+     * Remove message boolean.
+     *
+     * @param message the message
+     * @return the boolean
+     */
     public boolean removeMessage(Message message) {
         return messages.remove(message);
     }

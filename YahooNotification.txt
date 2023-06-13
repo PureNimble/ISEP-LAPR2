@@ -1,5 +1,5 @@
 From: no-reply@this.app
-To: 1220688_teste_javafx@isep.ipp.pt
+To: pedro02012004@gmail.com
 Subject: Your Visit Booking Request Has Been Rejected
 Body: Dear Customer, 
 
@@ -9,9 +9,14 @@ You had requested a visit for the date: Tue Jun 20 00:00:00 WEST 2023 with a sta
 
 We regret to inform you that your booking request has been rejected for the following reason:
 
-Teste com JavaFX a enviar email
+The property was just sold!
 
-If you have any doubts and need help, you may contact the agent Miguel with the following number: 1234567890.
+If you have any doubts and need help, you may contact the agent Miguel at the following number: 1234567890.
+
+Thank you for your understanding.
 
 Best Regards,
 Miguel
+
+-----------------------------------------------------------------------
+
