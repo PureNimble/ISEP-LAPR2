@@ -9,8 +9,8 @@ skinparam shadowing false
 autonumber
 
 actor "Agent" as Agent
-participant ":DisplayMessageUI" as System
-participant ":DisplayMessageController" as Controller
+participant ":ListMessageUI" as System
+participant ":ListMessageController" as Controller
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as Repository
 participant "messageRepository:\nMessageRepository" as MessageRepository

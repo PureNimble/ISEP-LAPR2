@@ -6,4 +6,371 @@ skinparam packageStyle rectangle
 skinparam shadowing false
 skinparam linetype polyline
 
+class ListMessageUI {
+    + run()
+    - respondToClientOrNo(Message message, PublishedAnnouncement publishedAnnouncement)
+    - parseDate(String dateString)
+}
+
+class ListMessageController {
+    + ListMessageController(MessageRepository messageRepository, \nAuthenticationRepository authenticationRepository, UserRepository userRepository)
+    - getMessageRepository()
+    - getAuthenticationRepository()
+    - getUserRepository()
+    + sortMessageRequests(List<Message> messageRequests)
+    + getMessageRequestsForPeriod(Date beginDate, Date endDate)
+    + getMessagesByAscendingDate()
+    + toDtoMessageByAscendingDate()
+}
+
+class Repositories {
+    - Repositories()
+    + getInstance() : Repositories
+    + getMessageRepository()
+    + getAuthenticationRepository()
+    + getEmployeeRepository()
+}
+
+class MessageRepository {
+    + add(Message message)
+    + getMessage()
+    - validateMessage(Message message)
+    - checkIfDateTimeOverlaps(Message message1, Message message2)
+    + getMessagesByAscendingDate()
+    + removeMessage(Message message)
+}
+
+class Message {
+    - String name
+    - int phoneNumber
+    - Date initialDate
+    - int initialTime
+    - int endTime
+    - String description
+    - MessageState messageState
+    - boolean isApprovedByAgent
+
+    + Message(String name, int phoneNumberm String description, Date initialDate, \nint initialTime, int endTime, MessageState messageState, boolean isApprovedByAgent)
+    + Message()
+    + getName()
+    + getPhoneNumber()
+    + getDescription()
+    + getInitialDate()
+    + getInitialTime()
+    + getEndTime()
+    + getPublishedAnnouncement()
+    + getMessageState()
+    + isApprovedByAgent()
+}
+
+class AuthenticationRepository {
+    + doLogin(email,pwd)
+    + doLogout()
+    + getCurrentSession()
+    + addUserRole()
+    + addUserWithRole()
+    + passwordGenerator()
+    - shuffleString(input,random)
+    - randomCharacter(characters,random)
+}
+
+class EmployeeRepository {
+    + add(Employee employee)
+    + validateEmployee(Employee employee)
+    + getEmployees()
+    + getEmployeeByEmail(String email)
+    + getEmployeesAllphabeticallySorted()
+}
+
+class Person {
+    - String email
+    - int passportNumber
+    - int taxNumber
+    - String name
+    - Address address
+    - Long phoneNumber
+
+    + User(email, passportNumber, taxNumber, name, phoneNumber)
+    + getPassportNumber()
+    + getTaxNumber()
+    + getEmail()
+    + getAdress()
+    + getName()
+    + getPhoneNumber()
+}
+
+class Agent {
+
+}
+
+class Residence {
+    - int numberOfBedrooms
+    - int numberOfBathrooms
+    - int numberOfParkingSpaces
+
+    + Residence(int area, int distanceFromCityCenter,int numberOfBedrooms, int numberOfBathrooms, \nint parkingSpaces, AvailableEquipment availableEquipment, Photos photos, Address address)
+    + getNumberOfBedrooms()
+    + getNumberOfBathrooms()
+    + getParkingSpaces()
+}
+
+class House {
+    - String basement
+    - String inhabitableLoft
+    - String sunExposure
+
+    + House(int area, int distanceFromCityCenter, int numberOfBedrooms, int numberOfBathrooms, \nint parkingSpaces,AvailableEquipment availableEquipment, String basement, String inhabitableLoft, String sunExposure,\nPhotos photos, Address address)
+    + getBasement()
+    + getInhabitableLoft()
+    + getSunExposure()
+}
+
+class SunExposure {
+    - String direction
+
+    + SunExposure(direction)
+}
+
+class AvailableEquipment {
+    - String availableEquipment
+
+    + AvailableEquipment(String availableEquipment)
+    + getAvailableEquipment()
+}
+
+class Address{
+    - String streetName
+    - int zipCode
+    + getCity()
+    + getDistrict()
+    + getState()
+    + Address(state, district, city, street, zipCode)
+}
+
+class District {
+    - String districtName
+
+    + District(String district)
+    + getDistrict()
+    + getCities()
+}
+
+class City{
+    - String city
+
+    + City(String city)
+    + getCityName()
+}
+
+class State{
+    - String state
+
+    + State(String state,List<District> districts)
+    + getState()
+    + getDistricts()
+}
+
+class Photos {
+    - String uri
+
+    + Photos(String url)
+    + getUrl()
+}
+
+class Property {
+    - int distanceFromCityCenter
+    - int area
+
+    + Property(int area, int distanceFromCityCenter, Photos photos, Address address)
+    + getDistanceFromCityCenter()
+    + getArea()
+    + getResidence()
+    + getPhotos()
+    + getAddress()
+}
+
+class Rent {
+    - int durationOfContract
+
+    + Rent(int durationContract)
+    + getFinalComission()
+    + getDurationContract()
+    + calculateTotalPrice()
+}
+
+class PublishedAnnouncement {
+    - Date date
+    - int propertyID
+
+    + PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, \nPropertyType propertyType, Comission comission, Business business, Employee agent, \nClient client, int propertyID)
+    + getProperty()
+    + getDate()
+    + getState()
+    + getCity()
+    + getClient()
+    + getPropertyType()
+    + getComission()
+    + getBusiness()
+    + getDurationOfContract()
+    + getAgent()
+    + getPropertyID()
+}
+
+class Employee {
+    - Role role
+
+    + Employee(email,name,store,\nphoneNumber,role,adress,taxNumber,\npassportNumber)
+    + getRole()
+}
+
+class Business {
+    - double requestedPrice
+    - String typeOfBusiness
+
+    + getFinalComission()
+    + calculatePriceWithComission()
+    + getTypeOfBusiness()
+}
+
+class Role {
+    - String role
+    + Role(role)
+}
+
+class MessageMapper {
+    + toDto(messageList)
+    + toDtoObject(String name, long phoneNumber, String description, Date initialDate, \nint initialTime, int endTime, PublishedAnnouncement publishedAnnouncement)
+}
+
+class MessageDto {
+    - String name
+    - long phoneNumber
+    - String description
+    - Date initialDate
+    - int initialTime
+    - int endTime
+    - PublishedAnnouncement publishedAnnouncement
+
+    + MessageDto(String name, long phoneNumber, String description, Date initialDate, \nint initialTime, int endTime, PublishedAnnouncement publishedAnnouncement)
+    + getName()
+    + getPhoneNumber()
+    + getDescription()
+    + getInitialDate()
+    + getInitialTime()
+    + getEndTime()
+    + getPublishedAnnouncement()
+}
+
+class Client {
+    Client(String email, int passportNumber, \nint taxNumber, String name, int phoneNumber)
+}
+
+interface EmailNotification {
+    sendEmail(String email, String subject, String body)
+}
+
+class EmailDEI {
+    + isValid(String email)
+    - getEmailDomain(String email)
+}
+
+class EmailGMAIL {
+    + isValid(String email)
+    - getEmailDomain(String email)
+}
+
+class EmailHOTMAIL {
+    + isValid(String email)
+    - getEmailDomain(String email)
+}
+
+class EmailYAHOO {
+    + isValid(String email)
+    - getEmailDomain(String email)
+}
+
+class EmailNotificationAdapter {
+    + sendEmail(String email, String subject, String body)
+    + isValidEmailDomain(String email)
+    ~ isValidEmailDomain(String email)
+    + removeBookingRequest(Message message)
+    - getMessageRepository()
+}
+
+class TypeOfProperty {
+    - String type
+}
+
+class Comission {
+    - Double value
+}
+
+enum MessageState {
+    - String UNANSWERED
+    - String ANSWERED
+}
+
+ListMessageUI .> ListMessageController
+
+ListMessageController .> Repositories : repositories
+ListMessageController ..> AuthenticationRepository : authenticationRepository
+ListMessageController ..> MessageRepository : messageRepository
+ListMessageController ..> EmployeeRepository : employeeRepository
+ListMessageController ..> MessageMapper
+ListMessageController "*" -up- "1" EmailNotification
+
+EmailNotification <|-up- EmailNotificationAdapter
+
+EmailNotificationAdapter --> EmailDEI
+EmailNotificationAdapter --> EmailGMAIL
+EmailNotificationAdapter --> EmailHOTMAIL
+EmailNotificationAdapter --> EmailYAHOO
+
+Repositories --> Repositories : instance
+Repositories --> AuthenticationRepository
+Repositories --> MessageRepository
+Repositories --> EmployeeRepository
+
+MessageMapper ..> MessageDto
+
+MessageRepository --> Message
+
+EmployeeRepository --> Employee
+
+Person <|-- Employee
+Person <|-- Client
+
+Employee <|---- Agent
+Employee "*" -left- "1" Role : has <
+
+Message "*" -left- "1" Client : sends <
+Message "1" -left- "1" Agent : want to see a list of <
+Message "*" --- "1" PublishedAnnouncement : can have <
+Message -right-> MessageState
+
+PublishedAnnouncement "1" -right- "1" Business : has <
+PublishedAnnouncement "*" --- "*" Property : advertises >
+
+Property "1" -left- "1..30" Photos : has >
+Property <|-- Residence
+Property "1" -- "1" Address : has >
+Property -right- TypeOfProperty : has >
+
+
+Address "1" -left- "*" State : has <
+State "1" -left- "*" District : has <
+District "1" -left- "*" City : has <
+
+Residence <|-- House
+Residence "1" -right- "*" AvailableEquipment : contains >
+
+House "*" -- "1" SunExposure : contains >
+
+Business <|-- Rent
+Business "1" -up- "1" Comission : contains >
+
+
+
+
+
 @enduml
