@@ -655,7 +655,7 @@ public class RegisterEmployeeUI implements Runnable {
         int i = 1;
 
         for (Store store : stores) {
-            System.out.println(i + " - " + store.getId());
+            System.out.println(i + " - " + store.getDesignation() + " ID:"+store.getId());
             i++;
         }
     }
