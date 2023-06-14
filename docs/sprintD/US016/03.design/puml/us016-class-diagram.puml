@@ -3,7 +3,7 @@
 title US016 - Class Diagram
 
 skinparam packageStyle rectangle
-skinparam shadowing false
+skinparam shadowing true
 skinparam linetype polyline
 
 class ListMessageUI {
