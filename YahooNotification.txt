@@ -1,22 +1,21 @@
 From: no-reply@this.app
-To: pedro02012004@gmail.com
-Subject: Your Visit Booking Request Has Been Rejected
-Body: Dear Customer, 
+To: john.doe@example.com
+Subject: Test Subject
+Body: Test Body
 
-Thank you for your interest in the property listed with ID: 1 and located at: 3655 S Las Vegas Blvd, Las Vegas, Paradise, Nevada, 892109.
+-----------------------------------------------------------------------
 
-You had requested a visit for the date: Tue Jun 20 00:00:00 WEST 2023 with a start time at: 11 and ending at: 12.
+From: no-reply@this.app
+To: john.doe@example.com
+Subject: Test Subject
+Body: Test Body
 
-We regret to inform you that your booking request has been rejected for the following reason:
+-----------------------------------------------------------------------
 
-The property was just sold!
-
-If you have any doubts and need help, you may contact the agent Miguel at the following number: 1234567890.
-
-Thank you for your understanding.
-
-Best Regards,
-Miguel
+From: no-reply@this.app
+To: john.doe@example.com
+Subject: Test Subject
+Body: Test Body
 
 -----------------------------------------------------------------------
 

@@ -146,10 +146,10 @@ public class ListMessageUI implements Runnable {
                                         "Thank you for your interest in the property listed with ID: " + publishedAnnouncement.getPropertyID() +
                                         " and located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
                                         "You had requested a visit for the date: " + message.getInitialDate() +
-                                        " with a start time at: " + message.getInitialTime() +
+                                        ",  starting at: " + message.getInitialTime() +
                                         " and ending at: " + message.getEndTime() + ".\n\n" +
                                         "We are pleased to inform you that your booking request has been accepted. You will be greeted by our agent " + publishedAnnouncement.getAgent().getName() + ".\n" +
-                                        "In case of any changes or queries, you may contact them at the following number: " + publishedAnnouncement.getAgent().getPhoneNumber() + ".\n\n" +
+                                        "In case of any changes or queries, you may contact the agent at the following number: " + publishedAnnouncement.getAgent().getPhoneNumber() + ".\n\n" +
                                         "We look forward to welcoming you for the visit.\n\n" +
                                         "Best Regards,\n" +
                                         publishedAnnouncement.getAgent().getName();
@@ -165,7 +165,7 @@ public class ListMessageUI implements Runnable {
                                         "Thank you for your interest in the property listed with ID: " + publishedAnnouncement.getPropertyID() +
                                         " and located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
                                         "You had requested a visit for the date: " + message.getInitialDate() +
-                                        " with a start time at: " + message.getInitialTime() +
+                                        ", starting at: " + message.getInitialTime() +
                                         " and ending at: " + message.getEndTime() + ".\n\n" +
                                         "We regret to inform you that your booking request has been rejected for the following reason:\n\n" +
                                         reason + "\n\n" +

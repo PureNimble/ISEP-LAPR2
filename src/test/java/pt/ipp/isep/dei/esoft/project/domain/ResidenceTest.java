@@ -30,14 +30,16 @@ class ResidenceTest {
         int parkingSpaces = 1;
         AvailableEquipment availableEquipment = new AvailableEquipment("air conditioning");
 
-        Residence r = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment,photos, address);
+        Residence r = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, photos, address);
 
         String expected = "Area: 100\n" +
-                "DistanceFromCityCenter:10\n" +
-                "Number Bedrooms: 2\n" +
-                "Number Bathrooms: 1\n" +
-                "ParkingSpaces: 1\n" +
-                "AvailableEquipment: air conditioning\n";
+                "Distance From The City Center: 10\n" +
+                "Photos: [urlll]\n" +
+                "Address: 123 Main St, Test City, Test District, Test State, 13456\n" +
+                "Number Of Bedrooms: 2\n" +
+                "Number Of Bathrooms: 1\n" +
+                "Parking Spaces: 1\n" +
+                "Available Equipment: air conditioning\n";
 
         assertEquals(expected, r.toString());
     }
@@ -84,5 +86,129 @@ class ResidenceTest {
         Residence r2 = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment,photos,address);
 
         assertEquals(r1.hashCode(), r2.hashCode());
+    }
+
+    @Test
+    void testGetNumberOfBedrooms() {
+        int area = 100;
+        int distanceFromCityCenter = 10;
+        int numberOfBedrooms = 2;
+        int numberOfBathrooms = 1;
+        int parkingSpaces = 1;
+        AvailableEquipment availableEquipment = new AvailableEquipment("air conditioning");
+
+        Residence r = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, photos, address);
+
+        assertEquals(numberOfBedrooms, r.getNumberOfBedrooms());
+    }
+
+    @Test
+    void testGetNumberOfBathrooms() {
+        int area = 100;
+        int distanceFromCityCenter = 10;
+        int numberOfBedrooms = 2;
+        int numberOfBathrooms = 1;
+        int parkingSpaces = 1;
+        AvailableEquipment availableEquipment = new AvailableEquipment("air conditioning");
+
+        Residence r = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, photos, address);
+
+        assertEquals(numberOfBathrooms, r.getNumberOfBathrooms());
+    }
+
+    @Test
+    void testGetParkingSpaces() {
+        int area = 100;
+        int distanceFromCityCenter = 10;
+        int numberOfBedrooms = 2;
+        int numberOfBathrooms = 1;
+        int parkingSpaces = 1;
+        AvailableEquipment availableEquipment = new AvailableEquipment("air conditioning");
+
+        Residence r = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, photos, address);
+
+        assertEquals(parkingSpaces, r.getParkingSpaces());
+    }
+
+    @Test
+    void testSetNumberOfBedrooms() {
+        int area = 100;
+        int distanceFromCityCenter = 10;
+        int numberOfBedrooms = 2;
+        int numberOfBathrooms = 1;
+        int parkingSpaces = 1;
+        AvailableEquipment availableEquipment = new AvailableEquipment("air conditioning");
+
+        Residence r = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, photos, address);
+
+        int newNumberOfBedrooms = 3;
+        r.setNumberOfBedrooms(newNumberOfBedrooms);
+
+        assertEquals(newNumberOfBedrooms, r.getNumberOfBedrooms());
+    }
+
+    @Test
+    void testSetNumberOfBathrooms() {
+        int area = 100;
+        int distanceFromCityCenter = 10;
+        int numberOfBedrooms = 2;
+        int numberOfBathrooms = 1;
+        int parkingSpaces = 1;
+        AvailableEquipment availableEquipment = new AvailableEquipment("air conditioning");
+
+        Residence r = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, photos, address);
+
+        int newNumberOfBathrooms = 2;
+        r.setNumberOfBathrooms(newNumberOfBathrooms);
+
+        assertEquals(newNumberOfBathrooms, r.getNumberOfBathrooms());
+    }
+
+    @Test
+    void testSetParkingSpaces() {
+        int area = 100;
+        int distanceFromCityCenter = 10;
+        int numberOfBedrooms = 2;
+        int numberOfBathrooms = 1;
+        int parkingSpaces = 1;
+        AvailableEquipment availableEquipment = new AvailableEquipment("air conditioning");
+
+        Residence r = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, photos, address);
+
+        int newParkingSpaces = 2;
+        r.setParkingSpaces(newParkingSpaces);
+
+        assertEquals(newParkingSpaces, r.getParkingSpaces());
+    }
+
+    @Test
+    void testSetAvailableEquipment() {
+        int area = 100;
+        int distanceFromCityCenter = 10;
+        int numberOfBedrooms = 2;
+        int numberOfBathrooms = 1;
+        int parkingSpaces = 1;
+        AvailableEquipment availableEquipment = new AvailableEquipment("air conditioning");
+
+        Residence r = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, photos, address);
+
+        AvailableEquipment newAvailableEquipment = new AvailableEquipment("heating");
+        r.setAvailableEquipment(newAvailableEquipment);
+
+        assertEquals(newAvailableEquipment, r.getAvailableEquipment());
+    }
+
+    @Test
+    void testGetAvailableEquipment() {
+        int area = 100;
+        int distanceFromCityCenter = 10;
+        int numberOfBedrooms = 2;
+        int numberOfBathrooms = 1;
+        int parkingSpaces = 1;
+        AvailableEquipment availableEquipment = new AvailableEquipment("air conditioning");
+
+        Residence r = new Residence(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, photos, address);
+
+        assertEquals(availableEquipment, r.getAvailableEquipment());
     }
 }

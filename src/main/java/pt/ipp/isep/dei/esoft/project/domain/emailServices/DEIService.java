@@ -6,7 +6,7 @@ import java.util.Properties;
 /**
  * The type Dei service.
  */
-public class DEIService implements EmailService {
+public class DEIService implements EmailService,Serializable {
 
     private static final String FILE_NAME = "DEINotification.txt";
 

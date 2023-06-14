@@ -157,10 +157,10 @@ public class RespondToBookingRequestGUI implements Runnable,Initializable {
                         "Thank you for your interest in the property listed with ID: " + publishedAnnouncement.getPropertyID() +
                         " and located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
                         "You had requested a visit for the date: " + selectedMessage.getInitialDate() +
-                        " with a start time at: " + selectedMessage.getInitialTime() +
+                        ", starting at: " + selectedMessage.getInitialTime() +
                         " and ending at: " + selectedMessage.getEndTime() + ".\n\n" +
                         "We are pleased to inform you that your booking request has been accepted. You will be greeted by our agent " + publishedAnnouncement.getAgent().getName() + ".\n" +
-                        "In case of any changes or queries, you may contact them at the following number: " + publishedAnnouncement.getAgent().getPhoneNumber() + ".\n\n" +
+                        "In case of any changes or queries, you may contact the agent at the following number: " + publishedAnnouncement.getAgent().getPhoneNumber() + ".\n\n" +
                         "We look forward to welcoming you for the visit.\n\n" +
                         "Best Regards,\n" +
                         publishedAnnouncement.getAgent().getName();
@@ -172,12 +172,13 @@ public class RespondToBookingRequestGUI implements Runnable,Initializable {
                         "Thank you for your interest in the property listed with ID: " + publishedAnnouncement.getPropertyID() +
                         " and located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
                         "You had requested a visit for the date: " + selectedMessage.getInitialDate() +
-                        " with a start time at: " + selectedMessage.getInitialTime() +
+                        ", starting at: " + selectedMessage.getInitialTime() +
                         " and ending at: " + selectedMessage.getEndTime() + ".\n\n" +
                         "We regret to inform you that your booking request has been rejected for the following reason:\n\n" +
                         reason + "\n\n" +
                         "If you have any doubts and need help, you may contact the agent " + publishedAnnouncement.getAgent().getName() +
-                        " with the following number: " + publishedAnnouncement.getAgent().getPhoneNumber() + ".\n\n" +
+                        " at the following number: " + publishedAnnouncement.getAgent().getPhoneNumber() + ".\n\n" +
+                        "Thank you for your understanding.\n\n" +
                         "Best Regards,\n" +
                         publishedAnnouncement.getAgent().getName();
 

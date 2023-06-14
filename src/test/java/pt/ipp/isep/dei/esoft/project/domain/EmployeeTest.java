@@ -41,8 +41,8 @@ class EmployeeTest {
         roles.add(new Role("Manager"));
         Employee employee = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store, roles, new Address("123 Main St", 12345, new District("Test District"), new City("Test City"), new State("Test State")));
 
-        String expected = "Name Employee residente em 123 Main St,Test City,Test District,Test State,12345 que possui como documentos de identificação 123456789 987654321 de email:employee@example.com e de numero de telefone 5551234 , \n" +
-                "funcionário da Loja: 1 Store A localizada em 123 Main St,Test City,Test District,Test State,13456 que desempenha o papel de [Agent, Manager]";
+        String expected = "Name Employee resident in 123 Main St, Test City, Test District, Test State, 12345 that possess as identifying documents the passport, whose number is: 123456789, the tax number, which is: 987654321, the email: employee@example.com and the phone number: 5551234 , " +
+                "\nEmployee of Store: 1 Store A located at 123 Main St, Test City, Test District, Test State, 13456, who performs the role of [Agent, Manager]";
 
         assertEquals(expected, employee.toString());
     }
@@ -79,5 +79,47 @@ class EmployeeTest {
 
         assertEquals(employee1.hashCode(), employee2.hashCode());
         assertNotEquals(employee1.hashCode(), employee3.hashCode());
+    }
+
+    @Test
+    void setStore() {
+        Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
+        Store store1 = new Store("Store A", 1, address, 5551234, "storea@example.com", 9);
+        Store store2 = new Store("Store B", 2, address, 5554321, "storeb@example.com", 5);
+        List<Role> roles = new ArrayList<>();
+        roles.add(new Role("Agent"));
+        roles.add(new Role("Manager"));
+        Employee employee = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store1, roles, new Address("123 Main St", 12345, new District("Test District"), new City("Test City"), new State("Test State")));
+
+        // Before setting the new store
+        assertEquals(store1, employee.getStore());
+
+        // Set the new store
+        employee.setStore(store2);
+
+        // After setting the new store
+        assertEquals(store2, employee.getStore());
+    }
+
+    @Test
+    void setRoles() {
+        Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
+        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com", 9);
+        List<Role> roles1 = new ArrayList<>();
+        roles1.add(new Role("Agent"));
+        roles1.add(new Role("Manager"));
+        List<Role> roles2 = new ArrayList<>();
+        roles2.add(new Role("Agent"));
+        roles2.add(new Role("Supervisor"));
+        Employee employee = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store, roles1, new Address("123 Main St", 12345, new District("Test District"), new City("Test City"), new State("Test State")));
+
+        // Before setting the new roles
+        assertEquals(roles1, employee.getRoles());
+
+        // Set the new roles
+        employee.setRoles(roles2);
+
+        // After setting the new roles
+        assertEquals(roles2, employee.getRoles());
     }
 }
