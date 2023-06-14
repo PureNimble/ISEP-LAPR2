@@ -542,6 +542,10 @@ public class PublishedAnnouncementRepository implements Serializable {
         return resultList;
     }
 
+    public void changeAnnouncementState(PublishedAnnouncement publishedAnnouncement) {
+        publishedAnnouncement.setAnnouncementState(AnnouncementState.sold);
+    }
+
     /**
      * Compare ascending city list.
      *
