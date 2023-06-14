@@ -1,6 +1,9 @@
 package pt.ipp.isep.dei.esoft.project.ui;
 
+import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.MainMenuUI;
+
+import java.io.IOException;
 
 /**
  * The type Main.
@@ -12,7 +15,7 @@ public class Main{
      *
      * @param args the input arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Bootstrap bootstrap = new Bootstrap();
         try {
             bootstrap.run();
@@ -26,5 +29,6 @@ public class Main{
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //Repositories.getInstance().serialize();
     }
 }
