@@ -204,7 +204,7 @@ public class RegisterEmployeeUI implements Runnable {
 
 
         try {
-            FileWriter fw = new FileWriter("email.txt");
+            FileWriter fw = new FileWriter("registrationCredentials"+name+".txt");
             PrintWriter pw = new PrintWriter(fw);
 
             pw.println("Email: " + employeeEmail);
@@ -468,6 +468,7 @@ public class RegisterEmployeeUI implements Runnable {
      * @return true if the email is valid, false otherwise.
      */
     private boolean isValidEmail(String email) {
+
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         Pattern pat = Pattern.compile(emailRegex);
         return pat.matcher(email).matches();
