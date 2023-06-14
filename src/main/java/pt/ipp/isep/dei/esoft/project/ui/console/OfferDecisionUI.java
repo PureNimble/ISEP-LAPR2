@@ -71,10 +71,19 @@ public class OfferDecisionUI implements Runnable{
                 System.out.println("No offers for this announcement.");
             } else {
 
-                System.out.println("\nChoose an offer: ");
-                int selectedOfferIndex = input.nextInt() - 1;
-                OfferDto selectedOfferDto = offerDtoList.get(selectedOfferIndex);
+                int selectedOfferIndex = -1;
+                do {
+                    try {
+                        System.out.println("\nChoose an offer: ");
+                        selectedOfferIndex = input.nextInt() - 1;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input. Please enter an integer value");
+                        input.nextLine();
+                    }
 
+                } while (selectedOfferIndex > offerDtoList.size() - 1 || selectedOfferIndex < 0);
+
+                OfferDto selectedOfferDto = offerDtoList.get(selectedOfferIndex);
                 Offer selectedOffer = findOffer(selectedOfferDto.getName(), selectedOfferDto.getClient(), selectedOfferDto.getOrderAmount());
                 if (selectedOffer == null) {
                     System.out.println("Offer not found.");
@@ -86,7 +95,6 @@ public class OfferDecisionUI implements Runnable{
     }
 
     private void acceptOrDecline(Offer offer, List<Offer> offersList){
-        System.out.println("1. Accept");
         System.out.println("\n1. Accept");
         System.out.println("2. Decline");
         System.out.println("0. Cancel");

@@ -91,14 +91,14 @@ public class PublishedAnnouncementRepository implements Serializable {
      * @param store                  the store
      * @return the optional
      */
-    public Optional<PublishedAnnouncement> publishedAnnouncementRequest(List<AnnouncementRequest> announcementRequests, AnnouncementRequestDto announcementRequestDto, Comission comission, Store store) {
+    public Optional<PublishedAnnouncement> publishedAnnouncementRequest(List<AnnouncementRequest> announcementRequests, AnnouncementRequestDto announcementRequestDto, Comission comission, Store store, AnnouncementState announcementState) {
 
 
         Optional<PublishedAnnouncement> optionalValue = Optional.empty();
 
         PublishedAnnouncement publishedAnnouncement;
 
-        publishedAnnouncement = new PublishedAnnouncement(announcementRequestDto, comission, store);
+        publishedAnnouncement = new PublishedAnnouncement(announcementRequestDto, comission, store, announcementState);
 
         AnnouncementRequest announcementRequest = new AnnouncementRequest(announcementRequestDto);
 
