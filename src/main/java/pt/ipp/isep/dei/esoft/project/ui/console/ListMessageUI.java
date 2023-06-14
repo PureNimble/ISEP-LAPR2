@@ -119,7 +119,7 @@ public class ListMessageUI implements Runnable {
                         email = input.nextLine();
 
                         // Validate email format
-                        if (email.matches("[^@]+@[^@]+\\.[^.]+")) {
+                        if (email.matches("^[A-Za-z0-9]+[A-Za-z0-9._]*@[A-Za-z0-9]+(\\.[A-Za-z]+[A-Za-z0-9]*)+[A-Za-z]$")) {
                             isValidEmail = true;
                         } else {
                             System.out.println("Please enter a valid email address (e.g., example@example.com).");

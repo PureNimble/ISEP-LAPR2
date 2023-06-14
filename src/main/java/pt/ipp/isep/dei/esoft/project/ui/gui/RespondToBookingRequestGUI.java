@@ -235,9 +235,8 @@ public class RespondToBookingRequestGUI implements Runnable,Initializable {
     }
 
     private boolean isValidEmail(String email) {
-        return email.contains("@") && email.contains(".");
+        return email.matches("^[A-Za-z0-9]+[A-Za-z0-9._]*@[A-Za-z0-9]+(\\.[A-Za-z]+[A-Za-z0-9]*)+[A-Za-z]$");
     }
-
     /**
      * Runs this operation.
      */

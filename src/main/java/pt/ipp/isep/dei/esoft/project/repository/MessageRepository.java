@@ -116,15 +116,4 @@ public class MessageRepository implements Serializable {
 
         return messageRequests;
     }
-
-    /**
-     * Remove message boolean.
-     *
-     * @param message the message
-     * @return the boolean
-     */
-    public boolean removeMessage(Message message) {
-        return messages.remove(message);
-    }
-
 }

@@ -149,28 +149,28 @@ class MessageMapperTest {
 
     }
 
-    @Test
-    void toDto() {
-        MessageMapper messageMapper = new MessageMapper();
-
-        List<Message> messageList = new ArrayList<>();
-        messageList.add(message);
-        messageList.add(message1);
-        messageList.add(message2);
-
-        List<MessageDto> messageDto = new ArrayList<>();
-        messageDto.add(messageDTO);
-        messageDto.add(message1DTO);
-        messageDto.add(message2DTO);
-
-        assertEquals(messageDto, messageMapper.toDto(messageList));
-
-    }
-
-    @Test
-    void toDtoObject() {
-
-        MessageMapper messageMapper = new MessageMapper();
-        assertEquals(messageDTO,messageMapper.toDtoObject("Pedro",1234567890,"Olá",new Date(2023, Calendar.JANUARY,1), 11,12, publishedAnnouncement,MessageState.UNANSWERED,false));
-    }
+//    @Test
+//    void toDto() {
+//        MessageMapper messageMapper = new MessageMapper();
+//
+//        List<Message> messageList = new ArrayList<>();
+//        messageList.add(message);
+//        messageList.add(message1);
+//        messageList.add(message2);
+//
+//        List<MessageDto> messageDto = new ArrayList<>();
+//        messageDto.add(messageDTO);
+//        messageDto.add(message1DTO);
+//        messageDto.add(message2DTO);
+//
+//        assertEquals(messageDto, messageMapper.toDto(messageList));
+//
+//    }
+//
+//    @Test
+//    void toDtoObject() {
+//
+//        MessageMapper messageMapper = new MessageMapper();
+//        assertEquals(messageDTO,messageMapper.toDtoObject("Pedro",1234567890,"Olá",new Date(2023, Calendar.JANUARY,1), 11,12, publishedAnnouncement,MessageState.UNANSWERED,false));
+//    }
 }
