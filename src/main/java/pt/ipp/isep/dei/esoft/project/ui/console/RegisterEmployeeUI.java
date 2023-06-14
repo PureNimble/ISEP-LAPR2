@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
+import java.util.regex.Pattern;
 
 /**
  * The RegisterEmployeeUI class is responsible for user interaction related to employee registration.
@@ -89,6 +90,7 @@ public class RegisterEmployeeUI implements Runnable {
      * The tax number of the employee.
      */
     private int taxNumber;
+
     /**
      * Returns the RegisterEmployeeController instance associated with the UI.
      *
@@ -140,21 +142,47 @@ public class RegisterEmployeeUI implements Runnable {
             i++;
         }
 
-        submitData(rolesDescriptions,rolesString);
+        String cofirmationEmployeeInformations = showInformations(rolesDescriptions);
 
-        for (Employee t : listEmpregados) {
-            System.out.println(t.toString());
-            System.out.println();
-
+        if (cofirmationEmployeeInformations.equals("Y")){
+            submitData(rolesDescriptions, rolesString);
         }
+
+
+
     }
+
+
+    public String showInformations(List<String> roles) {
+
+        System.out.println("--------Employee---------");
+        System.out.println("Name:" + name);
+        System.out.println("Roles:" + roles);
+        System.out.println("Address: " + street + ","+cityDescription+","+districtDescription+","+stateDescription+","+zipCode);
+        System.out.println("Store:"+storeDescription);
+        System.out.println("Tax Number: "+taxNumber);
+        System.out.println("Passport Number: "+passportNumber);
+        System.out.println("Phone Number: "+phoneNumber);
+        System.out.println("Employee Email: "+employeeEmail);
+
+        Scanner read = new Scanner(System.in);
+
+        String input ;
+        System.out.println("--------Confirm-----------");
+        System.out.println("Do you want to register this employee:(Y/N)");
+        input = read.nextLine();
+
+
+        return input;
+    }
+
 
     /**
      * Submits the employee data to the RegisterEmployeeController for processing.
      *
      * @param rolesDescriptions the list of role descriptions selected by the employee.
      */
-    private void submitData(List<String> rolesDescriptions,String[] rolesString) {
+    private void submitData(List<String> rolesDescriptions, String[] rolesString) {
 
         List<Role> rolesEmployee = getController().getRolesByDescription(rolesDescriptions);
 
@@ -172,7 +200,7 @@ public class RegisterEmployeeUI implements Runnable {
 
         controller.addUser(client);
 
-        controller.addUser(name,employeeEmail,password,rolesString);
+        controller.addUser(name, employeeEmail, password, rolesString);
 
 
         try {
@@ -190,9 +218,9 @@ public class RegisterEmployeeUI implements Runnable {
 
 
         if (employee.isPresent()) {
-            System.out.println("Task successfully created!");
+            System.out.println("Employee successfully created!");
         } else {
-            System.out.println("Task not created!");
+            System.out.println("Employee not created!");
         }
     }
 
@@ -211,7 +239,7 @@ public class RegisterEmployeeUI implements Runnable {
         name = requestNameDescription();
 
         //Request the Employee Email Description from the console
-        employeeEmail = requestEmployeeEmailDescription();
+        employeeEmail = requestEmailDescription();
 
         //Request the Phone Number from the console
         phoneNumber = requestPhoneNumberDescription();
@@ -411,16 +439,40 @@ public class RegisterEmployeeUI implements Runnable {
         return input.nextLine();
     }
 
+
     /**
      * Requests the employee email from the user.
      *
      * @return the string employee email.
      */
-    private String requestEmployeeEmailDescription() {
+    private String requestEmailDescription() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Employee Email: ");
-        return input.nextLine();
+        System.out.print("Employee Email: ");
+        String email = input.nextLine();
+
+        while (!isValidEmail(email)) {
+            System.out.println("Invalid email. Please enter a valid email address like x@x.xx");
+            System.out.println("Employee Email: ");
+            email = input.nextLine();
+        }
+
+        return email;
     }
+
+
+
+    /**
+     * Checks if the provided email is valid based on a regular expression pattern.
+     *
+     * @param email The email to be validated.
+     * @return true if the email is valid, false otherwise.
+     */
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pat = Pattern.compile(emailRegex);
+        return pat.matcher(email).matches();
+    }
+
 
     /**
      * Displays a list of roles and prompts the user to select one.
@@ -655,7 +707,7 @@ public class RegisterEmployeeUI implements Runnable {
         int i = 1;
 
         for (Store store : stores) {
-            System.out.println(i + " - " + store.getDesignation() + " ID:"+store.getId());
+            System.out.println(i + " - " + store.getDesignation() + " ID:" + store.getId());
             i++;
         }
     }

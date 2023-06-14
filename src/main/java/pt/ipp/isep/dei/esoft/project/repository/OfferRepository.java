@@ -112,12 +112,16 @@ public class OfferRepository implements Serializable {
      * @param offersList the offers list
      */
     public void declineOtherOffers(Offer offer, List<Offer> offersList) {
+        offer.setOfferState(OfferState.accepted);
         for (int i = 0; i < offersList.size(); i++) {
             Offer offerIndex = offersList.get(i);
             if (!offer.equals(offerIndex) && offerIndex.getPublishedAnnouncement().equals(offer.getPublishedAnnouncement())) {
                 offerIndex.setOfferState(OfferState.rejected);
             }
         }
+    }
+    public void declineOffer(Offer offer) {
+        offer.setOfferState(OfferState.rejected);
     }
 
 
