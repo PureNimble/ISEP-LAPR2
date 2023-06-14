@@ -4,13 +4,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.ZoneId;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class MessageRepositoryTest {
+
+    private MessageRepository repository;
+
 
     String name = "John Doe";
     String name1 = "Mary Jane";
@@ -29,10 +33,9 @@ class MessageRepositoryTest {
     PropertyType propertyType = new PropertyType("House");
     TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
     Business business = new Business(200);
+    List<Role> roles = new ArrayList<>();
 
     Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-
-    List<Role> roles;
 
     Store store = new Store("Holloway",10234,address2,1234567890,"holloway@gmail.com", 0);
 
@@ -45,6 +48,15 @@ class MessageRepositoryTest {
     PublishedAnnouncement p1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business,employee,new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L),55,AnnouncementState.available,store);
     Message message = new Message(name, phoneNumber, description, date, initialTime, endTime, p1,MessageState.UNANSWERED,false);
     Message message1 = new Message(name1, phoneNumber1, description1, date, initialTime1, endTime1, p1,MessageState.UNANSWERED,false);
+
+    Message message2 = new Message(name, phoneNumber1, description, date, initialTime1, endTime, p1,MessageState.UNANSWERED,false);
+
+
+    @BeforeEach
+    void setUp() {
+        repository = new MessageRepository();
+
+    }
 
     @BeforeEach
     void setUpRoles(){
@@ -116,4 +128,31 @@ class MessageRepositoryTest {
         assertTrue(messages.contains(message1));
         assertTrue(messages.contains(message));
     }
+    @Test
+    void getMessagesByAscendingDate() {
+        // Arrange
+        Message message1 = new Message();
+        message1.setInitialDate(new Date(System.currentTimeMillis()));
+        message1.setMessageState(MessageState.UNANSWERED); // Set a default message state
+        repository.add(message1);
+
+        Message message2 = new Message();
+        message2.setInitialDate(new Date(System.currentTimeMillis() - 86400000)); // Set message2 to an earlier date
+        message2.setMessageState(MessageState.UNANSWERED); // Set a default message state
+        repository.add(message2);
+
+        // Act
+        List<Message> sortedMessages = repository.getMessagesByAscendingDate();
+
+        // Assert
+        assertEquals(2, sortedMessages.size());
+        assertEquals(message2, sortedMessages.get(0));
+        assertEquals(message1, sortedMessages.get(1));
+    }
+
+//    @Test
+//    public void getMessageRequests() {
+//
+//    }
+
 }

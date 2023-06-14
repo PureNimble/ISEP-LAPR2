@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.domain.sortAlgorithms;
 
-import com.twilio.rest.api.v2010.account.usage.record.Today;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

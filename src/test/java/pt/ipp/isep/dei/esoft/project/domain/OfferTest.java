@@ -121,7 +121,7 @@ class OfferTest {
     @Test
     void getOfferID() {
         int actualOfferID = offer.getOfferID();
-        assertEquals(offer,actualOfferID);
+        assertEquals(offerID, actualOfferID);
     }
 
     @Test
