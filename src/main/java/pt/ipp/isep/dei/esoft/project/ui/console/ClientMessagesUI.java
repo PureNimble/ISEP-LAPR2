@@ -139,8 +139,6 @@ public class ClientMessagesUI implements Runnable {
             if (controller.sendVisualizedEmail(email, subject, body) == false) {
                 System.out.println("Couldn't send the email.");
             } else System.out.println("Email sent successfully.");
-
-            System.out.println("Email successfully sent!");
         }
     }
 }
