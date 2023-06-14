@@ -132,9 +132,9 @@ public class ClientMessagesController {
      *
      * @return the message requests
      */
-    public List<Message> getMessageRequests() {
+    public List<Message> getMessageRequests(Client client) {
         MessageRepository messageRepository = getMessageRepository();
-        List<Message> messageRequests = messageRepository.getMessageRequests();
+        List<Message> messageRequests = messageRepository.getMessageRequests(client);
         return messageRequests;
     }
 

@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
+import pt.ipp.isep.dei.esoft.project.domain.Client;
 import pt.ipp.isep.dei.esoft.project.domain.Message;
 import pt.ipp.isep.dei.esoft.project.domain.MessageState;
-import pt.ipp.isep.dei.esoft.project.domain.OfferState;
 
 
 import java.io.Serializable;
@@ -104,12 +104,12 @@ public class MessageRepository implements Serializable {
     /**
      * @return A List of Message objects representing the answered message requests.
      */
-    public List<Message> getMessageRequests() {
+    public List<Message> getMessageRequests(Client client) {
         List<Message> messageList = messages;
         List<Message> messageRequests = new ArrayList<>();
         
         for (Message message : messageList) {
-            if (message.getMessageState().equals(MessageState.ANSWERED)) {
+            if (message.getMessageState().equals(MessageState.ANSWERED) && message.getName().equals(client.getName())) {
                 messageRequests.add(message);
             }
         }

@@ -154,6 +154,7 @@ public class ListMessageUI implements Runnable {
                                         "Best Regards,\n" +
                                         publishedAnnouncement.getAgent().getName();
 
+                                message.setMessageState(MessageState.ANSWERED);
                                 message.setApprovedByAgent(true);
                                 break;
                             case 2:
@@ -175,6 +176,7 @@ public class ListMessageUI implements Runnable {
                                         "Best Regards,\n" +
                                         publishedAnnouncement.getAgent().getName();
 
+                                message.setMessageState(MessageState.ANSWERED);        
                                 message.setApprovedByAgent(false);
                                 break;
                             default:
