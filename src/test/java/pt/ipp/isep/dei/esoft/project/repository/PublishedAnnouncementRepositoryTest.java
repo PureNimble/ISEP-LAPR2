@@ -183,7 +183,7 @@ class PublishedAnnouncementRepositoryTest {
 
         Optional<PublishedAnnouncement> publishedAnnouncementExpected = Optional.of(publishedAnnouncement);
 
-        Optional<PublishedAnnouncement> publishedAnnouncementResult = repository.publishedAnnouncementRequest(announcementRequests,announcementRequestDto,comission,store);
+        Optional<PublishedAnnouncement> publishedAnnouncementResult = repository.publishedAnnouncementRequest(announcementRequests,announcementRequestDto,comission,store,AnnouncementState.available);
 
         assertEquals("true",announcementRequest.getStatus());
         assertEquals(publishedAnnouncementExpected,publishedAnnouncementResult);

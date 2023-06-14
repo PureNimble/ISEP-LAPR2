@@ -1,6 +1,8 @@
-package pt.ipp.isep.dei.esoft.project.domain;
+package pt.ipp.isep.dei.esoft.project.domain.sortAlgorithms;
 
-import java.util.ArrayList;
+import pt.ipp.isep.dei.esoft.project.domain.Message;
+import pt.ipp.isep.dei.esoft.project.domain.sortAlgorithms.SortAlgorithm;
+
 import java.util.List;
 
 /**
@@ -23,23 +25,6 @@ public class BubbleSort<T> implements SortAlgorithm<T> {
         this.arrayToSort = arrayToSort;
     }
 
-    /**
-     * Gets array after sorting.
-     *
-     * @return the array after sorting
-     */
-    public List<Message> getArrayAfterSorting() {
-        return arrayToSort;
-    }
-
-    /**
-     * Gets array to sort.
-     *
-     * @return the array to sort
-     */
-    public List<Message> getArrayToSort() {
-        return arrayToSort;
-    }
 
     /**
      * Sorts the given list of objects in ascending order based on their initial date.

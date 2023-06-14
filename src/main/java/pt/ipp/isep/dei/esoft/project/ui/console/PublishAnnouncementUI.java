@@ -248,7 +248,7 @@ public class PublishAnnouncementUI implements Runnable {
                     concat(publishedAnnouncement.get().getAgent().getName()).
                     concat(" with phone number ").
                     concat(String.valueOf(publishedAnnouncement.get().getAgent().getPhoneNumber())).
-                    concat(" will be responsible for your announcement. \nIf you have any doubts do not hesitate to contact us.\n\nBest regards,\nReal Estate USA");
+                    concat(" will be responsible for your announcement. \nIf you have any doubts do not hesitate in contact us.\n\nBest regards,\nReal Estate USA");
 
             sendSms.createFile(String.valueOf(publishedAnnouncement.get().getClient().getPhoneNumber()));
             sendSms.writeFile(String.valueOf(publishedAnnouncement.get().getClient().getPhoneNumber()), toWriteFile);
