@@ -22,7 +22,7 @@ public class PublishedAnnouncement implements Serializable {
 
     private int propertyID;
 
-    private AnnouncementState announcementState;
+    private AnnouncementState announcementState = AnnouncementState.available;
 
     private Store store;
 
@@ -51,7 +51,7 @@ public class PublishedAnnouncement implements Serializable {
         this.agent = agent;
         this.client = client;
         this.propertyID = propertyID;
-        this.announcementState = AnnouncementState.available;
+        this.announcementState = announcementState;
         this.store = store;
     }
 
@@ -82,7 +82,7 @@ public class PublishedAnnouncement implements Serializable {
         this.agent = agent;
         this.client = client;
         this.propertyID = propertyID;
-        this.announcementState = AnnouncementState.available;
+        this.announcementState = announcementState;
         this.store = store;
     }
 
@@ -92,8 +92,9 @@ public class PublishedAnnouncement implements Serializable {
      * @param announcementRequestDto the announcement request dto
      * @param comission              the comission
      * @param store                  the store
+     * @param announcementState  the announcement state
      */
-    public PublishedAnnouncement(AnnouncementRequestDto announcementRequestDto, Comission comission, Store store) {
+    public PublishedAnnouncement(AnnouncementRequestDto announcementRequestDto, Comission comission, Store store, AnnouncementState announcementState) {
         this.date = announcementRequestDto.getDate();
         this.agent = announcementRequestDto.getAgent();
         this.typeOfBusiness = announcementRequestDto.getTypeOfBusiness();
@@ -103,7 +104,7 @@ public class PublishedAnnouncement implements Serializable {
         this.durationOfContract = announcementRequestDto.getDurationOfContract();
         this.client = announcementRequestDto.getClient();
         this.comission = comission;
-        this.announcementState = AnnouncementState.available;
+        this.announcementState = announcementState;
         this.store = store;
         
     }
@@ -177,7 +178,7 @@ public class PublishedAnnouncement implements Serializable {
      *
      * @param state the state
      */
-    public void setAnnouncementState(AnnouncementState state) {
+    public void setAnnouncementState(AnnouncementState announcementState) {
         this.announcementState = announcementState;
     }
 

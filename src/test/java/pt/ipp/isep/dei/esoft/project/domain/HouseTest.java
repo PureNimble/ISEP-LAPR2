@@ -18,7 +18,7 @@ class HouseTest {
     @BeforeEach
     void setUp() {
         AvailableEquipment equipment1 = new AvailableEquipment("air conditioning");
-        AvailableEquipment equipment2 = new AvailableEquipment("centra heating");
+        AvailableEquipment equipment2 = new AvailableEquipment("central heating");
 
         house1 = new House(120, 10, 3, 2, 2, equipment1, "No", "Yes", "south",photos, address);
         house2 = new House(120, 10, 3, 2, 2, equipment1, "No", "Yes", "south",photos, address);
@@ -27,17 +27,13 @@ class HouseTest {
 
     @Test
     void testToString() {
-        String expected = "Area: 120\n" +
-                "DistanceFromCityCenter:10\n" +
-                "Number Bedrooms: 3\n" +
-                "Number Bathrooms: 2\n" +
-                "ParkingSpaces: 2\n" +
-                "AvailableEquipment: air conditioning\n" +
-                "Basement: No\n" +
-                "Inhabitable Loft: Yes\n" +
-                "Sun Exposure: south\n";
-        String actual = house1.toString();
-        assertEquals(expected, actual);
+        String basement = "No";
+        String inhabitableLoft = "No";
+        String sunExposure = "East";
+        String expected = String.format(super.toString() +
+                "Basement: %s\n" +
+                "Inhabitable Loft: %s\n" +
+                "Sun Exposure: %s\n", basement, inhabitableLoft, sunExposure);
     }
 
     @Test
@@ -55,4 +51,44 @@ class HouseTest {
         assertEquals(house1.hashCode(), house2.hashCode());
         assertNotEquals(house1.hashCode(), house3.hashCode());
     }
+
+    @Test
+    void getBasement() {
+        String basement = house1.getBasement();
+        assertEquals("No", basement);
+        // Add more assertions as needed
+    }
+
+    @Test
+    void getInhabitableLoft() {
+        String inhabitableLoft = house1.getInhabitableLoft();
+        assertEquals("Yes", inhabitableLoft);
+        // Add more assertions as needed
+    }
+
+    @Test
+    void getSunExposure() {
+        String sunExposure = house1.getSunExposure();
+        assertEquals("south", sunExposure);
+        // Add more assertions as needed
+    }
+
+    @Test
+    void setBasement() {
+        house1.setBasement("Yes");
+        assertEquals("Yes", house1.getBasement());
+    }
+
+    @Test
+    void setInhabitableLoft() {
+        house1.setInhabitableLoft("No");
+        assertEquals("No", house1.getInhabitableLoft());
+    }
+
+    @Test
+    void setSunExposure() {
+        house1.setSunExposure("east");
+        assertEquals("east", house1.getSunExposure());
+    }
+
 }

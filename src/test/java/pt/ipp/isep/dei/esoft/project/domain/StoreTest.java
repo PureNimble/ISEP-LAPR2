@@ -32,7 +32,7 @@ class StoreTest {
     void testToString() {
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
         Store store = new Store("Store1", 1, address, 123456789, "store1@test.com",0);
-        String expected = "Loja: 1 Store1 localizada em Streett Test,Test City,Test District,Test State,45672";
+        String expected = "Store: 1 Store1 located at Streett Test, Test City, Test District, Test State, 45672";
         assertEquals(expected, store.toString());
     }
 
@@ -95,5 +95,57 @@ class StoreTest {
         Address address = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
         Store store = new Store("Store1", 1, address, 123456789, "store1@test.com",0);
         assertEquals("Store1", store.getDesignation());
+    }
+
+    @Test
+    void setDesignation() {
+        store.setDesignation("New Store");
+        assertEquals("New Store", store.getDesignation());
+    }
+
+    @Test
+    void setId() {
+        store.setId(2);
+        assertEquals(2, store.getId());
+    }
+
+    @Test
+    void setAddress() {
+        Address newAddress = new Address("New Street", 54321, new District("New District"), new City("New City"), new State("New State"));
+        store.setAddress(newAddress);
+        assertEquals(newAddress, store.getAddress());
+    }
+
+    @Test
+    void getEmail() {
+        assertEquals("test@store.com", store.getEmail());
+    }
+
+    @Test
+    void setEmail() {
+        store.setEmail("new@store.com");
+        assertEquals("new@store.com", store.getEmail());
+    }
+
+    @Test
+    void getPhoneNumber() {
+        assertEquals(5551234, store.getPhoneNumber());
+    }
+
+    @Test
+    void setPhoneNumber() {
+        store.setPhoneNumber(5554321);
+        assertEquals(5554321, store.getPhoneNumber());
+    }
+
+    @Test
+    void getListing() {
+        assertEquals(0, store.getListing());
+    }
+
+    @Test
+    void setListing() {
+        store.setListing(1);
+        assertEquals(1, store.getListing());
     }
 }

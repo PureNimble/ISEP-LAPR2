@@ -3,7 +3,7 @@
 title US016 - Class Diagram
 
 skinparam packageStyle rectangle
-skinparam shadowing false
+skinparam shadowing true
 skinparam linetype polyline
 
 class ListMessageUI {
@@ -315,10 +315,10 @@ ListMessageController ..> EmployeeRepository : employeeRepository
 ListMessageController ..> MessageMapper
 ListMessageController "*" -up- "1" EmailService
 
-EmailService <.up. DEIService
-EmailService <.up. GmailService
-EmailService <.up. HotmailService
-EmailService <.up. YahooService
+EmailService <|..up DEIService
+EmailService <|..up GmailService
+EmailService <|..up HotmailService
+EmailService <|..up YahooService
 
 Repositories --> Repositories : instance
 Repositories --> AuthenticationRepository

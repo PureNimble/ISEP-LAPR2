@@ -4,7 +4,7 @@ title US016 - Sequence Diagram Full
 
 skinparam monochrome true
 skinparam packageStyle rectangle
-skinparam shadowing false
+skinparam shadowing true
 
 autonumber
 
@@ -18,24 +18,22 @@ participant ":ApplicationSession" as app
 participant "appSession\n:ApplicationSession" as APP
 participant "currentSession\n:UserSession" as User
 participant "employeeRepository\n:Employee Repository" as Employee
-
-participant ":XMapper" as Mapper
+participant ":MessageMapper" as Mapper
 participant "listOfMessagesDTO:List<Messages>" as listMessagesDTO
-participant "listOfMessages:List<Messages>" as listMessages
-
+participant "message:Message" as Messages
+participant ":sortAlgorithm" as sortAlgorithm
 participant "email:\nEmail" as Email
 participant "testEmailDomain:\ntestEmailDomain" as EmailDomain
 participant "type:\nTestType" as TestType
 
-
 activate Agent
 
-Agent -> System : asks to see the schedule requests
+Agent -> System : asks to see the booking requests
 activate System
 
 System -> Controller** : create
 
-System -> Controller : getListBooking()
+System -> Controller : getListMessage()
 activate Controller
 
 Controller -> Controller : getAgentFromSession
@@ -76,56 +74,83 @@ activate Repository
 Repository --> Controller : messageRepository
 deactivate Repository
 
-Controller -> MessageRepository : getMessageRequestListByAgentAndDate(employeeByEmail, beginDate, endDate)
+Controller -> MessageRepository : getMessageRequestList(employeeByEmail, beginDate, endDate)
 activate MessageRepository
 
-MessageRepository --> Controller : getMessageRequestListByAgentAndDate
+MessageRepository --> Controller : getMessageRequestList
 deactivate MessageRepository
 
-Controller -> Mapper : toDTO(messageListByAgentAndDate)
+Controller -> Controller : getSortedMessageRequestList(messageRequestList)
+
+Controller -> sortAlgorithm** : create()
+
+note over sortAlgorithm
+
+SortAlgorithm implementation will depend
+on the sorting algorithm specified in the
+configuration file.
+
+end note
+
+Controller -> sortAlgorithm : getSortedMessageRequestList(messageRequestList)
+activate sortAlgorithm
+
+sortAlgorithm --> Controller : sortedMessageRequestList
+deactivate sortAlgorithm
+
+Controller -> Mapper : toDTO(messageRequestList)
 activate Mapper
 
 Mapper --> listMessagesDTO** : create()
 
-    loop
+    loop for each message request
 
-    Mapper -> listMessages: clientName = clientName()
+    Mapper -> Mapper : toDTO(Message)
+    activate Mapper
+
+    Mapper -> listMessages: clientName = getClientName()
     activate listMessages
 
     Mapper -[hidden]> listMessages
     deactivate listMessages
 
-    Mapper -> listMessages : clientPhoneNumber = clientPhoneNumber()
+    Mapper -> listMessages : PhoneNumber = getPhoneNumber()
     activate listMessages
 
     Mapper -[hidden]> listMessages
     deactivate listMessages
 
-    Mapper -> listMessages : date = date()
+    Mapper -> listMessages : date = getInitialDate()
     activate listMessages
 
     Mapper -[hidden]> listMessages
     deactivate listMessages
 
-    Mapper -> listMessages : initialTime = initialTime()
+    Mapper -> listMessages : initialTime = getInitialTime()
     activate listMessages
 
     Mapper -[hidden]> listMessages
     deactivate listMessages
 
-    Mapper -> listMessages : endTime = endTime()
+    Mapper -> listMessages : endTime = getEndTime()
     activate listMessages
 
     Mapper -[hidden]> listMessages
     deactivate listMessages
 
-    Mapper -> listMessages : description = description()
+    Mapper -> listMessages : description = getDescription()
     activate listMessages
 
     Mapper -[hidden]> listMessages
     deactivate listMessages
 
-    Mapper -> Mapper : messageDTO = toDTO(clientName, clientPhoneNumber, description, date, initialTime, endTime)
+    Mapper -> listMessages : publishedAnnouncement = getPublishedAnnouncement()
+    activate listMessages
+
+    Mapper -[hidden]> listMessages
+    deactivate listMessages
+
+    Mapper -> Mapper : messageDTO = toDtoObject(clientName, phoneNumber, description, initialDate, initialTime, endTime, publishedAnnouncement)
 
     Mapper --> listMessagesDTO** : create(...)
 
@@ -141,58 +166,45 @@ deactivate Mapper
 Controller --> System : messageListByAgentAndDate
 deactivate Controller
 
-
-
-System --> Agent : shows the schedule requests
+System --> Agent : shows the booking requests
 deactivate System
 
-Agent -> System : selects a schedule request to respond
+
+Agent -> System : selects a booking request to respond
 activate System
 
-System --> Agent : shows the desired schedule request
+System --> Agent : shows the desired booking request and asks to enter the client's email
 deactivate System
 
-Agent -> System : selects an email domain
+Agent -> System : inserts the client's email
 activate System
 
-System --> Agent : asks to write a message/response
+System --> Agent : asks to accept or decline the booking request
 deactivate System
 
-Agent -> System : types the requested data
+alt Accepts the booking request
+
+Agent -> System : accepts the booking request and responds to it
 activate System
 
-System -> Controller : addEmailDomain(...)
-activate Controller
+else Denies the booking request
 
-Controller -> Email : addEmailDomain(...)
-activate Email
+Agent -> System : denies the booking request
 
-Email -> Email : getEmailDomain(...)
-activate Email
+System --> Agent : asks the agent for a reason to decline the booking request
 
-Email --> Email : testEmailDomain
-deactivate Email
+Agent -> System : writes the reasoon for the booking request to be denied
 
-Email -> EmailDomain : get...
-activate EmailDomain
+end
 
-EmailDomain --> Email : ...
-deactivate EmailDomain
+System --> Agent : receives the agent's response and sends email
+deactivate System
 
-Email -> TestType : getExternalModule()
-deactivate TestType
-
-TestType --> Email : em
-deactivate TestType
-
-Email -> 
-
-
-
-Controller --> System : success
-deactivate Controller
+Agent -> System : submits data
+activate System
 
 System --> Agent : display operation success
 deactivate System
+
 
 @enduml

@@ -28,7 +28,9 @@ public class MessageMapper {
             int initialTime = message.getInitialTime();
             int endTime = message.getEndTime();
             PublishedAnnouncement publishedAnnouncement = message.getPublishedAnnouncement();
-            messageDto = toDtoObject(name,phoneNumber, description, initialDate, initialTime, endTime, publishedAnnouncement);
+            MessageState messageState = message.getMessageState();
+            boolean isApprovedByAgent = message.isApprovedByAgent();
+            messageDto = toDtoObject(name,phoneNumber, description, initialDate, initialTime, endTime, publishedAnnouncement, messageState, isApprovedByAgent);
             messageDtos.add(messageDto);
 
 
@@ -50,10 +52,10 @@ public class MessageMapper {
      * @param publishedAnnouncement the published announcement
      * @return the message dto
      */
-    public MessageDto toDtoObject(String name, long phoneNumber, String description, Date initialDate, int initialTime, int endTime, PublishedAnnouncement publishedAnnouncement) {
+    public MessageDto toDtoObject(String name, long phoneNumber, String description, Date initialDate, int initialTime, int endTime, PublishedAnnouncement publishedAnnouncement, MessageState messageState, boolean isApprovedByAgent) {
 
         MessageDto messageDto;
-        messageDto = new MessageDto(name,phoneNumber, description, initialDate, initialTime, endTime, publishedAnnouncement);
+        messageDto = new MessageDto(name,phoneNumber, description, initialDate, initialTime, endTime, publishedAnnouncement, messageState, isApprovedByAgent);
         return messageDto;
     }
 }

@@ -130,16 +130,5 @@ public class ListMessageController {
         return messageRepository.getMessagesByAscendingDate();
     }
 
-    /**
-     * To dto ascending area list.
-     *
-     * @return the list
-     */
-    public List<MessageDto> toDtoMessagesByAscendingDate() {
-        MessageMapper messageMapper = new MessageMapper();
-
-        return messageMapper.toDto(getMessagesByAscendingDate());
-    }
-
 
 }

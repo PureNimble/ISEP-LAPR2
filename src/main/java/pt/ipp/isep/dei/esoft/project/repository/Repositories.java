@@ -1,7 +1,9 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
 
-import java.io.Serializable;
+import pt.ipp.isep.dei.esoft.project.domain.Store;
+
+import java.io.*;
 
 /**
  * The Repositories class represents a singleton instance that manages all the repositories.
@@ -10,77 +12,67 @@ import java.io.Serializable;
 public class Repositories implements Serializable {
 
     /**
-
-     The instance of the Repositories class.
+     * The instance of the Repositories class.
      */
     private static final Repositories instance = new Repositories();
     /**
-
-     The RoleRepository instance.
+     * The RoleRepository instance.
      */
     private RoleRepository roleRepository = new RoleRepository();
     /**
-
-     The AuthenticationRepository instance.
+     * The AuthenticationRepository instance.
      */
     private AuthenticationRepository authenticationRepository = new AuthenticationRepository();
     /**
-
-     The StoreRepository instance.
+     * The StoreRepository instance.
      */
     private StoreRepository storeRepository = new StoreRepository();
     /**
-
-     The ComissionRepository instance.
+     * The ComissionRepository instance.
      */
     private ComissionRepository comissionRepository = new ComissionRepository();
     /**
-
-     The StateRepository instance.
+     * The StateRepository instance.
      */
     private StateRepository stateRepository = new StateRepository();
     /**
-
-     The EmployeeRepository instance.
+     * The EmployeeRepository instance.
      */
     private EmployeeRepository employeeRepository = new EmployeeRepository();
     /**
-
-     The UserRepository instance.
+     * The UserRepository instance.
      */
     private UserRepository userRepository = new UserRepository();
     /**
-
-     The PropertyTypeRepository instance.
+     * The PropertyTypeRepository instance.
      */
     private PropertyTypeRepository propertyTypeRepository = new PropertyTypeRepository();
     /**
-
-     The PublishedAnnouncementRepository instance.
+     * The PublishedAnnouncementRepository instance.
      */
     private PublishedAnnouncementRepository publishedAnnouncementRepository = new PublishedAnnouncementRepository();
     /**
-
-     The TypeOfBusinessRepository instance.
+     * The TypeOfBusinessRepository instance.
      */
     private TypeOfBusinessRepository typeOfBusinessRepository = new TypeOfBusinessRepository();
     /**
-
-     The AnnouncementRequestRepository instance.
+     * The AnnouncementRequestRepository instance.
      */
     private AnnouncementRequestRepository announcementRequestRepository = new AnnouncementRequestRepository();
     /**
-
-     The AvailableEquipmentRepository instance.
+     * The AvailableEquipmentRepository instance.
      */
     private AvailableEquipmentRepository availableEquipmentRepository = new AvailableEquipmentRepository();
 
     private MessageRepository messageRepository = new MessageRepository();
 
     private OfferRepository offerRepository = new OfferRepository();
-    /**
 
-     Private constructor to prevent instantiation from outside the class.
+    private static final String SERIALIZATION_FILE_NAME = "RealEstateUSAAPP.ser";
+
+
+    /**
+     * Private constructor to prevent instantiation from outside the class.
      */
     private Repositories() {
     }
@@ -234,10 +226,65 @@ public class Repositories implements Serializable {
      *
      * @param offerRepository the offer repository
      */
-    public void  setOfferRepository (OfferRepository offerRepository) {
+    public void setOfferRepository(OfferRepository offerRepository) {
         this.offerRepository = offerRepository;
     }
 
+
+    public void serialize() throws IOException {
+
+        FileOutputStream fileOutputStream = new FileOutputStream(SERIALIZATION_FILE_NAME);
+        ObjectOutputStream out = new ObjectOutputStream(fileOutputStream);
+        out.writeObject(typeOfBusinessRepository);
+        out.writeObject(roleRepository);
+        out.writeObject(stateRepository);
+        out.writeObject(employeeRepository);
+        out.writeObject(messageRepository);
+        out.writeObject(offerRepository);
+        out.writeObject(comissionRepository);
+        out.writeObject(userRepository);
+        out.writeObject(propertyTypeRepository);
+        out.writeObject(announcementRequestRepository);
+        out.writeObject(availableEquipmentRepository);
+        for (Store store : storeRepository.getStores()) {
+            out.writeObject(store);
+        }
+
+
+        out.close();
+        fileOutputStream.close();
+
+
+    }
+
+
+    public void deserialize() {
+        try {
+
+            FileInputStream fileInputStream = new FileInputStream(SERIALIZATION_FILE_NAME);
+           /* ObjectOutputStream out = new ObjectOutputStream(fileOutputStream);
+            out.writeObject(publishedAnnouncementRepository);
+            out.writeObject(employeeRepository);
+            out.writeObject(storeRepository);
+            out.writeObject(messageRepository);
+            out.writeObject(offerRepository);
+            out.writeObject(typeOfBusinessRepository);
+            out.writeObject(roleRepository);
+            out.writeObject(authenticationRepository);
+            out.writeObject(comissionRepository);
+            out.writeObject(stateRepository);
+            out.writeObject(userRepository);
+            out.writeObject(propertyTypeRepository);
+            out.writeObject(announcementRequestRepository);
+            out.writeObject(availableEquipmentRepository);
+
+            out.close();
+            fileOutputStream.close();*/
+
+        } catch (Exception e) {
+            System.out.println("Serialization Error");
+        }
+    }
 
 
 }

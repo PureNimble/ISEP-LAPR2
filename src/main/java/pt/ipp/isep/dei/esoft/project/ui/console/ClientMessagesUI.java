@@ -35,7 +35,8 @@ public class ClientMessagesUI implements Runnable {
         int choice = -1;
         int index = 1;
         Message selectedMessage = null;
-        List<Message> messageList = controller.getMessageRequests();
+        Client client = controller.getClient();
+        List<Message> messageList = controller.getMessageRequests(client);
         if (messageList.size() != 0) {
             for (Message message : messageList) {
                 if (message.getIsApprovedByAgent() == true) {
@@ -56,7 +57,6 @@ public class ClientMessagesUI implements Runnable {
             System.out.println();
             selectedMessage = messageList.get(choice);
             PublishedAnnouncement publishedAnnouncement = selectedMessage.getPublishedAnnouncement();
-            Client client = controller.getClient();
             String email = publishedAnnouncement.getAgent().getEmail();
             String subject = "Your message has been opened";
             String body = "\nYour message for the client " + client.getName() + " has been opened!" +
@@ -139,8 +139,6 @@ public class ClientMessagesUI implements Runnable {
             if (controller.sendVisualizedEmail(email, subject, body) == false) {
                 System.out.println("Couldn't send the email.");
             } else System.out.println("Email sent successfully.");
-
-            System.out.println("Email successfully sent!");
         }
     }
 }

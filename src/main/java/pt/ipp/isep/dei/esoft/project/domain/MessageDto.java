@@ -36,6 +36,10 @@ public class MessageDto {
      */
     private PublishedAnnouncement publishedAnnouncement;
 
+    private MessageState messageState;
+
+    private boolean isApprovedByAgent;
+
     /**
      * Instantiates a new Message dto.
      *
@@ -46,8 +50,10 @@ public class MessageDto {
      * @param initialTime           the initial time
      * @param endTime               the end time
      * @param publishedAnnouncement the published announcement
+     * @param messageState          the message state
+     * @param isApprovedByAgent     the is approved by agent
      */
-    public MessageDto(String name, long phoneNumber, String description, Date initialDate, int initialTime, int endTime, PublishedAnnouncement publishedAnnouncement) {
+    public MessageDto(String name, long phoneNumber, String description, Date initialDate, int initialTime, int endTime, PublishedAnnouncement publishedAnnouncement, MessageState messageState, boolean isApprovedByAgent) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.description = description;
@@ -55,6 +61,8 @@ public class MessageDto {
         this.initialTime = initialTime;
         this.endTime = endTime;
         this.publishedAnnouncement = publishedAnnouncement;
+        this.messageState = messageState;
+        this.isApprovedByAgent = isApprovedByAgent;
     }
 
     /**
@@ -188,6 +196,43 @@ public class MessageDto {
     public void setPublishedAnnouncement(PublishedAnnouncement publishedAnnouncement) {
         this.publishedAnnouncement = publishedAnnouncement;
     }
+
+    /**
+     * Gets message state.
+     *
+     * @return the message state
+     */
+    public MessageState getMessageState() {
+        return messageState;
+    }
+
+    /**
+     * Sets message state.
+     *
+     * @param messageState the message state
+     */
+    public void setMessageState(MessageState messageState) {
+        this.messageState = messageState;
+    }
+
+    /**
+     * Is approved by agent boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isApprovedByAgent() {
+        return isApprovedByAgent;
+    }
+
+    /**
+     * Sets approved by agent.
+     *
+     * @param approvedByAgent the approved by agent
+     */
+    public void setApprovedByAgent(boolean approvedByAgent) {
+        isApprovedByAgent = approvedByAgent;
+    }
+
     /**
      * Returns a string representation of the Message object.
      *
@@ -197,7 +242,7 @@ public class MessageDto {
     public String toString() {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         String date = format.format(initialDate);
-        return String.format("Message: \nThe client %s, with phone number %s, wants to schedule a visit from %s until %s at %s. \n\nDescription: \n%s \n\nProperty: \n%s", name, phoneNumber, initialTime, endTime, date, description, publishedAnnouncement.toString());
+        return String.format("Message: \nThe client %s, with phone number %s, wants to schedule a visit from %s until %s at %s. \n\nDescription: \n%s \n\nProperty: \n%s", name, phoneNumber, initialTime, endTime, date, description, publishedAnnouncement.toString(), messageState);
     }
 
 

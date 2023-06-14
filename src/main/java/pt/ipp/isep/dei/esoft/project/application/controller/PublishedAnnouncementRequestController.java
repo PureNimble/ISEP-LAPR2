@@ -290,7 +290,9 @@ public class PublishedAnnouncementRequestController {
 
         Store store = announcementRequestDto.getAgent().getStore();
 
-        newPublishedAnnouncement = getPublishedAnnouncementRepository().publishedAnnouncementRequest(announcementRequestRepository.getAnnouncementsRequest(),announcementRequestDto,comission, store);
+        AnnouncementState announcementState = AnnouncementState.available;
+
+        newPublishedAnnouncement = getPublishedAnnouncementRepository().publishedAnnouncementRequest(announcementRequestRepository.getAnnouncementsRequest(),announcementRequestDto,comission, store, announcementState);
 
         return newPublishedAnnouncement;
     }

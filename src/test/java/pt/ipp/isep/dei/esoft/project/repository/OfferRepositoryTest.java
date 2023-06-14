@@ -112,4 +112,190 @@ class OfferRepositoryTest {
         assertTrue(offers.contains(offer));
     }
 
+    @Test
+    void add() {
+        OfferRepository repository = new OfferRepository();
+
+        Optional<Offer> result = repository.add(offer);
+
+        assertTrue(result.isPresent());
+        assertEquals(offer, result.get());
+        List<Offer> offers = repository.getOffers();
+        assertTrue(offers.contains(offer));
+    }
+
+    @Test
+    void validateOffer() {
+        OfferRepository repository = new OfferRepository();
+        repository.add(offer);
+
+        boolean result = repository.validateOffer(offer);
+
+        assertFalse(result);
+    }
+
+    @Test
+    void hasPendingOffersByEmail() {
+        OfferRepository repository = new OfferRepository();
+        repository.add(offer);
+
+        boolean result = repository.hasPendingOffersByEmail(offer.getClient().getClientEmail());
+
+        assertTrue(result);
+    }
+
+    @Test
+    void getOffers() {
+        OfferRepository repository = new OfferRepository();
+        repository.add(offer);
+        repository.add(offer1);
+
+        List<Offer> offers = repository.getOffers();
+
+        assertEquals(2, offers.size());
+        assertTrue(offers.contains(offer));
+        assertTrue(offers.contains(offer1));
+    }
+
+    @Test
+    void getPendingOffers() {
+        OfferRepository repository = new OfferRepository();
+        repository.add(offer);
+        repository.add(offer1);
+
+        List<Offer> pendingOffers = repository.getPendingOffers();
+
+        assertEquals(2, pendingOffers.size());
+        assertTrue(pendingOffers.contains(offer));
+        assertTrue(pendingOffers.contains(offer1));
+    }
+
+    @Test
+    void declineOffer() {
+        OfferRepository repository = new OfferRepository();
+        repository.add(offer);
+
+        repository.declineOffer(offer);
+
+        assertEquals(OfferState.rejected, offer.getOfferState());
+    }
+//    @Test
+//    void getOffersByHighestAmount() {
+//        OfferRepository repository = new OfferRepository();
+//        Offer offer1 = new Offer("Pedro", 130000, publishedAnnouncement1, OfferState.accepted, new Client("pedro@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890),1);
+//        Offer offer = new Offer("Diogo",97000, publishedAnnouncement1, OfferState.pending, new Client("diogo@sapo.pt", 567890123, 567890123, "Diogo", new Address("20 W 34th Street", 10001, new District("Manhattan"), new City("New York"), new State("New York")), 1345678901),24);
+//        offer.setOrderAmount(1000);
+//        offer1.setOrderAmount(2000);
+//        repository.add(offer);
+//        repository.add(offer1);
+//
+//        List<Offer> offers = repository.getOffersByHighestAmount();
+//
+//        assertEquals(2, offers.size());
+//        assertEquals(offer1, offers.get(0));
+//        assertEquals(offer, offers.get(1));
+//    }
+//
+//    @Test
+//    void getOffersByAreaAscendingUsingBubbleSortAlgorithm() {
+//        OfferRepository repository = new OfferRepository();
+//        Offer offer1 = new Offer("Pedro", 130000, publishedAnnouncement1, OfferState.accepted, new Client("pedro@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890),1);
+//        Offer offer = new Offer("Diogo",97000, publishedAnnouncement1, OfferState.pending, new Client("diogo@sapo.pt", 567890123, 567890123, "Diogo", new Address("20 W 34th Street", 10001, new District("Manhattan"), new City("New York"), new State("New York")), 1345678901),24);
+//        property.setArea(100);
+//        property1.setArea(200);
+//        repository.add(offer);
+//        repository.add(offer1);
+//
+//        List<Offer> offers = repository.getOffersByAreaAscendingUsingBubbleSortAlgorithm();
+//
+//        assertEquals(2, offers.size());
+//        assertEquals(offer, offers.get(0));
+//        assertEquals(offer1, offers.get(1));
+//    }
+//
+//    @Test
+//    void getOffersByAreaDescendingUsingBubbleSortAlgorithm() {
+//        OfferRepository repository = new OfferRepository();
+//        Offer offer1 = new Offer("Pedro", 130000, publishedAnnouncement1, OfferState.accepted, new Client("pedro@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890),1);
+//        Offer offer = new Offer("Diogo",97000, publishedAnnouncement1, OfferState.pending, new Client("diogo@sapo.pt", 567890123, 567890123, "Diogo", new Address("20 W 34th Street", 10001, new District("Manhattan"), new City("New York"), new State("New York")), 1345678901),24);
+//        property.setArea(100);
+//        property1.setArea(200);
+//        repository.add(offer);
+//        repository.add(offer1);
+//
+//        List<Offer> offers = repository.getOffersByAreaDescendingUsingBubbleSortAlgorithm();
+//
+//        assertEquals(2, offers.size());
+//        assertEquals(offer1, offers.get(0));
+//        assertEquals(offer, offers.get(1));
+//    }
+//
+//    @Test
+//    void getOffersByAreaAscendingUsingSortSelection() {
+//        OfferRepository repository = new OfferRepository();
+//        Offer offer1 = new Offer("Pedro", 130000, publishedAnnouncement1, OfferState.accepted, new Client("pedro@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890),1);
+//        Offer offer = new Offer("Diogo",97000, publishedAnnouncement1, OfferState.pending, new Client("diogo@sapo.pt", 567890123, 567890123, "Diogo", new Address("20 W 34th Street", 10001, new District("Manhattan"), new City("New York"), new State("New York")), 1345678901),24);
+//        property.setArea(100);
+//        property1.setArea(200);
+//        repository.add(offer);
+//        repository.add(offer1);
+//
+//        List<Offer> offers = repository.getOffersByAreaAscendingUsingSortSelection();
+//
+//        assertEquals(2, offers.size());
+//        assertEquals(offer, offers.get(0));
+//        assertEquals(offer1, offers.get(1));
+//    }
+//
+//    @Test
+//    void getOffersByAreaDescendingUsingSortSelection() {
+//        OfferRepository repository = new OfferRepository();
+//        Offer offer1 = new Offer("Pedro", 130000, publishedAnnouncement1, OfferState.accepted, new Client("pedro@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890),1);
+//        Offer offer = new Offer("Diogo",97000, publishedAnnouncement1, OfferState.pending, new Client("diogo@sapo.pt", 567890123, 567890123, "Diogo", new Address("20 W 34th Street", 10001, new District("Manhattan"), new City("New York"), new State("New York")), 1345678901),24);
+//        property.setArea(100);
+//        property1.setArea(200);
+//        repository.add(offer);
+//        repository.add(offer1);
+//
+//        List<Offer> offers = repository.getOffersByAreaDescendingUsingSortSelection();
+//
+//        assertEquals(2, offers.size());
+//        assertEquals(offer1, offers.get(0));
+//        assertEquals(offer, offers.get(1));
+//    }
+//
+//    @Test
+//    void getOffersByMostRecent() {
+//        OfferRepository repository = new OfferRepository();
+//        Offer offer1 = new Offer("Pedro", 130000, publishedAnnouncement1, OfferState.accepted, new Client("pedro@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890),1);
+//        Offer offer2 = new Offer("Diogo",97000, publishedAnnouncement1, OfferState.pending, new Client("diogo@sapo.pt", 567890123, 567890123, "Diogo", new Address("20 W 34th Street", 10001, new District("Manhattan"), new City("New York"), new State("New York")), 1345678901),24);
+//        repository.add(offer1);
+//        repository.add(offer2);
+//
+//
+//        List<Offer> offers = repository.getOffersByMostRecent();
+//
+//        assertEquals(2, offers.size());
+//
+//        assertEquals(offer2, offers.get(1));
+//        assertEquals(offer1, offers.get(2));
+//    }
+
+    @Test
+    void declineOtherOffers() {
+        OfferRepository repository = new OfferRepository();
+        Offer offer = new Offer("Pedro", 130000, publishedAnnouncement1, OfferState.accepted, new Client("pedro@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890),1);
+        Offer offer1 = new Offer("Diogo",97000, publishedAnnouncement1, OfferState.pending, new Client("diogo@sapo.pt", 567890123, 567890123, "Diogo", new Address("20 W 34th Street", 10001, new District("Manhattan"), new City("New York"), new State("New York")), 1345678901),24);
+
+        offer.setOfferState(OfferState.accepted);
+        repository.add(offer1);
+        repository.add(offer);
+
+        List<Offer> offersList = repository.getOffers();
+
+        repository.declineOtherOffers(offer, offersList);
+
+        assertEquals(OfferState.accepted, offer.getOfferState());
+        assertEquals(OfferState.rejected, offer1.getOfferState());
+    }
 }

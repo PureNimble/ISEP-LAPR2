@@ -11,7 +11,6 @@ import pt.ipp.isep.dei.esoft.project.domain.Client;
 import pt.ipp.isep.dei.esoft.project.domain.Offer;
 import pt.ipp.isep.dei.esoft.project.domain.OfferDto;
 import pt.ipp.isep.dei.esoft.project.domain.OfferState;
-import pt.ipp.isep.dei.esoft.project.domain.SendEmail;
 
 /**
  * The type Offer decision ui.
@@ -71,10 +70,19 @@ public class OfferDecisionUI implements Runnable{
                 System.out.println("No offers for this announcement.");
             } else {
 
-                System.out.println("\nChoose an offer: ");
-                int selectedOfferIndex = input.nextInt() - 1;
-                OfferDto selectedOfferDto = offerDtoList.get(selectedOfferIndex);
+                int selectedOfferIndex = -1;
+                do {
+                    try {
+                        System.out.println("\nChoose an offer: ");
+                        selectedOfferIndex = input.nextInt() - 1;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input. Please enter an integer value");
+                        input.nextLine();
+                    }
 
+                } while (selectedOfferIndex > offerDtoList.size() - 1 || selectedOfferIndex < 0);
+
+                OfferDto selectedOfferDto = offerDtoList.get(selectedOfferIndex);
                 Offer selectedOffer = findOffer(selectedOfferDto.getName(), selectedOfferDto.getClient(), selectedOfferDto.getOrderAmount());
                 if (selectedOffer == null) {
                     System.out.println("Offer not found.");
@@ -86,11 +94,15 @@ public class OfferDecisionUI implements Runnable{
     }
 
     private void acceptOrDecline(Offer offer, List<Offer> offersList){
-        System.out.println("1. Accept");
         System.out.println("\n1. Accept");
         System.out.println("2. Decline");
         System.out.println("0. Cancel");
         int choice;
+        String email = offer.getClient().getEmail();
+        String subject = null;
+        String body = null;
+        String decision = null;
+        String finalMessage = null;
         do {
             try {
                 choice = input.nextInt();
@@ -100,18 +112,33 @@ public class OfferDecisionUI implements Runnable{
                 choice = -1;
             }
             if (choice == 1){
-                offer.setOfferState(OfferState.accepted);
                 controller.declineOtherOffers(offer, offersList);
-                offer.getPublishedAnnouncement().setAnnouncementState(AnnouncementState.sold);
-                sendEmail(offer);
+                controller.changeAnnouncementState(offer.getPublishedAnnouncement());
+                decision = "accepted";
+                finalMessage = "Please contact us in order to finish all the paperwork and so that you can start this new chapter of your life as soon as possible.";
             }
             else if (choice == 2){
-                offer.setOfferState(OfferState.rejected);
-                sendEmail(offer);
+                controller.declineOffer(offer);
+                decision = "rejected";
+                finalMessage = "Feel free to contact us if you have any doubts.";
             }
             else if (choice == 0){
                 break;
             }
+
+            subject = "Your Offer has been " + decision;
+            body = "Dear " + offer.getClient().getName() + ",\n" +
+                    "\nYour Offer for the Announcement with the Property ID " + offer.getPublishedAnnouncement().getPropertyID() +
+                    ", located at: " + offer.getPublishedAnnouncement().getProperty().getAddress().toString() +
+                    " has been " + decision +
+                    ".\n" + finalMessage +
+                    "\n\nBest Regards," +
+                    "\nReal Estate USA";
+
+           if (controller.sendVisualizedEmail(email, subject, body) == false) {
+                System.out.println("Couldn't send the email.");
+            } else System.out.println("Email sent successfully.");    
+
         } while (choice < 0 || choice > 2);
     }
 
@@ -124,38 +151,6 @@ public class OfferDecisionUI implements Runnable{
         }
 
         return null; // Offer not found
-    }
-
-    private void sendEmail(Offer offer){
-        String decision = "";
-        String finalMessage = "";
-        if(offer.getOfferState().equals(OfferState.accepted) && offer.getPublishedAnnouncement().getAnnouncementState().equals(AnnouncementState.sold)) {
-            decision = "accepted";
-            finalMessage = "Please contact us in order to finish all the paperwork and so that you can start this new chapter of your life as soon as possible.";
-        }
-        else if(offer.getOfferState().equals(OfferState.rejected) && offer.getPublishedAnnouncement().getAnnouncementState().equals(AnnouncementState.available)){
-            decision = "rejected";
-            finalMessage = "Please contact us if you have any doubts.";
-        }
-        SendEmail sendEmail = new SendEmail();
-        String toWriteFile = "";
-        toWriteFile = toWriteFile.
-                concat("From: no-reply@this.app\n" + 
-                        "To: ").
-                concat(offer.getClient().getEmail()).
-                concat("\nSubject: Offer Decision Update.\nBody: " +
-                        "Dear ").
-                concat(offer.getClient().getName()).
-                concat(",\n\nYour offer for the property located in ").
-                concat(offer.getPublishedAnnouncement().getProperty().getAddress().toString()).
-                concat(" has been " + decision + ".").
-                concat("\n" + finalMessage + "\n\nBest regards,\nReal Estate USA");
-
-
-        //METER O OWNER ( NUEMERO DE TELEFONE E EMAIL NA PROPRIEDADE)
-        String filename = String.valueOf("EmailNotification - " + offer.getClient().getEmail() + ".txt");
-        sendEmail.createFile(filename);
-        sendEmail.writeFile(filename, toWriteFile);
     }
 
 }

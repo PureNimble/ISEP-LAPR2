@@ -1,0 +1,52 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing true
+
+title US016 - System Sequence Diagram - Alternative Two - Denies the Booking Request
+
+autonumber
+
+actor "Agent" as Agent
+participant ":System" as System
+
+activate Agent
+
+Agent -> System : asks to see the booking requests
+activate System
+
+System --> Agent : shows the booking requests
+deactivate System
+
+Agent -> System : selects a booking request to respond
+activate System
+
+System --> Agent : shows the desired booking request and asks to enter the client's email
+deactivate System
+
+Agent -> System : inserts the client's email
+activate System
+
+System --> Agent : asks to accept or decline the booking request
+deactivate System
+
+Agent -> System : denies the booking request
+activate System
+
+System --> Agent : asks the agent for a reason to decline the booking request
+deactivate System
+
+Agent -> System : writes the reasoon for the booking request to be denied
+activate System
+
+System --> Agent : receives the agent's response and sends email
+deactivate System
+
+Agent -> System : submits data
+activate System
+
+System --> Agent : display operation success
+deactivate System
+
+@enduml

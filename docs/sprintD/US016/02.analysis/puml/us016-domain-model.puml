@@ -4,7 +4,7 @@ title US016 - Domain Model
 
 skinparam monochrome true
 skinparam packageStyle rectangle
-skinparam shadowing false
+skinparam shadowing true
 skinparam classAttributeIconSize 0
 hide circle
 hide methods

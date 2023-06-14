@@ -1,4 +1,7 @@
-package pt.ipp.isep.dei.esoft.project.domain;
+package pt.ipp.isep.dei.esoft.project.domain.sortAlgorithms;
+
+import pt.ipp.isep.dei.esoft.project.domain.Message;
+import pt.ipp.isep.dei.esoft.project.domain.sortAlgorithms.SortAlgorithm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +11,7 @@ import java.util.List;
  *
  * @param <T> the type parameter
  */
-public class MergeSort<T> implements SortAlgorithm<T>{
+public class MergeSort<T> implements SortAlgorithm<T> {
     /**
      * The list of messages to be sorted.
      */
@@ -21,24 +24,6 @@ public class MergeSort<T> implements SortAlgorithm<T>{
      */
     public MergeSort(List<Message> arrayToSort) {
         this.arrayToSort = arrayToSort;
-    }
-
-    /**
-     * Gets array after sorting.
-     *
-     * @return the array after sorting
-     */
-    public List<Message> getArrayAfterSorting() {
-        return arrayToSort;
-    }
-
-    /**
-     * Gets array to sort.
-     *
-     * @return the array to sort
-     */
-    public List<Message> getArrayToSort() {
-        return arrayToSort;
     }
 
     /**

@@ -91,14 +91,14 @@ public class PublishedAnnouncementRepository implements Serializable {
      * @param store                  the store
      * @return the optional
      */
-    public Optional<PublishedAnnouncement> publishedAnnouncementRequest(List<AnnouncementRequest> announcementRequests, AnnouncementRequestDto announcementRequestDto, Comission comission, Store store) {
+    public Optional<PublishedAnnouncement> publishedAnnouncementRequest(List<AnnouncementRequest> announcementRequests, AnnouncementRequestDto announcementRequestDto, Comission comission, Store store, AnnouncementState announcementState) {
 
 
         Optional<PublishedAnnouncement> optionalValue = Optional.empty();
 
         PublishedAnnouncement publishedAnnouncement;
 
-        publishedAnnouncement = new PublishedAnnouncement(announcementRequestDto, comission, store);
+        publishedAnnouncement = new PublishedAnnouncement(announcementRequestDto, comission, store, announcementState);
 
         AnnouncementRequest announcementRequest = new AnnouncementRequest(announcementRequestDto);
 
@@ -412,73 +412,6 @@ public class PublishedAnnouncementRepository implements Serializable {
         return address;
     }
 
-
-    /**
-     * A comparator that compares PublishedAnnouncement objects in ascending order based on city name.
-     */
-    Comparator<PublishedAnnouncement> compareToAscendingCityName = new Comparator<PublishedAnnouncement>() {
-        @Override
-        public int compare(PublishedAnnouncement announcement1, PublishedAnnouncement announcement2) {
-            return 0;
-        }
-    };
-    /**
-     * A comparator that compares PublishedAnnouncement objects in descending order based on city name.
-     */
-    Comparator<PublishedAnnouncement> compareToDescendingCityName = new Comparator<PublishedAnnouncement>() {
-        @Override
-        public int compare(PublishedAnnouncement announcement1, PublishedAnnouncement announcement2) {
-            return 0;
-        }
-    };
-    /**
-     * A comparator that compares PublishedAnnouncement objects in ascending order based on price.
-     */
-    Comparator<PublishedAnnouncement> compareToAscendingPrice = new Comparator<PublishedAnnouncement>() {
-        @Override
-        public int compare(PublishedAnnouncement announcement1, PublishedAnnouncement announcement2) {
-            return 0;
-        }
-    };
-    /**
-     * A comparator that compares PublishedAnnouncement objects in descending order based on price.
-     */
-    Comparator<PublishedAnnouncement> compareToDescendingPrice = new Comparator<PublishedAnnouncement>() {
-        @Override
-        public int compare(PublishedAnnouncement announcement1, PublishedAnnouncement announcement2) {
-            return 0;
-        }
-    };
-    /**
-     * A comparator that compares PublishedAnnouncement objects in ascending order based on state name.
-     */
-    Comparator<PublishedAnnouncement> compareToAscendingStateName = new Comparator<PublishedAnnouncement>() {
-        @Override
-        public int compare(PublishedAnnouncement announcement1, PublishedAnnouncement announcement2) {
-            return 0;
-        }
-    };
-    /**
-     * A comparator that compares PublishedAnnouncement objects in descending order based on state name.
-     */
-    Comparator<PublishedAnnouncement> compareToDescendingStateName = new Comparator<PublishedAnnouncement>() {
-        @Override
-        public int compare(PublishedAnnouncement announcement1, PublishedAnnouncement announcement2) {
-            return 0;
-        }
-    };
-
-
-    /**
-     * The Compare to descending date.
-     */
-    Comparator<PublishedAnnouncement> compareToDescendingDate = new Comparator<PublishedAnnouncement>() {
-        @Override
-        public int compare(PublishedAnnouncement announcement1, PublishedAnnouncement announcement2) {
-            return announcement2.getDate().compareTo(announcement1.getDate());
-        }
-    };
-
     /**
      * Filter list list.
      *
@@ -540,6 +473,10 @@ public class PublishedAnnouncementRepository implements Serializable {
             }
         });
         return resultList;
+    }
+
+    public void changeAnnouncementState(PublishedAnnouncement publishedAnnouncement) {
+        publishedAnnouncement.setAnnouncementState(AnnouncementState.sold);
     }
 
     /**

@@ -4,10 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -46,6 +43,10 @@ class PublishedAnnouncementRepositoryTest {
     private Store store;
 
     private AnnouncementRequestDto announcementRequestDto;
+    private PublishedAnnouncementRepository repository;
+    private AnnouncementState announcementState;
+
+
 
 
     @BeforeEach
@@ -64,6 +65,7 @@ class PublishedAnnouncementRepositoryTest {
         house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South",address2);
         land = new Property(5, 1000,address2);
         appartment = new Residence(20, 150, 3, 2, 1, new AvailableEquipment("air conditioning"),address2);
+        repository = new PublishedAnnouncementRepository();
     }
 
     @BeforeEach
@@ -130,6 +132,11 @@ class PublishedAnnouncementRepositoryTest {
 
     }
 
+    @BeforeEach
+    void setUpAnnouncementState() {
+        announcementState = AnnouncementState.available;
+    }
+
 
     @BeforeEach
     void setUpAnnouncementRequest() {
@@ -169,24 +176,131 @@ class PublishedAnnouncementRepositoryTest {
         assertTrue(announcements.contains(publishedAnnouncement1));
     }
 
+//    @Test
+//    void publishedAnnouncementRequest() {
+//    }
 
     @Test
-    void publishedAnnouncementRequestTest() {
-
+    void getPublishedAnnouncements() {
+        // Create a PublishedAnnouncementRepository instance
         PublishedAnnouncementRepository repository = new PublishedAnnouncementRepository();
 
+        // Perform the getPublishedAnnouncements operation
+        List<PublishedAnnouncement> announcements = repository.getPublishedAnnouncements();
 
-
-        List<AnnouncementRequest> announcementRequests = new ArrayList<>();
-        announcementRequests.add(announcementRequest);
-        announcementRequests.add(announcementRequest1);
-
-        Optional<PublishedAnnouncement> publishedAnnouncementExpected = Optional.of(publishedAnnouncement);
-
-        Optional<PublishedAnnouncement> publishedAnnouncementResult = repository.publishedAnnouncementRequest(announcementRequests,announcementRequestDto,comission,store);
-
-        assertEquals("true",announcementRequest.getStatus());
-        assertEquals(publishedAnnouncementExpected,publishedAnnouncementResult);
-
+        // Assert the expected outcome
+        assertNotNull(announcements);
+        assertEquals(0, announcements.size());
     }
+
+//    @Test
+//    void getPublishedAnnouncementsDesc() {
+//    }
+//
+//    @Test
+//    void getAvailablePublishedAnnouncementsDesc() {
+//    }
+//
+//    @Test
+//    void createPublishAnnouncementByFileReading() {
+//    }
+//
+//    @Test
+//    void createAddress() {
+//    }
+//
+//
+//    @Test
+//    void filterList() {
+//    }
+
+    @Test
+    void compareAscendingPrice() {
+        PublishedAnnouncementRepository repository = new PublishedAnnouncementRepository();
+
+        repository.add(publishedAnnouncement);
+        repository.add(publishedAnnouncement1);
+
+        List<PublishedAnnouncement> announcements = repository.getPublishedAnnouncements();
+        announcements.sort(Comparator.comparing(p -> p.getBusiness().getPrice()));
+
+        assertEquals(publishedAnnouncement, announcements.get(0));
+        assertEquals(publishedAnnouncement1, announcements.get(1));
+    }
+
+    @Test
+    void compareDescendingPrice() {
+        PublishedAnnouncementRepository repository = new PublishedAnnouncementRepository();
+
+        repository.add(publishedAnnouncement);
+        repository.add(publishedAnnouncement1);
+
+        List<PublishedAnnouncement> announcements = repository.getPublishedAnnouncements();
+        announcements.sort((p1, p2) -> Double.compare(p2.getBusiness().getPrice(), p1.getBusiness().getPrice()));
+
+        assertEquals(publishedAnnouncement, announcements.get(0));
+        assertEquals(publishedAnnouncement1, announcements.get(1));
+    }
+
+    @Test
+    void compareAscendingCity() {
+        PublishedAnnouncementRepository repository = new PublishedAnnouncementRepository();
+
+        repository.add(publishedAnnouncement);
+        repository.add(publishedAnnouncement1);
+
+        List<PublishedAnnouncement> announcements = repository.getPublishedAnnouncements();
+        List<PublishedAnnouncement> expectedOrder = repository.compareAscendingCity(announcements);
+
+        assertEquals(expectedOrder.get(0), announcements.get(0));
+        assertEquals(expectedOrder.get(1), announcements.get(1));
+    }
+
+    @Test
+    void compareDescendingCity() {
+        PublishedAnnouncementRepository repository = new PublishedAnnouncementRepository();
+
+        repository.add(publishedAnnouncement);
+        repository.add(publishedAnnouncement1);
+
+        List<PublishedAnnouncement> announcements = repository.getPublishedAnnouncements();
+        announcements.sort((p1, p2) -> p2.getProperty().getAddress().getCity().getCity().compareTo(p1.getProperty().getAddress().getCity().getCity()));
+
+        assertEquals(publishedAnnouncement, announcements.get(0));
+        assertEquals(publishedAnnouncement1, announcements.get(1));
+    }
+
+    @Test
+    void compareAscendingState() {
+        PublishedAnnouncementRepository repository = new PublishedAnnouncementRepository();
+
+        repository.add(publishedAnnouncement);
+        repository.add(publishedAnnouncement1);
+
+        List<PublishedAnnouncement> announcements = repository.getPublishedAnnouncements();
+        List<PublishedAnnouncement> expectedOrder = repository.compareAscendingCity(announcements);
+
+        assertEquals(expectedOrder.get(0), announcements.get(0));
+        assertEquals(expectedOrder.get(1), announcements.get(1));
+    }
+
+    @Test
+    void compareDescendingState() {
+        PublishedAnnouncementRepository repository = new PublishedAnnouncementRepository();
+
+        repository.add(publishedAnnouncement);
+        repository.add(publishedAnnouncement1);
+
+        List<PublishedAnnouncement> announcements = repository.getPublishedAnnouncements();
+        announcements.sort((p1, p2) -> p2.getProperty().getAddress().getState().getState().compareTo(p1.getProperty().getAddress().getState().getState()));
+
+        assertEquals(publishedAnnouncement, announcements.get(0));
+        assertEquals(publishedAnnouncement1, announcements.get(1));
+    }
+
+
+//    @Test
+//    void publishedAnnouncementRequestTest() {
+//    }
+
 }

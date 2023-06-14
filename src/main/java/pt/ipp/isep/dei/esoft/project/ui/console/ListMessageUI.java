@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 import pt.ipp.isep.dei.esoft.project.application.controller.ListMessageController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.domain.emailServices.EmailService;
+import pt.ipp.isep.dei.esoft.project.domain.sortAlgorithms.SortAlgorithm;
 
 import java.io.*;
 import java.lang.reflect.Constructor;
@@ -118,7 +119,7 @@ public class ListMessageUI implements Runnable {
                         email = input.nextLine();
 
                         // Validate email format
-                        if (email.matches("[^@]+@[^@]+\\.[^.]+")) {
+                        if (email.matches("^[A-Za-z0-9]+[A-Za-z0-9._]*@[A-Za-z0-9]+(\\.[A-Za-z]+[A-Za-z0-9]*)+[A-Za-z]$")) {
                             isValidEmail = true;
                         } else {
                             System.out.println("Please enter a valid email address (e.g., example@example.com).");
@@ -146,14 +147,15 @@ public class ListMessageUI implements Runnable {
                                         "Thank you for your interest in the property listed with ID: " + publishedAnnouncement.getPropertyID() +
                                         " and located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
                                         "You had requested a visit for the date: " + message.getInitialDate() +
-                                        " with a start time at: " + message.getInitialTime() +
+                                        ",  starting at: " + message.getInitialTime() +
                                         " and ending at: " + message.getEndTime() + ".\n\n" +
                                         "We are pleased to inform you that your booking request has been accepted. You will be greeted by our agent " + publishedAnnouncement.getAgent().getName() + ".\n" +
-                                        "In case of any changes or queries, you may contact them at the following number: " + publishedAnnouncement.getAgent().getPhoneNumber() + ".\n\n" +
+                                        "In case of any changes or queries, you may contact the agent at the following number: " + publishedAnnouncement.getAgent().getPhoneNumber() + ".\n\n" +
                                         "We look forward to welcoming you for the visit.\n\n" +
                                         "Best Regards,\n" +
                                         publishedAnnouncement.getAgent().getName();
 
+                                message.setMessageState(MessageState.ANSWERED);
                                 message.setApprovedByAgent(true);
                                 break;
                             case 2:
@@ -165,7 +167,7 @@ public class ListMessageUI implements Runnable {
                                         "Thank you for your interest in the property listed with ID: " + publishedAnnouncement.getPropertyID() +
                                         " and located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
                                         "You had requested a visit for the date: " + message.getInitialDate() +
-                                        " with a start time at: " + message.getInitialTime() +
+                                        ", starting at: " + message.getInitialTime() +
                                         " and ending at: " + message.getEndTime() + ".\n\n" +
                                         "We regret to inform you that your booking request has been rejected for the following reason:\n\n" +
                                         reason + "\n\n" +
@@ -175,6 +177,7 @@ public class ListMessageUI implements Runnable {
                                         "Best Regards,\n" +
                                         publishedAnnouncement.getAgent().getName();
 
+                                message.setMessageState(MessageState.ANSWERED);        
                                 message.setApprovedByAgent(false);
                                 break;
                             default:

@@ -107,7 +107,7 @@ public class StoreRepository implements Serializable {
     /**
      * The Compare to descending list.
      */
-    Comparator<Store> compareToDescendingList = new Comparator<Store>() {
+    Comparator<Store> compareToDescendingList  = new Comparator<Store>()  {
         @Override
         public int compare(Store store1, Store store2) {
             int listing1 = store1.getListing();
@@ -126,54 +126,158 @@ public class StoreRepository implements Serializable {
     /**
      * Create store by file reading.
      *
-     * @param arrayListStoreInformations the array list store informations
+     * @param arrayListStoreInformations the array list store information
      */
     public void createStoreByFileReading(ArrayList<String[]> arrayListStoreInformations) {
 
         int aux = 0;
+        int auxID=1;
         int id = 0;
         Address address = null;
-        String designation;
-        long phoneNumber;
-        String email;
+        String designation="";
+        long phoneNumber=0;
+        String email="";
+        int listing = 0;
 
         for (String[] storeInformations : arrayListStoreInformations) {
-                if (aux > 0){
-                    id = Integer.parseInt(storeInformations[0]);
-                    designation = storeInformations[1];
-                    String[] addressInformations =  storeInformations[2].split(",");
-
-                    if (addressInformations.length < 5){
-                       String street = addressInformations[0];
-                       City city = new City(addressInformations[1]);
-                       State state = new State(addressInformations[2]);
-                       int zipCode = Integer.parseInt(addressInformations[3]);
-
-                       address = new Address(street,zipCode,city,state);
-                    }else {
-                        String street = addressInformations[0];
-                        City city = new City(addressInformations[1]);
-                        District district = new District(addressInformations[2]);
-                        State state = new State(addressInformations[3]);
-                        int zipCode = Integer.parseInt(addressInformations[4]);
-
-                        address = new Address(street,zipCode,district,city,state);
-                    }
-                    phoneNumber = Long.parseLong(storeInformations[3].replaceAll("-",""));
-                    email = storeInformations[4];
-
-                    Store store = new Store(designation,id,address,phoneNumber,email,0);
-
-                    if (!stores.contains(store))
+            if (aux > 0) {
+                listing++;
+                id = Integer.parseInt(storeInformations[0]);
+                if (auxID != id){
+                    Store store = new Store(designation, auxID, address, phoneNumber, email, listing-1);
+                    auxID = id;
+                    listing = 0;
+                    if (!stores.contains(store)){
                         stores.add(store);
-                }else {
-                    aux = 1;
+                    }
                 }
+                designation = storeInformations[1];
+                String[] addressInformations = storeInformations[2].split(",");
+
+                if (addressInformations.length < 5) {
+                    String street = addressInformations[0];
+                    City city = new City(addressInformations[1]);
+                    State state = new State(addressInformations[2]);
+                    int zipCode = Integer.parseInt(addressInformations[3]);
+
+                    address = new Address(street, zipCode, city, state);
+                } else {
+                    String street = addressInformations[0];
+                    City city = new City(addressInformations[1]);
+                    District district = new District(addressInformations[2]);
+                    State state = new State(addressInformations[3]);
+                    int zipCode = Integer.parseInt(addressInformations[4]);
+
+                    address = new Address(street, zipCode, district, city, state);
+                }
+                phoneNumber = Long.parseLong(storeInformations[3].replaceAll("-", ""));
+                email = storeInformations[4];
+
+
+
+
+
+            } else {
+                aux = 1;
+            }
 
 
         }
 
 
+    }
+
+
+
+    public String findPartition(){
+
+        int size = stores.size();
+
+        double totalSubsets = Math.pow(2, size) - 1;
+
+        int sum1 = 0;
+
+        int sum2 = 0;
+
+        int minDifference = 9999;
+
+        int difference;
+
+        String auxBinary = "";
+
+
+        for (int i = 0; i < totalSubsets; i++) {
+
+            String binary = Integer.toBinaryString(i);
+
+            for (int j = 0; j < size; j++) {
+
+                if (j < binary.length()) {
+                    if (Character.toString(binary.charAt(j)).equals("1")) {
+
+                        sum1 = stores.get(j).getListing() + sum1;
+                    } else {
+                        sum2 = stores.get(j).getListing() + sum2;
+                    }
+                } else {
+                    sum2 = stores.get(j).getListing() + sum2;
+                }
+            }
+
+
+            difference = Math.abs(sum1 - sum2);
+
+            if (difference < minDifference) {
+                minDifference = difference;
+                auxBinary = binary;
+            }
+
+            sum2 = 0;
+            sum1 = 0;
+        }
+
+        generateSubsets(auxBinary,minDifference);
+
+
+        return auxBinary;
+    }
+
+
+
+    public List<List<String>> generateSubsets(String auxBinary,int minDifference){
+
+        List<String> l1 = new ArrayList<>();
+
+        List<String> l2 = new ArrayList<>();
+
+
+        for (int i = 0; i < stores.size(); i++) {
+
+
+            if (i < auxBinary.length()){
+                if (Character.toString(auxBinary.charAt(i)).equals("1")) {
+                    l1.add("ID:"+stores.get(i).getId()+" "+stores.get(i).getListing());
+                } else {
+                    l2.add("ID:"+stores.get(i).getId()+" "+stores.get(i).getListing());
+                }
+            }else {
+                l2.add("ID:"+stores.get(i).getId()+" "+stores.get(i).getListing());
+            }
+
+
+        }
+
+        List<List<String>> result = new ArrayList<>();
+        String minDifferenceString = ""+ minDifference;
+        List<String> minDifferencelist = new ArrayList<>();
+        minDifferencelist.add(minDifferenceString);
+
+        result.add(l1);
+        result.add(l2);
+        result.add(minDifferencelist);
+
+
+        return result;
     }
 
 
