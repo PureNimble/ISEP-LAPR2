@@ -370,6 +370,7 @@ public class PublishedAnnouncementRepository implements Serializable {
 
             String street = null;
             for (int i = 0; i < 4; i++) {
+
                 street = addressInformations[i] + " ";
             }
             City city = new City(addressInformations[4]);

@@ -192,6 +192,7 @@ public class StoreRepository implements Serializable {
             storeList.add(store);
         }
 
+
         return storeList;
 
 
