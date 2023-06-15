@@ -120,8 +120,16 @@ class OfferTest {
 
     @Test
     void getOfferID() {
+        // Create a sample offer with a known ID
+        int expectedOfferID = 1;
+        Offer offer = new Offer();
+        offer.setOfferID(expectedOfferID);
+
+        // Retrieve the offer ID using the getter method
         int actualOfferID = offer.getOfferID();
-        assertEquals(offerID, actualOfferID);
+
+        // Assert that the retrieved offer ID matches the expected value
+        assertEquals(expectedOfferID, actualOfferID);
     }
 
     @Test
@@ -150,5 +158,39 @@ class OfferTest {
 
         assertEquals(expectedHashCode, actualHashCode);
 
+    }
+
+    @Test
+    void testToString() {
+        String name = "John Doe";
+        double offerAmount = 200000;
+        Photos photos = new Photos("urlll");
+        int offerID = 1;
+        Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
+        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9);
+        OfferState offerState = OfferState.pending;
+
+        List<Role> roles = new ArrayList<>();
+        Employee employee = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store, roles, new Address("123 Main St", 12345, new District("Test District"), new City("Test City"), new State("Test State")));
+        Client client = new Client("client@this.app", 123456789, 123456789, "client", address, 1234567890L);
+
+        Date date = new Date();
+        Comission com = new Comission(25.00);
+        Property property = new Property(2, 2, photos, address);
+        PropertyType propertyType = new PropertyType("House");
+        TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
+        Business business = new Business(200);
+        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business, employee, client, 99, AnnouncementState.available, store);
+
+        Offer offer = new Offer(name, offerAmount, publishedAnnouncement1, offerState, client, offerID);
+
+        String expectedString = String.format(
+                "\nOffer: \nThe client %s, which has the following email: %s, has submitted an offer with the following price: %s. \nStatus: %s \n\nProperty: \n%s",
+                name, client.getClientEmail(), offerAmount, offerState, publishedAnnouncement1.toString()
+        );
+
+        String actualString = offer.toString();
+
+        assertEquals(expectedString, actualString);
     }
 }

@@ -43,7 +43,8 @@ public class PlaceOrderUI implements Runnable {
         String clientName = requestClientName();
 
         if (offer <= publishedAnnouncement.getBusiness().getPrice()) {
-            if (submitData(clientName, client, publishedAnnouncement, offer, OfferState.pending).isEmpty()) {
+            Optional<Offer> createdOffer = submitData(clientName, client, publishedAnnouncement, offer, OfferState.pending);
+            if (createdOffer.isEmpty()) {
                 System.out.println("The offer amount submitted has already been posted for this property. Please contact the agent that is responsible for this property.");
             } else {
                 System.out.println("\n\nOffer sent successfully!\n\n");
