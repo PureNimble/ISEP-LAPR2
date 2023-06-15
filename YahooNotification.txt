@@ -1,0 +1,7 @@
+From: no-reply@this.app
+To: john.doe@example.com
+Subject: Test Subject
+Body: Test Body
+
+-----------------------------------------------------------------------
+

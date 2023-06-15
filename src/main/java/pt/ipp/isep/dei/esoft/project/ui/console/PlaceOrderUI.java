@@ -19,32 +19,28 @@ import java.util.Scanner;
  * It implements the Runnable interface to support concurrent execution.
  */
 public class PlaceOrderUI implements Runnable {
-    /**
-     * Controller for managing the placing of offers.
-     */
     private final PlaceOfferController controller = new PlaceOfferController();
-    /**
-     * Controller for managing the publishing of announcements.
-     */
     private final PublishAnnouncementController publishAnnouncementController = new PublishAnnouncementController();
-    /**
-     Executes the logic for placing an order.
-     */
+
     public void run() {
         System.out.println();
         System.out.println("Place an Order: ");
         System.out.println();
 
-        PublishedAnnouncement publishedAnnouncement = requestChooseProperty();
-        double offer = requestOffer();
         Client client = controller.getClientEmail();
-        String clientName = requestClientName();
-
         List<Offer> pendingOffers = controller.getPendingOffersByClientEmail(client.getEmail());
         if (!pendingOffers.isEmpty()) {
             System.out.println("Please wait for your previous offer to be accepted or denied before making another one.");
             return;
         }
+
+        PublishedAnnouncement publishedAnnouncement = requestChooseProperty(client);
+        if (publishedAnnouncement == null) {
+            return;
+        }
+
+        double offer = requestOffer(publishedAnnouncement);
+        String clientName = requestClientName();
 
         if (offer <= publishedAnnouncement.getBusiness().getPrice()) {
             if (submitData(clientName, client, publishedAnnouncement, offer, OfferState.pending).isEmpty()) {
@@ -56,23 +52,19 @@ public class PlaceOrderUI implements Runnable {
             System.out.println("Invalid offer amount. The offer amount must be equal to or lower than the property price.");
         }
     }
-    /**
-     Requests the user to choose a property from the published announcements.
-     @return the selected PublishedAnnouncement object
-     */
-    private PublishedAnnouncement requestChooseProperty() {
+
+    private PublishedAnnouncement requestChooseProperty(Client client) {
         Scanner input = new Scanner(System.in);
         List<PublishedAnnouncement> publishedAnnouncements = publishAnnouncementController.getAvailablePublishedAnnouncementsDesc();
+
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < publishedAnnouncements.size(); i++) {
-            sb.append(i + 1 + " - ");
-            sb.append(publishedAnnouncements.get(i).toString());
-            sb.append("\n");
+            sb.append(i + 1).append(" - ").append(publishedAnnouncements.get(i)).append("\n");
         }
         System.out.println(sb);
+
         int index;
         do {
-            
             try {
                 System.out.println("Choose one of the properties above.");
                 index = input.nextInt() - 1;
@@ -82,59 +74,48 @@ public class PlaceOrderUI implements Runnable {
                 index = -1;
             }
 
-            if (index > publishedAnnouncements.size() - 1) System.out.println(String.format("Invalid input. Please enter an value between 1 and %s", publishedAnnouncements.size()));
-
+            if (index > publishedAnnouncements.size() - 1) {
+                System.out.printf("Invalid input. Please enter a value between 1 and %d\n", publishedAnnouncements.size());
+            }
         } while (index < 0 || index > publishedAnnouncements.size() - 1);
+
+        List<Offer> pendingOffers = controller.getPendingOffersByClientEmail(client.getEmail());
+        if (!pendingOffers.isEmpty()) {
+            System.out.println("Please wait for your previous offer to be accepted or denied before making another one.");
+            return null;
+        }
+
         return publishedAnnouncements.get(index);
     }
-    /**
-     Requests the name of a client from the user.
-     @return The name of the client.
-     */
+
     private String requestClientName() {
         Scanner input = new Scanner(System.in);
         System.out.println("Name: ");
         return input.nextLine();
     }
 
-    /**
-
-     Requests the user to enter the offer amount.
-
-     @return the entered offer amount
-     */
-    private double requestOffer() {
+    private double requestOffer(PublishedAnnouncement publishedAnnouncement) {
         Scanner input = new Scanner(System.in);
-        String offerAmountString;
         double offerAmountDouble;
 
         do {
             try {
                 System.out.println("Offer Amount: ");
                 offerAmountDouble = input.nextDouble();
+                if (offerAmountDouble > publishedAnnouncement.getBusiness().getPrice()) {
+                    System.out.println("Invalid offer amount. The offer amount must be equal to or lower than the property price.");
+                }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a positive value: ");
                 input.nextLine();
                 offerAmountDouble = -1;
             }
-        } while (offerAmountDouble < 0);
-        offerAmountString = Double.toString(offerAmountDouble);
+        } while (offerAmountDouble < 0 || offerAmountDouble > publishedAnnouncement.getBusiness().getPrice());
 
         return offerAmountDouble;
     }
 
-//    private Client requestClient() {
-//        Scanner input = new Scanner(System.in);
-//        String clientString;
-//        return null;
-//    }
-    /**
-
-     Submits the order data to the controller for creating a new offer.
-     @param publishedAnnouncement the selected published announcement
-     @param offer the offer amount
-     */
     private Optional<Offer> submitData(String name, Client client, PublishedAnnouncement publishedAnnouncement, double offer, OfferState offerState) {
-        return controller.createNewOfferToAgent(name, client, offer, publishedAnnouncement,offerState);
+        return controller.createNewOfferToAgent(name, client, offer, publishedAnnouncement, offerState);
     }
 }

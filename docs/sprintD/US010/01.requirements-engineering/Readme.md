@@ -107,19 +107,22 @@ system must state that on the screen and the order placed previously should be c
 * Typed data:
 
 	* Offer Amount
+    * Client's Name
 	
 
 * Selected data:
 
-	* Announcement.
+	* Published Announcement
 
 
 **Output Data:**
 
-* List of properties (for the client to choose one)
-* Message indicating that the offer was accepted in the system (in this case, if the price is equal or lower to the price set by the owner)
-* Message indicating that the offer was not accepted in the system (in this case, if the price is higher to the price set by the owner)
-* Message indicating that the offer was accepted in the system but there are other offers that are equal or higher in value
+* List of properties (for the client to choose one).
+* Message indicating that the offer was accepted in the system (in this case, if the price is equal or lower to the price set by the owner).
+* Message indicating that the offer was not accepted in the system (in this case, if the price is higher to the price set by the owner).
+* Message indicating that the offer was accepted in the system but there are other offers that are equal or higher in value.
+* Message indicating that the offer was accepted in the system successfully.
+* Message indicating that the offer was not accepted because the client has already an active offer and that he needs to wait before making a new one.
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -127,7 +130,26 @@ system must state that on the screen and the order placed previously should be c
 
 #### Alternative One
 
-![System Sequence Diagram](svg/us010-system-sequence-diagram-alternative-one.svg)
+![US010 - System Sequence Diagram - Alternative One - Normal Procedure](svg/us010-system-sequence-diagram-alternative-one.svg)
+
+#### Alternative Two
+
+![US010 - System Sequence Diagram - Alternative Two - Offer Amount is superior](svg/us010-system-sequence-diagram-alternative-two.svg)
+
+
+#### Alternative Three
+
+![US010 - System Sequence Diagram - Alternative Three - Already a pending offer](svg/us010-system-sequence-diagram-alternative-three.svg)
+
+
+#### Alternative Four
+
+![US010 - System Sequence Diagram - Alternative Four - Offer Amount already exists](svg/us010-system-sequence-diagram-alternative-four.svg)
+
+
+#### Full
+
+![US010 - System Sequence Diagram - Full](svg/us010-system-sequence-diagram-full.svg)
 
 
 ### 1.7 Other Relevant Remarks
