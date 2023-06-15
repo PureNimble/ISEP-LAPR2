@@ -20,7 +20,7 @@ participant "currentSession\n:UserSession" as User
 participant "employeeRepository\n:Employee Repository" as Employee
 participant ":sortAlgorithm" as STALG
 participant ":MessageMapper" as Mapper
-participant "message:Message" as Messages
+participant "messageDto:MessageDto" as Messages
 participant "listOfMessagesDto:List<Messages>" as listMessagesDTO
 
 
@@ -33,10 +33,10 @@ activate Agent
 
             UI -> CTRL** : create
 
-             UI --> Agent : requests an initial date and an end date for list the requests
+             UI --> Agent : requests to select an initial date and end date
              deactivate UI
 
-             Agent -> UI :  selects requested data (begin date, end date)
+             Agent -> UI : selects requested data (begin date, end date)
              activate UI
 
              UI -> CTRL : getListMessage()
