@@ -96,7 +96,7 @@ public class StoreRepository implements Serializable {
      *
      * @return the stores by most listings
      */
-    public List<Store> getStoresByMostListings() {
+    public List<Store> getStoresByMostAvailableListings() {
         List<Store> sortedStores = new ArrayList<>(stores);
 
         Collections.sort(sortedStores, compareToDescendingList);
@@ -110,8 +110,8 @@ public class StoreRepository implements Serializable {
     Comparator<Store> compareToDescendingList  = new Comparator<Store>()  {
         @Override
         public int compare(Store store1, Store store2) {
-            int listing1 = store1.getListing();
-            int listing2 = store2.getListing();
+            int listing1 = store1.getAvailableListing();
+            int listing2 = store2.getAvailableListing();
 
             if (listing2 < listing1) {
                 return -1;
@@ -122,6 +122,32 @@ public class StoreRepository implements Serializable {
             }
         }
     };
+
+    /**
+     * Increment the number of properties available in stores.
+     *
+     */
+    public void incrementAvailableListing(Store store) {
+        List<Store> storesList = getStores();
+        for (Store stores : storesList) {
+            if (stores.equals(store)) {
+                stores.setAvailableListing(stores.getAvailableListing() + 1);
+            }
+        }
+    }  
+    
+    /**
+     * Decrement the number of properties available in stores.
+     *
+     */
+    public void decrementAvailableListing(Store store) {
+        List<Store> storesList = getStores();
+        for (Store stores : storesList) {
+            if (stores.equals(store)) {
+                stores.setAvailableListing(stores.getAvailableListing() - 1);
+            }
+        }
+    }
 
     /**
      * Create store by file reading.
@@ -145,7 +171,7 @@ public class StoreRepository implements Serializable {
                 listing++;
                 id = Integer.parseInt(storeInformations[0]);
                 if (auxID != id){
-                    Store store = new Store(designation, auxID, address, phoneNumber, email, listing-1);
+                    Store store = new Store(designation, auxID, address, phoneNumber, email, listing-1, 0);
 
                     auxID = id;
                     listing = 0;
@@ -185,7 +211,7 @@ public class StoreRepository implements Serializable {
 
         }
 
-        Store store = new Store(designation,id,address,phoneNumber,email,listing);
+        Store store = new Store(designation,id,address,phoneNumber,email,listing, 0);
 
         if (!stores.contains(store)){
             stores.add(store);
