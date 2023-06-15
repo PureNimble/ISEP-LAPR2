@@ -33,10 +33,21 @@ public class ListMessageUI implements Runnable {
         String beginDateString = input.nextLine();
 
         Date beginDate = parseDate(beginDateString);
+        while (beginDate == null) {
+            System.out.println("Enter the begin date (dd-MM-yyyy): ");
+            beginDateString = input.nextLine();
+            beginDate = parseDate(beginDateString);
+        }
 
         System.out.println("Enter the end date (dd-MM-yyyy): ");
         String endDateString = input.nextLine();
         Date endDate = parseDate(endDateString);
+        while (endDate == null) {
+            System.out.println("Enter the end date (dd-MM-yyyy): ");
+            endDateString = input.nextLine();
+            endDate = parseDate(endDateString);
+        }
+
 
         if (beginDate != null && endDate != null) {
             if (endDate.before(beginDate)) {
