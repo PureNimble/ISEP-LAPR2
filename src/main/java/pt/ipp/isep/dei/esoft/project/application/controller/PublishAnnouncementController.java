@@ -61,6 +61,11 @@ public class PublishAnnouncementController {
      */
     private StateRepository stateRepository = null;
 
+    /**
+     * The StoreRepository instance.
+     */
+    private StoreRepository storeRepository = null;
+
 
     /**
      * Constructor that initializes the repository variables.
@@ -70,6 +75,7 @@ public class PublishAnnouncementController {
         getPropertyTypeRepository();
         getPublishedAnnouncementRepository();
         getStateRepository();
+        getStoreRepository();
     }
 
     /**
@@ -180,6 +186,20 @@ public class PublishAnnouncementController {
             }
         }
         return null;
+    }
+
+    /**
+     Retrieves the StoreRepository instance and initializes it if it is null.
+     @return StoreRepository instance.
+     */
+    private StoreRepository getStoreRepository() {
+        if (storeRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+
+            //Get the TaskCategoryRepository
+            storeRepository = repositories.getStoreRepository();
+        }
+        return storeRepository;
     }
 
     /**
@@ -509,6 +529,9 @@ public class PublishAnnouncementController {
 
         if (!getPublishedAnnouncementRepository().getPublishedAnnouncements().contains(publishedAnnouncement)) {
             newPublishedAnnouncement = getPublishedAnnouncementRepository().publishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, durationOfContract, agent, client, propertyID, state, store);
+            if (newPublishedAnnouncement.isPresent()) {
+                storeRepository.incrementAvailableListing(agent.getStore());
+            }
         }
         return newPublishedAnnouncement;
     }

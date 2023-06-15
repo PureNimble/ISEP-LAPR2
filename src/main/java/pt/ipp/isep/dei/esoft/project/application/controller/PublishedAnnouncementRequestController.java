@@ -37,6 +37,11 @@ public class PublishedAnnouncementRequestController {
      */
     AuthenticationRepository authenticationRepository = null;
 
+    /**
+     * The StoreRepository repository.
+     */
+    StoreRepository storeRepository = null;
+
 
     /**
      * Instantiates a new Published announcement request controller.
@@ -47,6 +52,7 @@ public class PublishedAnnouncementRequestController {
        getEmployeeRepository();
        getPublishedAnnouncementRepository();
        getAuthenticationRepository();
+       getStoreRepository();
     }
 
     /**
@@ -145,6 +151,20 @@ public class PublishedAnnouncementRequestController {
             publishedAnnouncementRepository = repositories.getPublishedAnnouncementRepository();
         }
         return publishedAnnouncementRepository;
+    }
+
+    /**
+     Retrieves the StoreRepository instance and initializes it if it is null.
+     @return StoreRepository instance.
+     */
+    private StoreRepository getStoreRepository() {
+        if (storeRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+
+            //Get the TaskCategoryRepository
+            storeRepository = repositories.getStoreRepository();
+        }
+        return storeRepository;
     }
 
     /**
@@ -293,6 +313,9 @@ public class PublishedAnnouncementRequestController {
         AnnouncementState announcementState = AnnouncementState.available;
 
         newPublishedAnnouncement = getPublishedAnnouncementRepository().publishedAnnouncementRequest(announcementRequestRepository.getAnnouncementsRequest(),announcementRequestDto,comission, store, announcementState);
+        if (newPublishedAnnouncement.isPresent()) {
+            storeRepository.incrementAvailableListing(store);
+        }
 
         return newPublishedAnnouncement;
     }

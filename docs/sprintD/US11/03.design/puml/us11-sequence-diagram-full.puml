@@ -1,0 +1,194 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "Agent" as agent
+participant ":OfferDecisionUI" as ui
+participant ":OfferDecisionController" as controller
+participant ":Repositories" as singleton
+participant "repositories\n:Repositories" as repositories
+participant "PublishedAnnouncement\n:PublishedAnnouncement" as announcement
+participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as announcementrep
+participant "Offer\n:Offer" as offer
+participant "offerRepository\n:OfferRepository" as offerrepository
+participant ":OfferMapper" as mapper
+participant "PublishedAnnouncementList\n:List<PublishedAnnouncement>" as announcementlist
+participant "OfferList\n:List<OfferList>" as offerlist
+participant "AnnouncementOfferDTO\n:List<AnnouncementOfferDTO>" as dtolist
+
+
+activate agent
+
+
+agent -> ui : asks for a list of real estate purchase orders for every property
+activate ui
+
+        create controller
+        ui -> controller: Create
+        ui -> controller: getOffersList()
+
+        activate controller
+
+        controller -> singleton : getInstance()
+        activate singleton
+
+                singleton --> controller : repository
+
+            deactivate singleton
+
+            controller -> repositories : getPublishedAnnouncementRepository()
+
+            activate repositories
+
+                repositories --> controller : PublishedAnnouncementRepository
+
+            deactivate repositories
+
+                controller -> announcement : getPublishedAnnouncements()
+                activate announcement
+
+                create announcementlist
+                announcement --> announcementlist** : create()
+
+                    loop for each published announcement
+                    
+                        announcement -> announcementrep : getPublishedAnnouncement(i)
+                        activate announcementrep
+                        announcementrep --> announcement : PublishedAnnouncement
+                        deactivate announcementrep
+
+                        opt if published announcement state not defined as sold
+
+                                announcement --> announcement : compare(publishedAnnouncement1Date, publishedAnnouncement2Date)
+
+                                announcement -> announcementlist : add(publishedAnnouncement)
+                                activate announcementlist
+                                deactivate announcementlist
+
+                        end
+ 
+                    end
+
+                announcement --> controller : PublishedAnnouncementList
+
+                deactivate announcement
+        
+                controller -> repositories : getOfferRepository()
+                    activate repositories
+
+                        repositories --> controller : OfferRepository
+                    deactivate repositories
+
+                controller -> offer : getOffersList()
+                activate offer
+
+                create offerlist
+                offer --> offerlist** : create()
+
+                loop for each offer
+
+                        offer -> offerrepository : getOffer(property)
+                        activate offerrepository
+                        offerrepository --> offer : Offer
+                        deactivate offerrepository
+                        opt if offer not declined
+
+                                offer --> offer : compare(offer1Amount, offer2Amount)
+                                offer -> offerlist : add(offer)
+                                activate offerlist
+                                deactivate offerlist
+
+                        end
+
+                    end
+
+                offer --> controller : OfferList
+                deactivate offer
+
+                controller -> mapper : toDTO(PublishedAnnouncementList, OfferList)
+                activate mapper
+
+                create dtolist
+                mapper --> dtolist** : create()
+
+
+                loop for each published announcement object
+                    
+                    mapper -> announcementlist : getPublishedAnnouncement(i)
+                    activate announcementlist
+                    announcementlist --> mapper : publishedAnnouncement
+                    deactivate announcementlist
+
+                    loop for each offer object
+
+                        mapper -> offerlist : getOffer(publishAnnouncement)
+                        activate offerlist
+                        offerlist --> mapper : offer
+                        deactivate offerlist
+
+                    end
+
+                    mapper --> mapper : announcementOffersDto = toDtoObject(publishedAnnouncement, offersListToDTO)
+
+                    mapper -> dtolist : add(announcementOffersDto)
+                    activate dtolist
+                    deactivate dtolist
+ 
+                end
+
+                mapper --> controller : announcementOffersDTOList
+                deactivate mapper
+
+                controller --> ui : announcementOffersDTOList
+                deactivate controller
+
+        deactivate controller
+
+ui --> agent : shows the list of purchase orders (Property details, client's email, offer date and offer value) and asks what offer does the agent want to choose
+deactivate ui
+
+
+agent -> ui : chooses the offer
+activate ui
+
+
+ui --> ui : keepOffer(offer)
+
+
+
+ui --> agent : asks if the agent wants to accept or decline the offer
+deactivate ui
+
+
+agent -> ui : accepts or declines the offer
+activate ui
+
+
+ui -> controller : sendOfferStatus(offer, status)
+activate controller
+controller -> offerrepository : 
+activate offerrepository
+offerrepository -> offer: sendOfferStatus(offer, status)
+activate offer
+        alt if status == accepted
+                loop for every offer
+                        alt if it is the offer that was accepted
+                                offer --> offer : changeStatusToAccepted()
+                        else if it is any other offer
+                                        offer --> offer : changeStatusToDeclined()
+                        end
+                end
+        else if status == declined
+                offer --> offer : changeStatusToAccepted()
+        end
+deactivate offer
+deactivate controller
+ui --> agent : displays operation success  
+deactivate ui
+
+deactivate agent
+
+@enduml

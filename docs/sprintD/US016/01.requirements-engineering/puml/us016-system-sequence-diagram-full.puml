@@ -39,14 +39,18 @@ activate System
 else Denies the booking request
 
 Agent -> System : denies the booking request
+activate System
 
 System --> Agent : asks the agent for a reason to decline the booking request
+deactivate System
 
 Agent -> System : writes the reasoon for the booking request to be denied
+activate System
 
 end
 
 System --> Agent : receives the agent's response and sends email
+deactivate System
 deactivate System
 
 Agent -> System : submits data

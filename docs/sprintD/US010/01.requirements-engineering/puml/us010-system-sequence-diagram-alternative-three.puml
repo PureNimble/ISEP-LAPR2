@@ -1,0 +1,22 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US010 - System Sequence Diagram - Alternative Three - Already a pending offer
+
+autonumber
+
+actor "Client" as Client
+participant ":System" as System
+
+activate Client
+
+Client -> System : asks to place an offer on a property
+activate System
+
+
+System --> Client : asks the user to wait until the pending \nrequest is either accepted or rejected
+deactivate Client
+@enduml

@@ -45,6 +45,12 @@ public class Store implements Serializable {
      */
     private int listing;
 
+    /**
+
+     The number of avaliable properties of the store
+     */
+    private int avaliableListing;
+
 
     /**
      * Constructs a {@code Store} object with a designation, an ID, an address, a phone number, and an email.
@@ -56,13 +62,14 @@ public class Store implements Serializable {
      * @param email       the email of the store
      * @param listing     the listing
      */
-    public Store(String designation, int id, Address address, long phoneNumber, String email, int listing) {
+    public Store(String designation, int id, Address address, long phoneNumber, String email, int listing, int avaliableListing) {
         this.designation = designation;
         this.id = id;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.listing = listing;
+        this.avaliableListing = avaliableListing;
     }
 
     /**
@@ -272,5 +279,23 @@ public class Store implements Serializable {
      */
     public void setListing(int listing) {
         this.listing = listing;
+    }
+
+    /**
+     * Gets availableListing.
+     *
+     * @return avaliableListing
+     */
+    public int getAvailableListing() {
+        return avaliableListing;
+    }
+
+    /**
+     * Sets avaliableListing.
+     *
+     * @param avaliableListing the avaliableListing
+     */
+    public void setAvailableListing(int avaliableListing) {
+        this.avaliableListing = avaliableListing;
     }
 }

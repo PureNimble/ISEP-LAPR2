@@ -1,0 +1,82 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "Agent" as agent
+participant ":OfferDecisionUI" as ui
+participant ":OfferDecisionController" as controller
+
+
+activate agent
+
+
+agent -> ui : asks for a list of real estate purchase orders for every property
+activate ui
+
+        create controller
+        ui -> controller: Create
+        ui -> controller: getOffersList()
+
+        activate controller
+                ref over controller
+
+                    us11_sequence_diagram_partial_getPropertyList
+
+                end ref
+
+                ref over controller
+
+                    us11_sequence_diagram_partial_getOfferList
+
+                end ref
+
+                ref over controller
+
+                    us11_sequence_diagram_partial_toDTO
+
+                end ref
+
+                controller --> ui : JointList
+                deactivate controller
+
+        deactivate controller
+
+ui --> agent : shows the list of purchase orders (Property details, client's email, offer date and offer value) and asks what offer does the agent want to choose
+deactivate ui
+
+
+agent -> ui : chooses the offer
+activate ui
+
+
+ui --> ui : keepOffer(offer)
+
+
+
+ui --> agent : asks if the agent wants to accept or decline the offer
+deactivate ui
+
+
+agent -> ui : accepts or declines the offer
+activate ui
+
+
+ui -> controller : sendOfferStatus(offer, status)
+activate controller
+
+        ref over controller
+
+            us11_sequence_diagram_partial_changeOfferStatus
+
+        end ref
+
+ui --> agent : displays operation success  
+deactivate controller
+deactivate ui
+
+deactivate agent
+
+@enduml
