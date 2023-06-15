@@ -28,7 +28,7 @@ class MessageTest {
     PropertyType propertyType = new PropertyType("House");
     TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
     Business business = new Business(200);
-    Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9);
+    Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9,1);
 
     List<Role> roles = new ArrayList<>();
     Employee employee = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store, roles, new Address("123 Main St", 12345, new District("Test District"), new City("Test City"), new State("Test State")));

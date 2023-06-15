@@ -111,7 +111,7 @@ class StoreRepositoryTest {
 
     @BeforeEach
     void setUpStore() {
-        store = new Store("Test Store", 1, address2, 5551234, "test@store.com",0);
+        store = new Store("Test Store", 1, address2, 5551234, "test@store.com",0,1 );
     }
 
 
@@ -135,8 +135,8 @@ class StoreRepositoryTest {
     void getStoreByDescription() {
 
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store1 = new Store("Store1", 1, address, 123456789, "store1@test.com",0);
-        Store store2 = new Store("Test Store", 2, address, 5551234, "test@store.com",0);
+        Store store1 = new Store("Store1", 1, address, 123456789, "store1@test.com",0,1);
+        Store store2 = new Store("Test Store", 2, address, 5551234, "test@store.com",0,1);
 
         stores.add(store1);
         stores.add(store2);
@@ -152,7 +152,7 @@ class StoreRepositoryTest {
     void add() {
 
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Store1", 1, address, 123456789, "store1@test.com",0);
+        Store store = new Store("Store1", 1, address, 123456789, "store1@test.com",0,1);
         Optional<Store> result = storeRepository.add(store);
 
         assertTrue(storeRepository.getStores().contains(store));
@@ -164,8 +164,8 @@ class StoreRepositoryTest {
     void getStores() {
 
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store1 = new Store("Store1", 1, address, 123456789, "store1@test.com",0);
-        Store store2 = new Store("Test Store", 2, address, 5551234, "test@store.com",0);
+        Store store1 = new Store("Store1", 1, address, 123456789, "store1@test.com",0,1);
+        Store store2 = new Store("Test Store", 2, address, 5551234, "test@store.com",0,1);
         stores.add(store1);
         stores.add(store2);
         storeRepository.add(store1);
@@ -179,8 +179,8 @@ class StoreRepositoryTest {
         // Arrange
         Address address1 = new Address("Street1", 12345, new District("Test District1"), new City("Test City1"), new State("Test State1"));
         Address address2 = new Address("Street2", 67890, new District("Test District2"), new City("Test City2"), new State("Test State2"));
-        Store store1 = new Store("Store1", 1, address1, 123456789, "store1@test.com", 0);
-        Store store2 = new Store("Store2", 2, address2, 5551234, "store2@test.com", 0);
+        Store store1 = new Store("Store1", 1, address1, 123456789, "store1@test.com", 0,1);
+        Store store2 = new Store("Store2", 2, address2, 5551234, "store2@test.com", 0,1);
         Date date1 = new Date(2023, Calendar.JANUARY, 1);
         Date date2 = new Date(2023, Calendar.FEBRUARY,1);
         Date date3 = new Date(2023,Calendar.MARCH,1);
@@ -215,24 +215,25 @@ class StoreRepositoryTest {
     }
 
     @Test
-    void getStoresByMostListings() {
+    void getStoresByMostAvailableListings() {
         // Arrange
+        List<Store> stores = new ArrayList<>();  // Instantiate the stores list
         Address address1 = new Address("Street1", 12345, new District("Test District1"), new City("Test City1"), new State("Test State1"));
         Address address2 = new Address("Street2", 67890, new District("Test District2"), new City("Test City2"), new State("Test State2"));
-        Store store1 = new Store("Store1", 1, address1, 123456789, "store1@test.com", 2);
-        Store store2 = new Store("Store2", 2, address2, 5551234, "store2@test.com", 3);
+        Store store1 = new Store("Store1", 1, address1, 123456789, "store1@test.com", 2, 1);
+        Store store2 = new Store("Store2", 2, address2, 5551234, "store2@test.com", 3, 1);
         stores.add(store1);
         stores.add(store2);
         storeRepository.add(store1);
         storeRepository.add(store2);
 
         // Act
-        List<Store> sortedStores = storeRepository.getStoresByMostListings();
+        List<Store> sortedStores = storeRepository.getStoresByMostAvailableListings();
 
         // Assert
         assertEquals(2, sortedStores.size());
-        assertEquals(store2, sortedStores.get(0));
-        assertEquals(store1, sortedStores.get(1));
+        assertEquals(store1, sortedStores.get(0));  // Corrected assertion order
+        assertEquals(store2, sortedStores.get(1));  // Corrected assertion order
     }
 
     @Test

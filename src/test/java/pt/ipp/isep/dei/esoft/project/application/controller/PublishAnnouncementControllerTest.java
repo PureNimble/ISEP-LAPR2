@@ -36,7 +36,7 @@ class PublishAnnouncementControllerTest {
 
     Property property1 = new Property(274,2576, new Photos("url"),address1);
 
-    Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 0);
+    Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 0,1);
 
     Employee agent1 = new Employee("agent@this.app", 123456789, 987654321, "Miguel", 1234567890L, store1, (List<Role>) role, address1);
 
@@ -211,7 +211,7 @@ class PublishAnnouncementControllerTest {
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
         Role role = new Role("Agent");
         Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Holloway",10234,address2,1234567890,"holloway@gmail.com", 0);
+        Store store = new Store("Holloway",10234,address2,1234567890,"holloway@gmail.com", 0,1);
         List<Role> roles = new ArrayList<>();
         roles.add(new Role("Agent"));
 
@@ -253,7 +253,7 @@ class PublishAnnouncementControllerTest {
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
         Role role = new Role("Agent");
         Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Holloway",10234,address2,1234567890,"holloway@gmail.com", 0);
+        Store store = new Store("Holloway",10234,address2,1234567890,"holloway@gmail.com", 0,1);
         List<Role> roles = new ArrayList<>();
         roles.add(new Role("Agent"));
 

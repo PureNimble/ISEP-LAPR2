@@ -23,7 +23,7 @@ class EmployeeRepositoryTest {
     @Test
     void add() {
         Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",0);
+        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",0,1);
         List<Role> roles = new ArrayList<>();
         roles.add(new Role("Agent"));
         roles.add(new Role("Manager"));
@@ -38,7 +38,7 @@ class EmployeeRepositoryTest {
     @Test
     void getEmployees() {
         Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",0);
+        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",0,1);
         List<Role> roles = new ArrayList<>();
         roles.add(new Role("Agent"));
         roles.add(new Role("Manager"));
@@ -53,7 +53,7 @@ class EmployeeRepositoryTest {
     @Test
     void getEmployeeByEmail() {
         Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com", 0);
+        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com", 0,1);
         List<Role> roles = new ArrayList<>();
         roles.add(new Role("Agent"));
         roles.add(new Role("Manager"));
@@ -68,7 +68,7 @@ class EmployeeRepositoryTest {
     @Test
     void getEmployeeByString() {
         Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com", 0);
+        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com", 0,1);
         List<Role> roles = new ArrayList<>();
         roles.add(new Role("Agent"));
         roles.add(new Role("Manager"));
@@ -83,7 +83,7 @@ class EmployeeRepositoryTest {
     @Test
     void getEmployeesAlphabeticallySorted() {
         Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com", 0);
+        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com", 0,1);
         List<Role> roles = new ArrayList<>();
         roles.add(new Role("Agent"));
         roles.add(new Role("Manager"));

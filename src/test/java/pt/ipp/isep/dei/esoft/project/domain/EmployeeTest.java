@@ -12,7 +12,7 @@ class EmployeeTest {
     @Test
     void getStore() {
         Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9);
+        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9,1 );
 
         List<Role> roles = new ArrayList<>();
         Employee employee = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store, roles, new Address("123 Main St", 12345, new District("Test District"), new City("Test City"), new State("Test State")));
@@ -23,7 +23,7 @@ class EmployeeTest {
     @Test
     void getRoles() {
         Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9);
+        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9,1);
         List<Role> roles = new ArrayList<>();
         roles.add(new Role("Agent"));
         roles.add(new Role("Manager"));
@@ -35,7 +35,7 @@ class EmployeeTest {
     @Test
     void testToString() {
         Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9);
+        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9,1 );
         List<Role> roles = new ArrayList<>();
         roles.add(new Role("Agent"));
         roles.add(new Role("Manager"));
@@ -50,7 +50,7 @@ class EmployeeTest {
     @Test
     void testEquals() {
         Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9);
+        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9,1 );
         List<Role> roles = new ArrayList<>();
         roles.add(new Role("Agent"));
         roles.add(new Role("Manager"));
@@ -69,7 +69,7 @@ class EmployeeTest {
     @Test
     void testHashCode() {
         Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9);
+        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9,1 );
         List<Role> roles = new ArrayList<>();
         roles.add(new Role("Agent"));
         roles.add(new Role("Manager"));
@@ -84,8 +84,8 @@ class EmployeeTest {
     @Test
     void setStore() {
         Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store1 = new Store("Store A", 1, address, 5551234, "storea@example.com", 9);
-        Store store2 = new Store("Store B", 2, address, 5554321, "storeb@example.com", 5);
+        Store store1 = new Store("Store A", 1, address, 5551234, "storea@example.com", 9,1);
+        Store store2 = new Store("Store B", 2, address, 5554321, "storeb@example.com", 5,1);
         List<Role> roles = new ArrayList<>();
         roles.add(new Role("Agent"));
         roles.add(new Role("Manager"));
@@ -104,7 +104,7 @@ class EmployeeTest {
     @Test
     void setRoles() {
         Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com", 9);
+        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com", 9,1 );
         List<Role> roles1 = new ArrayList<>();
         roles1.add(new Role("Agent"));
         roles1.add(new Role("Manager"));

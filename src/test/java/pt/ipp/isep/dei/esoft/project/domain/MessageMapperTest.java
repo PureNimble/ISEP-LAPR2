@@ -105,7 +105,7 @@ class MessageMapperTest {
 
     @BeforeEach
     void setUpStore() {
-        store = new Store("Test Store", 1, address2, 5551234, "test@store.com",9);
+        store = new Store("Test Store", 1, address2, 5551234, "test@store.com",9,1);
     }
 
 
@@ -114,11 +114,11 @@ class MessageMapperTest {
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
         Role role = new Role("Agent");
         Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Elvis",224,address,1274567809,"elvis@gmail.com", 0);
+        Store store = new Store("Elvis",224,address,1274567809,"elvis@gmail.com", 0,1 );
         List<Role> roles = new ArrayList<>();
         roles.add(new Role("Agent"));
         Employee employee1 = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store,  roles, address);
-        Store store1 = new Store("Store1", 1, address, 123456789, "store1@test.com",9);
+        Store store1 = new Store("Store1", 1, address, 123456789, "store1@test.com",9,1 );
 
         publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, employee1, new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L),77,AnnouncementState.available, store1);
         publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, land, propertyType, comission, business, employee,new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L),88,AnnouncementState.available,store);

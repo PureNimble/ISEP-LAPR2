@@ -23,7 +23,7 @@ class SendMessageControllerTest {
     Comission com = new Comission(25.00);
     Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
 
-    Store store = new Store("Holloway",10234,address2,1234567890,"holloway@gmail.com", 0);
+    Store store = new Store("Holloway",10234,address2,1234567890,"holloway@gmail.com", 0,1);
 
     Role role = new Role("Agent");
 

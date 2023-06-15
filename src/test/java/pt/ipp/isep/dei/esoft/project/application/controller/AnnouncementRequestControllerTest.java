@@ -101,7 +101,7 @@ class AnnouncementRequestControllerTest {
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
         Role role = new Role("Agent");
         Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Elvis",224,address,1274567809,"elvis@gmail.com", 0);
+        Store store = new Store("Elvis",224,address,1274567809,"elvis@gmail.com", 0,1 );
         List<Role> roles = new ArrayList<>();
         roles.add(role);
 
@@ -135,7 +135,7 @@ class AnnouncementRequestControllerTest {
         Business business = new Business(price);
         Role role = new Role("Agent");
         Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Elvis",224,address2,1274567809,"elvis@gmail.com", 0);
+        Store store = new Store("Elvis",224,address2,1274567809,"elvis@gmail.com", 0,1 );
         List<Role> roles = new ArrayList<>();
         roles.add(role);
         Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
@@ -174,32 +174,33 @@ class AnnouncementRequestControllerTest {
 
     @Test
     void createAnnouncementRequest() {
-
-        //The result is the same but the test keeps not working
+        // Create the expected AnnouncementRequest object
         Date date = new Date();
-
         Address address = new Address("vevt", 1234, new District("District"), new City("City"), new State("State"));
         House house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Y", "N", "South", new Photos("url"), address);
         PropertyType propertyType = new PropertyType("House");
         TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
         Double price = 1000.32;
         Business business = new Business(price);
-
-
         Role role = new Role("Agent");
         Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Elvis",224,address2,1274567809,"elvis@gmail.com", 0);
+        Store store = new Store("Elvis", 224, address2, 1274567809, "elvis@gmail.com", 0, 1);
         List<Role> roles = new ArrayList<>();
         roles.add(role);
-        Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
+        Employee employee = new Employee("12", 12, 12, "nome", 12, store, roles, address2);
+        Client client = new Client("client@this.app", 123456789, 1234567890, "client", address2, 1234567890L);
+        AnnouncementRequest expectedRequest = new AnnouncementRequest("announcemnt", date, typeOfBusiness, house, propertyType, business, employee, client);
 
-        AnnouncementRequest announcementRequestObject = new AnnouncementRequest("announcemnt",date, typeOfBusiness, house, propertyType, business, employee, new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L));
-
-        Optional<AnnouncementRequest> announcementRequest = Optional.of(announcementRequestObject);
-
-        Optional<AnnouncementRequest> announcementRequest1 = controller.createAnnouncementRequest(date, typeOfBusiness, house, propertyType, business, 5, employee, new Client("clientt@this.app", 128456789,1234067890,"clientttt",address2,1234567490L));
-
-        assertEquals(announcementRequest.get(), announcementRequest1.get());
-
-    }
+        // Call the createAnnouncementRequest method and get the actual AnnouncementRequest object
+        AnnouncementRequest actualRequest = controller.createAnnouncementRequest(date, typeOfBusiness, house, propertyType, business, 5, employee, client)
+                .orElseThrow(() -> new AssertionError("AnnouncementRequest not created"));
+        assertAll("AnnouncementRequest properties",
+                () -> assertEquals(expectedRequest.getDate(), actualRequest.getDate()),
+                () -> assertEquals(expectedRequest.getTypeOfBusiness(), actualRequest.getTypeOfBusiness()),
+                () -> assertEquals(expectedRequest.getProperty(), actualRequest.getProperty()),
+                () -> assertEquals(expectedRequest.getPropertyType(), actualRequest.getPropertyType()),
+                () -> assertEquals(expectedRequest.getBusiness(), actualRequest.getBusiness()),
+                () -> assertEquals(expectedRequest.getAgent(), actualRequest.getAgent()),
+                () -> assertEquals(expectedRequest.getClient(), actualRequest.getClient())
+        );    }
 }

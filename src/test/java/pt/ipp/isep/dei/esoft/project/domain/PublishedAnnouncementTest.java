@@ -21,7 +21,7 @@ class PublishedAnnouncementTest {
     }
     Photos photos = new Photos("urlll");
     Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
-    Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9);
+    Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9,1);
     Photos photos1 = new Photos("ulll");
     Address address1 = new Address("12 St", 13426, new District("District"), new City("City"), new State("State"));
     Photos photos2 = new Photos("ulvrtbll");
@@ -236,7 +236,7 @@ class PublishedAnnouncementTest {
     @Test
     void setStore() {
         PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, employee, client, 99, AnnouncementState.available, store);
-        Store newStore = new Store("Store B", 2, address2, 5554321, "storeb@example.com", 8);
+        Store newStore = new Store("Store B", 2, address2, 5554321, "storeb@example.com", 8,1);
         announcement.setStore(newStore);
         assertEquals(newStore, announcement.getStore());
     }

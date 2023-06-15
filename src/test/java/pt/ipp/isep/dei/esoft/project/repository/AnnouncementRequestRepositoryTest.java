@@ -99,7 +99,7 @@ class AnnouncementRequestRepositoryTest {
 
     @BeforeEach
     void setUpStore() {
-        store = new Store("Test Store", 1, address2, 5551234, "test@store.com",0);
+        store = new Store("Test Store", 1, address2, 5551234, "test@store.com",0, 1);
     }
 
     @BeforeEach
@@ -133,7 +133,7 @@ class AnnouncementRequestRepositoryTest {
 
         Role role = new Role("Agent");
         Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com",0);
+        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com",0,1);
         List<Role> roles = new ArrayList<>();
         roles.add(role);
         Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
@@ -151,7 +151,7 @@ class AnnouncementRequestRepositoryTest {
         AnnouncementRequestRepository repository = new AnnouncementRequestRepository();
         Role role = new Role("Agent");
         Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com",0);
+        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com",0,1);
         List<Role> roles = new ArrayList<>();
         roles.add(role);
         Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
@@ -167,7 +167,7 @@ class AnnouncementRequestRepositoryTest {
 
         Role role = new Role("Agent");
         Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com",0);
+        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com",0,1);
         List<Role> roles = new ArrayList<>();
         roles.add(role);
         Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);

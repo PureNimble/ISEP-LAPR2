@@ -29,7 +29,7 @@ class PlaceOfferControllerTest {
 
     Property property1 = new Property(274,2576, new Photos("url"),address1);
 
-    Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 0);
+    Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 0,1 );
 
     @BeforeEach
     void setUp() {

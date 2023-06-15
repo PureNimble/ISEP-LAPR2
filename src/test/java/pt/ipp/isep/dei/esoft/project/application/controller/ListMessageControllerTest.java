@@ -39,7 +39,7 @@ public class ListMessageControllerTest {
     Address address1 = new Address("3655 S Las Vegas Blvd", 892109, new District("Paradise"), new City("Las Vegas"), new State("Nevada"));
     Client client1 = new Client("pedro@gmail.com", 123456789, 987654321, "Pedro", address1, 1234567890);
     AnnouncementState state1 = AnnouncementState.available;
-    Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 0);
+    Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 0,1);
 
 
     Message message1 = new Message("Pedro",1234567890,"Olá",new Date(2023,Calendar.DECEMBER,1),11,12,new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType1, comission1, business1, agent1, client1, 1, state1, store1), MessageState.UNANSWERED, false);

@@ -56,7 +56,7 @@ class RegisterEmployeeControllerTest {
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
         Role role = new Role("Agent");
         Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Elvis",224,address,1274567809,"elvis@gmail.com", 0);
+        Store store = new Store("Elvis",224,address,1274567809,"elvis@gmail.com", 0,1);
         List<Role> roles = new ArrayList<>();
         roles.add(new Role("Agent"));
 
@@ -155,8 +155,8 @@ class RegisterEmployeeControllerTest {
     void getStore() {
         Address address = new Address("Streett Test", 45672, new District("Test District"), new City("Test City"), new State("Test State"));
         Address address1 = new Address("Test", 45472, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store1 = new Store("Madona",294,address,1274567808,"madona@gmail.com", 1);
-        Store store2 = new Store("Elvis",224,address1,1274567809,"elvis@gmail.com", 0);
+        Store store1 = new Store("Madona",294,address,1274567808,"madona@gmail.com", 1,1);
+        Store store2 = new Store("Elvis",224,address1,1274567809,"elvis@gmail.com", 0,2);
         stores.add(store1);
         stores.add(store2);
         storeRepository.add(store1);
@@ -168,7 +168,7 @@ class RegisterEmployeeControllerTest {
     @Test
     void getEmployee() {
         Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Madona",294,address,1274567808,"madona@gmail.com", 1);
+        Store store = new Store("Madona",294,address,1274567808,"madona@gmail.com", 1,1);
         List<Role> roles = new ArrayList<>();
         roles.add(new Role("Agent"));
         roles.add(new Role("Manager"));
@@ -206,7 +206,7 @@ class RegisterEmployeeControllerTest {
     @Test
     void getRoles() {
         Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Madona",294,address,1274567808,"madona@gmail.com", 1);
+        Store store = new Store("Madona",294,address,1274567808,"madona@gmail.com", 1,1);
         List<Role> roles = new ArrayList<>();
         roles.add(new Role("Agent"));
         roles.add(new Role("Manager"));

@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class PropertyTest {
     Photos photos = new Photos("urlll");
     Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
-    Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9);
+    Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9,1 );
     Photos photos1 = new Photos("ulll");
     Address address1 = new Address("12 St", 13426, new District("District"), new City("City"), new State("State"));
     Photos photos2 = new Photos("ulvrtbll");

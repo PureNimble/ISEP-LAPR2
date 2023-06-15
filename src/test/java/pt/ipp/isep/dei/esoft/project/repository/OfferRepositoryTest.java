@@ -28,7 +28,7 @@ class OfferRepositoryTest {
     Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
 
     List<Role> roles;
-    Store store = new Store("Holloway",10234,address2,1234567890,"holloway@gmail.com", 0);
+    Store store = new Store("Holloway",10234,address2,1234567890,"holloway@gmail.com", 0,1 );
 
     Employee employee =  new Employee("age@this.app", 123446789, 987658321, "Miguelito", 1234587890L, store, roles , address2);
 

@@ -20,7 +20,7 @@ class MergeSortTest {
     int endTime = 11;
     Client client = new Client("client@this.app", 123456789, 123456789, "client", address, 1234567890L);
 
-    Store store = new Store("Store A", 1, address, 5551234, "storea@example.com", 9);
+    Store store = new Store("Store A", 1, address, 5551234, "storea@example.com", 9,1);
     Comission com = new Comission(25.00);
     List<Role> roles = new ArrayList<>();
     Employee employee = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store, roles, address);

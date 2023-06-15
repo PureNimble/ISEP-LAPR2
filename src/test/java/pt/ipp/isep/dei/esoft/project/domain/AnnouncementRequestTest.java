@@ -29,7 +29,7 @@ class AnnouncementRequestTest {
         Role role = new Role("Agent");
 
         int durationOfContract = 6;
-        Store store = new Store("Test Store", 1, address, 5551234, "test@store.com", 9);
+        Store store = new Store("Test Store", 1, address, 5551234, "test@store.com", 9,1);
         List<Role> roles = new ArrayList<>();
         roles.add(role);
         Employee agent = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store, roles, new Address("123 Main St", 12345, new District("Test District"), new City("Test City"), new State("Test State")));
@@ -47,7 +47,7 @@ class AnnouncementRequestTest {
         Business business = new Business(34566);
         Role role = new Role("Agent");
         Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Test Store", 1, address, 5551234, "test@store.com", 9);
+        Store store = new Store("Test Store", 1, address, 5551234, "test@store.com", 9,1);
         List<Role> roles = new ArrayList<>();
         roles.add(role);
         Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
@@ -75,7 +75,7 @@ class AnnouncementRequestTest {
         int durationOfContract = 12;
         Role role = new Role("Agent");
         Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com",9);
+        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com",9,1);
         List<Role> roles = new ArrayList<>();
         roles.add(role);
         Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
@@ -209,7 +209,7 @@ class AnnouncementRequestTest {
     @Test
     void setAgent() {
         Role role = new Role("Agent");
-        Store store = new Store("Test Store", 1, address, 5551234, "test@store.com", 9);
+        Store store = new Store("Test Store", 1, address, 5551234, "test@store.com", 9,1);
         List<Role> roles = new ArrayList<>();
         roles.add(role);
         Employee newAgent = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store, roles, new Address("123 Main St", 12345, new District("Test District"), new City("Test City"), new State("Test State")));

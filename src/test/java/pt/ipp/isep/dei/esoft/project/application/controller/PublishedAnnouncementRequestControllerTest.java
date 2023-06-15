@@ -109,7 +109,7 @@ class PublishedAnnouncementRequestControllerTest {
 
     @BeforeEach
     void setUpStore() {
-        store = new Store("Test Store", 1, address2, 5551234, "test@store.com",5);
+        store = new Store("Test Store", 1, address2, 5551234, "test@store.com",5,1);
     }
 
 
@@ -120,7 +120,7 @@ class PublishedAnnouncementRequestControllerTest {
         AvailableEquipment equipment1 = new AvailableEquipment("Air Conditioning");
         Address address1 = new Address("3655 S Las Vegas Blvd", 892109, new District("Paradise"), new City("Las Vegas"), new State("Nevada"));
         Property property1 = new Property(274,2576, new Photos("url"),address1);
-        Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 0);
+        Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 0,1);
         Employee agent1 = new Employee("agent@this.app", 123456789, 987654321, "Miguel", 1234567890L, store1, (List<Role>) role, address1);
         PropertyType propertyType1 = new PropertyType("House");
         TypeOfBusiness typeOfBusiness1 = new TypeOfBusiness("Sale");

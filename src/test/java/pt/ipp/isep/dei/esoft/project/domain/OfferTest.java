@@ -18,7 +18,7 @@ class OfferTest {
 
     int offerID = 1;
     Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
-    Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9);
+    Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9,1 );
 
     OfferState offerState = OfferState.pending;
 
@@ -167,7 +167,7 @@ class OfferTest {
         Photos photos = new Photos("urlll");
         int offerID = 1;
         Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9);
+        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com",9,1 );
         OfferState offerState = OfferState.pending;
 
         List<Role> roles = new ArrayList<>();

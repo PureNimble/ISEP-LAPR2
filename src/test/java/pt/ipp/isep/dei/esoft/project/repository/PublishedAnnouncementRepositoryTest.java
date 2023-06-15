@@ -112,7 +112,7 @@ class PublishedAnnouncementRepositoryTest {
 
     @BeforeEach
     void setUpStore() {
-        store = new Store("Test Store", 1, address2, 5551234, "test@store.com",0);
+        store = new Store("Test Store", 1, address2, 5551234, "test@store.com",0, 1);
     }
 
 
