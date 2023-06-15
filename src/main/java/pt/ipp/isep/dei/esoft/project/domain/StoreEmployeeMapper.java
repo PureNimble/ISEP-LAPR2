@@ -22,7 +22,7 @@ public class StoreEmployeeMapper {
             StoreEmployeeDTO storeEmployeeDTO;
             String storeName = store.getDesignation();
             int storeId = store.getId();
-            int storeListing = store.getListing();
+            int availableListing = store.getAvailableListing();
             
             List<Employee> employees = new ArrayList<>();
             for (Employee employee : employeeList) {
@@ -30,7 +30,7 @@ public class StoreEmployeeMapper {
                     employees.add(employee);
                 }
             }
-            storeEmployeeDTO = toDtoObject(storeName, storeId, storeListing, employees);
+            storeEmployeeDTO = toDtoObject(storeName, storeId, availableListing, employees);
             storeEmployeeDTOs.add(storeEmployeeDTO);
         }
 

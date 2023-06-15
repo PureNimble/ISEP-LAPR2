@@ -12,7 +12,7 @@ public class StoreEmployeeDTO {
 
     private String storeDesignation;
     private int storeId;
-    private int storeListing;
+    private int availableListing;
 
     /**
      * Instantiates a new Store employee dto.
@@ -22,10 +22,10 @@ public class StoreEmployeeDTO {
      * @param listing     the listing
      * @param employees   the employees
      */
-    public StoreEmployeeDTO(String designation, int id, int listing, List<Employee> employees) {
+    public StoreEmployeeDTO(String designation, int id, int availableListing, List<Employee> employees) {
         this.storeDesignation = designation;
         this.storeId = id;
-        this.storeListing = listing;
+        this.availableListing = availableListing;
         this.employees = employees;
     }
 
@@ -35,7 +35,7 @@ public class StoreEmployeeDTO {
      * @return the string
      */
     public String toStringStore() {
-        return String.format("Name of the store: %s Id: %s Number of properties: %s", storeDesignation, storeId, storeListing);
+        return String.format("Name of the store: %s Id: %s Number of properties: %s", storeDesignation, storeId, availableListing);
     }
 
     /**
@@ -91,8 +91,8 @@ public class StoreEmployeeDTO {
      *
      * @return the store listing
      */
-    public int getStoreListing() {
-        return storeListing;
+    public int getStoreAvailableListing() {
+        return availableListing;
     }
 
     /**
@@ -100,8 +100,8 @@ public class StoreEmployeeDTO {
      *
      * @param storeListing the store listing
      */
-    public void setStoreListing(int storeListing) {
-        this.storeListing = storeListing;
+    public void setStoreAvailableListing(int availableListing) {
+        this.availableListing = availableListing;
     }
 
     /**
@@ -115,6 +115,6 @@ public class StoreEmployeeDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(storeDesignation, storeId, storeListing, employees);
+        return Objects.hash(storeDesignation, storeId, availableListing, employees);
     }
 }

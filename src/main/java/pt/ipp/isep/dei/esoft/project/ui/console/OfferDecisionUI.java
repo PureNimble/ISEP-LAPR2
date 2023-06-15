@@ -114,6 +114,7 @@ public class OfferDecisionUI implements Runnable{
             if (choice == 1){
                 controller.declineOtherOffers(offer, offersList);
                 controller.changeAnnouncementState(offer.getPublishedAnnouncement());
+                controller.storeDecrement(offer.getPublishedAnnouncement().getStore());
                 decision = "accepted";
                 finalMessage = "Please contact us in order to finish all the paperwork and so that you can start this new chapter of your life as soon as possible.";
             }

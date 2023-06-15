@@ -3,13 +3,14 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 import pt.ipp.isep.dei.esoft.project.domain.AnnouncementOffersDTO;
 import pt.ipp.isep.dei.esoft.project.domain.AnnouncementOffersMapper;
 import pt.ipp.isep.dei.esoft.project.domain.Offer;
-import pt.ipp.isep.dei.esoft.project.domain.OfferState;
 import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
+import pt.ipp.isep.dei.esoft.project.domain.Store;
 import pt.ipp.isep.dei.esoft.project.domain.emailServices.EmailService;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
 import pt.ipp.isep.dei.esoft.project.repository.PublishedAnnouncementRepository;
 import pt.ipp.isep.dei.esoft.project.repository.OfferRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
+import pt.ipp.isep.dei.esoft.project.repository.StoreRepository;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -32,6 +33,10 @@ public class OfferDecisionController {
      * The OfferRepository instance.
      */
     private OfferRepository offerRepository = null;
+    /**
+     * The StoreRepository instance.
+     */
+    private StoreRepository storeRepository = null;
 
     /**
      * Constructs a new instance of PlaceOfferController and initializes the repositories.
@@ -40,6 +45,7 @@ public class OfferDecisionController {
         getPublishedAnnouncementRepository();
         getAuthenticationRepository();
         getOfferRepository();
+        getStoreRepository();
     }
     /**
      * Retrieves the OfferRepository instance.
@@ -85,6 +91,21 @@ public class OfferDecisionController {
     }
 
     /**
+     * Retrieves the StoreRepository instance.
+     *
+     * @return The StoreRepository instance.
+     */
+    private StoreRepository getStoreRepository() {
+        if (storeRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+
+            //Get the PublishedAnnouncementRepository
+            storeRepository = repositories.getStoreRepository();
+        }
+        return storeRepository;
+    }
+
+    /**
      * Get offers list.
      *
      * @return the list
@@ -118,14 +139,41 @@ public class OfferDecisionController {
         offerRepository.declineOtherOffers(offer, offersList);
     }
 
+    /**
+     * Decline other offer.
+     *
+     * @param offer the offer
+     */
     public void declineOffer(Offer offer){
         offerRepository.declineOffer(offer);
     }
 
+
+    /**
+     * Decrements the store available properties.
+     *
+     * @param store the store
+     */
+    public void storeDecrement(Store store){
+        storeRepository.decrementAvailableListing(store);
+    }
+
+    /**
+     * Changes the Announcement state.
+     *
+     * @param publishedAnnouncement the publishedAnnouncement
+     */
     public void changeAnnouncementState(PublishedAnnouncement publishedAnnouncement) {
         publishedAnnouncementRepository.changeAnnouncementState(publishedAnnouncement);
     }
 
+    /**
+     * Sends the Email.
+     *
+     * @param email the email
+     * @param subject the subject
+     * @param body the body
+     */
     public boolean sendVisualizedEmail(String email, String subject, String body) {
         // Load configuration properties
         Properties properties = new Properties();

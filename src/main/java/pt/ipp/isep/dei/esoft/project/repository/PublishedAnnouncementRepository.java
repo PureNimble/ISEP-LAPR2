@@ -289,7 +289,7 @@ public class PublishedAnnouncementRepository implements Serializable {
                 phoneNumber = Long.parseLong(ownerInformations[28].replaceAll("-", ""));
                 email = ownerInformations[29];
 
-                Store store = new Store(designation, id, addressStore, phoneNumber, email, 0);
+                Store store = new Store(designation, id, addressStore, phoneNumber, email, 0, 0);
 
 
                 TypeOfBusiness typeOfBusinessA = new TypeOfBusiness(typeOfBusiness);

@@ -126,9 +126,9 @@ public class DisplayEmployeeController {
      * @return the employees allphabetically sorted
      */
     public List <StoreEmployeeDTO> toDTO() {
-        getStoresProperty();
+        //getStoresProperty();
         StoreEmployeeMapper storeEmployeeMapper = new StoreEmployeeMapper();
-        List<Store> listStore = storeRepository.getStoresByMostListings();
+        List<Store> listStore = storeRepository.getStoresByMostAvailableListings();
         List<Employee> listEmployee = employeeRepository.getEmployeesAllphabeticallySorted();
         return storeEmployeeMapper.toDTO(listStore, listEmployee);
     }
