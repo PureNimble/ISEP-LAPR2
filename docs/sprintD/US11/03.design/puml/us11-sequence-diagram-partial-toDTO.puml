@@ -1,0 +1,56 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+participant ":OfferDecisionController" as controller
+participant ":OfferMapper" as mapper
+participant "PropertyList\n:List<Property>" as propertylist
+participant "OfferList\n:List<OfferList>" as offerlist
+participant "JointListDTO\n:List<JointListDTO>" as jointlist
+
+activate controller
+                controller -> mapper : toDTO(PropertyList, OfferList)
+                activate mapper
+
+                create jointlist
+                mapper --> jointlist** : create()
+
+
+                loop for each property object
+                    
+                    mapper -> propertylist : getProperty(i)
+                    activate propertylist
+                    propertylist --> mapper : property
+                    deactivate propertylist
+
+                    mapper --> mapper : storeDTO = toDTO(property)
+
+                    mapper -> jointlist : add(storeDTO)
+                    activate jointlist
+                    deactivate jointlist
+
+                    loop for each offer object
+
+                        mapper -> offerlist : getOffer(property)
+                        activate offerlist
+                        offerlist --> mapper : offer
+                        deactivate offerlist
+                        mapper --> mapper : offerDTO = toDTO(offer)
+                        mapper -> jointlist : add(offerDTO)
+                        activate jointlist
+                        deactivate jointlist
+
+                    end
+ 
+                end
+
+                mapper --> controller : JointList
+                deactivate mapper
+
+        deactivate controller
+
+
+@enduml

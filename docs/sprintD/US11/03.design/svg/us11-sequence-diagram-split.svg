@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="850px" preserveAspectRatio="none" style="width:1330px;height:850px;background:#FFFFFF;" version="1.1" viewBox="0 0 1330 850" width="1330px" zoomAndPan="magnify"><defs/><g><rect fill="#FFFFFF" height="657.6563" style="stroke:#181818;stroke-width:1.0;" width="10" x="21.5" y="92.6094"/><rect fill="#FFFFFF" height="363.5625" style="stroke:#181818;stroke-width:1.0;" width="10" x="888.5" y="114.9609"/><rect fill="#FFFFFF" height="73.7031" style="stroke:#181818;stroke-width:1.0;" width="10" x="888.5" y="508.875"/><rect fill="#FFFFFF" height="137.3359" style="stroke:#181818;stroke-width:1.0;" width="10" x="888.5" y="612.9297"/><rect fill="#FFFFFF" height="260.25" style="stroke:#181818;stroke-width:1.0;" width="10" x="1104.5" y="187.9219"/><rect fill="#FFFFFF" height="106.9844" style="stroke:#181818;stroke-width:1.0;" width="10" x="1104.5" y="643.2813"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="26" x2="26" y1="82.6094" y2="768.2656"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="893.5" x2="893.5" y1="82.6094" y2="768.2656"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1109.5" x2="1109.5" y1="154.2656" y2="768.2656"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="37" x="5" y="79.5332">Agent</text><ellipse cx="26.5" cy="13.5" fill="#E3E3E3" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M26.5,21.5 L26.5,48.5 M13.5,29.5 L39.5,29.5 M26.5,48.5 L13.5,63.5 M26.5,48.5 L39.5,63.5 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="37" x="5" y="781.7988">Agent</text><ellipse cx="26.5" cy="793.375" fill="#E3E3E3" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M26.5,801.375 L26.5,828.375 M13.5,809.375 L39.5,809.375 M26.5,828.375 L13.5,843.375 M26.5,828.375 L39.5,843.375 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><rect fill="#E3E3E3" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="116" x="835.5" y="50"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="102" x="842.5" y="71.5332">:OfferDecisionUI</text><rect fill="#E3E3E3" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="116" x="835.5" y="767.2656"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="102" x="842.5" y="788.7988">:OfferDecisionUI</text><rect fill="#E3E3E3" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="166" x="1026.5" y="767.2656"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="152" x="1033.5" y="788.7988">:OfferDecisionController</text><rect fill="#FFFFFF" height="657.6563" style="stroke:#181818;stroke-width:1.0;" width="10" x="21.5" y="92.6094"/><rect fill="#FFFFFF" height="363.5625" style="stroke:#181818;stroke-width:1.0;" width="10" x="888.5" y="114.9609"/><rect fill="#FFFFFF" height="73.7031" style="stroke:#181818;stroke-width:1.0;" width="10" x="888.5" y="508.875"/><rect fill="#FFFFFF" height="137.3359" style="stroke:#181818;stroke-width:1.0;" width="10" x="888.5" y="612.9297"/><rect fill="#FFFFFF" height="260.25" style="stroke:#181818;stroke-width:1.0;" width="10" x="1104.5" y="187.9219"/><rect fill="#FFFFFF" height="106.9844" style="stroke:#181818;stroke-width:1.0;" width="10" x="1104.5" y="643.2813"/><polygon fill="#181818" points="876.5,110.9609,886.5,114.9609,876.5,118.9609,880.5,114.9609" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="31.5" x2="882.5" y1="114.9609" y2="114.9609"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="38.5" y="110.1045">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="357" x="49.5" y="110.1045">asks for a list of real estate purchase orders for every property</text><polygon fill="#181818" points="1014.5,141.3125,1024.5,145.3125,1014.5,149.3125,1018.5,145.3125" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="898.5" x2="1020.5" y1="145.3125" y2="145.3125"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="905.5" y="140.4561">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="38" x="916.5" y="140.4561">Create</text><rect fill="#E3E3E3" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="166" x="1026.5" y="122.9609"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="152" x="1033.5" y="144.4941">:OfferDecisionController</text><polygon fill="#181818" points="1092.5,183.9219,1102.5,187.9219,1092.5,191.9219,1096.5,187.9219" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="898.5" x2="1098.5" y1="187.9219" y2="187.9219"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="905.5" y="183.0654">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="81" x="916.5" y="183.0654">getOffersList()</text><rect fill="none" height="71.6328" style="stroke:#000000;stroke-width:1.5;" width="281" x="1023.5" y="195.9219"/><path d="M1023.5,195.9219 L1085.5,195.9219 L1085.5,203.9219 L1075.5,213.9219 L1023.5,213.9219 L1023.5,195.9219 " fill="#EEEEEE" style="stroke:#000000;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="17" x="1036.5" y="211.417">ref</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="3" x="1162.5" y="230.3789"> </text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="273" x="1027.5" y="245.4727">us11_sequence_diagram_partial_getPropertyList</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="3" x="1162.5" y="260.5664"> </text><rect fill="none" height="71.6328" style="stroke:#000000;stroke-width:1.5;" width="262" x="1023.5" y="272.5547"/><path d="M1023.5,272.5547 L1085.5,272.5547 L1085.5,280.5547 L1075.5,290.5547 L1023.5,290.5547 L1023.5,272.5547 " fill="#EEEEEE" style="stroke:#000000;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="17" x="1036.5" y="288.0498">ref</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="3" x="1153" y="307.0117"> </text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="254" x="1027.5" y="322.1055">us11_sequence_diagram_partial_getOfferList</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="3" x="1153" y="337.1992"> </text><rect fill="none" height="71.6328" style="stroke:#000000;stroke-width:1.5;" width="234" x="1023.5" y="349.1875"/><path d="M1023.5,349.1875 L1085.5,349.1875 L1085.5,357.1875 L1075.5,367.1875 L1023.5,367.1875 L1023.5,349.1875 " fill="#EEEEEE" style="stroke:#000000;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="17" x="1036.5" y="364.6826">ref</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="3" x="1139" y="383.6445"> </text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="226" x="1027.5" y="398.7383">us11_sequence_diagram_partial_toDTO</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="3" x="1139" y="413.832"> </text><polygon fill="#181818" points="909.5,444.1719,899.5,448.1719,909.5,452.1719,905.5,448.1719" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="903.5" x2="1108.5" y1="448.1719" y2="448.1719"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="915.5" y="443.3154">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="48" x="926.5" y="443.3154">JointList</text><polygon fill="#181818" points="42.5,474.5234,32.5,478.5234,42.5,482.5234,38.5,478.5234" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="36.5" x2="892.5" y1="478.5234" y2="478.5234"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="48.5" y="473.667">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="822" x="59.5" y="473.667">shows the list of purchase orders (Property details, client's email, offer date and offer value) and asks what offer does the agent want to choose</text><polygon fill="#181818" points="876.5,504.875,886.5,508.875,876.5,512.875,880.5,508.875" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="31.5" x2="882.5" y1="508.875" y2="508.875"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="38.5" y="504.0186">6</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="99" x="49.5" y="504.0186">chooses the offer</text><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="898.5" x2="940.5" y1="539.2266" y2="539.2266"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="940.5" x2="940.5" y1="539.2266" y2="552.2266"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="899.5" x2="940.5" y1="552.2266" y2="552.2266"/><polygon fill="#181818" points="909.5,548.2266,899.5,552.2266,909.5,556.2266,905.5,552.2266" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="905.5" y="534.3701">7</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="87" x="916.5" y="534.3701">keepOffer(offer)</text><polygon fill="#181818" points="42.5,578.5781,32.5,582.5781,42.5,586.5781,38.5,582.5781" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="36.5" x2="892.5" y1="582.5781" y2="582.5781"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="48.5" y="577.7217">8</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="302" x="59.5" y="577.7217">asks if the agent wants to accept or decline the offer</text><polygon fill="#181818" points="876.5,608.9297,886.5,612.9297,876.5,616.9297,880.5,612.9297" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="31.5" x2="882.5" y1="612.9297" y2="612.9297"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="38.5" y="608.0732">9</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="163" x="49.5" y="608.0732">accepts or declines the offer</text><polygon fill="#181818" points="1092.5,639.2813,1102.5,643.2813,1092.5,647.2813,1096.5,643.2813" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="898.5" x2="1098.5" y1="643.2813" y2="643.2813"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="905.5" y="638.4248">10</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="169" x="923.5" y="638.4248">sendOfferStatus(offer, status)</text><rect fill="none" height="71.6328" style="stroke:#000000;stroke-width:1.5;" width="301" x="1023.5" y="651.2813"/><path d="M1023.5,651.2813 L1085.5,651.2813 L1085.5,659.2813 L1075.5,669.2813 L1023.5,669.2813 L1023.5,651.2813 " fill="#EEEEEE" style="stroke:#000000;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="17" x="1036.5" y="666.7764">ref</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="3" x="1172.5" y="685.7383"> </text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="293" x="1027.5" y="700.832">us11_sequence_diagram_partial_changeOfferStatus</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="3" x="1172.5" y="715.9258"> </text><polygon fill="#181818" points="37.5,746.2656,27.5,750.2656,37.5,754.2656,33.5,750.2656" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="31.5" x2="892.5" y1="750.2656" y2="750.2656"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="14" x="43.5" y="745.4092">11</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="158" x="61.5" y="745.4092">displays operation success</text><!--MD5=[7696da8cdda3db5b814ec3bf44b75e91]
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "Agent" as agent
+participant ":OfferDecisionUI" as ui
+participant ":OfferDecisionController" as controller
+
+
+activate agent
+
+
+agent -> ui : asks for a list of real estate purchase orders for every property
+activate ui
+
+        create controller
+        ui -> controller: Create
+        ui -> controller: getOffersList()
+
+        activate controller
+                ref over controller
+
+                    us11_sequence_diagram_partial_getPropertyList
+
+                end ref
+
+                ref over controller
+
+                    us11_sequence_diagram_partial_getOfferList
+
+                end ref
+
+                ref over controller
+
+                    us11_sequence_diagram_partial_toDTO
+
+                end ref
+
+                controller - -> ui : JointList
+                deactivate controller
+
+        deactivate controller
+
+ui - -> agent : shows the list of purchase orders (Property details, client's email, offer date and offer value) and asks what offer does the agent want to choose
+deactivate ui
+
+
+agent -> ui : chooses the offer
+activate ui
+
+
+ui - -> ui : keepOffer(offer)
+
+
+
+ui - -> agent : asks if the agent wants to accept or decline the offer
+deactivate ui
+
+
+agent -> ui : accepts or declines the offer
+activate ui
+
+
+ui -> controller : sendOfferStatus(offer, status)
+activate controller
+
+        ref over controller
+
+            us11_sequence_diagram_partial_changeOfferStatus
+
+        end ref
+
+ui - -> agent : displays operation success  
+deactivate controller
+deactivate ui
+
+deactivate agent
+
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 18:01:30 WEST 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>

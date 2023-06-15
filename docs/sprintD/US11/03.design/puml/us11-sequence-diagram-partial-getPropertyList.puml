@@ -1,0 +1,61 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+participant ":OfferDecisionController" as controller
+participant ":Repositories" as singleton
+participant "repositories\n:Repositories" as repositories
+participant "Property\n:Property" as property
+participant "propertyRepository\n:PropertyRepository" as propertyrepository
+participant ":OfferMapper" as mapper
+participant "PropertyList\n:List<Property>" as propertylist
+
+activate controller
+
+        controller -> singleton : getInstance()
+        activate singleton
+
+                singleton --> controller : repository
+
+            deactivate singleton
+
+            controller -> repositories : getPropertyRepository()
+
+            activate repositories
+
+                repositories --> controller : PropertyRepository
+
+            deactivate repositories
+
+                controller -> property : getPropertiesList()
+                activate property
+
+                create propertylist
+                property --> propertylist** : create()
+
+                    loop for each property
+                    
+                        property -> propertyrepository : getProperty(i)
+                        activate propertyrepository
+                        propertyrepository --> property : Property
+                        deactivate propertyrepository
+
+                        opt if property not sold
+
+                                property --> property : compare(property1Date, property2Date)
+
+                                property -> propertylist : add(property)
+                                activate propertylist
+                                deactivate propertylist
+
+                        end
+ 
+                    end
+
+                property --> controller : PropertyList
+
+                deactivate property
+        
+@enduml
