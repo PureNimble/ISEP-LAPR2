@@ -10,14 +10,14 @@ participant ":OfferDecisionUI" as ui
 participant ":OfferDecisionController" as controller
 participant ":Repositories" as singleton
 participant "repositories\n:Repositories" as repositories
-participant "Property\n:Property" as property
-participant "propertyRepository\n:PropertyRepository" as propertyrepository
+participant "PublishedAnnouncement\n:PublishedAnnouncement" as announcement
+participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as announcementrep
 participant "Offer\n:Offer" as offer
 participant "offerRepository\n:OfferRepository" as offerrepository
 participant ":OfferMapper" as mapper
-participant "PropertyList\n:List<Property>" as propertylist
+participant "PublishedAnnouncementList\n:List<PublishedAnnouncement>" as announcementlist
 participant "OfferList\n:List<OfferList>" as offerlist
-participant "JointListDTO\n:List<JointListDTO>" as jointlist
+participant "AnnouncementOfferDTO\n:List<AnnouncementOfferDTO>" as dtolist
 
 
 activate agent
@@ -39,42 +39,42 @@ activate ui
 
             deactivate singleton
 
-            controller -> repositories : getPropertyRepository()
+            controller -> repositories : getPublishedAnnouncementRepository()
 
             activate repositories
 
-                repositories --> controller : PropertyRepository
+                repositories --> controller : PublishedAnnouncementRepository
 
             deactivate repositories
 
-                controller -> property : getPropertiesList()
-                activate property
+                controller -> announcement : getPublishedAnnouncements()
+                activate announcement
 
-                create propertylist
-                property --> propertylist** : create()
+                create announcementlist
+                announcement --> announcementlist** : create()
 
-                    loop for each property
+                    loop for each published announcement
                     
-                        property -> propertyrepository : getProperty(i)
-                        activate propertyrepository
-                        propertyrepository --> property : Property
-                        deactivate propertyrepository
+                        announcement -> announcementrep : getPublishedAnnouncement(i)
+                        activate announcementrep
+                        announcementrep --> announcement : PublishedAnnouncement
+                        deactivate announcementrep
 
-                        opt if property not sold
+                        opt if published announcement state not defined as sold
 
-                                property --> property : compare(property1Date, property2Date)
+                                announcement --> announcement : compare(publishedAnnouncement1Date, publishedAnnouncement2Date)
 
-                                property -> propertylist : add(property)
-                                activate propertylist
-                                deactivate propertylist
+                                announcement -> announcementlist : add(publishedAnnouncement)
+                                activate announcementlist
+                                deactivate announcementlist
 
                         end
  
                     end
 
-                property --> controller : PropertyList
+                announcement --> controller : PublishedAnnouncementList
 
-                deactivate property
+                deactivate announcement
         
                 controller -> repositories : getOfferRepository()
                     activate repositories
@@ -108,45 +108,41 @@ activate ui
                 offer --> controller : OfferList
                 deactivate offer
 
-                controller -> mapper : toDTO(PropertyList, OfferList)
+                controller -> mapper : toDTO(PublishedAnnouncementList, OfferList)
                 activate mapper
 
-                create jointlist
-                mapper --> jointlist** : create()
+                create dtolist
+                mapper --> dtolist** : create()
 
 
-                loop for each property object
+                loop for each published announcement object
                     
-                    mapper -> propertylist : getProperty(i)
-                    activate propertylist
-                    propertylist --> mapper : property
-                    deactivate propertylist
-
-                    mapper --> mapper : storeDTO = toDTO(property)
-
-                    mapper -> jointlist : add(storeDTO)
-                    activate jointlist
-                    deactivate jointlist
+                    mapper -> announcementlist : getPublishedAnnouncement(i)
+                    activate announcementlist
+                    announcementlist --> mapper : publishedAnnouncement
+                    deactivate announcementlist
 
                     loop for each offer object
 
-                        mapper -> offerlist : getOffer(property)
+                        mapper -> offerlist : getOffer(publishAnnouncement)
                         activate offerlist
                         offerlist --> mapper : offer
                         deactivate offerlist
-                        mapper --> mapper : offerDTO = toDTO(offer)
-                        mapper -> jointlist : add(offerDTO)
-                        activate jointlist
-                        deactivate jointlist
 
                     end
+
+                    mapper --> mapper : announcementOffersDto = toDtoObject(publishedAnnouncement, offersListToDTO)
+
+                    mapper -> dtolist : add(announcementOffersDto)
+                    activate dtolist
+                    deactivate dtolist
  
                 end
 
-                mapper --> controller : JointList
+                mapper --> controller : announcementOffersDTOList
                 deactivate mapper
 
-                controller --> ui : JointList
+                controller --> ui : announcementOffersDTOList
                 deactivate controller
 
         deactivate controller
