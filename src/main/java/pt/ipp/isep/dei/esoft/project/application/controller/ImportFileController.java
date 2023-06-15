@@ -2,11 +2,9 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.domain.Client;
 import pt.ipp.isep.dei.esoft.project.domain.FileReaderClass;
+import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 import pt.ipp.isep.dei.esoft.project.domain.Store;
-import pt.ipp.isep.dei.esoft.project.repository.PublishedAnnouncementRepository;
-import pt.ipp.isep.dei.esoft.project.repository.Repositories;
-import pt.ipp.isep.dei.esoft.project.repository.StoreRepository;
-import pt.ipp.isep.dei.esoft.project.repository.UserRepository;
+import pt.ipp.isep.dei.esoft.project.repository.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -37,6 +35,11 @@ public class ImportFileController {
      */
     PublishedAnnouncementRepository publishedAnnouncementRepository = null;
 
+    /**
+     * The Offer repository.
+     */
+    OfferRepository offerRepository = null;
+
 
     /**
      * Instantiates a new Import file controller.
@@ -46,6 +49,7 @@ public class ImportFileController {
          getStoreRepository();
          getUserRepository();
          getPublishedAnnouncementRepository();
+         getOfferRepository();
      }
 
 
@@ -98,6 +102,22 @@ public class ImportFileController {
         }
         return publishedAnnouncementRepository;
     }
+
+    /**
+     * Retrieves the OfferRepository instance.
+     *
+     * @return The OfferRepository instance.
+     */
+    private OfferRepository getOfferRepository() {
+        if (offerRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+
+            //Get the OfferRepository
+            offerRepository = repositories.getOfferRepository();
+        }
+        return offerRepository;
+    }
+
 
     /**
      * Gets file reader class.
@@ -173,12 +193,24 @@ public class ImportFileController {
      *
      * @param file the file
      */
-    public void addPublishAnnouncement(String file){
+    public List<PublishedAnnouncement> addPublishAnnouncement(String file){
 
         PublishedAnnouncementRepository publishedAnnouncementRepository = getPublishedAnnouncementRepository();
 
-        publishedAnnouncementRepository.createPublishAnnouncementByFileReading(readInformations(file),addStore(file),addUser(file));
+        List<Client> clients = addUser(file);
 
+        List<Store> stores = addStore(file);
+
+       return publishedAnnouncementRepository.createPublishAnnouncementByFileReading(readInformations(file),stores,clients);
+
+    }
+
+    public void createOffers(String file){
+        OfferRepository offerRepository = getOfferRepository();
+
+        List<PublishedAnnouncement> publishedAnnouncements = addPublishAnnouncement(file);
+
+        offerRepository.createOfferByFileReading(publishedAnnouncements,readInformations(file));
     }
 
 

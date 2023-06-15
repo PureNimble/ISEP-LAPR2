@@ -171,7 +171,7 @@ public class StoreRepository implements Serializable {
                 listing++;
                 id = Integer.parseInt(storeInformations[0]);
                 if (auxID != id){
-                    Store store = new Store(designation, auxID, address, phoneNumber, email, listing-1, 0);
+                    Store store = new Store(designation, auxID, address, phoneNumber, email, listing-1,0);
 
                     auxID = id;
                     listing = 0;
@@ -211,7 +211,7 @@ public class StoreRepository implements Serializable {
 
         }
 
-        Store store = new Store(designation,id,address,phoneNumber,email,listing, 0);
+        Store store = new Store(designation,id,address,phoneNumber,email,listing,0);
 
         if (!stores.contains(store)){
             stores.add(store);
@@ -225,7 +225,7 @@ public class StoreRepository implements Serializable {
     }
 
 
-    public String findPartition(){
+    public List<List<String>> findPartition(){
 
         int size = stores.size();
 
@@ -272,16 +272,6 @@ public class StoreRepository implements Serializable {
             sum1 = 0;
         }
 
-        generateSubsets(auxBinary,minDifference);
-
-
-        return auxBinary;
-    }
-
-
-
-    public List<List<String>> generateSubsets(String auxBinary,int minDifference){
-
         List<String> l1 = new ArrayList<>();
 
         List<String> l2 = new ArrayList<>();
@@ -315,6 +305,9 @@ public class StoreRepository implements Serializable {
 
         return result;
     }
+
+
+
 
 
 }

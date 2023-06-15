@@ -98,9 +98,9 @@ public class ReadFileUI implements Runnable {
 
     private void submitsData() {
 
-        importFileController.addPublishAnnouncement(file);
-        importFileController.addStore(file);
-        importFileController.addUser(file);
+
+
+        importFileController.createOffers(file);
 
         System.out.println("The file was read with sucess");
 
