@@ -1,0 +1,31 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+participant ":OfferDecisionController" as controller
+participant "offerRepository\n:OfferRepository" as offerrepository
+participant "Offer\n:Offer" as offer
+
+
+activate controller
+controller -> offerrepository : 
+activate offerrepository
+offerrepository -> offer: sendOfferStatus(offer, status)
+activate offer
+        alt if status == accepted
+                loop for every offer
+                        alt if it is the offer that was accepted
+                                offer --> offer : changeStatusToAccepted()
+                        else if it is any other offer
+                                        offer --> offer : changeStatusToDeclined()
+                        end
+                end
+        else if status == declined
+                offer --> offer : changeStatusToAccepted()
+        end
+deactivate offer
+deactivate controller
+
+@enduml
