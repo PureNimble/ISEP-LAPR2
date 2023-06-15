@@ -13,7 +13,7 @@ import java.util.Optional;
  * The type Store repository.
  */
 public class StoreRepository implements Serializable {
-    private final List<Store> stores = new ArrayList<>();
+    private List<Store> stores = new ArrayList<>();
 
     /**
      * Gets store by description.
@@ -128,7 +128,7 @@ public class StoreRepository implements Serializable {
      *
      * @param arrayListStoreInformations the array list store information
      */
-    public void createStoreByFileReading(ArrayList<String[]> arrayListStoreInformations) {
+    public List<Store> createStoreByFileReading(ArrayList<String[]> arrayListStoreInformations) {
 
         int aux = 0;
         int auxID=1;
@@ -138,6 +138,7 @@ public class StoreRepository implements Serializable {
         long phoneNumber=0;
         String email="";
         int listing = 0;
+        List<Store> storeList = new ArrayList<>();
 
         for (String[] storeInformations : arrayListStoreInformations) {
             if (aux > 0) {
@@ -145,11 +146,15 @@ public class StoreRepository implements Serializable {
                 id = Integer.parseInt(storeInformations[0]);
                 if (auxID != id){
                     Store store = new Store(designation, auxID, address, phoneNumber, email, listing-1);
+
                     auxID = id;
                     listing = 0;
+
                     if (!stores.contains(store)){
                         stores.add(store);
+                        storeList.add(store);
                     }
+
                 }
                 designation = storeInformations[1];
                 String[] addressInformations = storeInformations[2].split(",");
@@ -173,10 +178,6 @@ public class StoreRepository implements Serializable {
                 phoneNumber = Long.parseLong(storeInformations[3].replaceAll("-", ""));
                 email = storeInformations[4];
 
-
-
-
-
             } else {
                 aux = 1;
             }
@@ -184,9 +185,17 @@ public class StoreRepository implements Serializable {
 
         }
 
+        Store store = new Store(designation,id,address,phoneNumber,email,listing);
+
+        if (!stores.contains(store)){
+            stores.add(store);
+            storeList.add(store);
+        }
+
+        return storeList;
+
 
     }
-
 
 
     public String findPartition(){

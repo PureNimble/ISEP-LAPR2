@@ -187,14 +187,14 @@ public class PublishedAnnouncementRepository implements Serializable {
     public List<PublishedAnnouncement> getAvailablePublishedAnnouncementsDesc() {
         //This is a defensive copy, so that the repository cannot be modified from the outside.
         List<PublishedAnnouncement> resultList = new ArrayList<PublishedAnnouncement>();
-            List<PublishedAnnouncement> tempList = new ArrayList<PublishedAnnouncement>();
-            for (PublishedAnnouncement publishedAnnouncement : publishedAnnouncements) {
-                if (publishedAnnouncement.getAnnouncementState().equals(AnnouncementState.available)) {
-                    tempList.add(publishedAnnouncement);
-                }
+        List<PublishedAnnouncement> tempList = new ArrayList<PublishedAnnouncement>();
+        for (PublishedAnnouncement publishedAnnouncement : publishedAnnouncements) {
+            if (publishedAnnouncement.getAnnouncementState().equals(AnnouncementState.available)) {
+                tempList.add(publishedAnnouncement);
             }
-            tempList.sort(Comparator.comparing(PublishedAnnouncement::getDate).reversed());
-            resultList.addAll(tempList);
+        }
+        tempList.sort(Comparator.comparing(PublishedAnnouncement::getDate).reversed());
+        resultList.addAll(tempList);
 
         return resultList;
     }
@@ -205,14 +205,9 @@ public class PublishedAnnouncementRepository implements Serializable {
      *
      * @param arrayListOwnerInformations the array list owner informations
      */
-    public void createPublishAnnouncementByFileReading(ArrayList<String[]> arrayListOwnerInformations) {
+    public void createPublishAnnouncementByFileReading(ArrayList<String[]> arrayListOwnerInformations, List<Store> stores, List<Client> clients) {
 
         int aux = 0;
-        String name;
-        int passportNumber;
-        long phoneNumber;
-        int taxNumber;
-        String email;
         String propertyType;
         int area;
         Address propertyLocation;
@@ -230,22 +225,15 @@ public class PublishedAnnouncementRepository implements Serializable {
         int contractDuration;
         Date date = null;
         int id = 0;
-        Address addressStore = null;
-        String designation;
-        long phoneNumberStore;
-        String emailStore;
         String typeOfBusiness;
+        int i = 0;
+        int auxID = 0;
+        Client client;
+        Store store ;
 
         for (String[] ownerInformations : arrayListOwnerInformations) {
 
             if (aux != 0) {
-                name = ownerInformations[1];
-                passportNumber = Integer.parseInt(ownerInformations[2].replaceAll("-", ""));
-                taxNumber = Integer.parseInt(ownerInformations[3].replaceAll("-", ""));
-                email = ownerInformations[4];
-                phoneNumber = Long.parseLong(ownerInformations[5].replaceAll("-", ""));
-                Client client = new Client(email, passportNumber, taxNumber, name, phoneNumber);
-
 
                 propertyType = ownerInformations[6];
                 area = Integer.parseInt(ownerInformations[7]);
@@ -283,14 +271,9 @@ public class PublishedAnnouncementRepository implements Serializable {
                 typeOfBusiness = ownerInformations[24];
 
                 id = Integer.parseInt(ownerInformations[25]);
-                designation = ownerInformations[26];
-                String[] addressInformations = ownerInformations[27].split(",");
-                addressStore = createAddress(addressInformations);
-                phoneNumber = Long.parseLong(ownerInformations[28].replaceAll("-", ""));
-                email = ownerInformations[29];
 
-                Store store = new Store(designation, id, addressStore, phoneNumber, email, 0);
-
+                client = clients.get(id-1);
+                store = stores.get(id-1);
 
                 TypeOfBusiness typeOfBusinessA = new TypeOfBusiness(typeOfBusiness);
                 AvailableEquipment availableEquipment = new AvailableEquipment(centralHeating);

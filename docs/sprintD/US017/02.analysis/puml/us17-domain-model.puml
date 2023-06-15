@@ -20,6 +20,7 @@ Email
 Phone Number
 Tax Number
 Passport Number
+Address
 }
 
 class NetworkManager{

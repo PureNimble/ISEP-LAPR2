@@ -1,0 +1,20 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - Alternative One
+
+autonumber
+
+actor "Network Manager" as NetworkManager
+participant ":System" as System
+
+activate NetworkManager
+
+    NetworkManager -> System : asks to divide a set of stores into two subsets
+    activate System
+
+    System --> NetworkManager : shows list of the two subsets and the minimum sum difference
+
+@enduml

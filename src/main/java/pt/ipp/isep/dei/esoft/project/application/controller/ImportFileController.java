@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
+import pt.ipp.isep.dei.esoft.project.domain.Client;
 import pt.ipp.isep.dei.esoft.project.domain.FileReaderClass;
+import pt.ipp.isep.dei.esoft.project.domain.Store;
 import pt.ipp.isep.dei.esoft.project.repository.PublishedAnnouncementRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.StoreRepository;
@@ -137,10 +139,10 @@ public class ImportFileController {
      *
      * @param file the file
      */
-    public void addStore(String file){
+    public List<Store> addStore(String file){
          StoreRepository storeRepository = getStoreRepository();
 
-        storeRepository.createStoreByFileReading(readStoreInformations(file));
+        return storeRepository.createStoreByFileReading(readStoreInformations(file));
     }
 
     /**
@@ -160,10 +162,10 @@ public class ImportFileController {
      *
      * @param file the file
      */
-    public void addUser(String file){
+    public List<Client> addUser(String file){
         UserRepository userRepository = getUserRepository();
 
-        userRepository.createOwnerByFileReading(readOwnerInformations(file));
+        return userRepository.createOwnerByFileReading(readOwnerInformations(file));
     }
 
     /**
@@ -175,7 +177,7 @@ public class ImportFileController {
 
         PublishedAnnouncementRepository publishedAnnouncementRepository = getPublishedAnnouncementRepository();
 
-        publishedAnnouncementRepository.createPublishAnnouncementByFileReading(readInformations(file));
+        publishedAnnouncementRepository.createPublishAnnouncementByFileReading(readInformations(file),addStore(file),addUser(file));
 
     }
 

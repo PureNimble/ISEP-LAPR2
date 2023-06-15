@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.ui.Bootstrap;
 
 import javax.swing.text.html.ImageView;
@@ -35,6 +36,7 @@ public class MainAppGUI extends Application {
     public static void main(String[] args){
             Bootstrap bootstrap = new Bootstrap();
             bootstrap.run();
+            Repositories.getInstance().deserialize();
             launch();
     }
 

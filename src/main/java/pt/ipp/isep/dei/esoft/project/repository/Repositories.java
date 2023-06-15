@@ -4,6 +4,8 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.domain.Store;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The Repositories class represents a singleton instance that manages all the repositories.
@@ -233,6 +235,8 @@ public class Repositories implements Serializable {
 
     public void serialize() throws IOException {
 
+        int i = 0;
+
         FileOutputStream fileOutputStream = new FileOutputStream(SERIALIZATION_FILE_NAME);
         ObjectOutputStream out = new ObjectOutputStream(fileOutputStream);
         out.writeObject(typeOfBusinessRepository);
@@ -246,14 +250,15 @@ public class Repositories implements Serializable {
         out.writeObject(propertyTypeRepository);
         out.writeObject(announcementRequestRepository);
         out.writeObject(availableEquipmentRepository);
-        for (Store store : storeRepository.getStores()) {
-            out.writeObject(store);
-        }
+
+        List<Store> stores = storeRepository.getStores();
+
+        out.writeObject(stores);
+
 
 
         out.close();
         fileOutputStream.close();
-
 
     }
 
@@ -262,24 +267,31 @@ public class Repositories implements Serializable {
         try {
 
             FileInputStream fileInputStream = new FileInputStream(SERIALIZATION_FILE_NAME);
-           /* ObjectOutputStream out = new ObjectOutputStream(fileOutputStream);
-            out.writeObject(publishedAnnouncementRepository);
-            out.writeObject(employeeRepository);
-            out.writeObject(storeRepository);
-            out.writeObject(messageRepository);
-            out.writeObject(offerRepository);
-            out.writeObject(typeOfBusinessRepository);
-            out.writeObject(roleRepository);
-            out.writeObject(authenticationRepository);
-            out.writeObject(comissionRepository);
-            out.writeObject(stateRepository);
-            out.writeObject(userRepository);
-            out.writeObject(propertyTypeRepository);
-            out.writeObject(announcementRequestRepository);
-            out.writeObject(availableEquipmentRepository);
+            ObjectInputStream in = new ObjectInputStream(fileInputStream);
 
-            out.close();
-            fileOutputStream.close();*/
+            typeOfBusinessRepository = (TypeOfBusinessRepository) in.readObject();
+            roleRepository = (RoleRepository) in.readObject();
+            stateRepository = (StateRepository) in.readObject();
+            employeeRepository = (EmployeeRepository) in.readObject();
+            messageRepository = (MessageRepository) in.readObject();
+            offerRepository = (OfferRepository) in.readObject();
+            comissionRepository = (ComissionRepository) in.readObject();
+            userRepository = (UserRepository) in.readObject();
+            propertyTypeRepository = (PropertyTypeRepository) in.readObject();
+            announcementRequestRepository = (AnnouncementRequestRepository) in.readObject();
+            availableEquipmentRepository = (AvailableEquipmentRepository) in.readObject();
+
+            List<Store> stores = (List<Store>) in.readObject();
+
+            for (Store store:stores) {
+                storeRepository.add(store);
+            }
+
+            in.close();
+            fileInputStream.close();
+
+
+
 
         } catch (Exception e) {
             System.out.println("Serialization Error");

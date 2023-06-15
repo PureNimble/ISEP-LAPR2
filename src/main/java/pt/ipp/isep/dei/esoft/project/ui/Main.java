@@ -29,6 +29,6 @@ public class Main{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //Repositories.getInstance().serialize();
+        Repositories.getInstance().serialize();
     }
 }

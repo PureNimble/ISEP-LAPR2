@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.locks.LockSupport;
 
 /**
  * The UserRepository class represents a repository for User objects.
@@ -41,10 +42,10 @@ public class UserRepository implements Serializable {
     }
 
     /**
-
-     Validates if a user already exists in the repository.
-     @param client The user object to validate.
-     @return True if the user does not exist in the repository, false otherwise.
+     * Validates if a user already exists in the repository.
+     *
+     * @param client The user object to validate.
+     * @return True if the user does not exist in the repository, false otherwise.
      */
     private boolean validateUser(Client client) {
         boolean isValid = !clients.contains(client);
@@ -67,9 +68,9 @@ public class UserRepository implements Serializable {
      * @param email the email
      * @return the client
      */
-    public Client getClientEmail(String email){
-        for (Client client: clients) {
-            if (client.getClientEmail().equals(email)){
+    public Client getClientEmail(String email) {
+        for (Client client : clients) {
+            if (client.getClientEmail().equals(email)) {
                 return client;
             }
         }
@@ -81,7 +82,7 @@ public class UserRepository implements Serializable {
      *
      * @param arrayListOwnerInformations the array list owner informations
      */
-    public void createOwnerByFileReading(ArrayList<String[]> arrayListOwnerInformations) {
+    public List<Client> createOwnerByFileReading(ArrayList<String[]> arrayListOwnerInformations) {
 
         int aux = 0;
         String name;
@@ -89,23 +90,27 @@ public class UserRepository implements Serializable {
         long phoneNumber;
         int taxNumber;
         String email;
+        List<Client> clientsList = new ArrayList<>();
 
         for (String[] ownerInformations : arrayListOwnerInformations) {
-            if (aux > 0){
+            if (aux > 0) {
                 name = ownerInformations[0];
-                passportNumber = Integer.parseInt(ownerInformations[1].replaceAll("-",""));
-                taxNumber = Integer.parseInt(ownerInformations[2].replaceAll("-",""));
+                passportNumber = Integer.parseInt(ownerInformations[1].replaceAll("-", ""));
+                taxNumber = Integer.parseInt(ownerInformations[2].replaceAll("-", ""));
                 email = ownerInformations[3];
-                phoneNumber = Long.parseLong(ownerInformations[4].replaceAll("-",""));
+                phoneNumber = Long.parseLong(ownerInformations[4].replaceAll("-", ""));
 
 
-                Client client = new Client(email,passportNumber,taxNumber,name,phoneNumber);
+                Client client = new Client(email, passportNumber, taxNumber, name, phoneNumber);
 
-                if (!clients.contains(client))
+                if (!clients.contains(client)) {
                     clients.add(client);
-            }else {
-                aux = 1;
+                    clientsList.add(client);
+                }
+                } else {
+                    aux = 1;
+                }
             }
+            return clientsList;
         }
     }
-}

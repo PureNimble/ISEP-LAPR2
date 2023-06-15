@@ -1,0 +1,67 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+'left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+
+class Address {
+Street
+Zip Code
+}
+
+class City {
+City Name
+}
+
+
+class District {
+District Name
+}
+
+class State {
+State Name
+}
+
+
+class Employee{
+}
+
+class Person{
+Name
+Email
+Phone Number
+Tax Number
+Passport Number
+}
+
+class NetworkManager{
+}
+
+class Store {
+Designation
+ID
+Email
+Phone Number
+}
+
+
+Person <|-- Employee
+Employee -- NetworkManager
+
+Address "1" -right-- "1" Person: has <
+State "1" -left-- "*" District: is in <
+District "1" -left-- "*" City: is in <
+Address "*" -left-- "1" State: is in <
+
+Address"1" --- "1" Store : has <
+
+Store"*" - "*" NetworkManager: wants to divide <
+
+@enduml
