@@ -192,6 +192,7 @@ public class PlaceOfferController {
     public Optional<Offer> createNewOfferToAgent (String name, Client client, double orderAmount, PublishedAnnouncement publishedAnnouncement, OfferState offerState) {
         if (orderAmount <= publishedAnnouncement.getBusiness().getPrice()) {
             Offer offerSent = new Offer();
+            offerSent.setOfferID(Integer.parseInt(generateOfferId())); // Generate and assign a new ID
             offerSent.setName(name);
             offerSent.setClient(client);
             offerSent.setOrderAmount(orderAmount);
@@ -201,5 +202,16 @@ public class PlaceOfferController {
         } else {
             return Optional.empty();
         }
+    }
+
+    private String generateOfferId() {
+        int maxId = 0;
+        for (Offer offer : offerRepository.getOffers()) {
+            int currentId = Integer.parseInt(String.valueOf(offer.getOfferID()));
+            if (currentId > maxId) {
+                maxId = currentId;
+            }
+        }
+        return String.valueOf(maxId + 1);
     }
 }

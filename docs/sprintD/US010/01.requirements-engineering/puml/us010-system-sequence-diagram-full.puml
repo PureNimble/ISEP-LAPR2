@@ -1,0 +1,80 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing true
+
+title US010 - System Sequence Diagram (SSD)
+
+autonumber
+
+actor "Client" as Client
+participant ":System" as System
+
+activate Client
+
+Client -> System : asks to place an offer on a property
+activate System
+activate System
+
+
+    opt if there is a pending offer
+
+        System --> Client : asks the user to wait until the pending request is either accepted or rejected
+        deactivate System
+
+    end
+
+System --> Client : shows the list of properties
+deactivate System
+
+Client -> System : selects the desired property
+activate System
+
+System --> Client : request the offer amount
+deactivate System
+
+Client -> System : inserts the offer amount
+activate System
+activate System
+activate System
+
+
+    alt offer amount is superior
+
+        System --> Client : rejects the offer amount and asks for a new one
+        deactivate System
+
+        Client -> System : inserts the offer amount
+        activate System
+
+    else offerAmount is already submited for this property
+
+        System --> Client : asks for a new one offer amount
+        deactivate System
+
+        Client -> System : inserts the offer amount
+        activate System
+
+    end
+
+System --> Client: accepts the offer amount and request the client's name
+deactivate System
+deactivate System
+deactivate System
+
+Client -> System : inserts the name
+activate System
+
+System --> Client : receives the client's information and sends the offer
+deactivate System
+
+Client -> System : submits data
+activate System
+
+System --> Client : displays operation sucess
+deactivate System
+
+
+
+@enduml

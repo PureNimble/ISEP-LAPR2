@@ -7,6 +7,9 @@ import java.util.Objects;
  * The Offer class represents an offer made by a client for a published announcement.
  */
 public class Offer implements Serializable {
+
+    private static int nextOfferID = 1;
+
     /**
      * The name associated with the offer.
      */
@@ -51,7 +54,7 @@ public class Offer implements Serializable {
         this.orderAmount = orderAmount;
         this.publishedAnnouncement = publishedAnnouncement;
         this.offerState = offerState;
-        this.offerID = offerID;
+        this.offerID = generateNextOfferID();
     }
 
     /**
@@ -177,13 +180,17 @@ public class Offer implements Serializable {
         this.client = client;
     }
 
+    private static synchronized int generateNextOfferID() {
+        return nextOfferID++;
+    }
+
     /**
 
      Returns a string representation of the Offer object.
      @return a string representation of the Offer object
      */
     public String toString() {
-        return String.format("\nOffer: \nThe client %s, which has the following email: %s,  has submitted an offer with the following price: %s. \nStatus: %s \n\nProperty: \n%s", name, client.getClientEmail(), orderAmount, offerState, publishedAnnouncement.toString());
+        return String.format("\nOffer: \nThe client %s, which has the following email: %s, has submitted an offer with the following price: %s. \nStatus: %s \n\nProperty: \n%s", name, client.getClientEmail(), orderAmount, offerState, publishedAnnouncement.toString());
 
     }
     /**
