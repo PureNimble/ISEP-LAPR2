@@ -1,0 +1,58 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+participant ":DisplayEmployeeController" as DisplayEmployeeController
+participant ":repository" as RepositorySingleton
+participant "repository\n:Repository" as repository
+participant "Store\n:Store" as Store
+participant "storeRepository\n:StoreRepository" as StoreRepository
+participant "StoreList\n:List<Store>" as StoreList
+
+    DisplayEmployeeController -> RepositorySingleton : getInstance()
+        activate RepositorySingleton
+
+    activate DisplayEmployeeController
+
+                RepositorySingleton --> DisplayEmployeeController : repository
+
+            deactivate RepositorySingleton
+
+            DisplayEmployeeController -> repository : getStoreRepository()
+
+            activate repository
+
+                repository --> DisplayEmployeeController : StoreRepository
+
+            deactivate repository
+
+                DisplayEmployeeController -> Store : getStoresList()
+                activate Store
+
+                create StoreList
+                Store --> StoreList** : create()
+
+                    loop for each store
+                    
+                        Store -> StoreRepository : getStore(i)
+                        activate StoreRepository
+                        StoreRepository --> Store : Store
+                        deactivate StoreRepository
+
+                        Store --> Store : compare(store1, store2)
+
+                        Store -> StoreList : add(store)
+                        activate StoreList
+                        deactivate StoreList
+ 
+                    end
+
+                Store --> DisplayEmployeeController : StoreList
+
+                deactivate Store
+deactivate DisplayEmployeeController
+@enduml

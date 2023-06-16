@@ -22,23 +22,23 @@ public class ClientMessagesUI implements Runnable {
 
     public void run() {
         System.out.println("\nInbox:\n");
-        Message selectedMessage = displayAndSelectMessage();
+        MessageDto selectedMessage = displayAndSelectMessage();
         if (selectedMessage != null) {
-            if (selectedMessage.isApprovedByAgent() == true) {
+            if (selectedMessage.getIsApprovedByAgent() == true) {
                 PublishedAnnouncement publishedAnnouncement = selectedMessage.getPublishedAnnouncement();
                 respondToClientOrNo(selectedMessage, publishedAnnouncement);
             }
         }
     }
 
-    private Message displayAndSelectMessage() {
+    private MessageDto displayAndSelectMessage() {
         int choice = -1;
         int index = 1;
-        Message selectedMessage = null;
+        MessageDto selectedMessage = null;
         Client client = controller.getClient();
-        List<Message> messageList = controller.getMessageRequests(client);
+        List<MessageDto> messageList = controller.getMessageRequests(client);
         if (messageList.size() != 0) {
-            for (Message message : messageList) {
+            for (MessageDto message : messageList) {
                 if (message.getIsApprovedByAgent() == true) {
                     System.out.println(index + ". Message From: " + message.getPublishedAnnouncement().getAgent().getName() + " Subject: Your Visit Booking Request Has Been Accepted");
                 } else System.out.println(index + ". Message From: " + message.getName() + " Subject: Your Visit Booking Request Has Been Rejected");
@@ -76,7 +76,7 @@ public class ClientMessagesUI implements Runnable {
         return selectedMessage;
     }
 
-    private void respondToClientOrNo(Message message, PublishedAnnouncement publishedAnnouncement) {
+    private void respondToClientOrNo(MessageDto message, PublishedAnnouncement publishedAnnouncement) {
         int choice = -1;
 
         do {

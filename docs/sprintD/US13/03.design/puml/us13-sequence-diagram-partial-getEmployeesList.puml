@@ -1,0 +1,46 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+participant ":DisplayEmployeeController" as DisplayEmployeeController
+participant ":repository" as RepositorySingleton
+participant "repository\n:Repository" as repository
+participant "Employee\n:Employee" as Employee
+participant "employeeRepository\n:EmployeeRepository" as EmployeeRepository
+participant "EmployeeList\n:List<Employee>" as EmployeeList
+
+    activate DisplayEmployeeController
+
+                DisplayEmployeeController -> repository : getEmployeeRepository()
+                    activate repository
+
+                        repository --> DisplayEmployeeController : EmployeeRepository
+                    deactivate repository
+
+                DisplayEmployeeController -> Employee : getEmployeesList()
+                activate Employee
+
+                create EmployeeList
+                Employee --> EmployeeList** : create()
+
+                    loop for each employee
+
+                        Employee -> EmployeeRepository : getEmployee(i)
+                        activate EmployeeRepository
+                        EmployeeRepository --> Employee : Employee
+                        deactivate EmployeeRepository
+                        Employee --> Employee : compare(employee1, employee2)
+                        Employee -> EmployeeList : add(employee)
+                        activate EmployeeList
+                        deactivate EmployeeList
+
+                    end
+
+                Employee --> DisplayEmployeeController : EmployeeList
+                deactivate Employee
+deactivate DisplayEmployeeController
+@enduml

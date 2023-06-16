@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="611px" preserveAspectRatio="none" style="width:782px;height:611px;background:#FFFFFF;" version="1.1" viewBox="0 0 782 611" width="782px" zoomAndPan="magnify"><defs/><g><rect fill="#FFFFFF" height="418.6172" style="stroke:#181818;stroke-width:1.0;" width="10" x="58" y="92.6094"/><rect fill="#FFFFFF" height="396.2656" style="stroke:#181818;stroke-width:1.0;" width="10" x="498" y="114.9609"/><rect fill="#FFFFFF" height="260.25" style="stroke:#181818;stroke-width:1.0;" width="10" x="674" y="187.9219"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="63" x2="63" y1="82.6094" y2="529.2266"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="503" x2="503" y1="82.6094" y2="529.2266"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="679" x2="679" y1="154.2656" y2="529.2266"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="110" x="5" y="79.5332">Network Manager</text><ellipse cx="63" cy="13.5" fill="#E3E3E3" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M63,21.5 L63,48.5 M50,29.5 L76,29.5 M63,48.5 L50,63.5 M63,48.5 L76,63.5 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="110" x="5" y="542.7598">Network Manager</text><ellipse cx="63" cy="554.3359" fill="#E3E3E3" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M63,562.3359 L63,589.3359 M50,570.3359 L76,570.3359 M63,589.3359 L50,604.3359 M63,589.3359 L76,604.3359 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><rect fill="#E3E3E3" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="138" x="434" y="50"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="124" x="441" y="71.5332">:DisplayEmployeeUI</text><rect fill="#E3E3E3" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="138" x="434" y="528.2266"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="124" x="441" y="549.7598">:DisplayEmployeeUI</text><rect fill="#E3E3E3" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="188" x="585" y="528.2266"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="174" x="592" y="549.7598">:DisplayEmployeeController</text><rect fill="#FFFFFF" height="418.6172" style="stroke:#181818;stroke-width:1.0;" width="10" x="58" y="92.6094"/><rect fill="#FFFFFF" height="396.2656" style="stroke:#181818;stroke-width:1.0;" width="10" x="498" y="114.9609"/><rect fill="#FFFFFF" height="260.25" style="stroke:#181818;stroke-width:1.0;" width="10" x="674" y="187.9219"/><polygon fill="#181818" points="486,110.9609,496,114.9609,486,118.9609,490,114.9609" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="68" x2="492" y1="114.9609" y2="114.9609"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="75" y="110.1045">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="316" x="86" y="110.1045">asks to see list of all employees working in every store</text><polygon fill="#181818" points="573,141.3125,583,145.3125,573,149.3125,577,145.3125" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="508" x2="579" y1="145.3125" y2="145.3125"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="515" y="140.4561">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="36" x="526" y="140.4561">create</text><rect fill="#E3E3E3" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="188" x="585" y="122.9609"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="174" x="592" y="144.4941">:DisplayEmployeeController</text><polygon fill="#181818" points="662,183.9219,672,187.9219,662,191.9219,666,187.9219" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="508" x2="668" y1="187.9219" y2="187.9219"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="515" y="183.0654">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="136" x="526" y="183.0654">getStoreEmployeeList()</text><rect fill="none" height="71.6328" style="stroke:#000000;stroke-width:1.5;" width="194" x="582" y="195.9219"/><path d="M582,195.9219 L644,195.9219 L644,203.9219 L634,213.9219 L582,213.9219 L582,195.9219 " fill="#EEEEEE" style="stroke:#000000;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="17" x="595" y="211.417">ref</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="3" x="677.5" y="230.3789"> </text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="81" x="638.5" y="245.4727">Get Stores List</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="3" x="677.5" y="260.5664"> </text><rect fill="none" height="71.6328" style="stroke:#000000;stroke-width:1.5;" width="194" x="582" y="272.5547"/><path d="M582,272.5547 L644,272.5547 L644,280.5547 L634,290.5547 L582,290.5547 L582,272.5547 " fill="#EEEEEE" style="stroke:#000000;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="17" x="595" y="288.0498">ref</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="3" x="677.5" y="307.0117"> </text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="107" x="625.5" y="322.1055">Get Employees List</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="3" x="677.5" y="337.1992"> </text><rect fill="none" height="71.6328" style="stroke:#000000;stroke-width:1.5;" width="194" x="582" y="349.1875"/><path d="M582,349.1875 L644,349.1875 L644,357.1875 L634,367.1875 L582,367.1875 L582,349.1875 " fill="#EEEEEE" style="stroke:#000000;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="17" x="595" y="364.6826">ref</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="3" x="677.5" y="383.6445"> </text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="47" x="655.5" y="398.7383">Get DTO</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="3" x="677.5" y="413.832"> </text><polygon fill="#181818" points="519,444.1719,509,448.1719,519,452.1719,515,448.1719" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="513" x2="678" y1="448.1719" y2="448.1719"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="525" y="443.3154">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="110" x="536" y="443.3154">StoreEmployeeList</text><polygon fill="#181818" points="74,507.2266,64,511.2266,74,515.2266,70,511.2266" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="68" x2="502" y1="511.2266" y2="511.2266"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="80" y="490.0186">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="395" x="91" y="473.667">provides a list of employees (Id, name and role) alphabetically sorted</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="384" x="91" y="490.0186">and grouped by store (Id, name and number of listings) sorted from</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="310" x="91" y="506.3701">the one with more listings to the one with less listings</text><!--MD5=[4bad6987f135ee9c211c5e332bb5d1a8]
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "Network Manager" as Manager
+participant ":DisplayEmployeeUI" as DisplayEmployeeUI
+participant ":DisplayEmployeeController" as DisplayEmployeeController
+
+activate Manager
+
+    Manager -> DisplayEmployeeUI : asks to see list of all employees working in every store
+    activate DisplayEmployeeUI
+
+    create DisplayEmployeeController
+    DisplayEmployeeUI - -> DisplayEmployeeController** : create
+    
+    DisplayEmployeeUI -> DisplayEmployeeController : getStoreEmployeeList()
+        activate DisplayEmployeeController
+
+        ref over DisplayEmployeeController
+
+            Get Stores List
+
+        end ref
+
+        ref over DisplayEmployeeController
+
+            Get Employees List
+
+        end ref
+
+        ref over DisplayEmployeeController
+
+            Get DTO
+
+        end ref
+
+        DisplayEmployeeController - -> DisplayEmployeeUI : StoreEmployeeList
+        deactivate DisplayEmployeeController
+
+    DisplayEmployeeUI - -> Manager : provides a list of employees (Id, name and role) alphabetically sorted\nand grouped by store (Id, name and number of listings) sorted from \nthe one with more listings to the one with less listings  
+    deactivate DisplayEmployeeUI
+
+    deactivate DisplayEmployeeController
+
+deactivate Manager
+
+@enduml
+
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "Network Manager" as Manager
+participant ":DisplayEmployeeUI" as DisplayEmployeeUI
+participant ":DisplayEmployeeController" as DisplayEmployeeController
+
+activate Manager
+
+    Manager -> DisplayEmployeeUI : asks to see list of all employees working in every store
+    activate DisplayEmployeeUI
+
+    create DisplayEmployeeController
+    DisplayEmployeeUI - -> DisplayEmployeeController** : create
+    
+    DisplayEmployeeUI -> DisplayEmployeeController : getStoreEmployeeList()
+        activate DisplayEmployeeController
+
+        ref over DisplayEmployeeController
+
+            Get Stores List
+
+        end ref
+
+        ref over DisplayEmployeeController
+
+            Get Employees List
+
+        end ref
+
+        ref over DisplayEmployeeController
+
+            Get DTO
+
+        end ref
+
+        DisplayEmployeeController - -> DisplayEmployeeUI : StoreEmployeeList
+        deactivate DisplayEmployeeController
+
+    DisplayEmployeeUI - -> Manager : provides a list of employees (Id, name and role) alphabetically sorted\nand grouped by store (Id, name and number of listings) sorted from \nthe one with more listings to the one with less listings  
+    deactivate DisplayEmployeeUI
+
+    deactivate DisplayEmployeeController
+
+deactivate Manager
+
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 18:01:30 WEST 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>
