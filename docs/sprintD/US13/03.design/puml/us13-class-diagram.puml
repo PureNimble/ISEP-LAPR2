@@ -31,7 +31,7 @@ class Employee {
 
 class StoreEmployeeMapper {
     +toDTO(storeList, employeeList)
-    +toDtoObject(storeName, storeId, storeListing, employee);
+    +toDtoObject(storeName, storeId, storeListing, employee)
 }
 
 class DisplayStoreController {

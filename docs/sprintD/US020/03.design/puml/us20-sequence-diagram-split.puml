@@ -1,0 +1,84 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "Client" as Client
+participant ":ClientMessageUI" as ClientMessageUI
+participant ":ClientMessageController" as ClientMessageController
+
+activate Client
+
+    Client -> ClientMessageUI : asks to see all responses received for the appointment requests
+    activate ClientMessageUI
+
+    create ClientMessageController
+    ClientMessageUI --> ClientMessageController** : create
+    
+    ClientMessageUI -> ClientMessageController : getMessageList(client)
+        activate ClientMessageController
+
+    ref over ClientMessageController
+
+        Get list of messages for that specific client
+
+    end ref
+
+    ref over ClientMessageController
+
+        List of messages for that specific client toDTO
+
+    end ref
+
+        ClientMessageController --> ClientMessageUI : MessageDtos
+    deactivate ClientMessageController
+
+        ClientMessageUI --> Client : shows list of responses and asks to select one
+    deactivate ClientMessageUI
+
+    Client -> ClientMessageUI : selects the pretended message
+    activate ClientMessageUI
+
+        ClientMessageUI -> ClientMessageController : sendVisualizedEmail(email, subject, body)
+    activate ClientMessageController
+    deactivate ClientMessageController
+
+        ClientMessageUI --> Client : shows selected message (information about the property, date of the appointment,\nagent name and phone number) and asks if the client wants to accept or decline appointment
+    deactivate ClientMessageUI
+
+    alt declines appointment
+
+        Client -> ClientMessageUI : declines appointment
+        activate ClientMessageUI
+
+            ClientMessageUI --> Client : asks to state the reason for declinement
+        deactivate ClientMessageUI
+
+        Client -> ClientMessageUI : submits requested data
+        activate ClientMessageUI
+
+    else accepts appointment
+
+        Client -> ClientMessageUI : accepts appointment
+
+    end
+
+        ClientMessageUI --> Client : shows the inserted data and asks for confirmation
+    deactivate ClientMessageUI
+
+    Client -> ClientMessageUI : confirms data
+    activate ClientMessageUI
+
+    ClientMessageUI -> ClientMessageController : sendVisualizedEmail(email, subject, body)
+    activate ClientMessageController
+    deactivate ClientMessageController
+
+        ClientMessageUI --> Client : displays operation success
+    deactivate ClientMessageUI
+
+deactivate client
+
+@enduml

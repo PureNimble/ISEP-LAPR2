@@ -95,23 +95,24 @@ class Message{
     Date
     Initial time
     End time
-    Description
+    Published Announcement
+    Message State
+    Agents Approval
 }
 
 class Agent {
 
 }
 
-class Response {
-    Description
+class Employee {
+
 }
 
-Message "*" --- "1" PublishedAnnouncement: can have a <
-Client "1" --- "*" Message: leaves a \n +sender >
-Agent "1" --- "*" Message: receives a \n +receiver <
-Agent "1" --- "*" Message: leaves a \n +sender >
-Client "1" --- "*" Message: receives a \n +receiver <
-Agent "1" --- "*" PublishedAnnouncement: publishes an >
+Message "*" --- "1" PublishedAnnouncement: has informations about >
+Client "1" -down-- "*" Message: leaves a \n +sender >
+Agent "1" -left-- "*" Message: receives a \n +receiver <
+Agent "1" -down-- "*" Message: leaves a \n +sender >
+Client "1" -down-- "*" Message: receives a \n +receiver <
 District "1" -down- "*" City : has >
 State "1" -down- "*" District : has >
 City "1" -down- "*" Address : has >
@@ -124,11 +125,11 @@ SunExposure "1" -up- "*" House: contains <
 Address "1" -left- "1" Property: has <
 AvailableEquipment "*" -up- "1" Residence: contains <
 TypeOfProperty "1" -down-- "1" Property: defines >
-Client  "1" -up-- "*" Response: sends a \n +sender > 
-Agent "1" -up-- "*" Response: receives a \n +receiver <
 
 Business <|--- Rent
 Person <|-- User
 User <|-- Client
+User <|-- Employee
+Employee <|-- Agent
 
 @enduml
