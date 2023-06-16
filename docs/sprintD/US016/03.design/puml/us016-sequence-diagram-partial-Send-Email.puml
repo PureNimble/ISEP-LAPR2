@@ -1,0 +1,80 @@
+@startuml
+
+title US016 - Sequence Diagram Partial - Send Email
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing true
+
+autonumber 66
+
+participant ":ListMessageUI" as System
+participant ":ListMessageController" as Controller
+participant ":ConfigProperties" as ConfigProperties
+participant "EmailService" as EmailService
+participant "DEIService" as DEIService
+participant "GmailService" as GmailService
+participant "HotmailService" as HotmailService
+participant "YahooService" as YahooService
+
+group Send Email
+
+activate System
+
+System -> Controller : sendEmail(email, subject, body)
+activate Controller
+
+Controller -> ConfigProperties : getProperty("emailService")
+activate ConfigProperties
+
+ConfigProperties --> Controller : service
+deactivate ConfigProperties
+
+Controller -> EmailService : createEmailService(service)
+activate EmailService
+
+alt if service is "DEIService"
+
+EmailService --> DEIService : create()
+activate DEIService
+DEIService --> EmailService : DEIService
+deactivate DEIService
+
+else if service is "GmailService"
+
+EmailService --> GmailService : create()
+activate GmailService
+GmailService --> EmailService : GmailService
+deactivate GmailService
+
+else if service is "HotmailService"
+
+EmailService --> HotmailService : create()
+activate HotmailService
+HotmailService --> EmailService : HotmailService
+deactivate HotmailService
+
+else if service is "YahooService"
+
+EmailService --> YahooService : create()
+activate YahooService
+YahooService --> EmailService : YahooService
+deactivate YahooService
+
+end
+
+EmailService --> Controller : emailService
+deactivate EmailService
+
+Controller -> EmailService : sendEmail(email, subject, body)
+activate EmailService
+
+EmailService --> Controller : emailSent
+deactivate EmailService
+
+Controller --> System : emailSent
+deactivate Controller
+
+end
+
+@enduml

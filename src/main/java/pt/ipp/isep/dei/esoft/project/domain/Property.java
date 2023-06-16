@@ -10,11 +10,11 @@ public class Property implements Serializable {
     /**
      * The distance from the city center to the property.
      */
-    private int distanceFromCityCenter;
+    private double distanceFromCityCenter;
     /**
      * The area of the property.
      */
-    private int area;
+    private double area;
     /**
      * The photos of the property.
      */
@@ -36,7 +36,7 @@ public class Property implements Serializable {
      * @param photos                 the photos
      * @param address                the address
      */
-    public Property(int area, int distanceFromCityCenter, Photos photos, Address address) {
+    public Property(double area, double distanceFromCityCenter, Photos photos, Address address) {
         this.distanceFromCityCenter = distanceFromCityCenter;
         this.area = area;
         this.photos = photos;
@@ -57,7 +57,7 @@ public class Property implements Serializable {
      * @param area                   the area
      * @param address                the address
      */
-    public Property(int distanceFromCityCenter, int area, Address address) {
+    public Property(double distanceFromCityCenter, double area, Address address) {
         this.distanceFromCityCenter = distanceFromCityCenter;
         this.area = area;
         this.address = address;
@@ -77,7 +77,7 @@ public class Property implements Serializable {
      *
      * @return the number of bedrooms
      */
-    public int getNumberOfBedrooms() {
+    public double getNumberOfBedrooms() {
         if (residence != null) {
             return residence.getNumberOfBedrooms();
         } else return 0;
@@ -115,7 +115,7 @@ public class Property implements Serializable {
      *
      * @return the distance from city center
      */
-    public int getDistanceFromCityCenter() {
+    public double getDistanceFromCityCenter() {
         return distanceFromCityCenter;
     }
 
@@ -124,7 +124,7 @@ public class Property implements Serializable {
      *
      * @return the area
      */
-    public int getArea() {
+    public double getArea() {
         return area;
     }
 

@@ -46,10 +46,10 @@ public class StoreEmployeeMapper {
      * @param employee     the employee
      * @return the store employee dto
      */
-    public StoreEmployeeDTO toDtoObject(String storeName, int storeId, int storeListing, List<Employee> employee) {
+    public StoreEmployeeDTO toDtoObject(String storeName, int storeId, int storeListing, List<Employee> employees) {
 
         StoreEmployeeDTO storeEmployeeDTO;
-        storeEmployeeDTO = new StoreEmployeeDTO(storeName, storeId, storeListing, employee);
+        storeEmployeeDTO = new StoreEmployeeDTO(storeName, storeId, storeListing, employees);
         return storeEmployeeDTO;
     }
     

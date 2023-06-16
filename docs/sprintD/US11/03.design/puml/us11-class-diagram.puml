@@ -1,110 +1,139 @@
 @startuml
-
-title US11 - Class Diagram
-
-skinparam monochrome true
-skinparam packageStyle rectangle
-skinparam shadowing false
+!define arrow2(direction)  [[[#0000FF], [dashed], [direction]]]
+hide empty members
+skinparam linetype ortho
+skinparam ranksep 40
 
 class Agent {
-  -name: String
-  -email: String
+  +chooseOffer(offer: Offer)
+  +acceptOffer(offer: Offer)
+  +rejectOffer(offer: Offer)
 }
 
 class OfferDecisionUI {
-  +displayPurchaseOrders(properties: List<PropertyDTO>): void
-  +keepOffer(offer: OfferDTO): void
-  +promptAgentDecision(): DecisionStatus
-  +displayOperationSuccess(): void
+  +getOffersList(): List<AnnouncementOfferDTO>
+  +keepOffer(offer: Offer)
+  +acceptOffer(offer: Offer)
+  +declineOffer(offer: Offer)
+  +sendVisualizedEmail(email: String, subject: String, body: String)
 }
 
 class OfferDecisionController {
-  -propertyRepository: PropertyRepository
-  -offerRepository: OfferRepository
-  -mapper: OfferMapper
-  +getOffersList(): void
-  +sendOfferStatus(offer: OfferDTO, status: DecisionStatus): void
+  -repositories: Repositories
+  +getOffersList(): List<AnnouncementOfferDTO>
+  +declineOtherOffers(offer: Offer, offersList: List<Offer>)
+  +changeAnnouncementState(publishedAnnouncement: PublishedAnnouncement)
+  +storeDecrement(store: Store)
 }
 
 class Repositories {
-  -propertyRepository: PropertyRepository
-  -offerRepository: OfferRepository
-  +getInstance(): Repositories
-  +getPropertyRepository(): PropertyRepository
+  +getPublishedAnnouncementRepository(): PublishedAnnouncementRepository
   +getOfferRepository(): OfferRepository
+  +getStoreRepository(): StoreRepository
 }
 
-class Property {
-  -propertyId: int
-  -propertyName: String
-  -propertyType: String
-  -... other attributes ...
-  +compare(otherProperty: Property): int
-}
-
-class PropertyRepository {
-  +getProperty(propertyId: int): Property
-  +getPropertiesList(): List<Property>
+class PublishedAnnouncement {
+  +getPublishedAnnouncements(): List<PublishedAnnouncement>
+  +compare(date1: Date, date2: Date): int
+  +changeAnnouncementState(publishedAnnouncement: PublishedAnnouncement)
 }
 
 class Offer {
-  -offerId: int
-  -propertyId: int
-  -offerDate: Date
-  -offerValue: BigDecimal
-  -status: DecisionStatus
-  +compare(otherOffer: Offer): int
-  +changeStatusToAccepted(): void
-  +changeStatusToDeclined(): void
+  +getOffer(property: Property): Offer
+  +compare(amount1: int, amount2: int): int
+  +setOfferState(offerState: OfferState)
+}
+
+class Store {
+  +decrementAvailableListing(): void
+}
+
+class PublishedAnnouncementRepository {
+  +getPublishedAnnouncement(index: int): PublishedAnnouncement
 }
 
 class OfferRepository {
-  +getOffer(propertyId: int): Offer
-  +getOffersList(): List<Offer>
-  +sendOfferStatus(offer: Offer, status: DecisionStatus): void
+  +getOffer(property: Property): Offer
+  +declineOtherOffers(offer: Offer, offersList: List<Offer>)
+  +declineOffer(offer: Offer)
+}
+
+class StoreRepository {
+  +storeDecrement(store: Store): void
 }
 
 class OfferMapper {
-  +toDTO(propertyList: List<Property>, offerList: List<Offer>): JointListDTO
+  +toDTO(publishedAnnouncementList: List<PublishedAnnouncement>, offerList: List<Offer>): List<AnnouncementOfferDTO>
 }
 
-class PropertyDTO {
-  -propertyId: int
-  -propertyName: String
-  -propertyType: String
-  -... other attributes ...
+interface EmailService {
+  +sendEmail(email: String, subject: String, body: String): void
+}
+
+class DEIService {
+  +sendEmail(email: String, subject: String, body: String): void
+}
+
+class GmailService {
+  +sendEmail(email: String, subject: String, body: String): void
+}
+
+class HotmailService {
+  +sendEmail(email: String, subject: String, body: String): void
+}
+
+class YahooService {
+  +sendEmail(email: String, subject: String, body: String): void
+}
+
+class AnnouncementOfferDTO {
+  +create(publishedAnnouncement: PublishedAnnouncement, offersListToDTO: List<OfferDTO>): AnnouncementOfferDTO
 }
 
 class OfferDTO {
-  -offerId: int
-  -propertyId: int
-  -offerDate: Date
-  -offerValue: BigDecimal
-  -status: DecisionStatus
+  +create(name: String, client: String, orderAmount: int, offerState: OfferState): OfferDTO
 }
 
-class JointListDTO {
-  -propertyDTOs: List<PropertyDTO>
-  -offerDTOs: List<OfferDTO>
+enum OfferState {
+  accepted
+  rejected
+  pending
 }
 
+enum PublishedAnnouncementState {
+  available
+  sold
+}
 
 Agent --> OfferDecisionUI
 OfferDecisionUI --> OfferDecisionController
 OfferDecisionController ..> Repositories
-OfferDecisionController --> Property
-OfferDecisionController --> Offer
-OfferDecisionController ..> OfferMapper
-OfferDecisionController ..> PropertyRepository
-OfferDecisionController ..> OfferRepository
-OfferMapper ..> PropertyDTO
-OfferMapper ..> OfferDTO
-OfferDecisionUI --> Agent
-OfferDecisionUI --> PropertyDTO
-OfferDecisionUI --> OfferDTO
-PropertyRepository --> Property
-OfferRepository --> Offer
-JointListDTO --> PropertyDTO
-JointListDTO --> OfferDTO
 
+OfferDecisionController --> OfferMapper
+OfferDecisionController --up> EmailService
+OfferDecisionUI --> OfferMapper
+
+Repositories --> Repositories : instance
+EmailService <|..up DEIService
+EmailService <|..up GmailService
+EmailService <|..up HotmailService
+EmailService <|..up YahooService
+
+OfferDecisionController ..> OfferRepository
+OfferDecisionController ..> PublishedAnnouncementRepository
+OfferDecisionController ..> StoreRepository
+
+OfferMapper --right> OfferDTO
+OfferMapper --> AnnouncementOfferDTO
+OfferDecisionUI --> OfferDTO
+
+PublishedAnnouncement --> PublishedAnnouncementState
+Offer --> OfferState
+OfferRepository --> Offer
+StoreRepository --> Store
+PublishedAnnouncementRepository --> PublishedAnnouncement
+
+Repositories ..> PublishedAnnouncementRepository : PublishedAnnouncementRepository
+Repositories ..> OfferRepository : OfferRepository
+Repositories ..> StoreRepository : StoreRepository
 @enduml

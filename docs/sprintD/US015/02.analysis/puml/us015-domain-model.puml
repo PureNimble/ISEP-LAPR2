@@ -16,8 +16,6 @@ title Domain Model - US015
  }
 
  class Message{
-     Name
-     Phone number
      Date
      Initial time
      End time
@@ -114,7 +112,9 @@ class Client {
      Contract type
  }
 
-
+class Comission{
+Value
+}
 
  class Role{
 
@@ -130,7 +130,7 @@ class Client {
 
 Agent "1" --- "1" Message: wants to see a list of >
 Person <|-- Employee
-Employee <|-- Agent
+Employee --  Agent
 Person <|-- Client
 
 Comission "1" -- "1" Business : contains <

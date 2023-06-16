@@ -220,7 +220,7 @@ public class MessageDto {
      *
      * @return the boolean
      */
-    public boolean isApprovedByAgent() {
+    public boolean getIsApprovedByAgent() {
         return isApprovedByAgent;
     }
 
@@ -229,7 +229,7 @@ public class MessageDto {
      *
      * @param approvedByAgent the approved by agent
      */
-    public void setApprovedByAgent(boolean approvedByAgent) {
+    public void setIsApprovedByAgent(boolean approvedByAgent) {
         isApprovedByAgent = approvedByAgent;
     }
 

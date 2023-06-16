@@ -116,4 +116,8 @@ public class MessageRepository implements Serializable {
 
         return messageRequests;
     }
+
+    public void removeMessage(Message message) {
+        messages.remove(message);
+    }
 }

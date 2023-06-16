@@ -1,0 +1,43 @@
+@startuml
+
+title US016 - Sequence Diagram Partial - Update Message Request
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing true
+
+autonumber
+
+participant ":ListMessageUI" as System
+participant ":ListMessageController" as Controller
+participant "message:Message" as Messages
+
+group Update Message Request
+
+activate System
+
+System -> Controller : updateMessageState(message)
+activate Controller
+
+Controller -> Messages : setMessageState(MessageState.ANSWERED)
+activate Messages
+
+alt setApprovedByAgent(true)
+
+Messages --> Messages : setApprovedByAgent(true)
+
+else  setApprovedByAgent(false)
+
+Messages --> Messages : setApprovedByAgent(false)
+
+end
+
+Messages --> Controller: updateMessageState(message)
+deactivate Messages
+
+Controller --> System : updateMessageState(message)
+deactivate Controller
+
+end
+
+@enduml

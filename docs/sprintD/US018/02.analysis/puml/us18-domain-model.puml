@@ -1,6 +1,6 @@
 @startuml
 
-title US20 - Domain Model
+title US18 - Domain Model
 
 
 skinparam groupInheritance 2
@@ -27,6 +27,11 @@ class Residence {
     Number of Bedrooms
     Number of Bathrooms
     Number of Parking Spaces
+}
+
+enum PublishedAnnouncementState {
+  available
+  sold
 }
 
 class Property {
@@ -89,15 +94,18 @@ class Business {
     Requested price
 }
 
+class PublishedAnnouncement {
+Contract Type
+}
 
 StoreManager -|> Employee
 Employee -up- Role : has >
 User -|> Person
 Employee -|> User
 
-District "1" -down- "*" City : has >
-State "1" -down- "*" District : has >
-City "1" -down- "*" Address : has >
+District "1" -up- "*" City : has >
+State "1" -up- "*" District : has >
+City "1" -up- "*" Address : has >
 
 Property "1" --- "1" Business: has a <
 Residence <|-down- House
@@ -106,7 +114,11 @@ Property "1" -left-- "1..30" Photos: has >
 SunExposure "1" -up- "*" House: contains <
 Address "1" -left- "1" Property: has <
 AvailableEquipment "*" -up- "1" Residence: contains <
+PublishedAnnouncement --> Property : has >
 TypeOfProperty "1" -down-- "1" Property: defines >
 
-StoreManager -down- Residence : analyses >
+StoreManager -down- PublishedAnnouncement : analyses sold >
+
+PublishedAnnouncement --left> PublishedAnnouncementState : has >
+
 @enduml

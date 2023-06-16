@@ -117,8 +117,6 @@ PublishedAnnouncement "1" --- "1" Business: has a <
 Business <|--- Rent
 
 class Message{
-    Name
-    Phone number
     Date
     Initial time
     End time
@@ -136,7 +134,7 @@ Agent "1" --- "1" Message: receives a >
 Agent "1" --- "*" PublishedAnnouncement: publishes an >
 
 Person <|-- Employee
-Employee <-- Agent
+Employee -- Agent
 Person <|-- Client
 
 

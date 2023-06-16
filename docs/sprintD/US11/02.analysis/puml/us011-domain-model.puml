@@ -36,6 +36,17 @@ Street
 Zip Code
 }
 
+enum OfferState{
+    accepted
+    rejected
+    pending
+}
+
+enum PublishedAnnouncementState{
+    available
+    sold
+}
+
 class AvailableEquipment {
 Equipment
 }
@@ -123,6 +134,7 @@ PublishedAnnouncement "1" -left- "1" Business : has <
 Property "1" -- "1..30" Photos : has >
 PublishedAnnouncement "*" --- "*" Property: advertises >
 
+
 Residence "1" --- "*" AvailableEquipment : contains >
 Residence <|--- House
 
@@ -132,6 +144,10 @@ City "1" -left- "*" Address : has >
 
 TypeOfProperty "1" -right- "1" Property : defines >
 Person <|-- Client
+
+Offer "1" -- "1" OfferState : has >
+
+PublishedAnnouncement "1" -right- "1" PublishedAnnouncementState : has >
 
 Client "1" -left "*" Offer : makes >
 Agent "1" -right "*" Offer : accepts/declines > 

@@ -1,7 +1,11 @@
 @startuml
+title US11 - SD
 skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
+skinparam linetype ortho
+skinparam maxmessagesize 150
+skinparam sequenceParticipant underline
 
 autonumber
 
@@ -10,15 +14,20 @@ participant ":OfferDecisionUI" as ui
 participant ":OfferDecisionController" as controller
 participant ":Repositories" as singleton
 participant "repositories\n:Repositories" as repositories
+participant "Store\n:Store" as store
+participant "storeRepository\n:StoreRepository" as storerep
 participant "PublishedAnnouncement\n:PublishedAnnouncement" as announcement
 participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as announcementrep
 participant "Offer\n:Offer" as offer
 participant "offerRepository\n:OfferRepository" as offerrepository
 participant ":OfferMapper" as mapper
+participant "EmailServices\n:EmailServices" as email
 participant "PublishedAnnouncementList\n:List<PublishedAnnouncement>" as announcementlist
 participant "OfferList\n:List<OfferList>" as offerlist
+participant "offerDto:OfferDto" as dto
+participant "OfferDTO\n:List<OfferDTO>" as offerdto
+participant "announcementOfferDto:AnnouncementOfferDto" as AnnouncementOfferDto
 participant "AnnouncementOfferDTO\n:List<AnnouncementOfferDTO>" as dtolist
-
 
 activate agent
 
@@ -112,6 +121,7 @@ activate ui
                 activate mapper
 
                 create dtolist
+                mapper --> offerdto**: create()
                 mapper --> dtolist** : create()
 
 
@@ -124,15 +134,32 @@ activate ui
 
                     loop for each offer object
 
-                        mapper -> offerlist : getOffer(publishAnnouncement)
-                        activate offerlist
-                        offerlist --> mapper : offer
-                        deactivate offerlist
+                        opt if publishAnnouncement equals to offer.getPublishedAnnouncement()
+                                deactivate offerlist
+                                mapper -> offerlist : name = offer.getName()
+                                activate offerlist
+                                deactivate offerlist
+                                mapper -> offerlist : client = offer.getClient()
+                                activate offerlist
+                                deactivate offerlist
+                                mapper -> offerlist : orderAmount = offer.getOrderAmount()
+                                activate offerlist
+                                deactivate offerlist
+                                mapper -> offerlist : offerState = offer.getOfferState()
+                                activate offerlist
+                                deactivate offerlist
+                                mapper -> mapper : offerDto = toOfferDtoObject(name, client, orderAmount, offerState)
+                                mapper --> dto** : create()
+                                mapper -> offerdto : add(offerDto)
+                                activate offerdto
+                                deactivate offerdto
+                        end
+                        
 
                     end
 
                     mapper --> mapper : announcementOffersDto = toDtoObject(publishedAnnouncement, offersListToDTO)
-
+                    mapper --> AnnouncementOfferDto** : create(...)
                     mapper -> dtolist : add(announcementOffersDto)
                     activate dtolist
                     deactivate dtolist
@@ -158,37 +185,83 @@ activate ui
 ui --> ui : keepOffer(offer)
 
 
-
 ui --> agent : asks if the agent wants to accept or decline the offer
 deactivate ui
 
-
-agent -> ui : accepts or declines the offer
-activate ui
-
-
-ui -> controller : sendOfferStatus(offer, status)
-activate controller
-controller -> offerrepository : 
-activate offerrepository
-offerrepository -> offer: sendOfferStatus(offer, status)
-activate offer
-        alt if status == accepted
-                loop for every offer
-                        alt if it is the offer that was accepted
-                                offer --> offer : changeStatusToAccepted()
-                        else if it is any other offer
-                                        offer --> offer : changeStatusToDeclined()
+alt accepts the offer
+        agent -> ui : accepts the offer
+        activate ui
+        ui -> controller : declineOtherOffers(offer, offersList)
+        activate controller
+        controller -> offerrepository : declineOtherOffers(Offer offer, List<Offer> offersList)
+                activate offerrepository
+                offerrepository --> offer: declineOtherOffers(Offer offer, List<Offer> offersList)
+                activate offer
+                offer --> offer: offer.setOfferState(OfferState.accepted)
+                loop for every offer in offersList
+                        opt if it is not equal to the offer sent through parameters
+                                offer --> offer : changeStatusToDeclined()
                         end
                 end
-        else if status == declined
-                offer --> offer : changeStatusToAccepted()
-        end
-deactivate offer
-deactivate controller
-ui --> agent : displays operation success  
-deactivate ui
+        deactivate offer
+        deactivate offerrepository
+        deactivate controller
+        ui -> controller : changeAnnouncementState(offer.getPublishedAnnouncement())
+        activate controller
+        controller -> announcementrep : changeAnnouncementState(PublishedAnnouncement publishedAnnouncement)
+        activate announcementrep
+        announcementrep --> announcement : changeAnnouncementState(PublishedAnnouncement publishedAnnouncement)
+        activate announcement
+        announcement --> announcement : publishedAnnouncement.setAnnouncementState(AnnouncementState.sold)
+        deactivate announcementrep
+        deactivate announcement
+        deactivate controller
 
-deactivate agent
+        ui -> controller : storeDecrement(offer.getPublishedAnnouncement().getStore())
+        activate controller
+        controller -> storerep : storeDecrement(Store store)
+        activate storerep
+        storerep --> store : decrementAvailableListing(Store store)
+        activate store
+                loop for every store in storesList
+                        opt if it is equal to the store sent through the parameters
+                                store --> store : stores.setAvailableListing(stores.getAvailableListing() - 1)        
+                        end
+                end
+        deactivate store
+        deactivate storerep
+        deactivate controller
+
+else rejects the offer
+
+        ui -> controller : declineOffer(offer)
+        activate controller
+        controller -> offerrepository : declineOffer(Offer offer)
+                activate offerrepository
+                offerrepository --> offer: declineOffer(Offer offer)
+                activate offer
+                offer --> offer: offer.setOfferState(OfferState.rejected)
+        deactivate offer
+        deactivate offerrepository
+        deactivate controller
+
+
+end
+
+ui -> controller : sendVisualizedEmail(email, subject, body)
+        activate controller
+        controller -> email : String emailServiceClass = properties.getProperty("emailService");
+        activate email
+        controller --> controller : emailService = (EmailService) serviceClass.newInstance();
+        controller -> email : sendVisualizedEmail(String email, String subject, String body)
+        email --> email : emailService.sendEmail(email, subject, body);
+        deactivate email
+        controller --> ui : operation Success
+        ui --> agent : displays operation success  
+        deactivate ui
+        deactivate controller
+        deactivate agent
+
+
 
 @enduml

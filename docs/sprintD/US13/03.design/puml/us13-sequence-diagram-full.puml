@@ -1,0 +1,149 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "Network Manager" as Manager
+participant ":DisplayEmployeeUI" as DisplayEmployeeUI
+participant ":DisplayEmployeeController" as DisplayEmployeeController
+participant ":repository" as RepositorySingleton
+participant "repository\n:Repository" as repository
+participant "Store\n:Store" as Store
+participant "storeRepository\n:StoreRepository" as StoreRepository
+participant "Employee\n:Employee" as Employee
+participant "employeeRepository\n:EmployeeRepository" as EmployeeRepository
+participant ":StoreEmployeeMapper" as StoreEmployeeMapper
+participant "StoreList\n:List<Store>" as StoreList
+participant "EmployeeList\n:List<Employee>" as EmployeeList
+participant "StoreEmployeeListDTO\n:List<StoreEmployeeDTO>" as StoreEmployeeList
+
+activate Manager
+
+    Manager -> DisplayEmployeeUI : asks to see list of all employees working in every store
+    activate DisplayEmployeeUI
+
+    create DisplayEmployeeController
+    DisplayEmployeeUI --> DisplayEmployeeController** : create
+    
+    DisplayEmployeeUI -> DisplayEmployeeController : getStoreEmployeeList()
+        activate DisplayEmployeeController
+
+    DisplayEmployeeController -> RepositorySingleton : getInstance()
+        activate RepositorySingleton
+
+                RepositorySingleton --> DisplayEmployeeController : repository
+
+            deactivate RepositorySingleton
+
+            DisplayEmployeeController -> repository : getStoreRepository()
+
+            activate repository
+
+                repository --> DisplayEmployeeController : StoreRepository
+
+            deactivate repository
+
+                DisplayEmployeeController -> Store : getStoresList()
+                activate Store
+
+                create StoreList
+                Store --> StoreList** : create()
+
+                    loop for each store
+                    
+                        Store -> StoreRepository : getStore(i)
+                        activate StoreRepository
+                        StoreRepository --> Store : Store
+                        deactivate StoreRepository
+
+                        Store --> Store : compare(store1, store2)
+
+                        Store -> StoreList : add(store)
+                        activate StoreList
+                        deactivate StoreList
+ 
+                    end
+
+                Store --> DisplayEmployeeController : StoreList
+
+                deactivate Store
+
+                DisplayEmployeeController -> repository : getEmployeeRepository()
+                    activate repository
+
+                        repository --> DisplayEmployeeController : EmployeeRepository
+                    deactivate repository
+
+                DisplayEmployeeController -> Employee : getEmployeesList()
+                activate Employee
+
+                create EmployeeList
+                Employee --> EmployeeList** : create()
+
+                    loop for each employee
+
+                        Employee -> EmployeeRepository : getEmployee(i)
+                        activate EmployeeRepository
+                        EmployeeRepository --> Employee : Employee
+                        deactivate EmployeeRepository
+                        Employee --> Employee : compare(employee1, employee2)
+                        Employee -> EmployeeList : add(employee)
+                        activate EmployeeList
+                        deactivate EmployeeList
+
+                    end
+
+                Employee --> DisplayEmployeeController : EmployeeList
+                deactivate Employee
+
+                DisplayEmployeeController -> StoreEmployeeMapper : toDTO(StoreList, EmployeeList)
+                activate StoreEmployeeMapper
+
+                create StoreEmployeeList
+                StoreEmployeeMapper --> StoreEmployeeList** : create()
+
+                loop for each store object
+                    
+                    StoreEmployeeMapper -> StoreList : storeName = getDesignation()
+                    activate StoreList
+                    deactivate StoreList
+
+                    StoreEmployeeMapper -> StoreList : storeId = getId()
+                    activate StoreList
+                    deactivate StoreList
+
+                    StoreEmployeeMapper -> StoreList : availableListing = getAvailableListing()
+                    activate StoreList
+                    deactivate StoreList
+
+                    loop for each employee object
+
+                        StoreEmployeeMapper -> EmployeeList : employees(i) = getEmployee(store)
+                        activate EmployeeList
+                        deactivate EmployeeList
+                    end
+
+                    StoreEmployeeMapper --> StoreEmployeeMapper : storeEmployeeDTO = toDTO(storeName, storeId, availableListing, employees)
+                    StoreEmployeeMapper -> StoreEmployeeList : add(storeEmployeeDTO)
+                    activate StoreEmployeeList
+                end
+                StoreEmployeeList --> StoreEmployeeMapper : StoreEmployeeListDTO
+                deactivate StoreEmployeeList
+
+                StoreEmployeeMapper --> DisplayEmployeeController : StoreEmployeeListDTO
+                deactivate StoreEmployeeMapper
+
+                DisplayEmployeeController --> DisplayEmployeeUI : StoreEmployeeListDTO
+                deactivate DisplayEmployeeController
+
+    DisplayEmployeeUI --> Manager : provides a list of employees (Id, name and role) alphabetically sorted\nand grouped by store (Id, name and number of listings) sorted from \nthe one with more listings to the one with less listings  
+    deactivate DisplayEmployeeUI
+
+    deactivate DisplayEmployeeController
+
+deactivate Manager
+
+@enduml

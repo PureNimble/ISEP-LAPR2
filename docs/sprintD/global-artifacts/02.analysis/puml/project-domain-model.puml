@@ -20,8 +20,7 @@ class State {
     State name
 }
 
-class User {
-    Password
+class Client {
 }
 
 class Person {
@@ -54,9 +53,6 @@ class Store {
 }
 
 class Employee {
-    Name
-    ID
-    Tax Number
 }
 
 class Role {
@@ -69,10 +65,6 @@ class Photos {
 
 class AvailableEquipment {
     Equipment
-}
-
-class ComissionPercentage {
-    Percentage value
 }
 
 class Rent {
@@ -120,53 +112,88 @@ class Comission {
     Value
 }
 
+class Message{
+    Date
+    Initial time
+    End time
+    Description
+}
+
+class Offer {
+Offer Value
+}
+
+class File{
+Name
+Information
+}
+
+class SystemAdministrator{
+}
+
+class StoreNetworkManager {
+
+}
+
+
 Comission "1" --- "1" Business : contains <
-District "1" -right--- "*" City : has >
-House "1" -down-- "1" SunExposure : contains >
-Property <|-down--- Residence
-Property "*" ---right- "1" Address : has >
-PublishedAnnouncement "1" --down-- "1" Business : has <
-Property "1" -right--- "1..30" Photos : has >
-PublishedAnnouncement "*" -up---- "*" Property: advertises >
-Residence "1" -right--- "*" AvailableEquipment : contains >
-Residence <|-down-- House
-State "1" -right-- "*" District : has >
-State "1" -up- "*" Address : has >
-TypeOfProperty "1" -down--- "1" Property : defines >
-UnregisteredUser "*" -left--- "*" PublishedAnnouncement: displays >
-Store "1" ---right- "1" Contacts: has >
-Address "1" -left--- "1" User: has <
-User "1" ---- "1" Store: contacts >
-Agent "*" -down- "1" Store: has <
-Comission "1" -right---- "1" Agent: defines <
-User "1" -down-- "1" Business: requests >
-Property "1" ------- "1" Business: has a <
-AnnouncementRequest "1" -up--- "1" Business: has >
+District "1" --- "*" City : has >
+House "1" --- "1" SunExposure : contains >
+Property <|--- Residence
+Property "*" --- "1" Address : has >
+PublishedAnnouncement "1" --- "1" Business : has <
+AnnouncementRequest "1" --- "1" Business : has <
+Property "1" --- "1..30" Photos : has >
+PublishedAnnouncement "*" --- "*" Property: advertises >
+Residence "1" --- "*" AvailableEquipment : contains >
+Residence <|--- House
+State "1" --- "*" District : has >
+State "1" --- "*" Address : has >
+TypeOfProperty "1" --- "1" Property : defines >
+UnregisteredUser "*" --- "*" PublishedAnnouncement: displays >
+Store "1" --- "1" Contacts: has >
+Address "1" --- "1" Client: has <
+Client "1" --- "1" Store: contacts >
+Comission "1" --- "1" Agent: defines <
+Client "1" --- "1" Business: requests >
 Agent "1" --- "1" AnnouncementRequest : reviews >
 AnnouncementRequest "1" --- "1" Property: has a >
-AnnouncementRequest  <|-down--  PublishedAnnouncement
+AnnouncementRequest  <|---  PublishedAnnouncement
 PublishedAnnouncement "*" --- "1" Agent: publishes <
-Business <|-up- Rent
-Comission <|-left--- ComissionPercentage
-User <|-down-------------- Employee
-Employee <|-- Agent
-Employee <|- StoreNetworkManager
-Employee <|-left-- StoreManager
-Employee <|------ SystemAdministrator
-Store "*" ----- "1" Address : located at >
-Employee "1" ------ "*" Store : works in >
-Employee "1" - "1..4" Role : has >
-Store "1" ------- "*" StoreNetworkManager : manages <
-City "1" -up-- "1" SystemAdministrator: adds <
-District "1" -left-- "1" SystemAdministrator: adds <
-State "1" -down-- "1" SystemAdministrator: adds <
-UnregisteredUser "1" -right-- "1" User : can register as >
+Business <|--- Rent
+Employee --- Agent
+Person <|--- Employee
+Person <|--- Client
+Employee --- StoreNetworkManager
+Employee --- StoreManager
+Employee --- SystemAdministrator
+Store "*" --- "1" Address : located at >
+Employee "1" --- "*" Store : works in a >
+Employee "1" --- "1..4" Role : has a >
+City "1" --- "1" SystemAdministrator: adds <
+District "1" --- "1" SystemAdministrator: adds <
+State "1" --- "1" SystemAdministrator: adds <
+UnregisteredUser "1" --- "1" Client : can register as >
 Person "1" --- "1" Address : can have >
-Person "1" -down-- "1" Contacts : has >
-Person <|-up- User
-SystemAdministrator "1" -left-- "*" Store: registers >
-
-
-
-
+Person "1" --- "1" Contacts : has >
+SystemAdministrator "1" --- "*" Store: registers >
+'Agent "1" --- "*" AnnouncementRequest:intends to see >
+Message "*" --- "1" PublishedAnnouncement: can have a <
+'Client "1" --- "1..*" Message: leaves a >
+'Agent "1" --- "1" Message: receives a >
+Offer "*" --- "1" PublishedAnnouncement : has <
+Client "1" --- "*" Offer : makes >
+Agent "1" --- "*" Offer : accepts/declines >
+File "1..*" --- "1" SystemAdministrator : imported by >
+'Agent "1" --- "1" Message: wants to see a list of >
+'Agent "1" --- "*" Message : responds >
+StoreManager "*" --- "*" Offer: intends to see >
+Property "1" --- "1" Business: has a <
+StoreManager --- Residence : analyses >
+Client "1" --- "*" Message: leaves a \n +sender >
+Agent "1" --- "*" Message: receives a \n +receiver <
+Agent "1" --- "*" Message: lists and responds to a \n +sender >
+Client "1" --- "*" Message: receives a \n +receiver <
+StoreManager --- PublishedAnnouncement : analyses sold >
+PublishedAnnouncement ---> PublishedAnnouncementState : has >
 @enduml

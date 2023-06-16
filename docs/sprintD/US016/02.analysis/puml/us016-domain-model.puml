@@ -18,8 +18,6 @@ class Client {
 }
 
 class Message {
-Name
-Phone Number
 Date
 Initial Time
 End Time
@@ -134,7 +132,7 @@ Residence "1" -- "*" AvailableEquipment : contains >
 
 House "*" --- "1" SunExposure : contains >
 
-Employee <|--- Agent
+Employee --- Agent
 Employee "*" -right- "1" Role : has >
 
 Message "1..*" -left- "1" Client : leaves

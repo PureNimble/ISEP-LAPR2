@@ -5,7 +5,8 @@ import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.domain.emailServices.EmailService;
 import pt.ipp.isep.dei.esoft.project.domain.sortAlgorithms.SortAlgorithm;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
@@ -13,41 +14,31 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * The type List message ui.
+ * User interface for listing and responding to messages.
  */
+
 public class ListMessageUI implements Runnable {
-    /**
-     * Scanner instance for user input.
-     */
     private final Scanner input = new Scanner(System.in);
-    /**
-     * Controller for managing booking requests.
-     */
     private final ListMessageController controller = new ListMessageController();
+
     /**
-     * Runs the message request UI.
+     * Runs the user interface.
      */
 
     public void run() {
         System.out.println("Enter the begin date (dd-MM-yyyy): ");
-        String beginDateString = input.nextLine();
-
-        Date beginDate = parseDate(beginDateString);
+        Date beginDate = parseDate(input.nextLine());
         while (beginDate == null) {
             System.out.println("Enter the begin date (dd-MM-yyyy): ");
-            beginDateString = input.nextLine();
-            beginDate = parseDate(beginDateString);
+            beginDate = parseDate(input.nextLine());
         }
 
         System.out.println("Enter the end date (dd-MM-yyyy): ");
-        String endDateString = input.nextLine();
-        Date endDate = parseDate(endDateString);
+        Date endDate = parseDate(input.nextLine());
         while (endDate == null) {
             System.out.println("Enter the end date (dd-MM-yyyy): ");
-            endDateString = input.nextLine();
-            endDate = parseDate(endDateString);
+            endDate = parseDate(input.nextLine());
         }
-
 
         if (beginDate != null && endDate != null) {
             if (endDate.before(beginDate)) {
@@ -62,7 +53,7 @@ public class ListMessageUI implements Runnable {
                 return;
             }
 
-            try (InputStream input = new FileInputStream("config.properties")) {
+            try (FileInputStream input = new FileInputStream("config.properties")) {
                 Properties prop = new Properties();
                 prop.load(input);
                 String sortingClass = prop.getProperty("sortingAlgorithmClass");
@@ -75,15 +66,20 @@ public class ListMessageUI implements Runnable {
                 } else {
                     controller.sortMessageRequests(messageRequests);
                 }
-            } catch (IOException | ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException |
-                     InvocationTargetException e) {
+            } catch (IOException | ClassNotFoundException | NoSuchMethodException | InstantiationException |
+                     IllegalAccessException | InvocationTargetException e) {
                 controller.sortMessageRequests(messageRequests);
             }
 
             System.out.println("\n\nBooking Requests for the specified period (sorted by date in ascending order):\n");
+            int count = 0;
             for (int i = 0; i < messageRequests.size(); i++) {
                 Message message = messageRequests.get(i);
-                System.out.println((i + 1) + ". " + message.toString());
+                if (message.getMessageState() == MessageState.ANSWERED) {
+                    continue; // Skip the message with ANSWERED state
+                }
+                count++;
+                System.out.println(count + ". " + message);
             }
 
             int choice;
@@ -105,11 +101,12 @@ public class ListMessageUI implements Runnable {
     }
 
     /**
-     * Respond to client or no.
+     * Responds to the client by accepting or denying the visitation request.
      *
-     * @param message               the message
-     * @param publishedAnnouncement the published announcement
+     * @param message              the message to respond to
+     * @param publishedAnnouncement the published announcement related to the message
      */
+
     public void respondToClientOrNo(Message message, PublishedAnnouncement publishedAnnouncement) {
         System.out.println("\n1. Respond");
         System.out.println("2. Cancel");
@@ -120,134 +117,202 @@ public class ListMessageUI implements Runnable {
             choice = input.nextInt();
             input.nextLine(); // Consume the newline character
 
-            switch (choice) {
-                case 1:
-                    String email = null;
-                    boolean isValidEmail = false;
-
-                    while (!isValidEmail) {
-                        System.out.println("Enter client email: ");
-                        email = input.nextLine();
-
-                        // Validate email format
-                        if (email.matches("^[A-Za-z0-9]+[A-Za-z0-9._]*@[A-Za-z0-9]+(\\.[A-Za-z]+[A-Za-z0-9]*)+[A-Za-z]$")) {
-                            isValidEmail = true;
-                        } else {
-                            System.out.println("Please enter a valid email address (e.g., example@example.com).");
-                        }
-                    }
-
-                    String subject = null;
-                    String body = null;
-
-                    // Prompt for acceptance or denial
-                    System.out.println("\n1. Accept");
-                    System.out.println("2. Deny");
-
-                    int responseChoice;
-                    do {
-                        System.out.println("Enter your response: ");
-                        responseChoice = input.nextInt();
-                        input.nextLine(); // Consume the newline character
-
-                        switch (responseChoice) {
-                            case 1:
-                                // Accept the visitation
-                                subject = "Your Visit Booking Request Has Been Accepted";
-                                body = "Dear Customer, \n\n" +
-                                        "Thank you for your interest in the property listed with ID: " + publishedAnnouncement.getPropertyID() +
-                                        " and located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
-                                        "You had requested a visit for the date: " + message.getInitialDate() +
-                                        ",  starting at: " + message.getInitialTime() +
-                                        " and ending at: " + message.getEndTime() + ".\n\n" +
-                                        "We are pleased to inform you that your booking request has been accepted. You will be greeted by our agent " + publishedAnnouncement.getAgent().getName() + ".\n" +
-                                        "In case of any changes or queries, you may contact the agent at the following number: " + publishedAnnouncement.getAgent().getPhoneNumber() + ".\n\n" +
-                                        "We look forward to welcoming you for the visit.\n\n" +
-                                        "Best Regards,\n" +
-                                        publishedAnnouncement.getAgent().getName();
-
-                                message.setMessageState(MessageState.ANSWERED);
-                                message.setApprovedByAgent(true);
-                                break;
-                            case 2:
-                                // Deny the visitation
-                                subject = "Your Visit Booking Request Has Been Rejected";
-                                System.out.println("Reason for denying the visit request: ");
-                                String reason = input.nextLine();
-                                body = "Dear Customer, \n\n" +
-                                        "Thank you for your interest in the property listed with ID: " + publishedAnnouncement.getPropertyID() +
-                                        " and located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
-                                        "You had requested a visit for the date: " + message.getInitialDate() +
-                                        ", starting at: " + message.getInitialTime() +
-                                        " and ending at: " + message.getEndTime() + ".\n\n" +
-                                        "We regret to inform you that your booking request has been rejected for the following reason:\n\n" +
-                                        reason + "\n\n" +
-                                        "If you have any doubts and need help, you may contact the agent " + publishedAnnouncement.getAgent().getName() +
-                                        " at the following number: " + publishedAnnouncement.getAgent().getPhoneNumber() + ".\n\n" +
-                                        "Thank you for your understanding.\n\n" +
-                                        "Best Regards,\n" +
-                                        publishedAnnouncement.getAgent().getName();
-
-                                message.setMessageState(MessageState.ANSWERED);        
-                                message.setApprovedByAgent(false);
-                                break;
-                            default:
-                                System.out.println("Invalid choice. Please enter a valid response choice.");
-                                break;
-                        }
-                    } while (responseChoice != 1 && responseChoice != 2);
-
-                    // Load configuration properties
-                    Properties properties = new Properties();
-                    try (FileInputStream fileInputStream = new FileInputStream("config.properties")) {
-                        properties.load(fileInputStream);
-                    } catch (IOException e) {
-                        System.out.println("An error occurred while reading the configuration file: " + e.getMessage());
-                        return;
-                    }
-
-                    // Retrieve the email service class name from properties
-                    String emailServiceClass = properties.getProperty("emailService");
-
-                    // Instantiate the email service
-                    EmailService emailService;
-                    try {
-                        Class<?> serviceClass = Class.forName(emailServiceClass);
-                        emailService = (EmailService) serviceClass.newInstance();
-                    } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
-                        System.out.println("Failed to instantiate the email service: " + e.getMessage());
-                        return;
-                    }
-
-                    if (email != null) {
-                        // Send the email using the email service
-                        emailService.sendEmail(email, subject, body);
-                        System.out.println("Email sent successfully.");
-                    }
-                    break;
-                case 2:
-                    // Cancel the operation
-                    System.out.println("Operation canceled.");
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please enter a valid option.");
-                    break;
+            if (choice == 1) {
+                processClientResponse(message, publishedAnnouncement);
+            } else if (choice == 2) {
+                cancelOperation();
+            } else {
+                System.out.println("Invalid choice. Please enter a valid option.");
             }
         } while (choice != 1 && choice != 2);
     }
 
     /**
-     * Parses a string to a Date object.
+     * Processes the client's response to the visitation request.
      *
-     * @param dateString The string representing the date.
-     * @return The parsed Date object, or null if the parsing failed.
+     * @param message              the message to respond to
+     * @param publishedAnnouncement the published announcement related to the message
      */
+
+    private void processClientResponse(Message message, PublishedAnnouncement publishedAnnouncement) {
+        String email = getClientEmail();
+        if (email != null) {
+            int responseChoice = getResponseChoice();
+            if (responseChoice == 1) {
+                acceptVisitation(message, publishedAnnouncement, email);
+            } else if (responseChoice == 2) {
+                denyVisitation(message, publishedAnnouncement, email);
+            } else {
+                System.out.println("Invalid choice. Please enter a valid response choice.");
+            }
+        }
+    }
+
+    /**
+     * Gets the email address of the client.
+     *
+     * @return the client's email address
+     */
+
+    private String getClientEmail() {
+        String email = null;
+        boolean isValidEmail = false;
+
+        while (!isValidEmail) {
+            System.out.println("Enter client email: ");
+            email = input.nextLine();
+
+            // Validate email format
+            if (email.matches("^[A-Za-z0-9]+[A-Za-z0-9._]*@[A-Za-z0-9]+(\\.[A-Za-z]+[A-Za-z0-9]*)+[A-Za-z]$")) {
+                isValidEmail = true;
+            } else {
+                System.out.println("Please enter a valid email address (e.g., example@example.com).");
+            }
+        }
+
+        return email;
+    }
+
+    /**
+     * Gets the response choice from the client.
+     *
+     * @return the response choice (1 for accept, 2 for deny)
+     */
+
+    private int getResponseChoice() {
+        System.out.println("\n1. Accept");
+        System.out.println("2. Deny");
+
+        int responseChoice;
+        do {
+            System.out.println("Enter your response: ");
+            try {
+                responseChoice = input.nextInt();
+                input.nextLine(); // Consume the newline character
+
+                if (responseChoice != 1 && responseChoice != 2) {
+                    System.out.println("Invalid response. Please enter 1 or 2.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid response (1 or 2).");
+                input.nextLine(); // Clear the input buffer
+                responseChoice = -1; // Set responseChoice to an invalid value to repeat the loop
+            }
+        } while (responseChoice != 1 && responseChoice != 2);
+
+        return responseChoice;
+    }
+
+    /**
+     * Accepts the visitation request and sends a confirmation email to the client.
+     *
+     * @param message              the message to respond to
+     * @param publishedAnnouncement the published announcement related to the message
+     * @param email                the email address of the client
+     */
+
+    private void acceptVisitation(Message message, PublishedAnnouncement publishedAnnouncement, String email) {
+        String subject = "Your Visit Booking Request Has Been Accepted";
+        String body = "Dear Customer, \n\n" +
+                "Thank you for your interest in the property listed with ID: " + publishedAnnouncement.getPropertyID() +
+                " and located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
+                "You had requested a visit for the date: " + message.getInitialDate() +
+                ", starting at: " + message.getInitialTime() +
+                " and ending at: " + message.getEndTime() + ".\n\n" +
+                "We are pleased to inform you that your booking request has been accepted. You will be greeted by our agent " + publishedAnnouncement.getAgent().getName() + ".\n" +
+                "In case of any changes or queries, you may contact the agent at the following number: " + publishedAnnouncement.getAgent().getPhoneNumber() + ".\n\n" +
+                "We look forward to welcoming you for the visit!\n\n" +
+                "Best Regards,\n" +
+                publishedAnnouncement.getAgent().getName();
+
+        message.setMessageState(MessageState.ANSWERED);
+        message.setApprovedByAgent(true);
+        controller.updateMessageState(message);
+
+        // Send the email
+        controller.sendEmail(email, subject, body);
+
+        // Remove the message from the list
+        controller.removeMessage(message);
+    }
+
+    /**
+     * Denies the visitation request and sends a rejection email to the client.
+     *
+     * @param message              the message to respond to
+     * @param publishedAnnouncement the published announcement related to the message
+     * @param email                the email address of the client
+     */
+
+    private void denyVisitation(Message message, PublishedAnnouncement publishedAnnouncement, String email) {
+        String subject = "Your Visit Booking Request Has Been Rejected";
+        String reason = getRejectionReason();
+
+        String body = "Dear Customer, \n\n" +
+                "Thank you for your interest in the property listed with ID: " + publishedAnnouncement.getPropertyID() +
+                " and located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
+                "You had requested a visit for the date: " + message.getInitialDate() +
+                ", starting at: " + message.getInitialTime() +
+                " and ending at: " + message.getEndTime() + ".\n\n" +
+                "We regret to inform you that your booking request has been rejected for the following reason:\n\n" +
+                reason + "\n\n" +
+                "If you have any doubts and need help, you may contact the agent " + publishedAnnouncement.getAgent().getName() +
+                " at the following number: " + publishedAnnouncement.getAgent().getPhoneNumber() + ".\n\n" +
+                "Thank you for your understanding.\n\n" +
+                "Best Regards,\n" +
+                publishedAnnouncement.getAgent().getName();
+
+        message.setMessageState(MessageState.ANSWERED);
+        message.setApprovedByAgent(false);
+        controller.updateMessageState(message); // Add this line to update the message state
+
+        // Send the email
+        controller.sendEmail(email, subject, body);
+
+        // Remove the message from the list
+        controller.removeMessage(message);
+    }
+
+    /**
+     * Gets the reason for rejecting the visitation request.
+     *
+     * @return the reason for rejection
+     */
+
+    private String getRejectionReason() {
+        System.out.println("Enter the reason for rejection: ");
+        return input.nextLine();
+    }
+
+    /**
+     * Cancels the operation and returns to the message list.
+     */
+
+    private void cancelOperation() {
+        System.out.println("Operation canceled.");
+    }
+
+    /**
+     * Sends an email using the EmailService.
+     *
+     * @param email the email address of the client
+     * @param subject        the subject of the email
+     * @param body           the body of the email
+     */
+
+    /**
+     * Parses a string date in the format dd-MM-yyyy and returns a Date object.
+     *
+     * @param dateString the string representation of the date
+     * @return the parsed Date object, or null if the date format is invalid
+     */
+
     private Date parseDate(String dateString) {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         try {
             return format.parse(dateString);
         } catch (ParseException e) {
-            System.out.println("Invalid date format. Please enter the date in dd-MM-yyyy format.");
+            System.out.println("Invalid date format. Please enter the date in the format dd-MM-yyyy.");
             return null;
         }
     }
