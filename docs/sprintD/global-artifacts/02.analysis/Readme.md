@@ -17,7 +17,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 ---
 
-**Transaction Line Itemss**
+**Transaction Line Items**
 
 * Property
 * Business
@@ -87,7 +87,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Descriptions of Things**
 
-*  Sun Exposure
+* Sun Exposure
 * AvailableEquipment
 * Address
 
@@ -166,53 +166,57 @@ An association is a relationship between instances of objects that indicates a r
 
 
 
-| **_Concept (A)_**   | **_Association_** | **_Concept (B)_** |                                       
-|:--------------------|:------------------|------------------:|
-| Agent               | reviews           | AnnouncementRequest |
-| Agent               | defines           | Comission         |
-| Agent               | is a              | Employee          |
-| Agent               | publishes         | PublishedAnnouncement |
-| AnnouncementRequest | has               | Business          |
-| AnnouncementRequest | has a             | Property          |
-| Business            | contains          | Comission         |
-| Business            | has a             | PublishedAnnouncement |
-| ComissionPercentage | is a              | Comission         |
-| District            | has               | City              |
-| Employee            | has               | Role              |
-| Employee            | works in          | Store             |
-| Employee            | is a              | User              |
-| House               | is a              | Residence         |
-| House               | contains          | SunExposure       |
-| Person              | can have          | Address           |
-| Person              | has               | Contacts          |
-| Property            | has               | Address           |
-| Property            | has               | Photos            |
-| PublishAnnouncement | is a              | AnnouncementRequest |
-| PublishAnnouncement | advertises        | Property          |
-| Rent                | is a              | Business          |
-| Residence           | contains          | AvailableEquipment |
-| Residence           | is a              | Property          |
-| State               | has               | Address           |
-| State               | has               | District          |
-| Store               | located at        | Address           |
-| Store               | has               | Agent             |
-| Store               | has               | Contacts          |
-| StoreManager        | is a              | Employee          |
-| StoreNetworkManager | is a              | Employee          |
-| StoreNetworkManager | manages           | Store             | 
-| SystemAdministrator | adds              | City              |  
-| SystemAdministrator | adds              | District          |      
-| SystemAdministrator | is a              | Employee          |
-| SystemAdministrator | adds              | State             |
-| SystemAdministrator | registers         | Store             |
-| TypeOfProperty      | defines           | Property          |  
-| User                | requests          | Business          |
-| User                | is a              | Person            |
-| User                | has               | Property          |
-| User                | contacts          | Store             |
-| UnregisteredUser    | can register as   | User              |
-| UnregisteredUser    | displays          | PublishedAnnouncement |
-|                     |                   |                   |         
+| **_Concept (A)_**   | **_Association_**       |     **_Concept (B)_** |                                       
+|:--------------------|:------------------------|----------------------:|
+| Agent               | reviews                 |   AnnouncementRequest |
+| Agent               | defines                 |             Comission |
+| Agent               | is a                    |              Employee |
+| Agent               | publishes               | PublishedAnnouncement |
+| Agent               | recieves a              |               Message |
+| Agent               | wants to see a list of  |              Message  |
+ | AnnouncementRequest | has                     |              Business |
+| AnnouncementRequest | has a                   |              Property |
+| Business            | contains                |             Comission |
+| Business            | has a                   | PublishedAnnouncement |
+| Client              | requests                |              Business |
+| Client              | is a                    |                Person |
+| Client              | has                     |              Property |
+| Client              | contacts                |                 Store |
+| Client              | leaves a                |               Message |
+| ComissionPercentage | is a                    |             Comission |
+| District            | has                     |                  City |
+| Employee            | has                     |                  Role |
+| Employee            | works in                |                 Store |
+| Employee            | is a                    |                Person |
+| House               | is a                    |             Residence |
+| House               | contains                |           SunExposure |
+| Person              | can have                |               Address |
+| Person              | has                     |              Contacts |
+| Property            | has                     |               Address |
+| Property            | has                     |                Photos |
+| PublishAnnouncement | is a                    |   AnnouncementRequest |
+| PublishAnnouncement | advertises              |              Property |
+| PublishAnnouncemnt  | can have a              |               Message |
+| Rent                | is a                    |              Business |
+| Residence           | contains                |    AvailableEquipment |
+| Residence           | is a                    |              Property |
+| State               | has                     |               Address |
+| State               | has                     |              District |
+| Store               | located at              |               Address |
+| Store               | has                     |                 Agent |
+| Store               | has                     |              Contacts |
+| StoreManager        | is a                    |              Employee |
+| StoreNetworkManager | is a                    |              Employee |
+| StoreNetworkManager | manages                 |                 Store | 
+| SystemAdministrator | adds                    |                  City |  
+| SystemAdministrator | adds                    |              District |      
+| SystemAdministrator | is a                    |              Employee |
+| SystemAdministrator | adds                    |                 State |
+| SystemAdministrator | registers               |                 Store |
+| TypeOfProperty      | defines                 |              Property |
+| UnregisteredUser    | can register as         |                  User |
+| UnregisteredUser    | displays                | PublishedAnnouncement |
+|                     |                         |                       |         
 
 ## Domain Model
 

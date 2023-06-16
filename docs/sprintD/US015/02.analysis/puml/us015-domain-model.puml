@@ -130,7 +130,7 @@ class Client {
 
 Agent "1" --- "1" Message: wants to see a list of >
 Person <|-- Employee
-Employee <|-- Agent
+Employee --  Agent
 Person <|-- Client
 
 Comission "1" -- "1" Business : contains <
