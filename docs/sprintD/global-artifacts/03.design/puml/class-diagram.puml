@@ -1,227 +1,178 @@
 @startuml
 
-class AnnouncementRequestDto{
--Date date
--TypeOfBusiness typeOfBusiness
--Property property
--PropertyType propertyType
--int durationOfContract
--Employee agent
--String status
-+toString()
+!define arrow2(direction)  [[[#0000FF], [dashed], [direction]]]
+hide empty members
+skinparam linetype ortho
+skinparam ranksep 40
+
+title Class Diagram Global
+
+class AnnouncementRequestDto {
+
+    - Date date
+    - TypeOfBusiness typeOfBusiness
+    - Property property
+    - PropertyType propertyType
+    - int durationOfContract
+    - Employee agent
+    - String status
+    + toString()
 }
 
-class AnnouncementRequestMapper{
-+List<AnnouncementRequestDto> toDto (List<AnnnouncementRequest> list)
-+AnnouncementRequestDto toDtoObject(status, agent, property, typeOfBusiness, propertyType, business, date,durationOfContract)
-+getAnnouncementRequestDtoByDescription(announcementRequestDescription)
+class AnnouncementRequestMapper {
+    + List<AnnouncementRequestDto> toDto (List<AnnnouncementRequest> list)
+    + AnnouncementRequestDto toDtoObject(status, agent, property, typeOfBusiness, propertyType, business, date,durationOfContract)
+    + getAnnouncementRequestDtoByDescription(announcementRequestDescription)
 }
 
 
-class Person{
-- String email
-- int passportNumber
-- int taxNumber
-- String name
-- Address address
-- int phoneNumber
-
-+User(email,passportNumber,taxNumber,name,phoneNumber)
-+getPassportNumber()
-+getTaxNumber()
-+getEmail()
-+getAdress()
-+getName()
-+getPhoneNumber()
-
+class EmployeeRepository {
+    + add(employee)
+    + getEmployees()
+    + getEmployeeeByEmail(email)
 }
 
-class EmployeeRepository{
-+add(employee)
-+getEmployees()
-+getEmployeeeByEmail(email)
+class AuthenticationRepository {
+    + doLogin(email,pwd)
+    + doLogout()
+    + getCurrentSession()
+    + addUserRole()
+    + addUserWithRole()
+    + passwordGenerator()
+    - shuffleString(input,random)
+    - randomCharacter(characters,random)
 }
 
-class AuthenticationRepository{
-+doLogin(email,pwd)
-+doLogout()
-+getCurrentSession()
-+addUserRole()
-+addUserWithRole()
-+passwordGenerator()
--shuffleString(input,random)
--randomCharacter(characters,random)
-}
-
-class ComissionRepository{
-+getComissionByDescription(comissionDescription)
-+getComission()
-+add(comission)
+class ComissionRepository {
+    + getComissionByDescription(comissionDescription)
+    + getComission()
+    + add(comission)
 
 }
 
 class PublishedAnnouncementRepository{
-+add(publishedAnnouncement)
-+publishedAnnouncement(date,typeOfBusiness,property,propertyType,comission,business,durationOfContract)
-+publishedAnnouncementRequest(comission,announcementRequest)
-+addPublishedAnnouncement(publishedAnnouncement)
-+getPublishedAnnouncemens()
+    + add(publishedAnnouncement)
+    + publishedAnnouncement(date,typeOfBusiness,property,propertyType,comission,business,durationOfContract)
+    + publishedAnnouncementRequest(comission,announcementRequest)
+    + addPublishedAnnouncement(publishedAnnouncement)
+    + getPublishedAnnouncemens()
 }
 
+class State {
+    - String stateName
 
-class State{
- - String stateName
-
-    +getState()
-    +getDistricts()
-    +toString()
+    + getState()
+    + getDistricts()
+    + toString()
 
 }
 
 class Comission {
-    -Double Value
+    - Double Value
 }
 
+class District {
+    - String districtName
 
-class District{
-- String districtName
-
-
-    +getDistrictName()
-    +getCities()
-    +toString()
+    + getDistrictName()
+    + getCities()
+    + toString()
 }
 
-class City{
-- String city
+class City {
+    - String city
 
-    +getCityName()
+    + getCityName()
 }
 
 
 class Property {
     - int Area
-    -Photos Photos
+    - Photos Photos
     - int Distance from the city center
 }
 
-class Address{
- -String streetName
-    -int zipCode
-
-    +verifyZipCode()
-    +getCity()
-    +getDistrict()
-    +getState()
-    +Address(state, district, city, street, zipCode)
-}
 
 class Role{
--String role
-+Role(role)
+    - String role
+    + Role(role)
 }
 
 
-class Employee{
--Store store
--Role role
-+Employee(email,name,store,phoneNumber,role,adress,taxNumber,passportNumber)
-+getStore()
-+getRole()
+class Employee {
+    - Store store
+    - Role role
+    + Employee(email,name,store,phoneNumber,role,adress,taxNumber,passportNumber)
+    + getStore()
+    + getRole()
+}
+
+class AnnouncementRequest {
+    - Date date
+    - String status
 }
 
 
-class Residence {
-    -int Number of Bedrooms
-    -int Number of Bathrooms
-    -int Number of Parking Spaces
+class PublishAnnouncementRequestUI {
 }
 
-class House {
-    -String Basement
-    -String Inhabitable loft
-}
-
-class SunExposure {
-    -String Direction
-}
-
-class AvailableEquipment {
-    -String Equipment
-}
-
-class AnnouncementRequest{
--Date date
--String status
-}
-
-
-class PublishAnnouncementRequestUI{
-}
-
-class TypeOfProperty{
-   -String type
-}
-
-class Photos {
-    -String URI
-}
-
-class AnnouncementRequestRepository{
-+add(announcementRequest)
-+announcementRequest(date,typeOfBusiness,property,propertyType,business,durationOfContract)
-+addAnnouncementRequest(announcementRequest)
-+getAnnouncementRequestByDescription(announcementRequestDescription)
-+getAnnouncementRequestByMostRecent()
-+getAnnouncementRequest()
-+rejectAnnouncementRequest(announcementRequestDto)
+class AnnouncementRequestRepository {
+    + add(announcementRequest)
+    + announcementRequest(date,typeOfBusiness,property,propertyType,business,durationOfContract)
+    + addAnnouncementRequest(announcementRequest)
+    + getAnnouncementRequestByDescription(announcementRequestDescription)
+    + getAnnouncementRequestByMostRecent()
+    + getAnnouncementRequest()
+    + rejectAnnouncementRequest(announcementRequestDto)
 }
 
 
 
-class PublishAnnouncementRequestController{
-+createPublishAnnouncementRequestController(employeeRepository,announcementRequestRepository,publishedAnnouncementRepository,comissionRepository,authenticationRepository)
-+getEmployees()
-+getAnnouncementRequestByMostRecent()
-+getComissions()
-+getCurrentSessionEmail()
-+createPublishedAnnouncementRequestController(announcementRequestDescription,comissionDescription)
-+getComissionByDescription(String comissionDescription)
-+getAnnouncementRequestByDescription(int announcementRequestDescription)
-+getEmployeeeByEmail()
-+toDto(agent)
-+rejectAnnouncementRequest(announcementRequestDtoDescription)
-+getPublishedAnnouncements()
--getAuthenticationRepository()
--getPublishedAnnouncementRepository()
--getAnnouncementRequestRepository()
--getComissionRepository()
--getEmployeeRepository()
--getAnnouncementRequestMapper()
+class PublishAnnouncementRequestController {
+    + createPublishAnnouncementRequestController(employeeRepository,announcementRequestRepository,publishedAnnouncementRepository,comissionRepository,authenticationRepository)
+    + getEmployees()
+    + getAnnouncementRequestByMostRecent()
+    + getComissions()
+    + getCurrentSessionEmail()
+    + createPublishedAnnouncementRequestController(announcementRequestDescription,comissionDescription)
+    + getComissionByDescription(String comissionDescription)
+    + getAnnouncementRequestByDescription(int announcementRequestDescription)
+    + getEmployeeeByEmail()
+    + toDto(agent)
+    + rejectAnnouncementRequest(announcementRequestDtoDescription)
+    + getPublishedAnnouncements()
+    - getAuthenticationRepository()
+    - getPublishedAnnouncementRepository()
+    - getAnnouncementRequestRepository()
+    - getComissionRepository()
+    - getEmployeeRepository()
+    - getAnnouncementRequestMapper()
 
 }
 
-class Repositories{
--Repositories()
-+getInstance():Repositories
-+getEmployeeRepository()
-+getComissionRepository()
-+getPublishedAnnouncementRepository()
-+getAuthenticationRepository()
-+getAnnouncementRequestRepository()
-+getStoreRepository()
-+getRoleRepository()
-+getStateRepository()
-+getClientRepository()
-+getPropertyTypeRepository()
-+getTypeOfBusinessRepository()
-+getMessageRepository()
-+getOfferRepository()
-+serialize()
-+deserialize()
+class Repositories {
+    -Repositories()
+    +getInstance():Repositories
+    +getEmployeeRepository()
+    +getComissionRepository()
+    +getPublishedAnnouncementRepository()
+    +getAuthenticationRepository()
+    +getAnnouncementRequestRepository()
+    +getStoreRepository()
+    +getRoleRepository()
+    +getStateRepository()
+    +getClientRepository()
+    +getPropertyTypeRepository()
+    +getTypeOfBusinessRepository()
+    +getMessageRepository()
+    +getOfferRepository()
+    +serialize()
+    +deserialize()
 }
 
-class SendMessageUI
+class SendMessageUI {
+
+}
 
 class SendMessageController {
     + sendMessageController ()
@@ -230,16 +181,9 @@ class SendMessageController {
   }
 
 class ListOfPropertiesMapper{
-+List<PropertiesDTO> toDTO (List<Properties> list)
-+ListOfPropertiesDTO toDTO(Published Announcement listOfProperties)
-+getPropertyDTOByDescription(PropertyDescription)
-}
-
-class MessageRepository {
-+add(Message message)
-+getMessages()
--validateMessage(Message message)
--checkIfTimeOverlaps(Message message1, Message message2)
+    + List<PropertiesDTO> toDTO (List<Properties> list)
+    + ListOfPropertiesDTO toDTO(Published Announcement listOfProperties)
+    + getPropertyDTOByDescription(PropertyDescription)
 }
 
 class Message {
@@ -262,182 +206,690 @@ class Message {
 
 }
 
-class PropertiesDTO{
--Date date
--TypeOfBusiness typeOfBusiness
--Property property
--PropertyType propertyType
--int durationOfContract
--Employee agent
-+toString()
+class Photos{
+    - String url
+
+    + Photos(String url)
+    + getUrl()
 }
 
-class PlaceOrderUI {
+class AvailableEquipment {
+    - String typeOfEquipment
 
+    + AvailableEquipment(String availableEquipment)
+    + getAvailableEquipment()
+    + toString()
+}
+
+class Address {
+    - String streetName
+    - int zipCode
+
+    + verifyZipCode()
+    + getCity()
+    + getDistrict()
+    + getState()
+    + Address(state, district, city, street, zipCode)
+}
+
+
+
+
+class Rent {
+    - int durationOfContract
+
+    + Rent(int durationContract)
+    + getFinalComission()
+    + getDurationContract()
+    + calculateTotalPrice()
+}
+
+class Person {
+    - String email
+    - int passportNumber
+    - int taxNumber
+    - String name
+    - Adress adress
+    - int phoneNumber
+
+    + User(email,passportNumber,taxNumber,name,phoneNumber)
+    + getPassportNumber()
+    + getTaxNumber()
+    + getEmail()
+    + getAdress()
+    + getName()
+    + getPhoneNumber()
+}
+
+
+class Announcement {
+    - String initialDate
+    - String finalDate
+    - String contractType
+
+    + PublishedAnnouncement(initialDate, finalDate, AnnouncementRequest)
+}
+
+class Business {
+    - double requestedPrice
+    - String typeOfBusiness
+
+    + getFinalComission()
+    + calculatePriceWithComission()
+    + getTypeOfBusiness()
+}
+
+class PropertiesDTO{
+    - Date date
+    - TypeOfBusiness typeOfBusiness
+    - Property property
+    - PropertyType propertyType
+    - int durationOfContract
+    - Employee agent
+    + toString()
+}
+
+
+class PlaceOrderUI {
+    + run()
+    + requestChooseProperty()
+    + requestClientName()
+    + requestOffer()
+    + submitData(String name, Client client, Announcement \npublishedAnnouncement, double offer, OfferState offerState)
 }
 
 class PlaceOrderController {
-    + getPublishedAnnouncement()
-    + createNewOfferToAgent(orderAmount, publishedAnnouncement)
+    + getOfferRepository()
+    + getAuthenticationRepository()
+    + getPublishedAnnouncementRepository()
+    + getUserRepository()
+    + getOffers()
+    + getCurrentSessionEmail()
+    + getClientEmail()
+    + hasPendingOffersByEmail(String email)
+    + List<Offer> getPendingOffersByClientEmail(String email)
+    + Optional<Offer> createNewOfferToAgent (String name, \nClient client, double orderAmount, Announcement \npublishedAnnouncement, OfferState offerState)
+}
+
+
+class OfferRepository {
+    + Optional<Offer> add(Offer offer)
+    + validateOffer(Offer offer)
+    - checkOffer(Offer offer1, Offer offer2)
+    + hasPendingOffersByEmail(String email)
+    + List<Offer> getOffers()
+}
+
+class UserRepository {
+    + Optional<Client> add(Client client)
+    - validateUser(Client client)
+    + List<Client> getUsers()
+    + getClientEmail(String email)
 }
 
 class Offer {
- - Client client
- - PublishedAnnouncement publishedAnnouncement
- - double orderAmount
+    - String name
+    - Client client
+    - Announcement publishedAnnouncement
+    - double orderAmount
+    - OfferState OfferState
 
- + Offer (Client client, PublishedAnnouncement \npublishedAnnouncement, double orderAmount)
- + Offer()
- + getOrderAmount()
- + getPublishedAnnouncement()
- + getClient()
+    + Offer Offer(String name, double orderAmount, Announcement \npublishedAnnouncement,OfferState offerState, Client client)
+    + Offer()
+    + getOfferState()
+    + getName()
+    + getOrderAmount()
+    + getPublishedAnnouncement()
+    + getClient()
 }
 
-class OfferRepository {
-    + add(Offer offer)
-    + getOffers()
-    - validateOffer(Offer offer)
-    - checkOffer(Offer offer)
+class Client {
+    - Client(String email, int passportNumber, int taxNumber, String name, int phoneNumber)
+}
+
+class SunExposure {
+    - String direction
+
+    + SunExposure(direction)
 }
 
 class OfferDecisionUI {
-  +displayPurchaseOrders(properties: List<PropertyDTO>): void
-  +keepOffer(offer: OfferDTO): void
-  +promptAgentDecision(): DecisionStatus
-  +displayOperationSuccess(): void
+     + getOffersList(): List<AnnouncementOfferDTO>
+     + keepOffer(offer: Offer)
+     + acceptOffer(offer: Offer)
+     + declineOffer(offer: Offer)
+     + sendVisualizedEmail(email: String, subject: String, body: String)
 }
 
 class OfferDecisionController {
-  -propertyRepository: PropertyRepository
-  -offerRepository: OfferRepository
-  -mapper: OfferMapper
-  +getOffersList(): void
-  +sendOfferStatus(offer: OfferDTO, status: DecisionStatus): void
+     - repositories: Repositories
+     + getOffersList(): List<AnnouncementOfferDTO>
+     + declineOtherOffers(offer: Offer, offersList: List<Offer>
+     + changeAnnouncementState(publishedAnnouncement: PublishedAnnouncement)
+     + storeDecrement(store: Store)
 }
 
-SendMessageUI .> SendMessageController
+class AnnouncementOfferMapper {
+    + toDTO(publishedAnnouncementList: List<PublishedAnnouncement>, offerList: List<Offer>): List<AnnouncementOfferDTO>
+}
 
-PlaceOrderUI .> PlaceOrderController
+interface EmailService {
+    + sendEmail(email: String, subject: String, body: String): void
+}
 
-PlaceOrderController .> Repositories : repositories
-PublishAnnouncementRequestUI .> PublishAnnouncementRequestController
+class DEIService {
+    + sendEmail(email: String, subject: String, body: String): void
+}
 
+class GmailService {
+    + sendEmail(email: String, subject: String, body: String): void
+}
+
+class HotmailService {
+    + sendEmail(email: String, subject: String, body: String): void
+}
+
+class YahooService {
+    + sendEmail(email: String, subject: String, body: String): void
+}
+
+class AnnouncementOfferDTO {
+    + create(publishedAnnouncement: PublishedAnnouncement, offersListToDTO: List<OfferDTO>): AnnouncementOfferDTO
+}
+
+class OfferDTO {
+    + create(name: String, client: String, orderAmount: int, offerState: OfferState): OfferDTO
+}
+
+class FileReaderRepository {
+    - addFileCopy(fileInformation)
+}
+
+class ImportFileController {
+    - getFileReaderClass()
+    - getStoreInformation()
+    - getFileReaderRepository()
+}
+
+class ReadFileUI {
+}
+
+class FileReaderClass {
+    - readStoreInformations(File file)
+    - readOwnerInformations(File file)
+    - readPropertyInformations(File file)
+}
+
+class SystemAdministrator {
+
+}
+
+class StoreEmployeeMapper {
+    + toDTO(storeList, employeeList)
+    + toDtoObject(storeName, storeId, storeListing, employee)
+}
+
+class DisplayStoreController {
+    + getStoreRepository()
+    + getEmployeeRepository()
+    + toDTO()
+}
+
+class StoreRepository {
+    + getStoresByMostAvailableListings()
+    + compareToDescendingList()
+}
+
+class User {
+    - Password
+}
+
+
+class StoreEmployeeDTO {
+    - String storeDesignation
+    - int storeId
+    - int availableListing
+    - List<Employee> employees
+    + getStoreDesignation()
+    + setStoreDesignation(storeDesignation)
+    + getStoreId()
+    + setStoreId(storeId)
+    + getStoreAvailableListing()
+    + setStoreAvailableListing(availableListing)
+    + getEmployees()
+    + toStringStore()
+    + toStringEmployee()
+}
+
+class DisplayStoreUI {
+
+}
+
+
+class ListMessageController {
+    + ListMessageController(messageRepository, \nauthenticationRepository, userRepository)
+    + getMessageRequestsForPeriod(beginDate, endDate)
+    + sortMessageRequests()
+    + getMessagesByAscendingDate()
+    + toDtoMessagesByAscendingDate()
+    + toDtoMessageRequestsForPeriod
+    - getMessageRepository()
+    - getAuthenticationRepository()
+    - getUserRepository()
+
+}
+
+class Agent {
+}
+
+class House {
+    - String basement
+    - String inhabitableLoft
+    - String sunExposure
+
+    + House(int area, int distanceFromCityCenter, int numberOfBedrooms,\n int numberOfBathrooms, int parkingSpaces,\nAvailableEquipment availableEquipment, String basement,\n String inhabitableLoft, String sunExposure,\nPhotos photos, Address address)
+    + getBasement()
+    + getInhabitableLoft()
+    + getSunExposure()
+}
+
+class MessageMapper {
+    + toDto(messageList)
+    + toDtoObject(String name, long phoneNumber,\nString description, Date initialDate, \nint initialTime, int endTime, \nPublishedAnnouncement publishedAnnouncement)
+}
+
+interface SortAlgorithm{
+    - List<T> sort(List<T> arrayToSort)
+}
+
+class BubbleSort{
+    - List<Message> arrayToSort
+
+    + BubbleSort(List<Message> arrayToSort)
+    + getArrayToSort()
+    + getArrayAfterSorting()
+    + List<T> sort(List<T> arrayToSort)
+}
+
+
+class MergeSort {
+    - List<Message> arrayToSort
+
+    + MergeSort(List<Message> arrayToSort)
+    + getArrayToSort()
+    + getArrayAfterSorting()
+    + divideArrayElements(int indexStart, int indexEnd)
+    + mergeArrayElements(int indexStart, int indexMiddle, \nint indexEnd)
+    + List<T> sort(List<T> arrayToSort)
+}
+
+
+class ListMessageUI {
+    + run()
+    - respondToClientOrNo(Message message, PublishedAnnouncement publishedAnnouncement)
+    - parseDate(String dateString)
+}
+
+class MessageRepository {
+    + add(Message message)
+    + getMessage()
+    - validateMessage(Message message)
+    - checkIfDateTimeOverlaps(Message message1, Message message2)
+    + getMessagesByAscendingDate()
+    + removeMessage(Message message)
+}
+
+class Residence {
+    - int numberOfBedrooms
+    - int numberOfBathrooms
+    - int numberOfParkingSpaces
+
+    + Residence(int area, int distanceFromCityCenter,int numberOfBedrooms, int numberOfBathrooms, \nint parkingSpaces, AvailableEquipment availableEquipment, Photos photos, Address address)
+    + getNumberOfBedrooms()
+    + getNumberOfBathrooms()
+    + getParkingSpaces()
+}
+
+class PublishedAnnouncement {
+    - Date date
+    - int propertyID
+
+    + PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, \nPropertyType propertyType, Comission comission, Business business, Employee agent, \nClient client, int propertyID)
+    + getProperty()
+    + getDate()
+    + getState()
+    + getCity()
+    + getClient()
+    + getPropertyType()
+    + getComission()
+    + getBusiness()
+    + getDurationOfContract()
+    + getAgent()
+    + getPropertyID()
+}
+
+enum MessageState {
+    - String UNANSWERED
+    - String ANSWERED
+}
+
+enum OfferState {
+    - String Accepted
+    - String Pending
+    - String Rejected
+}
+
+enum AnnouncementState {
+    - String available
+    - String sold
+}
+
+class TypeOfProperty {
+    - String type
+}
+
+class OfferMapper {
+    + toDto(offerList)
+    + toDtoObject(offer)
+}
+
+class ListDealsController {
+    + ListDealsController(offerRepository)
+    + getDealsByAscendingAreaBubbleSort()
+    + getDealsByDescendingAreaBubbleSort()
+    + getDealsByAscendingAreaSortSelection()
+    + getDealsByDescendingAreaSortSelection()
+    + toDtoDescendingAreaBubbleSort()
+    + toDtoAscendingAreaBubbleSort()
+    + toDtoDescendingAreaSortSelection()
+    + toDtoAscendingAreaSortSelection()
+    + toDtoOffersMostRecent()
+    - getOfferRepository()
+}
+
+class ListDealsUI {
+}
+
+class DealAnalysesUI {
+    - controller: DealAnalysesController
+    + getReport(regressionType, parameter, significance)
+    + showReport(regressionDto)
+    + showPrediction(prediction)
+    + getParameter()
+    + getParameters()
+}
+
+class DealAnalysesController {
+    - repositories: Repositories
+    - publishedAnnouncementRepository: PublishedAnnouncementRepository
+    - regressionModel: RegressionModel
+    - mapper: RegressionMapper
+    + getPublishedAnnouncementRepository()
+    + getParametersForSimple(parameter)
+    + getParametersForMulti()
+    + create(parameters)
+    + getRegressionModel(parameters, significance)
+    + toDTO(regressionModel)
+    + predictMulti(parameters)
+    + predictSimple(parameter)
+}
+
+class RegressionModel {
+    + create(parameters)
+    + getRegressionModel(parameters, significance)
+}
+
+class MultiLinear {
+    + predictMulti(parameters)
+}
+
+class SingleLinear {
+    + predictSimple(parameter)
+}
+
+class RegressionMapper {
+    + toDTO(regressionModel)
+}
+
+class RegressionDTO {
+    - analysisReport
+    + create(analysisReport)
+}
+
+class DivideStoreUI{
+}
+
+class DivideStoreController {
+    + DivideStoreController(storeRepository)
+    + findPartition()
+    - getStoreRepository()
+
+}
+
+class Store{
+    - String name
+    - String email
+    - String phoneNumber
+    - Adress adress
+    - addEmployee(employee)
+    - validateEmployee(employee)
+    + Store(name,adress,contact)
+    + createEmployee(name,citizen´s card number,tax number ,adress,email adress,telephone number,store, role)
+}
+
+class ClientMessageController {
+    + getAuthenticationRepository()
+    + getUserRepository()
+    + getMessageRepository()
+    + getCurrentSessionEmail()
+    + getClient()
+    + sendVisualizedEmail(email, subject, body)
+    + getMessageRequests(client)
+}
+
+class MessageDto {
+    - Strig name
+    - long phoneNumber
+    - String description
+    - Date initialDate
+    - int initialTime
+    - int endTime
+    - PublishedAnnouncement publishedAnnouncement
+    - MessageState messageState
+    - boolean isApprovedByAgent
+    + getName()
+    + setName(name)
+    + getPhoneNumber()
+    + setPhoneNumber(phoneNumber)
+    + getDescription()
+    + setDescription(description)
+    + getInitialDate()
+    + setInitialDate(initialDate)
+    + getInitialTime()
+    + setInitialTime(inicialTime)
+    + getEndTime()
+    + setEndTime(endTime)
+    + getPublishedAnnouncement()
+    + setPublishedAnnouncement(publishedAnnouncement)
+    + getMessageState()
+    + setMessageState(messageState)
+    + getIsApprovedByAgent()
+    + setIsApprovedByAgent(approvedByAgent)
+    + toString()
+}
+
+class ClientMessageUI {
+
+}
+
+PublishAnnouncementRequestUI ...> PublishAnnouncementRequestController
 PublishAnnouncementRequestController ...> AnnouncementRequestMapper
-
-PublishAnnouncementRequestController ..> AnnouncementRequestRepository: announcementRequestRepository
-
-PublishAnnouncementRequestController ..> ComissionRepository: comissionRepository
-
+PublishAnnouncementRequestController ...> AnnouncementRequestRepository: announcementRequestRepository
+PublishAnnouncementRequestController ...> ComissionRepository: comissionRepository
 PublishAnnouncementRequestController ...> EmployeeRepository : employeeRepository
-
 PublishAnnouncementRequestController ...> AuthenticationRepository : authenticationRepository
-
 PublishAnnouncementRequestController ...> PublishedAnnouncementRepository: publishedAnnouncementRepository
-
-Repositories -> Repositories:instance
-
-Repositories ------> PublishedAnnouncementRepository: publishedAnnouncementRepository
-
-Repositories ----> AnnouncementRequestRepository: announcementRequestRepository
-
-Repositories -----> ComissionRepository :comissionRepository
-
-Repositories -----> EmployeeRepository: employeeRepository
-
-Repositories ----> AuthenticationRepository: authenticationRepository
-
-Repositories --> OfferRepository
-OfferRepository --> Offer
-
+Repositories ---> AnnouncementRequestRepository: announcementRequestRepository
+Repositories ---> ComissionRepository :comissionRepository
+Repositories --> EmployeeRepository: employeeRepository
 PublishAnnouncementRequestController .>  Repositories : repositories
-
-ComissionRepository -----> "*" Comission
-
-AnnouncementRequestMapper ........> AnnouncementRequest
-
-AnnouncementRequestMapper .....> AnnouncementRequestDto
-
-AnnouncementRequestRepository ----> "*" AnnouncementRequest
-
-
-OfferDecisionUI --> OfferDecisionController
-OfferDecisionController ..> Repositories
-OfferDecisionController --> Property
-OfferDecisionController --> Offer
-OfferDecisionController ..> OfferMapper
-OfferDecisionController ..> PropertyRepository
-OfferDecisionController ..> OfferRepository
-
-
-State "1" -left- "*" District
-
-District "1" -left- "*" City
-Person <|-- Employee
-
-EmployeeRepository ----> "*" Employee
-
-Employee "1" -right "*" Comission: defines >
-
-Employee "1" - "*" AnnouncementRequest:intends to see >
-
-
-AnnouncementRequest "*" -> "1..30" Photos: has >
-
-TypeOfProperty "1" -- Property:defines\n\n\n\n\n\n\n
-
-AnnouncementRequest "1" -- Property: has >
-
+ComissionRepository ---> "*" Comission
+AnnouncementRequestMapper ...> AnnouncementRequest
+AnnouncementRequestMapper ...> AnnouncementRequestDto
+AnnouncementRequestRepository ---> "*" AnnouncementRequest
+Employee "1" ---> "*" Role : role
+Person <|--- Employee
+EmployeeRepository ---> "*" Employee
+Employee "1" --- "1" Comission: defines >
+Employee "1" --- "*" AnnouncementRequest:intends to see >
+AnnouncementRequest "*" ---> "1..30" Photos: has >
+TypeOfProperty "1" --- Property:defines
+AnnouncementRequest "1" --- Property: has >
+Property <|--- Residence
+Residence <|--- House
+Residence --- AvailableEquipment : contains
+House --- SunExposure:contains
 SendMessageController .> Repositories : repositories
-Repositories ---> Repositories :instance
-Repositories ---> PublishedAnnouncementRepository : announcement
 Repositories ---> MessageRepository : message
-
-
+Repositories ---> AutheticationRepository : authentication
 SendMessageController ...> PublishedAnnouncementRepository : announcement
 SendMessageController ...> MessageRepository : message
-SendMessageController ...> AuthenticationRepository : authenticationRepository
+SendMessageController ...> AutheticationRepository : authentication
 SendMessageController ...> ListOfPropertiesMapper
-
-ListOfPropertiesMapper....> PropertiesDTO
-
-MessageRepository -down-> Message
-Employee "1" -up- "*" Message : recives a >
-Message "1" -right- "*" PublishedAnnouncementRepository: has a <
-
-
-
-
-Residence <|-down-- House
-Property <|-down-- Residence
-Property "1" -- "1..30" Photos: has >
-SunExposure "1" --right- "*" House: contains <
-AvailableEquipment "*" -left- "1" Residence: contains <
-
-
-
-
-State "*"-right- "1" Address: has a  <
-City "*"-right- "1" District: has a  <
-District "*"-right- "1" State: has a  <
-Property "1" -left- "1" Address: has an >
-PublishedAnnouncementRepository --> Announcement
-Client "1"-right-"*" Message : sends a >
-
-
-
-
-Comission "1" -- "1" Business: contains <
-Property "1" - "1" Business: has a <
+ListOfPropertiesMapper...> PropertiesDTO
+MessageRepository ---> Message
+Agent "1" --- "*" Message : recives a >
+Message "1" --- "*" PublishedAnnouncementRepository: has a <
+Property "1" --- "1..30" Photos: has >
+PublishedAnnouncementRepository ---> Announcement
+Client "1"---"*" Message : sends a >
+Comission "*" --- "1" Agent: defines <
 Announcement "1" --- "1" Business: has >
-Announcement "1" --down- "1" Property: has a >
-Announcement "*" -up-- "1" Employee: publishes <
+Announcement "*" --- "*" Property: advertises >
+Announcement "*" --- "1" Agent: publishes <
+Person <|--- Client
+Employee <|--- Agent
+PlaceOrderUI ...> PlaceOrderController
+PlaceOrderController ...> Repositories : repositories
+PlaceOrderController ...> PublishedAnnouncementRepository : publishedAnnouncementRepository
+PlaceOrderController ...> AuthenticationRepository : authenticationRepository
+PlaceOrderController ...> OfferRepository : offerRepository
+PlaceOrderController ...> UserRepository : userRepository
+Repositories ---> AuthenticationRepository
+Repositories ---> OfferRepository
+Repositories ---> UserRepository
 Business <|--- Rent
+Business "1" --- "1" Property : has >
+Business "1" --- "1" Comission : contains >
+Agent "1" --- "*" Offer : receives >
+Offer "*" --- "1" Client : sends <
+Announcement "1" --- "1" Business : has >
+Property "1" --- "1" Address : has >
+Address "1" --- "*" State : has >
+State "1" --- "*" District : has >
+District "1" --- "*" City : has >
+OfferDecisionUI ---> OfferDecisionController
+OfferDecisionController ...> Repositories
+OfferDecisionController ...> OfferRepository
+OfferDecisionController ...> PublishedAnnouncementRepository
+OfferDecisionController ...> StoreRepository
+OfferDecisionController --right> AnnouncementOfferMapper
+AnnouncementOfferMapper --right> OfferDTO
+AnnouncementOfferMapper ---> AnnouncementOfferDTO
+Offer ---> OfferState
+OfferRepository ---> Offer
+StoreRepository ---> Store
+EmailService <|..up DEIService
+EmailService <|..up GmailService
+EmailService <|..up HotmailService
+EmailService <|..up YahooService
+OfferDecisionController --up> EmailService
+Repositories ...> PublishedAnnouncementRepository : PublishedAnnouncementRepository
+Repositories ...> OfferRepository : OfferRepository
+Repositories ...> StoreRepository : StoreRepository
+ReadFileUI ...> ImportFileController
+ImportFileController ...> Repositories : repositories
+ImportFileController ...> FileReaderRepository : fileReader
+Repositories ---> Repositories : instance
+Repositories ---> FileReaderRepository
+FileReaderRepository "1" ---> "*" FileReaderClass
+FileReaderClass ---> Employee
+Employee <--- SystemAdministrator : registers
+SystemAdministrator --->  "*" Store : registers
+Store "1" ---> "*" Address : has >
+DisplayStoreController ..> Repositories : repositories
+DisplayStoreController ..> StoreRepository : StoreRepository
+DisplayStoreController ..> EmployeeRepository : EmployeeRepository
+DisplayStoreController ..> Store : Store
+DisplayStoreController ..> Employee : Employee
+DisplayStoreController ..> StoreEmployeeMapper : StoreEmployeeMapper
+DisplayStoreUI ..> DisplayStoreController
 
-Person <|-up- Client
+StoreEmployeeMapper ..> StoreEmployeeDTO: StoreEmployeeDTO
+ListMessageUI .right..> ListMessageController
+ListMessageController .> Repositories : repositories
+ListMessageController ...> EmployeeRepository : employee
+ListMessageController ...> AutheticationRepository : authentication
 
-Employee "1" --> "*" Role : has a >
-
-Offer "*" -up- "1" Client : sends <
-
+Agent "1" --- "*" PublishedAnnouncement: publishes an >
+Agent "1" --- "1" Message: wants to see list of >
+Person <|-- Employee
+ListMessageController "*"-up--"1" SortAlgorithm: makes use of >
+SortAlgorithm <|.. BubbleSort
+SortAlgorithm <|.. MergeSort
+ListMessageUI .> ListMessageController
+ListMessageController .> Repositories : repositories
+ListMessageController ..> AuthenticationRepository : authenticationRepository
+ListMessageController ..> MessageRepository : messageRepository
+ListMessageController ..> EmployeeRepository : employeeRepository
+ListMessageController ..> MessageMapper
+ListMessageController "*" -up- "1" EmailService
+EmailService <|..up DEIService
+EmailService <|..up GmailService
+EmailService <|..up HotmailService
+EmailService <|..up YahooService
+MessageRepository --> Message
+EmployeeRepository --> Employee
+Employee <|---- Agent
+Message "*" --- "1" PublishedAnnouncement : can have <
+Employee "1" - "*" Offer : intends to see >
+Offer "*" -- "1" PublishedAnnouncement: has >
+PublishedAnnouncement "1" - "1" Comission :has >
+Business "1" -- "1" PublishedAnnouncement : has <
+ListDealsUI .> ListDealsController
+ListDealsController .> Repositories : repositories
+ListDealsController ..> OfferMapper
+ListDealsController ..> OfferRepository
+OfferRepository -----> Offer
+PublishedAnnouncement - AnnouncementState
+Offer --> OfferState
+DealAnalysesUI --> DealAnalysesController
+DealAnalysesController ..> Repositories
+DealAnalysesController ..> PublishedAnnouncementRepository
+DealAnalysesController --> RegressionModel
+DealAnalysesController --> MultiLinear
+DealAnalysesController --> SingleLinear
+DealAnalysesController --> RegressionMapper
+RegressionMapper --> RegressionDTO
+PublishedAnnouncementRepository --> PublishedAnnouncement
+StoreRepository ----> Store
+DivideStoreController .> StoreRepository
+DivideStoreUI .> DivideStoreController
+DivideStoreController .> Repositories: repositories
+Person "1" --- "1" Adress: has <
+Employee "*" - "1" Store: divides >
+Agent --> Message: responds to a
+EmailService -- ClientMessageController
+ClientMessageController ..> Repositories : repositories
+ClientMessageController ..> MessageRepository : MessageRepository
+ClientMessageController ..> Message : Message
+ClientMessageController ..> MessageMapper : MessageMapper
+ClientMessageController ..> UserRepository : UserRepository
+ClientMessageController ..> AuthenticationRepository : AuthenticationRepository
+ClientMessageUI ..> ClientMessageController
+MessageMapper ..> MessageDto: MessageDto
+Message "*" --- "1" PublishedAnnouncement : has information about <
+Message --> MessageState
+PublishedAnnouncement "1" --- "1" Property : advertises >
 
 @enduml
