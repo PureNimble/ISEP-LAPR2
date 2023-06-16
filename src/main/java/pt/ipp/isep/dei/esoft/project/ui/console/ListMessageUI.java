@@ -2,8 +2,8 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.ListMessageController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
-import pt.ipp.isep.dei.esoft.project.domain.emailServices.EmailService;
 import pt.ipp.isep.dei.esoft.project.domain.sortAlgorithms.SortAlgorithm;
+import pt.ipp.isep.dei.esoft.project.repository.MessageRepository;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -20,6 +20,8 @@ import java.util.*;
 public class ListMessageUI implements Runnable {
     private final Scanner input = new Scanner(System.in);
     private final ListMessageController controller = new ListMessageController();
+
+    private final MessageRepository repository = new MessageRepository();
 
     /**
      * Runs the user interface.
@@ -227,7 +229,7 @@ public class ListMessageUI implements Runnable {
 
         message.setMessageState(MessageState.ANSWERED);
         message.setApprovedByAgent(true);
-        controller.updateMessageState(message);
+        repository.updateMessageState(message);
 
         // Send the email
         controller.sendEmail(email, subject, body);
@@ -264,7 +266,7 @@ public class ListMessageUI implements Runnable {
 
         message.setMessageState(MessageState.ANSWERED);
         message.setApprovedByAgent(false);
-        controller.updateMessageState(message); // Add this line to update the message state
+        repository.updateMessageState(message); // Add this line to update the message state
 
         // Send the email
         controller.sendEmail(email, subject, body);
@@ -291,14 +293,6 @@ public class ListMessageUI implements Runnable {
     private void cancelOperation() {
         System.out.println("Operation canceled.");
     }
-
-    /**
-     * Sends an email using the EmailService.
-     *
-     * @param email the email address of the client
-     * @param subject        the subject of the email
-     * @param body           the body of the email
-     */
 
     /**
      * Parses a string date in the format dd-MM-yyyy and returns a Date object.

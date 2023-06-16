@@ -2,8 +2,6 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 
 
 import pt.ipp.isep.dei.esoft.project.domain.Message;
-import pt.ipp.isep.dei.esoft.project.domain.MessageDto;
-import pt.ipp.isep.dei.esoft.project.domain.MessageMapper;
 import pt.ipp.isep.dei.esoft.project.domain.MessageState;
 import pt.ipp.isep.dei.esoft.project.domain.emailServices.EmailService;
 import pt.ipp.isep.dei.esoft.project.repository.*;
@@ -138,14 +136,28 @@ public class ListMessageController {
         return messageRepository.getMessagesByAscendingDate();
     }
 
-    public void updateMessageState(Message message) {
-        message.setMessageState(MessageState.ANSWERED);
-    }
+    /**
+     * Update message state.
+     *
+     * @param message the message
+     */
 
+    /**
+     * Remove message.
+     *
+     * @param message the message
+     */
     public void removeMessage(Message message) {
         messageRequests.remove(message);
-        messageRepository.removeMessage(message);
     }
+
+    /**
+     * Sends an email using the EmailService.
+     *
+     * @param email   the email address of the client
+     * @param subject the subject of the email
+     * @param body    the body of the email
+     */
     public void sendEmail(String email, String subject, String body) {
         // Load configuration properties
         Properties properties = new Properties();

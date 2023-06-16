@@ -117,7 +117,15 @@ public class MessageRepository implements Serializable {
         return messageRequests;
     }
 
-    public void removeMessage(Message message) {
-        messages.remove(message);
+
+    /**
+     * Update message state.
+     *
+     * @param message the message
+     */
+    public void updateMessageState(Message message) {
+        message.setMessageState(MessageState.ANSWERED);
     }
+
+
 }
