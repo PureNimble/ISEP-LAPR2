@@ -29,10 +29,9 @@ public class DealAnalysesUI implements Runnable {
 
         if (regressionModel != null) {
             int param = 0;
-            if (regressionModel == "SimpleLinear") {
+            if (regressionModel.equals("SimpleLinear")) {
                 param = requestData();
             }
-            if (param != -1) controller.regressionModel(regressionModel, param);
         }
 
     }

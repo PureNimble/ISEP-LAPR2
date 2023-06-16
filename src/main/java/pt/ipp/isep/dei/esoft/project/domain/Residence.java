@@ -9,13 +9,13 @@ import java.util.Objects;
 public class Residence extends Property implements Serializable {
 
     /** The number of bedrooms in the residence */
-    private int numberOfBedrooms;
+    private double numberOfBedrooms;
 
     /** The number of bathrooms in the residence */
-    private int numberOfBathrooms;
+    private double numberOfBathrooms;
 
     /** The number of parking spaces in the residence */
-    private int parkingSpaces;
+    private double parkingSpaces;
 
     /** The available equipment in the residence */
     private AvailableEquipment availableEquipment;
@@ -32,7 +32,7 @@ public class Residence extends Property implements Serializable {
      * @param photos                 the photos
      * @param address                the address
      */
-    public Residence(int area, int distanceFromCityCenter, int numberOfBedrooms, int numberOfBathrooms, int parkingSpaces, AvailableEquipment availableEquipment, Photos photos, Address address) {
+    public Residence(double area, double distanceFromCityCenter, double numberOfBedrooms, double numberOfBathrooms, double parkingSpaces, AvailableEquipment availableEquipment, Photos photos, Address address) {
         super(area, distanceFromCityCenter, photos, address);
         this.numberOfBedrooms = numberOfBedrooms;
         this.numberOfBathrooms = numberOfBathrooms;
@@ -51,7 +51,7 @@ public class Residence extends Property implements Serializable {
      * @param availableEquipment     The available equipment in the residence.
      * @param address                The address of the residence.
      */
-    public Residence(int area, int distanceFromCityCenter, int numberOfBedrooms, int numberOfBathrooms, int parkingSpaces, AvailableEquipment availableEquipment,Address address) {
+    public Residence(double area, double distanceFromCityCenter, double numberOfBedrooms, double numberOfBathrooms, double parkingSpaces, AvailableEquipment availableEquipment,Address address) {
         super(area, distanceFromCityCenter,address);
         this.numberOfBedrooms = numberOfBedrooms;
         this.numberOfBathrooms = numberOfBathrooms;
@@ -66,7 +66,7 @@ public class Residence extends Property implements Serializable {
      *
      * @return the number of bedrooms
      */
-    public int getNumberOfBedrooms() {
+    public double getNumberOfBedrooms() {
         return numberOfBedrooms;
     }
 
@@ -75,7 +75,7 @@ public class Residence extends Property implements Serializable {
      *
      * @return the number of bathrooms
      */
-    public int getNumberOfBathrooms() {
+    public double getNumberOfBathrooms() {
         return numberOfBathrooms;
     }
 
@@ -84,7 +84,7 @@ public class Residence extends Property implements Serializable {
      *
      * @return the parking spaces
      */
-    public int getParkingSpaces() {
+    public double getParkingSpaces() {
         return parkingSpaces;
     }
 
@@ -93,7 +93,7 @@ public class Residence extends Property implements Serializable {
      *
      * @param numberOfBedrooms the number of bedrooms
      */
-    public void setNumberOfBedrooms(int numberOfBedrooms) {
+    public void setNumberOfBedrooms(double numberOfBedrooms) {
         this.numberOfBedrooms = numberOfBedrooms;
     }
 
@@ -102,7 +102,7 @@ public class Residence extends Property implements Serializable {
      *
      * @param numberOfBathrooms the number of bathrooms
      */
-    public void setNumberOfBathrooms(int numberOfBathrooms) {
+    public void setNumberOfBathrooms(double numberOfBathrooms) {
         this.numberOfBathrooms = numberOfBathrooms;
     }
 
@@ -111,7 +111,7 @@ public class Residence extends Property implements Serializable {
      *
      * @param parkingSpaces the parking spaces
      */
-    public void setParkingSpaces(int parkingSpaces) {
+    public void setParkingSpaces(double parkingSpaces) {
         this.parkingSpaces = parkingSpaces;
     }
 
