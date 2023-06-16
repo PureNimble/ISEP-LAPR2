@@ -65,25 +65,13 @@ As a network manager, I want to divide the set of all stores into two subsets, s
 
 
 * There is a dependency to "US5: As a system administrator, I want to register a store.", because the for this US we have to have registered stores.
-* There is a dependencie to "US2: As an agent, I can publish any sale announcement on the system, for example received through a phone call." and "US8: As an agent, I intend to see the list of property announcement requests made to myself, so that I can post the announcement.", because for the stores to have associated properties, there must be advertisements published, as these are the ones that will contain the properties.
-
+* There is a dependency to "US2: As an agent, I can publish any sale announcement on the system, for example received through a phone call." and "US8: As an agent, I intend to see the list of property announcement requests made to myself, so that I can post the announcement.", because for the stores to have associated properties, there must be advertisements published, as these are the ones that will contain the properties.
+* There is a dependebcy to "US10: As a client, I place an order to purchase the property, submitting the order amount." and "US11: As an agent, I want to list real estate purchase orders to accept or decline a purchase order for a property. After accepting or declining, an email notification should be sent to the customer.", because to list, we have to base ourselves on the amount of offers that each store has.
 
 ### 1.5 Input and Output Data
 
 
 **Input Data:**
-
-* Typed data:
-	* a reference, 
-	* a designation, 
-	* an informal description
-	* a technical description
-	* an estimated duration
-	* an estimated cost
-	
-* Selected data:
-	* Classifying task category 
-
 
 **Output Data:**
 
