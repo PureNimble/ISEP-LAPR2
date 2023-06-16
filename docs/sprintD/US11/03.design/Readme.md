@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 11 - To list real estate purchase orders to accept or decline a purchase order for a property
 
 ## 3. Design - User Story Realization 
 
@@ -52,23 +52,23 @@ This diagram shows the same sequence of interactions between the classes involve
 
 It uses interaction ocurrence.
 
-![Sequence Diagram - split](svg\us11-sequence-diagram-split.svg)
+![Sequence Diagram - split](svg/us11-sequence-diagram-split.svg)
 
 **Get Task Category List Partial SD**
 
-![Sequence Diagram - Partial - Get Properties List](svg\us11-sequence-diagram-partial-getPropertyList.svg)
+![Sequence Diagram - Partial - Get Properties List](svg/us11-sequence-diagram-partial-getPropertyList.svg)
 
 **Get Task Category Object**
 
-![Sequence Diagram - Partial - Get Offers List](svg\us11-sequence-diagram-partial-getOfferList.svg)
+![Sequence Diagram - Partial - Get Offers List](svg/us11-sequence-diagram-partial-getOfferList.svg)
 
 **Get Employee**
 
-![Sequence Diagram - Partial - Convert to DTO](svg\us11-sequence-diagram-partial-toDTO.svg)
+![Sequence Diagram - Partial - Convert to DTO](svg/us11-sequence-diagram-partial-toDTO.svg)
 
 **Create Task**
 
-![Sequence Diagram - Partial - Create Task](svg\us11-sequence-diagram-partial-changeOfferStatus.svg)
+![Sequence Diagram - Partial - Change Offer Status](svg/us11-sequence-diagram-partial-changeOfferStatus.svg)
 
 ## 3.3. Class Diagram (CD)
 

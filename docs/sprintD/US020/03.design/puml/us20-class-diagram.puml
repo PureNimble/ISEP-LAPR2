@@ -267,7 +267,8 @@ class YahooService {
 }
 
 Repositories -> Repositories:instance
-Client -> Message
+Client --> Message: responds to a
+Agent --> Message: can see
 Repositories --> MessageRepository: MessageRepository
 Repositories --> AuthenticationRepository: AuthenticationRepository
 Repositories --> UserRepository: UserRepository
