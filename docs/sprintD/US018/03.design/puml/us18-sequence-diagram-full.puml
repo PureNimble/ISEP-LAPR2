@@ -44,8 +44,17 @@ activate manager
         manager -> ui : selects one of the parameters
         activate ui
     end
+        ui --> manager : asks for parameter for prediction
+        deactivate ui
 
-    ui -> controller : getReport (regressionType, parameter, significance)
+    alt if type of regression equals to simple linear
+                manager -> ui : inputs requested parameter
+                activate ui
+    else if type of regression equals to  multilinear
+                manager -> ui : inputs requested parameters [property area (in square feet), the distance from the center (in miles), the number of \n bedrooms, the number of bathrooms or the number of parking spaces]
+    end
+
+    ui -> controller : getRegressionModel (param, significanceLevel, valueToPredict)
     activate controller
     controller -> singleton : getInstance()
         activate singleton
@@ -62,18 +71,11 @@ activate manager
 
             deactivate repositories
 
-            alt type of regression equals to simple linear
-                controller -> announcementrep : getParametersForSimple(parameter)
+                controller -> announcementrep : getParameterMatrix(parameter)
                 activate announcementrep
                 announcementrep --> controller : parameters
                 deactivate announcementrep
 
-            else type of regression equals to multilinear
-            controller -> announcementrep : getParametersForMulti()
-            activate announcementrep
-            announcementrep --> controller : parameters
-            deactivate announcementrep
-            end
             controller -> regressionmodel** : create(parameters)
 
             controller -> regressionmodel : getRegressionModel(parameters, significance)
@@ -82,6 +84,18 @@ activate manager
             activate regressionmodel
             regressionmodel --> controller : regressionModel
             deactivate regressionmodel
+
+            alt type of regression equals to multilinear
+                controller -> multi : predictMulti(parameters)
+                activate multi
+                multi --> controller : prediction
+                deactivate multi
+
+            else type of regression equals to single linear
+                controller -> single : predictSimple(parameter)
+                activate single
+                single --> controller : prediction
+                deactivate single
 
             controller -> mapper : toDTO(regressionModel)
             activate mapper
@@ -94,45 +108,9 @@ activate manager
             deactivate controller
 
 
-    ui --> manager : shows the report for the chosen property [property values/prices (sale prices and forecast prices), the regression model \n used to estimate each value, R(SLR), R2 and R2 adjusted for SLR or MLR, confidence intervals and hypothesis tests\n for regression coefficients and significance model with Anova] and asks if the manager wants to get a prediction price\n for a property
-    deactivate ui
-    manager -> ui : says if he wants to get a prediction price
-    activate ui
-    alt if option is No 
-        ui --> manager : displays operation success
-    else if option is Yes
-    ui --> manager : requests parameter
+    ui --> manager : shows the report for the chosen property [property values/prices (sale prices and forecast prices), the regression model \n used to estimate each value, R(SLR), R2 and R2 adjusted for SLR or MLR, confidence intervals and hypothesis tests\n for regression coefficients and significance model with Anova] and the predicted price
     deactivate ui
 
-
-    alt if type of regression equals to simple linear
-                manager -> ui : inputs requested parameter
-                activate ui
-    else if type of regression equals to  multilinear
-                manager -> ui : inputs requested parameters [property area (in square feet), the distance from the center (in miles), the number of \n bedrooms, the number of bathrooms or the number of parking spaces]
-                end
-                alt type of regression equals to multilinear
-                ui -> controller : predictMulti(parameters)
-                activate controller
-                controller -> multi : predictMulti(parameters)
-                activate multi
-                multi --> controller : prediction
-                deactivate multi
-                controller --> ui : prediction
-                deactivate controller
-
-        else type of regression equals to single linear
-            ui -> controller : predictSimple(parameter)
-                activate controller
-                controller -> single : predictSimple(parameter)
-                activate single
-                single --> controller : prediction
-                deactivate single
-                controller --> ui : prediction
-                deactivate controller
-    end
-        ui --> manager : displays prediction
-end
 deactivate ui
 
 

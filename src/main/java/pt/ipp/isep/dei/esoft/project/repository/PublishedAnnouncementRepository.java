@@ -5,8 +5,8 @@ import pt.ipp.isep.dei.esoft.project.domain.*;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * A repository for storing and managing PublishedAnnouncement objects.
@@ -205,7 +205,7 @@ public class PublishedAnnouncementRepository implements Serializable {
      *
      * @param arrayListOwnerInformations the array list owner informations
      */
-    public List<PublishedAnnouncement> createPublishAnnouncementByFileReading(ArrayList<String[]> arrayListOwnerInformations, List<Store> stores, List<Client> clients) {
+    public void createPublishAnnouncementByFileReading(ArrayList<String[]> arrayListOwnerInformations, List<Store> stores, List<Client> clients) {
 
         int aux = 0;
         String propertyType;
@@ -230,7 +230,6 @@ public class PublishedAnnouncementRepository implements Serializable {
         int auxID = 0;
         Client client;
         Store store ;
-        List<PublishedAnnouncement> publishedAnnouncementsList = new ArrayList<>();
 
         for (String[] ownerInformations : arrayListOwnerInformations) {
 
@@ -252,7 +251,7 @@ public class PublishedAnnouncementRepository implements Serializable {
                         sunExposure = ownerInformations[17];
                     }
                 }
-                price = Double.parseDouble(ownerInformations[18]);
+                price = Double.parseDouble(ownerInformations[19]);
                 comission = Double.parseDouble(ownerInformations[20]);
                 if (!ownerInformations[21].equals("NA")) {
                     contractDuration = Integer.parseInt(ownerInformations[21]);
@@ -285,13 +284,8 @@ public class PublishedAnnouncementRepository implements Serializable {
                 PublishedAnnouncement publishedAnnouncement;
                 List<Role> roles = new ArrayList<>();
                 roles.add(new Role("Agent"));
-                String nameAgent = store.getDesignation()+" Agent"+id;
-                String email = store.getDesignation()+"agent"+"@"+"realstateUS.com";
-
-                long phoneNumber = (long) (1000000000+Math.random()*9999999999L);
-
-                Employee agent = new Employee(email, 000000000, 000000000, nameAgent, phoneNumber, store, roles);
-                AnnouncementState state = AnnouncementState.sold;
+                Employee agent = new Employee("legacy@realstateUS.com", 000000000, 000000000, "Legacy Agent", 0000000000, store, roles);
+                AnnouncementState state = AnnouncementState.available;
 
                 if (propertyType.equals("house")) {
                     House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, loft, sunExposure, propertyLocation);
@@ -335,7 +329,6 @@ public class PublishedAnnouncementRepository implements Serializable {
 
                 if (!publishedAnnouncements.contains(publishedAnnouncement)) {
                     publishedAnnouncements.add(publishedAnnouncement);
-                    publishedAnnouncementsList.add(publishedAnnouncement);
                 }
 
             } else {
@@ -343,11 +336,8 @@ public class PublishedAnnouncementRepository implements Serializable {
             }
         }
 
-        return publishedAnnouncementsList;
 
     }
-
-
 
 
     /**
@@ -587,5 +577,105 @@ public class PublishedAnnouncementRepository implements Serializable {
         return resultList;
     }
 
+    public ArrayList<Double> getArea(){
+        ArrayList<Double> parameterList = new ArrayList<>();
+        for (PublishedAnnouncement announcement : publishedAnnouncements) {
+            if (!announcement.getPropertyType().getDesignation().equalsIgnoreCase("Land") && announcement.getAnnouncementState().toString().equals("SOLD")) {
+                parameterList.add(announcement.getProperty().getArea());
+            }
+        }
+        return parameterList;
+    }
 
+    public ArrayList<Double> getDistanceFromCityCenter(){
+        ArrayList<Double> parameterList = new ArrayList<>();
+        for (PublishedAnnouncement announcement : publishedAnnouncements) {
+            if (!announcement.getPropertyType().getDesignation().equalsIgnoreCase("Land") && announcement.getAnnouncementState().toString().equals("SOLD")) {
+                parameterList.add(announcement.getProperty().getDistanceFromCityCenter());
+            }
+        }
+        return parameterList;
+    }
+
+    public ArrayList<Double> getNumberOfBedrooms(){
+        ArrayList<Double> parameterList = new ArrayList<>();
+        for (PublishedAnnouncement announcement : publishedAnnouncements) {
+            if (!announcement.getPropertyType().getDesignation().equalsIgnoreCase("Land") && announcement.getAnnouncementState().toString().equals("SOLD")) {
+                parameterList.add(announcement.getProperty().getResidence().getNumberOfBedrooms());
+            }
+        }
+        return parameterList;
+    }
+
+    public ArrayList<Double> getNumberOfBathrooms(){
+        ArrayList<Double> parameterList = new ArrayList<>();
+        for (PublishedAnnouncement announcement : publishedAnnouncements) {
+            if (!announcement.getPropertyType().getDesignation().equalsIgnoreCase("Land") && announcement.getAnnouncementState().toString().equals("SOLD")) {
+                parameterList.add(announcement.getProperty().getResidence().getNumberOfBathrooms());
+            }
+        }
+        return parameterList;
+    }
+
+    public ArrayList<Double> getParkingSpaces(){
+        ArrayList<Double> parameterList = new ArrayList<>();
+        for (PublishedAnnouncement announcement : publishedAnnouncements) {
+            if (!announcement.getPropertyType().getDesignation().equalsIgnoreCase("Land") && announcement.getAnnouncementState().toString().equals("SOLD")) {
+                parameterList.add(announcement.getProperty().getResidence().getParkingSpaces());
+            }
+        }
+        return parameterList;
+    }
+
+    public ArrayList<Double> getPrice(){
+        ArrayList<Double> parameterList = new ArrayList<>();
+        for (PublishedAnnouncement announcement : publishedAnnouncements) {
+            if (!announcement.getPropertyType().getDesignation().equalsIgnoreCase("Land") && announcement.getAnnouncementState().toString().equals("SOLD")) {
+                parameterList.add(announcement.getBusiness().getPrice());
+            }
+        }
+        return parameterList;
+    }
+
+
+    public double[][] getParameterMatrix(int param) {
+        int size = (param == 0) ? 6 : 2;
+        ArrayList<ArrayList<Double>> tempParameterList = new ArrayList<>();
+
+        switch (param){
+            case 0:
+                tempParameterList.add(getArea());
+                tempParameterList.add(getDistanceFromCityCenter());
+                tempParameterList.add(getNumberOfBedrooms());
+                tempParameterList.add(getNumberOfBathrooms());
+                tempParameterList.add(getParkingSpaces());
+                break;
+            case 1:
+                tempParameterList.add(getArea());
+                break;
+            case 2:
+                tempParameterList.add(getDistanceFromCityCenter());
+                break;
+            case 3:
+                tempParameterList.add(getNumberOfBedrooms());
+                break;
+            case 4:
+                tempParameterList.add(getNumberOfBathrooms());
+                break;
+            case 5:
+                tempParameterList.add(getParkingSpaces());
+                break;
+        }
+        tempParameterList.add(getPrice());
+        double[][] parameterMatrix = new double[size][tempParameterList.get(0).size()];
+
+        for (int i = 0; i < tempParameterList.size(); i++){
+            ArrayList<Double> tempList = tempParameterList.get(i);
+            for (int j = 0; j < tempList.size(); j++){
+                parameterMatrix[i][j] = tempList.get(j);
+            }
+        }
+
+        return parameterMatrix;
+    }
 }
