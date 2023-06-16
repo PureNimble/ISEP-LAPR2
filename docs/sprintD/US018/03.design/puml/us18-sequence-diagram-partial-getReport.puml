@@ -1,0 +1,62 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant "DealAnalysesController" as controller
+participant ":Repositories" as singleton
+participant "repositories\n:Repositories" as repositories
+participant "publishedAnnouncementRepository\nPublishedAnnouncementRepository" as announcementrep
+participant "regressionModel\n:RegressionModel" as regressionmodel
+participant "regressionMapper\n:RegressionMapper" as mapper
+participant "regressionDTO : RegressionDTO" as dto
+
+activate controller
+    controller -> singleton : getInstance()
+        activate singleton
+
+                singleton --> controller : repository
+
+            deactivate singleton
+
+            controller -> repositories : getPublishedAnnouncementRepository()
+
+            activate repositories
+
+                repositories --> controller : PublishedAnnouncementRepository
+
+            deactivate repositories
+
+            alt type of regression equals to simple linear
+                controller -> announcementrep : getParametersForSimple(parameter)
+                activate announcementrep
+                announcementrep --> controller : parameters
+                deactivate announcementrep
+
+            else type of regression equals to multilinear
+            controller -> announcementrep : getParametersForMulti()
+            activate announcementrep
+            announcementrep --> controller : parameters
+            deactivate announcementrep
+            end
+            controller -> regressionmodel** : create(parameters)
+
+            controller -> regressionmodel : getRegressionModel(parameters, significance)
+
+
+            activate regressionmodel
+            regressionmodel --> controller : regressionModel
+            deactivate regressionmodel
+
+            controller -> mapper : toDTO(regressionModel)
+            activate mapper
+            mapper --> dto** : create(regressionModel.getAnalysisReport())
+
+            mapper --> controller : regressionDto
+            deactivate mapper
+            
+            deactivate controller
+
+
+
+@enduml

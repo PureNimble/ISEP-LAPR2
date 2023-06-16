@@ -8,20 +8,46 @@ title US18 - System Sequence Diagram (SSD)
 autonumber
 
 actor "Store Manager" as manager
-participant ":sys" as sys
+participant ":System" as sys
 
 activate manager
 
-    manager -> sys : asks for a list of houses and apartments 
+    manager -> sys : asks for a deal analysis report
     activate sys
 
-        sys --> manager : shows list of houses and apartments and asks to select one
+        sys --> manager : asks to select the type of regression to use (simple or multi)
     deactivate sys
 
-    manager -> sys : selects the property
+    manager -> sys : selects the type of regression
     activate sys
 
-        sys --> manager : shows the report for the chosen property [property values/prices (sale prices and forecast prices), the regression model \n used to estimate each value, R(SLR), R2 and R2 adjusted for SLR and MLR, confidence intervals \n and hypothesis tests for regression coefficients and significance model with Anova]
+    opt type of regression equals to simple linear
+        
+        sys --> manager : asks to select only one parameter [property area (in square feet), the distance from the center (in miles), the number of \n bedrooms, the number of bathrooms or the number of parking spaces]
         deactivate sys
+
+        manager -> sys : selects one of the parameters
+        activate sys
+    end
+    sys --> manager : shows the report for the chosen property [property values/prices (sale prices and forecast prices), the regression model \n used to estimate each value, R(SLR), R2 and R2 adjusted for SLR or MLR, confidence intervals and hypothesis tests\n for regression coefficients and significance model with Anova] and asks if the manager wants to get a prediction price\n for a property
+    deactivate sys
+    manager -> sys : says if he wants to get a prediction price
+    activate sys
+    alt if option is No 
+        sys --> manager : displays operation success
+    else if option is Yes
+    sys --> manager : requests parameter
+    alt if type of regression equals to simple linear
+            deactivate sys
+            manager -> sys : inputs requested parameter
+            activate sys
+
+    else if type of regression equals to simple linear
+                     manager -> sys : inputs requested parameters [property area (in square feet), the distance from the center (in miles), the number of \n bedrooms, the number of bathrooms or the number of parking spaces]
+    end
+        sys --> manager : displays prediction
+end
+deactivate sys
+
 
 @enduml

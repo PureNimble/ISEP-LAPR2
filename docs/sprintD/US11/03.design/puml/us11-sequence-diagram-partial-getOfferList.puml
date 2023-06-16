@@ -12,8 +12,7 @@ participant "offerRepository\n:OfferRepository" as offerrepository
 participant "OfferList\n:List<OfferList>" as offerlist
 
 activate controller
-
-                controller -> repositories : getOfferRepository()
+controller -> repositories : getOfferRepository()
                     activate repositories
 
                         repositories --> controller : OfferRepository

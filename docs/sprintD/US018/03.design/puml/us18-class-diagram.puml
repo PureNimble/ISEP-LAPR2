@@ -1,0 +1,78 @@
+@startuml
+
+title US18 - Class Diagram
+
+class DealAnalysesUI {
+  -controller: DealAnalysesController
+  +getReport(regressionType, parameter, significance)
+  +showReport(regressionDto)
+  +showPrediction(prediction)
+  +getParameter()
+  +getParameters()
+}
+
+class DealAnalysesController {
+  -repositories: Repositories
+  -publishedAnnouncementRepository: PublishedAnnouncementRepository
+  -regressionModel: RegressionModel
+  -mapper: RegressionMapper
+  +getPublishedAnnouncementRepository()
+  +getParametersForSimple(parameter)
+  +getParametersForMulti()
+  +create(parameters)
+  +getRegressionModel(parameters, significance)
+  +toDTO(regressionModel)
+  +predictMulti(parameters)
+  +predictSimple(parameter)
+}
+
+class Repositories {
+  <<singleton>>
+  +getInstance()
+  +getPublishedAnnouncementRepository()
+}
+
+class PublishedAnnouncementRepository {
+  +getParametersForSimple(parameter)
+  +getParametersForMulti()
+}
+
+class PublishedAnnouncement {
+  +getPublishedAnnouncements(): List<PublishedAnnouncement>
+}
+
+class RegressionModel {
+  +create(parameters)
+  +getRegressionModel(parameters, significance)
+}
+
+class MultiLinear {
+  +predictMulti(parameters)
+}
+
+class SingleLinear {
+  +predictSimple(parameter)
+}
+
+class RegressionMapper {
+  +toDTO(regressionModel)
+}
+
+class RegressionDTO {
+  -analysisReport
+  +create(analysisReport)
+}
+
+DealAnalysesUI --> DealAnalysesController
+DealAnalysesController ..> Repositories
+DealAnalysesController ..> PublishedAnnouncementRepository
+DealAnalysesController --> RegressionModel
+DealAnalysesController --> MultiLinear
+DealAnalysesController --> SingleLinear
+DealAnalysesController --> RegressionMapper
+RegressionMapper --> RegressionDTO
+Repositories ..> PublishedAnnouncementRepository : PublishedAnnouncementRepository
+PublishedAnnouncementRepository --> PublishedAnnouncement
+
+
+@enduml
