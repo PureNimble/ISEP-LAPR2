@@ -29,6 +29,11 @@ class Residence {
     Number of Parking Spaces
 }
 
+enum PublishedAnnouncementState {
+  available
+  sold
+}
+
 class Property {
     Area
     Photos
@@ -89,15 +94,34 @@ class Business {
     Requested price
 }
 
+class PublishedAnnouncement {
+Contract Type
+}
+
+class Report{
+    R
+    R2
+    R2 adjusted
+    Sales Prices
+    Forecast price
+    Regression Model
+    ANOVA Singificance Model
+    Coefficient Condifence Intervals
+    Hypothesis Tests
+}
+
+class RegressionModel{
+    Data for the Type of regression
+}
 
 StoreManager -|> Employee
 Employee -up- Role : has >
 User -|> Person
 Employee -|> User
 
-District "1" -down- "*" City : has >
-State "1" -down- "*" District : has >
-City "1" -down- "*" Address : has >
+District "1" -up- "*" City : has >
+State "1" -up- "*" District : has >
+City "1" -up- "*" Address : has >
 
 Property "1" --- "1" Business: has a <
 Residence <|-down- House
@@ -106,7 +130,12 @@ Property "1" -left-- "1..30" Photos: has >
 SunExposure "1" -up- "*" House: contains <
 Address "1" -left- "1" Property: has <
 AvailableEquipment "*" -up- "1" Residence: contains <
+PublishedAnnouncement --> Property : has >
 TypeOfProperty "1" -down-- "1" Property: defines >
 
-StoreManager -down- Residence : analyses >
+RegressionModel -down- PublishedAnnouncement : analyses sold >
+RegressionModel --- Report : generates >
+StoreManager --left- Report : wants >
+
+PublishedAnnouncement --left> PublishedAnnouncementState : has >
 @enduml
