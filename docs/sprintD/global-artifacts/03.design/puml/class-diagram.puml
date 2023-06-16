@@ -315,6 +315,40 @@ class OfferDecisionController {
   +sendOfferStatus(offer: OfferDTO, status: DecisionStatus): void
 }
 
+class ListDealsController {
+    + ListDealsController(offerRepository)
+    + getDealsByAscendingAreaBubbleSort()
+    + getDealsByDescendingAreaBubbleSort()
+    + getDealsByAscendingAreaSortSelection()
+    + getDealsByDescendingAreaSortSelection()
+    + toDtoDescendingAreaBubbleSort()
+    + toDtoAscendingAreaBubbleSort()
+    + toDtoDescendingAreaSortSelection()
+    + toDtoAscendingAreaSortSelection()
+    + toDtoOffersMostRecent()
+    - getOfferRepository()
+}
+
+class ListDealsUI {
+}
+
+class OfferDto{
+-String name
+-String orderAmount
+-String publishedAnnouncement
+-String offerState
+}
+
+class OfferMapper {
+    + toDto(offerList)
+    + toDtoObject(offer)
+}
+
+class OfferMapper {
+    + toDto(offerList)
+    + toDtoObject(offer)
+}
+
 SendMessageUI .> SendMessageController
 
 PlaceOrderUI .> PlaceOrderController
@@ -334,7 +368,6 @@ PublishAnnouncementRequestController ...> AuthenticationRepository : authenticat
 
 PublishAnnouncementRequestController ...> PublishedAnnouncementRepository: publishedAnnouncementRepository
 
-Repositories -> Repositories:instance
 
 Repositories ------> PublishedAnnouncementRepository: publishedAnnouncementRepository
 
@@ -369,10 +402,7 @@ OfferDecisionController ..> PropertyRepository
 OfferDecisionController ..> OfferRepository
 
 
-State "1" -left- "*" District
 
-District "1" -left- "*" City
-Person <|-- Employee
 
 EmployeeRepository ----> "*" Employee
 
@@ -381,14 +411,12 @@ Employee "1" -right "*" Comission: defines >
 Employee "1" - "*" AnnouncementRequest:intends to see >
 
 
-AnnouncementRequest "*" -> "1..30" Photos: has >
 
 TypeOfProperty "1" -- Property:defines\n\n\n\n\n\n\n
 
 AnnouncementRequest "1" -- Property: has >
 
 SendMessageController .> Repositories : repositories
-Repositories ---> Repositories :instance
 Repositories ---> PublishedAnnouncementRepository : announcement
 Repositories ---> MessageRepository : message
 
@@ -408,10 +436,9 @@ Message "1" -right- "*" PublishedAnnouncementRepository: has a <
 
 
 Residence <|-down-- House
-Property <|-down-- Residence
-Property "1" -- "1..30" Photos: has >
-SunExposure "1" --right- "*" House: contains <
-AvailableEquipment "*" -left- "1" Residence: contains <
+
+
+
 
 
 
@@ -439,5 +466,45 @@ Employee "1" --> "*" Role : has a >
 
 Offer "*" -up- "1" Client : sends <
 
+
+
+Person <|-- Employee
+
+
+Employee "*" - "*" Offer: intends to see >
+Offer "*" -- "1" PublishedAnnouncement: has >
+PublishedAnnouncement -- Property
+TypeOfProperty -- Property : has <
+Property <|-- Residence
+Photos "1..30" -- "1" Property : has <
+
+Residence "1" -- "*" AvailableEquipment : contains >
+House "1" -- "*" SunExposure: contains >
+PublishedAnnouncement "1" - "1" Comission :has >
+Business "1" -- "1" PublishedAnnouncement : has <
+
+
+
+
+ListDealsUI .> ListDealsController
+
+ListDealsController .> Repositories : repositories
+
+Repositories --> Repositories:instance
+
+ListDealsController ..> OfferMapper
+
+OfferMapper ...> OfferDto
+
+Repositories --> OfferRepository : offerRepository
+
+ListDealsController ..> OfferRepository
+
+OfferRepository -----> Offer
+
+
+PublishedAnnouncement - AnnouncementState
+
+Offer --> OfferState
 
 @enduml
