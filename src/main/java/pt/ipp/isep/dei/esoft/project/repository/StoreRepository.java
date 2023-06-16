@@ -107,7 +107,7 @@ public class StoreRepository implements Serializable {
     /**
      * The Compare to descending list.
      */
-    Comparator<Store> compareToDescendingList  = new Comparator<Store>()  {
+    Comparator<Store> compareToDescendingList = new Comparator<Store>() {
         @Override
         public int compare(Store store1, Store store2) {
             int listing1 = store1.getAvailableListing();
@@ -125,7 +125,6 @@ public class StoreRepository implements Serializable {
 
     /**
      * Increment the number of properties available in stores.
-     *
      */
     public void incrementAvailableListing(Store store) {
         List<Store> storesList = getStores();
@@ -134,11 +133,10 @@ public class StoreRepository implements Serializable {
                 stores.setAvailableListing(stores.getAvailableListing() + 1);
             }
         }
-    }  
-    
+    }
+
     /**
      * Decrement the number of properties available in stores.
-     *
      */
     public void decrementAvailableListing(Store store) {
         List<Store> storesList = getStores();
@@ -157,12 +155,12 @@ public class StoreRepository implements Serializable {
     public List<Store> createStoreByFileReading(ArrayList<String[]> arrayListStoreInformations) {
 
         int aux = 0;
-        int auxID=1;
+        int auxID = 1;
         int id = 0;
         Address address = null;
-        String designation="";
-        long phoneNumber=0;
-        String email="";
+        String designation = "";
+        long phoneNumber = 0;
+        String email = "";
         int listing = 0;
         List<Store> storeList = new ArrayList<>();
 
@@ -170,13 +168,13 @@ public class StoreRepository implements Serializable {
             if (aux > 0) {
                 listing++;
                 id = Integer.parseInt(storeInformations[0]);
-                if (auxID != id){
-                    Store store = new Store(designation, auxID, address, phoneNumber, email, listing-1,0);
+                if (auxID != id) {
+                    Store store = new Store(designation, auxID, address, phoneNumber, email, listing - 1, 0);
 
                     auxID = id;
                     listing = 0;
 
-                    if (!stores.contains(store)){
+                    if (!stores.contains(store)) {
                         stores.add(store);
                         storeList.add(store);
                     }
@@ -211,9 +209,9 @@ public class StoreRepository implements Serializable {
 
         }
 
-        Store store = new Store(designation,id,address,phoneNumber,email,listing,0);
+        Store store = new Store(designation, id, address, phoneNumber, email, listing, 0);
 
-        if (!stores.contains(store)){
+        if (!stores.contains(store)) {
             stores.add(store);
             storeList.add(store);
         }
@@ -225,11 +223,11 @@ public class StoreRepository implements Serializable {
     }
 
 
-    public List<List<String>> findPartition(){
+    public List<List<String>> findPartition() {
 
         int size = stores.size();
 
-        double totalSubsets = Math.pow(2, size) - 1;
+        int totalSubsets = (int)Math.pow(2, size) - 1;
 
         int sum1 = 0;
 
@@ -241,6 +239,13 @@ public class StoreRepository implements Serializable {
 
         String auxBinary = "";
 
+        int[] storeListings = new int[size];
+
+        for (int i = 0; i < size; i++) {
+            storeListings[i] = stores.get(i).getListing();
+        }
+
+
 
         for (int i = 0; i < totalSubsets; i++) {
 
@@ -251,12 +256,12 @@ public class StoreRepository implements Serializable {
                 if (j < binary.length()) {
                     if (Character.toString(binary.charAt(j)).equals("1")) {
 
-                        sum1 = stores.get(j).getListing() + sum1;
+                        sum1 = storeListings[j] + sum1;
                     } else {
-                        sum2 = stores.get(j).getListing() + sum2;
+                        sum2 = storeListings[j] + sum2;
                     }
                 } else {
-                    sum2 = stores.get(j).getListing() + sum2;
+                    sum2 = storeListings[j] + sum2;
                 }
             }
 
@@ -267,6 +272,7 @@ public class StoreRepository implements Serializable {
                 minDifference = difference;
                 auxBinary = binary;
             }
+
 
             sum2 = 0;
             sum1 = 0;
@@ -280,21 +286,21 @@ public class StoreRepository implements Serializable {
         for (int i = 0; i < stores.size(); i++) {
 
 
-            if (i < auxBinary.length()){
+            if (i < auxBinary.length()) {
                 if (Character.toString(auxBinary.charAt(i)).equals("1")) {
-                    l1.add("ID:"+stores.get(i).getId()+" "+stores.get(i).getListing());
+                    l1.add("ID:" + stores.get(i).getId() + " " + stores.get(i).getListing());
                 } else {
-                    l2.add("ID:"+stores.get(i).getId()+" "+stores.get(i).getListing());
+                    l2.add("ID:" + stores.get(i).getId() + " " + stores.get(i).getListing());
                 }
-            }else {
-                l2.add("ID:"+stores.get(i).getId()+" "+stores.get(i).getListing());
+            } else {
+                l2.add("ID:" + stores.get(i).getId() + " " + stores.get(i).getListing());
             }
 
 
         }
 
         List<List<String>> result = new ArrayList<>();
-        String minDifferenceString = ""+ minDifference;
+        String minDifferenceString = "" + minDifference;
         List<String> minDifferencelist = new ArrayList<>();
         minDifferencelist.add(minDifferenceString);
 
@@ -305,9 +311,6 @@ public class StoreRepository implements Serializable {
 
         return result;
     }
-
-
-
 
 
 }

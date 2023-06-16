@@ -159,10 +159,24 @@ class OfferRepository {
     + getOrganizationByEmployeeEmail(email)
 }
 
-class Repositories {
-    - Repositories()
-    + getInstance() : Repositories
-    + getOfferRepository()
+class Repositories{
+-Repositories()
++getInstance():Repositories
++getEmployeeRepository()
++getComissionRepository()
++getPublishedAnnouncementRepository()
++getAuthenticationRepository()
++getAnnouncementRequestRepository()
++getStoreRepository()
++getRoleRepository()
++getStateRepository()
++getClientRepository()
++getPropertyTypeRepository()
++getTypeOfBusinessRepository()
++getMessageRepository()
++getOfferRepository()
++serialize()
++deserialize()
 }
 
 class ListDealsController {

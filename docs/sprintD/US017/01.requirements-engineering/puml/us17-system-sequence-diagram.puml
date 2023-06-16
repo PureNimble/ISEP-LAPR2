@@ -27,7 +27,7 @@ activate NetworkManager
         NetworkManager -> System : chooses the criteria to sort the deals made
                 activate System
 
-           System --> NetworkManager : shows list deals made by the selected algorithm and criteria
+           System --> NetworkManager : shows list deals
        deactivate System
 
 

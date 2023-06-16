@@ -75,7 +75,7 @@ public class NetworkManagerMenuGUI implements Runnable,Initializable {
             stage.setTitle("Divide Stores Menu");
             stage.setScene(scene);
             stage.show();
-            divideStoresLoader.setController(new DivideStoresGUI());
+            divideStoresLoader.setController(new dwadGUI());
 
         } catch (IOException e) {
             throw new RuntimeException(e);

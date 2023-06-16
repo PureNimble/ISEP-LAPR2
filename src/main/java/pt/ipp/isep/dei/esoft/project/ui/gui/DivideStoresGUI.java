@@ -52,9 +52,9 @@ public class DivideStoresGUI implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
+        System.out.println(controller.findPartition());
 
 
     }
-
 
 }

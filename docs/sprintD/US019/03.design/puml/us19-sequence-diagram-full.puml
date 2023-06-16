@@ -43,8 +43,9 @@ activate NetworkManager
                 deactivate StoreRepository
 
 
-                DivideStoresController -> DivideStoresUI : partition
-                activate StoreRepository
+                DivideStoresController --> DivideStoresUI : partition
+
+
 
 
     DivideStoresUI --> NetworkManager : shows list of the two subsets and the minimum sum difference

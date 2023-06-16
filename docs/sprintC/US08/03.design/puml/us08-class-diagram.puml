@@ -241,6 +241,16 @@ class Repositories{
 +getPublishedAnnouncementRepository()
 +getAuthenticationRepository()
 +getAnnouncementRequestRepository()
++getStoreRepository()
++getRoleRepository()
++getStateRepository()
++getClientRepository()
++getPropertyTypeRepository()
++getTypeOfBusinessRepository()
++getMessageRepository()
++getOfferRepository()
++serialize()
++deserialize()
 }
 
 

@@ -60,8 +60,8 @@ State "1" -left-- "*" District: is in <
 District "1" -left-- "*" City: is in <
 Address "*" -left-- "1" State: is in <
 
-Address"1" --- "1" Store : has <
+Address"1" --- "*" Store : has <
 
-Store"*" - "*" NetworkManager: wants to divide <
+Store"*" - "*" NetworkManager:  divides <
 
 @enduml
