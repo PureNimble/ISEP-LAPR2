@@ -52,16 +52,11 @@ should present the price estimates using the selected model. Moreover, the syste
 **Input Data:**
 
 * Typed data:
-	* a reference, 
-	* a designation, 
-	* an informal description
-	* a technical description
-	* an estimated duration
-	* an estimated cost
+	* N/A
 	
 * Selected data:
-	* Classifying task category 
-
+	* Regression model
+	* Parameter for SimpleLinear Model
 
 **Output Data:**
 

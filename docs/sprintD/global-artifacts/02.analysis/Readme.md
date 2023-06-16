@@ -10,26 +10,26 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Business Transactions**
 
-* Business
-* Rent
-* Comission
-* Announcement
+* Bussiness
+* Offer
 
 ---
 
 **Transaction Line Items**
 
+* House
 * Property
-* Business
-* Comission
+* Residence
 
 
 ---
 
 **Product/Service related to a Transaction or Transaction Line Item**
 
-* Property
-* Announcement
+* Offer
+* Message
+* PublishedAnnouncement
+* AnnouncementRequest
 
 
 ---
@@ -37,20 +37,21 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Transaction Records**
 
-*  
+*
 
----  
+---
 
 
 **Roles of People or Organizations**
 
-* Agent
-* Employee
-* StoreManager
-* StoreNetworkManager
-* System Administrator
-* Owner
 * Unregistered User
+* Client
+* Person
+* Employee
+* Agent
+* SystemAdministrator
+* StoreNetworkManager
+* StoreManager
 
 
 ---
@@ -58,18 +59,17 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Places**
 
-* Location
-* Store
-* Residences
-* Property
-* House
+* State
+* District
+* City
+* Adderss
+
 
 ---
 
-**Noteworthy Events**
+**Noteworty Events**
 
-* Rent
-* Business
+*
 
 ---
 
@@ -89,7 +89,11 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 * Sun Exposure
 * AvailableEquipment
+* Photos
 * Address
+* TypeOfProperty
+* Roles
+* Bussiness
 
 
 ---
@@ -97,29 +101,45 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Catalogs**
 
-*  
+*  Property
+* House
+* Residence
+* PublishedAnnouncement
+* AnnouncementRequest
 
 ---
 
 
 **Containers**
 
-*  Employee
-*  Residence
+*  Person
 
 ---
 
 
 **Elements of Containers**
 
-* 
+* Property
+* House
+* Residence
+* Message
+* Offer
+* Store
+* Unregistered User
+* Client
+* Person
+* Employee
+* Agent
+* SystemAdministrator
+* StoreNetworkManager
+* StoreManager
 
 ---
 
 
 **Organizations**
 
-*  Real Estate USA (Company)
+* Store
 
 ---
 
@@ -133,14 +153,14 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Records of finance, work, contracts, legal matters**
 
-* 
+*
 
 ---
 
 
 **Financial Instruments**
 
-*  Comission
+*  Bussiness
 
 ---
 
@@ -148,6 +168,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 **Documents mentioned/used to perform some work/**
 
 * Contacts
+* File
 ---
 
 
