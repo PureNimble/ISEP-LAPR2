@@ -19,6 +19,7 @@ participant "typesComissionRepository:\n Types Commission Repository" as typesCo
 participant "typesOfBusinessRepository: \nTypes Of Business Repository" as typesOfBusinessRepository
 participant "announcementRepository\n:Announcement Repository" as announcementRepository
 participant "announcement:\nAnnouncement" as announcement
+participant "sendSms:\nSendSms" as sms
 
 activate Agent
 
@@ -262,6 +263,7 @@ UI ---> Agent : saves all data and asks for photos of the property
                                 deactivate announcementRepository
 
             CTRL --> UI : announcement
+            deactivate announcementRepository
             deactivate CTRL
 
             UI --> Agent : displays announcement details and requests confirmation
@@ -270,6 +272,16 @@ UI ---> Agent : saves all data and asks for photos of the property
     Agent -> UI : confirm to publish the announcement
             activate UI
 
+                UI -> CTRL : sendSms(publishedAnnouncement)
+                activate CTRL
+                CTRL -> sms : sendSms.createFile(String.valueOf(publishedAnnouncement.get().getClient().getPhoneNumber()));
+                activate sms
+                CTRL -> sms :  sendSms.writeFile(String.valueOf(publishedAnnouncement.get().getClient().getPhoneNumber()), toWriteFile);
+                sms --> sms : createFile (String fileName)
+                sms --> sms : writeFile (String fileName, String textToWrite)
+                sms --> CTRL : true
+            deactivate sms
+            CTRL --> UI : true
             UI --> Agent : displays operation success
             deactivate UI
 deactivate Agent

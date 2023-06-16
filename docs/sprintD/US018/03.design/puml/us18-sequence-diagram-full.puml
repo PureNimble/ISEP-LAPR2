@@ -1,0 +1,139 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US18 - System Sequence Diagram (SD)
+
+autonumber
+
+actor "Store Manager" as manager
+participant "DealAnalysesUI" as ui
+participant "DealAnalysesController" as controller
+participant ":Repositories" as singleton
+participant "repositories\n:Repositories" as repositories
+participant "publishedAnnouncementRepository\nPublishedAnnouncementRepository" as announcementrep
+participant "regressionModel\n:RegressionModel" as regressionmodel
+participant "multiLinear : MultiLinear" as multi
+participant "singleLinear : SingleLinear" as single
+participant "regressionMapper\n:RegressionMapper" as mapper
+participant "regressionDTO : RegressionDTO" as dto
+
+
+activate manager
+
+    manager -> ui : asks for a deal analysis report
+    activate ui
+
+        ui --> manager : asks to select the type of regression to use (simple or multi)
+    deactivate ui
+
+    manager -> ui : selects the type of regression
+    activate ui
+
+    opt type of regression equals to simple linear
+        
+        ui --> manager : asks to select only one parameter [property area (in square feet), the distance from the center (in miles), the number of \n bedrooms, the number of bathrooms or the number of parking spaces]
+        deactivate ui
+
+        manager -> ui : selects one of the parameters
+        activate ui
+    end
+
+    ui -> controller : getReport (regressionType, parameter, significance)
+    activate controller
+    controller -> singleton : getInstance()
+        activate singleton
+
+                singleton --> controller : repository
+
+            deactivate singleton
+
+            controller -> repositories : getPublishedAnnouncementRepository()
+
+            activate repositories
+
+                repositories --> controller : PublishedAnnouncementRepository
+
+            deactivate repositories
+
+            alt type of regression equals to simple linear
+                controller -> announcementrep : getParametersForSimple(parameter)
+                activate announcementrep
+                announcementrep --> controller : parameters
+                deactivate announcementrep
+
+            else type of regression equals to multilinear
+            controller -> announcementrep : getParametersForMulti()
+            activate announcementrep
+            announcementrep --> controller : parameters
+            deactivate announcementrep
+            end
+            controller -> regressionmodel** : create(parameters)
+
+            controller -> regressionmodel : getRegressionModel(parameters, significance)
+
+
+            activate regressionmodel
+            regressionmodel --> controller : regressionModel
+            deactivate regressionmodel
+
+            controller -> mapper : toDTO(regressionModel)
+            activate mapper
+            mapper --> dto** : create(regressionModel.getAnalysisReport())
+
+            mapper --> controller : regressionDto
+            deactivate mapper
+
+            controller --> ui : regressionDto
+            deactivate controller
+
+
+    ui --> manager : shows the report for the chosen property [property values/prices (sale prices and forecast prices), the regression model \n used to estimate each value, R(SLR), R2 and R2 adjusted for SLR or MLR, confidence intervals and hypothesis tests\n for regression coefficients and significance model with Anova] and asks if the manager wants to get a prediction price\n for a property
+    deactivate ui
+    manager -> ui : says if he wants to get a prediction price
+    activate ui
+    alt if option is No 
+        ui --> manager : displays operation success
+    else if option is Yes
+    ui --> manager : requests parameter
+    deactivate ui
+
+
+    alt if type of regression equals to simple linear
+                manager -> ui : inputs requested parameter
+                activate ui
+    else if type of regression equals to  multilinear
+                manager -> ui : inputs requested parameters [property area (in square feet), the distance from the center (in miles), the number of \n bedrooms, the number of bathrooms or the number of parking spaces]
+                end
+                alt type of regression equals to multilinear
+                ui -> controller : predictMulti(parameters)
+                activate controller
+                controller -> multi : predictMulti(parameters)
+                activate multi
+                multi --> controller : prediction
+                deactivate multi
+                controller --> ui : prediction
+                deactivate controller
+
+        else type of regression equals to single linear
+            ui -> controller : predictSimple(parameter)
+                activate controller
+                controller -> single : predictSimple(parameter)
+                activate single
+                single --> controller : prediction
+                deactivate single
+                controller --> ui : prediction
+                deactivate controller
+    end
+        ui --> manager : displays prediction
+end
+deactivate ui
+
+
+@enduml

@@ -20,7 +20,7 @@ participant "PublishedAnnouncement\n:PublishedAnnouncement" as announcement
 participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as announcementrep
 participant "Offer\n:Offer" as offer
 participant "offerRepository\n:OfferRepository" as offerrepository
-participant ":OfferMapper" as mapper
+participant "AnnouncementOfferMapper:\nAnnouncementOfferMapper" as mapper
 participant "EmailServices\n:EmailServices" as email
 participant "PublishedAnnouncementList\n:List<PublishedAnnouncement>" as announcementlist
 participant "OfferList\n:List<OfferList>" as offerlist

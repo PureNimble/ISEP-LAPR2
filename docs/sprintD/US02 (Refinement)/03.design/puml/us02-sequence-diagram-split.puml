@@ -19,6 +19,8 @@ participant "typesComissionRepository:\n Types Commission Repository" as typesCo
 participant "typesOfBusinessRepository: \nTypes Of Business Repository" as typesOfBusinessRepository
 participant "announcementRepository\n:Announcement Repository" as announcementRepository
 participant "announcement:\nAnnouncement" as announcement
+participant "sendSms:\nSendSms" as sms
+
 
 activate Agent
 
@@ -229,8 +231,18 @@ UI ---> Agent : saves all data and asks for photos of the property
     Agent -> UI : confirm to publish the announcement
             activate UI
 
+                UI -> CTRL : sendSms(publishedAnnouncement)
+                activate CTRL
+                ref over CTRL
+                         Send SMS
+
+                        end ref
+            CTRL --> UI : true
             UI --> Agent : displays operation success
             deactivate UI
+            deactivate CTRL
 deactivate Agent
+
+@enduml
 
 @enduml

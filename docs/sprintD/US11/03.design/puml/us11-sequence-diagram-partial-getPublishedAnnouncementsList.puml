@@ -1,0 +1,60 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+participant ":OfferDecisionController" as controller
+participant ":Repositories" as singleton
+participant "repositories\n:Repositories" as repositories
+participant "PublishedAnnouncement\n:PublishedAnnouncement" as announcement
+participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as announcementrep
+participant "AnnouncementOfferMapper:\nAnnouncementOfferMapper" as mapper
+participant "PublishedAnnouncementList\n:List<PublishedAnnouncement>" as announcementlist
+
+activate controller
+
+        controller -> singleton : getInstance()
+        activate singleton
+
+                singleton --> controller : repository
+
+            deactivate singleton
+
+            controller -> repositories : getPublishedAnnouncementRepository()
+
+            activate repositories
+
+                repositories --> controller : PublishedAnnouncementRepository
+
+            deactivate repositories
+
+                controller -> announcement : getPublishedAnnouncements()
+                activate announcement
+
+                create announcementlist
+                announcement --> announcementlist** : create()
+
+                    loop for each published announcement
+                    
+                        announcement -> announcementrep : getPublishedAnnouncement(i)
+                        activate announcementrep
+                        announcementrep --> announcement : PublishedAnnouncement
+                        deactivate announcementrep
+
+                        opt if published announcement state not defined as sold
+
+                                announcement --> announcement : compare(publishedAnnouncement1Date, publishedAnnouncement2Date)
+
+                                announcement -> announcementlist : add(publishedAnnouncement)
+                                activate announcementlist
+                                deactivate announcementlist
+
+                        end
+ 
+                    end
+
+                announcement --> controller : PublishedAnnouncementList
+
+                deactivate announcement
+@enduml

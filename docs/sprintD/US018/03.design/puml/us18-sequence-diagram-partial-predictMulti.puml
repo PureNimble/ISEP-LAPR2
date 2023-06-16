@@ -1,0 +1,18 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+participant "DealAnalysesController" as controller
+participant "multiLinear : MultiLinear" as multi
+
+activate controller
+                controller -> multi : predictMulti(parameters)
+                activate multi
+                multi --> controller : prediction
+                deactivate multi
+                deactivate controller
+@enduml
