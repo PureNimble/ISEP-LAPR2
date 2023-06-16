@@ -1,0 +1,167 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "Client" as Client
+participant ":ClientMessageUI" as ClientMessageUI
+participant ":ClientMessageController" as ClientMessageController
+participant ":repository" as RepositorySingleton
+participant "repository\n:Repository" as repository
+participant "Message\n:Message" as Message
+participant "messageRepository\n:MessageRepository" as MessageRepository
+participant ":MessageMapper" as MessageMapper
+participant "MessageList\n:List<Message>" as MessageList
+participant "MessageDtos\n:List<MessageDTO>" as MessageDtos
+
+activate Client
+
+    Client -> ClientMessageUI : asks to see all responses received for the appointment requests
+    activate ClientMessageUI
+
+    create ClientMessageController
+    ClientMessageUI --> ClientMessageController** : create
+    
+    ClientMessageUI -> ClientMessageController : getMessageList(client)
+        activate ClientMessageController
+
+    ClientMessageController -> RepositorySingleton : getInstance()
+        activate RepositorySingleton
+
+            RepositorySingleton --> ClientMessageController : repository
+            deactivate RepositorySingleton
+
+    ClientMessageController -> repository : getMessageRepository()
+        activate repository
+
+            repository --> ClientMessageController : MessageRepository
+            deactivate repository
+
+    ClientMessageController -> Message : getMessageList(client)
+        activate Message
+
+        create MessageList
+        Message --> MessageList** : create()
+
+            loop for each Message
+            
+                Message -> MessageRepository : getMessage(i)
+                activate MessageRepository
+                MessageRepository --> Message : Message
+                deactivate MessageRepository
+
+                alt if message is for client
+                    Message -> MessageList : add(Message)
+                    activate MessageList
+                    deactivate MessageList
+                end
+
+            end
+
+        Message --> ClientMessageController : MessageList
+    deactivate Message
+
+    ClientMessageController -> MessageMapper : toDTO(StoreList, EmployeeList)
+        activate MessageMapper
+
+        create MessageDtos
+        MessageMapper --> MessageDtos** : create()
+            
+        MessageMapper -> MessageList : name = getName()
+        activate MessageList
+        deactivate MessageList
+
+        MessageMapper -> MessageList : phoneNumber = getPhoneNumber()
+        activate MessageList
+        deactivate MessageList
+
+        MessageMapper -> MessageList : description = getDescription()
+        activate MessageList
+        deactivate MessageList
+
+        MessageMapper -> MessageList : initialDate = getInitialDate()
+        activate MessageList
+        deactivate MessageList
+
+        MessageMapper -> MessageList : initialTime = getInitialTime()
+        activate MessageList
+        deactivate MessageList
+
+        MessageMapper -> MessageList : endTime = getEndTime()
+        activate MessageList
+        deactivate MessageList
+
+        MessageMapper -> MessageList : publishedAnnouncement = getpublishedAnnouncement()
+        activate MessageList
+        deactivate MessageList
+
+        MessageMapper -> MessageList : messageState = getMessageState()
+        activate MessageList
+        deactivate MessageList
+
+        MessageMapper -> MessageList : isApprovedByAgent = isApprovedByAgent()
+        activate MessageList
+        deactivate MessageList
+
+        MessageMapper --> MessageMapper : messageDto = toDTO(name,phoneNumber, description, initialDate, initialTime, endTime, publishedAnnouncement, messageState, isApprovedByAgent)
+        MessageMapper -> MessageDtos : add(messageDto)
+        activate MessageDtos
+        MessageDtos -> MessageMapper : MessageDtos
+        deactivate MessageDtos
+
+        MessageMapper -> ClientMessageController : MessageDtos
+
+        deactivate MessageMapper 
+
+        ClientMessageController --> ClientMessageUI : MessageDtos
+    deactivate ClientMessageController
+
+        ClientMessageUI --> Client : shows list of responses and asks to select one
+    deactivate ClientMessageUI
+
+    Client -> ClientMessageUI : selects the pretended message
+    activate ClientMessageUI
+
+        ClientMessageUI -> ClientMessageController : sendVisualizedEmail(email, subject, body)
+    activate ClientMessageController
+    deactivate ClientMessageController
+
+        ClientMessageUI --> Client : shows selected message (information about the property, date of the appointment,\nagent name and phone number) and asks if the client wants to accept or decline appointment
+    deactivate ClientMessageUI
+
+    alt declines appointment
+
+        Client -> ClientMessageUI : declines appointment
+        activate ClientMessageUI
+
+            ClientMessageUI --> Client : asks to state the reason for declinement
+        deactivate ClientMessageUI
+
+        Client -> ClientMessageUI : submits requested data
+        activate ClientMessageUI
+
+    else accepts appointment
+
+        Client -> ClientMessageUI : accepts appointment
+
+    end
+
+        ClientMessageUI --> Client : shows the inserted data and asks for confirmation
+    deactivate ClientMessageUI
+
+    Client -> ClientMessageUI : confirms data
+    activate ClientMessageUI
+
+    ClientMessageUI -> ClientMessageController : sendVisualizedEmail(email, subject, body)
+    activate ClientMessageController
+    deactivate ClientMessageController
+
+        ClientMessageUI --> Client : displays operation success
+    deactivate ClientMessageUI
+
+deactivate client
+
+@enduml
