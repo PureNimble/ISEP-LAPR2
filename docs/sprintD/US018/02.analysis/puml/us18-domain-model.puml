@@ -1,6 +1,6 @@
 @startuml
 
-title US20 - Domain Model
+title US18 - Domain Model
 
 
 skinparam groupInheritance 2
