@@ -82,11 +82,17 @@ deactivate Controller
 System -> Controller : updateMessageState(message)
 activate Controller
 
-ref over Controller
+Controller -> MessageRepository : updateMessageState(message)
+activate MessageRepository
+
+ref over MessageRepository
 
     Update Message State
 
 end
+
+MessageRepository --> Controller : updateMessageState(message)
+deactivate MessageRepository
 
 Controller --> System : updateMessageState(message)
 deactivate Controller

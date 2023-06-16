@@ -10,6 +10,7 @@ autonumber
 
 participant ":ListMessageUI" as System
 participant ":ListMessageController" as Controller
+participant ":MessageRepository" as MessageRepository
 participant "message:Message" as Messages
 
 group Update Message Request
@@ -19,7 +20,10 @@ activate System
 System -> Controller : updateMessageState(message)
 activate Controller
 
-Controller -> Messages : setMessageState(MessageState.ANSWERED)
+Controller -> MessageRepository : updateMessageState(message)
+activate MessageRepository
+
+MessageRepository -> Messages : setMessageState(MessageState.ANSWERED)
 activate Messages
 
 alt setApprovedByAgent(true)
@@ -32,8 +36,11 @@ Messages --> Messages : setApprovedByAgent(false)
 
 end
 
-Messages --> Controller: updateMessageState(message)
+Messages --> MessageRepository: updateMessageState(message)
 deactivate Messages
+
+MessageRepository --> Controller : updateMessageState(message)
+deactivate Controller
 
 Controller --> System : updateMessageState(message)
 deactivate Controller

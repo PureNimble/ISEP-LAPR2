@@ -242,7 +242,10 @@ deactivate Controller
 System -> Controller : updateMessageState(message)
 activate Controller
 
-Controller -> Messages : setMessageState(MessageState.ANSWERED)
+Controller -> MessageRepository : updateMessageState(message)
+activate MessageRepository
+
+MessageRepository -> Messages : setMessageState(MessageState.ANSWERED)
 activate Messages
 
 alt setApprovedByAgent(true)
@@ -255,8 +258,11 @@ Messages --> Messages : setApprovedByAgent(false)
 
 end
 
-Messages --> Controller: updateMessageState(message)
+Messages --> MessageRepository: updateMessageState(message)
 deactivate Messages
+
+MessageRepository --> Controller : updateMessageState(message)
+deactivate MessageRepository
 
 Controller --> System : updateMessageState(message)
 deactivate Controller

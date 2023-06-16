@@ -57,7 +57,7 @@ public class NetworkManagerMenuGUI implements Runnable,Initializable {
             stage.setTitle("List Deals Menu");
             stage.setScene(scene);
             stage.show();
-            listDealsLoader.setController(new ListDealsGUI());
+//            listDealsLoader.setController(new ListDealsGUI());
 
        } catch (IOException e) {
             throw new RuntimeException(e);
