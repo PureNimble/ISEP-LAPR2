@@ -1,0 +1,68 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+participant ":ClientMessageController" as ClientMessageController
+participant ":MessageMapper" as MessageMapper
+participant "MessageList\n:List<Message>" as MessageList
+participant "MessageDtos\n:List<MessageDTO>" as MessageDtos
+
+    ClientMessageController -> MessageMapper : toDTO(StoreList, EmployeeList)
+    activate ClientMessageController
+    activate MessageMapper
+
+    create MessageDtos
+    MessageMapper --> MessageDtos** : create()
+        
+    MessageMapper -> MessageList : name = getName()
+    activate MessageList
+    deactivate MessageList
+
+    MessageMapper -> MessageList : phoneNumber = getPhoneNumber()
+    activate MessageList
+    deactivate MessageList
+
+    MessageMapper -> MessageList : description = getDescription()
+    activate MessageList
+    deactivate MessageList
+
+    MessageMapper -> MessageList : initialDate = getInitialDate()
+    activate MessageList
+    deactivate MessageList
+
+    MessageMapper -> MessageList : initialTime = getInitialTime()
+    activate MessageList
+    deactivate MessageList
+
+    MessageMapper -> MessageList : endTime = getEndTime()
+    activate MessageList
+    deactivate MessageList
+
+    MessageMapper -> MessageList : publishedAnnouncement = getpublishedAnnouncement()
+    activate MessageList
+    deactivate MessageList
+
+    MessageMapper -> MessageList : messageState = getMessageState()
+    activate MessageList
+    deactivate MessageList
+
+    MessageMapper -> MessageList : isApprovedByAgent = isApprovedByAgent()
+    activate MessageList
+    deactivate MessageList
+
+    MessageMapper --> MessageMapper : messageDto = toDTO(name,phoneNumber, description, initialDate, initialTime, endTime, publishedAnnouncement, messageState, isApprovedByAgent)
+    MessageMapper -> MessageDtos : add(messageDto)
+    activate MessageDtos
+    MessageDtos -> MessageMapper : MessageDtos
+    deactivate MessageDtos
+
+    MessageMapper -> ClientMessageController : MessageDtos
+
+    deactivate MessageMapper 
+deactivate ClientMessageController
+
+@enduml

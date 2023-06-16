@@ -205,7 +205,7 @@ public class PublishedAnnouncementRepository implements Serializable {
      *
      * @param arrayListOwnerInformations the array list owner informations
      */
-    public void createPublishAnnouncementByFileReading(ArrayList<String[]> arrayListOwnerInformations, List<Store> stores, List<Client> clients) {
+    public List<PublishedAnnouncement> createPublishAnnouncementByFileReading(ArrayList<String[]> arrayListOwnerInformations, List<Store> stores, List<Client> clients) {
 
         int aux = 0;
         String propertyType;
@@ -230,6 +230,7 @@ public class PublishedAnnouncementRepository implements Serializable {
         int auxID = 0;
         Client client;
         Store store ;
+        List<PublishedAnnouncement> publishedAnnouncementsList = new ArrayList<>();
 
         for (String[] ownerInformations : arrayListOwnerInformations) {
 
@@ -251,7 +252,7 @@ public class PublishedAnnouncementRepository implements Serializable {
                         sunExposure = ownerInformations[17];
                     }
                 }
-                price = Double.parseDouble(ownerInformations[19]);
+                price = Double.parseDouble(ownerInformations[18]);
                 comission = Double.parseDouble(ownerInformations[20]);
                 if (!ownerInformations[21].equals("NA")) {
                     contractDuration = Integer.parseInt(ownerInformations[21]);
@@ -284,8 +285,13 @@ public class PublishedAnnouncementRepository implements Serializable {
                 PublishedAnnouncement publishedAnnouncement;
                 List<Role> roles = new ArrayList<>();
                 roles.add(new Role("Agent"));
-                Employee agent = new Employee("legacy@realstateUS.com", 000000000, 000000000, "Legacy Agent", 0000000000, store, roles);
-                AnnouncementState state = AnnouncementState.available;
+                String nameAgent = store.getDesignation()+" Agent"+id;
+                String email = store.getDesignation()+"agent"+"@"+"realstateUS.com";
+
+                long phoneNumber = (long) (1000000000+Math.random()*9999999999L);
+
+                Employee agent = new Employee(email, 000000000, 000000000, nameAgent, phoneNumber, store, roles);
+                AnnouncementState state = AnnouncementState.sold;
 
                 if (propertyType.equals("house")) {
                     House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, loft, sunExposure, propertyLocation);
@@ -329,6 +335,7 @@ public class PublishedAnnouncementRepository implements Serializable {
 
                 if (!publishedAnnouncements.contains(publishedAnnouncement)) {
                     publishedAnnouncements.add(publishedAnnouncement);
+                    publishedAnnouncementsList.add(publishedAnnouncement);
                 }
 
             } else {
@@ -336,8 +343,11 @@ public class PublishedAnnouncementRepository implements Serializable {
             }
         }
 
+        return publishedAnnouncementsList;
 
     }
+
+
 
 
     /**

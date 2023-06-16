@@ -1,7 +1,9 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
+import pt.ipp.isep.dei.esoft.project.domain.Client;
 import pt.ipp.isep.dei.esoft.project.domain.Offer;
 import pt.ipp.isep.dei.esoft.project.domain.OfferState;
+import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 
 import java.io.Serializable;
 import java.util.*;
@@ -95,7 +97,7 @@ public class OfferRepository implements Serializable {
      *
      * @return the list
      */
-    public List<Offer> getPendingOffers(){
+    public List<Offer> getPendingOffers() {
         List<Offer> resultList = new ArrayList<Offer>();
         for (Offer offer : offers) {
             if (offer.getOfferState().equals(OfferState.pending)) {
@@ -120,6 +122,7 @@ public class OfferRepository implements Serializable {
             }
         }
     }
+
     public void declineOffer(Offer offer) {
         offer.setOfferState(OfferState.rejected);
     }
@@ -132,14 +135,14 @@ public class OfferRepository implements Serializable {
      */
     public List<Offer> getOffersByHighestAmount() {
         List<Offer> resultList = new ArrayList<Offer>();
-            List<Offer> tempList = new ArrayList<Offer>();
-            for (Offer offer : offers) {
-                if (offer.getOfferState().equals(OfferState.pending)) {
-                    tempList.add(offer);
-                }
+        List<Offer> tempList = new ArrayList<Offer>();
+        for (Offer offer : offers) {
+            if (offer.getOfferState().equals(OfferState.pending)) {
+                tempList.add(offer);
             }
-            tempList.sort(Comparator.comparingDouble(Offer::getOrderAmount));
-            resultList.addAll(tempList);
+        }
+        tempList.sort(Comparator.comparingDouble(Offer::getOrderAmount));
+        resultList.addAll(tempList);
 
         return resultList;
     }
@@ -162,10 +165,10 @@ public class OfferRepository implements Serializable {
 
         for (int i = 0; i < resultList.size() - 1; i++) {
             for (int j = 0; j < resultList.size() - i - 1; j++) {
-                if (resultList.get(j).getPublishedAnnouncement().getProperty().getArea() > resultList.get(j+1).getPublishedAnnouncement().getProperty().getArea()) {
+                if (resultList.get(j).getPublishedAnnouncement().getProperty().getArea() > resultList.get(j + 1).getPublishedAnnouncement().getProperty().getArea()) {
                     aux = resultList.get(j);
-                    resultList.set(j,resultList.get(j+1));
-                    resultList.set(j+1,aux);
+                    resultList.set(j, resultList.get(j + 1));
+                    resultList.set(j + 1, aux);
                 }
             }
         }
@@ -191,10 +194,10 @@ public class OfferRepository implements Serializable {
 
         for (int i = 0; i < resultList.size() - 1; i++) {
             for (int j = 0; j < resultList.size() - i - 1; j++) {
-                if (resultList.get(j).getPublishedAnnouncement().getProperty().getArea() < resultList.get(j+1).getPublishedAnnouncement().getProperty().getArea()) {
+                if (resultList.get(j).getPublishedAnnouncement().getProperty().getArea() < resultList.get(j + 1).getPublishedAnnouncement().getProperty().getArea()) {
                     aux = resultList.get(j);
-                    resultList.set(j,resultList.get(j+1));
-                    resultList.set(j+1,aux);
+                    resultList.set(j, resultList.get(j + 1));
+                    resultList.set(j + 1, aux);
                 }
             }
         }
@@ -220,14 +223,14 @@ public class OfferRepository implements Serializable {
 
         for (int i = 0; i < resultList.size() - 1; i++) {
             min_Index = i;
-            for (int j = i+1; j < resultList.size(); j++) {
+            for (int j = i + 1; j < resultList.size(); j++) {
                 if (resultList.get(j).getPublishedAnnouncement().getProperty().getArea() < resultList.get(min_Index).getPublishedAnnouncement().getProperty().getArea()) {
-                  min_Index = j;
+                    min_Index = j;
                 }
             }
             aux = resultList.get(min_Index);
-            resultList.set(min_Index,resultList.get(i));
-            resultList.set(i,aux);
+            resultList.set(min_Index, resultList.get(i));
+            resultList.set(i, aux);
         }
 
         return resultList;
@@ -252,14 +255,14 @@ public class OfferRepository implements Serializable {
 
         for (int i = 0; i < resultList.size() - 1; i++) {
             max_Index = i;
-            for (int j = i+1; j < resultList.size(); j++) {
+            for (int j = i + 1; j < resultList.size(); j++) {
                 if (resultList.get(j).getPublishedAnnouncement().getProperty().getArea() > resultList.get(max_Index).getPublishedAnnouncement().getProperty().getArea()) {
                     max_Index = j;
                 }
             }
             aux = resultList.get(max_Index);
-            resultList.set(max_Index,resultList.get(i));
-            resultList.set(i,aux);
+            resultList.set(max_Index, resultList.get(i));
+            resultList.set(i, aux);
         }
         return resultList;
     }
@@ -270,14 +273,14 @@ public class OfferRepository implements Serializable {
      *
      * @return the offers by most recent
      */
-    public List<Offer> getOffersByMostRecent () {
-            List<Offer> resultList = new ArrayList<Offer>();
+    public List<Offer> getOffersByMostRecent() {
+        List<Offer> resultList = new ArrayList<Offer>();
 
-            for (Offer offer : offers) {
-                if (offer.getOfferState().equals(OfferState.accepted)) {
-                    resultList.add(offer);
-                }
+        for (Offer offer : offers) {
+            if (offer.getOfferState().equals(OfferState.accepted)) {
+                resultList.add(offer);
             }
+        }
 
 /**
  * Sorts the list of offers by the date of the associated published announcements in ascending order,
@@ -286,22 +289,63 @@ public class OfferRepository implements Serializable {
  * @param resultList The list of offers to be sorted.
  * @return The sorted list of offers in descending order by date.
  */
-            resultList.sort(new Comparator<Offer>() {
-                @Override
-                public int compare(Offer o1, Offer o2) {
-                    Date date1 = o1.getPublishedAnnouncement().getDate();
-                    Date date2 = o2.getPublishedAnnouncement().getDate();
+        resultList.sort(new Comparator<Offer>() {
+            @Override
+            public int compare(Offer o1, Offer o2) {
+                Date date1 = o1.getPublishedAnnouncement().getDate();
+                Date date2 = o2.getPublishedAnnouncement().getDate();
 
-                    return date1.compareTo(date2);
+                return date1.compareTo(date2);
 
+            }
+        });
+
+        Collections.reverse(resultList);
+
+
+        return resultList;
+    }
+
+
+    public void createOfferByFileReading(List<PublishedAnnouncement> publishedAnnouncements, ArrayList<String[]> informations) {
+
+        int i = 1;
+        String nameClient;
+        String email;
+        long phoneNumber;
+        String[] orderAmount;
+        int aux = 0;
+
+        for (PublishedAnnouncement publishedAnnouncement : publishedAnnouncements) {
+
+            if (aux > 0) {
+
+                nameClient = "Client" + i;
+                email = "client" + "i" + "@" + "realstateUS.com";
+                phoneNumber = (long) (1000000000 + Math.random() * 9999999999L);
+                orderAmount = informations.get(i);
+
+
+                Client client = new Client(email, 000000000, 000000000, nameClient, phoneNumber);
+
+
+                Offer offer = new Offer("Offer" + i, Double.parseDouble(orderAmount[19]), publishedAnnouncement, OfferState.accepted, client, i + 1);
+
+
+                if (!offers.contains(offer)) {
+                    offers.add(offer);
                 }
-            });
 
-            Collections.reverse(resultList);
+                i++;
+            } else {
+                aux = 1;
 
+            }
 
-            return resultList;
         }
 
 
     }
+
+
+}

@@ -35,6 +35,9 @@ public class ListDealsGUITeste implements Initializable {
     private TableColumn<Offer, Double> orderAmount;
 
     @FXML
+    private Label noPhotos;
+
+    @FXML
     private Label labelNumberOfBathrooms;
 
 
@@ -60,7 +63,7 @@ public class ListDealsGUITeste implements Initializable {
     private Label labelNumberOfBedrooms;
 
     @FXML
-    private TableColumn<Offer, String>  clientName;
+    private TableColumn<Offer, String> clientName;
 
     @FXML
     private TableColumn<Offer, Integer> idOffer;
@@ -146,7 +149,6 @@ public class ListDealsGUITeste implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
-
         clientName.setCellValueFactory(new PropertyValueFactory<Offer, String>("name"));
         orderAmount.setCellValueFactory(new PropertyValueFactory<Offer, Double>("orderAmount"));
         idOffer.setCellValueFactory(new PropertyValueFactory<Offer, Integer>("offerID"));
@@ -183,51 +185,50 @@ public class ListDealsGUITeste implements Initializable {
         }
 
 
-
         announcementAnchorPane.setVisible(true);
 
 
-        clientDescription.setText("Client: "+publishedAnnouncement.getClient().getName()+" "+publishedAnnouncement.getClient().getClientEmail() +" "+publishedAnnouncement.getClient().getPhoneNumber());
-        agentDescription.setText("Responsible Agent: "+publishedAnnouncement.getAgent().getName()+" "+publishedAnnouncement.getAgent().getEmail()+" "+publishedAnnouncement.getAgent().getPhoneNumber());
-        priceLabel.setText("" + publishedAnnouncement.getBusiness()+" $");
-        labelDistanceCenter.setText(""+publishedAnnouncement.getProperty().getDistanceFromCityCenter());
+        clientDescription.setText("Client: " + publishedAnnouncement.getClient().getName() + " " + publishedAnnouncement.getClient().getClientEmail() + " " + publishedAnnouncement.getClient().getPhoneNumber());
+        agentDescription.setText("Responsible Agent: " + publishedAnnouncement.getAgent().getName() + " " + publishedAnnouncement.getAgent().getEmail() + " " + publishedAnnouncement.getAgent().getPhoneNumber());
+        priceLabel.setText("" + publishedAnnouncement.getBusiness() + " $");
+        labelDistanceCenter.setText("" + publishedAnnouncement.getProperty().getDistanceFromCityCenter());
         adressLabel.setText("" + publishedAnnouncement.getProperty().getAddress());
         typeOfBusinessLabel.setText("" + publishedAnnouncement.getTypeOfBusiness());
         typeOfProperrtyLabel.setText("" + publishedAnnouncement.getPropertyType());
         dateLabel.setText("" + publishedAnnouncement.getDate());
-        labelArea.setText(""+publishedAnnouncement.getProperty().getArea());
+        labelArea.setText("" + publishedAnnouncement.getProperty().getArea());
 
 
-        if (publishedAnnouncement.getProperty() instanceof House){
+        if (publishedAnnouncement.getProperty() instanceof House) {
             House house = (House) publishedAnnouncement.getProperty();
 
 
             labelLoft.setVisible(true);
             loftIcon.setVisible(true);
-            labelLoft.setText(""+house.getInhabitableLoft());
+            labelLoft.setText("" + house.getInhabitableLoft());
 
 
             labelBasement.setVisible(true);
             basementICon.setVisible(true);
-            labelBasement.setText(""+house.getBasement());
+            labelBasement.setText("" + house.getBasement());
 
             SunExposureIcon.setVisible(true);
             labelSunExposure.setVisible(true);
-            labelSunExposure.setText(""+house.getSunExposure());
+            labelSunExposure.setText("" + house.getSunExposure());
 
             numberBedroomsIcon.setVisible(true);
             labelNumberOfBedrooms.setVisible(true);
-            labelNumberOfBedrooms.setText("" +house.getNumberOfBedrooms());
+            labelNumberOfBedrooms.setText("" + house.getNumberOfBedrooms());
 
             parkingSpacesIcon.setVisible(true);
             labelparkingSpaces.setVisible(true);
-            labelparkingSpaces.setText(""+house.getParkingSpaces());
+            labelparkingSpaces.setText("" + house.getParkingSpaces());
 
             numberBathroomsIcon.setVisible(true);
             labelNumberOfBathrooms.setVisible(true);
-            labelNumberOfBathrooms.setText(""+house.getNumberOfBathrooms());
+            labelNumberOfBathrooms.setText("" + house.getNumberOfBathrooms());
 
-    }else if (publishedAnnouncement.getPropertyType().getDesignation().equals("Appartment")){
+        } else if (publishedAnnouncement.getPropertyType().getDesignation().equals("Appartment")) {
 
             Residence residence = (Residence) publishedAnnouncement.getProperty();
 
@@ -239,19 +240,18 @@ public class ListDealsGUITeste implements Initializable {
             loftIcon.setVisible(false);
 
 
-
             numberBedroomsIcon.setVisible(true);
             labelNumberOfBedrooms.setVisible(true);
-            labelNumberOfBedrooms.setText("" +residence.getNumberOfBedrooms());
+            labelNumberOfBedrooms.setText("" + residence.getNumberOfBedrooms());
 
             parkingSpacesIcon.setVisible(true);
             labelparkingSpaces.setVisible(true);
-            labelparkingSpaces.setText(""+residence.getParkingSpaces());
+            labelparkingSpaces.setText("" + residence.getParkingSpaces());
 
             numberBathroomsIcon.setVisible(true);
             labelNumberOfBathrooms.setVisible(true);
-            labelNumberOfBathrooms.setText(""+residence.getNumberOfBathrooms());
-        }else {
+            labelNumberOfBathrooms.setText("" + residence.getNumberOfBathrooms());
+        } else {
             SunExposureIcon.setVisible(false);
             labelSunExposure.setVisible(false);
             basementICon.setVisible(false);
@@ -272,23 +272,23 @@ public class ListDealsGUITeste implements Initializable {
 
 
         List<Image> images = new ArrayList<>();
-        for (String url : publishedAnnouncement.getProperty().getPhotos().getUrl()) {
 
-            images.add(new Image(url,658,258,false,false));
+        if (publishedAnnouncement.getProperty().getPhotos().getUrl() != null){
+            for (String url : publishedAnnouncement.getProperty().getPhotos().getUrl()) {
 
+                images.add(new Image(url, 658, 258, false, false));
+
+                photosPagination.setVisible(true);
+                photosPagination.setPageCount(publishedAnnouncement.getProperty().getPhotos().getUrl().size());
+                photosPagination.setPageFactory(n -> new ImageView(images.get(n)));
+
+            }
+        }else {
+            photosPagination.setVisible(false);
+            noPhotos.setVisible(true);
         }
 
-        ImageView imageView = new ImageView();
-        imageView.setFitHeight(300);
-        imageView.setFitWidth(300);
-
-
-        photosPagination.setVisible(true);
-        photosPagination.setPageCount(publishedAnnouncement.getProperty().getPhotos().getUrl().size());
-        photosPagination.setPageFactory(n -> new ImageView(images.get(n)));
-
         announcementLabel.setVisible(true);
-
 
 
     }
@@ -301,14 +301,12 @@ public class ListDealsGUITeste implements Initializable {
         if (choiceOption.equals("Sort Selection Algorithm")) {
             ascendOrDescendChoice.setVisible(true);
             ascendOrDescendChoice.setOnAction(this::getOrderSelectionSort);
-        } else if (choiceOption.equals("Bubble Sort Algorithm")){
+        } else if (choiceOption.equals("Bubble Sort Algorithm")) {
             ascendOrDescendChoice.setVisible(true);
             ascendOrDescendChoice.setOnAction(this::getOrderBubbleSort);
         }
 
     }
-
-
 
 
     private void getOrderBubbleSort(javafx.event.ActionEvent actionEvent) {
@@ -318,7 +316,7 @@ public class ListDealsGUITeste implements Initializable {
         if (choiceOption.equals("Descending")) {
             listDeals.clear();
             listDeals.addAll(controller.getDealsByDescendingAreaBubbleSort());
-        } else if (choiceOption.equals("Ascending")){
+        } else if (choiceOption.equals("Ascending")) {
             listDeals.clear();
             listDeals.addAll(controller.getDealsByAscendingAreaBubbleSort());
 
@@ -333,14 +331,13 @@ public class ListDealsGUITeste implements Initializable {
         if (choiceOption.equals("Descending")) {
             listDeals.clear();
             listDeals.addAll(controller.getDealsByDescendingAreaSortSelection());
-        } else if (choiceOption.equals("Ascending")){
+        } else if (choiceOption.equals("Ascending")) {
             listDeals.clear();
             listDeals.addAll(controller.getDealsByAscendingAreaSortSelection());
 
         }
 
     }
-
 
 
 }

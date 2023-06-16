@@ -3,7 +3,10 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.domain.Client;
 import pt.ipp.isep.dei.esoft.project.domain.Message;
+import pt.ipp.isep.dei.esoft.project.domain.MessageDto;
+import pt.ipp.isep.dei.esoft.project.domain.MessageMapper;
 import pt.ipp.isep.dei.esoft.project.domain.MessageState;
+import pt.ipp.isep.dei.esoft.project.domain.StoreEmployeeMapper;
 import pt.ipp.isep.dei.esoft.project.domain.emailServices.EmailService;
 import pt.ipp.isep.dei.esoft.project.repository.*;
 
@@ -132,10 +135,11 @@ public class ClientMessagesController {
      *
      * @return the message requests
      */
-    public List<Message> getMessageRequests(Client client) {
+    public List<MessageDto> getMessageRequests(Client client) {
+        MessageMapper messageMapper = new MessageMapper();
         MessageRepository messageRepository = getMessageRepository();
         List<Message> messageRequests = messageRepository.getMessageRequests(client);
-        return messageRequests;
+        return messageMapper.toDto(messageRequests);
     }
 
 }

@@ -47,7 +47,7 @@ public class DivideStoresController {
      * @return The sublists of the partition string corresponding of the subset with the minimum difference
      */
 
-    private String findPartition(){
+    public List<List<String>> findPartition(){
         StoreRepository storeRepository = getStoreRepository();
 
         return storeRepository.findPartition();

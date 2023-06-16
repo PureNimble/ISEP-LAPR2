@@ -1,0 +1,99 @@
+@startuml
+
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+'skinparam classAttributeIconSize 0
+'left to right direction
+
+title US13 - Class Diagram
+
+class Repositories {
+    -Repositories()
+    +getInstance():Repositories
+    +getStoreRepository()
+    +getEmployeeRepository()
+}
+
+class Store {
+    -int id
+    -String designation
+    -int listing
+    -int availableListing
+    +List<Store>
+}
+
+class Employee {
+    +List<Employee>
+}
+
+class StoreEmployeeMapper {
+    +toDTO(storeList, employeeList)
+    +toDtoObject(storeName, storeId, storeListing, employee)
+}
+
+class DisplayStoreController {
+    +getStoreRepository()
+    +getEmployeeRepository()
+    +toDTO()
+}
+
+class StoreRepository {
+    +getStoresByMostAvailableListings()
+    +compareToDescendingList()
+}
+
+class EmployeeRepository {
+    +getEmployeesAllphabeticallySorted()
+}
+
+class User {
+    -Password
+}
+
+class Person {
+    -Name
+    -Email
+    -Phone Number
+    -Tax Number
+    -Passport Number
+}
+
+class StoreEmployeeDTO {
+    -String storeDesignation
+    -int storeId
+    -int availableListing
+    -List<Employee> employees
+    +getStoreDesignation()
+    +setStoreDesignation(storeDesignation)
+    +getStoreId()
+    +setStoreId(storeId)
+    +getStoreAvailableListing()
+    +setStoreAvailableListing(availableListing)
+    +getEmployees()
+    +setEmployees()
+    +toStringStore()
+    +toStringEmployee()
+}
+
+class DisplayStoreUI {
+
+}
+
+Repositories -> Repositories:instance
+Repositories --> StoreRepository: StoreRepository
+Repositories --> EmployeeRepository: EmployeeRepository
+DisplayStoreController ..> Repositories : repositories
+DisplayStoreController ..> StoreRepository : StoreRepository
+DisplayStoreController ..> EmployeeRepository : EmployeeRepository
+DisplayStoreController ..> Store : Store
+DisplayStoreController ..> Employee : Employee
+DisplayStoreController ..> StoreEmployeeMapper : StoreEmployeeMapper
+DisplayStoreUI ..> DisplayStoreController
+StoreEmployeeMapper ..> StoreEmployeeDTO: StoreEmployeeDTO
+Person <|-- User
+User <|-- Employee
+
+@enduml

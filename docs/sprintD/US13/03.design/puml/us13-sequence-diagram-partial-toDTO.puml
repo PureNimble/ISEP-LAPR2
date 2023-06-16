@@ -1,0 +1,55 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+participant ":DisplayEmployeeController" as DisplayEmployeeController
+participant ":StoreEmployeeMapper" as StoreEmployeeMapper
+participant "StoreList\n:List<Store>" as StoreList
+participant "EmployeeList\n:List<Employee>" as EmployeeList
+participant "StoreEmployeeListDTO\n:List<StoreEmployeeDTO>" as StoreEmployeeList
+
+        DisplayEmployeeController -> StoreEmployeeMapper : toDTO(StoreList, EmployeeList)
+        activate DisplayEmployeeController
+        activate StoreEmployeeMapper
+
+        create StoreEmployeeList
+        StoreEmployeeMapper --> StoreEmployeeList** : create()
+
+        loop for each store object
+                    
+            StoreEmployeeMapper -> StoreList : storeName = getDesignation()
+            activate StoreList
+            deactivate StoreList
+
+            StoreEmployeeMapper -> StoreList : storeId = getId()
+            activate StoreList
+            deactivate StoreList
+
+            StoreEmployeeMapper -> StoreList : availableListing = getAvailableListing()
+            activate StoreList
+            deactivate StoreList
+
+            loop for each employee object
+
+                StoreEmployeeMapper -> EmployeeList : employees(i) = getEmployee(store)
+                activate EmployeeList
+                deactivate EmployeeList
+            end
+
+            StoreEmployeeMapper --> StoreEmployeeMapper : storeEmployeeDTO = toDTO(storeName, storeId, availableListing, employees)
+            StoreEmployeeMapper -> StoreEmployeeList : add(storeEmployeeDTO)
+            activate StoreEmployeeList
+        end
+        StoreEmployeeList --> StoreEmployeeMapper : StoreEmployeeListDTO
+        deactivate StoreEmployeeList
+
+        StoreEmployeeMapper --> DisplayEmployeeController : StoreEmployeeListDTO
+        deactivate StoreEmployeeMapper
+        
+deactivate DisplayEmployeeController
+
+@enduml

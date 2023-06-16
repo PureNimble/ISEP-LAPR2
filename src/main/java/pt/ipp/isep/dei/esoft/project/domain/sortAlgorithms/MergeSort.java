@@ -1,103 +1,70 @@
 package pt.ipp.isep.dei.esoft.project.domain.sortAlgorithms;
 
-import pt.ipp.isep.dei.esoft.project.domain.Message;
-import pt.ipp.isep.dei.esoft.project.domain.sortAlgorithms.SortAlgorithm;
-
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
-/**
- * The type Merge sort.
- *
- * @param <T> the type parameter
- */
 public class MergeSort<T> implements SortAlgorithm<T> {
-    /**
-     * The list of messages to be sorted.
-     */
-    private final List<Message> arrayToSort;
+    private final Comparator<T> comparator;
 
-    /**
-     * Instantiates a new Merge sort.
-     *
-     * @param arrayToSort the array to sort
-     */
-    public MergeSort(List<Message> arrayToSort) {
-        this.arrayToSort = arrayToSort;
+    public MergeSort(Comparator<T> comparator) {
+        this.comparator = comparator;
     }
 
     /**
-     * Divide array elements.
+     * Sorts the given list of objects in ascending order using the merge sort algorithm.
      *
-     * @param indexStart the index start
-     * @param indexEnd   the index end
-     */
-    public void divideArrayElements(int indexStart, int indexEnd) {
-
-        if (indexStart < indexEnd && (indexEnd - indexStart) >= 1) {
-            int middleElement = (indexEnd + indexStart) / 2;
-
-            divideArrayElements(indexStart, middleElement);
-            divideArrayElements(middleElement + 1, indexEnd);
-
-            mergeArrayElements(indexStart, middleElement, indexEnd);
-        }
-    }
-
-    /**
-     * Merge array elements.
-     *
-     * @param indexStart  the index start
-     * @param indexMiddle the index middle
-     * @param indexEnd    the index end
-     */
-    public void mergeArrayElements(int indexStart, int indexMiddle, int indexEnd) {
-
-        List<Message> tempArray = new ArrayList<>();
-
-        int getLeftIndex = indexStart;
-        int getRightIndex = indexMiddle + 1;
-
-        while (getLeftIndex <= indexMiddle && getRightIndex <= indexEnd) {
-
-            if (arrayToSort.get(getLeftIndex).getInitialDate().compareTo(arrayToSort.get(getRightIndex).getInitialDate()) <= 0) {
-
-                tempArray.add(arrayToSort.get(getLeftIndex));
-                getLeftIndex++;
-
-            } else {
-
-                tempArray.add(arrayToSort.get(getRightIndex));
-                getRightIndex++;
-
-            }
-        }
-
-        while (getLeftIndex <= indexMiddle) {
-            tempArray.add(arrayToSort.get(getLeftIndex));
-            getLeftIndex++;
-        }
-
-        while (getRightIndex <= indexEnd) {
-            tempArray.add(arrayToSort.get(getRightIndex));
-            getRightIndex++;
-        }
-
-
-        for (int i = 0; i < tempArray.size(); indexStart++) {
-            arrayToSort.set(indexStart, tempArray.get(i++));
-
-        }
-
-    }
-    /**
-     * Sorts the given list of elements.
-     *
-     * @param arrayToSort The list of elements to be sorted.
-     * @return The sorted list of elements.
+     * @param arrayToSort The list of objects to be sorted.
+     * @return The sorted list of objects.
      */
     @Override
     public List<T> sort(List<T> arrayToSort) {
-        return null;
+        if (arrayToSort.size() <= 1) {
+            return arrayToSort;
+        }
+
+        int mid = arrayToSort.size() / 2;
+        List<T> left = sort(arrayToSort.subList(0, mid));
+        List<T> right = sort(arrayToSort.subList(mid, arrayToSort.size()));
+
+        return merge(left, right);
+    }
+
+    /**
+     * Merges two sorted lists into a single sorted list.
+     *
+     * @param left  The left sorted list.
+     * @param right The right sorted list.
+     * @return The merged sorted list.
+     */
+    private List<T> merge(List<T> left, List<T> right) {
+        List<T> merged = new ArrayList<>();
+        int i = 0;
+        int j = 0;
+
+        while (i < left.size() && j < right.size()) {
+            T leftValue = left.get(i);
+            T rightValue = right.get(j);
+
+            if (comparator.compare(leftValue, rightValue) <= 0) {
+                merged.add(leftValue);
+                i++;
+            } else {
+                merged.add(rightValue);
+                j++;
+            }
+        }
+
+        while (i < left.size()) {
+            merged.add(left.get(i));
+            i++;
+        }
+
+        while (j < right.size()) {
+            merged.add(right.get(j));
+            j++;
+        }
+
+        return merged;
     }
 }

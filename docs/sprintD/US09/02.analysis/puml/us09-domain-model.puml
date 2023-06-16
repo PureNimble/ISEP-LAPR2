@@ -136,7 +136,7 @@ Agent "1" --- "1" Message: receives a >
 Agent "1" --- "*" PublishedAnnouncement: publishes an >
 
 Person <|-- Employee
-Employee <-- Agent
+Employee -- Agent
 Person <|-- Client
 
 

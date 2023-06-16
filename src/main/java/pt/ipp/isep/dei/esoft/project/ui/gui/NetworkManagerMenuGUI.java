@@ -5,13 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import pt.ipp.isep.dei.esoft.project.application.controller.ListDealsController;
-import pt.ipp.isep.dei.esoft.project.domain.State;
-import pt.ipp.isep.dei.esoft.project.ui.console.menu.NetworkManagerUI;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,8 +27,10 @@ public class NetworkManagerMenuGUI implements Runnable,Initializable {
      * @param mouseEvent the mouse event
      */
     public void listDeals(javafx.scene.input.MouseEvent mouseEvent) {
-        loadPage();
+        loadPageListDeals();
     }
+
+
 
     public void run(){
 
@@ -46,7 +45,7 @@ public class NetworkManagerMenuGUI implements Runnable,Initializable {
 
 
 
-    private void loadPage(){
+    private void loadPageListDeals(){
 
 
         try {
@@ -60,11 +59,31 @@ public class NetworkManagerMenuGUI implements Runnable,Initializable {
             stage.show();
             listDealsLoader.setController(new ListDealsGUI());
 
+       } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void loadPageDivideStores(){
+
+        try {
+            FXMLLoader divideStoresLoader = new FXMLLoader();
+            divideStoresLoader.setLocation(getClass().getResource("/DivideStores.fxml"));
+            Parent root = divideStoresLoader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Divide Stores Menu");
+            stage.setScene(scene);
+            stage.show();
+            divideStoresLoader.setController(new DivideStoresGUI());
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
 
-
+    public void divideStores(MouseEvent mouseEvent) {
+        loadPageDivideStores();
+    }
 }

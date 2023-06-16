@@ -17,10 +17,10 @@
                   <Image url="@PhotosApp/Ruler%20linear%20icon.jpg" />
                </image>
             </ImageView>
-            <Pagination fx:id="photosPagination" pageCount="0" prefHeight="258.0" prefWidth="658.0" />
-            <Label fx:id="adressLabel" layoutX="27.0" layoutY="322.0" prefHeight="27.0" prefWidth="605.0" text="Label">
+            <Pagination fx:id="photosPagination" pageCount="0" prefHeight="258.0" prefWidth="658.0" visible="false" />
+            <Label fx:id="adressLabel" layoutX="27.0" layoutY="322.0" prefHeight="27.0" prefWidth="487.0" text="Label">
                <font>
-                  <Font name="System Bold Italic" size="15.0" />
+                  <Font name="System Bold Italic" size="13.0" />
                </font>
             </Label>
             <Label fx:id="typeOfBusinessLabel" layoutX="34.0" layoutY="263.0" text="Label">
@@ -95,11 +95,11 @@
             <Label fx:id="labelBasement" layoutX="484.0" layoutY="449.0" text="Label" visible="false" />
             <Label fx:id="agentDescription" layoutX="27.0" layoutY="383.0" prefHeight="17.0" prefWidth="605.0" text="Label">
                <font>
-                  <Font name="System Bold Italic" size="15.0" />
+                  <Font name="System Bold Italic" size="13.0" />
                </font></Label>
             <Label fx:id="clientDescription" layoutX="27.0" layoutY="414.0" prefHeight="17.0" prefWidth="580.0" text="Label">
                <font>
-                  <Font name="System Bold Italic" size="15.0" />
+                  <Font name="System Bold Italic" size="13.0" />
                </font></Label>
             <Label layoutX="484.0" layoutY="335.0" text="Distance from city center">
                <font>
@@ -114,6 +114,11 @@
                </image>
             </ImageView>
             <Label fx:id="labelLoft" layoutX="563.0" layoutY="450.0" text="Label" visible="false" />
+            <Label fx:id="noPhotos" layoutX="82.0" layoutY="14.0" prefHeight="195.0" prefWidth="496.0" text="           No Photos" visible="false">
+               <font>
+                  <Font name="Impact" size="61.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="64.0" prefWidth="1100.0" style="-fx-background-color: white; -fx-border-width: 6px 0px 6px 0px; -fx-border-color: black;">

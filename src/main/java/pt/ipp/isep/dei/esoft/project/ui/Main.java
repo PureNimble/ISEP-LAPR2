@@ -17,6 +17,7 @@ public class Main{
      */
     public static void main(String[] args) throws IOException {
         Bootstrap bootstrap = new Bootstrap();
+        Repositories.getInstance().deserialize();
         try {
             bootstrap.run();
         } catch (Exception e) {
