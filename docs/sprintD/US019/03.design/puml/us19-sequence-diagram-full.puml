@@ -3,6 +3,9 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
+title US019 - Sequence Diagram Full
+
+
 autonumber
 
 actor "Network Manager" as NetworkManager
@@ -43,8 +46,9 @@ activate NetworkManager
                 deactivate StoreRepository
 
 
-                DivideStoresController -> DivideStoresUI : partition
-                activate StoreRepository
+                DivideStoresController --> DivideStoresUI : partition
+
+
 
 
     DivideStoresUI --> NetworkManager : shows list of the two subsets and the minimum sum difference

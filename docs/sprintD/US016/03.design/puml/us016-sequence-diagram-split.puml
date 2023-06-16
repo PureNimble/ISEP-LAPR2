@@ -1,0 +1,103 @@
+@startuml
+
+title US016 - Sequence Diagram Split
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing true
+
+autonumber
+
+actor "Agent" as Agent
+participant ":ListMessageUI" as System
+participant ":ListMessageController" as Controller
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as Repository
+participant "messageRepository:\nMessageRepository" as MessageRepository
+participant ":ApplicationSession" as app
+participant "appSession\n:ApplicationSession" as APP
+participant "currentSession\n:UserSession" as User
+participant "employeeRepository\n:Employee Repository" as Employee
+participant ":MessageMapper" as Mapper
+participant "listOfMessagesDTO:List<Messages>" as listMessagesDTO
+participant "message:Message" as Messages
+participant ":sortAlgorithm" as sortAlgorithm
+participant ":ConfigProperties" as ConfigProperties
+participant "EmailService" as EmailService
+participant "DEIService" as DEIService
+participant "GmailService" as GmailService
+participant "HotmailService" as HotmailService
+participant "YahooService" as YahooService
+
+activate Agent
+
+Agent -> System : asks to see the booking requests
+activate System
+
+System -> Controller** : create
+
+System -> Controller : getListMessage()
+activate Controller
+
+ref over Controller
+
+    US015
+
+end
+
+Controller --> System: messageListByAgentAndDate
+deactivate Controller
+
+System --> Agent : shows the booking requests
+deactivate System
+
+
+Agent -> System : selects a booking request to respond
+activate System
+
+System --> Agent : shows the selected booking request and asks to enter the client's email
+deactivate System
+
+Agent -> System : inserts the client's email
+activate System
+
+System --> Agent : asks to accept or decline the booking request
+deactivate System
+
+Agent -> System : responds to the booking request
+activate System
+
+System -> Controller : sendEmail(email, subject, body)
+activate Controller
+
+ref over Controller
+
+    SendEmail
+
+end
+
+Controller --> System : emailSent
+deactivate Controller
+
+System -> Controller : updateMessageState(message)
+activate Controller
+
+Controller -> MessageRepository : updateMessageState(message)
+activate MessageRepository
+
+ref over MessageRepository
+
+    Update Message State
+
+end
+
+MessageRepository --> Controller : updateMessageState(message)
+deactivate MessageRepository
+
+Controller --> System : updateMessageState(message)
+deactivate Controller
+
+System --> Agent : display operation success
+deactivate System
+
+@enduml

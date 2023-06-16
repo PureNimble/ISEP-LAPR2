@@ -120,7 +120,15 @@ publishes the offer so that it is visible to all clients who visit the agency an
 
 **Other alternatives might exist.**
 
-#### Alternative One
+#### Full
 
 ![System Sequence Diagram - Alternative One](svg/us08-system-sequence-diagram.svg)
+
+#### Alternative One
+
+![System Sequence Diagram - Alternative One](svg/us08-system-sequence-diagram-alternative-one.svg)
+
+#### Alternative One
+
+![System Sequence Diagram - Alternative One](svg/us08-system-sequence-diagram-alternative-two.svg)
 

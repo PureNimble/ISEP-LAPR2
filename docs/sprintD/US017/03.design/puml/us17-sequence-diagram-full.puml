@@ -273,77 +273,6 @@ alt descending
                     PLAT --> ListDealsController: offerRepository
                 deactivate PLAT
 
-                ListDealsController -> OfferRepository : getOffersMostRecent()
-                activate OfferRepository
-
-                    OfferRepository --> ListDealsController : offersListMade
-                deactivate OfferRepository
-
-                ListDealsController --> OfferMapper : toDto(offersListMade)
-                activate OfferMapper
-
-                OfferMapper -> ListOfferDto** : create(...)
-loop
-                OfferMapper -> ListOffer : orderAmount = getOrderAmount()
-                activate ListOffer
-                deactivate ListOffer
-
-                OfferMapper -> ListOffer : publishedAnnouncement = getPublishedAnnouncement()
-                activate ListOffer
-                deactivate ListOffer
-
-                 OfferMapper -> ListOffer : name = getName()
-                 activate ListOffer
-                 deactivate ListOffer
-
-                 OfferMapper -> ListOffer: offerState = getOfferState()
-                 activate ListOffer
-                 deactivate ListOffer
-
-                 OfferMapper -> OfferMapper: offerDTO = toDtoObject(orderAmount,name,offerState,publishedAnnouncement)
-                 activate OfferMapper
-                 deactivate OfferMapper
-
-                 OfferMapper --> OfferDto**: create(..)
-
-                 OfferMapper -> ListOfferDto: add(OfferDto)
-                 activate ListOfferDto
-                 deactivate ListOfferDto
-end
-                 OfferMapper --> ListDealsController: offersDTOListMade
-
-
-                ListDealsController --> ListDealsUI : offersDTOListMade
-            deactivate ListDealsController
-
-
-
-
-
-
-
-
-    end
-end
-
-
-alt by default sorting
-
-            ListDealsUI -> ListDealsController : getOffersListDeals()
-            activate ListDealsController
-
-                ListDealsController -> RepositorySingleton : getInstance()
-                activate RepositorySingleton
-
-                    RepositorySingleton --> ListDealsController: repositories
-                deactivate RepositorySingleton
-
-                ListDealsController -> PLAT : getOfferRepository()
-                activate PLAT
-
-                    PLAT --> ListDealsController: offerRepository
-                deactivate PLAT
-
                 ListDealsController -> OfferRepository : getDealsByDescendingAreaSortSelection()
                 activate OfferRepository
 
@@ -395,10 +324,81 @@ end
 
 
     end
+end
+
+
+alt by default sorting(no algorithm and no criteria)
+
+            ListDealsUI -> ListDealsController : getOffersListDeals()
+            activate ListDealsController
+
+                ListDealsController -> RepositorySingleton : getInstance()
+                activate RepositorySingleton
+
+                    RepositorySingleton --> ListDealsController: repositories
+                deactivate RepositorySingleton
+
+                ListDealsController -> PLAT : getOfferRepository()
+                activate PLAT
+
+                    PLAT --> ListDealsController: offerRepository
+                deactivate PLAT
+
+                ListDealsController -> OfferRepository : getOffersMostRecent()
+                activate OfferRepository
+
+                    OfferRepository --> ListDealsController : offersListMade
+                deactivate OfferRepository
+
+                ListDealsController --> OfferMapper : toDto(offersListMade)
+                activate OfferMapper
+
+                OfferMapper -> ListOfferDto** : create(...)
+loop
+                OfferMapper -> ListOffer : orderAmount = getOrderAmount()
+                activate ListOffer
+                deactivate ListOffer
+
+                OfferMapper -> ListOffer : publishedAnnouncement = getPublishedAnnouncement()
+                activate ListOffer
+                deactivate ListOffer
+
+                 OfferMapper -> ListOffer : name = getName()
+                 activate ListOffer
+                 deactivate ListOffer
+
+                 OfferMapper -> ListOffer: offerState = getOfferState()
+                 activate ListOffer
+                 deactivate ListOffer
+
+                 OfferMapper -> OfferMapper: offerDTO = toDtoObject(orderAmount,name,offerState,publishedAnnouncement)
+                 activate OfferMapper
+                 deactivate OfferMapper
+
+                 OfferMapper --> OfferDto**: create(..)
+
+                 OfferMapper -> ListOfferDto: add(OfferDto)
+                 activate ListOfferDto
+                 deactivate ListOfferDto
+end
+                 OfferMapper --> ListDealsController: offersDTOListMade
+
+
+                ListDealsController --> ListDealsUI : offersDTOListMade
+            deactivate ListDealsController
 
 
 
- ListDealsUI --> NetworkManager : shows list deals made by the selected algorithm and criteria
+
+
+
+
+
+    end
+
+
+
+ ListDealsUI --> NetworkManager : shows list deals
         deactivate ListDealsUI
 
     NetworkManager -> ListDealsUI : submits data

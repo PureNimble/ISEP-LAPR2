@@ -16,8 +16,6 @@ title Domain Model - US015
  }
 
  class Message{
-     Name
-     Phone number
      Date
      Initial time
      End time
@@ -114,7 +112,9 @@ class Client {
      Contract type
  }
 
-
+class Comission{
+Value
+}
 
  class Role{
 

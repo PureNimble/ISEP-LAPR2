@@ -26,6 +26,8 @@ class Store {
 }
 
 class Employee {
+    -Store store
+    -Role role
     +List<Employee>
 }
 
@@ -53,6 +55,10 @@ class User {
     -Password
 }
 
+class Role {
+    -String role
+}
+
 class Person {
     -Name
     -Email
@@ -73,7 +79,6 @@ class StoreEmployeeDTO {
     +getStoreAvailableListing()
     +setStoreAvailableListing(availableListing)
     +getEmployees()
-    +setEmployees()
     +toStringStore()
     +toStringEmployee()
 }
@@ -85,6 +90,7 @@ class DisplayStoreUI {
 Repositories -> Repositories:instance
 Repositories --> StoreRepository: StoreRepository
 Repositories --> EmployeeRepository: EmployeeRepository
+Employee --> Role: has >
 DisplayStoreController ..> Repositories : repositories
 DisplayStoreController ..> StoreRepository : StoreRepository
 DisplayStoreController ..> EmployeeRepository : EmployeeRepository

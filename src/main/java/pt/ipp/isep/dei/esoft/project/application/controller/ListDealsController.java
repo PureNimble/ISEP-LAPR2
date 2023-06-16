@@ -98,11 +98,11 @@ public class ListDealsController {
 
 
     /**
-     * To dto descending area list.
+     * To dto descending area list using bubble sort.
      *
      * @return the list
      */
-    public List<OfferDto> toDtoDescendingArea(){
+    public List<OfferDto> toDtoDescendingAreaBubbleSort(){
         OfferMapper offerMapper = new OfferMapper();
 
       return offerMapper.toDto(getDealsByDescendingAreaBubbleSort());
@@ -110,14 +110,50 @@ public class ListDealsController {
     }
 
     /**
-     * To dto ascending area list.
+     * To dto ascending area list using bubble sort.
      *
      * @return the list
      */
-    public List<OfferDto> toDtoAscendingArea(){
+    public List<OfferDto> toDtoAscendingAreaBubbleSort(){
         OfferMapper offerMapper = new OfferMapper();
 
         return offerMapper.toDto(getDealsByAscendingAreaBubbleSort());
+
+    }
+
+    /**
+     * To dto descending area list using sort selection.
+     *
+     * @return the list
+     */
+    public List<OfferDto> toDtoDescendingAreaSortSelection(){
+        OfferMapper offerMapper = new OfferMapper();
+
+        return offerMapper.toDto(getDealsByDescendingAreaSortSelection());
+
+    }
+
+    /**
+     * To dto ascending area list sort selection.
+     *
+     * @return the list
+     */
+    public List<OfferDto> toDtoAscendingAreaSortSelection(){
+        OfferMapper offerMapper = new OfferMapper();
+
+        return offerMapper.toDto(getDealsByAscendingAreaSortSelection());
+
+    }
+
+    /**
+     * To dto most recent.
+     *
+     * @return the list
+     */
+    public List<OfferDto> toDtoOffersMostRecent(){
+        OfferMapper offerMapper = new OfferMapper();
+
+        return offerMapper.toDto(getOfferMostRecent());
 
     }
 

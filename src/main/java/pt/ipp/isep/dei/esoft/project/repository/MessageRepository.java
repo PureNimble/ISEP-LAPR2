@@ -116,4 +116,16 @@ public class MessageRepository implements Serializable {
 
         return messageRequests;
     }
+
+
+    /**
+     * Update message state.
+     *
+     * @param message the message
+     */
+    public void updateMessageState(Message message) {
+        message.setMessageState(MessageState.ANSWERED);
+    }
+
+
 }

@@ -90,6 +90,8 @@ As an agent, I want to list real estate purchase orders to accept or decline a p
 
 * There is a dependency to US07 "As an unregistered user, I want to register in the system to buy, sell or rent properties." since the Agent should be registered in the app.
 
+* There is a dependency to US10 " As a client, I place an order to purchase the property, submitting the order amount." since there is a need for an offer to exist in order to accept or decline.
+
 
 ### 1.5 Input and Output Data
 
@@ -100,6 +102,7 @@ As an agent, I want to list real estate purchase orders to accept or decline a p
 	* n\a
 	
 * Selected data:
+	* Offer
 	* Decline or Accept data
 
 
