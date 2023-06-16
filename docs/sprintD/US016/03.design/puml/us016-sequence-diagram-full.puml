@@ -154,8 +154,6 @@ loop for each message request
 
     Mapper -> Mapper : messageDTO = toDtoObject(clientName, phoneNumber, description, initialDate, initialTime, endTime, publishedAnnouncement)
 
-    Mapper --> listMessagesDTO** : create(...)
-
     Mapper --> listMessagesDTO : add(messageDTO)
     activate listMessagesDTO
     deactivate listMessagesDTO
@@ -194,6 +192,7 @@ Controller -> ConfigProperties : getProperty("emailService")
 activate ConfigProperties
 
 ConfigProperties --> Controller : service
+deactivate ConfigProperties
 
 Controller -> EmailService : createEmailService(service)
 activate EmailService
@@ -260,7 +259,7 @@ Messages --> Controller: updateMessageState(message)
 deactivate Messages
 
 Controller --> System : updateMessageState(message)
-deactivate
+deactivate Controller
 
 System --> Agent : display operation success
 deactivate System
