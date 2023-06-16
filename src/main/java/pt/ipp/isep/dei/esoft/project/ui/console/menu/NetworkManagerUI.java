@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.ui.console.menu;
 
 import pt.ipp.isep.dei.esoft.project.ui.console.DealAnalysesUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.DisplayEmployeeUI;
+import pt.ipp.isep.dei.esoft.project.ui.console.ListDealsUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class NetworkManagerUI implements Runnable {
         List<MenuItem> options = new ArrayList<MenuItem>();
         options.add(new MenuItem("See all employees working in every store", new DisplayEmployeeUI()));
         options.add(new MenuItem("Generate Deal Analyses", new DealAnalysesUI()));
+        options.add(new MenuItem("See deals made",new ListDealsUI()));
 
         int option = 0;
         do {

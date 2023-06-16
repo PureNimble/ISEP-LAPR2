@@ -169,7 +169,7 @@ deactivate PublishAnnouncementRequestController
 
 
 alt Accepts Announcement Request
- PublishAnnouncementRequestUI -> PublishAnnouncementRequestController : getTypeComission()
+ PublishAnnouncementRequestUI -> PublishAnnouncementRequestController : getComission()
            activate PublishAnnouncementRequestController
 
            PublishAnnouncementRequestController -> Singleton : getInstance()
@@ -178,19 +178,19 @@ alt Accepts Announcement Request
            Singleton --> PublishAnnouncementRequestController : repositories
            deactivate Singleton
 
-           PublishAnnouncementRequestController -> repositories : getTypeComissionRepository()
+           PublishAnnouncementRequestController -> repositories : getComissionRepository()
            activate repositories
 
-           repositories --> PublishAnnouncementRequestController : typeComissionRepository
+           repositories --> PublishAnnouncementRequestController : ComissionRepository
            deactivate repositories
 
-               PublishAnnouncementRequestController -> ComissionRepository : getTypeComission()
+               PublishAnnouncementRequestController -> ComissionRepository : getComission()
                 activate ComissionRepository
 
-                ComissionRepository --> PublishAnnouncementRequestController : Type Comission
+                ComissionRepository --> PublishAnnouncementRequestController : comission
                 deactivate ComissionRepository
 
-           PublishAnnouncementRequestController --> PublishAnnouncementRequestUI : Type Comission
+           PublishAnnouncementRequestController --> PublishAnnouncementRequestUI : comission
            deactivate PublishAnnouncementRequestController
 
 

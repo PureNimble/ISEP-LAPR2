@@ -64,6 +64,6 @@ Address "*" -left-- "1" State: is in <
 
 Address"1" --- "*" Store : has <
 
-Store"*" - "*" NetworkManager:  divides <
+Store"1" - "*" NetworkManager:  divides <
 
 @enduml
