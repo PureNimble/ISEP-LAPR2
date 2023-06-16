@@ -36,13 +36,15 @@
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * Organization
- * Task
+ * RegressionModel
+ * RegressionDto
+ * SingleLinear
+ * MultiLinear
 
 Other software classes (i.e. Pure Fabrication) identified: 
 
- * CreateTaskUI  
- * CreateTaskController
+ * RegressionMapper  
+ * DealAnalysesUI
 
 
 ## 3.2. Sequence Diagram (SD)
