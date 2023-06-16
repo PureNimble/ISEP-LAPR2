@@ -98,22 +98,6 @@ class PublishedAnnouncement {
 Contract Type
 }
 
-class Report{
-    R
-    R2
-    R2 adjusted
-    Sales Prices
-    Forecast price
-    Regression Model
-    ANOVA Singificance Model
-    Coefficient Condifence Intervals
-    Hypothesis Tests
-}
-
-class RegressionModel{
-    Data for the Type of regression
-}
-
 StoreManager -|> Employee
 Employee -up- Role : has >
 User -|> Person
@@ -133,9 +117,8 @@ AvailableEquipment "*" -up- "1" Residence: contains <
 PublishedAnnouncement --> Property : has >
 TypeOfProperty "1" -down-- "1" Property: defines >
 
-RegressionModel -down- PublishedAnnouncement : analyses sold >
-RegressionModel --- Report : generates >
-StoreManager --left- Report : wants >
+StoreManager -down- PublishedAnnouncement : analyses sold >
 
 PublishedAnnouncement --left> PublishedAnnouncementState : has >
+
 @enduml

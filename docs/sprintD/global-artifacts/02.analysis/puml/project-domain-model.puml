@@ -134,21 +134,7 @@ class SystemAdministrator{
 class StoreNetworkManager {
 
 }
-class Report{
-    R
-    R2
-    R2 adjusted
-    Sales Prices
-    Forecast price
-    Regression Model
-    ANOVA Singificance Model
-    Coefficient Condifence Intervals
-    Hypothesis Tests
-}
 
-class RegressionModel{
-    Data for the Type of regression
-}
 
 Comission "1" --- "1" Business : contains <
 District "1" --- "*" City : has >
@@ -208,8 +194,6 @@ Client "1" --- "*" Message: leaves a \n +sender >
 Agent "1" --- "*" Message: receives a \n +receiver <
 Agent "1" --- "*" Message: lists and responds to a \n +sender >
 Client "1" --- "*" Message: receives a \n +receiver <
-RegressionModel --- PublishedAnnouncement : analyses sold >
-RegressionModel --- Report : generates >
-StoreManager --- Report : wants to >
+StoreManager --- PublishedAnnouncement : analyses sold >
 PublishedAnnouncement ---> PublishedAnnouncementState : has >
 @enduml
