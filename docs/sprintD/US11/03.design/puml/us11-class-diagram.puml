@@ -4,12 +4,6 @@ hide empty members
 skinparam linetype ortho
 skinparam ranksep 40
 
-class Agent {
-  +chooseOffer(offer: Offer)
-  +acceptOffer(offer: Offer)
-  +rejectOffer(offer: Offer)
-}
-
 class OfferDecisionUI {
   +getOffersList(): List<AnnouncementOfferDTO>
   +keepOffer(offer: Offer)
@@ -62,7 +56,7 @@ class StoreRepository {
   +storeDecrement(store: Store): void
 }
 
-class OfferMapper {
+class AnnouncementOfferMapper {
   +toDTO(publishedAnnouncementList: List<PublishedAnnouncement>, offerList: List<Offer>): List<AnnouncementOfferDTO>
 }
 
@@ -105,27 +99,16 @@ enum PublishedAnnouncementState {
   sold
 }
 
-Agent --> OfferDecisionUI
 OfferDecisionUI --> OfferDecisionController
 OfferDecisionController ..> Repositories
 
-OfferDecisionController --> OfferMapper
-OfferDecisionController --up> EmailService
-OfferDecisionUI --> OfferMapper
-
-Repositories --> Repositories : instance
-EmailService <|..up DEIService
-EmailService <|..up GmailService
-EmailService <|..up HotmailService
-EmailService <|..up YahooService
-
 OfferDecisionController ..> OfferRepository
-OfferDecisionController ..> PublishedAnnouncementRepository
+OfferDecisionController ...........> PublishedAnnouncementRepository
 OfferDecisionController ..> StoreRepository
+OfferDecisionController --right> AnnouncementOfferMapper
 
-OfferMapper --right> OfferDTO
-OfferMapper --> AnnouncementOfferDTO
-OfferDecisionUI --> OfferDTO
+AnnouncementOfferMapper --right> OfferDTO
+AnnouncementOfferMapper --> AnnouncementOfferDTO
 
 PublishedAnnouncement --> PublishedAnnouncementState
 Offer --> OfferState
@@ -133,7 +116,15 @@ OfferRepository --> Offer
 StoreRepository --> Store
 PublishedAnnouncementRepository --> PublishedAnnouncement
 
+EmailService <|..up DEIService
+EmailService <|..up GmailService
+EmailService <|..up HotmailService
+EmailService <|..up YahooService
+
+OfferDecisionController --up> EmailService
+
 Repositories ..> PublishedAnnouncementRepository : PublishedAnnouncementRepository
 Repositories ..> OfferRepository : OfferRepository
 Repositories ..> StoreRepository : StoreRepository
+
 @enduml

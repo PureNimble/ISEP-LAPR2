@@ -109,10 +109,8 @@ class Employee {
 }
 
 Message "*" --- "1" PublishedAnnouncement: has informations about >
-Client "1" -down-- "*" Message: leaves a \n +sender >
-Agent "1" -left-- "*" Message: receives a \n +receiver <
-Agent "1" -down-- "*" Message: leaves a \n +sender >
-Client "1" -down-- "*" Message: receives a \n +receiver <
+Client "1" -down-- "*" Message: responds to a >
+Agent "1" -down-- "*" Message: can see >
 District "1" -down- "*" City : has >
 State "1" -down- "*" District : has >
 City "1" -down- "*" Address : has >

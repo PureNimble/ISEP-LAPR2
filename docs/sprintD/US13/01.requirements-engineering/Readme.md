@@ -26,8 +26,6 @@ As a network manager, I want to list all employees working in every store of the
 > **Answer:** Yes.
 >
 > **Asked at:** 13:43
->
-
 
 ### 1.3. Acceptance Criteria
 
