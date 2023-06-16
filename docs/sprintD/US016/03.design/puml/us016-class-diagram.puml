@@ -4,7 +4,10 @@ title US016 - Class Diagram
 
 skinparam packageStyle rectangle
 skinparam shadowing true
-skinparam linetype polyline
+!define arrow2(direction)  [[[#0000FF], [dashed], [direction]]]
+hide empty members
+skinparam linetype ortho
+skinparam ranksep 40
 
 class ListMessageUI {
     + run()
@@ -306,62 +309,62 @@ enum MessageState {
     - String ANSWERED
 }
 
-ListMessageUI .> ListMessageController
+ListMessageUI ...> ListMessageController
 
-ListMessageController .> Repositories : repositories
-ListMessageController ..> AuthenticationRepository : authenticationRepository
-ListMessageController ..> MessageRepository : messageRepository
-ListMessageController ..> EmployeeRepository : employeeRepository
-ListMessageController ..> MessageMapper
-ListMessageController "*" -up- "1" EmailService
+ListMessageController ...> Repositories : repositories
+ListMessageController ...> AuthenticationRepository : authenticationRepository
+ListMessageController ...> MessageRepository : messageRepository
+ListMessageController ...> EmployeeRepository : employeeRepository
+ListMessageController ...> MessageMapper
+ListMessageController "*" --- "1" EmailService
 
-EmailService <|..up DEIService
-EmailService <|..up GmailService
-EmailService <|..up HotmailService
-EmailService <|..up YahooService
+EmailService <|.. DEIService
+EmailService <|.. GmailService
+EmailService <|.. HotmailService
+EmailService <|.. YahooService
 
-Repositories --> Repositories : instance
-Repositories --> AuthenticationRepository
-Repositories --> MessageRepository
-Repositories --> EmployeeRepository
+Repositories ---> Repositories : instance
+Repositories ---> AuthenticationRepository
+Repositories ---> MessageRepository
+Repositories ---> EmployeeRepository
 
-MessageMapper ..> MessageDto
+MessageMapper ...> MessageDto
 
-MessageRepository --> Message
+MessageRepository ---> Message
 
-EmployeeRepository --> Employee
+EmployeeRepository ---> Employee
 
-Person <|-- Employee
-Person <|-- Client
+Person <|--- Employee
+Person <|--- Client
 
-Employee <|---- Agent
-Employee "*" -left- "1" Role : has <
+Employee <|--- Agent
+Employee "*" --- "1" Role : has <
 
-Message "*" -left- "1" Client : sends <
-Message "1" -left- "1" Agent : want to see a list of <
+Message "*" --- "1" Client : sends <
+Message "1" --- "1" Agent : want to see a list of <
 Message "*" --- "1" PublishedAnnouncement : can have <
-Message -right-> MessageState
+Message ---> MessageState
 
-PublishedAnnouncement "1" -right- "1" Business : has <
+PublishedAnnouncement "1" --- "1" Business : has <
 PublishedAnnouncement "*" --- "*" Property : advertises >
 
-Property "1" -left- "1..30" Photos : has >
-Property <|-- Residence
-Property "1" -- "1" Address : has >
-Property -right- TypeOfProperty : has >
+Property "1" --- "1..30" Photos : has >
+Property <|--- Residence
+Property "1" --- "1" Address : has >
+Property --- TypeOfProperty : has >
 
 
-Address "1" -left- "*" State : has <
-State "1" -left- "*" District : has <
-District "1" -left- "*" City : has <
+Address "1" --- "*" State : has <
+State "1" --- "*" District : has <
+District "1" --- "*" City : has <
 
-Residence <|-- House
-Residence "1" -right- "*" AvailableEquipment : contains >
+Residence <|--- House
+Residence "1" --- "*" AvailableEquipment : contains >
 
-House "*" -- "1" SunExposure : contains >
+House "*" --- "1" SunExposure : contains >
 
-Business <|-- Rent
-Business "1" -up- "1" Comission : contains >
+Business <|--- Rent
+Business "1" --- "1" Comission : contains >
 
 
 

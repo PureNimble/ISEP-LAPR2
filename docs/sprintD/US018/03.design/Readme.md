@@ -36,13 +36,15 @@
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * Organization
- * Task
+ * RegressionModel
+ * RegressionDto
+ * SingleLinear
+ * MultiLinear
 
 Other software classes (i.e. Pure Fabrication) identified: 
 
- * CreateTaskUI  
- * CreateTaskController
+ * RegressionMapper  
+ * DealAnalysesUI
 
 
 ## 3.2. Sequence Diagram (SD)
@@ -64,14 +66,6 @@ It uses interaction ocurrence.
 **Get Report Partial SD**
 
 ![Sequence Diagram - Partial - Get Report](svg/us18-sequence-diagram-partial-getReport.svg)
-
-**Predict Multi Linear Partial SD**
-
-![Sequence Diagram - Partial - Predict Multi Linear](svg/us18-sequence-diagram-partial-predictMulti.svg)
-
-**Predict Single Linear Partial SD**
-
-![Sequence Diagram - Partial - Predict Single Linear](svg/us18-sequence-diagram-partial-predictSingle.svg)
 
 ## 3.3. Class Diagram (CD)
 

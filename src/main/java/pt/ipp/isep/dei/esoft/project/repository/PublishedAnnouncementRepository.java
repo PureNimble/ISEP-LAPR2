@@ -587,5 +587,107 @@ public class PublishedAnnouncementRepository implements Serializable {
         return resultList;
     }
 
+    public ArrayList<Double> getArea(){
+        ArrayList<Double> parameterList = new ArrayList<>();
+        for (PublishedAnnouncement announcement : publishedAnnouncements) {
+            if (!announcement.getPropertyType().getDesignation().equalsIgnoreCase("Land") && announcement.getAnnouncementState().toString().equals("SOLD")) {
+                parameterList.add(Double.valueOf(announcement.getProperty().getArea()));
+            }
+        }
+        return parameterList;
+    }
+
+    public ArrayList<Double> getDistanceFromCityCenter(){
+        ArrayList<Double> parameterList = new ArrayList<>();
+        for (PublishedAnnouncement announcement : publishedAnnouncements) {
+            if (!announcement.getPropertyType().getDesignation().equalsIgnoreCase("Land") && announcement.getAnnouncementState().toString().equals("SOLD")) {
+                parameterList.add(Double.valueOf(announcement.getProperty().getDistanceFromCityCenter()));
+            }
+        }
+        return parameterList;
+    }
+
+    public ArrayList<Double> getNumberOfBedrooms(){
+        ArrayList<Double> parameterList = new ArrayList<>();
+        for (PublishedAnnouncement announcement : publishedAnnouncements) {
+            if (!announcement.getPropertyType().getDesignation().equalsIgnoreCase("Land") && announcement.getAnnouncementState().toString().equals("SOLD")) {
+                parameterList.add(Double.valueOf(announcement.getProperty().getResidence().getNumberOfBedrooms()));
+            }
+        }
+        return parameterList;
+    }
+
+    public ArrayList<Double> getNumberOfBathrooms(){
+        ArrayList<Double> parameterList = new ArrayList<>();
+        for (PublishedAnnouncement announcement : publishedAnnouncements) {
+            if (!announcement.getPropertyType().getDesignation().equalsIgnoreCase("Land") && announcement.getAnnouncementState().toString().equals("SOLD")) {
+                parameterList.add(Double.valueOf(announcement.getProperty().getResidence().getNumberOfBathrooms()));
+            }
+        }
+        return parameterList;
+    }
+
+    public ArrayList<Double> getParkingSpaces(){
+        ArrayList<Double> parameterList = new ArrayList<>();
+        for (PublishedAnnouncement announcement : publishedAnnouncements) {
+            if (!announcement.getPropertyType().getDesignation().equalsIgnoreCase("Land") && announcement.getAnnouncementState().toString().equals("SOLD")) {
+                parameterList.add(Double.valueOf(announcement.getProperty().getResidence().getParkingSpaces()));
+            }
+        }
+        return parameterList;
+    }
+
+    public ArrayList<Double> getPrice(){
+        ArrayList<Double> parameterList = new ArrayList<>();
+        for (PublishedAnnouncement announcement : publishedAnnouncements) {
+            if (!announcement.getPropertyType().getDesignation().equalsIgnoreCase("Land") && announcement.getAnnouncementState().toString().equals("SOLD")) {
+                parameterList.add(announcement.getBusiness().getPrice());
+            }
+        }
+        return parameterList;
+    }
+
+
+    public double[][] getParameterMatrix(int param) {
+        int size = (param == 0) ? 6 : 2;
+        ArrayList<ArrayList<Double>> tempParameterList = new ArrayList<>();
+
+        switch (param){
+            case 0:
+                tempParameterList.add(getArea());
+                tempParameterList.add(getDistanceFromCityCenter());
+                tempParameterList.add(getNumberOfBedrooms());
+                tempParameterList.add(getNumberOfBathrooms());
+                tempParameterList.add(getParkingSpaces());
+                break;
+            case 1:
+                tempParameterList.add(getArea());
+                break;
+            case 2:
+                tempParameterList.add(getDistanceFromCityCenter());
+                break;
+            case 3:
+                tempParameterList.add(getNumberOfBedrooms());
+                break;
+            case 4:
+                tempParameterList.add(getNumberOfBathrooms());
+                break;
+            case 5:
+                tempParameterList.add(getParkingSpaces());
+                break;
+        }
+        tempParameterList.add(getPrice());
+        double[][] parameterMatrix = new double[size][tempParameterList.get(0).size()];
+
+        for (int i = 0; i < tempParameterList.size(); i++){
+            ArrayList<Double> tempList = tempParameterList.get(i);
+            for (int j = 0; j < tempList.size(); j++){
+                parameterMatrix[i][j] = tempList.get(j);
+            }
+        }
+
+        return parameterMatrix;
+    }
+
 
 }

@@ -4,10 +4,7 @@ title US18 - Class Diagram
 
 class DealAnalysesUI {
   -controller: DealAnalysesController
-  +getReport(regressionType, parameter, significance)
-  +showReport(regressionDto)
-  +showPrediction(prediction)
-  +getParameter()
+  +getRegressionModel (param, significanceLevel, valueToPredict)
   +getParameters()
 }
 
@@ -17,24 +14,22 @@ class DealAnalysesController {
   -regressionModel: RegressionModel
   -mapper: RegressionMapper
   +getPublishedAnnouncementRepository()
-  +getParametersForSimple(parameter)
-  +getParametersForMulti()
+  +getParametersMatrix(parameter)
   +create(parameters)
-  +getRegressionModel(parameters, significance)
+  +getRegressionModel(param, significanceLevel, valueToPredict)
   +toDTO(regressionModel)
   +predictMulti(parameters)
   +predictSimple(parameter)
 }
 
 class Repositories {
-  <<singleton>>
+  <<repositories>>
   +getInstance()
   +getPublishedAnnouncementRepository()
 }
 
 class PublishedAnnouncementRepository {
-  +getParametersForSimple(parameter)
-  +getParametersForMulti()
+  +getParametersMatrix(parameter)
 }
 
 class PublishedAnnouncement {
@@ -43,7 +38,7 @@ class PublishedAnnouncement {
 
 class RegressionModel {
   +create(parameters)
-  +getRegressionModel(parameters, significance)
+  +getRegressionModel(param, significanceLevel, valueToPredict)
 }
 
 class MultiLinear {
@@ -55,12 +50,13 @@ class SingleLinear {
 }
 
 class RegressionMapper {
-  +toDTO(regressionModel)
+  +toDTO(prediction, report)
 }
 
 class RegressionDTO {
-  -analysisReport
-  +create(analysisReport)
+  -report
+  -prediction
+  +create(prediction, report)
 }
 
 DealAnalysesUI --> DealAnalysesController

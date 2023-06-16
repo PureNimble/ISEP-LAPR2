@@ -10,6 +10,8 @@ participant "publishedAnnouncementRepository\nPublishedAnnouncementRepository" a
 participant "regressionModel\n:RegressionModel" as regressionmodel
 participant "regressionMapper\n:RegressionMapper" as mapper
 participant "regressionDTO : RegressionDTO" as dto
+participant "multiLinear : MultiLinear" as multi
+participant "singleLinear : SingleLinear" as single
 
 activate controller
     controller -> singleton : getInstance()
@@ -27,18 +29,11 @@ activate controller
 
             deactivate repositories
 
-            alt type of regression equals to simple linear
-                controller -> announcementrep : getParametersForSimple(parameter)
+                controller -> announcementrep : getParameterMatrix(parameter)
                 activate announcementrep
                 announcementrep --> controller : parameters
                 deactivate announcementrep
 
-            else type of regression equals to multilinear
-            controller -> announcementrep : getParametersForMulti()
-            activate announcementrep
-            announcementrep --> controller : parameters
-            deactivate announcementrep
-            end
             controller -> regressionmodel** : create(parameters)
 
             controller -> regressionmodel : getRegressionModel(parameters, significance)
@@ -48,15 +43,24 @@ activate controller
             regressionmodel --> controller : regressionModel
             deactivate regressionmodel
 
+            alt type of regression equals to multilinear
+                controller -> multi : predictMulti(parameters)
+                activate multi
+                multi --> controller : prediction
+                deactivate multi
+
+            else type of regression equals to single linear
+                controller -> single : predictSimple(parameter)
+                activate single
+                single --> controller : prediction
+                deactivate single
+
             controller -> mapper : toDTO(regressionModel)
             activate mapper
             mapper --> dto** : create(regressionModel.getAnalysisReport())
 
             mapper --> controller : regressionDto
             deactivate mapper
-            
-            deactivate controller
-
 
 
 @enduml

@@ -52,7 +52,8 @@ should present the price estimates using the selected model. Moreover, the syste
 **Input Data:**
 
 * Typed data:
-	* N/A
+	* Parameters
+	* Values to Predict
 	
 * Selected data:
 	* Regression model
@@ -60,7 +61,7 @@ should present the price estimates using the selected model. Moreover, the syste
 
 **Output Data:**
 
-* Repport
+* Report
 * Prediction price
 * (In)Success of the operation
 

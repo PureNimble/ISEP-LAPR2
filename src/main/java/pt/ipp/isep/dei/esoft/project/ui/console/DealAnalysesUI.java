@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.DealAnalysesController;
+import pt.ipp.isep.dei.esoft.project.domain.RegressionDTO;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -22,16 +23,24 @@ public class DealAnalysesUI implements Runnable {
     private final DealAnalysesController controller = new DealAnalysesController();
 
     public void run() {
-
         System.out.println("\nDeal Analysis:");
 
         String regressionModel = requestRegression();
+        RegressionDTO regressionDTO;
 
         if (regressionModel != null) {
-            int param = 0;
             if (regressionModel.equals("SimpleLinear")) {
-                param = requestData();
+                regressionDTO = controller.regressionModel(requestParam(), 0.05, singleValueToPredict());
             }
+            else {
+                regressionDTO = controller.regressionModel(0, 0.05, multiValueToPredict());
+            }
+
+            if (regressionDTO.getReport() != null){
+                System.out.println(regressionDTO.getReport());
+                System.out.println("Prediction: " + regressionDTO.getPrediction());
+            }
+
         }
 
     }
@@ -65,7 +74,7 @@ public class DealAnalysesUI implements Runnable {
         return regressionModel;
     }
 
-    private int requestData() {
+    private int requestParam() {
         int option = -1;
 
         do {
@@ -91,5 +100,47 @@ public class DealAnalysesUI implements Runnable {
         if (option == 0) option = -1;
 
         return option;
+    }
+
+    private double[] singleValueToPredict() {
+        double option = -1;
+        do {
+            System.out.print("Choose the value for the parameter you wish to predict:");
+
+            try {
+                option = input.nextDouble();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer value");
+                input.nextLine();
+            }
+
+        } while(option < 0);
+
+        return new double[]{option};
+    }
+
+    private double[] multiValueToPredict() {
+        double[] valueToPredict = new double[5];
+        String[] params = {"area", "distance from city center", "number of bedrooms", "number of bathrooms", "number of parking spaces"};
+
+        double option;
+        for (int i = 0; i < params.length; i++){
+            option = -1;
+            do {
+                System.out.print("Choose the value for the "+ params[i] +" you wish to predict:");
+
+                try {
+                    option = input.nextDouble();
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input. Please enter an integer value");
+                    input.nextLine();
+                }
+
+            } while(option < 0);
+
+            valueToPredict[i] = option;
+        }
+
+        return valueToPredict;
     }
 }

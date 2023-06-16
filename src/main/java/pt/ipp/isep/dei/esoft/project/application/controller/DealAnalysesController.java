@@ -1,8 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
-import java.util.List;
-
-import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
+import pt.ipp.isep.dei.esoft.project.domain.MultiLinear;
+import pt.ipp.isep.dei.esoft.project.domain.MultiLinearRegression;
+import pt.ipp.isep.dei.esoft.project.domain.RegressionDTO;
+import pt.ipp.isep.dei.esoft.project.domain.RegressionMapper;
+import pt.ipp.isep.dei.esoft.project.domain.RegressionModel;
+import pt.ipp.isep.dei.esoft.project.domain.SimpleLinear;
+import pt.ipp.isep.dei.esoft.project.domain.SimpleLinearRegression;
 import pt.ipp.isep.dei.esoft.project.repository.PublishedAnnouncementRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
@@ -38,13 +42,28 @@ public class DealAnalysesController {
     }
 
     /**
-     * @param regressionMethod
      * @param param
      * @return The regressionModel results.
      */
-    public String regressionModel(String regressionMethod, int param) {
+    public RegressionDTO regressionModel(int param, double significanceLevel, double[] valueToPredict) {
+
         PublishedAnnouncementRepository publishedAnnouncementRepository = getPublishedAnnouncementRepository();
-        List<PublishedAnnouncement> publishedAnnouncementList = publishedAnnouncementRepository.getPublishedAnnouncements();
-        return null;
+        double[][] parameterMatrix = publishedAnnouncementRepository.getParameterMatrix(param);
+
+        if (param == -1){ //MultiLinear
+            RegressionModel multi = new MultiLinearRegression();
+            MultiLinear multiLinear = multi.getRegressionModel(parameterMatrix, significanceLevel);
+            return RegressionMapper.toDto(multiLinear.predict(valueToPredict),multiLinear.generateAnalysisReport());
+
+        }
+        else if (param != 0){ //Single
+
+            RegressionModel simple = new SimpleLinearRegression();
+            SimpleLinear simpleLinear = simple.getRegressionModel(parameterMatrix, significanceLevel);
+            return RegressionMapper.toDto(simpleLinear.predict(valueToPredict[0]),simpleLinear.generateAnalysisReport());
+
+        }
+
+        return RegressionMapper.toDto(null,null);
     }
 }
