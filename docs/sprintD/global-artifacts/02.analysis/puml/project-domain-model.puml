@@ -179,21 +179,16 @@ Person "1" --- "1" Contacts : has >
 SystemAdministrator "1" --- "*" Store: registers >
 'Agent "1" --- "*" AnnouncementRequest:intends to see >
 Message "*" --- "1" PublishedAnnouncement: can have a <
-'Client "1" --- "1..*" Message: leaves a >
-'Agent "1" --- "1" Message: receives a >
+Client "1" --- "1..*" Message: leaves a >
 Offer "*" --- "1" PublishedAnnouncement : has <
 Client "1" --- "*" Offer : makes >
 Agent "1" --- "*" Offer : accepts/declines >
 File "1..*" --- "1" SystemAdministrator : imported by >
-'Agent "1" --- "1" Message: wants to see a list of >
-'Agent "1" --- "*" Message : responds >
+Agent "1" --- "*" Message : responds >
 StoreManager "*" --- "*" Offer: intends to see >
 Property "1" --- "1" Business: has a <
 StoreManager --- Residence : analyses >
-Client "1" --- "*" Message: leaves a \n +sender >
-Agent "1" --- "*" Message: receives a \n +receiver <
-Agent "1" --- "*" Message: lists and responds to a \n +sender >
-Client "1" --- "*" Message: receives a \n +receiver <
 StoreManager --- PublishedAnnouncement : analyses sold >
 PublishedAnnouncement ---> PublishedAnnouncementState : has >
+StoreNetworkManager "*" --- "1" Store: devides >
 @enduml
