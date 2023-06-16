@@ -20,8 +20,6 @@ class AuthenticationRepository
 
 class EmployeeRepository
 
-class Agent
-
 class State
 
 class City
@@ -151,8 +149,6 @@ class Role{
 +Role(role)
 }
 
-class Agent{
-}
 
 class Employee{
 -Store store
@@ -290,8 +286,6 @@ AnnouncementRequestMapper .....> AnnouncementRequestDto
 
 AnnouncementRequestRepository ----> "*" AnnouncementRequest
 
-Employee <|--- Agent
-
 Employee "1" -left> "*" Role : role
 
 Adress "1" -left- "1" State
@@ -303,9 +297,9 @@ Person <|-- Employee
 
 EmployeeRepository ----> "*" Employee
 
-Agent "1" -left "1" Comission: defines >
+Employee "1" -right "1" Comission: defines >
 
-Agent "1" - "*" AnnouncementRequest:intends to see >
+Employee "1" - "*" AnnouncementRequest:intends to see >
 
 Adress "1" -right-- "1" Property: has <
 

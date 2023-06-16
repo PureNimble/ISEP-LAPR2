@@ -88,16 +88,16 @@ class Comission {
 
 
 Person <|-- Employee
-Employee <-- Agent
+Employee -- Agent
 
-Agent "1" - "*" AnnouncementRequest:intends to see >
+Agent "*" - "*" AnnouncementRequest:intends to see >
 
 AnnouncementRequest "1" -- "1"Property: has >
 TypeOfProperty "1" -- "1" Property:defines\n\n\n\n\n\n\n
 Property <|-- Residence
 Residence <|-- House
-AnnouncementRequest "*" -> "1..30" Photos: has >
-Residence -- AvailableEquipment : contains
+AnnouncementRequest "*" - "1..30" Photos: has >
+Residence "1" -- "*" AvailableEquipment : contains
 House --- SunExposure:contains
 
 Address "1" -right-- "1" Property: has <
