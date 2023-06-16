@@ -16,7 +16,7 @@
 |                                                                                                     | ... obtaining the agent by email?                           | EmployeeRepository    | IE:knows/has its own data                                                                                     |
 |                                                                                                     | ... obtaining the messages list?                            | MessageRepository     | IE: knows/has its own data,Pure Fabrication                                                                   |
 |                                                                                                     | ... sorting the Messages List?                              | SortAlgorithm         | Protected Variations and Polymorphism                                                                         |
-|                                                                                                     | ... creating the message Dto list?                          | MessageMapper         | IE:knows/has its own data, High coesion Low Coupling                                                          |
+|                                                                                                     | ... creating the message Dto list?                          | MessageMapper         | IE:knows/has its own data, High Cohesion Low Coupling                                                         |
 |                                                                                                     | ... obtaining the messages description?                     | MessageDto            | IE: knows/has its own data                                                                                    |
 | Step 4: shows all message requests sorted by date in ascending order and displays operation success | ... displaying the list of messages requests?               | ListMessageUI         | Pure Fabrication                                                                                              |
 
@@ -24,8 +24,6 @@
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * ListMessageDto
- * SortAlgorithm
 
 Other software classes (i.e. Pure Fabrication) identified: 
 
@@ -33,6 +31,9 @@ Other software classes (i.e. Pure Fabrication) identified:
  * ListMessageController
  * EmployeeRepository
  * MessageRepository
+ * ListMessageDto
+ * SortAlgorithm
+ * Message Mapper
 
 
 ## 3.2. Sequence Diagram (SD)
@@ -69,4 +70,4 @@ It uses interaction ocurrence.
 
 ## 3.3. Class Diagram (CD)
 
-![Class Diagram](svg/us006-class-diagram.svg)
+![Class Diagram](svg/us015-class-diagram.svg)

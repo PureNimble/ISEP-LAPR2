@@ -3,29 +3,22 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-title US019 - Sequence Diagram Full
+title US019 - Sequence Diagram Partial (Get Offers List Deal)
 
 
-autonumber
+autonumber 3
 
-actor "Network Manager" as NetworkManager
-participant ":DivideStoresUI" as DivideStoresUI
+
 participant ":DivideStoresController" as DivideStoresController
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
 participant "storeRepository\n:StoreRepository" as StoreRepository
 
 
-activate NetworkManager
-
-    NetworkManager -> DivideStoresUI : asks to divide a set of stores into two subsets
-    activate DivideStoresUI
-
-   DivideStoresUI -> DivideStoresController**:create
-
-
-            DivideStoresUI -> DivideStoresController : getOffersListDeals()
+        -> DivideStoresController : getOffersListDeals()
             activate DivideStoresController
+
+           group Get Offers List Deal
 
                 DivideStoresController -> RepositorySingleton : getInstance()
                 activate RepositorySingleton
@@ -45,13 +38,9 @@ activate NetworkManager
                     StoreRepository --> DivideStoresController : partition
                 deactivate StoreRepository
 
+            end
 
-                DivideStoresController --> DivideStoresUI : partition
+  <-- DivideStoresController   : partition
 
-
-
-
-    DivideStoresUI --> NetworkManager : shows list of the two subsets and the minimum sum difference
-    deactivate DivideStoresUI
 
 @enduml

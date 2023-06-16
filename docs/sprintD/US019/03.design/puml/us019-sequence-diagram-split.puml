@@ -3,7 +3,7 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-title US019 - Sequence Diagram Full
+title US019 - Sequence Diagram Split
 
 
 autonumber
@@ -27,24 +27,13 @@ activate NetworkManager
             DivideStoresUI -> DivideStoresController : getOffersListDeals()
             activate DivideStoresController
 
-                DivideStoresController -> RepositorySingleton : getInstance()
-                activate RepositorySingleton
+            ref over DivideStoresController
 
-                    RepositorySingleton --> DivideStoresController: repositories
-                deactivate RepositorySingleton
+             Get Offers List Deal
 
-                DivideStoresController -> PLAT : getStoreRepository()
-                activate PLAT
+            end
 
-                    PLAT --> DivideStoresController: storeRepository
-                deactivate PLAT
-
-                DivideStoresController -> StoreRepository : findPartition()
-                activate StoreRepository
-
-                    StoreRepository --> DivideStoresController : partition
-                deactivate StoreRepository
-
+autonumber 10
 
                 DivideStoresController --> DivideStoresUI : partition
 
