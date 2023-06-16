@@ -5,8 +5,8 @@ import pt.ipp.isep.dei.esoft.project.domain.*;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * A repository for storing and managing PublishedAnnouncement objects.
@@ -205,7 +205,7 @@ public class PublishedAnnouncementRepository implements Serializable {
      *
      * @param arrayListOwnerInformations the array list owner informations
      */
-    public void createPublishAnnouncementByFileReading(ArrayList<String[]> arrayListOwnerInformations, List<Store> stores, List<Client> clients) {
+    public List<PublishedAnnouncement> createPublishAnnouncementByFileReading(ArrayList<String[]> arrayListOwnerInformations, List<Store> stores, List<Client> clients) {
 
         int aux = 0;
         String propertyType;
@@ -230,6 +230,7 @@ public class PublishedAnnouncementRepository implements Serializable {
         int auxID = 0;
         Client client;
         Store store ;
+        List<PublishedAnnouncement> publishedAnnouncementsList = new ArrayList<>();
 
         for (String[] ownerInformations : arrayListOwnerInformations) {
 
@@ -251,7 +252,7 @@ public class PublishedAnnouncementRepository implements Serializable {
                         sunExposure = ownerInformations[17];
                     }
                 }
-                price = Double.parseDouble(ownerInformations[19]);
+                price = Double.parseDouble(ownerInformations[18]);
                 comission = Double.parseDouble(ownerInformations[20]);
                 if (!ownerInformations[21].equals("NA")) {
                     contractDuration = Integer.parseInt(ownerInformations[21]);
@@ -284,8 +285,13 @@ public class PublishedAnnouncementRepository implements Serializable {
                 PublishedAnnouncement publishedAnnouncement;
                 List<Role> roles = new ArrayList<>();
                 roles.add(new Role("Agent"));
-                Employee agent = new Employee("legacy@realstateUS.com", 000000000, 000000000, "Legacy Agent", 0000000000, store, roles);
-                AnnouncementState state = AnnouncementState.available;
+                String nameAgent = store.getDesignation()+" Agent"+id;
+                String email = store.getDesignation()+"agent"+"@"+"realstateUS.com";
+
+                long phoneNumber = (long) (1000000000+Math.random()*9999999999L);
+
+                Employee agent = new Employee(email, 000000000, 000000000, nameAgent, phoneNumber, store, roles);
+                AnnouncementState state = AnnouncementState.sold;
 
                 if (propertyType.equals("house")) {
                     House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, loft, sunExposure, propertyLocation);
@@ -329,6 +335,7 @@ public class PublishedAnnouncementRepository implements Serializable {
 
                 if (!publishedAnnouncements.contains(publishedAnnouncement)) {
                     publishedAnnouncements.add(publishedAnnouncement);
+                    publishedAnnouncementsList.add(publishedAnnouncement);
                 }
 
             } else {
@@ -336,8 +343,11 @@ public class PublishedAnnouncementRepository implements Serializable {
             }
         }
 
+        return publishedAnnouncementsList;
 
     }
+
+
 
 
     /**
@@ -581,7 +591,7 @@ public class PublishedAnnouncementRepository implements Serializable {
         ArrayList<Double> parameterList = new ArrayList<>();
         for (PublishedAnnouncement announcement : publishedAnnouncements) {
             if (!announcement.getPropertyType().getDesignation().equalsIgnoreCase("Land") && announcement.getAnnouncementState().toString().equals("SOLD")) {
-                parameterList.add(announcement.getProperty().getArea());
+                parameterList.add(Double.valueOf(announcement.getProperty().getArea()));
             }
         }
         return parameterList;
@@ -591,7 +601,7 @@ public class PublishedAnnouncementRepository implements Serializable {
         ArrayList<Double> parameterList = new ArrayList<>();
         for (PublishedAnnouncement announcement : publishedAnnouncements) {
             if (!announcement.getPropertyType().getDesignation().equalsIgnoreCase("Land") && announcement.getAnnouncementState().toString().equals("SOLD")) {
-                parameterList.add(announcement.getProperty().getDistanceFromCityCenter());
+                parameterList.add(Double.valueOf(announcement.getProperty().getDistanceFromCityCenter()));
             }
         }
         return parameterList;
@@ -601,7 +611,7 @@ public class PublishedAnnouncementRepository implements Serializable {
         ArrayList<Double> parameterList = new ArrayList<>();
         for (PublishedAnnouncement announcement : publishedAnnouncements) {
             if (!announcement.getPropertyType().getDesignation().equalsIgnoreCase("Land") && announcement.getAnnouncementState().toString().equals("SOLD")) {
-                parameterList.add(announcement.getProperty().getResidence().getNumberOfBedrooms());
+                parameterList.add(Double.valueOf(announcement.getProperty().getResidence().getNumberOfBedrooms()));
             }
         }
         return parameterList;
@@ -611,7 +621,7 @@ public class PublishedAnnouncementRepository implements Serializable {
         ArrayList<Double> parameterList = new ArrayList<>();
         for (PublishedAnnouncement announcement : publishedAnnouncements) {
             if (!announcement.getPropertyType().getDesignation().equalsIgnoreCase("Land") && announcement.getAnnouncementState().toString().equals("SOLD")) {
-                parameterList.add(announcement.getProperty().getResidence().getNumberOfBathrooms());
+                parameterList.add(Double.valueOf(announcement.getProperty().getResidence().getNumberOfBathrooms()));
             }
         }
         return parameterList;
@@ -621,7 +631,7 @@ public class PublishedAnnouncementRepository implements Serializable {
         ArrayList<Double> parameterList = new ArrayList<>();
         for (PublishedAnnouncement announcement : publishedAnnouncements) {
             if (!announcement.getPropertyType().getDesignation().equalsIgnoreCase("Land") && announcement.getAnnouncementState().toString().equals("SOLD")) {
-                parameterList.add(announcement.getProperty().getResidence().getParkingSpaces());
+                parameterList.add(Double.valueOf(announcement.getProperty().getResidence().getParkingSpaces()));
             }
         }
         return parameterList;
@@ -678,4 +688,6 @@ public class PublishedAnnouncementRepository implements Serializable {
 
         return parameterMatrix;
     }
+
+
 }

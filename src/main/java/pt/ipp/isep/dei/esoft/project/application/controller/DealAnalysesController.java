@@ -53,9 +53,6 @@ public class DealAnalysesController {
         if (param == -1){ //MultiLinear
             RegressionModel multi = new MultiLinearRegression();
             MultiLinear multiLinear = multi.getRegressionModel(parameterMatrix, significanceLevel);
-
-            System.out.println(multiLinear.generateAnalysisReport());
-
             return RegressionMapper.toDto(multiLinear.predict(valueToPredict),multiLinear.generateAnalysisReport());
 
         }
@@ -63,9 +60,6 @@ public class DealAnalysesController {
 
             RegressionModel simple = new SimpleLinearRegression();
             SimpleLinear simpleLinear = simple.getRegressionModel(parameterMatrix, significanceLevel);
-
-            System.out.println(simpleLinear.generateAnalysisReport());
-
             return RegressionMapper.toDto(simpleLinear.predict(valueToPredict[0]),simpleLinear.generateAnalysisReport());
 
         }
