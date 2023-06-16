@@ -36,8 +36,9 @@ According to the taken rationale, the conceptual classes promoted to software cl
 
 Other software classes (i.e. Pure Fabrication) identified: 
 
- * SendMessageUI  
- * SendMessageController
+ * ListMessageUI  
+ * ListMessageController
+ * MessageRepository
 
 
 ## 3.2. Sequence Diagram (SD)
@@ -55,6 +56,16 @@ This diagram shows the same sequence of interactions between the classes involve
 It uses interaction ocurrence.
 
 ![Sequence Diagram - Split](svg/us016-sequence-diagram-split.svg)
+
+### Alternative 3 - Partial Diagrams
+
+**Send Email**
+
+![Sequence Diagram - Partial - Send Email](svg/us016-sequence-diagram-partial-Send-Email.svg)
+
+**Update Message Request**
+
+![Sequence Diagram - Partial - Update Message Request](svg/us016-sequence-diagram-partial-Update-Message-Request.svg)
 
 
 ## 3.3. Class Diagram (CD)

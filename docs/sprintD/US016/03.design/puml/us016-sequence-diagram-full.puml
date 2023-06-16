@@ -22,9 +22,12 @@ participant ":MessageMapper" as Mapper
 participant "listOfMessagesDTO:List<Messages>" as listMessagesDTO
 participant "message:Message" as Messages
 participant ":sortAlgorithm" as sortAlgorithm
-participant "email:\nEmail" as Email
-participant "testEmailDomain:\ntestEmailDomain" as EmailDomain
-participant "type:\nTestType" as TestType
+participant ":ConfigProperties" as ConfigProperties
+participant "EmailService" as EmailService
+participant "DEIService" as DEIService
+participant "GmailService" as GmailService
+participant "HotmailService" as HotmailService
+participant "YahooService" as YahooService
 
 activate Agent
 
@@ -103,10 +106,9 @@ activate Mapper
 
 Mapper --> listMessagesDTO** : create()
 
-    loop for each message request
+loop for each message request
 
     Mapper -> Mapper : toDTO(Message)
-    activate Mapper
 
     Mapper -> listMessages: clientName = getClientName()
     activate listMessages
@@ -152,13 +154,11 @@ Mapper --> listMessagesDTO** : create()
 
     Mapper -> Mapper : messageDTO = toDtoObject(clientName, phoneNumber, description, initialDate, initialTime, endTime, publishedAnnouncement)
 
-    Mapper --> listMessagesDTO** : create(...)
-
     Mapper --> listMessagesDTO : add(messageDTO)
     activate listMessagesDTO
     deactivate listMessagesDTO
 
-    end
+end
 
 Mapper --> Controller : messageListByAgentAndDate
 deactivate Mapper
@@ -173,7 +173,7 @@ deactivate System
 Agent -> System : selects a booking request to respond
 activate System
 
-System --> Agent : shows the desired booking request and asks to enter the client's email
+System --> Agent : shows the selected booking request and asks to enter the client's email
 deactivate System
 
 Agent -> System : inserts the client's email
@@ -182,29 +182,86 @@ activate System
 System --> Agent : asks to accept or decline the booking request
 deactivate System
 
-alt Accepts the booking request
-
-Agent -> System : accepts the booking request and responds to it
+Agent -> System : responds to the booking request
 activate System
 
-else Denies the booking request
+System -> Controller : sendEmail(email, subject, body)
+activate Controller
 
-Agent -> System : denies the booking request
+Controller -> ConfigProperties : getProperty("emailService")
+activate ConfigProperties
 
-System --> Agent : asks the agent for a reason to decline the booking request
+ConfigProperties --> Controller : service
+deactivate ConfigProperties
 
-Agent -> System : writes the reasoon for the booking request to be denied
+Controller -> EmailService : createEmailService(service)
+activate EmailService
+
+alt if service is "DEIService"
+
+EmailService --> DEIService : create()
+activate DEIService
+DEIService --> EmailService : DEIService
+deactivate DEIService
+
+else if service is "GmailService"
+
+EmailService --> GmailService : create()
+activate GmailService
+GmailService --> EmailService : GmailService
+deactivate GmailService
+
+else if service is "HotmailService"
+
+EmailService --> HotmailService : create()
+activate HotmailService
+HotmailService --> EmailService : HotmailService
+deactivate HotmailService
+
+else if service is "YahooService"
+
+EmailService --> YahooService : create()
+activate YahooService
+YahooService --> EmailService : YahooService
+deactivate YahooService
 
 end
 
-System --> Agent : receives the agent's response and sends email
-deactivate System
+EmailService --> Controller : emailService
+deactivate EmailService
 
-Agent -> System : submits data
-activate System
+Controller -> EmailService : sendEmail(email, subject, body)
+activate EmailService
+
+EmailService --> Controller : emailSent
+deactivate EmailService
+
+Controller --> System : emailSent
+deactivate Controller
+
+System -> Controller : updateMessageState(message)
+activate Controller
+
+Controller -> Messages : setMessageState(MessageState.ANSWERED)
+activate Messages
+
+alt setApprovedByAgent(true)
+
+Messages --> Messages : setApprovedByAgent(true)
+
+else  setApprovedByAgent(false)
+
+Messages --> Messages : setApprovedByAgent(false)
+
+end
+
+Messages --> Controller: updateMessageState(message)
+deactivate Messages
+
+Controller --> System : updateMessageState(message)
+deactivate Controller
 
 System --> Agent : display operation success
 deactivate System
-
 
 @enduml
