@@ -288,12 +288,12 @@ public class StoreRepository implements Serializable {
 
             if (i < auxBinary.length()) {
                 if (Character.toString(auxBinary.charAt(i)).equals("1")) {
-                    l1.add("ID:" + stores.get(i).getId() + " " + stores.get(i).getListing());
+                    l1.add("ID: " + stores.get(i).getId() + "   Number Properties: " + stores.get(i).getListing());
                 } else {
-                    l2.add("ID:" + stores.get(i).getId() + " " + stores.get(i).getListing());
+                    l2.add("ID: " + stores.get(i).getId() + "   Number Properties: " + stores.get(i).getListing());
                 }
             } else {
-                l2.add("ID:" + stores.get(i).getId() + " " + stores.get(i).getListing());
+                l2.add("ID:" + stores.get(i).getId() + "   Number Properties: " + stores.get(i).getListing());
             }
 
 
@@ -311,6 +311,5 @@ public class StoreRepository implements Serializable {
 
         return result;
     }
-
 
 }
