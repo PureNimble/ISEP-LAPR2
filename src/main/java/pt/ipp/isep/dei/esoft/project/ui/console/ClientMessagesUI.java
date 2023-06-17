@@ -41,7 +41,7 @@ public class ClientMessagesUI implements Runnable {
             for (MessageDto message : messageList) {
                 if (message.getIsApprovedByAgent() == true) {
                     System.out.println(index + ". Message From: " + message.getPublishedAnnouncement().getAgent().getName() + " Subject: Your Visit Booking Request Has Been Accepted");
-                } else System.out.println(index + ". Message From: " + message.getName() + " Subject: Your Visit Booking Request Has Been Rejected");
+                } else System.out.println(index + ". Message From: " + message.getPublishedAnnouncement().getAgent().getName() + " Subject: Your Visit Booking Request Has Been Rejected");
                 index++;     
             }
 
