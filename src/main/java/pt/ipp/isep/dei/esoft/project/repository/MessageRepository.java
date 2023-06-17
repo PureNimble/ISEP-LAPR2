@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.domain.Client;
 import pt.ipp.isep.dei.esoft.project.domain.Message;
 import pt.ipp.isep.dei.esoft.project.domain.MessageState;
+import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 
 
 import java.io.Serializable;
@@ -47,6 +48,12 @@ public class MessageRepository implements Serializable {
     }
 
     private boolean checkIfDateTimeOverlaps(Message message1, Message message2) {
+        PublishedAnnouncement announcement1 = message1.getPublishedAnnouncement();
+        PublishedAnnouncement announcement2 = message2.getPublishedAnnouncement();
+        if (!announcement1.equals(announcement2)) {
+            return false;
+        }
+
         Date initialDate1 = message1.getInitialDate();
         int initialTime1 = message1.getInitialTime();
         int endTime1 = message1.getEndTime();
@@ -55,9 +62,14 @@ public class MessageRepository implements Serializable {
         int initialTime2 = message2.getInitialTime();
         int endTime2 = message2.getEndTime();
 
-        // Check if the time ranges overlap
+
+        if (!initialDate1.equals(initialDate2)) {
+            return false;
+        }
+
         return !(endTime1 <= initialTime2 || initialTime1 >= endTime2);
     }
+
 
     /**
      * Gets messages.

@@ -1,5 +1,9 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import pt.ipp.isep.dei.esoft.project.domain.MultiLinear;
 import pt.ipp.isep.dei.esoft.project.domain.MultiLinearRegression;
 import pt.ipp.isep.dei.esoft.project.domain.RegressionDTO;
@@ -49,21 +53,44 @@ public class DealAnalysesController {
 
         PublishedAnnouncementRepository publishedAnnouncementRepository = getPublishedAnnouncementRepository();
         double[][] parameterMatrix = publishedAnnouncementRepository.getParameterMatrix(param);
+        if (parameterMatrix.length == 0 || parameterMatrix[0].length == 0){
+            RegressionDTO regressionDTO = RegressionMapper.toDto(null, "No data to analyse");
+            writeRegressionDTOToFile(regressionDTO);
+            return regressionDTO;
+        }
 
         if (param == -1){ //MultiLinear
             RegressionModel multi = new MultiLinearRegression();
             MultiLinear multiLinear = multi.getRegressionModel(parameterMatrix, significanceLevel);
-            return RegressionMapper.toDto(multiLinear.predict(valueToPredict),multiLinear.generateAnalysisReport());
+            RegressionDTO regressionDTO = RegressionMapper.toDto(multiLinear.predict(valueToPredict),multiLinear.generateAnalysisReport());
+            writeRegressionDTOToFile(regressionDTO);
+            return regressionDTO;
 
         }
         else if (param != 0){ //Single
 
             RegressionModel simple = new SimpleLinearRegression();
             SimpleLinear simpleLinear = simple.getRegressionModel(parameterMatrix, significanceLevel);
-            return RegressionMapper.toDto(simpleLinear.predict(valueToPredict[0]),simpleLinear.generateAnalysisReport());
+            RegressionDTO regressionDTO = RegressionMapper.toDto(simpleLinear.predict(valueToPredict[0]),simpleLinear.generateAnalysisReport());;
+            writeRegressionDTOToFile(regressionDTO);            
+            return regressionDTO;
 
         }
-
-        return RegressionMapper.toDto(null,null);
+        RegressionDTO regressionDTO = RegressionMapper.toDto(null,null);
+        writeRegressionDTOToFile(regressionDTO);
+        return regressionDTO;
     }
+
+    public void writeRegressionDTOToFile(RegressionDTO regressionDTO) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("ReportAndPrediction.txt", false))) {
+            writer.write("Report: " + regressionDTO.getReport());
+            writer.newLine();
+            writer.write("\nPrediction: " + regressionDTO.getPrediction());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle any exceptions that occur during file writing
+        }
+    }
+
 }

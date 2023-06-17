@@ -1,0 +1,57 @@
+From: no-reply@this.app
+To: pedro@gmail.com
+Subject: Your Visit Booking Request Has Been Accepted
+Body: Dear Customer, 
+
+Thank you for your interest in the property located at: 3655 S Las Vegas Blvd, Las Vegas, Paradise, Nevada, 892109.
+
+You had requested a visit for the date: Tue Jun 20 00:00:00 WEST 2023, starting at: 11 and ending at: 12.
+
+We are pleased to inform you that your booking request has been accepted. You will be greeted by our agent Miguel.
+In case of any changes or queries, you may contact the agent at the following number: 1234567890.
+
+We look forward to welcoming you for the visit!
+
+Best Regards,
+Miguel
+
+-----------------------------------------------------------------------
+
+From: no-reply@this.app
+To: luna@gmail.com
+Subject: Your Visit Booking Request Has Been Accepted
+Body: Dear Customer, 
+
+Thank you for your interest in the property located at: 3655 S Las Vegas Blvd, Las Vegas, Paradise, Nevada, 892109.
+
+You had requested a visit for the date: Tue Jun 20 00:00:00 WEST 2023, starting at: 11 and ending at: 12.
+
+We are pleased to inform you that your booking request has been accepted. You will be greeted by our agent Miguel.
+In case of any changes or queries, you may contact the agent at the following number: 1234567890.
+
+We look forward to welcoming you for the visit.
+
+Best Regards,
+Miguel
+
+-----------------------------------------------------------------------
+
+From: no-reply@this.app
+To: pedro@gmail.com
+Subject: Your Visit Booking Request Has Been Accepted
+Body: Dear Customer, 
+
+Thank you for your interest in the property located at: 3655 S Las Vegas Blvd, Las Vegas, Paradise, Nevada, 892109.
+
+You had requested a visit for the date: Tue Jun 20 00:00:00 WEST 2023, starting at: 11 and ending at: 12.
+
+We are pleased to inform you that your booking request has been accepted. You will be greeted by our agent Miguel.
+In case of any changes or queries, you may contact the agent at the following number: 1234567890.
+
+We look forward to welcoming you for the visit!
+
+Best Regards,
+Miguel
+
+-----------------------------------------------------------------------
+

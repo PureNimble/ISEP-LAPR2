@@ -20,8 +20,6 @@ public class PublishedAnnouncement implements Serializable {
 
     private Client client;
 
-    private int propertyID;
-
     private AnnouncementState announcementState = AnnouncementState.available;
 
     private Store store;
@@ -37,11 +35,10 @@ public class PublishedAnnouncement implements Serializable {
      * @param business          the business
      * @param agent             the agent
      * @param client            the client
-     * @param propertyID        the property id
      * @param announcementState the announcement state
      * @param store             the store
      */
-    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, Employee agent, Client client, int propertyID, AnnouncementState announcementState, Store store) {
+    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, Employee agent, Client client, AnnouncementState announcementState, Store store) {
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
         this.propertyType = propertyType;
@@ -50,7 +47,6 @@ public class PublishedAnnouncement implements Serializable {
         this.business = business;
         this.agent = agent;
         this.client = client;
-        this.propertyID = propertyID;
         this.announcementState = announcementState;
         this.store = store;
     }
@@ -67,11 +63,10 @@ public class PublishedAnnouncement implements Serializable {
      * @param durationOfContract the duration of contract
      * @param agent              the agent
      * @param client             the client
-     * @param propertyID         the property id
      * @param announcementState  the announcement state
      * @param store              the store
      */
-    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent, Client client, int propertyID, AnnouncementState announcementState, Store store) {
+    public PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, Comission comission, Business business, int durationOfContract, Employee agent, Client client, AnnouncementState announcementState, Store store) {
         this.date = date;
         this.typeOfBusiness = typeOfBusiness;
         this.property = property;
@@ -81,7 +76,6 @@ public class PublishedAnnouncement implements Serializable {
         this.durationOfContract = durationOfContract;
         this.agent = agent;
         this.client = client;
-        this.propertyID = propertyID;
         this.announcementState = announcementState;
         this.store = store;
     }
@@ -106,7 +100,7 @@ public class PublishedAnnouncement implements Serializable {
         this.comission = comission;
         this.announcementState = announcementState;
         this.store = store;
-        
+
     }
 
 
@@ -176,7 +170,7 @@ public class PublishedAnnouncement implements Serializable {
     /**
      * Sets announcement state.
      *
-     * @param state the state
+     * @param announcementState the state
      */
     public void setAnnouncementState(AnnouncementState announcementState) {
         this.announcementState = announcementState;
@@ -326,35 +320,17 @@ public class PublishedAnnouncement implements Serializable {
         this.store = store;
     }
 
-    /**
-     * Gets property id.
-     *
-     * @return the property id
-     */
-    public int getPropertyID() {
-        return propertyID;
-    }
-
-    /**
-     * Sets property id.
-     *
-     * @param propertyID the property id
-     */
-    public void setPropertyID(int propertyID) {
-        this.propertyID = propertyID;
-    }
-
     public String toString() {
         return String.format("Date: %s\n\n" + "Responsible Agent: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
                         "Client: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
-                        "Property ID: %s\n" +
                         "Type Of Business: %s\n" +
                         "Property Type: %s\n" +
                         "Comission Selected: %s" +
                         "Price: %s\n" +
                         "%s\n",
                         
-                date.toString(), agent.getEmployeeName(), agent.getEmployeeEmail(), agent.getPhoneNumber(), client.getName(), client.getEmail(), client.getPhoneNumber(), propertyID, typeOfBusiness.toString(), propertyType, comission.toString(), business.toString(), property.toString());
+                date.toString(), agent.getEmployeeName(), agent.getEmployeeEmail(), agent.getPhoneNumber(), client.getName(), client.getEmail(), client.getPhoneNumber(),
+                typeOfBusiness.toString(), propertyType, comission.toString(), business.toString(), property.toString());
     }
 
     /**
@@ -365,7 +341,6 @@ public class PublishedAnnouncement implements Serializable {
     public String toStringRent() {
         return String.format("Date: %s\n\n" +  "Responsible Agent: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
                 "Client: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
-                        "Property ID: %s\n" +
                         "Type Of Business: %s\n" +
                         "Property Type: %s\n" +
                         "Comission Selected: %s" +
@@ -376,7 +351,7 @@ public class PublishedAnnouncement implements Serializable {
                 date.toString(), agent.getEmployeeName(),
                 agent.getEmployeeEmail(), agent.getPhoneNumber(),
                 client.getName(), client.getEmail(), client.getPhoneNumber(),
-                propertyID, typeOfBusiness.toString(),
+                 typeOfBusiness.toString(),
                 propertyType, comission.toString(), business.toString(), durationOfContract, property.toString());
     }
 

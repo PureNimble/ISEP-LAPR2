@@ -33,14 +33,16 @@ public class DealAnalysesUI implements Runnable {
                 regressionDTO = controller.regressionModel(requestParam(), 0.05, singleValueToPredict());
             }
             else {
-                regressionDTO = controller.regressionModel(0, 0.05, multiValueToPredict());
+                regressionDTO = controller.regressionModel(-1, 0.05, multiValueToPredict());
             }
 
             if (regressionDTO.getReport() != null){
-                System.out.println(regressionDTO.getReport());
-                System.out.println("Prediction: " + regressionDTO.getPrediction());
+                System.out.println("\n" + regressionDTO.getReport());
             }
 
+            if (regressionDTO.getPrediction() != null){
+                System.out.println("Prediction: " + regressionDTO.getPrediction());
+            }
         }
 
     }

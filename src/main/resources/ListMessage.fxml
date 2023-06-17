@@ -30,11 +30,10 @@
          <columns>
             <TableColumn fx:id="name" prefWidth="62.0" sortable="false" text="Name" />
             <TableColumn fx:id="phoneNumber" prefWidth="102.0" sortable="false" text="Phone Number" />
-            <TableColumn fx:id="description" prefWidth="423.0" sortable="false" text="Description" />
-            <TableColumn fx:id="propertyID" prefWidth="39.0" sortable="false" text="ID" />
-            <TableColumn fx:id="initialDate" minWidth="0.0" prefWidth="74.0" text="Date" />
-            <TableColumn fx:id="initialTime" prefWidth="78.0" sortable="false" text="initialTime" />
-            <TableColumn fx:id="endTime" prefWidth="77.0" sortable="false" text="endTime" />
+            <TableColumn fx:id="description" prefWidth="456.0" sortable="false" text="Description" />
+            <TableColumn fx:id="initialDate" minWidth="0.0" prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="initialTime" prefWidth="82.0" sortable="false" text="initialTime" />
+            <TableColumn fx:id="endTime" prefWidth="78.0" sortable="false" text="endTime" />
          </columns>
       </TableView>
       <Pagination fx:id="photosPagination" layoutX="1003.0" layoutY="509.0" prefHeight="354.0" prefWidth="383.0" style="-fx-border-color: black;" />

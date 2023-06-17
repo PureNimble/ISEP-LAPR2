@@ -525,7 +525,7 @@ public class PublishAnnouncementController {
 
         Optional<PublishedAnnouncement> newPublishedAnnouncement = Optional.empty();
 
-        PublishedAnnouncement publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, agent, client,propertyID, state, store);
+        PublishedAnnouncement publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, agent, client, state, store);
 
         if (!getPublishedAnnouncementRepository().getPublishedAnnouncements().contains(publishedAnnouncement)) {
             newPublishedAnnouncement = getPublishedAnnouncementRepository().publishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, durationOfContract, agent, client, propertyID, state, store);
