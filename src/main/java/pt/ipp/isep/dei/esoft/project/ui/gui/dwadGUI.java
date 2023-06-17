@@ -22,7 +22,6 @@ import java.util.Scanner;
 public class dwadGUI implements Initializable {
 
 
-
     @FXML
     private TextArea textAreaSubset1;
 
@@ -32,23 +31,23 @@ public class dwadGUI implements Initializable {
     private Label minimumDifference;
 
 
-
     private final DivideStoresController controller = new DivideStoresController();
-
-
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
+        long initial = System.nanoTime();
 
+        List<List<String>> list = controller.findPartition();
 
+        long endTime = System.nanoTime();
 
+        long executionTime = Math.abs(initial-endTime) ;
 
-      List<List<String>> list = controller.findPartition();
+        System.out.println(executionTime);
 
-
-        minimumDifference.setText("Minimun difference= "+list.get(2).get(0));
+        minimumDifference.setText("Minimun difference= " + list.get(2).get(0));
 
         textAreaSubset1.setText(createListString(list.get(0)).toString());
 
@@ -58,11 +57,10 @@ public class dwadGUI implements Initializable {
     }
 
 
+    public StringBuilder createListString(List<String> subsets) {
+        StringBuilder st = new StringBuilder();
 
-    public StringBuilder createListString(List<String> subsets){
-       StringBuilder st = new StringBuilder();
-
-        for (String string: subsets) {
+        for (String string : subsets) {
             st.append(string);
             st.append("\n");
         }

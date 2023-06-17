@@ -309,13 +309,69 @@ public class Bootstrap {
         Address address1 = new Address("3655 S Las Vegas Blvd", 892109, new District("Paradise"), new City("Las Vegas"), new State("Nevada"));
         Address address2 = new Address("199 W 45th St",10036,new District("Manhattan"),new City("New York"),new State("New York"));
         Address address3 = new Address("9641 Sunset Blvd", 90210, new District("Beverly Hills"), new City("Los Angeles"), new State("California"));
-        Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 0, 3);
-        Store store2 = new Store("Maltip",104224,address2,1133542456,"maltip@gmail.com", 0, 2);
-        Store store3 = new Store("Elvis",224,address3,1274567809,"elvis@gmail.com", 0, 1);
+        Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 21, 3);
+        Store store2 = new Store("Maltip",104224,address2,1133542456,"maltip@gmail.com", 30, 2);
+        Store store3 = new Store("Elvis",224,address3,1274567809,"elvis@gmail.com", 15, 1);
+        Store store4 = new Store("Sunderland",1,address1,1274567809,"elvis@gmail.com", 27, 4);
+        Store store5 = new Store("North Pole",2,address2,1274567809,"elvis@gmail.com", 17, 4);
+        Store store6 = new Store("Los angeles",3,address3,1274567809,"elvis@gmail.com", 2, 4);
+        Store store7 = new Store("Malta",4,address3,1274567809,"elvis@gmail.com", 4, 4);
+        Store store8 = new Store("Sunderland",5,address3,1274567809,"elvis@gmail.com", 7, 4);
+        Store store9 = new Store("Malta",6,address3,1274567809,"elvis@gmail.com", 4, 4);
+        Store store10 = new Store("Sunderland",7,address3,1274567809,"elvis@gmail.com", 27, 4);
+        Store store11 = new Store("Malta",8,address3,1274567809,"elvis@gmail.com", 33, 4);
+        Store store12 = new Store("Sunderland",9,address3,1274567809,"elvis@gmail.com", 29, 4);
+        Store store13 = new Store("Sunderland",10,address3,1274567809,"elvis@gmail.com", 50, 4);
+        Store store14 = new Store("Malta",11,address3,1274567809,"elvis@gmail.com", 46, 4);
+        Store store15 = new Store("Sunderland",12,address3,1274567809,"elvis@gmail.com", 2, 4);
+        Store store16 = new Store("Sunderland",13,address3,1274567809,"elvis@gmail.com", 21, 4);
+        Store store17 = new Store("Malta",14,address3,1274567809,"elvis@gmail.com", 33, 4);
+        Store store18 = new Store("Sunderland",15,address3,1274567809,"elvis@gmail.com", 9, 4);
+        Store store19 = new Store("Sunderland",16,address3,1274567809,"elvis@gmail.com", 21, 4);
+        Store store20 = new Store("Malta",17,address3,1274567809,"elvis@gmail.com", 29, 4);
+        Store store21 = new Store("Sunderland",18,address3,1274567809,"elvis@gmail.com", 15, 4);
+        Store store22 = new Store("Sunderland",19,address3,1274567809,"elvis@gmail.com", 57, 4);
+        Store store23 = new Store("Malta",20,address3,1274567809,"elvis@gmail.com", 58, 4);
+        Store store24 = new Store("Sunderland",21,address3,1274567809,"elvis@gmail.com", 66, 4);
+        Store store25 = new Store("Sunderland",22,address3,1274567809,"elvis@gmail.com", 77, 4);
+        Store store26 = new Store("Malta",23,address3,1274567809,"elvis@gmail.com", 13, 4);
+        Store store27 = new Store("Sunderland",24,address3,1274567809,"elvis@gmail.com", 8, 4);
+        Store store28 = new Store("Sunderland",25,address3,1274567809,"elvis@gmail.com", 1, 4);
+        Store store29 = new Store("Malta",26,address3,1274567809,"elvis@gmail.com", 2, 4);
+        Store store30 = new Store("Sunderland",27,address3,1274567809,"elvis@gmail.com", 3, 4);
+
 
         storeRepository.add(store1);
         storeRepository.add(store2);
         storeRepository.add(store3);
+        storeRepository.add(store4);
+        storeRepository.add(store5);
+        storeRepository.add(store6);
+        storeRepository.add(store7);
+        storeRepository.add(store8);
+        storeRepository.add(store9);
+        storeRepository.add(store10);
+        storeRepository.add(store11);
+        storeRepository.add(store12);
+        storeRepository.add(store13);
+        storeRepository.add(store14);
+        storeRepository.add(store15);
+        storeRepository.add(store16);
+        storeRepository.add(store17);
+        storeRepository.add(store18);
+        storeRepository.add(store19);
+        storeRepository.add(store20);
+        storeRepository.add(store21);
+        storeRepository.add(store22);
+        storeRepository.add(store23);
+        storeRepository.add(store24);
+        storeRepository.add(store25);
+        storeRepository.add(store26);
+        storeRepository.add(store27);
+        storeRepository.add(store28);
+        storeRepository.add(store29);
+        storeRepository.add(store30);
+
     }
 
     private void addPropertyTypes() {
