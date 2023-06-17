@@ -241,7 +241,7 @@ public class PublishedAnnouncementRepository implements Serializable {
                 String[] adressInformations = ownerInformations[8].split(",");
                 propertyLocation = createAddress(adressInformations);
                 distanceFromCityCenter = Integer.parseInt(ownerInformations[9]);
-                if (propertyType.equals("house") || propertyType.equals("appartment")) {
+                if (propertyType.equals("house") || propertyType.equals("apartment")) {
                     numberOfBedrooms = Integer.parseInt(ownerInformations[10]);
                     numberOfBathrooms = Integer.parseInt(ownerInformations[11]);
                     parkingSpaces = Integer.parseInt(ownerInformations[12]);
@@ -649,11 +649,11 @@ public class PublishedAnnouncementRepository implements Serializable {
 
 
     public double[][] getParameterMatrix(int param) {
-        int size = (param == 0) ? 6 : 2;
+        int size = (param == -1) ? 6 : 2;
         ArrayList<ArrayList<Double>> tempParameterList = new ArrayList<>();
 
         switch (param){
-            case 0:
+            case -1:
                 tempParameterList.add(getArea());
                 tempParameterList.add(getDistanceFromCityCenter());
                 tempParameterList.add(getNumberOfBedrooms());

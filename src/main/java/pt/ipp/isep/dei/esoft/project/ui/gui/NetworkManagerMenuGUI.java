@@ -1,10 +1,13 @@
 package pt.ipp.isep.dei.esoft.project.ui.gui;
 
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -16,7 +19,7 @@ import java.util.ResourceBundle;
 /**
  * The type Network manager menu gui.
  */
-public class NetworkManagerMenuGUI implements Runnable,Initializable {
+public class NetworkManagerMenuGUI implements Runnable, Initializable {
 
     @FXML
     private Label labelNetworkManagerMenu;
@@ -31,21 +34,18 @@ public class NetworkManagerMenuGUI implements Runnable,Initializable {
     }
 
 
-
-    public void run(){
-
-    }
-
-
-
-    public void initialize(URL url, ResourceBundle resourceBundle){
-
+    public void run() {
 
     }
 
 
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
-    private void loadPageListDeals(){
+
+    }
+
+
+    private void loadPageListDeals() {
 
 
         try {
@@ -59,12 +59,12 @@ public class NetworkManagerMenuGUI implements Runnable,Initializable {
             stage.show();
 //            listDealsLoader.setController(new ListDealsGUI());
 
-       } catch (IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private void loadPageDivideStores(){
+    private void loadPageDivideStores() {
 
         try {
             FXMLLoader divideStoresLoader = new FXMLLoader();
@@ -77,6 +77,7 @@ public class NetworkManagerMenuGUI implements Runnable,Initializable {
             stage.show();
             divideStoresLoader.setController(new dwadGUI());
 
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -84,6 +85,18 @@ public class NetworkManagerMenuGUI implements Runnable,Initializable {
 
 
     public void divideStores(MouseEvent mouseEvent) {
+        Alert alert;
+        alert = createAlert(Alert.AlertType.INFORMATION, "Operation Execution time", "This Operation might take some minutes please wait");
+        alert.showAndWait();
         loadPageDivideStores();
+
+    }
+
+    public Alert createAlert(Alert.AlertType alertType, String title, String content) {
+        Alert alert = new Alert(alertType);
+        alert.setHeaderText(title);
+        alert.setContentText(content);
+
+        return alert;
     }
 }

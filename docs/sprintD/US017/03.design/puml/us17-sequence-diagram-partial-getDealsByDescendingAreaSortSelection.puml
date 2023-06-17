@@ -23,7 +23,7 @@ activate ListDealsController
                     PLAT --> ListDealsController: offerRepository
                 deactivate PLAT
 
-                ListDealsController -> OfferRepository : getDealsByDescendingAreaBubbleSort()
+                ListDealsController -> OfferRepository : getDealsByDescendingAreaSortSelection()
                 activate OfferRepository
 
                     OfferRepository --> ListDealsController : offersListMade
