@@ -43,12 +43,14 @@ public class MultiLinearRegression implements RegressionModel{
         OLSMultipleLinearRegression regression = new OLSMultipleLinearRegression();
 
 
-
-        double[][] predictors = new double[parameters[0].length][];
+        double[][] predictors = new double[parameters[0].length][5];
         for (int i = 0; i < parameters[0].length; i++) {
-            predictors[i] = new double[]{parameters[0][i], parameters[1][i], parameters[2][i],parameters[3][i],parameters[4][i]};
+            predictors[i][0] = parameters[0][i];
+            predictors[i][1] = parameters[1][i];
+            predictors[i][2] = parameters[2][i];
+            predictors[i][3] = parameters[3][i];
+            predictors[i][4] = parameters[4][i];
         }
-
         regression.newSampleData(parameters[5], predictors);
 
         /////////////////// Test values

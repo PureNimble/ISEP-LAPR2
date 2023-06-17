@@ -38,6 +38,7 @@ public class Residence extends Property implements Serializable {
         this.numberOfBathrooms = numberOfBathrooms;
         this.parkingSpaces = parkingSpaces;
         this.availableEquipment = availableEquipment;
+        this.setResidence(this);
     }
 
     /**
@@ -57,6 +58,7 @@ public class Residence extends Property implements Serializable {
         this.numberOfBathrooms = numberOfBathrooms;
         this.parkingSpaces = parkingSpaces;
         this.availableEquipment = availableEquipment;
+        this.setResidence(this);
     }
 
 
