@@ -51,6 +51,7 @@ class Store {
     ID
     Designation
     Listing
+    Available Listing
 }
 
 class Role {
