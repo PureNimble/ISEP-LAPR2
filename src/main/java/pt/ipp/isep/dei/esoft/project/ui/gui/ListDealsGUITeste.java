@@ -31,6 +31,10 @@ import java.util.ResourceBundle;
 public class ListDealsGUITeste implements Initializable {
 
 
+
+    @FXML
+    private Label idNameLabelStore;
+
     @FXML
     private TableColumn<Offer, Double> orderAmount;
 
@@ -188,8 +192,8 @@ public class ListDealsGUITeste implements Initializable {
         announcementAnchorPane.setVisible(true);
 
 
-        clientDescription.setText("Client: " + publishedAnnouncement.getClient().getName() + " " + publishedAnnouncement.getClient().getClientEmail() + " " + publishedAnnouncement.getClient().getPhoneNumber());
-        agentDescription.setText("Responsible Agent: " + publishedAnnouncement.getAgent().getName() + " " + publishedAnnouncement.getAgent().getEmail() + " " + publishedAnnouncement.getAgent().getPhoneNumber());
+        clientDescription.setText("Client Name: " + publishedAnnouncement.getClient().getName() + "      Contacts: " + publishedAnnouncement.getClient().getClientEmail() + ", " + publishedAnnouncement.getClient().getPhoneNumber());
+        agentDescription.setText("Responsible Agent Name: " + publishedAnnouncement.getAgent().getName() + "      Contacts: " + publishedAnnouncement.getAgent().getEmail() + ", " + publishedAnnouncement.getAgent().getPhoneNumber());
         priceLabel.setText("" + publishedAnnouncement.getBusiness() + " $");
         labelDistanceCenter.setText("" + publishedAnnouncement.getProperty().getDistanceFromCityCenter());
         adressLabel.setText("" + publishedAnnouncement.getProperty().getAddress());
@@ -197,7 +201,7 @@ public class ListDealsGUITeste implements Initializable {
         typeOfProperrtyLabel.setText("" + publishedAnnouncement.getPropertyType());
         dateLabel.setText("" + publishedAnnouncement.getDate());
         labelArea.setText("" + publishedAnnouncement.getProperty().getArea());
-
+        idNameLabelStore.setText("Name: "+publishedAnnouncement.getAgent().getStore().getDesignation()+"   ID: "+publishedAnnouncement.getAgent().getStore().getId());
 
         if (publishedAnnouncement.getProperty() instanceof House) {
             House house = (House) publishedAnnouncement.getProperty();
