@@ -342,6 +342,7 @@ public class Bootstrap {
 
 
         storeRepository.add(store1);
+
         storeRepository.add(store2);
         storeRepository.add(store3);
         storeRepository.add(store4);
