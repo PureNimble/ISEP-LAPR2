@@ -129,8 +129,7 @@ public class OfferDecisionUI implements Runnable{
 
             subject = "Your Offer has been " + decision;
             body = "Dear " + offer.getClient().getName() + ",\n" +
-                    "\nYour Offer for the Announcement with the Property ID " + offer.getPublishedAnnouncement().getPropertyID() +
-                    ", located at: " + offer.getPublishedAnnouncement().getProperty().getAddress().toString() +
+                    "\nYour Offer for the Announcement located at: " + offer.getPublishedAnnouncement().getProperty().getAddress().toString() +
                     " has been " + decision +
                     ".\n" + finalMessage +
                     "\n\nBest Regards," +

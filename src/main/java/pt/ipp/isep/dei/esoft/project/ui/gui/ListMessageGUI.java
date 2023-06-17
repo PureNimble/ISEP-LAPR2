@@ -103,15 +103,6 @@
 
             description.setCellValueFactory(new PropertyValueFactory<Message, String>("description"));
 
-            propertyID.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Message, Integer>, ObservableValue<Integer>>() {
-                @Override
-                public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Message, Integer> param) {
-                    PublishedAnnouncement publishedAnnouncement = param.getValue().getPublishedAnnouncement();
-                    Integer propertyID = publishedAnnouncement != null ? publishedAnnouncement.getPropertyID() : null;
-                    return new SimpleObjectProperty<>(propertyID);
-                }
-            });
-
             initialDate.setCellValueFactory(new PropertyValueFactory<Message, Date>("initialDate"));
 
             initialTime.setCellValueFactory(new PropertyValueFactory<Message, Integer>("initialTime"));

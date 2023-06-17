@@ -216,8 +216,7 @@ public class ListMessageUI implements Runnable {
     private void acceptVisitation(Message message, PublishedAnnouncement publishedAnnouncement, String email) {
         String subject = "Your Visit Booking Request Has Been Accepted";
         String body = "Dear Customer, \n\n" +
-                "Thank you for your interest in the property listed with ID: " + publishedAnnouncement.getPropertyID() +
-                " and located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
+                "Thank you for your interest in the property located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
                 "You had requested a visit for the date: " + message.getInitialDate() +
                 ", starting at: " + message.getInitialTime() +
                 " and ending at: " + message.getEndTime() + ".\n\n" +
@@ -251,8 +250,7 @@ public class ListMessageUI implements Runnable {
         String reason = getRejectionReason();
 
         String body = "Dear Customer, \n\n" +
-                "Thank you for your interest in the property listed with ID: " + publishedAnnouncement.getPropertyID() +
-                " and located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
+                "Thank you for your interest in the property located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
                 "You had requested a visit for the date: " + message.getInitialDate() +
                 ", starting at: " + message.getInitialTime() +
                 " and ending at: " + message.getEndTime() + ".\n\n" +

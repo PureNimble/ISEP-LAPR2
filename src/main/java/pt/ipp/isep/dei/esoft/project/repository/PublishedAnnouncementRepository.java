@@ -70,9 +70,9 @@ public class PublishedAnnouncementRepository implements Serializable {
         PublishedAnnouncement publishedAnnouncement;
 
         if (property.toString().equals("Rent")) {
-            publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, durationOfContract, agent, client, propertyID, state, store);
+            publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, durationOfContract, agent, client, state, store);
         } else {
-            publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, agent, client, propertyID, state, store);
+            publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, agent, client, state, store);
         }
 
         if (addPublishedAnnouncement(publishedAnnouncement)) {
@@ -297,9 +297,9 @@ public class PublishedAnnouncementRepository implements Serializable {
                     House house = new House(area, distanceFromCityCenter, numberOfBedrooms, numberOfBathrooms, parkingSpaces, availableEquipment, basement, loft, sunExposure, propertyLocation);
 
                     if (typeOfBusiness.equals("sale")) {
-                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, house, propertyTypeA, comissionA, business, agent, client, id, state, store);
+                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, house, propertyTypeA, comissionA, business, agent, client, state, store);
                     } else {
-                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, house, propertyTypeA, comissionA, business, contractDuration, agent, client, id, state, store);
+                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, house, propertyTypeA, comissionA, business, contractDuration, agent, client, state, store);
                     }
 
 
@@ -309,11 +309,11 @@ public class PublishedAnnouncementRepository implements Serializable {
 
                     if (typeOfBusiness.equals("sale")) {
 
-                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, land, propertyTypeA, comissionA, business, agent, client, id, state, store);
+                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, land, propertyTypeA, comissionA, business, agent, client, state, store);
 
                     } else {
 
-                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, land, propertyTypeA, comissionA, business, contractDuration, agent, client, id, state, store);
+                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, land, propertyTypeA, comissionA, business, contractDuration, agent, client, state, store);
                     }
 
                 } else {
@@ -322,11 +322,11 @@ public class PublishedAnnouncementRepository implements Serializable {
 
                     if (typeOfBusiness.equals("sale")) {
 
-                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, appartment, propertyTypeA, comissionA, business, agent, client, id, state, store);
+                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, appartment, propertyTypeA, comissionA, business, agent, client, state, store);
 
                     } else {
 
-                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, appartment, propertyTypeA, comissionA, business, contractDuration, agent, client, id, state, store);
+                        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusinessA, appartment, propertyTypeA, comissionA, business, contractDuration, agent, client, state, store);
 
                     }
 

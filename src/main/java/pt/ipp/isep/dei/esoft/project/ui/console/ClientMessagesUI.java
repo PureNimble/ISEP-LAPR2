@@ -61,7 +61,6 @@ public class ClientMessagesUI implements Runnable {
             String subject = "Your message has been opened";
             String body = "\nYour message for the client " + client.getName() + " has been opened!" +
                     "\n\nVisit Details:" +
-                    "\nProperty ID: " + publishedAnnouncement.getPropertyID() +
                     "\nLocated at: " + publishedAnnouncement.getProperty().getAddress().toString() +
                     "\nDate of visit: " + selectedMessage.getInitialDate() +
                     "\nStarting time at " + selectedMessage.getInitialTime() +
@@ -118,7 +117,6 @@ public class ClientMessagesUI implements Runnable {
                 subject = "Your Booked Visit Has Been Confirmed";
                 body = "Dear " + publishedAnnouncement.getAgent().getName() + ",\n" +
                         "Your Booked Visit has been confirmed" + "\n\nVisit Details:" +
-                        "\nProperty ID: " + publishedAnnouncement.getPropertyID() +
                         "\nLocated at: " + publishedAnnouncement.getProperty().getAddress().toString() +
                         "\nDate of visit: " + message.getInitialDate() + "\nStarting time at " + message.getInitialTime() +
                         " and ending at " + message.getEndTime() + "\nClient Name: " + client.getName() + "\n\nBest Regards,\n" + client.getName();
@@ -130,7 +128,7 @@ public class ClientMessagesUI implements Runnable {
                 String reason = input.nextLine();
                 body = "Dear " + publishedAnnouncement.getAgent().getName() + ",\n" +
                         "I am unable to attend the scheduled property visit that was planned." +
-                        "\nReason: " + reason + "\n\nVisit Details:" + "\nProperty ID: " + publishedAnnouncement.getPropertyID() +
+                        "\nReason: " + reason + "\n\nVisit Details:" + "\n" +
                         "\nLocated at: " + publishedAnnouncement.getProperty().getAddress().toString() +
                         "\nDate of visit: " + message.getInitialDate() + "\nStarting time at " + message.getInitialTime() +
                         " and ending at " + message.getEndTime() + "\nClient Name: " + client.getName() + "\n\nBest Regards,\n" + client.getName();

@@ -154,8 +154,7 @@ public class RespondToBookingRequestGUI implements Runnable,Initializable {
                 subject = "Your Visit Booking Request Has Been Accepted";
                 // Construct the body of the email
                 body = "Dear Customer, \n\n" +
-                        "Thank you for your interest in the property listed with ID: " + publishedAnnouncement.getPropertyID() +
-                        " and located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
+                        "Thank you for your interest in the property located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
                         "You had requested a visit for the date: " + selectedMessage.getInitialDate() +
                         ", starting at: " + selectedMessage.getInitialTime() +
                         " and ending at: " + selectedMessage.getEndTime() + ".\n\n" +
@@ -169,8 +168,7 @@ public class RespondToBookingRequestGUI implements Runnable,Initializable {
                 subject = "Your Visit Booking Request Has Been Rejected";
                 // Construct the body of the email
                 body = "Dear Customer, \n\n" +
-                        "Thank you for your interest in the property listed with ID: " + publishedAnnouncement.getPropertyID() +
-                        " and located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
+                        "Thank you for your interest in the property located at: " + publishedAnnouncement.getProperty().getAddress().toString() + ".\n\n" +
                         "You had requested a visit for the date: " + selectedMessage.getInitialDate() +
                         ", starting at: " + selectedMessage.getInitialTime() +
                         " and ending at: " + selectedMessage.getEndTime() + ".\n\n" +
