@@ -128,7 +128,7 @@ class PublishedAnnouncementRequestControllerTest {
         Date date1 = new GregorianCalendar(2023, Calendar.JUNE, 20).getTime();
         Client client1 = new Client("pedro@isep.ipp.pt", 123456789, 987654321, "Pedro", address1, 1234567890);
         AnnouncementState state1 = AnnouncementState.available;
-       publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType1, comission1, business1, agent1, client1, 1, state1, store1);
+       publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType1, comission1, business1, 1, agent1, client1, state1, store1);
 
         Comission comission2 = new Comission(26.00);
         AvailableEquipment equipment2 = new AvailableEquipment("Air Frosting");
@@ -138,7 +138,7 @@ class PublishedAnnouncementRequestControllerTest {
         Business business2 = new Business(2000);
         Date date2 = new GregorianCalendar(2024, Calendar.JUNE, 20).getTime();
         Client client2 = new Client("luna@isep.ipp.pt", 123450789, 987654021, "Luna", address2, 1234567090);
-        publishedAnnouncement = new PublishedAnnouncement(date2, typeOfBusiness1, property2, propertyType1, comission2, business2, agent2, client2, 1, state1, store1);
+        publishedAnnouncement = new PublishedAnnouncement(date2, typeOfBusiness1, property2, propertyType1, comission2, business2, 1, agent2, client2, state1, store1);
 
 
 

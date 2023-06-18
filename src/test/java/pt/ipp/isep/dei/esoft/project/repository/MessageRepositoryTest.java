@@ -45,7 +45,7 @@ class MessageRepositoryTest {
 
     Property property = new Property(2, 2,address);
 
-    PublishedAnnouncement p1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business,employee,new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L),55,AnnouncementState.available,store);
+    PublishedAnnouncement p1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business, 55, employee, new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L), AnnouncementState.available, store);
     Message message = new Message(name, phoneNumber, description, date, initialTime, endTime, p1,MessageState.UNANSWERED,false);
     Message message1 = new Message(name1, phoneNumber1, description1, date, initialTime1, endTime1, p1,MessageState.UNANSWERED,false);
 

@@ -118,8 +118,8 @@ class PublishedAnnouncementRepositoryTest {
 
     @BeforeEach
     void setUpPublishedAnnouncements() {
-        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, house, propertyType, comission, business,employee,client,67,AnnouncementState.available,store);
-        publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, land, propertyType, comission, business,employee1,client,81,AnnouncementState.available,store);
+        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, 67, employee, client, AnnouncementState.available, store);
+        publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, land, propertyType, comission, business, 81, employee1, client, AnnouncementState.available, store);
 
     }
 

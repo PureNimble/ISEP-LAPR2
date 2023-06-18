@@ -34,7 +34,7 @@ class MessageTest {
     Employee employee = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store, roles, new Address("123 Main St", 12345, new District("Test District"), new City("Test City"), new State("Test State")));
     Client client = new Client("client@this.app",123456789,123456789,"client",address,1234567890L);
 
-    PublishedAnnouncement p1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business,employee,client,77,AnnouncementState.available,store);
+    PublishedAnnouncement p1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business, 77, employee, client, AnnouncementState.available, store);
     Message message = new Message(name, phoneNumber, description, date, initialTime, endTime, p1,MessageState.ANSWERED,true);
 
 
@@ -179,7 +179,7 @@ class MessageTest {
         PropertyType propertyType = new PropertyType("House");
         TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
         Business business = new Business(200);
-        PublishedAnnouncement p1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business,employee,client,99,AnnouncementState.available,store);
+        PublishedAnnouncement p1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business, 99, employee, client, AnnouncementState.available, store);
         message.setPublishedAnnouncement(p1);
         PublishedAnnouncement actualPublishedAnnouncement = message.getPublishedAnnouncement();
 

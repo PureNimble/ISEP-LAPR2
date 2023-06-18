@@ -24,7 +24,9 @@ public class OfferMapper {
             double orderAmount = offer.getOrderAmount();
             OfferState offerState = offer.getOfferState();
             PublishedAnnouncement publishedAnnouncement = offer.getPublishedAnnouncement();
-            offerDto = toDtoObject(name,publishedAnnouncement,orderAmount,offerState);
+            int offerID = offer.getOfferID();
+            Client client = offer.getClient();
+            offerDto = toDtoObject(name,publishedAnnouncement,orderAmount,offerState,offerID,client);
 
 
             offerDtos.add(offerDto);
@@ -46,11 +48,11 @@ public class OfferMapper {
      * @param offerState            the offer state
      * @return the offer dto
      */
-    public OfferDto toDtoObject(String name,PublishedAnnouncement publishedAnnouncement,double orderAmount,OfferState offerState) {
+    public OfferDto toDtoObject(String name,PublishedAnnouncement publishedAnnouncement,double orderAmount,OfferState offerState,int offerID,Client client) {
 
         OfferDto offerDto;
 
-        offerDto = new OfferDto(name,orderAmount,publishedAnnouncement,offerState);
+        offerDto = new OfferDto(name,orderAmount,publishedAnnouncement,offerState,offerID,client);
 
 
         return offerDto;

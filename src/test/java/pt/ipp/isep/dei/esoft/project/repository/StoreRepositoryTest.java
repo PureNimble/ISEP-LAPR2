@@ -117,8 +117,8 @@ class StoreRepositoryTest {
 
     @BeforeEach
     void setUpPublishedAnnouncements() {
-        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, house, propertyType, comission, business,employee,client,67,AnnouncementState.available,store);
-        publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, land, propertyType, comission, business,employee1,client,81,AnnouncementState.available,store);
+        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, 67, employee, client, AnnouncementState.available, store);
+        publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, land, propertyType, comission, business, 81, employee1, client, AnnouncementState.available, store);
 
     }
 
@@ -199,9 +199,9 @@ class StoreRepositoryTest {
         storeRepository.add(store1);
         storeRepository.add(store2);
         List<PublishedAnnouncement> publishedAnnouncements = new ArrayList<>();
-        PublishedAnnouncement announcement1 = new PublishedAnnouncement(date1, typeOfBusiness1, land, propertyType, comission, business,employee2,client1,80,AnnouncementState.available,store2);
-        PublishedAnnouncement announcement2 = new PublishedAnnouncement(date2, typeOfBusiness2, land, propertyType, comission, business,employee2,client1,81,AnnouncementState.available,store1);
-        PublishedAnnouncement announcement3 = new PublishedAnnouncement(date3, typeOfBusiness1, land, propertyType, comission, business,employee1,client2,82,AnnouncementState.available,store1);;
+        PublishedAnnouncement announcement1 = new PublishedAnnouncement(date1, typeOfBusiness1, land, propertyType, comission, business, 80, employee2, client1, AnnouncementState.available, store2);
+        PublishedAnnouncement announcement2 = new PublishedAnnouncement(date2, typeOfBusiness2, land, propertyType, comission, business, 81, employee2, client1, AnnouncementState.available, store1);
+        PublishedAnnouncement announcement3 = new PublishedAnnouncement(date3, typeOfBusiness1, land, propertyType, comission, business, 82, employee1, client2, AnnouncementState.available, store1);;
         publishedAnnouncements.add(announcement1);
         publishedAnnouncements.add(announcement2);
         publishedAnnouncements.add(announcement3);

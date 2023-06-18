@@ -42,8 +42,8 @@ public class ListMessageControllerTest {
     Store store1 = new Store("Holloway",10234,address1,1234567890,"holloway@gmail.com", 0,1);
 
 
-    Message message1 = new Message("Pedro",1234567890,"Olá",new Date(2023,Calendar.DECEMBER,1),11,12,new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType1, comission1, business1, agent1, client1, 1, state1, store1), MessageState.UNANSWERED, false);
-    Message message2 = new Message("Luna",2345678901L,"Olá",new Date(2023,Calendar.DECEMBER,2),11,12,new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType1, comission1, business1, agent1, client1, 1, state1, store1), MessageState.UNANSWERED, false);
+    Message message1 = new Message("Pedro",1234567890,"Olá",new Date(2023,Calendar.DECEMBER,1),11,12,new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType1, comission1, business1, 1, agent1, client1, state1, store1), MessageState.UNANSWERED, false);
+    Message message2 = new Message("Luna",2345678901L,"Olá",new Date(2023,Calendar.DECEMBER,2),11,12,new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType1, comission1, business1, 1, agent1, client1, state1, store1), MessageState.UNANSWERED, false);
 
     public ListMessageControllerTest() {
         agent1 = new Employee("agent@this.app", 123456789, 987654321, "Miguel", 1234567890L, store1, roles, address1);

@@ -47,7 +47,7 @@ class PlaceOfferControllerTest {
     Date date1 = new GregorianCalendar(2023, Calendar.JUNE, 20).getTime();
     Client client1 = new Client("pedro@gmail.com", 123456789, 987654321, "Pedro", address1, 1234567890);
     AnnouncementState state1 = AnnouncementState.available;
-    PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType1, comission1, business1, agent1, client1, 1, state1, store1);
+    PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType1, comission1, business1, 1, agent1, client1, state1, store1);
 
     Offer offer = new Offer("chbieicbeibcibc", 12345678, publishedAnnouncement1, OfferState.pending, new Client("pedro123456@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890), offerID);
     Offer offer1 = new Offer("Pedro", 130000, publishedAnnouncement1, OfferState.pending, new Client("iceirciherbcihbrihbcihrbi@gmail.com", 124566789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890), offerID);
