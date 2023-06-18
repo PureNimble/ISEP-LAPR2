@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.DealAnalysesGUI">
+   <children>
+      <AnchorPane fx:id="dealAnalysesPane" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <ImageView fx:id="dealIconPng" fitHeight="150.0" fitWidth="200.0" layoutX="224.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@PhotosApp/dealIcon.png" />
+               </image>
+            </ImageView>
+            <ChoiceBox fx:id="modelChoiceBox" layoutX="224.0" layoutY="279.0" prefWidth="150.0" />
+            <Button fx:id="chosenModelNextButton" layoutX="273.0" layoutY="324.0" mnemonicParsing="false" text="Next" />
+            <ImageView fx:id="dealAnalysesPng" fitHeight="85.0" fitWidth="256.0" layoutX="171.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@PhotosApp/dealAnalysesText.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="111.0" layoutY="237.0" text="Which regression model do you wish to use?">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="multiLinearPane" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="165.0" layoutY="14.0" text="Multi-Linear Regression">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="60.0" layoutY="61.0" text="Choose the value for the parameters you wish to predict:">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="230.0" layoutY="115.0" text="Area">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="29.0" layoutY="154.0" text="Distance from the city center">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="83.0" layoutY="246.0" text="Number of Bathrooms">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="90.0" layoutY="202.0" text="Number of Bedrooms">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="45.0" layoutY="291.0" text="Number of Parking Spaces">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="multiArea" layoutX="291.0" layoutY="113.0" prefHeight="31.0" prefWidth="109.0" />
+            <TextField fx:id="multiDistance" layoutX="291.0" layoutY="152.0" prefHeight="31.0" prefWidth="109.0" />
+            <TextField fx:id="multiNBedrooms" layoutX="291.0" layoutY="200.0" prefHeight="31.0" prefWidth="109.0" />
+            <TextField fx:id="multiNBathrooms" layoutX="291.0" layoutY="244.0" prefHeight="31.0" prefWidth="109.0" />
+            <TextField fx:id="multiParking" layoutX="291.0" layoutY="289.0" prefHeight="31.0" prefWidth="109.0" />
+            <Button fx:id="sendValuesButton" layoutX="274.0" layoutY="337.0" mnemonicParsing="false" text="Next" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="singleLinearPane" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="165.0" layoutY="14.0" text="Simple Linear Regression">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="131.0" layoutY="60.0" text="Choose which parameter you wish to use:">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="230.0" layoutY="115.0" text="Area">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="29.0" layoutY="154.0" text="Distance from the city center">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="83.0" layoutY="246.0" text="Number of Bathrooms">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="90.0" layoutY="202.0" text="Number of Bedrooms">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="45.0" layoutY="291.0" text="Number of Parking Spaces">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="singleValue" layoutX="448.0" layoutY="214.0" prefHeight="31.0" prefWidth="109.0" />
+            <RadioButton fx:id="areaButton" layoutX="293.0" layoutY="118.0" mnemonicParsing="false" selected="true">
+               <toggleGroup>
+                  <ToggleGroup fx:id="param" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="distanceButton" layoutX="293.0" layoutY="157.0" mnemonicParsing="false" toggleGroup="$param" />
+            <RadioButton fx:id="bedroomButton" layoutX="293.0" layoutY="204.0" mnemonicParsing="false" toggleGroup="$param" />
+            <RadioButton fx:id="bathroomButton" layoutX="293.0" layoutY="249.0" mnemonicParsing="false" toggleGroup="$param" />
+            <RadioButton fx:id="parkingButton" layoutX="293.0" layoutY="294.0" mnemonicParsing="false" toggleGroup="$param" />
+            <Label layoutX="385.0" layoutY="216.0" text="Value">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="sendValueButton" layoutX="274.0" layoutY="337.0" mnemonicParsing="false" text="Next" />
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>

@@ -62,7 +62,7 @@ public class DealAnalysesController {
         if (param == -1){ //MultiLinear
             RegressionModel multi = new MultiLinearRegression();
             MultiLinear multiLinear = multi.getRegressionModel(parameterMatrix, significanceLevel);
-            RegressionDTO regressionDTO = RegressionMapper.toDto(multiLinear.predict(valueToPredict),multiLinear.generateAnalysisReport());
+            RegressionDTO regressionDTO = RegressionMapper.toDto(multiLinear.predictMulti(valueToPredict),multiLinear.generateAnalysisReport());
             writeRegressionDTOToFile(regressionDTO);
             return regressionDTO;
 
@@ -71,7 +71,7 @@ public class DealAnalysesController {
 
             RegressionModel simple = new SimpleLinearRegression();
             SimpleLinear simpleLinear = simple.getRegressionModel(parameterMatrix, significanceLevel);
-            RegressionDTO regressionDTO = RegressionMapper.toDto(simpleLinear.predict(valueToPredict[0]),simpleLinear.generateAnalysisReport());;
+            RegressionDTO regressionDTO = RegressionMapper.toDto(simpleLinear.predictSimple(valueToPredict[0]),simpleLinear.generateAnalysisReport());;
             writeRegressionDTOToFile(regressionDTO);            
             return regressionDTO;
 

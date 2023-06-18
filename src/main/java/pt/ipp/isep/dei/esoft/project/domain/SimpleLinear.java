@@ -40,7 +40,7 @@ public class SimpleLinear {
 
     public SimpleLinear(SimpleRegression regression, int n, double Sxx, double Syy, double Sxy, double SE, double SR, double avgX, double avgY, double squareR, double slope, double intercept, double[][] parameters, double significanceLevel) {
         this.regression=regression;
-        this.n=n-1;
+        this.n=n;
         this.Sxx = Sxx;
         this.Syy = Syy;
         this.Sxy = Sxy;
@@ -55,53 +55,70 @@ public class SimpleLinear {
         this.significanceLevel = significanceLevel;
     }
 
+    public SimpleRegression getRegression() {
+        return regression;
+    }
+
     public SimpleLinear() {
 
     }
 
+    /**
+     * This method gets the regression slope and intercept
+     *
+     * @return - double[]
+     */
     public double[] getCoefficients(){
         return new double[]{this.slope, this.intercept};
     }
 
+    /**
+     * This method gets the Sum of X's
+     *
+     * @return - double
+     */
     public double getSxx() {
         return Sxx;
     }
+
+    /**
+     * This method gets the Sum of X's times Y's
+     *
+     * @return - double
+     */
 
     public double getSxy() {
         return Sxy;
     }
 
+    /**
+     * This method gets the Sum of Y's
+     *
+     * @return - double
+     */
     public double getSyy() {
         return Syy;
     }
 
+    /**
+     * This method gets the X mean
+     *
+     * @return - double
+     */
     public double getAvgX() {
         return avgX;
     }
+
+    /**
+     * This method gets the Y mean
+     *
+     * @return - double
+     */
 
     public double getAvgY() {
         return avgY;
     }
 
-    public double getIntercept() {
-        return intercept;
-    }
-
-    public double getSE() {
-        return SE;
-    }
-
-    public double getSlope() {
-        return slope;
-    }
-
-    public double getSquareR() {
-        return squareR;
-    }
-
-    public double getSR() {
-        return SR;
-    }
 
 
     @Override
@@ -120,28 +137,49 @@ public class SimpleLinear {
                 "\nintercept= " + df.format(intercept) +
                 "\nR^2 = " + df.format(squareR) +
                 "\nR =" + df.format(Math.sqrt(squareR)) +
-                "\n\n\n Equation -> y = " + df.format(this.intercept) + " + (" + df.format(this.slope) + ")X";
+                "\n\n\n Equation -> y = " + df.format(this.intercept) + " + (" + df.format(this.slope) + ")X + " + "";
     }
 
-    public String predict(double parameter){
+    /**
+     * This method predicts a Y value
+     *
+     * @param parameter
+     * @return
+     */
 
-        double yVal = this.regression.predict(parameter);
-        TDistribution tDistribution = new TDistribution(this.n - 2);
-        double criticalValue = tDistribution.inverseCumulativeProbability(1 - this.significanceLevel / 2);
-        double s = Math.sqrt(this.SE / (this.n-1));
+    public String predictSimple(double parameter){
 
-        double lowerBound = yVal - criticalValue * s * Math.sqrt(1+(1/this.n)+ Math.pow((this.slope - avgX),2)/this.Sxx);
-        double upperBound = yVal + criticalValue * s * Math.sqrt(1+(1/this.n)+ Math.pow((this.slope - avgX),2)/this.Sxx);
+        if (n-2 != -2) {
+            double yVal = this.regression.predict(parameter);
+            TDistribution tDistribution = new TDistribution(this.n - 2);
+            double criticalValue = tDistribution.inverseCumulativeProbability(1 - this.significanceLevel / 2);
+            double s = Math.sqrt(this.SE / (this.n - 2));
+
+        double lowerBound = yVal - criticalValue * (s * Math.sqrt(1+((double) 1/this.n)+ Math.pow((parameter - avgX),2)/this.Sxx));
+        double upperBound = yVal + criticalValue * (s * Math.sqrt(1+((double) 1/this.n)+ Math.pow((parameter - avgX),2)/this.Sxx));
 
         // Output the confidence interval
         if(upperBound > lowerBound){
-            return( "\n\nPrediction:" + df.format(yVal) +"\nConfidence Interval ("+ (1-this.significanceLevel)*100 +"%) : [" + df.format(lowerBound) + ", " + df.format(upperBound) + "]");
+            return( "\n\nPrediction:" + df.format(yVal) +"\nConfidence Interval ("+ (1-this.significanceLevel)*100 +"%) : ]" + df.format(lowerBound) + ", " + df.format(upperBound) + "[");
 
         }else{
-            return( "\n\nPrediction:" + df.format(yVal) +"\nConfidence Interval ("+ (1-this.significanceLevel)*100 +"%) : [" + df.format(upperBound) + ", " +  df.format(lowerBound) + "]");
+            return( "\n\nPrediction:" + df.format(yVal) +"\nConfidence Interval ("+ (1-this.significanceLevel)*100 +"%) : ]" + df.format(upperBound) + ", " +  df.format(lowerBound) + "[");
 
+            }
+        } else {
+            return "[NO DATA]";
         }
     }
+
+    public int getN() {
+        return n;
+    }
+
+    /**
+     * This method creates the anova significance model
+     *
+     * @return - String
+     */
     public String anovaSingificanceModel(){
 
 
@@ -149,11 +187,11 @@ public class SimpleLinear {
         double SE = this.SE;
 
         double MSR = SR;
-        double MSE = SE/(this.n-1);
+        double MSE = SE/(this.n);
         double f = MSR/MSE;
 
         FDistribution fd = new FDistribution(1, this.n-2);
-        Double fSnedecor = fd.inverseCumulativeProbability(this.significanceLevel);
+        Double fSnedecor = fd.inverseCumulativeProbability(1-this.significanceLevel);
 
 
 
@@ -175,6 +213,13 @@ public class SimpleLinear {
 
         return message;
     }
+
+    /**
+     * this method returns the confidence interval for the interference
+     *
+     * @return - String
+     */
+
     public String calculateInterceptConfidenceInterval(){
 
         TDistribution tDistribution = new TDistribution(this.n - 1);
@@ -190,6 +235,12 @@ public class SimpleLinear {
                 "\n Intercept Confidence Interval (" + ((1-this.significanceLevel)*100) + ") -> ] " + df.format(confidenceIntervalMin) + "; " + df.format(confidenceIntervalMax) + "[";
     }
 
+    /**
+     * this method returns the confidence interval for the slope
+     *
+     * @return - String
+     */
+
     public String calculateSlopeConfidenceInterval(){
 
         TDistribution tDistribution = new TDistribution(this.n - 2);
@@ -204,6 +255,12 @@ public class SimpleLinear {
                 "\n Slope Standard Error: " + df.format(this.regression.getSlopeStdErr()) +
                 "\n Slope Confidence Interval (" + ((1-this.significanceLevel)*100) + ") -> ] " + df.format(confidenceIntervalMin) + "; " + df.format(confidenceIntervalMax) + "[";
     }
+
+    /**
+     * this method returns the hypothesis test for the intercept
+     *
+     * @return - String
+     */
 
     public String calculateInterceptHyopthesisTest(){
 
@@ -224,15 +281,21 @@ public class SimpleLinear {
                 + "\n t = " + df.format(t)
                 + "\n tc =" + df.format(tc);
 
-        if (t <= tc) {
-            message = message + ("\nt <= tc \n -> H0 accepted");
+        if (Math.abs(t) <= tc) {
+            message = message + ("\n|t| <= tc \n -> H0 accepted");
         } else {
-            message = message + ("\nt > tc \n -> H0 rejected");
+            message = message + ("\n|t| > tc \n -> H0 rejected");
         }
 
 
        return message;
     }
+
+    /**
+     * This method returns the forecast prices list
+     *
+     * @return - String
+     */
 
     public String getForecastList(){
         String message ="\nForecast | Sale";
@@ -244,7 +307,11 @@ public class SimpleLinear {
         return message;
     }
 
-
+    /**
+     * this method returns the hypothesis test for the slope
+     *
+     * @return - String
+     */
     public String calculateSlopeHyopthesisTest(){
 
         double t = this.slope / this.regression.getSlopeStdErr();
@@ -263,16 +330,26 @@ public class SimpleLinear {
                 + "\n t = " + df.format(t)
                 + "\n tc =" + df.format(tc);
 
-        if (t <= tc) {
-            message = message + ("\nt <= tc \n -> H0 accepted");
+        if (Math.abs(t) <= tc) {
+            message = message + ("\n|t| <= tc \n -> H0 accepted");
         } else {
-            message = message + ("\nt > tc \n -> H0 rejected");
+            message = message + ("\n|t| > tc \n -> H0 rejected");
         }
 
 
         return message;
     }
-    public String generateAnalysisReport(){
-        return this.toString() + this.calculateInterceptConfidenceInterval() + this.calculateSlopeConfidenceInterval() + this.calculateInterceptHyopthesisTest() + this.calculateSlopeHyopthesisTest() + this.anovaSingificanceModel() + this.getForecastList();
+
+    /**
+     * This method returns the analysis report
+     *
+     * @return - String
+     */
+    public String generateAnalysisReport() {
+        if (n - 1 != -1) {
+            return this.toString() + this.calculateInterceptConfidenceInterval() + this.calculateSlopeConfidenceInterval() + this.calculateInterceptHyopthesisTest() + this.calculateSlopeHyopthesisTest() + this.anovaSingificanceModel() + this.getForecastList();
+        } else {
+            return "[NO DATA]";
+        }
     }
 }
