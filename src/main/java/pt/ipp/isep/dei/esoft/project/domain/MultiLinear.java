@@ -113,7 +113,7 @@ public class MultiLinear {
         double f = MQR/MQE;
 
         FDistribution fd = new FDistribution(this.k, this.n-(this.k));
-        Double fSnedecor = fd.inverseCumulativeProbability(1-this.significanceLevel);
+        double fSnedecor = fd.inverseCumulativeProbability((double) 1-this.significanceLevel);
 
 
 
@@ -121,7 +121,7 @@ public class MultiLinear {
                 + "\n MQR:" + df.format(MQR)
                 + "\n MQE:" + df.format(MQE)
                 + "\n F0 :" + df.format(f)
-                + "\n F de Snedecore : " + df.format(fSnedecor)
+                + "\n F de Snedecor : " + df.format(fSnedecor)
                 + "\n-=-=-=--=-=-=-"
                 + "\nH0 : b = b0"
                 + "\nH1 : b != b0"
@@ -234,34 +234,12 @@ public class MultiLinear {
 
 
         if(upper<lower){
-            return("\nPredicted value: " + df.format(predictedY) + "\nConfidence interval("+(1- significanceLevel)*100 + "%): ]" + df.format(upper) + ", " + df.format(lower) + "[");
+            return("Predicted value: " + df.format(predictedY) + "\nConfidence interval("+(1- significanceLevel)*100 + "%): ]" + df.format(upper) + ", " + df.format(lower) + "[");
 
         }else{
-            return("\nPredicted value: " + df.format(predictedY) + "\nConfidence interval("+(1- significanceLevel)*100 + "%): [" + df.format(lower) + ", " + df.format(upper) + "]");
+            return("Predicted value: " + df.format(predictedY) + "\nConfidence interval("+(1- significanceLevel)*100 + "%): [" + df.format(lower) + ", " + df.format(upper) + "]");
 
         }
-    }
-
-
-    /**
-     *
-     * This method does manual matrix multiplication
-     * @param m1
-     * @param m2
-     * @return - double[][]
-     */
-    private double[][] manualMultiplication(double[][] m1, double[][] m2){
-        double[][] result = new double[m1[0].length][m2.length];
-        for (int i = 0; i < m1[0].length; i++) {
-            for (int j = 0; j < m2.length; j++) {
-                int sum = 0;
-                for (int k = 0; k < m2.length; k++) {
-                    sum += m1[i][k] * m2[k][j];
-                }
-                result[i][j] = sum;
-            }
-        }
-        return result;
     }
 
     /**

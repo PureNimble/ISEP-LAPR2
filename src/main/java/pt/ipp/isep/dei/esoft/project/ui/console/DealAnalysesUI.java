@@ -30,10 +30,10 @@ public class DealAnalysesUI implements Runnable {
 
         if (regressionModel != null) {
             if (regressionModel.equals("SimpleLinear")) {
-                regressionDTO = controller.regressionModel(requestParam(), 0.05, singleValueToPredict());
+                regressionDTO = controller.regressionModel(requestParam(), 0.01, singleValueToPredict());
             }
             else {
-                regressionDTO = controller.regressionModel(-1, 0.05, multiValueToPredict());
+                regressionDTO = controller.regressionModel(-1, 0.01, multiValueToPredict());
             }
 
             if (regressionDTO.getReport() != null){
@@ -41,7 +41,7 @@ public class DealAnalysesUI implements Runnable {
             }
 
             if (regressionDTO.getPrediction() != null){
-                System.out.println("Prediction: " + regressionDTO.getPrediction());
+                System.out.println("\nPrediction:\n " + regressionDTO.getPrediction());
             }
         }
 

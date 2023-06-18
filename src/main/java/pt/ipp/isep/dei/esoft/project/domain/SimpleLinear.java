@@ -160,10 +160,10 @@ public class SimpleLinear {
 
         // Output the confidence interval
         if(upperBound > lowerBound){
-            return( "\n\nPrediction:" + df.format(yVal) +"\nConfidence Interval ("+ (1-this.significanceLevel)*100 +"%) : ]" + df.format(lowerBound) + ", " + df.format(upperBound) + "[");
+            return( "Prediction:" + df.format(yVal) +"\nConfidence Interval ("+ (1-this.significanceLevel)*100 +"%) : ]" + df.format(lowerBound) + ", " + df.format(upperBound) + "[");
 
         }else{
-            return( "\n\nPrediction:" + df.format(yVal) +"\nConfidence Interval ("+ (1-this.significanceLevel)*100 +"%) : ]" + df.format(upperBound) + ", " +  df.format(lowerBound) + "[");
+            return( "Prediction:" + df.format(yVal) +"\nConfidence Interval ("+ (1-this.significanceLevel)*100 +"%) : ]" + df.format(upperBound) + ", " +  df.format(lowerBound) + "[");
 
             }
         } else {
@@ -187,7 +187,7 @@ public class SimpleLinear {
         double SE = this.SE;
 
         double MSR = SR;
-        double MSE = SE/(this.n);
+        double MSE = SE/(this.n-2);
         double f = MSR/MSE;
 
         FDistribution fd = new FDistribution(1, this.n-2);
@@ -269,7 +269,7 @@ public class SimpleLinear {
         TDistribution tDist = new TDistribution(this.n-2);
         double tc = tDist.inverseCumulativeProbability(1 - this.significanceLevel/2);
 
-        double s = Math.sqrt(this.SE / (this.n-1));
+        double s = Math.sqrt(this.SE / ((double) this.n-2));
 
         // Perform hypothesis test
         String message = ("\n\n||-=-=-=- Intercept Hypothesis Test -=-=-=-||"

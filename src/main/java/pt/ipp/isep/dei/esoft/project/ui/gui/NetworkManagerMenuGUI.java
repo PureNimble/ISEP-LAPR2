@@ -34,16 +34,6 @@ public class NetworkManagerMenuGUI implements Runnable, Initializable {
         loadPageListDeals();
     }
 
-    /**
-     * Deal Analyses.
-     *
-     * @param mouseEvent the mouse event
-     */
-    public void dealAnalyses(javafx.scene.input.MouseEvent mouseEvent) {
-        loadPageDealAnalyses();
-    }
-
-
     public void run() {
 
     }
@@ -87,24 +77,6 @@ public class NetworkManagerMenuGUI implements Runnable, Initializable {
             stage.show();
             divideStoresLoader.setController(new DivideStoresGUI());
 
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private void loadPageDealAnalyses() {
-
-
-        try {
-            FXMLLoader dealAnalysesLoader = new FXMLLoader();
-            dealAnalysesLoader.setLocation(getClass().getResource("/DealAnalyses.fxml"));
-            Parent root = dealAnalysesLoader.load();
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-            dealAnalysesLoader.setController(new DealAnalysesGUI());
 
         } catch (IOException e) {
             throw new RuntimeException(e);

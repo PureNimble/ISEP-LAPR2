@@ -15,17 +15,12 @@
          <children>
             <AnchorPane layoutX="37.0" prefHeight="400.0" prefWidth="220.0" style="-fx-background-color: gray;">
                <children>
-                  <Button layoutX="21.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#listDeals" prefHeight="52.0" prefWidth="209.0" style="-fx-background-color: transparent;" text="List all deals made">
+                  <Button layoutX="9.0" layoutY="155.0" mnemonicParsing="false" onMouseClicked="#listDeals" prefHeight="52.0" prefWidth="209.0" style="-fx-background-color: transparent;" text="List all deals made">
                      <font>
                         <Font name="System Bold Italic" size="19.0" />
                      </font>
                   </Button>
-                  <Button contentDisplay="TOP" layoutX="22.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#divideStores" prefHeight="94.0" prefWidth="206.0" style="-fx-background-color: transparent;" text="Divide Stores into two subsets" textAlignment="CENTER" wrapText="true">
-                     <font>
-                        <Font name="System Bold Italic" size="19.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="generateAnalysesText" contentDisplay="TOP" layoutX="22.0" layoutY="255.0" mnemonicParsing="false" onMouseClicked="#dealAnalyses" prefHeight="94.0" prefWidth="206.0" style="-fx-background-color: transparent;" text="Generate Deal Analyses" textAlignment="CENTER" wrapText="true">
+                  <Button contentDisplay="TOP" layoutX="11.0" layoutY="215.0" mnemonicParsing="false" onMouseClicked="#divideStores" prefHeight="94.0" prefWidth="206.0" style="-fx-background-color: transparent;" text="Divide Stores into two subsets" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font name="System Bold Italic" size="19.0" />
                      </font>
@@ -42,20 +37,15 @@
                   <DropShadow />
                </effect>
                <children>
-                  <ImageView fitHeight="36.0" fitWidth="62.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="36.0" fitWidth="62.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@PhotosApp/listDeals.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="44.0" fitWidth="57.0" layoutX="9.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="44.0" fitWidth="57.0" layoutX="9.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@PhotosApp/Dividers_Vector_Art_PNG__Vector_Divide_Icon__Calculate__Divide__Math_Icon_PNG_Image_For_Free_Download-removebg-preview.png" />
                      </image></ImageView>
-                  <ImageView fx:id="dealAnalysesMenuIcon" fitHeight="44.0" fitWidth="57.0" layoutX="9.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@PhotosApp/search.png" />
-                     </image>
-                  </ImageView>
                </children>
             </AnchorPane>
             <Label layoutX="277.0" layoutY="66.0" text="Network Manager" textOverrun="WORD_ELLIPSIS">

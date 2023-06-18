@@ -15,7 +15,6 @@ import pt.ipp.isep.dei.esoft.project.ui.console.menu.*;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 import pt.isep.lei.esoft.auth.mappers.dto.UserRoleDTO;
 
-import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.*;
 
@@ -24,6 +23,8 @@ public class MainMenuGUI implements Runnable,Initializable {
     private Scene networkManagerScene;
 
     private Scene agentScene;
+
+    private Scene storeManagerScene;
 
     @FXML
     private TextField txtEmail;
@@ -49,12 +50,16 @@ public class MainMenuGUI implements Runnable,Initializable {
         try{
             FXMLLoader networkManagerLoader = new FXMLLoader();
             FXMLLoader agentLoader = new FXMLLoader();
+            FXMLLoader storeManagerLoader = new FXMLLoader();
             networkManagerLoader.setLocation(getClass().getResource("/NetworkManagerMenuGUI.fxml"));
             agentLoader.setLocation(getClass().getResource("/AgentMenuGUI.fxml"));
+            storeManagerLoader.setLocation(getClass().getResource("/StoreManagerMenu.fxml"));
             Parent networkManagerRoot = networkManagerLoader.load();
             Parent agentRoot = agentLoader.load();
+            Parent storeManagerRoot = storeManagerLoader.load();
             networkManagerScene = new Scene(networkManagerRoot);
             agentScene = new Scene(agentRoot);
+            storeManagerScene = new Scene(storeManagerRoot);
 
 
         }catch (Exception e){
@@ -76,6 +81,8 @@ public class MainMenuGUI implements Runnable,Initializable {
                 rolesUI.add(new MenuItem(AuthenticationController.ROLE_NETWORK_MANAGER, new NetworkManagerMenuGUI()));
             } else if (role.getDescription().equals(AuthenticationController.ROLE_AGENT)) {
                 rolesUI.add(new MenuItem(AuthenticationController.ROLE_AGENT, new AgentMenuGUI()));
+            } else if (role.getDescription().equals(AuthenticationController.ROLE_STORE_MANAGER)) {
+                rolesUI.add(new MenuItem(AuthenticationController.ROLE_STORE_MANAGER, new StoreManagerMenuGUI()));
             }
         }
 
@@ -106,6 +113,13 @@ public class MainMenuGUI implements Runnable,Initializable {
                     Stage mainStage = getMainStage();
                     mainStage.setScene(agentScene);
                     mainStage.setTitle("Agent Menu");
+                    mainStage.show();
+                } else if (item.toString().equals(AuthenticationController.ROLE_STORE_MANAGER)) {
+                    txtEmail.clear();
+                    passwordField.clear();
+                    Stage mainStage = getMainStage();
+                    mainStage.setScene(storeManagerScene);
+                    mainStage.setTitle("Store Manager Menu");
                     mainStage.show();
                 }
             }
