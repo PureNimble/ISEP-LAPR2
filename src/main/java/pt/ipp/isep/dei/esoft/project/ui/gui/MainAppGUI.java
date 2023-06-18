@@ -33,11 +33,12 @@ public class MainAppGUI extends Application {
      *
      * @param args the args
      */
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
             Bootstrap bootstrap = new Bootstrap();
             bootstrap.run();
             Repositories.getInstance().deserialize();
             launch();
+            Repositories.getInstance().serialize();
     }
 
 

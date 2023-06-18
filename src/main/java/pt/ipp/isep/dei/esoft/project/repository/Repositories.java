@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
 
+import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
 import pt.ipp.isep.dei.esoft.project.domain.Store;
 
 import java.io.*;
@@ -235,8 +236,6 @@ public class Repositories implements Serializable {
 
     public void serialize() throws IOException {
 
-        int i = 0;
-
         FileOutputStream fileOutputStream = new FileOutputStream(SERIALIZATION_FILE_NAME);
         ObjectOutputStream out = new ObjectOutputStream(fileOutputStream);
         out.writeObject(typeOfBusinessRepository);
@@ -255,6 +254,9 @@ public class Repositories implements Serializable {
 
         out.writeObject(stores);
 
+        List<PublishedAnnouncement> publishedAnnouncements = publishedAnnouncementRepository.getPublishedAnnouncements();
+
+        out.writeObject(publishedAnnouncements);
 
 
         out.close();
@@ -267,30 +269,37 @@ public class Repositories implements Serializable {
         try {
 
             FileInputStream fileInputStream = new FileInputStream(SERIALIZATION_FILE_NAME);
-            ObjectInputStream in = new ObjectInputStream(fileInputStream);
+            if (fileInputStream.getChannel().size() > 0) {
+                ObjectInputStream in = new ObjectInputStream(fileInputStream);
 
-            typeOfBusinessRepository = (TypeOfBusinessRepository) in.readObject();
-            roleRepository = (RoleRepository) in.readObject();
-            stateRepository = (StateRepository) in.readObject();
-            employeeRepository = (EmployeeRepository) in.readObject();
-            messageRepository = (MessageRepository) in.readObject();
-            offerRepository = (OfferRepository) in.readObject();
-            comissionRepository = (ComissionRepository) in.readObject();
-            userRepository = (UserRepository) in.readObject();
-            propertyTypeRepository = (PropertyTypeRepository) in.readObject();
-            announcementRequestRepository = (AnnouncementRequestRepository) in.readObject();
-            availableEquipmentRepository = (AvailableEquipmentRepository) in.readObject();
+                typeOfBusinessRepository = (TypeOfBusinessRepository) in.readObject();
+                roleRepository = (RoleRepository) in.readObject();
+                stateRepository = (StateRepository) in.readObject();
+                employeeRepository = (EmployeeRepository) in.readObject();
+                messageRepository = (MessageRepository) in.readObject();
+                offerRepository = (OfferRepository) in.readObject();
+                comissionRepository = (ComissionRepository) in.readObject();
+                userRepository = (UserRepository) in.readObject();
+                propertyTypeRepository = (PropertyTypeRepository) in.readObject();
+                announcementRequestRepository = (AnnouncementRequestRepository) in.readObject();
+                availableEquipmentRepository = (AvailableEquipmentRepository) in.readObject();
 
-            List<Store> stores = (List<Store>) in.readObject();
+                List<Store> stores = (List<Store>) in.readObject();
 
-            for (Store store:stores) {
-                storeRepository.add(store);
+                for (Store store : stores) {
+                    storeRepository.add(store);
+                }
+
+                List<PublishedAnnouncement> publishedAnnouncements = (List<PublishedAnnouncement>) in.readObject();
+
+                for (PublishedAnnouncement publishedAnnouncement : publishedAnnouncements) {
+                    publishedAnnouncementRepository.add(publishedAnnouncement);
+                }
+
+
+                in.close();
+                fileInputStream.close();
             }
-
-            in.close();
-            fileInputStream.close();
-
-
 
 
         } catch (Exception e) {

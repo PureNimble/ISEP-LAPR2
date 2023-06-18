@@ -1,13 +1,11 @@
 package pt.ipp.isep.dei.esoft.project.ui.gui;
 
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -59,14 +57,14 @@ public class NetworkManagerMenuGUI implements Runnable, Initializable {
 
         try {
             FXMLLoader listDealsLoader = new FXMLLoader();
-            listDealsLoader.setLocation(getClass().getResource("/ListDealsGUITeste.fxml"));
+            listDealsLoader.setLocation(getClass().getResource("/ListDealsGUI.fxml"));
             Parent root = listDealsLoader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setTitle("List Deals Menu");
             stage.setScene(scene);
             stage.show();
-//            listDealsLoader.setController(new ListDealsGUI());
+            listDealsLoader.setController(new ListDealsGUI());
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -84,7 +82,7 @@ public class NetworkManagerMenuGUI implements Runnable, Initializable {
             stage.setTitle("Divide Stores Menu");
             stage.setScene(scene);
             stage.show();
-            divideStoresLoader.setController(new dwadGUI());
+            divideStoresLoader.setController(new DivideStoresGUI());
 
 
         } catch (IOException e) {

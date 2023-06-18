@@ -45,21 +45,22 @@ public class PublishAnnouncementRequestUI implements Runnable {
     public void run() {
 
 
-        System.out.println("Publish Announcement Request: ");
+        if (controller.toDto().size() != 0) {
+            System.out.println("Publish Announcement Request: ");
+            announcementRequestDescription = displayAndSelectAnnouncementRequests();
 
+            option = requestOption();
 
-        announcementRequestDescription = displayAndSelectAnnouncementRequests();
-
-        option = requestOption();
-
-        if (option.equals("A")) {
-            comissionDescription = displayAndSelectComission();
-            submitData();
-        } else {
-            requestData();
-            sendEmailJustification();
+            if (option.equals("A")) {
+                comissionDescription = displayAndSelectComission();
+                submitData();
+            } else {
+                requestData();
+                sendEmailJustification();
+            }
+        }else {
+            System.out.println("There is no announcement requests for you!!!");
         }
-
 
     }
 
@@ -70,12 +71,14 @@ public class PublishAnnouncementRequestUI implements Runnable {
 
     private void sendEmailJustification() {
 
-        controller.rejectPublishAnnouncementRequest(announcementRequestDescription);
+
 
         try {
-            FileWriter fw = new FileWriter("emailJustificationAnnouncementRequest.txt");
+            FileWriter fw = new FileWriter("emailJustificationAnnouncementRequest" + controller.getAnnouncementRequestDtoByDescription(announcementRequestDescription).getClient().getName() + ".txt");
             PrintWriter pw = new PrintWriter(fw);
-
+            pw.println("------------------------------------------------------------------------------------------");
+            pw.println("From: " + controller.getCurrentSessionEmail());
+            pw.println("For:" + controller.getAnnouncementRequestDtoByDescription(announcementRequestDescription).getClient().getClientEmail());
             pw.println("---------- Your Announcement Request was declined -----");
             pw.println();
             pw.println(controller.getAnnouncementRequestByDescription(announcementRequestDescription).toString());
@@ -84,13 +87,14 @@ public class PublishAnnouncementRequestUI implements Runnable {
             pw.println(messageJustification);
             pw.println();
             pw.println("Best regards,");
-            pw.println("Contact: ");
+            pw.println("------------------------------------------------------------------------------------------");
             pw.close();
 
         } catch (IOException ex) {
             System.out.println("Error to write password to file: " + ex.getMessage());
         }
 
+        controller.rejectPublishAnnouncementRequest(announcementRequestDescription);
     }
 
     /**

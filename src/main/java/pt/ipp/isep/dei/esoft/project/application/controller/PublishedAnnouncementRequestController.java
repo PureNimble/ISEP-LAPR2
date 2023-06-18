@@ -341,4 +341,28 @@ public class PublishedAnnouncementRequestController {
     }
 
 
+    /**
+     * Rejects a publish announcement request based on the provided announcement request description.
+     *
+     * @param announcementRequestDtoDescription The description of the announcement request DTO.
+     */
+    public AnnouncementRequestDto getAnnouncementRequestDtoByDescription(int announcementRequestDtoDescription){
+
+
+        List<AnnouncementRequestDto> announcementRequestDtos = toDto();
+
+        AnnouncementRequestMapper announcementRequestMapper = getAnnouncementRequestMapper();
+
+        AnnouncementRequestDto announcementRequestDto =  announcementRequestMapper.getAnnouncementRequestDtoByDescription(announcementRequestDtos,announcementRequestDtoDescription);
+
+
+        return announcementRequestDto;
+
+
+    }
+
+
+
+
+
 }

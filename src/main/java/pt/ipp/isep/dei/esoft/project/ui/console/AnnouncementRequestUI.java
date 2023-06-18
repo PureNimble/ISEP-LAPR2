@@ -625,7 +625,7 @@ public class AnnouncementRequestUI implements Runnable {
 
         int i = 1;
         for (Employee employee : agents) {
-            System.out.println(i + " - " + employee.toString());
+            System.out.println(i + " - " + employee.getName()+" Email: "+employee.getEmail());
             i++;
         }
     }
