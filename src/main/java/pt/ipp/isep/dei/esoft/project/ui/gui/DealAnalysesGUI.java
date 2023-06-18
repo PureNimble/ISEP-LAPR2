@@ -1,11 +1,16 @@
 package pt.ipp.isep.dei.esoft.project.ui.gui;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import pt.ipp.isep.dei.esoft.project.application.controller.DealAnalysesController;
+import pt.ipp.isep.dei.esoft.project.ui.console.ReadFileUI;
 import pt.ipp.isep.dei.esoft.project.domain.RegressionDTO;
 
 import java.net.URL;
@@ -22,10 +27,16 @@ public class DealAnalysesGUI implements Initializable {
     private final DealAnalysesController controller = new DealAnalysesController();
 
     @FXML
+    private Pane primaryPane;
+
+    @FXML
     private AnchorPane dealAnalysesPane;
 
     @FXML
     private AnchorPane multiLinearPane;
+
+    @FXML
+    private AnchorPane reportPane;
 
     @FXML
     private AnchorPane singleLinearPane;
@@ -79,10 +90,18 @@ public class DealAnalysesGUI implements Initializable {
     @FXML
     private ToggleGroup param;
 
+    @FXML
+    private TableView<Object> tvReport;
+
+    @FXML
+    private TableColumn<RegressionDTO, String> report;
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        new ReadFileUI().run();
         multiLinearPane.setVisible(false);
         singleLinearPane.setVisible(false);
+        reportPane.setVisible(false);
         chosenModelNextButton.setDisable(true);
         modelChoiceBox.getItems().addAll(regressionModel);
         modelChoiceBox.setOnAction(event -> chosenModelNextButton.setDisable(false));
@@ -132,14 +151,7 @@ public class DealAnalysesGUI implements Initializable {
             return;
         }
         RegressionDTO regressionDTO = controller.regressionModel(-1, 0.05, valuesToPredict);
-
-        if (regressionDTO.getReport() != null){
-                System.out.println("\n" + regressionDTO.getReport());
-            }
-
-        if (regressionDTO.getPrediction() != null){
-            System.out.println("Prediction: " + regressionDTO.getPrediction());
-        }
+        displayResults(regressionDTO);
     }
 
     public void simpleLinear() {
@@ -177,14 +189,36 @@ public class DealAnalysesGUI implements Initializable {
         double[] value ={option};
 
         RegressionDTO regressionDTO = controller.regressionModel(selectedNumber, 0.05, value);
+        displayResults(regressionDTO);
+    }
 
-        if (regressionDTO.getReport() != null){
-                System.out.println("\n" + regressionDTO.getReport());
-            }
+    public void displayResults(RegressionDTO regressionDTO) {
 
-        if (regressionDTO.getPrediction() != null){
-            System.out.println("Prediction: " + regressionDTO.getPrediction());
+        if (regressionDTO.getReport() == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Something went wrong");
+            alert.setHeaderText("Error getting the report");
+            alert.setContentText("Returning to Menu");
+            alert.showAndWait();
+            new NetworkManagerMenuGUI();
         }
+
+        if (regressionDTO.getPrediction() == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Something went wrong");
+            alert.setHeaderText("Error getting predictions");
+            alert.setContentText("Returning to Menu");
+            alert.showAndWait();
+            new NetworkManagerMenuGUI();
+        }
+
+        multiLinearPane.setVisible(false);
+        singleLinearPane.setVisible(false);
+        reportPane.setVisible(true);
+
+        ObservableList<Object> reportValues = FXCollections.observableArrayList(regressionDTO);
+        report.setCellValueFactory(new PropertyValueFactory<RegressionDTO, String>("Report"));
+        tvReport.setItems(reportValues);
     }
 
 }
