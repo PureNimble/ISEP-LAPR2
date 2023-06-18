@@ -234,10 +234,10 @@ public class MultiLinear {
 
 
         if(upper<lower){
-            return("\nPredicted value: " + df.format(predictedY) + "\nConfidence interval("+(1- significanceLevel)*100 + "%): ]" + df.format(upper) + ", " + df.format(lower) + "[");
+            return("Predicted value: " + df.format(predictedY) + "\nConfidence interval("+(1- significanceLevel)*100 + "%): ]" + df.format(upper) + ", " + df.format(lower) + "[");
 
         }else{
-            return("\nPredicted value: " + df.format(predictedY) + "\nConfidence interval("+(1- significanceLevel)*100 + "%): [" + df.format(lower) + ", " + df.format(upper) + "]");
+            return("Predicted value: " + df.format(predictedY) + "\nConfidence interval("+(1- significanceLevel)*100 + "%): [" + df.format(lower) + ", " + df.format(upper) + "]");
 
         }
     }
