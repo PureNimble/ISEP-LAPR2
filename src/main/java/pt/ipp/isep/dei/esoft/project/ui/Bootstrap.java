@@ -266,27 +266,367 @@ public class Bootstrap {
     private void addStates() {
 
         StateRepository stateRepository = Repositories.getInstance().getStateRepository();
-        List<City> cities = new ArrayList<>();
-        cities.add(new City("Hoover"));
-        cities.add(new City("Mulga"));
-        cities.add(new City("Clay"));
-        cities.add(new City("Cardiff"));
 
-        List<District> districts = new ArrayList<>();
-        districts.add(new District("Jefferson",cities));
-        stateRepository.add(new State("Alabama AL",districts));
+        List<City> alDistrict1Cities = new ArrayList<>();
+        alDistrict1Cities.add(new City("Birmingham"));
+        alDistrict1Cities.add(new City("Hoover"));
+        alDistrict1Cities.add(new City("Vestavia Hills"));
+        alDistrict1Cities.add(new City("Mountain Brook"));
+        alDistrict1Cities.add(new City("Trussville"));
 
-        List<City> cities1 = new ArrayList<>();
-        cities1.add(new City("Marana"));
-        cities1.add(new City("Three Points"));
-        cities1.add(new City("Summit"));
-        cities1.add(new City("Oracle"));
-        cities1.add(new City("Vail"));
+        List<City> alDistrict2Cities = new ArrayList<>();
+        alDistrict2Cities.add(new City("Mobile"));
+        alDistrict2Cities.add(new City("Prichard"));
+        alDistrict2Cities.add(new City("Daphne"));
+        alDistrict2Cities.add(new City("Fairhope"));
+        alDistrict2Cities.add(new City("Spanish Fort"));
+
+        List<City> alDistrict3Cities = new ArrayList<>();
+        alDistrict3Cities.add(new City("Montgomery"));
+        alDistrict3Cities.add(new City("Prattville"));
+        alDistrict3Cities.add(new City("Wetumpka"));
+        alDistrict3Cities.add(new City("Millbrook"));
+        alDistrict3Cities.add(new City("Tallassee"));
+
+        List<City> alDistrict4Cities = new ArrayList<>();
+        alDistrict4Cities.add(new City("Huntsville"));
+        alDistrict4Cities.add(new City("Madison"));
+        alDistrict4Cities.add(new City("Decatur"));
+        alDistrict4Cities.add(new City("Athens"));
+        alDistrict4Cities.add(new City("Hartselle"));
+
+        List<City> alDistrict5Cities = new ArrayList<>();
+        alDistrict5Cities.add(new City("Tuscaloosa"));
+        alDistrict5Cities.add(new City("Northport"));
+        alDistrict5Cities.add(new City("Moundville"));
+        alDistrict5Cities.add(new City("Brookwood"));
+        alDistrict5Cities.add(new City("Coker"));
+
+        List<District> alabamaDistricts = new ArrayList<>();
+        alabamaDistricts.add(new District("Jefferson County", alDistrict1Cities));
+        alabamaDistricts.add(new District("Mobile County", alDistrict2Cities));
+        alabamaDistricts.add(new District("Montgomery County", alDistrict3Cities));
+        alabamaDistricts.add(new District("Madison County", alDistrict4Cities));
+        alabamaDistricts.add(new District("Tuscaloosa County", alDistrict5Cities));
+
+        stateRepository.add(new State("Alabama AL", alabamaDistricts));
+
+        // Estado 1: Califórnia (CA)
+        List<City> caDistrict1Cities = new ArrayList<>();
+        caDistrict1Cities.add(new City("Los Angeles"));
+        caDistrict1Cities.add(new City("Long Beach"));
+        caDistrict1Cities.add(new City("Santa Monica"));
+        caDistrict1Cities.add(new City("Beverly Hills"));
+        caDistrict1Cities.add(new City("Hollywood"));
+
+        List<City> caDistrict2Cities = new ArrayList<>();
+        caDistrict2Cities.add(new City("San Francisco"));
+        caDistrict2Cities.add(new City("Oakland"));
+        caDistrict2Cities.add(new City("Berkeley"));
+        caDistrict2Cities.add(new City("Palo Alto"));
+        caDistrict2Cities.add(new City("San Mateo"));
+
+        List<City> caDistrict3Cities = new ArrayList<>();
+        caDistrict3Cities.add(new City("San Diego"));
+        caDistrict3Cities.add(new City("La Jolla"));
+        caDistrict3Cities.add(new City("Carlsbad"));
+        caDistrict3Cities.add(new City("Encinitas"));
+        caDistrict3Cities.add(new City("Chula Vista"));
+
+        List<City> caDistrict4Cities = new ArrayList<>();
+        caDistrict4Cities.add(new City("Sacramento"));
+        caDistrict4Cities.add(new City("Roseville"));
+        caDistrict4Cities.add(new City("Folsom"));
+        caDistrict4Cities.add(new City("Elk Grove"));
+        caDistrict4Cities.add(new City("Rocklin"));
+
+        List<City> caDistrict5Cities = new ArrayList<>();
+        caDistrict5Cities.add(new City("San Jose"));
+        caDistrict5Cities.add(new City("Santa Clara"));
+        caDistrict5Cities.add(new City("Sunnyvale"));
+        caDistrict5Cities.add(new City("Mountain View"));
+        caDistrict5Cities.add(new City("Cupertino"));
+
+        List<District> californiaDistricts = new ArrayList<>();
+        californiaDistricts.add(new District("Los Angeles County", caDistrict1Cities));
+        californiaDistricts.add(new District("Bay Area", caDistrict2Cities));
+        californiaDistricts.add(new District("San Diego County", caDistrict3Cities));
+        californiaDistricts.add(new District("Sacramento County", caDistrict4Cities));
+        californiaDistricts.add(new District("Santa Clara County", caDistrict5Cities));
 
 
-        List<District> districts1 = new ArrayList<>();
-        districts1.add(new District("Pima",cities1));
-        stateRepository.add(new State("Arizona AZ",districts1));
+        stateRepository.add(new State("California CA", californiaDistricts));
+
+// Estado 2: Texas (TX)
+        List<City> txDistrict1Cities = new ArrayList<>();
+        txDistrict1Cities.add(new City("Houston"));
+        txDistrict1Cities.add(new City("Sugar Land"));
+        txDistrict1Cities.add(new City("Pasadena"));
+        txDistrict1Cities.add(new City("The Woodlands"));
+        txDistrict1Cities.add(new City("Pearland"));
+
+        List<City> txDistrict2Cities = new ArrayList<>();
+        txDistrict2Cities.add(new City("Dallas"));
+        txDistrict2Cities.add(new City("Fort Worth"));
+        txDistrict2Cities.add(new City("Arlington"));
+        txDistrict2Cities.add(new City("Plano"));
+        txDistrict2Cities.add(new City("Irving"));
+
+        List<City> txDistrict3Cities = new ArrayList<>();
+        txDistrict3Cities.add(new City("Austin"));
+        txDistrict3Cities.add(new City("Round Rock"));
+        txDistrict3Cities.add(new City("Cedar Park"));
+        txDistrict3Cities.add(new City("Georgetown"));
+        txDistrict3Cities.add(new City("Pflugerville"));
+
+        List<City> txDistrict4Cities = new ArrayList<>();
+        txDistrict4Cities.add(new City("San Antonio"));
+        txDistrict4Cities.add(new City("New Braunfels"));
+        txDistrict4Cities.add(new City("San Marcos"));
+        txDistrict4Cities.add(new City("Seguin"));
+        txDistrict4Cities.add(new City("Boerne"));
+
+        List<City> txDistrict5Cities = new ArrayList<>();
+        txDistrict5Cities.add(new City("El Paso"));
+        txDistrict5Cities.add(new City("Juarez"));
+        txDistrict5Cities.add(new City("Las Cruces"));
+        txDistrict5Cities.add(new City("Socorro"));
+        txDistrict5Cities.add(new City("Horizon City"));
+
+        List<District> texasDistricts = new ArrayList<>();
+        texasDistricts.add(new District("Harris County", txDistrict1Cities));
+        texasDistricts.add(new District("Dallas County", txDistrict2Cities));
+        texasDistricts.add(new District("Travis County", txDistrict3Cities));
+        texasDistricts.add(new District("Bexar County", txDistrict4Cities));
+        texasDistricts.add(new District("El Paso County", txDistrict5Cities));
+
+        stateRepository.add(new State("Texas TX", texasDistricts));
+
+        // Estado 3: Florida (FL)
+        List<City> flDistrict1Cities = new ArrayList<>();
+        flDistrict1Cities.add(new City("Miami"));
+        flDistrict1Cities.add(new City("Fort Lauderdale"));
+        flDistrict1Cities.add(new City("Hollywood"));
+        flDistrict1Cities.add(new City("Pompano Beach"));
+        flDistrict1Cities.add(new City("Miramar"));
+
+        List<City> flDistrict2Cities = new ArrayList<>();
+        flDistrict2Cities.add(new City("Orlando"));
+        flDistrict2Cities.add(new City("Kissimmee"));
+        flDistrict2Cities.add(new City("Winter Park"));
+        flDistrict2Cities.add(new City("Altamonte Springs"));
+        flDistrict2Cities.add(new City("Oviedo"));
+
+        List<City> flDistrict3Cities = new ArrayList<>();
+        flDistrict3Cities.add(new City("Tampa"));
+        flDistrict3Cities.add(new City("St. Petersburg"));
+        flDistrict3Cities.add(new City("Clearwater"));
+        flDistrict3Cities.add(new City("Largo"));
+        flDistrict3Cities.add(new City("Brandon"));
+
+        List<City> flDistrict4Cities = new ArrayList<>();
+        flDistrict4Cities.add(new City("Jacksonville"));
+        flDistrict4Cities.add(new City("St. Augustine"));
+        flDistrict4Cities.add(new City("Fernandina Beach"));
+        flDistrict4Cities.add(new City("Orange Park"));
+        flDistrict4Cities.add(new City("Ponte Vedra Beach"));
+
+        List<City> flDistrict5Cities = new ArrayList<>();
+        flDistrict5Cities.add(new City("Tallahassee"));
+        flDistrict5Cities.add(new City("Leon"));
+        flDistrict5Cities.add(new City("Gadsden"));
+        flDistrict5Cities.add(new City("Wakulla"));
+        flDistrict5Cities.add(new City("Franklin"));
+
+        List<District> floridaDistricts = new ArrayList<>();
+        floridaDistricts.add(new District("Miami-Dade County", flDistrict1Cities));
+        floridaDistricts.add(new District("Orange County", flDistrict2Cities));
+        floridaDistricts.add(new District("Hillsborough County", flDistrict3Cities));
+        floridaDistricts.add(new District("Duval County", flDistrict4Cities));
+        floridaDistricts.add(new District("Leon County", flDistrict5Cities));
+
+        stateRepository.add(new State("Florida FL", floridaDistricts));
+
+// Estado 4: New York (NY)
+        List<City> nyDistrict1Cities = new ArrayList<>();
+        nyDistrict1Cities.add(new City("New York City"));
+        nyDistrict1Cities.add(new City("Manhattan"));
+        nyDistrict1Cities.add(new City("Brooklyn"));
+        nyDistrict1Cities.add(new City("Queens"));
+        nyDistrict1Cities.add(new City("Bronx"));
+
+        List<City> nyDistrict2Cities = new ArrayList<>();
+        nyDistrict2Cities.add(new City("Buffalo"));
+        nyDistrict2Cities.add(new City("Niagara Falls"));
+        nyDistrict2Cities.add(new City("Amherst"));
+        nyDistrict2Cities.add(new City("Cheektowaga"));
+        nyDistrict2Cities.add(new City("Lockport"));
+
+        List<City> nyDistrict3Cities = new ArrayList<>();
+        nyDistrict3Cities.add(new City("Rochester"));
+        nyDistrict3Cities.add(new City("Irondequoit"));
+        nyDistrict3Cities.add(new City("Greece"));
+        nyDistrict3Cities.add(new City("Webster"));
+        nyDistrict3Cities.add(new City("Penfield"));
+
+        List<City> nyDistrict4Cities = new ArrayList<>();
+        nyDistrict4Cities.add(new City("Albany"));
+        nyDistrict4Cities.add(new City("Schenectady"));
+        nyDistrict4Cities.add(new City("Troy"));
+        nyDistrict4Cities.add(new City("Colonie"));
+        nyDistrict4Cities.add(new City("Guilderland"));
+
+        List<City> nyDistrict5Cities = new ArrayList<>();
+        nyDistrict5Cities.add(new City("Syracuse"));
+        nyDistrict5Cities.add(new City("Utica"));
+        nyDistrict5Cities.add(new City("Rome"));
+        nyDistrict5Cities.add(new City("Cicero"));
+        nyDistrict5Cities.add(new City("Clay"));
+
+        List<District> newYorkDistricts = new ArrayList<>();
+        newYorkDistricts.add(new District("New York County", nyDistrict1Cities));
+        newYorkDistricts.add(new District("Erie County", nyDistrict2Cities));
+        newYorkDistricts.add(new District("Monroe County", nyDistrict3Cities));
+        newYorkDistricts.add(new District("Albany County", nyDistrict4Cities));
+        newYorkDistricts.add(new District("Onondaga County", nyDistrict5Cities));
+
+        stateRepository.add(new State("New York NY", newYorkDistricts));
+
+
+        // Estado 5: Illinois (IL)
+        List<City> ilDistrict1Cities = new ArrayList<>();
+        ilDistrict1Cities.add(new City("Chicago"));
+        ilDistrict1Cities.add(new City("Naperville"));
+        ilDistrict1Cities.add(new City("Aurora"));
+        ilDistrict1Cities.add(new City("Evanston"));
+        ilDistrict1Cities.add(new City("Skokie"));
+
+        List<City> ilDistrict2Cities = new ArrayList<>();
+        ilDistrict2Cities.add(new City("Springfield"));
+        ilDistrict2Cities.add(new City("Decatur"));
+        ilDistrict2Cities.add(new City("Bloomington"));
+        ilDistrict2Cities.add(new City("Champaign"));
+        ilDistrict2Cities.add(new City("Urbana"));
+
+        List<City> ilDistrict3Cities = new ArrayList<>();
+        ilDistrict3Cities.add(new City("Rockford"));
+        ilDistrict3Cities.add(new City("Belvidere"));
+        ilDistrict3Cities.add(new City("Loves Park"));
+        ilDistrict3Cities.add(new City("Machesney Park"));
+        ilDistrict3Cities.add(new City("Freeport"));
+
+        List<City> ilDistrict4Cities = new ArrayList<>();
+        ilDistrict4Cities.add(new City("Peoria"));
+        ilDistrict4Cities.add(new City("Bloomington"));
+        ilDistrict4Cities.add(new City("Pekin"));
+        ilDistrict4Cities.add(new City("Washington"));
+        ilDistrict4Cities.add(new City("East Peoria"));
+
+        List<City> ilDistrict5Cities = new ArrayList<>();
+        ilDistrict5Cities.add(new City("Naperville"));
+        ilDistrict5Cities.add(new City("Aurora"));
+        ilDistrict5Cities.add(new City("Joliet"));
+        ilDistrict5Cities.add(new City("Bolingbrook"));
+        ilDistrict5Cities.add(new City("Plainfield"));
+
+        List<District> illinoisDistricts = new ArrayList<>();
+        illinoisDistricts.add(new District("Cook County", ilDistrict1Cities));
+        illinoisDistricts.add(new District("Sangamon County", ilDistrict2Cities));
+        illinoisDistricts.add(new District("Winnebago County", ilDistrict3Cities));
+        illinoisDistricts.add(new District("Peoria County", ilDistrict4Cities));
+        illinoisDistricts.add(new District("Will County", ilDistrict5Cities));
+
+        stateRepository.add(new State("Illinois IL", illinoisDistricts));
+
+// Estado 6: Colorado (CO)
+        List<City> coDistrict1Cities = new ArrayList<>();
+        coDistrict1Cities.add(new City("Denver"));
+        coDistrict1Cities.add(new City("Aurora"));
+        coDistrict1Cities.add(new City("Lakewood"));
+        coDistrict1Cities.add(new City("Thornton"));
+        coDistrict1Cities.add(new City("Westminster"));
+
+        List<City> coDistrict2Cities = new ArrayList<>();
+        coDistrict2Cities.add(new City("Colorado Springs"));
+        coDistrict2Cities.add(new City("Pueblo"));
+        coDistrict2Cities.add(new City("Canon City"));
+        coDistrict2Cities.add(new City("Fountain"));
+        coDistrict2Cities.add(new City("Woodland Park"));
+
+        List<City> coDistrict3Cities = new ArrayList<>();
+        coDistrict3Cities.add(new City("Boulder"));
+        coDistrict3Cities.add(new City("Longmont"));
+        coDistrict3Cities.add(new City("Louisville"));
+        coDistrict3Cities.add(new City("Lafayette"));
+        coDistrict3Cities.add(new City("Superior"));
+
+        List<City> coDistrict4Cities = new ArrayList<>();
+        coDistrict4Cities.add(new City("Fort Collins"));
+        coDistrict4Cities.add(new City("Loveland"));
+        coDistrict4Cities.add(new City("Greeley"));
+        coDistrict4Cities.add(new City("Windsor"));
+        coDistrict4Cities.add(new City("Estes Park"));
+
+        List<City> coDistrict5Cities = new ArrayList<>();
+        coDistrict5Cities.add(new City("Aspen"));
+        coDistrict5Cities.add(new City("Vail"));
+        coDistrict5Cities.add(new City("Glenwood Springs"));
+        coDistrict5Cities.add(new City("Steamboat Springs"));
+        coDistrict5Cities.add(new City("Rifle"));
+
+        List<District> coloradoDistricts = new ArrayList<>();
+        coloradoDistricts.add(new District("Denver County", coDistrict1Cities));
+        coloradoDistricts.add(new District("El Paso County", coDistrict2Cities));
+        coloradoDistricts.add(new District("Boulder County", coDistrict3Cities));
+        coloradoDistricts.add(new District("Larimer County", coDistrict4Cities));
+        coloradoDistricts.add(new District("Pitkin County", coDistrict5Cities));
+
+        stateRepository.add(new State("Colorado CO", coloradoDistricts));
+
+// Estado 7: Pennsylvania (PA)
+        List<City> paDistrict1Cities = new ArrayList<>();
+        paDistrict1Cities.add(new City("Philadelphia"));
+        paDistrict1Cities.add(new City("Pittsburgh"));
+        paDistrict1Cities.add(new City("Allentown"));
+        paDistrict1Cities.add(new City("Erie"));
+        paDistrict1Cities.add(new City("Reading"));
+
+        List<City> paDistrict2Cities = new ArrayList<>();
+        paDistrict2Cities.add(new City("Harrisburg"));
+        paDistrict2Cities.add(new City("York"));
+        paDistrict2Cities.add(new City("Lancaster"));
+        paDistrict2Cities.add(new City("Hershey"));
+        paDistrict2Cities.add(new City("Carlisle"));
+
+        List<City> paDistrict3Cities = new ArrayList<>();
+        paDistrict3Cities.add(new City("Scranton"));
+        paDistrict3Cities.add(new City("Wilkes-Barre"));
+        paDistrict3Cities.add(new City("Bethlehem"));
+        paDistrict3Cities.add(new City("Easton"));
+        paDistrict3Cities.add(new City("Hazleton"));
+
+        List<City> paDistrict4Cities = new ArrayList<>();
+        paDistrict4Cities.add(new City("Allentown"));
+        paDistrict4Cities.add(new City("Bethlehem"));
+        paDistrict4Cities.add(new City("Easton"));
+        paDistrict4Cities.add(new City("Whitehall"));
+        paDistrict4Cities.add(new City("Emmaus"));
+
+        List<City> paDistrict5Cities = new ArrayList<>();
+        paDistrict5Cities.add(new City("Pittsburgh"));
+        paDistrict5Cities.add(new City("Monroeville"));
+        paDistrict5Cities.add(new City("Greensburg"));
+        paDistrict5Cities.add(new City("Cranberry Township"));
+        paDistrict5Cities.add(new City("Washington"));
+
+        List<District> pennsylvaniaDistricts = new ArrayList<>();
+        pennsylvaniaDistricts.add(new District("Philadelphia County", paDistrict1Cities));
+        pennsylvaniaDistricts.add(new District("Dauphin County", paDistrict2Cities));
+        pennsylvaniaDistricts.add(new District("Lackawanna County", paDistrict3Cities));
+        pennsylvaniaDistricts.add(new District("Lehigh County", paDistrict4Cities));
+        pennsylvaniaDistricts.add(new District("Allegheny County", paDistrict5Cities));
+
+        stateRepository.add(new State("Pennsylvania PA", pennsylvaniaDistricts));
 
     }
 
