@@ -96,6 +96,9 @@ public class DealAnalysesGUI implements Initializable {
     @FXML
     private TableColumn<RegressionDTO, String> report;
 
+    @FXML
+    private TextArea predictionArea;
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         new ReadFileUI().run();
@@ -218,6 +221,7 @@ public class DealAnalysesGUI implements Initializable {
 
         ObservableList<Object> reportValues = FXCollections.observableArrayList(regressionDTO);
         report.setCellValueFactory(new PropertyValueFactory<RegressionDTO, String>("Report"));
+        predictionArea.setText(regressionDTO.getPrediction());
         tvReport.setItems(reportValues);
     }
 
