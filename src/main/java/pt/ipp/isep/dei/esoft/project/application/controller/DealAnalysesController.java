@@ -85,7 +85,7 @@ public class DealAnalysesController {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("ReportAndPrediction.txt", false))) {
             writer.write("Report: " + regressionDTO.getReport());
             writer.newLine();
-            writer.write("\nPrediction: " + regressionDTO.getPrediction());
+            writer.write("\nPrediction:\n" + regressionDTO.getPrediction());
 
         } catch (IOException e) {
             e.printStackTrace();
