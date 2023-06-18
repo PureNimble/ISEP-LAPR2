@@ -100,6 +100,17 @@ public class RegisterEmployeeController {
         }
         return storeRepository;
     }
+
+    /**
+     * Get current session email string.
+     *
+     * @return the string
+     */
+    public String getCurrentSessionEmail(){
+        AuthenticationRepository authenticationRepository = getAuthenticationRepository();
+        return authenticationRepository.getCurrentUserSession().getUserId().getEmail();
+    }
+
     /**
 
      Returns an instance of the StateRepository.

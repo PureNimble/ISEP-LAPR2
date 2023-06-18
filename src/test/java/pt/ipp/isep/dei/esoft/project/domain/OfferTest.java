@@ -33,7 +33,7 @@ class OfferTest {
     PropertyType propertyType = new PropertyType("House");
     TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
     Business business = new Business(200);
-    PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business,employee,client,99,AnnouncementState.available,store);
+    PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business, 99, employee, client, AnnouncementState.available, store);
     Offer offer = new Offer(name, offerAmount, publishedAnnouncement1, OfferState.pending,client, offerID);
 
 
@@ -74,7 +74,7 @@ class OfferTest {
         PropertyType propertyType = new PropertyType("House");
         TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
         Business business = new Business(200);
-        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business,employee,client,11,AnnouncementState.available,store);
+        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business, 11, employee, client, AnnouncementState.available, store);
         offer.setPublishedAnnouncement(publishedAnnouncement1);
         PublishedAnnouncement actualPublishedAnnouncement = offer.getPublishedAnnouncement();
 
@@ -180,7 +180,7 @@ class OfferTest {
         PropertyType propertyType = new PropertyType("House");
         TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
         Business business = new Business(200);
-        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business, employee, client, 99, AnnouncementState.available, store);
+        PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business, 99, employee, client, AnnouncementState.available, store);
 
         Offer offer = new Offer(name, offerAmount, publishedAnnouncement1, offerState, client, offerID);
 
