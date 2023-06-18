@@ -120,8 +120,8 @@ class MessageMapperTest {
         Employee employee1 = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store,  roles, address);
         Store store1 = new Store("Store1", 1, address, 123456789, "store1@test.com",9,1 );
 
-        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, employee1, new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L),77,AnnouncementState.available, store1);
-        publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, land, propertyType, comission, business, employee,new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L),88,AnnouncementState.available,store);
+        publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, 77, employee1, new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L), AnnouncementState.available, store1);
+        publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, land, propertyType, comission, business, 88, employee, new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L), AnnouncementState.available, store);
 
     }
 

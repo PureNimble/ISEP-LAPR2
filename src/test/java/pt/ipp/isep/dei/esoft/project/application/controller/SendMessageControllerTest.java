@@ -38,7 +38,7 @@ class SendMessageControllerTest {
     PropertyType propertyType = new PropertyType("House");
     TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
     Business business = new Business(200);
-    PublishedAnnouncement p1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business,employee,new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L),55,AnnouncementState.available,store);
+    PublishedAnnouncement p1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business, 55, employee, new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L), AnnouncementState.available, store);
     Message message = new Message(name, phoneNumber, description, date, initialTime, endTime, p1,MessageState.UNANSWERED,false);
 
 

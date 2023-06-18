@@ -11,6 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ListDealsControllerTest {
 
+
+    private ListDealsController controller;
     private PublishedAnnouncement publishedAnnouncement, publishedAnnouncement1,publishedAnnouncement2,publishedAnnouncement3;
 
     private House house;
@@ -45,10 +47,15 @@ class ListDealsControllerTest {
 
     private int offerID;
 
+    private OfferDto offerDto,offer1Dto,offer2Dto,offer3Dto;
+
 
 
     @BeforeEach
     void setUpPropertys() {
+        house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South", new Photos("pjh"), address2);
+        land = new Property(5, 1000, new Photos("urlll"),address2);
+        appartment = new Residence(20, 150, 3, 2, 1, new AvailableEquipment("air conditioning"), new Photos("urllll"), address2);
         setUpPropertyTypes();
         setUpBusiness();
         setUpAddress();
@@ -58,10 +65,10 @@ class ListDealsControllerTest {
         setUpRoles();
         setUpPublishedAnnouncements();
         setUpComission();
-        house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South", new Photos("pjh"), address2);
-        land = new Property(5, 1000, new Photos("urlll"),address2);
-        appartment = new Residence(20, 150, 3, 2, 1, new AvailableEquipment("air conditioning"), new Photos("urllll"), address2);
         setDeals();
+        setDealsDTO();
+
+
 
     }
 
@@ -139,7 +146,7 @@ class ListDealsControllerTest {
         Date date3 = new GregorianCalendar(2023, Calendar.APRIL, 20).getTime();
         Date date4 = new GregorianCalendar(2023, Calendar.JANUARY, 20).getTime();
         AnnouncementState state1 = AnnouncementState.available;
-        publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType1, comission1, business1, agent1, client1, 1, state1, store1);
+        publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType1, comission1, business1, 1, agent1, client1, state1, store1);
 
         Comission comission2 = new Comission(26.00);
         AvailableEquipment equipment2 = new AvailableEquipment("Air Frosting");
@@ -148,11 +155,12 @@ class ListDealsControllerTest {
         Employee agent2 = new Employee("age@this.app", 123446789, 987658321, "Miguelito", 1234587890L, store1,  roles, address1);
         Business business2 = new Business(2000);
         Date date2 = new GregorianCalendar(2024, Calendar.JUNE, 20).getTime();
-        publishedAnnouncement = new PublishedAnnouncement(date2, typeOfBusiness1, property2, propertyType1, comission2, business2, agent2, client2, 1, state1, store1);
+        publishedAnnouncement = new PublishedAnnouncement(date2, typeOfBusiness1, property2, propertyType1, comission2, business2, 1, agent2, client2, state1, store1);
 
 
-        publishedAnnouncement2 = new PublishedAnnouncement(date3,typeOfBusiness1,land,propertyType2,comission1,business1,agent1,client1,6,AnnouncementState.sold,store);
-        publishedAnnouncement3 = new PublishedAnnouncement(date4,typeOfBusiness1,appartment,propertyType3,comission2,business1,agent2,client2,5,AnnouncementState.sold,store1);
+        publishedAnnouncement2 = new PublishedAnnouncement(date3,typeOfBusiness1,land,propertyType2,comission1,business1, 6, agent1, client1, AnnouncementState.sold, store1);
+
+        publishedAnnouncement3 = new PublishedAnnouncement(date4,typeOfBusiness1,appartment,propertyType3,comission2,business1, 5, agent2, client2, AnnouncementState.sold, store1);
 
     }
 
@@ -173,6 +181,13 @@ class ListDealsControllerTest {
         offer2 = new Offer("Miguel",21500,publishedAnnouncement2,OfferState.accepted,client1,offerID);
         offer3 = new Offer("Zé",20500,publishedAnnouncement3,OfferState.accepted,client2,offerID);
     }
+    @BeforeEach
+    void setDealsDTO() {
+        offerDto = new OfferDto("Name",2100,publishedAnnouncement,OfferState.accepted,offerID,client1);
+        offer1Dto = new OfferDto("Almeida",21000,publishedAnnouncement1,OfferState.accepted,offerID,client2);
+        offer2Dto = new OfferDto("Miguel",21500,publishedAnnouncement2,OfferState.accepted,offerID,client1);
+        offer3Dto = new OfferDto("Zé",20500,publishedAnnouncement3,OfferState.accepted,offerID,client2);
+    }
 
 
 
@@ -186,6 +201,8 @@ class ListDealsControllerTest {
         offerRepository.add(offer2);
         offerRepository.add(offer3);
 
+        controller = new ListDealsController(offerRepository);
+
 
         List<Offer> offersExpected = new ArrayList<>();
         offersExpected.add(offer2);
@@ -193,7 +210,7 @@ class ListDealsControllerTest {
         offersExpected.add(offer1);
         offersExpected.add(offer);
 
-        List<Offer> offersResult = offerRepository.getOffersByAreaAscendingUsingBubbleSortAlgorithm();
+        List<Offer> offersResult = controller.getDealsByAscendingAreaBubbleSort();
 
         assertEquals(offersExpected,offersResult);
 
@@ -203,13 +220,15 @@ class ListDealsControllerTest {
     @Test
     void getDealsByDescendingAreaBubbleSort() {
 
-
         OfferRepository offerRepository = new OfferRepository();
 
         offerRepository.add(offer);
         offerRepository.add(offer1);
         offerRepository.add(offer2);
         offerRepository.add(offer3);
+
+        controller = new ListDealsController(offerRepository);
+
 
 
         List<Offer> offersExpected = new ArrayList<>();
@@ -218,7 +237,7 @@ class ListDealsControllerTest {
         offersExpected.add(offer3);
         offersExpected.add(offer2);
 
-        List<Offer> offersResult = offerRepository.getOffersByAreaDescendingUsingBubbleSortAlgorithm();
+        List<Offer> offersResult = controller.getDealsByDescendingAreaBubbleSort();
 
         assertEquals(offersExpected,offersResult);
 
@@ -235,15 +254,18 @@ class ListDealsControllerTest {
         offerRepository.add(offer2);
         offerRepository.add(offer3);
 
+        controller = new ListDealsController(offerRepository);
+
+
 
         List<Offer> offersExpected = new ArrayList<>();
-        offersExpected.add(offer);
-        offersExpected.add(offer1);
-        offersExpected.add(offer3);
         offersExpected.add(offer2);
+        offersExpected.add(offer3);
+        offersExpected.add(offer1);
+        offersExpected.add(offer);
 
 
-        List<Offer> offersResult = offerRepository.getOffersByAreaDescendingUsingSortSelection();
+        List<Offer> offersResult = controller.getDealsByAscendingAreaSortSelection();
 
         assertEquals(offersExpected,offersResult);
 
@@ -262,6 +284,9 @@ class ListDealsControllerTest {
         offerRepository.add(offer2);
         offerRepository.add(offer3);
 
+        controller = new ListDealsController(offerRepository);
+
+
 
         List<Offer> offersExpected = new ArrayList<>();
         offersExpected.add(offer);
@@ -269,7 +294,7 @@ class ListDealsControllerTest {
         offersExpected.add(offer3);
         offersExpected.add(offer2);
 
-        List<Offer> offersResult = offerRepository.getOffersByAreaDescendingUsingSortSelection();
+        List<Offer> offersResult = controller.getDealsByDescendingAreaSortSelection();
 
         assertEquals(offersExpected,offersResult);
 
@@ -287,6 +312,9 @@ class ListDealsControllerTest {
         offerRepository.add(offer2);
         offerRepository.add(offer3);
 
+        controller = new ListDealsController(offerRepository);
+
+
 
         List<Offer> offersResult = new ArrayList<>();
         offersResult.add(offer);
@@ -294,38 +322,123 @@ class ListDealsControllerTest {
         offersResult.add(offer2);
         offersResult.add(offer3);
 
-        assertEquals(offersResult,offerRepository.getOffersByMostRecent());
+        assertEquals(offersResult,controller.getOfferMostRecent());
 
 
 
 
     }
 
+
     @Test
-    void testGetDealsByAscendingAreaBubbleSort() {
+    void toDtoDescendingAreaBubbleSort() {
+
+//        OfferRepository offerRepository = new OfferRepository();
+//
+//        offerRepository.add(offer);
+//        offerRepository.add(offer1);
+//        offerRepository.add(offer2);
+//        offerRepository.add(offer3);
+//
+//        controller = new ListDealsController(offerRepository);
+//
+//        List<OfferDto> offersResult = new ArrayList<>();
+//        offersResult.add(offerDto);
+//        offersResult.add(offer1Dto);
+//        offersResult.add(offer3Dto);
+//        offersResult.add(offer2Dto);
+//
+//        assertEquals(offersResult,controller.toDtoDescendingAreaBubbleSort());
+
+
     }
 
     @Test
-    void testGetDealsByDescendingAreaBubbleSort() {
+    void toDtoAscendingAreaBubbleSort() {
+
+//        OfferRepository offerRepository = new OfferRepository();
+//
+//        offerRepository.add(offer);
+//        offerRepository.add(offer1);
+//        offerRepository.add(offer2);
+//        offerRepository.add(offer3);
+//
+//        controller = new ListDealsController(offerRepository);
+//
+//        List<OfferDto> offersExpected = new ArrayList<>();
+//        offersExpected.add(offer2Dto);
+//        offersExpected.add(offer3Dto);
+//        offersExpected.add(offer1Dto);
+//        offersExpected.add(offerDto);
+//
+//        assertEquals(offersExpected,controller.toDtoAscendingAreaBubbleSort());
+
     }
 
     @Test
-    void testGetDealsByAscendingAreaSortSelection() {
+    void toDtoDescendingAreaSortSelection() {
+
+//      OfferRepository offerRepository = new OfferRepository();
+//
+//       offerRepository.add(offer);
+//       offerRepository.add(offer1);
+//       offerRepository.add(offer2);
+//       offerRepository.add(offer3);
+//
+//      controller = new ListDealsController(offerRepository);
+//
+//       List<OfferDto> offersExpected = new ArrayList<>();
+//        offersExpected.add(offerDto);
+//        offersExpected.add(offer1Dto);
+//        offersExpected.add(offer3Dto);
+//        offersExpected.add(offer2Dto);
+//
+//       assertEquals(offersExpected,controller.toDtoDescendingAreaSortSelection());
+
+
     }
 
     @Test
-    void testGetDealsByDescendingAreaSortSelection() {
+    void toDtoAscendingAreaSortSelection() {
+
+//        OfferRepository offerRepository = new OfferRepository();
+//
+//      offerRepository.add(offer);
+//       offerRepository.add(offer1);
+//       offerRepository.add(offer2);
+//      offerRepository.add(offer3);
+//
+//      controller = new ListDealsController(offerRepository);
+//
+//      List<OfferDto> offersExpected = new ArrayList<>();
+//        offersExpected.add(offer2Dto);
+//        offersExpected.add(offer3Dto);
+//        offersExpected.add(offer1Dto);
+//        offersExpected.add(offerDto);
+//
+//       assertEquals(offersExpected,controller.toDtoAscendingAreaSortSelection());
+
+
     }
 
     @Test
-    void testGetOfferMostRecent() {
-    }
+    void toDtoOffersMostRecent() {
 
-    @Test
-    void toDtoDescendingArea() {
-    }
-
-    @Test
-    void toDtoAscendingArea() {
+//        OfferRepository offerRepository = new OfferRepository();
+//
+//        offerRepository.add(offer);
+//        offerRepository.add(offer1);
+//        offerRepository.add(offer2);
+//        offerRepository.add(offer3);
+//
+//        controller = new ListDealsController(offerRepository);
+//
+//        List<OfferDto> offersExpected = new ArrayList<>();
+//        offersExpected.add(offerDto);
+//        offersExpected.add(offer1Dto);
+//        offersExpected.add(offer2Dto);
+//        offersExpected.add(offer3Dto);
+//
+//        assertEquals(offersExpected,controller.toDtoOffersMostRecent());
     }
 }

@@ -57,7 +57,7 @@ public class MergeSortTest {
         PropertyType propertyType = new PropertyType("House");
         TypeOfBusiness typeOfBusiness = new TypeOfBusiness("Sale");
         Business business = new Business(200);
-        PublishedAnnouncement p1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business, employee, client, 77, AnnouncementState.available, store);
+        PublishedAnnouncement p1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business, 77, employee, client, AnnouncementState.available, store);
         return new Message(client.getName(), client.getPhoneNumber(), description, date, initialTime, endTime, p1, MessageState.ANSWERED, true);
     }
 

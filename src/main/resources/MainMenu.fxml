@@ -33,16 +33,6 @@
                   <Font name="Arial Black" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="17.0" layoutY="429.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="116.0" style="-fx-background-color: white; -fx-border-color: black;" text="Register">
-               <font>
-                  <Font name="Arial Black" size="12.0" />
-               </font>
-            </Button>
-            <Button layoutX="216.0" layoutY="429.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: white; -fx-border-color: black;" text="Dev Team">
-               <font>
-                  <Font name="Arial Black" size="12.0" />
-               </font>
-            </Button>
             <ImageView fitHeight="29.0" fitWidth="30.0" layoutX="61.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@PhotosApp/user-icon-2098873_1280.png" />

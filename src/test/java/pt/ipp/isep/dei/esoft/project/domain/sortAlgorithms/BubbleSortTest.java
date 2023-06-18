@@ -42,7 +42,7 @@ class BubbleSortTest {
 
     Date datec = new GregorianCalendar(2023, Calendar.SEPTEMBER, 28).getTime();
 
-    PublishedAnnouncement p1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business, employee, client, 77, AnnouncementState.available, store);
+    PublishedAnnouncement p1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business, 77, employee, client, AnnouncementState.available, store);
     Message message1 = new Message(client.getName(), client.getPhoneNumber(), description, datec, initialTime, endTime, p1, MessageState.ANSWERED, true);
     Message message2 = new Message(client.getName(), client.getPhoneNumber(), description, datec, initialTime, endTimeb, p1, MessageState.ANSWERED, true);
     Message message3 = new Message(client.getName(), client.getPhoneNumber(), description, datec, initialTime, endTime, p1, MessageState.ANSWERED, true);

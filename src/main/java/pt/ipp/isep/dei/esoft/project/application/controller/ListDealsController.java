@@ -22,6 +22,10 @@ public class ListDealsController {
         getOfferRepository();
     }
 
+    public ListDealsController(OfferRepository offerRepository) {
+        this.offerRepository = offerRepository;
+    }
+
     /**
      * Retrieves the OfferRepository instance.
      *

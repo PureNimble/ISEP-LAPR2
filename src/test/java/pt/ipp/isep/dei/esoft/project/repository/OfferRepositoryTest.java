@@ -44,8 +44,8 @@ class OfferRepositoryTest {
 
     Client client = new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L);
     Client client1 = new Client("client1@this.app", 122456789,1234545890,"client1",address,1234534589L);;
-    PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business,employee,client,543,AnnouncementState.available,store);
-    PublishedAnnouncement publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property1, propertyType1, com1, business,employee,client,345678,AnnouncementState.available,store);
+    PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business, 543, employee, client, AnnouncementState.available, store);
+    PublishedAnnouncement publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property1, propertyType1, com1, business, 345678, employee, client, AnnouncementState.available, store);
     Offer offer = new Offer(name, offerAmount, publishedAnnouncement, OfferState.pending,client1, offerID);
     Offer offer1 = new Offer(name1, offerAmount1, publishedAnnouncement1, OfferState.pending,client, offerID);
 

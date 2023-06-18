@@ -22,6 +22,10 @@ public class OfferDto {
     private OfferState offerState;
 
     private Client client;
+
+
+    private int offerID;
+
     /**
      * The Get offer state.
      */
@@ -36,11 +40,13 @@ public class OfferDto {
      * @param publishedAnnouncement the published announcement
      * @param offerState            the offer state
      */
-    public OfferDto(String name, double orderAmount, PublishedAnnouncement publishedAnnouncement, OfferState offerState) {
+    public OfferDto(String name, double orderAmount, PublishedAnnouncement publishedAnnouncement, OfferState offerState,int offerID,Client client) {
         this.name = name;
         this.orderAmount = orderAmount;
         this.publishedAnnouncement = publishedAnnouncement;
         this.offerState = offerState;
+        this.offerID=offerID;
+        this.client = client;
     }
 
     /**
@@ -68,7 +74,7 @@ public class OfferDto {
             return String.format("Offer: The client %s, has submitted an offer with the following price: %s. \n\n", name, orderAmount);
         }
         else{
-            return String.format("\nOffer: \nThe client %s, has submitted an offer with the following price: %s. \n\nProperty: \n%s", name, orderAmount, publishedAnnouncement.toString());
+            return String.format("\nOffer: \nThe client %s, which has the following email: %s, has submitted an offer with the following price: %s. \nStatus: %s \n\nProperty: \n%s", name, client.getClientEmail(), orderAmount, offerState, publishedAnnouncement.toString());
 
         }
     }

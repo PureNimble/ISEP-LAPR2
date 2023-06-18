@@ -144,10 +144,9 @@ public class RegisterEmployeeUI implements Runnable {
 
         String cofirmationEmployeeInformations = showInformations(rolesDescriptions);
 
-        if (cofirmationEmployeeInformations.equals("Y")){
+        if (cofirmationEmployeeInformations.equals("Y")) {
             submitData(rolesDescriptions, rolesString);
         }
-
 
 
     }
@@ -158,16 +157,16 @@ public class RegisterEmployeeUI implements Runnable {
         System.out.println("--------Employee---------");
         System.out.println("Name:" + name);
         System.out.println("Roles:" + roles);
-        System.out.println("Address: " + street + ","+cityDescription+","+districtDescription+","+stateDescription+","+zipCode);
-        System.out.println("Store:"+storeDescription);
-        System.out.println("Tax Number: "+taxNumber);
-        System.out.println("Passport Number: "+passportNumber);
-        System.out.println("Phone Number: "+phoneNumber);
-        System.out.println("Employee Email: "+employeeEmail);
+        System.out.println("Address: " + street + "," + cityDescription + "," + districtDescription + "," + stateDescription + "," + zipCode);
+        System.out.println("Store:" + storeDescription);
+        System.out.println("Tax Number: " + taxNumber);
+        System.out.println("Passport Number: " + passportNumber);
+        System.out.println("Phone Number: " + phoneNumber);
+        System.out.println("Employee Email: " + employeeEmail);
 
         Scanner read = new Scanner(System.in);
 
-        String input ;
+        String input;
         System.out.println("--------Confirm-----------");
         System.out.println("Do you want to register this employee:(Y/N)");
         input = read.nextLine();
@@ -204,11 +203,15 @@ public class RegisterEmployeeUI implements Runnable {
 
 
         try {
-            FileWriter fw = new FileWriter("registrationCredentials"+name+".txt");
+            FileWriter fw = new FileWriter("registrationCredentials" + name + ".txt");
             PrintWriter pw = new PrintWriter(fw);
-
+            pw.println("------------------------------------------------------------------------");
+            pw.println("From :" + controller.getCurrentSessionEmail());
+            pw.println("To :" + employeeEmail);
+            pw.println();
             pw.println("Email: " + employeeEmail);
             pw.println("Password: " + password);
+            pw.println("------------------------------------------------------------------------");
 
             pw.close();
 
@@ -458,7 +461,6 @@ public class RegisterEmployeeUI implements Runnable {
 
         return email;
     }
-
 
 
     /**

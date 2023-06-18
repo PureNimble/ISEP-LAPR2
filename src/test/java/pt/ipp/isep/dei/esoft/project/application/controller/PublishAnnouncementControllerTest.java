@@ -47,7 +47,7 @@ class PublishAnnouncementControllerTest {
     Date date1 = new GregorianCalendar(2023, Calendar.JUNE, 20).getTime();
     Client client1 = new Client("pedro@isep.ipp.pt", 123456789, 987654321, "Pedro", address1, 1234567890);
     AnnouncementState state1 = AnnouncementState.available;
-    PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType1, comission1, business1, agent1, client1, 1, state1, store1);
+    PublishedAnnouncement publishedAnnouncement1 = new PublishedAnnouncement(date1, typeOfBusiness1, property1, propertyType1, comission1, business1, 1, agent1, client1, state1, store1);
 
     Offer offer = new Offer("Pedro", 130000, publishedAnnouncement1, OfferState.pending, new Client("pedro@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890), offerID);
 
@@ -218,7 +218,7 @@ class PublishAnnouncementControllerTest {
         Employee employee1 = new Employee("employee@example.com", 123456789, 987654321, "Name Employee", 5551234, store,  roles, address);
 
 
-        PublishedAnnouncement publishedAnnouncement = new PublishedAnnouncement(date,typeOfBusiness,house,propertyType,comission,business, employee1, client1,2,state1,store);
+        PublishedAnnouncement publishedAnnouncement = new PublishedAnnouncement(date,typeOfBusiness,house,propertyType,comission,business, 2, employee1, client1, state1, store);
         publishedAnnouncements.add(publishedAnnouncement);
 
         publishedAnnouncementRepository.add(publishedAnnouncement);
@@ -268,7 +268,7 @@ class PublishAnnouncementControllerTest {
         Business business = new Business(price);
 
 
-        PublishedAnnouncement publishedAnnouncementObject = new PublishedAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, employee1,client1,2,state1,store);
+        PublishedAnnouncement publishedAnnouncementObject = new PublishedAnnouncement(date, typeOfBusiness, house, propertyType, comission, business, 2, employee1, client1, state1, store);
 
         Optional<PublishedAnnouncement> publishedAnnouncement = Optional.of(publishedAnnouncementObject);
 

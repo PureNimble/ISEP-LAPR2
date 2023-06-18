@@ -43,7 +43,7 @@ class PublishedAnnouncementTest {
 
     @Test
     void testToString() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, employee, client, 99, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, 99, employee, client, AnnouncementState.available, store);
         String expectedString = String.format("Date: %s\n\n" + "Responsible Agent: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
                         "Client: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
                         "Property ID: %s\n" +
@@ -58,13 +58,12 @@ class PublishedAnnouncementTest {
 
         @Test
         void toStringRent() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, durationOfContract,employee, client, 22, AnnouncementState.available,store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, durationOfContract,employee,client, AnnouncementState.available,store);
             String expectedString = String.format("Date: %s\n\n" +  "Responsible Agent: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
                             "Client: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
                             "Property ID: %s\n" +
                             "Type Of Business: %s\n" +
                             "Property Type: %s\n" +
-                            "Comission Selected: %s" +
                             "Price: %s\n" +
                             "Duration Of The Contract: %s\n" +
                             "%s\n",
@@ -73,18 +72,18 @@ class PublishedAnnouncementTest {
                     employee.getEmployeeEmail(), employee.getPhoneNumber(),
                     client.getName(), client.getEmail(), client.getPhoneNumber(),
                     propertyID, typeOfBusiness.toString(),
-                    propertyType, comission.toString(), business.toString(), durationOfContract, property.toString());
+                    propertyType, business.toString(), durationOfContract, property.toString());
     }
 
     @Test
     void getProperty() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, employee, client, 99, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, 99, employee, client, AnnouncementState.available, store);
         assertEquals(property, announcement.getProperty());
     }
 
     @Test
     void getDate() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, employee, client, 99, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, 99, employee, client, AnnouncementState.available, store);
         assertEquals(date, announcement.getDate());
     }
 
@@ -102,13 +101,13 @@ class PublishedAnnouncementTest {
 
     @Test
     void getClient() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, employee, client, 99, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, 99, employee, client, AnnouncementState.available, store);
         assertEquals(client, announcement.getClient());
     }
 
     @Test
     void setClient() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, employee, client, 99, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, 99, employee, client, AnnouncementState.available, store);
         Client newClient = new Client("newclient@this.app", 987654321, 987654321, "newclient", address1, 9876543210L);
         announcement.setClient(newClient);
         assertEquals(newClient, announcement.getClient());
@@ -116,50 +115,50 @@ class PublishedAnnouncementTest {
 
     @Test
     void getAnnouncementState() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, employee, client, 99, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, 99, employee, client, AnnouncementState.available, store);
         assertEquals(AnnouncementState.available, announcement.getAnnouncementState());
     }
 
     @Test
     void setAnnouncementState() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, employee, client, 99, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, 99, employee, client, AnnouncementState.available, store);
         announcement.setAnnouncementState(AnnouncementState.available);
         assertEquals(AnnouncementState.available, announcement.getAnnouncementState());
     }
 
     @Test
     void getTypeOfBusiness() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, employee, client, 99, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, 99, employee, client, AnnouncementState.available, store);
         assertEquals(typeOfBusiness, announcement.getTypeOfBusiness());
     }
 
     @Test
     void getPropertyType() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, employee, client, 99, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, 99, employee, client, AnnouncementState.available, store);
         assertEquals(propertyType, announcement.getPropertyType());
     }
 
     @Test
     void getComission() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, employee, client, 99, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, 99, employee, client, AnnouncementState.available, store);
         assertEquals(comission, announcement.getComission());
     }
 
     @Test
     void getBusiness() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, employee, client, 99, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, 99, employee, client, AnnouncementState.available, store);
         assertEquals(business, announcement.getBusiness());
     }
 
     @Test
     void getDurationOfContract() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, durationOfContract, employee, client, 22, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, durationOfContract, employee,client, AnnouncementState.available, store);
         assertEquals(durationOfContract, announcement.getDurationOfContract());
     }
 
     @Test
     void setDate() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(new Date(), typeOfBusiness, property, propertyType, comission, business, employee, client, 99, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(new Date(), typeOfBusiness, property, propertyType, comission, business, 99, employee, client, AnnouncementState.available, store);
         Date newDate = new Date();
         announcement.setDate(newDate);
         assertEquals(newDate, announcement.getDate());
@@ -167,7 +166,7 @@ class PublishedAnnouncementTest {
 
     @Test
     void setTypeOfBusiness() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, new TypeOfBusiness("Buy"), property, propertyType, comission, business, employee, client, 99, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, new TypeOfBusiness("Buy"), property, propertyType, comission, business, 99, employee, client, AnnouncementState.available, store);
         TypeOfBusiness newTypeOfBusiness = new TypeOfBusiness("Rent");
         announcement.setTypeOfBusiness(newTypeOfBusiness);
         assertEquals(newTypeOfBusiness, announcement.getTypeOfBusiness());
@@ -175,7 +174,7 @@ class PublishedAnnouncementTest {
 
     @Test
     void setProperty() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, new Property(123, 45, photos1, address1), propertyType, comission, business, employee, client, 99, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, new Property(123, 45, photos1, address1), propertyType, comission, business, 99, employee, client, AnnouncementState.available, store);
         Property newProperty = new Property(789, 10, photos2, address2);
         announcement.setProperty(newProperty);
         assertEquals(newProperty, announcement.getProperty());
@@ -183,7 +182,7 @@ class PublishedAnnouncementTest {
 
     @Test
     void setPropertyType() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, new PropertyType("Apartment"), comission, business, employee, client, 99, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, new PropertyType("Apartment"), comission, business, 99, employee, client, AnnouncementState.available, store);
         PropertyType newPropertyType = new PropertyType("Villa");
         announcement.setPropertyType(newPropertyType);
         assertEquals(newPropertyType, announcement.getPropertyType());
@@ -191,7 +190,7 @@ class PublishedAnnouncementTest {
 
     @Test
     void setComission() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, new Comission(50), business, employee, client, 99, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, new Comission(50), business, 99, employee, client, AnnouncementState.available, store);
         Comission newComission = new Comission(25);
         announcement.setComission(newComission);
         assertEquals(newComission, announcement.getComission());
@@ -199,7 +198,7 @@ class PublishedAnnouncementTest {
 
     @Test
     void setBusiness() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, new Business(500.0), employee, client, 99, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, new Business(500.0), 99, employee, client, AnnouncementState.available, store);
         Business newBusiness = new Business(750.0);
         announcement.setBusiness(newBusiness);
         assertEquals(newBusiness, announcement.getBusiness());
@@ -207,7 +206,7 @@ class PublishedAnnouncementTest {
 
     @Test
     void setDurationOfContract() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, 12, employee, client, 22, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, 12, employee, client, AnnouncementState.available, store);
         int newDurationOfContract = 24;
         announcement.setDurationOfContract(newDurationOfContract);
         assertEquals(newDurationOfContract, announcement.getDurationOfContract());
@@ -215,13 +214,13 @@ class PublishedAnnouncementTest {
 
     @Test
     void getAgent() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, employee, client, 99, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, 99, employee, client, AnnouncementState.available, store);
         assertEquals(employee, announcement.getAgent());
     }
 
     @Test
     void setAgent() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, employee, client, 99, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, 99, employee, client, AnnouncementState.available, store);
         Employee newAgent = new Employee("newagent@example.com", 987654321, 123456789, "New Agent", 5554321, store, roles, new Address("456 Main St", 54321, new District("New District"), new City("New City"), new State("New State")));
         announcement.setAgent(newAgent);
         assertEquals(newAgent, announcement.getAgent());
@@ -229,29 +228,17 @@ class PublishedAnnouncementTest {
 
     @Test
     void getStore() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, employee, client, 99, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, 99, employee, client, AnnouncementState.available, store);
         assertEquals(store, announcement.getStore());
     }
 
     @Test
     void setStore() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, employee, client, 99, AnnouncementState.available, store);
+        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, 99, employee, client, AnnouncementState.available, store);
         Store newStore = new Store("Store B", 2, address2, 5554321, "storeb@example.com", 8,1);
         announcement.setStore(newStore);
         assertEquals(newStore, announcement.getStore());
     }
 
-    @Test
-    void getPropertyID() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, employee, client, 99, AnnouncementState.available, store);
-        assertEquals(99, announcement.getPropertyID());
-    }
 
-    @Test
-    void setPropertyID() {
-        PublishedAnnouncement announcement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, employee, client, 99, AnnouncementState.available, store);
-        int newPropertyID = 123;
-        announcement.setPropertyID(newPropertyID);
-        assertEquals(newPropertyID, announcement.getPropertyID());
-    }
 }
