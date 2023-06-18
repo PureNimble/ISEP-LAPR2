@@ -23,6 +23,7 @@ class MessageRepositoryTest {
     String description = "Test message";
     String description1 = "Description Of Jane";
     Date date = new Date();
+    Date date1 = new Date(2023, 6,28);
     int initialTime = 10;
     int initialTime1 = 7;
 
@@ -46,6 +47,8 @@ class MessageRepositoryTest {
     Property property = new Property(2, 2,address);
 
     PublishedAnnouncement p1 = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, com, business, 55, employee, new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L), AnnouncementState.available, store);
+    PublishedAnnouncement p2 = new PublishedAnnouncement(date1, typeOfBusiness, property, propertyType, com, business, 55, employee, new Client("client@this.app", 123456789,1234567890,"client",address2,1234567890L), AnnouncementState.available, store);
+
     Message message = new Message(name, phoneNumber, description, date, initialTime, endTime, p1,MessageState.UNANSWERED,false);
     Message message1 = new Message(name1, phoneNumber1, description1, date, initialTime1, endTime1, p1,MessageState.UNANSWERED,false);
 
@@ -131,14 +134,18 @@ class MessageRepositoryTest {
     @Test
     void getMessagesByAscendingDate() {
         // Arrange
+        PublishedAnnouncement announcement1 = p1; // Create a new instance of PublishedAnnouncement
         Message message1 = new Message();
         message1.setInitialDate(new Date(System.currentTimeMillis()));
-        message1.setMessageState(MessageState.UNANSWERED); // Set a default message state
+        message1.setPublishedAnnouncement(announcement1); // Set the published announcement for message1
+        message1.setMessageState(MessageState.UNANSWERED);
         repository.add(message1);
 
+        PublishedAnnouncement announcement2 = p2; // Create another instance of PublishedAnnouncement
         Message message2 = new Message();
-        message2.setInitialDate(new Date(System.currentTimeMillis() - 86400000)); // Set message2 to an earlier date
-        message2.setMessageState(MessageState.UNANSWERED); // Set a default message state
+        message2.setInitialDate(new Date(System.currentTimeMillis() - 86400000));
+        message2.setPublishedAnnouncement(announcement2); // Set the published announcement for message2
+        message2.setMessageState(MessageState.UNANSWERED);
         repository.add(message2);
 
         // Act
