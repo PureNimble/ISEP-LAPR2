@@ -151,7 +151,29 @@ public class AnnouncementRequestRepository implements Serializable {
 
         }
 
+
+        /**
+         * Sorts the list of offers by the date of the associated published announcements in ascending order,
+         * and then reverses the list to obtain a descending order by date.
+         *
+         * @param resultList The list of offers to be sorted.
+         * @return The sorted list of offers in descending order by date.
+         */
+        newAnnouncementRequest.sort(new Comparator<AnnouncementRequest>() {
+            @Override
+            public int compare(AnnouncementRequest a1, AnnouncementRequest a2) {
+                Date date1 = a1.getDate();
+                Date date2 = a2.getDate();
+
+                return date1.compareTo(date2);
+
+            }
+        });
+
         Collections.reverse(newAnnouncementRequest);
+
+
+
         return newAnnouncementRequest;
     }
 

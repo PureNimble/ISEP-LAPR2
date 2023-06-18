@@ -159,11 +159,11 @@ public class PublishAnnouncementUI implements Runnable {
 
             comissionDescription = displayAndSelectComission();
 
-            submitDataHouse();
+            submitData();
 
 
 
-            List<PublishedAnnouncement> publishedAnnouncement = controller.getPublishedAnnoucement();
+
 
 
         } else {
@@ -174,7 +174,7 @@ public class PublishAnnouncementUI implements Runnable {
     /**
      * Submits the input data for a property listing to the controller.
      */
-    private void submitDataHouse() {
+    private void submitData() {
 
         Client client = controller.getUserByEmail(email);
 

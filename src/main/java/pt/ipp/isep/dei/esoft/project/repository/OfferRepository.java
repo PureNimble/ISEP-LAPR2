@@ -281,7 +281,6 @@ public class OfferRepository implements Serializable {
                 resultList.add(offer);
             }
         }
-
 /**
  * Sorts the list of offers by the date of the associated published announcements in ascending order,
  * and then reverses the list to obtain a descending order by date.

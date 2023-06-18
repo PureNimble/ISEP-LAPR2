@@ -146,7 +146,7 @@ public class AnnouncementRequestUI implements Runnable {
 
             contractType = displayAndSelectTypeOfBusiness();
 
-            if (propertyTypeDescription.equals("Rent")) {
+            if (contractType.equals("Rent")) {
                 durationOfContract = requestDurationOfContract();
             }
 
@@ -154,16 +154,7 @@ public class AnnouncementRequestUI implements Runnable {
 
             submitData();
 
-            List<AnnouncementRequest> announcementRequests = controller.getAnnouncementRequest();
 
-            StringBuilder st = new StringBuilder();
-
-            for (AnnouncementRequest p : announcementRequests) {
-                st.append(p.toString());
-                st.append("\n");
-            }
-
-            System.out.println(st);
 
         }else {
             System.out.println("There is no Agents on the system for you to choose one.");
