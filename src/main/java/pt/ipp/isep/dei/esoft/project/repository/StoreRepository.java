@@ -131,6 +131,7 @@ public class StoreRepository implements Serializable {
         for (Store stores : storesList) {
             if (stores.equals(store)) {
                 stores.setAvailableListing(stores.getAvailableListing() + 1);
+                stores.setListing(stores.getListing()+1);
             }
         }
     }
