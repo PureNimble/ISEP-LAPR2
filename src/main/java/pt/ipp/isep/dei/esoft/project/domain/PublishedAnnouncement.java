@@ -44,7 +44,7 @@ public class PublishedAnnouncement implements Serializable {
         this.propertyType = propertyType;
         this.comission = comission;
         this.date = date;
-        this.business = business;
+        this.business = new Business(business.getPrice() * (comission.getComission()/100));
         this.agent = agent;
         this.client = client;
         this.announcementState = announcementState;
@@ -72,7 +72,7 @@ public class PublishedAnnouncement implements Serializable {
         this.property = property;
         this.propertyType = propertyType;
         this.comission = comission;
-        this.business = business;
+        this.business = new Business(business.getPrice() * (comission.getComission()/100));
         this.durationOfContract = durationOfContract;
         this.agent = agent;
         this.client = client;
@@ -94,10 +94,10 @@ public class PublishedAnnouncement implements Serializable {
         this.typeOfBusiness = announcementRequestDto.getTypeOfBusiness();
         this.property = announcementRequestDto.getProperty();
         this.propertyType = announcementRequestDto.getPropertyType();
-        this.business = announcementRequestDto.getBusiness();
+        this.comission = comission;
+        this.business = new Business(announcementRequestDto.getBusiness().getPrice()*(comission.getComission()/100));
         this.durationOfContract = announcementRequestDto.getDurationOfContract();
         this.client = announcementRequestDto.getClient();
-        this.comission = comission;
         this.announcementState = announcementState;
         this.store = store;
 
@@ -325,12 +325,11 @@ public class PublishedAnnouncement implements Serializable {
                         "Client: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
                         "Type Of Business: %s\n" +
                         "Property Type: %s\n" +
-                        "Comission Selected: %s" +
                         "Price: %s\n" +
                         "%s\n",
                         
                 date.toString(), agent.getEmployeeName(), agent.getEmployeeEmail(), agent.getPhoneNumber(), client.getName(), client.getEmail(), client.getPhoneNumber(),
-                typeOfBusiness.toString(), propertyType, comission.toString(), business.toString(), property.toString());
+                typeOfBusiness.toString(), propertyType, business.toString(), property.toString());
     }
 
     /**

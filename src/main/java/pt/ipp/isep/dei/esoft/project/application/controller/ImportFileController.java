@@ -28,7 +28,7 @@ public class ImportFileController {
     /**
      * The User repository.
      */
-    UserRepository userRepository =null;
+    UserRepository userRepository = null;
 
     /**
      * The Published announcement repository.
@@ -44,22 +44,21 @@ public class ImportFileController {
     /**
      * Instantiates a new Import file controller.
      */
-    public ImportFileController(){
-         getFileReaderClass();
-         getStoreRepository();
-         getUserRepository();
-         getPublishedAnnouncementRepository();
-         getOfferRepository();
-     }
+    public ImportFileController() {
+        getFileReaderClass();
+        getStoreRepository();
+        getUserRepository();
+        getPublishedAnnouncementRepository();
+        getOfferRepository();
+    }
 
 
     /**
-
-     Returns an instance of the StoreRepository.
-
-     If the instance does not exist, it creates one using the Repositories class.
-
-     @return The StoreRepository instance
+     * Returns an instance of the StoreRepository.
+     * <p>
+     * If the instance does not exist, it creates one using the Repositories class.
+     *
+     * @return The StoreRepository instance
      */
     private StoreRepository getStoreRepository() {
         if (storeRepository == null) {
@@ -134,7 +133,7 @@ public class ImportFileController {
      * @param file the file
      * @return the array list
      */
-    public ArrayList<String[]> readInformations(String file){
+    public ArrayList<String[]> readInformations(String file) {
         FileReaderClass fileReaderClass = getFileReaderClass();
 
         return fileReaderClass.readInformations(file);
@@ -147,7 +146,7 @@ public class ImportFileController {
      * @param file the file
      * @return the array list
      */
-    public ArrayList<String[]> readStoreInformations(String file){
+    public ArrayList<String[]> readStoreInformations(String file) {
         FileReaderClass fileReaderClass = getFileReaderClass();
 
         return fileReaderClass.readStoreInformations(readInformations(file));
@@ -159,8 +158,8 @@ public class ImportFileController {
      *
      * @param file the file
      */
-    public List<Store> addStore(String file){
-         StoreRepository storeRepository = getStoreRepository();
+    public List<Store> addStore(String file) {
+        StoreRepository storeRepository = getStoreRepository();
 
         return storeRepository.createStoreByFileReading(readStoreInformations(file));
     }
@@ -171,7 +170,7 @@ public class ImportFileController {
      * @param file the file
      * @return the array list
      */
-    public ArrayList<String[]> readOwnerInformations(String file){
+    public ArrayList<String[]> readOwnerInformations(String file) {
         FileReaderClass fileReaderClass = getFileReaderClass();
 
         return fileReaderClass.readOwnerInformations(readInformations(file));
@@ -182,7 +181,7 @@ public class ImportFileController {
      *
      * @param file the file
      */
-    public List<Client> addUser(String file){
+    public List<Client> addUser(String file) {
         UserRepository userRepository = getUserRepository();
 
         return userRepository.createOwnerByFileReading(readOwnerInformations(file));
@@ -193,26 +192,36 @@ public class ImportFileController {
      *
      * @param file the file
      */
-    public List<PublishedAnnouncement> addPublishAnnouncement(String file){
+    public List<PublishedAnnouncement> addPublishAnnouncement(String file) {
 
         PublishedAnnouncementRepository publishedAnnouncementRepository = getPublishedAnnouncementRepository();
 
         List<Client> clients = addUser(file);
+        if (clients.size() != 0) {
+            List<Store> stores = addStore(file);
+            if (stores.size() != 0) {
+                return publishedAnnouncementRepository.createPublishAnnouncementByFileReading(readInformations(file), stores, clients);
+            }
+        }
 
-        List<Store> stores = addStore(file);
 
-       return publishedAnnouncementRepository.createPublishAnnouncementByFileReading(readInformations(file),stores,clients);
+        List<PublishedAnnouncement> publishedAnnouncementsEmpty = new ArrayList<>();
+
+        return publishedAnnouncementsEmpty;
 
     }
 
-    public void createOffers(String file){
+    public void createOffers(String file) {
         OfferRepository offerRepository = getOfferRepository();
 
         List<PublishedAnnouncement> publishedAnnouncements = addPublishAnnouncement(file);
 
-        offerRepository.createOfferByFileReading(publishedAnnouncements,readInformations(file));
-    }
 
+        if (publishedAnnouncements.size() != 0) {
+            offerRepository.createOfferByFileReading(publishedAnnouncements, readInformations(file));
+        }
+
+    }
 
 
 }

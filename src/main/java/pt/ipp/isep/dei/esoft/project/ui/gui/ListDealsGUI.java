@@ -4,20 +4,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import pt.ipp.isep.dei.esoft.project.application.controller.ListDealsController;
-import pt.ipp.isep.dei.esoft.project.domain.House;
-import pt.ipp.isep.dei.esoft.project.domain.Offer;
-import pt.ipp.isep.dei.esoft.project.domain.PublishedAnnouncement;
-import pt.ipp.isep.dei.esoft.project.domain.Residence;
+import pt.ipp.isep.dei.esoft.project.domain.*;
 
 import java.io.FileNotFoundException;
 import java.net.URL;
@@ -28,7 +24,7 @@ import java.util.ResourceBundle;
 /**
  * The type List deals gui teste.
  */
-public class ListDealsGUITeste implements Initializable {
+public class ListDealsGUI implements Initializable {
 
 
 
@@ -67,7 +63,7 @@ public class ListDealsGUITeste implements Initializable {
     private Label labelNumberOfBedrooms;
 
     @FXML
-    private TableColumn<Offer, String> clientName;
+    private TableColumn<Offer, Client> clientName;
 
     @FXML
     private TableColumn<Offer, Integer> idOffer;
@@ -153,7 +149,20 @@ public class ListDealsGUITeste implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
-        clientName.setCellValueFactory(new PropertyValueFactory<Offer, String>("name"));
+        clientName.setCellValueFactory(new PropertyValueFactory<Offer, Client>("client"));
+        clientName.setCellFactory(column -> new TextFieldTableCell<Offer, Client>(){
+            @Override
+            public void updateItem(Client client,boolean empty){
+                super.updateItem(client,empty);
+                if (empty || client == null){
+                    setText("");
+                }else {
+                    setText(""+client.getClientEmail());
+                }
+            }
+        });
+
+
         orderAmount.setCellValueFactory(new PropertyValueFactory<Offer, Double>("orderAmount"));
         idOffer.setCellValueFactory(new PropertyValueFactory<Offer, Integer>("offerID"));
 
@@ -177,8 +186,6 @@ public class ListDealsGUITeste implements Initializable {
     public void clickItem(MouseEvent mouseEvent) throws FileNotFoundException {
 
 
-        System.out.println("" + table.getSelectionModel().getSelectedItem());
-
         Offer offer;
 
         for (Object offers : listDeals) {
@@ -191,6 +198,80 @@ public class ListDealsGUITeste implements Initializable {
 
         announcementAnchorPane.setVisible(true);
 
+        setGeneralLabel();
+
+        setLabelAndIconsAccordinglyToTypeOfProperty();
+
+
+        List<Image> images = new ArrayList<>();
+
+        if (publishedAnnouncement.getProperty().getPhotos().getUrl() != null){
+            for (String url : publishedAnnouncement.getProperty().getPhotos().getUrl()) {
+
+                images.add(new Image(url, 738, 258, false, false));
+
+                photosPagination.setVisible(true);
+                photosPagination.setPageCount(publishedAnnouncement.getProperty().getPhotos().getUrl().size());
+                photosPagination.setPageFactory(n -> new ImageView(images.get(n)));
+
+            }
+        }else {
+            photosPagination.setVisible(false);
+            noPhotos.setVisible(true);
+        }
+
+        announcementLabel.setVisible(true);
+
+
+    }
+
+    private void getCriteria(javafx.event.ActionEvent actionEvent) {
+
+        String choiceOption = filterChoice.getValue();
+
+
+        if (choiceOption.equals("Sort Selection Algorithm")) {
+            ascendOrDescendChoice.setVisible(true);
+            ascendOrDescendChoice.setOnAction(this::getOrderSelectionSort);
+        } else if (choiceOption.equals("Bubble Sort Algorithm")) {
+            ascendOrDescendChoice.setVisible(true);
+            ascendOrDescendChoice.setOnAction(this::getOrderBubbleSort);
+        }
+
+    }
+
+
+    private void getOrderBubbleSort(javafx.event.ActionEvent actionEvent) {
+
+        String choiceOption = ascendOrDescendChoice.getValue();
+
+        if (choiceOption.equals("Descending")) {
+            listDeals.clear();
+            listDeals.addAll(controller.getDealsByDescendingAreaBubbleSort());
+        } else if (choiceOption.equals("Ascending")) {
+            listDeals.clear();
+            listDeals.addAll(controller.getDealsByAscendingAreaBubbleSort());
+
+        }
+
+    }
+
+    private void getOrderSelectionSort(javafx.event.ActionEvent actionEvent) {
+
+        String choiceOption = ascendOrDescendChoice.getValue();
+
+        if (choiceOption.equals("Descending")) {
+            listDeals.clear();
+            listDeals.addAll(controller.getDealsByDescendingAreaSortSelection());
+        } else if (choiceOption.equals("Ascending")) {
+            listDeals.clear();
+            listDeals.addAll(controller.getDealsByAscendingAreaSortSelection());
+
+        }
+
+    }
+
+    public void setGeneralLabel(){
 
         clientDescription.setText("Client Name: " + publishedAnnouncement.getClient().getName() + "      Contacts: " + publishedAnnouncement.getClient().getClientEmail() + ", " + publishedAnnouncement.getClient().getPhoneNumber());
         agentDescription.setText("Responsible Agent Name: " + publishedAnnouncement.getAgent().getName() + "      Contacts: " + publishedAnnouncement.getAgent().getEmail() + ", " + publishedAnnouncement.getAgent().getPhoneNumber());
@@ -203,6 +284,9 @@ public class ListDealsGUITeste implements Initializable {
         labelArea.setText("" + publishedAnnouncement.getProperty().getArea());
         idNameLabelStore.setText("Name: "+publishedAnnouncement.getAgent().getStore().getDesignation()+"   ID: "+publishedAnnouncement.getAgent().getStore().getId());
 
+    }
+
+    public void setLabelAndIconsAccordinglyToTypeOfProperty(){
         if (publishedAnnouncement.getProperty() instanceof House) {
             House house = (House) publishedAnnouncement.getProperty();
 
@@ -273,74 +357,6 @@ public class ListDealsGUITeste implements Initializable {
             parkingSpacesIcon.setVisible(false);
             labelparkingSpaces.setVisible(false);
         }
-
-
-        List<Image> images = new ArrayList<>();
-
-        if (publishedAnnouncement.getProperty().getPhotos().getUrl() != null){
-            for (String url : publishedAnnouncement.getProperty().getPhotos().getUrl()) {
-
-                images.add(new Image(url, 658, 258, false, false));
-
-                photosPagination.setVisible(true);
-                photosPagination.setPageCount(publishedAnnouncement.getProperty().getPhotos().getUrl().size());
-                photosPagination.setPageFactory(n -> new ImageView(images.get(n)));
-
-            }
-        }else {
-            photosPagination.setVisible(false);
-            noPhotos.setVisible(true);
-        }
-
-        announcementLabel.setVisible(true);
-
-
-    }
-
-    private void getCriteria(javafx.event.ActionEvent actionEvent) {
-
-        String choiceOption = filterChoice.getValue();
-
-
-        if (choiceOption.equals("Sort Selection Algorithm")) {
-            ascendOrDescendChoice.setVisible(true);
-            ascendOrDescendChoice.setOnAction(this::getOrderSelectionSort);
-        } else if (choiceOption.equals("Bubble Sort Algorithm")) {
-            ascendOrDescendChoice.setVisible(true);
-            ascendOrDescendChoice.setOnAction(this::getOrderBubbleSort);
-        }
-
-    }
-
-
-    private void getOrderBubbleSort(javafx.event.ActionEvent actionEvent) {
-
-        String choiceOption = ascendOrDescendChoice.getValue();
-
-        if (choiceOption.equals("Descending")) {
-            listDeals.clear();
-            listDeals.addAll(controller.getDealsByDescendingAreaBubbleSort());
-        } else if (choiceOption.equals("Ascending")) {
-            listDeals.clear();
-            listDeals.addAll(controller.getDealsByAscendingAreaBubbleSort());
-
-        }
-
-    }
-
-    private void getOrderSelectionSort(javafx.event.ActionEvent actionEvent) {
-
-        String choiceOption = ascendOrDescendChoice.getValue();
-
-        if (choiceOption.equals("Descending")) {
-            listDeals.clear();
-            listDeals.addAll(controller.getDealsByDescendingAreaSortSelection());
-        } else if (choiceOption.equals("Ascending")) {
-            listDeals.clear();
-            listDeals.addAll(controller.getDealsByAscendingAreaSortSelection());
-
-        }
-
     }
 
 
