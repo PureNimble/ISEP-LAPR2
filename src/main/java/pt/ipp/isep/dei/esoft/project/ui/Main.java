@@ -17,12 +17,14 @@ public class Main{
      */
     public static void main(String[] args) throws IOException {
         Bootstrap bootstrap = new Bootstrap();
-        Repositories.getInstance().deserialize();
+
+
         try {
             bootstrap.run();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        Repositories.getInstance().deserialize();
 
         try {
             MainMenuUI menu = new MainMenuUI();

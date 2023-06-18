@@ -53,6 +53,7 @@ class StoreRepositoryTest {
 
     @BeforeEach
     void setUpPropertys() {
+        setUpComission();
         setUpPropertyTypes();
         setUpBusiness();
         setUpAddress();
@@ -61,7 +62,6 @@ class StoreRepositoryTest {
         setUpTypeOfBusiness();
         setUpRoles();
         setUpPublishedAnnouncements();
-        setUpComission();
         house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South",address2);
         land = new Property(5, 1000,address2);
         appartment = new Residence(20, 150, 3, 2, 1, new AvailableEquipment("air conditioning"),address2);

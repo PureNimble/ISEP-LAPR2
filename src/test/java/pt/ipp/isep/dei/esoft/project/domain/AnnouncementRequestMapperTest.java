@@ -55,13 +55,13 @@ class AnnouncementRequestMapperTest {
         setUpPropertyTypes();
         setUpBusiness();
         setUpAddress();
+        setUpComission();
         setUpStore();
         setEmployees();
         setUpTypeOfBusiness();
         setUpRoles();
         setUpAnnouncementRequest();
         setUpPublishedAnnouncements();
-        setUpComission();
         setUpAnnouncementRequestDto();
     }
 

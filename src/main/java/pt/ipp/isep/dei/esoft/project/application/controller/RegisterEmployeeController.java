@@ -213,7 +213,7 @@ public class RegisterEmployeeController {
         Optional<Employee> newEmployee = Optional.empty();
 
         if (getStoreRepository().getStores().contains(store)) {
-            newEmployee = store.createEmployee(email,name,phone,rolesByDescription,store,address,passportNumber,taxNumber);
+            newEmployee = employeeRepository.createEmployee(email,name,phone,rolesByDescription,store,address,passportNumber,taxNumber);
         }
         return newEmployee;
     }

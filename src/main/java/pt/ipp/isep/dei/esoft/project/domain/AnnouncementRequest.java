@@ -277,30 +277,27 @@ public class AnnouncementRequest implements Serializable {
      @return a string representation of this AnnouncementRequest object.
      */
     public String toString() {
-        return String.format("Date:%s\n" +
-                        "Type of business:%s\n" +
-                        "Property Type:%s\n" +
-                        "Price:%s\n" +
-                        "%s\n",
-                        
-                date.toString(), typeOfBusiness.toString(), propertyType, business.toString(), property.toString());
+        if (!typeOfBusiness.getTypeOfBusiness().equals("Rent")){
+            return String.format("Date:%s\n" +
+                            "Type of business:%s\n" +
+                            "Property Type:%s\n" +
+                            "Price:%s\n" +
+                            "%s\n",
+
+                    date.toString(), typeOfBusiness.toString(), propertyType, business.toString(), property.toString());
+        }else {
+            return String.format("Date:%s\n" +
+                            "Type of business:%s\n" +
+                            "Property Type:%s\n" +
+                            "Price:%s\n" +
+                            "DurationOfContract:%s\n" +
+                            "%s\n",
+
+                    date.toString(), typeOfBusiness.toString(), propertyType, business.toString(), durationOfContract, property.toString());
+        }
+
     }
 
-    /**
-     * Returns a string representation of this AnnouncementRequest object for rental properties.
-     *
-     * @return a string representation of this AnnouncementRequest object for rental properties.
-     */
-    public String toStringRent(){
-        return String.format("Date:%s\n" +
-                        "Type of business:%s\n" +
-                        "Property Type:%s\n" +
-                        "Price:%s\n" +
-                        "DurationOfContract:%s\n" +
-                        "%s\n",
-
-                date.toString(), typeOfBusiness.toString(), propertyType, business.toString(), durationOfContract, property.toString());
-    }
     /**
      * Checks if this AnnouncementRequest is equal to another object.
      *

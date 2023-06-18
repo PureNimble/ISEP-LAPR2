@@ -10,14 +10,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: #A0A0A0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.ListDealsGUI">
     <children>
-      <AnchorPane fx:id="announcementAnchorPane" focusTraversable="true" layoutX="355.0" layoutY="111.0" prefHeight="489.0" prefWidth="738.0" style="-fx-background-color: white;" visible="false">
+      <AnchorPane fx:id="announcementAnchorPane" focusTraversable="true" layoutX="321.0" layoutY="111.0" prefHeight="489.0" prefWidth="779.0" style="-fx-background-color: white;" visible="false">
          <children>
             <ImageView fitHeight="77.0" fitWidth="115.0" layoutX="578.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@PhotosApp/Ruler%20linear%20icon.jpg" />
                </image>
             </ImageView>
-            <Pagination fx:id="photosPagination" pageCount="0" prefHeight="257.0" prefWidth="738.0" visible="false" />
+            <Pagination fx:id="photosPagination" pageCount="0" prefHeight="257.0" prefWidth="773.0" visible="false" />
             <Label fx:id="adressLabel" layoutX="27.0" layoutY="322.0" prefHeight="27.0" prefWidth="487.0" text="Label">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
@@ -93,11 +93,11 @@
                   <Image url="@PhotosApp/Down%20Stair%20Vector%20Hd%20PNG%20Images,%20Construction%20Down%20Home%20Stair%20Line%20Icon%20Vector,%20Home%20Icons,%20Line%20Icons,%20Construction%20Icons%20PNG%20Image%20For%20Free%20Download.jpg" />
                </image></ImageView>
             <Label fx:id="labelBasement" layoutX="484.0" layoutY="449.0" text="Label" visible="false" />
-            <Label fx:id="agentDescription" layoutX="27.0" layoutY="383.0" prefHeight="17.0" prefWidth="605.0" text="Label">
+            <Label fx:id="agentDescription" layoutX="27.0" layoutY="383.0" prefHeight="19.0" prefWidth="756.0" text="Label">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
                </font></Label>
-            <Label fx:id="clientDescription" layoutX="27.0" layoutY="414.0" prefHeight="17.0" prefWidth="580.0" text="Label">
+            <Label fx:id="clientDescription" layoutX="27.0" layoutY="414.0" prefHeight="19.0" prefWidth="756.0" text="Label">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
                </font></Label>
@@ -114,25 +114,30 @@
                </image>
             </ImageView>
             <Label fx:id="labelLoft" layoutX="563.0" layoutY="450.0" text="Label" visible="false" />
-            <Label fx:id="noPhotos" layoutX="82.0" layoutY="14.0" prefHeight="195.0" prefWidth="496.0" text="           No Photos" visible="false">
+            <Label fx:id="noPhotos" layoutX="134.0" layoutY="14.0" prefHeight="195.0" prefWidth="626.0" text="           No Photos" visible="false">
                <font>
-                  <Font name="Impact" size="61.0" />
+                  <Font name="Impact" size="65.0" />
                </font>
             </Label>
-            <ImageView fitHeight="65.0" fitWidth="79.0" layoutX="514.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="40.0" fitWidth="41.0" layoutX="587.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@PhotosApp/Download%20Shopping%20Store%20or%20market%20icon%20vector%20for%20free.jpg" />
                </image>
             </ImageView>
-            <Label layoutX="528.0" layoutY="415.0" text="STORE">
+            <Label layoutX="589.0" layoutY="467.0" prefHeight="17.0" prefWidth="37.0" text="STORE">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="idNameLabelStore" layoutX="575.0" layoutY="393.0" prefHeight="19.0" prefWidth="162.0" text="Label">
+            <Label fx:id="idNameLabelStore" layoutX="627.0" layoutY="442.0" prefHeight="19.0" prefWidth="162.0" text="Label">
+               <font>
+                  <Font name="System Bold Italic" size="11.0" />
+               </font></Label>
+            <Label fx:id="contractDuration" layoutX="378.0" layoutY="300.0" prefHeight="17.0" prefWidth="115.0" text="Duration contract " visible="false">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
-               </font></Label>
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="64.0" prefWidth="1100.0" style="-fx-background-color: white; -fx-border-width: 6px 0px 6px 0px; -fx-border-color: black;">

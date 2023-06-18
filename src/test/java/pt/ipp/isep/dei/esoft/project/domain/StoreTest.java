@@ -36,33 +36,7 @@ class StoreTest {
         assertEquals(expected, store.toString());
     }
 
-    @Test
-    void createEmployee() {
-//        Address address = new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State"));
-//        Store store = new Store("Store A", 1, address, 5551234, "storea@example.com");
-//        List<Role> roles = new ArrayList<>();
-//        roles.add(new Role("Sales"));
-//        Optional<Employee> optionalEmployee = store.createEmployee("employee@example.com", "Employee Name", 5554321, roles, store, address, 123456, 789012);
-//        Employee employee1 = new Employee("employee@example.com", 123456789,987654321, "Employe Name", 5555678,new Store("Store A", 1, address, 5551234, "storea@example.com"), (List<Role>) new Role("Agent"), new Address("123 Main St", 13456, new District("Test District"), new City("Test City"), new State("Test State")));
-//
-//        int passportNumber = 123456789;
-//        int taxNumber = 987654321;
-//        String name = "Employe Name";
-//        int phone = 5555678;
-//        String email = "employee@example.com";
-//        String Role = "Agent";
-//
-//
-//        assertTrue(optionalEmployee.isPresent());
-//        Employee employee = optionalEmployee.get();
-//        assertEquals(employee, email);
-//        assertEquals("Employee Name", name);
-//        assertEquals(5554321, phone);
-//        assertEquals(store, employee.getStore());
-//        assertEquals(address, address);
-//        assertEquals(123456, passportNumber);
-//        assertEquals(789012, taxNumber);
-    }
+
 
     @Test
     void testEquals() {

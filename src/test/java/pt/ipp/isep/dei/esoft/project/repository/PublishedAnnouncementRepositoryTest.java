@@ -54,13 +54,13 @@ class PublishedAnnouncementRepositoryTest {
         setUpPropertyTypes();
         setUpBusiness();
         setUpAddress();
+        setUpComission();
         setUpStore();
         setEmployees();
         setUpTypeOfBusiness();
         setUpRoles();
         setUpAnnouncementRequest();
         setUpPublishedAnnouncements();
-        setUpComission();
         setUpAnnouncementRequestDto();
         house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South",address2);
         land = new Property(5, 1000,address2);

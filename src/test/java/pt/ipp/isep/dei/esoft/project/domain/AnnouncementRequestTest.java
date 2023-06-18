@@ -66,35 +66,6 @@ class AnnouncementRequestTest {
     }
 
     @Test
-    void toStringRent() {
-        Date date = new Date();
-        TypeOfBusiness typeOfBusiness = new TypeOfBusiness("rent");
-        Property property = new Property(100,167, photo,address);
-        PropertyType propertyType = new PropertyType("house");
-        Business business = new Business(900);
-        int durationOfContract = 12;
-        Role role = new Role("Agent");
-        Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
-        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com",9,1);
-        List<Role> roles = new ArrayList<>();
-        roles.add(role);
-        Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
-
-        AnnouncementRequest announcementRequest = new AnnouncementRequest("",date, typeOfBusiness, property, propertyType, business, durationOfContract, employee, client);
-
-        String expectedOutput = String.format("Date:%s\n" +
-                        "Type of business:%s\n" +
-                        "Property Type:%s\n" +
-                        "Price:%s\n" +
-                        "DurationOfContract:%s\n" +
-                        "%s\n",
-
-                date.toString(), typeOfBusiness.toString(), propertyType, business.toString(), durationOfContract, property.toString());
-
-        assertEquals(expectedOutput, announcementRequest.toStringRent());
-    }
-
-    @Test
     void getTypeOfBusiness() {
         TypeOfBusiness typeOfBusiness = announcementRequest.getTypeOfBusiness();
         Assertions.assertNotNull(typeOfBusiness);

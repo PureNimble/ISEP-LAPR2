@@ -72,7 +72,7 @@ public class AnnouncementRequestRepository implements Serializable {
 
         AnnouncementRequest announcementRequest;
 
-        if (property.toString().equals("Rent")) {
+        if (propertyType.toString().equals("Rent")) {
             announcementRequest = new AnnouncementRequest("",date, typeOfBusiness, property, propertyType, business, durationOfContract, agent, client);
         } else {
             announcementRequest = new AnnouncementRequest("",date, typeOfBusiness, property, propertyType, business, agent, client);

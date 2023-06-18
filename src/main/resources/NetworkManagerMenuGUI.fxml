@@ -68,6 +68,7 @@
                   <Font name="Impact" size="40.0" />
                </font>
             </Label>
+            <Button fx:id="btReturn" layoutX="478.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBtReturn" text="Return main menu" />
          </children>
       </AnchorPane>
    </center>

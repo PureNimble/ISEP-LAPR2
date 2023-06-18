@@ -27,7 +27,6 @@ import java.util.ResourceBundle;
 public class ListDealsGUI implements Initializable {
 
 
-
     @FXML
     private Label idNameLabelStore;
 
@@ -81,6 +80,10 @@ public class ListDealsGUI implements Initializable {
     private ChoiceBox<String> filterChoice;
 
     private String[] filterCriteria = {"Sort Selection Algorithm", "Bubble Sort Algorithm"};
+
+
+    @FXML
+    private Label contractDuration;
 
     @FXML
     private TableView<Object> table;
@@ -150,14 +153,14 @@ public class ListDealsGUI implements Initializable {
 
 
         clientName.setCellValueFactory(new PropertyValueFactory<Offer, Client>("client"));
-        clientName.setCellFactory(column -> new TextFieldTableCell<Offer, Client>(){
+        clientName.setCellFactory(column -> new TextFieldTableCell<Offer, Client>() {
             @Override
-            public void updateItem(Client client,boolean empty){
-                super.updateItem(client,empty);
-                if (empty || client == null){
+            public void updateItem(Client client, boolean empty) {
+                super.updateItem(client, empty);
+                if (empty || client == null) {
                     setText("");
-                }else {
-                    setText(""+client.getClientEmail());
+                } else {
+                    setText("" + client.getClientEmail());
                 }
             }
         });
@@ -205,17 +208,18 @@ public class ListDealsGUI implements Initializable {
 
         List<Image> images = new ArrayList<>();
 
-        if (publishedAnnouncement.getProperty().getPhotos().getUrl() != null){
+        if (publishedAnnouncement.getProperty().getPhotos() != null) {
             for (String url : publishedAnnouncement.getProperty().getPhotos().getUrl()) {
 
-                images.add(new Image(url, 738, 258, false, false));
+                images.add(new Image(url, 773, 257, false, false));
 
+                noPhotos.setVisible(false);
                 photosPagination.setVisible(true);
                 photosPagination.setPageCount(publishedAnnouncement.getProperty().getPhotos().getUrl().size());
                 photosPagination.setPageFactory(n -> new ImageView(images.get(n)));
 
             }
-        }else {
+        } else {
             photosPagination.setVisible(false);
             noPhotos.setVisible(true);
         }
@@ -271,7 +275,7 @@ public class ListDealsGUI implements Initializable {
 
     }
 
-    public void setGeneralLabel(){
+    public void setGeneralLabel() {
 
         clientDescription.setText("Client Name: " + publishedAnnouncement.getClient().getName() + "      Contacts: " + publishedAnnouncement.getClient().getClientEmail() + ", " + publishedAnnouncement.getClient().getPhoneNumber());
         agentDescription.setText("Responsible Agent Name: " + publishedAnnouncement.getAgent().getName() + "      Contacts: " + publishedAnnouncement.getAgent().getEmail() + ", " + publishedAnnouncement.getAgent().getPhoneNumber());
@@ -282,11 +286,16 @@ public class ListDealsGUI implements Initializable {
         typeOfProperrtyLabel.setText("" + publishedAnnouncement.getPropertyType());
         dateLabel.setText("" + publishedAnnouncement.getDate());
         labelArea.setText("" + publishedAnnouncement.getProperty().getArea());
-        idNameLabelStore.setText("Name: "+publishedAnnouncement.getAgent().getStore().getDesignation()+"   ID: "+publishedAnnouncement.getAgent().getStore().getId());
+        idNameLabelStore.setText("Name: " + publishedAnnouncement.getAgent().getStore().getDesignation() + "   ID: " + publishedAnnouncement.getAgent().getStore().getId());
+
+        if (publishedAnnouncement.getTypeOfBusiness().getTypeOfBusiness().equals("Rent") || publishedAnnouncement.getTypeOfBusiness().getTypeOfBusiness().equals("rent")) {
+            contractDuration.setVisible(true);
+            contractDuration.setText("Contract Duration:             %s" + publishedAnnouncement.getDurationOfContract());
+        }
 
     }
 
-    public void setLabelAndIconsAccordinglyToTypeOfProperty(){
+    public void setLabelAndIconsAccordinglyToTypeOfProperty() {
         if (publishedAnnouncement.getProperty() instanceof House) {
             House house = (House) publishedAnnouncement.getProperty();
 

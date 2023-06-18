@@ -321,7 +321,7 @@ public class OfferRepository implements Serializable {
             if (aux > 0) {
 
                 nameClient = "Client" + i;
-                email = "client" + "i" + "@" + "realstateUS.com";
+                email = "client" + i + "@" + "realstateUS.com";
                 phoneNumber = (long) (1000000000 + Math.random() * 9999999999L);
                 orderAmount = informations.get(i);
 

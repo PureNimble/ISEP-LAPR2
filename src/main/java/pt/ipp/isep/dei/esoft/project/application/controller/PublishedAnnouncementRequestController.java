@@ -64,12 +64,13 @@ public class PublishedAnnouncementRequestController {
      * @param employeeRepository              The EmployeeRepository instance.
      * @param authenticationRepository        The AuthenticationRepository instance.
      */
-    public PublishedAnnouncementRequestController(PublishedAnnouncementRepository publishedAnnouncementRepository, AnnouncementRequestRepository announcementRequestRepository, ComissionRepository comissionRepository, EmployeeRepository employeeRepository, AuthenticationRepository authenticationRepository) {
+    public PublishedAnnouncementRequestController(PublishedAnnouncementRepository publishedAnnouncementRepository, AnnouncementRequestRepository announcementRequestRepository, ComissionRepository comissionRepository, EmployeeRepository employeeRepository, AuthenticationRepository authenticationRepository,StoreRepository storeRepository) {
         this.publishedAnnouncementRepository = publishedAnnouncementRepository;
         this.announcementRequestRepository = announcementRequestRepository;
         this.comissionRepository = comissionRepository;
         this.employeeRepository = employeeRepository;
         this.authenticationRepository = authenticationRepository;
+        this.storeRepository = storeRepository;
     }
 
     /**

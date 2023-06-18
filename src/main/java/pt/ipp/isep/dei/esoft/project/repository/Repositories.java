@@ -268,38 +268,46 @@ public class Repositories implements Serializable {
     public void deserialize() {
         try {
 
-            FileInputStream fileInputStream = new FileInputStream(SERIALIZATION_FILE_NAME);
-            if (fileInputStream.getChannel().size() > 0) {
-                ObjectInputStream in = new ObjectInputStream(fileInputStream);
+            File file = new File(SERIALIZATION_FILE_NAME);
+            if (file.exists()){
+                FileInputStream fileInputStream = new FileInputStream(SERIALIZATION_FILE_NAME);
+                if (fileInputStream.getChannel().size() > 0) {
+                    ObjectInputStream in = new ObjectInputStream(fileInputStream);
 
-                typeOfBusinessRepository = (TypeOfBusinessRepository) in.readObject();
-                roleRepository = (RoleRepository) in.readObject();
-                stateRepository = (StateRepository) in.readObject();
-                employeeRepository = (EmployeeRepository) in.readObject();
-                messageRepository = (MessageRepository) in.readObject();
-                offerRepository = (OfferRepository) in.readObject();
-                comissionRepository = (ComissionRepository) in.readObject();
-                userRepository = (UserRepository) in.readObject();
-                propertyTypeRepository = (PropertyTypeRepository) in.readObject();
-                announcementRequestRepository = (AnnouncementRequestRepository) in.readObject();
-                availableEquipmentRepository = (AvailableEquipmentRepository) in.readObject();
+                    typeOfBusinessRepository = (TypeOfBusinessRepository) in.readObject();
+                    roleRepository = (RoleRepository) in.readObject();
+                    stateRepository = (StateRepository) in.readObject();
+                    employeeRepository = (EmployeeRepository) in.readObject();
+                    messageRepository = (MessageRepository) in.readObject();
+                    offerRepository = (OfferRepository) in.readObject();
+                    comissionRepository = (ComissionRepository) in.readObject();
+                    userRepository = (UserRepository) in.readObject();
+                    propertyTypeRepository = (PropertyTypeRepository) in.readObject();
+                    announcementRequestRepository = (AnnouncementRequestRepository) in.readObject();
+                    availableEquipmentRepository = (AvailableEquipmentRepository) in.readObject();
 
-                List<Store> stores = (List<Store>) in.readObject();
+                    List<Store> stores = (List<Store>) in.readObject();
 
-                for (Store store : stores) {
-                    storeRepository.add(store);
+                    for (Store store : stores) {
+
+                        storeRepository.add(store);
+
+                    }
+
+                    List<PublishedAnnouncement> publishedAnnouncements = (List<PublishedAnnouncement>) in.readObject();
+
+                    for (PublishedAnnouncement publishedAnnouncement : publishedAnnouncements) {
+
+                        publishedAnnouncementRepository.add(publishedAnnouncement);
+
+                    }
+
+
+                    in.close();
+                    fileInputStream.close();
                 }
-
-                List<PublishedAnnouncement> publishedAnnouncements = (List<PublishedAnnouncement>) in.readObject();
-
-                for (PublishedAnnouncement publishedAnnouncement : publishedAnnouncements) {
-                    publishedAnnouncementRepository.add(publishedAnnouncement);
-                }
-
-
-                in.close();
-                fileInputStream.close();
             }
+
 
 
         } catch (Exception e) {

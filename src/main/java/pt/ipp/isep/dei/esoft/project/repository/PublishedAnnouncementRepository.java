@@ -69,7 +69,7 @@ public class PublishedAnnouncementRepository implements Serializable {
 
         PublishedAnnouncement publishedAnnouncement;
 
-        if (property.toString().equals("Rent")) {
+        if (typeOfBusiness.toString().equals("Rent")) {
             publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, durationOfContract, agent, client, state, store);
         } else {
             publishedAnnouncement = new PublishedAnnouncement(date, typeOfBusiness, property, propertyType, comission, business, agent, client, state, store);

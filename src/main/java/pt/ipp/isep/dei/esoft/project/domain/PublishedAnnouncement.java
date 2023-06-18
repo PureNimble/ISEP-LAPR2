@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * The type Published announcement.
@@ -44,7 +45,7 @@ public class PublishedAnnouncement implements Serializable {
         this.propertyType = propertyType;
         this.comission = comission;
         this.date = date;
-        this.business = new Business(business.getPrice() * (comission.getComission()/100));
+        this.business = new Business((business.getPrice() * (comission.getComission()/100))+business.getPrice());
         this.agent = agent;
         this.client = client;
         this.announcementState = announcementState;
@@ -321,37 +322,45 @@ public class PublishedAnnouncement implements Serializable {
     }
 
     public String toString() {
-        return String.format("Date: %s\n\n" + "Responsible Agent: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
-                        "Client: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
-                        "Type Of Business: %s\n" +
-                        "Property Type: %s\n" +
-                        "Price: %s\n" +
-                        "%s\n",
+        if (!typeOfBusiness.getTypeOfBusiness().equals("Rent") && !typeOfBusiness.getTypeOfBusiness().equals("rent") ){
+            return String.format("Date: %s\n\n" + "Responsible Agent: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
+                    "Client: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
+                    "Type Of Business: %s\n" +
+                    "Property Type: %s\n" +
+                    "Price: %s\n" +
+                    "%s\n",date.toString(), agent.getEmployeeName(), agent.getEmployeeEmail(), agent.getPhoneNumber(), client.getName(), client.getEmail(), client.getPhoneNumber(),
+                    typeOfBusiness.toString(), propertyType, business.toString(), property.toString());
+        }else {
+            return String.format("Date: %s\n\n" +  "Responsible Agent: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
+                            "Client: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
+                            "Type Of Business: %s\n" +
+                            "Property Type: %s\n" +
+                            "Price: %s\n" +
+                            "Duration Of The Contract: %s\n" +
+                            "%s\n",
+
+                    date.toString(), agent.getEmployeeName(),
+                    agent.getEmployeeEmail(), agent.getPhoneNumber(),
+                    client.getName(), client.getEmail(), client.getPhoneNumber(),
+                    typeOfBusiness.toString(),
+                    propertyType,business.toString(), durationOfContract, property.toString());
+        }
+
                         
-                date.toString(), agent.getEmployeeName(), agent.getEmployeeEmail(), agent.getPhoneNumber(), client.getName(), client.getEmail(), client.getPhoneNumber(),
-                typeOfBusiness.toString(), propertyType, business.toString(), property.toString());
+
     }
 
-    /**
-     * To string rent string.
-     *
-     * @return the string
-     */
-    public String toStringRent() {
-        return String.format("Date: %s\n\n" +  "Responsible Agent: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
-                "Client: \n" + "Name: %s\n" + "Email: %s\n" + "Phone Number: %s\n\n" +
-                        "Type Of Business: %s\n" +
-                        "Property Type: %s\n" +
-                        "Comission Selected: %s" +
-                        "Price: %s\n" +
-                        "Duration Of The Contract: %s\n" +
-                        "%s\n",
-                        
-                date.toString(), agent.getEmployeeName(),
-                agent.getEmployeeEmail(), agent.getPhoneNumber(),
-                client.getName(), client.getEmail(), client.getPhoneNumber(),
-                 typeOfBusiness.toString(),
-                propertyType, comission.toString(), business.toString(), durationOfContract, property.toString());
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PublishedAnnouncement that = (PublishedAnnouncement) o;
+        return durationOfContract == that.durationOfContract && date.equals(that.date) && typeOfBusiness.equals(that.typeOfBusiness) && property.equals(that.property) && propertyType.equals(that.propertyType) && comission.equals(that.comission) && business.equals(that.business) && agent.equals(that.agent) && client.equals(that.client) && announcementState == that.announcementState && store.equals(that.store);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(date, typeOfBusiness, property, propertyType, comission, business, durationOfContract, agent, client, announcementState, store);
+    }
 }

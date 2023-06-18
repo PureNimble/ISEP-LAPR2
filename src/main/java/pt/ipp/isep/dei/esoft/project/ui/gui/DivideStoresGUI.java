@@ -37,7 +37,7 @@ public class DivideStoresGUI implements Initializable {
 
         System.out.println(executionTime);
 
-        minimumDifference.setText("Minimun difference= " + list.get(2).get(0));
+        minimumDifference.setText("Minimum difference= " + list.get(2).get(0));
 
         textAreaSubset1.setText(createListString(list.get(0)).toString());
 

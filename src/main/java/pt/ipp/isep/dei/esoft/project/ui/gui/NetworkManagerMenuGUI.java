@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.ui.gui;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,6 +20,8 @@ import java.util.ResourceBundle;
  */
 public class NetworkManagerMenuGUI implements Runnable, Initializable {
 
+
+    public javafx.scene.control.Button btReturn;
     @FXML
     private Label labelNetworkManagerMenu;
 
@@ -122,5 +125,31 @@ public class NetworkManagerMenuGUI implements Runnable, Initializable {
         alert.setContentText(content);
 
         return alert;
+    }
+
+
+    /**
+     * On bt return.
+     *
+     * @param actionEvent the action event
+     */
+    @FXML
+    public void onBtReturn(ActionEvent actionEvent) {
+        Stage stage = getStage();
+        FXMLLoader listMessageLoader = new FXMLLoader(getClass().getResource("/MainMenu.fxml")); // Specify the correct file path here
+        Parent root = null;
+        try {
+            root = listMessageLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Main Menu");
+        stage.show();
+    }
+
+    private Stage getStage() {
+        return (Stage) btReturn.getScene().getWindow();
     }
 }

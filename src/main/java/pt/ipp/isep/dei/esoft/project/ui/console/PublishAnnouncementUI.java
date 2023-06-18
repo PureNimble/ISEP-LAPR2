@@ -149,7 +149,7 @@ public class PublishAnnouncementUI implements Runnable {
 
             email = requestEmail();
 
-            if (propertyTypeDescription.equals("Rent")) {
+            if (contractType.equals("Rent")) {
 
                 durationOfContract = requestDurationOfContract();
             }
@@ -165,15 +165,6 @@ public class PublishAnnouncementUI implements Runnable {
 
             List<PublishedAnnouncement> publishedAnnouncement = controller.getPublishedAnnoucement();
 
-            StringBuilder st = new StringBuilder();
-
-
-            for (PublishedAnnouncement p : publishedAnnouncement) {
-                st.append(p.toString());
-                st.append("\n");
-            }
-
-            System.out.println(st);
 
         } else {
             System.out.println("There is no Agents on the system for you to choose one. ");
