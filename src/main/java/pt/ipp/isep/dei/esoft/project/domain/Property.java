@@ -57,7 +57,7 @@ public class Property implements Serializable {
      * @param area                   the area
      * @param address                the address
      */
-    public Property(int distanceFromCityCenter, int area, Address address) {
+    public Property(int area, int distanceFromCityCenter, Address address) {
         this.distanceFromCityCenter = distanceFromCityCenter;
         this.area = area;
         this.address = address;

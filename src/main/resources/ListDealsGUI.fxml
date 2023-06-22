@@ -158,7 +158,7 @@
       </AnchorPane>
         <TableView fx:id="table" layoutY="111.0" onMouseClicked="#clickItem" prefHeight="489.0" prefWidth="333.0" style="-fx-background-color: transparent;" stylesheets="@listDealsGUICSS.css">
             <columns>
-                <TableColumn fx:id="idOffer" prefWidth="57.0" sortable="false" text="ID" />
+                <TableColumn fx:id="idOffer" prefWidth="57.0" text="ID" />
                 <TableColumn fx:id="orderAmount" minWidth="0.0" prefWidth="94.0" sortable="false" text="Order Amount" />
             <TableColumn fx:id="clientName" prefWidth="107.0" sortable="false" text="Client" />
             </columns>
@@ -176,7 +176,7 @@
             <Font name="Impact" size="39.0" />
          </font>
       </Label>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="92.0" fitWidth="168.0" pickOnBounds="true" preserveRatio="true" />
     </children>
 
 </AnchorPane>

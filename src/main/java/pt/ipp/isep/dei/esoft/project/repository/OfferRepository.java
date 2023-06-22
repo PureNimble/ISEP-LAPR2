@@ -313,11 +313,11 @@ public class OfferRepository implements Serializable {
         String email;
         long phoneNumber;
         String[] orderAmount;
-        int aux = 0;
+
 
         for (PublishedAnnouncement publishedAnnouncement : publishedAnnouncements) {
 
-            if (aux > 0) {
+
 
                 nameClient = "Client" + i;
                 email = "client" + i + "@" + "realstateUS.com";
@@ -328,7 +328,7 @@ public class OfferRepository implements Serializable {
                 Client client = new Client(email, 000000000, 000000000, nameClient, phoneNumber);
 
 
-                Offer offer = new Offer("Offer" + i, Double.parseDouble(orderAmount[19]), publishedAnnouncement, OfferState.accepted, client, i + 1);
+                Offer offer = new Offer("Offer" + i, Double.parseDouble(orderAmount[19]), publishedAnnouncement, OfferState.accepted, client, i );
 
 
                 if (!offers.contains(offer)) {
@@ -336,10 +336,7 @@ public class OfferRepository implements Serializable {
                 }
 
                 i++;
-            } else {
-                aux = 1;
 
-            }
 
         }
 

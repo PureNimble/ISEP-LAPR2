@@ -131,7 +131,7 @@ public class StoreRepository implements Serializable {
         for (Store stores : storesList) {
             if (stores.equals(store)) {
                 stores.setAvailableListing(stores.getAvailableListing() + 1);
-                stores.setListing(stores.getListing()+1);
+                stores.setListing(stores.getListing() + 1);
             }
         }
     }
@@ -167,10 +167,9 @@ public class StoreRepository implements Serializable {
 
         for (String[] storeInformations : arrayListStoreInformations) {
             if (aux > 0) {
-                listing++;
                 id = Integer.parseInt(storeInformations[0]);
                 if (auxID != id) {
-                    Store store = new Store(designation, auxID, address, phoneNumber, email, listing - 1, 0);
+                    Store store = new Store(designation, auxID, address, phoneNumber, email, listing , 0); ;
 
                     auxID = id;
                     listing = 0;
@@ -203,6 +202,8 @@ public class StoreRepository implements Serializable {
                 phoneNumber = Long.parseLong(storeInformations[3].replaceAll("-", ""));
                 email = storeInformations[4];
 
+                listing++;
+
             } else {
                 aux = 1;
             }
@@ -228,7 +229,7 @@ public class StoreRepository implements Serializable {
 
         int size = stores.size();
 
-        int totalSubsets = (int)Math.pow(2, size) - 1;
+        int totalSubsets = (int) Math.pow(2, size) - 1;
 
         int sum1 = 0;
 
@@ -245,7 +246,6 @@ public class StoreRepository implements Serializable {
         for (int i = 0; i < size; i++) {
             storeListings[i] = stores.get(i).getListing();
         }
-
 
 
         for (int i = 0; i < totalSubsets; i++) {

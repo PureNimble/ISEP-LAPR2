@@ -641,10 +641,10 @@ public class Bootstrap {
         Store store3 = new Store("Elvis",224,address3,1274567809,"elvis@gmail.com", 15, 1);
 
 
-        storeRepository.add(store1);
-
-        storeRepository.add(store2);
-        storeRepository.add(store3);
+//        storeRepository.add(store1);
+//
+//        storeRepository.add(store2);
+//        storeRepository.add(store3);
 
 
     }
@@ -671,12 +671,12 @@ public class Bootstrap {
 
     private void addOffers(PublishedAnnouncement publishedAnnouncement1, PublishedAnnouncement publishedAnnouncement2, PublishedAnnouncement publishedAnnouncement3, PublishedAnnouncement publishedAnnouncement4, PublishedAnnouncement publishedAnnouncement5) {
         OfferRepository offerRepository = Repositories.getInstance().getOfferRepository();
-
-        offerRepository.add(new Offer("Pedro", 130000, publishedAnnouncement1, OfferState.accepted, new Client("pedro@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890),1));
-        offerRepository.add(new Offer("Diogo",97000, publishedAnnouncement2, OfferState.pending, new Client("diogo@sapo.pt", 567890123, 567890123, "Diogo", new Address("20 W 34th Street", 10001, new District("Manhattan"), new City("New York"), new State("New York")), 1345678901),2));
-        offerRepository.add(new Offer("Luna", 135600,publishedAnnouncement3,OfferState.accepted, new Client("luna@outlook.com", 234567890, 234567890, "Luna", new Address("200 Santa Monica Pier", 90401, new District("Santa Monica"), new City("Los Angeles"), new State("California")), 1987654321),3));
-        offerRepository.add(new Offer("Vasco", 140000,publishedAnnouncement4,OfferState.pending, new Client("vasco@gmail.com", 345678901, 345678901, "Vasco", new Address("1200 Getty Center Drive", 90049, new District("Crestwood Hills"), new City("Los Angeles"), new State("California")), 1112345689),4));
-        offerRepository.add(new Offer("Rafael", 98000,publishedAnnouncement5,OfferState.pending, new Client("rafael@gmail.com", 456789012, 456789012, "Rafael", new Address("1000 5th Avenue", 10028, new District("Manhattan"), new City("New York"), new State("New York")), 1425432897),5));
+//
+//        offerRepository.add(new Offer("Pedro", 130000, publishedAnnouncement1, OfferState.accepted, new Client("pedro@gmail.com", 123456789, 123456789, "Pedro", new Address("13000 SD-244", 57751, new District("Mount Rushmore"), new City("Keystone"), new State("South Dakota")), 1234567890),1));
+//        offerRepository.add(new Offer("Diogo",97000, publishedAnnouncement2, OfferState.accepted, new Client("diogo@sapo.pt", 567890123, 567890123, "Diogo", new Address("20 W 34th Street", 10001, new District("Manhattan"), new City("New York"), new State("New York")), 1345678901),2));
+//        offerRepository.add(new Offer("Luna", 135600,publishedAnnouncement3,OfferState.accepted, new Client("luna@outlook.com", 234567890, 234567890, "Luna", new Address("200 Santa Monica Pier", 90401, new District("Santa Monica"), new City("Los Angeles"), new State("California")), 1987654321),3));
+//        offerRepository.add(new Offer("Vasco", 140000,publishedAnnouncement4,OfferState.accepted, new Client("vasco@gmail.com", 345678901, 345678901, "Vasco", new Address("1200 Getty Center Drive", 90049, new District("Crestwood Hills"), new City("Los Angeles"), new State("California")), 1112345689),4));
+//        offerRepository.add(new Offer("Rafael", 98000,publishedAnnouncement5,OfferState.accepted, new Client("rafael@gmail.com", 456789012, 456789012, "Rafael", new Address("1000 5th Avenue", 10028, new District("Manhattan"), new City("New York"), new State("New York")), 1425432897),5));
     }
 
     private void addMessages(PublishedAnnouncement publishedAnnouncement1, PublishedAnnouncement publishedAnnouncement2, PublishedAnnouncement publishedAnnouncement3, PublishedAnnouncement publishedAnnouncement4, PublishedAnnouncement publishedAnnouncement5, Date date1, Date date2, Date date3, Date date4, Date date5) {
