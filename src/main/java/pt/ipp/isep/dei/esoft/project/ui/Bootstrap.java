@@ -685,7 +685,11 @@ public class Bootstrap {
         messageRepository.add(new Message("Pedro", 1234567890, "Olá, estou interessado na propriedade!", date1, 11, 12, publishedAnnouncement1, MessageState.UNANSWERED,false));
         messageRepository.add(new Message("Luna", 1345678901, "Interessado.", date2, 20,21,publishedAnnouncement2, MessageState.UNANSWERED, false));
         messageRepository.add(new Message("Diogo", 1987654321, "Estou com interesse na propriedade!", date3,15,17,publishedAnnouncement3, MessageState.UNANSWERED, false));
-        messageRepository.add(new Message("Vasco",1112345689, "Quero!", date4,9,10,publishedAnnouncement4, MessageState.ANSWERED, false));
-        messageRepository.add(new Message("Rafael", 1425432897, "Podemos já fazer negócio?", date5,14,15,publishedAnnouncement5, MessageState.ANSWERED, true));
+        messageRepository.add(new Message("Vasco",1112345689, "Quero!", date4,9,10,publishedAnnouncement4, MessageState.UNANSWERED, false));
+        messageRepository.add(new Message("Rafael", 1425432897, "Podemos já fazer negócio?", date5,14,15,publishedAnnouncement5, MessageState.UNANSWERED, true));
+        messageRepository.add(new Message("Vasco",1112345689, "Your booking request has been decline", date4,9,10,publishedAnnouncement5, MessageState.ANSWERED, false));
+        messageRepository.add(new Message("Vasco",1112345689, "Your booking request has been accepted", date4,9,10,publishedAnnouncement3, MessageState.ANSWERED, true));
+        messageRepository.add(new Message("Rafael", 1425432897, "Your booking request has been accepted", date5,14,15,publishedAnnouncement2, MessageState.ANSWERED, true));
+
     }
 }
