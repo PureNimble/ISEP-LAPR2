@@ -1,0 +1,120 @@
+@startuml
+
+title US004 - Domain Model
+
+skinparam groupInheritance 2
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+class TypeOfProperty{
+    Type
+}
+
+class City {
+    City name
+}
+
+class District {
+    District name
+}
+
+class Photos {
+    URI
+}
+
+class State {
+    State name
+}
+
+class AvailableEquipment {
+    Equipment
+}
+
+class ComissionPercentage {
+    Percentage value
+}
+
+
+class Contacts {
+    Phone number
+    Email adress
+}
+
+class User {
+
+}
+
+class Rent {
+    Duration of contract
+}
+
+class AnnouncementRequest {
+    Initial date
+}
+
+class Business {
+    Total Price
+}
+
+class Residence {
+    Number of Bedrooms
+    Number of Bathrooms
+    Number of Parking Spaces
+}
+
+class Store {
+    ID
+    Designation
+}
+
+class Property {
+    Area
+    Photos
+    Distance from the city center
+}
+
+class House {
+    Basement
+    Inhabitable loft
+}
+
+class SunExposure {
+    Direction
+}
+
+class Address {
+    Street
+    Zip Code
+}
+
+class Comission {
+    Value
+}
+
+Residence <|-- House
+Property <|-- Residence
+SunExposure "1" -up-- "1" House: contains <
+Address "1" -right-- "1" Property: has <
+User "1" -down-- "*" Property: has >
+User "1" -right- "1" Store: contacts >
+Agent "*" -left-- "1" Store: has <
+AvailableEquipment "*" -left-- "1" Residence: contains <
+User "1" -up-- "1" Business: defines >
+Store "1" -right-- "1" Contacts: has >
+Comission "1" -down-- "1" Agent: defines <
+Comission "1" -up-- "1" Business: contains <
+Comission <|-- ComissionPercentage
+Business <|-- Rent
+Property "1" -right-- "1..30" Photos: has >
+User "1" -left-- "1" AnnouncementRequest: makes >
+Business "1" -left-- "1" AnnouncementRequest: gets <
+AnnouncementRequest "1" -left-- "1" Property: advertises >
+TypeOfProperty "1" -down-- "1" Property: defines >
+State "1" -left-- "*" District: has >
+District "1" -left-- "*" City: has >
+Address "*" -left-- "1" State: has <
+@enduml

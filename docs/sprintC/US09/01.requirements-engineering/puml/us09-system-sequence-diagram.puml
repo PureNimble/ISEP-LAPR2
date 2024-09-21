@@ -1,0 +1,43 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - US09
+
+autonumber
+
+activate Client
+
+Client -> System: asks to schedule a visit
+activate System
+
+System --> Client: shows a list of properties sorted from the most recent entries to the oldest
+deactivate System
+
+Client -> System: selects a property of his interest
+activate System
+
+'System --> Client: asks to confirm the property selected
+'deactivate System
+'
+'Client -> System: Confirms the selected data
+'activate System
+
+System --> Client: Requests the name, phone number \nand preferred date and time slot (from x hour to y hour) for the property visit
+deactivate System
+
+Client -> System: submits the requested data
+activate System
+
+System --> Client: asks to confirm the submitted data
+deactivate System
+
+Client -> System: confirms the submitted data
+activate System
+
+System --> Client: registers the information and shows a success message
+deactivate System
+
+@enduml

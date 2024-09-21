@@ -1,0 +1,259 @@
+package pt.ipp.isep.dei.esoft.project.repository;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.esoft.project.domain.*;
+
+import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class AnnouncementRequestRepositoryTest {
+
+
+
+    private Date date = new Date();
+
+    private  Date date1 = new Date(2004,1,24);
+
+    private Date date2 = new Date(2016,2,24);
+    private TypeOfBusiness typeOfBusiness, typeOfBusiness1;
+
+    private Role role;
+
+    private Address address2;
+
+    private Store store;
+
+    private Employee employee, employee1, employee2;
+
+    private Business business, business1;
+
+    private House house;
+
+    private Property land;
+
+    private Residence appartment;
+
+    private PropertyType propertyType, propertyType1, propertyType2;
+
+    private Client client;
+    private AnnouncementRequest announcementRequest, announcementRequest1, announcementRequest2;
+
+    private AnnouncementRequestDto announcementRequestDto;
+
+    @BeforeEach
+    void setUpPropertys() {
+        setUpPropertyTypes();
+        setUpBusiness();
+        setUpAddress();
+        setUpStore();
+        setEmployees();
+        setUpTypeOfBusiness();
+        setUpRoles();
+        setUpAnnouncementRequest();
+        setUpAnnouncementRequestDto();
+        house = new House(100, 2, 2, 1, 1, new AvailableEquipment("air conditioning"), "Yes", "No", "South",address2);
+        land = new Property(5, 1000,address2);
+        appartment = new Residence(20, 150, 3, 2, 1, new AvailableEquipment("air conditioning"),address2);
+    }
+
+    @BeforeEach
+    void setUpPropertyTypes() {
+        propertyType = new PropertyType("House");
+        propertyType1 = new PropertyType("Appartment");
+        propertyType2 = new PropertyType("Land");
+    }
+
+    @BeforeEach
+    void setUpClient() {
+       client = new Client("pedro@isep.ipp.pt", 123456789, 987654321, "Pedro", address2, 1234567890);
+    }
+
+
+    @BeforeEach
+    void setUpTypeOfBusiness() {
+        typeOfBusiness = new TypeOfBusiness("Sale");
+        typeOfBusiness1 = new TypeOfBusiness("Rent");
+    }
+
+
+    @BeforeEach
+    void setUpBusiness() {
+        double price = 1000.32;
+        business = new Business(price);
+        double price1 = 102.213;
+        business1 = new Business(price1);
+    }
+
+    @BeforeEach
+    void setUpRoles() {
+        role = new Role("Agent");
+    }
+
+    @BeforeEach
+    void setUpAddress() {
+        address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
+    }
+
+    @BeforeEach
+    void setUpStore() {
+        store = new Store("Test Store", 1, address2, 5551234, "test@store.com",0, 1);
+    }
+
+    @BeforeEach
+    void setEmployees() {
+        List<Role> roles = new ArrayList<>();
+        roles.add(role);
+        employee = new Employee("employee@this.app", 12, 12, "nome", 1234567, store, roles, address2);
+        employee1 = new Employee("employee1@this.app", 12, 12, "nome", 19191919, store, roles, address2);
+        employee2 = new Employee("employee2@this.app", 12, 12, "nome", 19191919, store, roles, address2);
+    }
+
+
+
+
+    @BeforeEach
+    void setUpAnnouncementRequest() {
+            announcementRequest = new AnnouncementRequest("",date, typeOfBusiness, house, propertyType, business, employee,client);
+            announcementRequest1 = new AnnouncementRequest("",date, typeOfBusiness1, land, propertyType, business, employee,client);
+            announcementRequest2 = new AnnouncementRequest("",date, typeOfBusiness, appartment, propertyType2, business1, employee,client);
+
+    }
+
+    @BeforeEach
+    void setUpAnnouncementRequestDto() {
+        announcementRequestDto = new AnnouncementRequestDto("",date, typeOfBusiness, house, propertyType, business, employee,client);
+    }
+
+    @Test
+    void add() {
+        AnnouncementRequestRepository repository = new AnnouncementRequestRepository();
+
+        Role role = new Role("Agent");
+        Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
+        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com",0,1);
+        List<Role> roles = new ArrayList<>();
+        roles.add(role);
+        Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
+
+        AnnouncementRequest announcementRequest = new AnnouncementRequest("",new Date(), new TypeOfBusiness("Sale"), new Property(345,789,address2), new PropertyType("House"), new Business(89999), employee,client);
+        Optional<AnnouncementRequest> addedAnnouncementRequest = repository.add(announcementRequest);
+        Assertions.assertTrue(addedAnnouncementRequest.isPresent());
+        List<AnnouncementRequest> announcementRequests = repository.getAnnouncementsRequest();
+        Assertions.assertTrue(announcementRequests.contains(announcementRequest));
+    }
+
+    @Test
+    void announcementRequest() {
+
+        AnnouncementRequestRepository repository = new AnnouncementRequestRepository();
+        Role role = new Role("Agent");
+        Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
+        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com",0,1);
+        List<Role> roles = new ArrayList<>();
+        roles.add(role);
+        Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
+
+        AnnouncementRequest announcementRequest = new AnnouncementRequest("",new Date(), new TypeOfBusiness("Sale"), new Property(345,789,address2), new PropertyType("House"), new Business(89999), employee,client);
+        List<AnnouncementRequest> announcementRequests = repository.getAnnouncementsRequest();
+        Assertions.assertFalse(announcementRequests.contains(announcementRequest));
+    }
+
+    @Test
+    void getAnnouncementsRequest() {
+
+
+        Role role = new Role("Agent");
+        Address address2 = new Address("Main Street", 1234, new District("Test District"), new City("Test City"), new State("Test State"));
+        Store store = new Store("Test Store", 1, address2, 5551234, "test@store.com",0,1);
+        List<Role> roles = new ArrayList<>();
+        roles.add(role);
+        Employee employee = new Employee("12",12,12,"nome", 12, store, roles,address2);
+
+        AnnouncementRequestRepository repository = new AnnouncementRequestRepository();
+
+        AnnouncementRequest announcementRequest1 = new AnnouncementRequest(
+                "",
+                new Date(),
+                new TypeOfBusiness("Rent"),
+                new Property(567,89,address2),
+                new PropertyType("House"),
+                new Business(45666),
+                employee,
+                client
+        );
+
+        AnnouncementRequest announcementRequest2 = new AnnouncementRequest(
+                "",
+                new Date(),
+                new TypeOfBusiness("Rent"),
+                new Property(967,89,address2),
+                new PropertyType("Land"),
+                new Business(666),
+                employee,
+                client
+        );
+
+        repository.add(announcementRequest1);
+        repository.add(announcementRequest2);
+
+        List<AnnouncementRequest> announcementRequests = repository.getAnnouncementsRequest();
+
+        Assertions.assertSame(announcementRequests, repository.getAnnouncementsRequest());
+        Assertions.assertEquals(announcementRequests.size(), 2);
+        Assertions.assertTrue(announcementRequests.contains(announcementRequest1));
+        Assertions.assertTrue(announcementRequests.contains(announcementRequest2));
+    }
+
+    @Test
+    void getAnnouncementRequestsByMostRecentTest() {
+
+        AnnouncementRequestRepository repository = new AnnouncementRequestRepository();
+
+        List<AnnouncementRequest> expected = new ArrayList<>();
+        expected.add(announcementRequest);
+        expected.add(announcementRequest1);
+        expected.add(announcementRequest2);
+
+        repository.add(announcementRequest);
+        repository.add(announcementRequest1);
+        repository.add(announcementRequest2);
+
+        Collections.reverse(expected);
+
+        assertEquals(expected,repository.getAnnouncementRequestsByMostRecent(employee));
+
+    }
+
+    @Test
+    void getAnnouncementRequestByDescriptionTest() {
+
+        AnnouncementRequestRepository repository = new AnnouncementRequestRepository();
+
+        repository.add(announcementRequest);
+        repository.add(announcementRequest1);
+        repository.add(announcementRequest2);
+
+
+        assertEquals(announcementRequest1,repository.getAnnouncementRequestByDescription(1));
+
+    }
+
+    @Test
+    void rejectAnnouncementRequestTest() {
+        AnnouncementRequestRepository repository = new AnnouncementRequestRepository();
+
+        repository.add(announcementRequest);
+        repository.add(announcementRequest1);
+        repository.add(announcementRequest2);
+
+
+        repository.rejectAnnouncementRequest(announcementRequestDto);
+
+        assertEquals("false",announcementRequest.getStatus());
+
+
+    }
+}

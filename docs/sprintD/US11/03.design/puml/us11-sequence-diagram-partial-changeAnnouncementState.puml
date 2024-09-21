@@ -1,0 +1,23 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+participant ":OfferDecisionController" as controller
+participant ":Repositories" as singleton
+participant "repositories\n:Repositories" as repositories
+participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as announcementrep
+participant "PublishedAnnouncement\n:PublishedAnnouncement" as announcement
+
+activate controller
+        controller -> announcementrep : changeAnnouncementState(PublishedAnnouncement publishedAnnouncement)
+        activate announcementrep
+        announcementrep --> announcement : changeAnnouncementState(PublishedAnnouncement publishedAnnouncement)
+        activate announcement
+        announcement --> announcement : publishedAnnouncement.setAnnouncementState(AnnouncementState.sold)
+        deactivate announcementrep
+        deactivate announcement
+        deactivate controller
+        
+@enduml

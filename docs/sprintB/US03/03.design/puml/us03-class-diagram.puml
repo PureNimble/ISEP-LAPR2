@@ -1,0 +1,275 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class RegisterEmployeeUI
+
+class Adress
+
+class RegisterEmployeeController
+
+class Person
+
+class UserRepository
+
+class Repositories
+
+class Employee
+
+class Store
+
+class Role
+
+class AuthenticationRepository
+
+class User
+
+class EmployeeRepository
+
+class SystemAdministrator
+
+class StoresRepository
+
+class RolesRepository
+
+class State
+
+class City
+
+class District
+
+class StateRepository
+
+class UserRepository{
++add(user)
+-validateUser(user)
++getUsers()
+
+}
+
+
+class Person{
+- String email
+- int passportNumber
+- int taxNumber
+- String name
+- Adress adress
+- int phoneNumber
+
++User(email,passportNumber,taxNumber,name,phoneNumber)
++getPassportNumber()
++getTaxNumber()
++getEmail()
++getAdress()
++getName()
++getPhoneNumber()
+
+}
+
+class EmployeeRepository{
++add(employee)
++getEmployees()
+}
+
+class AuthenticationRepository{
++doLogin(email,pwd)
++doLogout()
++getCurrentSession()
++addUserRole()
++addUserWithRole()
++passwordGenerator()
+-shuffleString(input,random)
+-randomCharacter(characters,random)
+}
+
+class StateRepository{
++getState()
++addEmployee(State state)
++getCityByDescription(String cityDescription,District district)
++getDistrictByDescription(String districtDescription,State state)
++getStateByDescription(String stateDescription)
+}
+
+class State{
+ - String stateName
+
+    +getState()
+    +getDistricts()
+    +toString()
+
+}
+
+class District{
+- String districtName
+
+
+    +getDistrictName()
+    +getCities()
+    +toString()
+}
+
+class City{
+- String city
+
+    +getCityName()
+}
+
+class Adress{
+ -String streetName
+    -int zipCode
+
+    +verifyZipCode()
+    +getCity()
+    +getDistrict()
+    +getState()
+    +Address(state, district, city, street, zipCode)
+}
+
+class Role{
+-String role
++Role(role)
+}
+
+class SystemAdministrator{
+}
+
+class Employee{
+-Store store
+-Role role
++Employee(email,name,store,phoneNumber,role,adress,taxNumber,passportNumber)
++getStore()
++getRole()
+}
+
+class StoresRepository{
++getStores()
++getStoreByDescription()
++add(Store store)
+
+}
+
+class RolesRepository{
++getRolesEmployee()
++getRoleByDescription()
++add(Role role)
+
+}
+
+class RegisterEmployeeUI{
+}
+
+class RegisterEmployeeController{
++createEmployeeController(employeeRoleListRepository,StoresRepository,StateRepository,AuthemticationRepository,EmployeeRepository)
++getRolesEmployee()
++getStores()
++getState()
++getEmployees()
++getDistrict()
++getCity()
++getState()
++createEmployee(name,passportNumber,tax number ,adress,email,telephone number,store, roles)
++getStateByDescription(String stateDescription)
++getCityByDescription(String cityDescription)
++getDistrictByDescription(String districtDescription)
+-getRoleRepository()
+-getAuthenticationRepository()
+-getStoreRepository()
+-getStateRepository()
+-getRolesEmployeeRepository()
+-getRoleByDescription(String roleDescription)
+}
+
+class Repositories{
+-Repositories()
++getInstance():Repositories
++getRolesEmployeeRepository()
++getStoresRepository()
++getStatesRepository()
++getAuthenticationRepository()
++getEmployeesRepository()
+}
+
+class User{
+-String passwordGenerator
+
++getPassword()
+}
+
+class Store{
+-String name
+-Adress adress
+-addEmployee(employee)
+-validateEmployee(employee)
++Store(name,adress,contact)
++createEmployee(name,citizen´s card number,tax number ,adress,email adress,telephone number,store, role)
+}
+
+
+RegisterEmployeeUI .> RegisterEmployeeController
+
+RegisterEmployeeController ..> "1" Store : store
+
+RegisterEmployeeController ...> EmployeeRepository : employeeRepository
+
+RegisterEmployeeController ...> AuthenticationRepository : authenticationRepository
+
+RegisterEmployeeController ...> RolesRepository :RolesRepository
+
+RegisterEmployeeController .-left.> StoresRepository : StoresRepository
+
+RegisterEmployeeController ...> StateRepository : StateRepository
+
+Store "1" ---> "*" Employee : employee
+
+Repositories -> Repositories:instance
+
+Repositories --------> UserRepository: userRepository
+
+Repositories -----> EmployeeRepository: employeeRepository
+
+Repositories ----> AuthenticationRepository: authenticationRepository
+
+Repositories ---> StoresRepository: storeRepository
+
+Repositories ----> RolesRepository:roleEmployee
+
+RegisterEmployeeController .>  Repositories : repositories
+
+StoresRepository --> "*" Store
+
+Employee <-- SystemAdministrator : registers
+
+Store <- "*" SystemAdministrator : registers
+
+RolesRepository ---> Role
+
+Employee "1" -> "*" Role : role
+
+Adress "1" -> "*"  Store
+
+Adress "1" --> "*" Employee
+
+Adress "1" -left- "1" State
+
+State "1" -left- "*" District
+
+District "1" -left- "*" City
+
+User "*" <----------  UserRepository
+
+
+User <|-- Employee
+
+Person <|-- User
+
+
+Repositories -> StateRepository: stateRepository
+
+StateRepository --------> "*" State : stateRepository
+
+
+Store -[hidden]> Person
+
+EmployeeRepository --> "*" Employee
+
+
+@enduml

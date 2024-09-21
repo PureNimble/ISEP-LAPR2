@@ -1,0 +1,41 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+title US015 - Sequence Diagram Partial (Get Message Request List)
+
+'hide footbox
+
+participant ":ListMessageController" as CTRL
+participant ":Repositories" as Repository
+participant "repositories\n:Repositories" as repository2
+participant "messageRepository:\nMessageRepository" as MessageRepository
+
+autonumber 15
+
+group Get Message Request List
+
+activate CTRL
+
+CTRL -> Repository : getInstance()
+            activate Repository
+
+            Repository --> CTRL : repositories:Repositories
+            deactivate Repository
+
+            CTRL -> repository2 : getMessageRepository()
+            activate repository2
+
+            repository2 --> CTRL : messageRepository
+            deactivate repository2
+
+            CTRL -> MessageRepository : getMessageRequestList\n(employeeByEmail, beginDate, endDate)
+            activate MessageRepository
+
+            MessageRepository --> CTRL : messageRequestList
+            deactivate MessageRepository
+
+end
+
+deactivate CTRL
+@enduml

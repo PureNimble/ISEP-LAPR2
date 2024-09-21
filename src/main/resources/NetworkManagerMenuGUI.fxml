@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.NetworkManagerMenuGUI">
+   <center>
+      <AnchorPane prefHeight="375.0" prefWidth="578.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane layoutX="37.0" prefHeight="400.0" prefWidth="220.0" style="-fx-background-color: gray;">
+               <children>
+                  <Button layoutX="9.0" layoutY="155.0" mnemonicParsing="false" onMouseClicked="#listDeals" prefHeight="52.0" prefWidth="209.0" style="-fx-background-color: transparent;" text="List all deals made">
+                     <font>
+                        <Font name="System Bold Italic" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button contentDisplay="TOP" layoutX="11.0" layoutY="215.0" mnemonicParsing="false" onMouseClicked="#divideStores" prefHeight="94.0" prefWidth="206.0" style="-fx-background-color: transparent;" text="Divide Stores into two subsets" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="System Bold Italic" size="19.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <ImageView fitHeight="231.0" fitWidth="310.0" layoutX="270.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@PhotosApp/networkManagerMenu.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="-3.0" prefHeight="400.0" prefWidth="53.0" style="-fx-background-color: #fff;">
+               <effect>
+                  <DropShadow />
+               </effect>
+               <children>
+                  <ImageView fitHeight="36.0" fitWidth="62.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@PhotosApp/listDeals.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="44.0" fitWidth="57.0" layoutX="9.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@PhotosApp/Dividers_Vector_Art_PNG__Vector_Divide_Icon__Calculate__Divide__Math_Icon_PNG_Image_For_Free_Download-removebg-preview.png" />
+                     </image></ImageView>
+               </children>
+            </AnchorPane>
+            <Label layoutX="277.0" layoutY="66.0" text="Network Manager" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Impact" size="41.0" />
+               </font>
+            </Label>
+            <Label layoutX="379.0" layoutY="117.0" text="Menu">
+               <font>
+                  <Font name="Impact" size="40.0" />
+               </font>
+            </Label>
+            <Button fx:id="btReturn" layoutX="478.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBtReturn" text="Return main menu" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

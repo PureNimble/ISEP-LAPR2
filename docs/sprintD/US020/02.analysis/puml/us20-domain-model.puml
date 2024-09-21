@@ -1,0 +1,133 @@
+@startuml
+
+title US20 - Domain Model
+
+skinparam groupInheritance 2
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+class User {
+    Password
+}
+
+class Person {
+    Name
+    Email
+    Phone Number
+    Tax Number
+    Passport Number
+}
+
+class Address {
+    Street
+    Zip Code
+}
+
+class City {
+    City name
+}
+
+class District {
+    District name
+}
+
+class State {
+    State name
+}
+
+class Client {
+
+}
+
+
+class Residence {
+    Number of Bedrooms
+    Number of Bathrooms
+    Number of Parking Spaces
+}
+
+class Property {
+    Area
+    Photos
+    Distance from the city center
+}
+
+class TypeOfProperty{
+    Type
+}
+
+class Photos {
+    URI
+}
+
+class House {
+    Basement
+    Inhabitable loft
+}
+
+class SunExposure {
+    Direction
+}
+
+class AvailableEquipment {
+    Equipment
+}
+
+class Rent {
+    Duration of contract
+}
+
+class Business {
+    Requested price
+}
+
+class PublishedAnnouncement {
+    Contract type
+}
+
+class Message{
+    Name
+    Phone number
+    Date
+    Initial time
+    End time
+    Published Announcement
+    Message State
+    Agents Approval
+}
+
+class Agent {
+
+}
+
+class Employee {
+
+}
+
+Message "*" --- "1" PublishedAnnouncement: has informations about >
+Client "1" -down-- "*" Message: responds to a >
+Agent "1" -down-- "*" Message: can see >
+District "1" -down- "*" City : has >
+State "1" -down- "*" District : has >
+City "1" -down- "*" Address : has >
+Property "1" --- "1" Business: has a <
+PublishedAnnouncement "1" --- "1" Business: has a <
+Residence <|-down- House
+Property <|-down- Residence
+Property "1" -left-- "1..30" Photos: has >
+SunExposure "1" -up- "*" House: contains <
+Address "1" -left- "1" Property: has <
+AvailableEquipment "*" -up- "1" Residence: contains <
+TypeOfProperty "1" -down-- "1" Property: defines >
+
+Business <|--- Rent
+Person <|-- User
+User <|-- Client
+User <|-- Employee
+Employee <|-- Agent
+
+@enduml

@@ -1,0 +1,143 @@
+@startuml
+
+title US016 - Domain Model
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing true
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+class Agent {
+
+}
+
+class Client {
+
+}
+
+class Message {
+Date
+Initial Time
+End Time
+Description
+}
+
+class Employee {
+
+}
+
+class Role {
+
+}
+
+class Person {
+Name
+Email
+Phone Number
+Tax Number
+Passport Number
+}
+
+class PublishedAnnouncement {
+Contract Type
+}
+
+class Property {
+Area
+Distance From City Center
+}
+
+class TypeOfProperty {
+Type
+}
+
+class Photos {
+URI
+}
+
+class Business {
+Requested Price
+}
+
+class Comission {
+Value
+}
+
+class Rent {
+Duration Of Contract
+}
+
+class Address {
+Street Name
+Zip Code
+}
+
+class Residence {
+Number Of Bathrooms
+Number Of Bedrooms
+Number Of Parking Spaces
+}
+
+class State {
+State Name
+}
+
+class House {
+Basement
+Inhabitable Loft
+}
+
+class AvailableEquipment {
+Equipment
+}
+
+class District {
+District Name
+}
+
+class SunExposure {
+Direction
+}
+
+class City {
+City Name
+}
+
+Agent "1" --- "*" Message : responds >
+Agent "1" --- "*" PublishedAnnouncement : publishes >
+
+Address "*" -- "1" State : has <
+
+State "*" -- "1" District : has <
+
+District "*" -- "1" City : has <
+
+PublishedAnnouncement "*" --- "*" Property : advertises >
+PublishedAnnouncement "1" --- "1" Business : has <
+
+Message "*" --- "1" PublishedAnnouncement: can have <
+
+Business <|--- Rent
+Business "1" -- "1" Comission : contains >
+
+Property "1" -left- "1" TypeOfProperty : defines <
+Property "1" -up- "1..30" Photos : has >
+Property "1" -- "1" Address : has >
+Property <|-- Residence
+
+Residence <|-- House
+Residence "1" -- "*" AvailableEquipment : contains >
+
+House "*" --- "1" SunExposure : contains >
+
+Employee --- Agent
+Employee "*" -right- "1" Role : has >
+
+Message "1..*" -left- "1" Client : leaves
+
+Person <|--- Client
+Person <|--- Employee
+
+@enduml

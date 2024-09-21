@@ -1,0 +1,40 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US012 - Sequence Diagram Partial Create File Copy
+
+autonumber 11
+
+'hide footbox
+
+
+participant "repositories\n:Repositories" as Repositories
+participant "File Reader Repository\n:FileReaderRepository" as FileReaderRepository
+
+
+
+
+                 -> FileReaderRepository : createFileCopy(fileInformation)
+                                activate FileReaderRepository
+
+                                group Create File Copy
+
+                                FileReaderRepository -> FileReaderClass** : createFileCopy(fileInformation)
+
+                                FileReaderRepository -> FileReaderRepository : addFileCopy(fileInformation)
+                                activate FileReaderRepository
+
+                                FileReaderRepository -> FileReaderRepository : validateFileCopy(fileInformation)
+                                activate FileReaderRepository
+
+                                end
+
+                                --> FileReaderRepository : FileCopy
+                                deactivate FileReaderRepository
+                                deactivate FileReaderRepository
+                                deactivate FileReaderRepository
+
+
+@enduml

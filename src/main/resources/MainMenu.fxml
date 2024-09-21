@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.MainMenuGUI">
+   <left>
+      <AnchorPane prefHeight="500.0" prefWidth="342.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="227.0" fitWidth="222.0" layoutX="49.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@PhotosApp/agreement.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="23.0" layoutY="363.0" prefHeight="78.0" prefWidth="292.0" text="Real Estate App" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="500.0" prefWidth="358.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="txtEmail" layoutX="101.0" layoutY="225.0" promptText="Email" style="-fx-border-color: #000; -fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px;" />
+            <PasswordField fx:id="passwordField" layoutX="101.0" layoutY="283.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: black;" />
+            <Button fx:id="onBtnLogin" layoutX="119.0" layoutY="363.0" mnemonicParsing="false" onAction="#onBtLoginAcntion" prefHeight="39.0" prefWidth="112.0" style="-fx-background-color: white; -fx-border-color: black;" text="LOGIN">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="29.0" fitWidth="30.0" layoutX="61.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@PhotosApp/user-icon-2098873_1280.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="49.0" fitWidth="54.0" layoutX="51.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@PhotosApp/lock-5493998_1280.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="47.0" layoutY="96.0" prefHeight="77.0" prefWidth="294.0" text="  MENU">
+               <font>
+                  <Font name="Arial Black" size="52.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>

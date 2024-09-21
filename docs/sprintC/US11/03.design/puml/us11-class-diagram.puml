@@ -1,0 +1,110 @@
+@startuml
+
+title US11 - Class Diagram
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+class Agent {
+  -name: String
+  -email: String
+}
+
+class OfferDecisionUI {
+  +displayPurchaseOrders(properties: List<PropertyDTO>): void
+  +keepOffer(offer: OfferDTO): void
+  +promptAgentDecision(): DecisionStatus
+  +displayOperationSuccess(): void
+}
+
+class OfferDecisionController {
+  -propertyRepository: PropertyRepository
+  -offerRepository: OfferRepository
+  -mapper: OfferMapper
+  +getOffersList(): void
+  +sendOfferStatus(offer: OfferDTO, status: DecisionStatus): void
+}
+
+class Repositories {
+  -propertyRepository: PropertyRepository
+  -offerRepository: OfferRepository
+  +getInstance(): Repositories
+  +getPropertyRepository(): PropertyRepository
+  +getOfferRepository(): OfferRepository
+}
+
+class Property {
+  -propertyId: int
+  -propertyName: String
+  -propertyType: String
+  -... other attributes ...
+  +compare(otherProperty: Property): int
+}
+
+class PropertyRepository {
+  +getProperty(propertyId: int): Property
+  +getPropertiesList(): List<Property>
+}
+
+class Offer {
+  -offerId: int
+  -propertyId: int
+  -offerDate: Date
+  -offerValue: BigDecimal
+  -status: DecisionStatus
+  +compare(otherOffer: Offer): int
+  +changeStatusToAccepted(): void
+  +changeStatusToDeclined(): void
+}
+
+class OfferRepository {
+  +getOffer(propertyId: int): Offer
+  +getOffersList(): List<Offer>
+  +sendOfferStatus(offer: Offer, status: DecisionStatus): void
+}
+
+class OfferMapper {
+  +toDTO(propertyList: List<Property>, offerList: List<Offer>): JointListDTO
+}
+
+class PropertyDTO {
+  -propertyId: int
+  -propertyName: String
+  -propertyType: String
+  -... other attributes ...
+}
+
+class OfferDTO {
+  -offerId: int
+  -propertyId: int
+  -offerDate: Date
+  -offerValue: BigDecimal
+  -status: DecisionStatus
+}
+
+class JointListDTO {
+  -propertyDTOs: List<PropertyDTO>
+  -offerDTOs: List<OfferDTO>
+}
+
+
+Agent --> OfferDecisionUI
+OfferDecisionUI --> OfferDecisionController
+OfferDecisionController ..> Repositories
+OfferDecisionController --> Property
+OfferDecisionController --> Offer
+OfferDecisionController ..> OfferMapper
+OfferDecisionController ..> PropertyRepository
+OfferDecisionController ..> OfferRepository
+OfferMapper ..> PropertyDTO
+OfferMapper ..> OfferDTO
+OfferDecisionUI --> Agent
+OfferDecisionUI --> PropertyDTO
+OfferDecisionUI --> OfferDTO
+PropertyRepository --> Property
+OfferRepository --> Offer
+JointListDTO --> PropertyDTO
+JointListDTO --> OfferDTO
+
+@enduml

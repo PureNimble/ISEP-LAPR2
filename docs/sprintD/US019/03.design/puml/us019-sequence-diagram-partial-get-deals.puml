@@ -1,0 +1,46 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US019 - Sequence Diagram Partial (Get Offers List Deal)
+
+
+autonumber 3
+
+
+participant ":DivideStoresController" as DivideStoresController
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "storeRepository\n:StoreRepository" as StoreRepository
+
+
+        -> DivideStoresController : getOffersListDeals()
+            activate DivideStoresController
+
+           group Get Offers List Deal
+
+                DivideStoresController -> RepositorySingleton : getInstance()
+                activate RepositorySingleton
+
+                    RepositorySingleton --> DivideStoresController: repositories
+                deactivate RepositorySingleton
+
+                DivideStoresController -> PLAT : getStoreRepository()
+                activate PLAT
+
+                    PLAT --> DivideStoresController: storeRepository
+                deactivate PLAT
+
+                DivideStoresController -> StoreRepository : findPartition()
+                activate StoreRepository
+
+                    StoreRepository --> DivideStoresController : partition
+                deactivate StoreRepository
+
+            end
+
+  <-- DivideStoresController   : partition
+
+
+@enduml

@@ -1,0 +1,47 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+
+
+
+participant ":PublishController" as CTRL
+participant ":Repositories" as Repository
+participant "repositories\n:Repositories" as Repository2
+participant "typesComissionRepository:\n Types Commission Repository" as typesComissionRepository
+
+
+autonumber 36
+
+ --> CTRL : getTypeComission()
+            activate CTRL
+
+group Get Type Comission
+            CTRL -> Repository : getInstance()
+            activate Repository
+
+            Repository --> CTRL : repositories
+            deactivate Repository
+
+            CTRL -> Repository2 : getTypeComissionRepository()
+            activate Repository2
+
+            Repository2 --> CTRL : typeComissionRepository
+            deactivate Repository2
+
+                 CTRL -> typesComissionRepository : getTypeComission()
+                 activate typesComissionRepository
+
+                 typesComissionRepository --> CTRL : Type Comission
+                 deactivate typesComissionRepository
+
+                 end
+
+             <-- CTRL : Type Comission
+
+
+@enduml

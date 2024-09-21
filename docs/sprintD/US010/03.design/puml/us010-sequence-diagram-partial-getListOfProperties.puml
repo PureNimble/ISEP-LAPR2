@@ -1,0 +1,36 @@
+@startuml
+
+title Sequence Diagram Partial - Get List Of Properties
+
+participant ":PlaceOfferController" as Controller
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as Repositories
+participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as PublishedAnnouncementRepository
+
+autonumber 13
+
+Group Get List Of Properties
+
+activate Controller
+
+Controller -> RepositorySingleton : getInstance()
+activate RepositorySingleton
+
+RepositorySingleton --> Controller : repositories
+deactivate RepositorySingleton
+
+Controller -> Repositories : getPublishedAnnouncementRepository()
+activate Repositories
+
+Repositories --> Controller: PublishedAnnouncementRepository
+deactivate Repositories
+
+Controller -> PublishedAnnouncementRepository : getListOfProperties()
+activate PublishedAnnouncementRepository
+
+PublishedAnnouncementRepository --> Controller : listOfProperties
+deactivate PublishedAnnouncementRepository
+
+end
+
+@enduml

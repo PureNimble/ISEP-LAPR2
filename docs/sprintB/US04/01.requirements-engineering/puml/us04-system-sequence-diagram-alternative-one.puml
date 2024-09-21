@@ -1,0 +1,122 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD)
+
+autonumber
+
+actor "User" as user
+participant ":System" as sys
+
+activate user
+
+
+    user -> sys : asks to create a new request for an owned property
+    activate sys
+
+    sys --> user : gives a list of possible agents and asks for the agent
+    deactivate sys
+
+    user -> sys : chooses the responsible agent
+    activate sys
+
+    sys --> user : shows list of types of property and asks the type of property
+    deactivate sys
+
+    user -> sys : selects the type of property
+    activate sys
+
+    sys --> user : asks for property data
+    deactivate sys
+
+    user -> sys : types the requested data [area in m^2, street, zip code and distance from city center]
+    activate sys
+
+    sys --> user: shows list of states and asks to select one
+                deactivate sys
+
+                user -> sys : selects state
+                activate sys
+
+    sys --> user: shows list of districts and asks to select one
+                deactivate sys
+
+                user -> sys : selects district
+                activate sys
+
+   sys --> user: shows list of cities and asks to select one
+                deactivate sys
+
+                user -> sys : selects city
+                activate sys
+
+    opt house, apartment
+            sys --> user : asks for house/apartment data
+            deactivate sys
+
+            user -> sys : types requested data [number of bedrooms, number of bathrooms, number of parking spaces, \navailable eqsyspment (central heating and/or airconditioning)]
+            activate sys
+
+            opt house
+                sys --> user : asks for the existence of a basement
+                deactivate sys
+
+                user -> sys: selects yes or no for the existence of a basement
+                activate sys
+
+                sys --> user : asks for the existence of a loft
+                deactivate sys
+
+                user -> sys: selects yes or no for the existence of a loft
+                activate sys
+
+                sys --> user: asks for the direction of the sun exposure
+                deactivate sys
+
+                user -> sys : selects the direction of the sun exposure [north, south, east, west]
+                activate sys
+           end
+    end
+     sys --> user : asks for photos of the property
+    deactivate sys
+
+    loop Sends URI's one by one (from 1 up to 30 pictures)
+
+        user -> sys : sends URI of the property
+        activate sys
+ 
+    end
+
+    sys ---> user : asks for the type of business
+    deactivate sys
+
+    user -> sys : selects the type of business
+    activate sys
+
+    sys --> user : asks for needed data
+    deactivate sys
+
+    user -> sys : types the requested data [Requested price]
+    activate sys
+
+    opt rent
+        sys --> user : asks for rent data
+        deactivate sys
+        user -> sys : types the requested data [contract duration]
+        activate sys
+    end
+
+    sys --> user : asks to confirm the operation
+    deactivate sys
+
+    user -> sys : confirms the operation
+    activate sys
+
+    sys --> user : displays operation success
+    deactivate sys
+    deactivate user
+
+    
+    @enduml

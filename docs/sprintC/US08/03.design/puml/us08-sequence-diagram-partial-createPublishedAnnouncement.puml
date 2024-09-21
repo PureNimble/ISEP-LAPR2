@@ -1,0 +1,60 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+participant ":PublishAnnouncementRequestController" as PublishAnnouncementRequestController
+participant "publishedAnnouncementRequestRepository\n:PublishedAnnouncementRequestRepository" as PublishAnnouncementRepository
+participant "PublishedAnnouncement" as PublishedAnnouncement
+participant "announcementRequestDto:AnnouncementRequestDto" as AnnouncementRequestDto
+
+
+autonumber 63
+
+
+
+activate PublishAnnouncementRequestController
+
+PublishAnnouncementRequestController -> PublishAnnouncementRepository:createPublishedAnnouncement(announcementRequest,comission)
+activate PublishAnnouncementRepository
+Group Create Published Announcement
+             PublishAnnouncementRepository -> PublishedAnnouncement** : createPublishedAnnouncement(announcementRequestDto,comission)
+             activate PublishedAnnouncement
+             PublishedAnnouncement -> AnnouncementRequestDto:date = getDate()
+             activate AnnouncementRequestDto
+             deactivate AnnouncementRequestDto
+             PublishedAnnouncement -> AnnouncementRequestDto:typeOfBusiness = getTypeOfBusiness()
+             activate AnnouncementRequestDto
+             deactivate AnnouncementRequestDto
+             PublishedAnnouncement -> AnnouncementRequestDto:property = getProperty()
+             activate AnnouncementRequestDto
+             deactivate AnnouncementRequestDto
+             PublishedAnnouncement -> AnnouncementRequestDto:propertyType = getPropertyType()
+             activate AnnouncementRequestDto
+             deactivate AnnouncementRequestDto
+             PublishedAnnouncement -> AnnouncementRequestDto:business = getBusiness()
+             activate AnnouncementRequestDto
+             deactivate AnnouncementRequestDto
+             PublishedAnnouncement -> AnnouncementRequestDto:durationOfContract = getDurationOfContract()
+             activate AnnouncementRequestDto
+             deactivate AnnouncementRequestDto
+
+PublishedAnnouncement -> AnnouncementRequestDto:status = getStatus()
+             activate AnnouncementRequestDto
+             deactivate AnnouncementRequestDto
+
+deactivate PublishedAnnouncement
+
+             PublishAnnouncementRepository -> PublishAnnouncementRepository : addPublishedAnnouncement(publishedAnnouncement)
+             activate PublishAnnouncementRepository
+             PublishAnnouncementRepository -> PublishAnnouncementRepository : validatePublishedAnnoncement(publishedAnnouncement)
+              activate PublishAnnouncementRepository
+               PublishAnnouncementRepository --> PublishAnnouncementRepository
+               deactivate PublishAnnouncementRepository
+                PublishAnnouncementRepository--> PublishAnnouncementRepository
+                deactivate PublishAnnouncementRepository
+end
+
+PublishAnnouncementRepository --> PublishAnnouncementRequestController:publishedAnnouncement
+deactivate PublishAnnouncementRepository
+
+@enduml

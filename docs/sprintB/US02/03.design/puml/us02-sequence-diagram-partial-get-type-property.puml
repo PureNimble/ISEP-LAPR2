@@ -1,0 +1,43 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant ":PublishController" as CTRL
+participant ":Repositories" as Repository
+participant "repositories\n:Repositories" as Repository2
+participant "typePropretyRepository:\nType Property Repository" as TypePropertyRepository
+
+autonumber 15
+
+
+-> CTRL : getPropertyType()
+         activate CTRL
+
+         group Get Type Of Property
+
+        CTRL -> Repository : getInstance()
+        activate Repository
+
+        Repository --> CTRL : repositories
+        deactivate Repository
+
+        CTRL -> Repository2 : getPropertyTypeRepository()
+        activate Repository2
+
+        Repository2 --> CTRL : propertyTypeRepository
+        deactivate Repository2
+
+
+                CTRL -> PropertyTypeRepository : getPropertyType()
+                activate PropertyTypeRepository
+
+                PropertyTypeRepository --> CTRL : Property Type
+                deactivate PropertyTypeRepository
+
+     end
+
+             <-- CTRL : Property Type
+            deactivate CTRL
+
+    @enduml

@@ -1,0 +1,48 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+
+participant ":CreateTaskController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "taskCategoryRepository:\nTaskCategoryRepository" as TaskCategoryRepository
+
+autonumber 3
+
+ -> CTRL : getTaskCategories()
+autonumber 3.1
+activate CTRL
+    group Get Task Category List
+
+
+            CTRL -> RepositorySingleton : getInstance()
+            activate RepositorySingleton
+
+                RepositorySingleton --> CTRL: repositories
+            deactivate RepositorySingleton
+
+            CTRL -> PLAT : getTaskCategoryRepository()
+            activate PLAT
+
+                PLAT --> CTRL: taskCategoryRepository
+            deactivate PLAT
+
+            CTRL -> TaskCategoryRepository : getTaskCategories()
+            activate TaskCategoryRepository
+
+                TaskCategoryRepository --> CTRL : taskCategoryList
+            deactivate TaskCategoryRepository
+
+
+    end
+    autonumber 4
+    <-- CTRL  : taskCategoryList
+deactivate CTRL
+
+
+@enduml

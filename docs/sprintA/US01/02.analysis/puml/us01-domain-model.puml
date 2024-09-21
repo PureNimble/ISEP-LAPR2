@@ -1,0 +1,70 @@
+@startuml
+
+title US001 - Domain Model
+
+skinparam groupInheritance 2
+skinparam monochrome true
+skinparam linetype ortho
+hide circle
+
+
+
+class UnregisteredUser {
+}
+
+
+class Property {
+Area
+Photos
+Distance from the city center
+}
+
+class Business {
+Total price
+}
+
+
+class Residence {
+Number of Bedrooms
+Number of Bathrooms
+Number of Parking Spaces
+ }
+
+
+class House {
+Basement
+Inhabitable Loft
+}
+
+
+class SunExposure {
+Direction
+}
+
+
+class Address {
+Street
+City
+County
+State
+Zip Code
+}
+
+
+class AvailableEquipment {
+Equipment
+}
+
+
+UnregisteredUser "*" --- "*" Property: wants to see >
+
+Property <|--- Residence
+Property "*" --- "1" Address : has <
+Property "1" --- "1" Business : has <
+
+Residence "*" --- "1" AvailableEquipment : has <
+Residence <|--- House
+
+House "*" --- "1" SunExposure : has <
+
+@enduml

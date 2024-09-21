@@ -1,0 +1,273 @@
+@startuml
+
+title US016 - Sequence Diagram Full
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing true
+
+autonumber
+
+actor "Agent" as Agent
+participant ":ListMessageUI" as System
+participant ":ListMessageController" as Controller
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as Repository
+participant "messageRepository:\nMessageRepository" as MessageRepository
+participant ":ApplicationSession" as app
+participant "appSession\n:ApplicationSession" as APP
+participant "currentSession\n:UserSession" as User
+participant "employeeRepository\n:Employee Repository" as Employee
+participant ":MessageMapper" as Mapper
+participant "listOfMessagesDTO:List<Messages>" as listMessagesDTO
+participant "message:Message" as Messages
+participant ":sortAlgorithm" as sortAlgorithm
+participant ":ConfigProperties" as ConfigProperties
+participant "EmailService" as EmailService
+participant "DEIService" as DEIService
+participant "GmailService" as GmailService
+participant "HotmailService" as HotmailService
+participant "YahooService" as YahooService
+
+activate Agent
+
+Agent -> System : asks to see the booking requests
+activate System
+
+System -> Controller** : create
+
+System -> Controller : getListMessage()
+activate Controller
+
+Controller -> Controller : getAgentFromSession
+
+Controller -> app : getInstance()
+activate app
+
+app --> Controller : appSession
+deactivate app
+
+Controller -> APP : getCurrentSession()
+activate APP
+
+APP --> Controller : currentSession
+deactivate APP
+
+Controller -> User : email = getUserEmail()
+activate User
+
+User --> Controller : email
+deactivate User
+
+Controller -> Employee : getAgentByEmail()
+activate Employee
+
+Employee --> Controller : agentByEmail
+deactivate Employee
+
+Controller -> RepositorySingleton : getInstance()
+activate RepositorySingleton
+
+RepositorySingleton --> Controller : repositories
+deactivate RepositorySingleton
+
+Controller -> Repository : getMessageRepository()
+activate Repository
+
+Repository --> Controller : messageRepository
+deactivate Repository
+
+Controller -> MessageRepository : getMessageRequestList(employeeByEmail, beginDate, endDate)
+activate MessageRepository
+
+MessageRepository --> Controller : getMessageRequestList
+deactivate MessageRepository
+
+Controller -> Controller : getSortedMessageRequestList(messageRequestList)
+
+Controller -> sortAlgorithm** : create()
+
+note over sortAlgorithm
+
+SortAlgorithm implementation will depend
+on the sorting algorithm specified in the
+configuration file.
+
+end note
+
+Controller -> sortAlgorithm : getSortedMessageRequestList(messageRequestList)
+activate sortAlgorithm
+
+sortAlgorithm --> Controller : sortedMessageRequestList
+deactivate sortAlgorithm
+
+Controller -> Mapper : toDTO(messageRequestList)
+activate Mapper
+
+Mapper --> listMessagesDTO** : create()
+
+loop for each message request
+
+    Mapper -> Mapper : toDTO(Message)
+
+    Mapper -> listMessages: clientName = getClientName()
+    activate listMessages
+
+    Mapper -[hidden]> listMessages
+    deactivate listMessages
+
+    Mapper -> listMessages : PhoneNumber = getPhoneNumber()
+    activate listMessages
+
+    Mapper -[hidden]> listMessages
+    deactivate listMessages
+
+    Mapper -> listMessages : date = getInitialDate()
+    activate listMessages
+
+    Mapper -[hidden]> listMessages
+    deactivate listMessages
+
+    Mapper -> listMessages : initialTime = getInitialTime()
+    activate listMessages
+
+    Mapper -[hidden]> listMessages
+    deactivate listMessages
+
+    Mapper -> listMessages : endTime = getEndTime()
+    activate listMessages
+
+    Mapper -[hidden]> listMessages
+    deactivate listMessages
+
+    Mapper -> listMessages : description = getDescription()
+    activate listMessages
+
+    Mapper -[hidden]> listMessages
+    deactivate listMessages
+
+    Mapper -> listMessages : publishedAnnouncement = getPublishedAnnouncement()
+    activate listMessages
+
+    Mapper -[hidden]> listMessages
+    deactivate listMessages
+
+    Mapper -> Mapper : messageDTO = toDtoObject(clientName, phoneNumber, description, initialDate, initialTime, endTime, publishedAnnouncement)
+
+    Mapper --> listMessagesDTO : add(messageDTO)
+    activate listMessagesDTO
+    deactivate listMessagesDTO
+
+end
+
+Mapper --> Controller : messageListByAgentAndDate
+deactivate Mapper
+
+Controller --> System : messageListByAgentAndDate
+deactivate Controller
+
+System --> Agent : shows the booking requests
+deactivate System
+
+
+Agent -> System : selects a booking request to respond
+activate System
+
+System --> Agent : shows the selected booking request and asks to enter the client's email
+deactivate System
+
+Agent -> System : inserts the client's email
+activate System
+
+System --> Agent : asks to accept or decline the booking request
+deactivate System
+
+Agent -> System : responds to the booking request
+activate System
+
+System -> Controller : sendEmail(email, subject, body)
+activate Controller
+
+Controller -> ConfigProperties : getProperty("emailService")
+activate ConfigProperties
+
+ConfigProperties --> Controller : service
+deactivate ConfigProperties
+
+Controller -> EmailService : createEmailService(service)
+activate EmailService
+
+alt if service is "DEIService"
+
+EmailService --> DEIService : create()
+activate DEIService
+DEIService --> EmailService : DEIService
+deactivate DEIService
+
+else if service is "GmailService"
+
+EmailService --> GmailService : create()
+activate GmailService
+GmailService --> EmailService : GmailService
+deactivate GmailService
+
+else if service is "HotmailService"
+
+EmailService --> HotmailService : create()
+activate HotmailService
+HotmailService --> EmailService : HotmailService
+deactivate HotmailService
+
+else if service is "YahooService"
+
+EmailService --> YahooService : create()
+activate YahooService
+YahooService --> EmailService : YahooService
+deactivate YahooService
+
+end
+
+EmailService --> Controller : emailService
+deactivate EmailService
+
+Controller -> EmailService : sendEmail(email, subject, body)
+activate EmailService
+
+EmailService --> Controller : emailSent
+deactivate EmailService
+
+Controller --> System : emailSent
+deactivate Controller
+
+System -> Controller : updateMessageState(message)
+activate Controller
+
+Controller -> MessageRepository : updateMessageState(message)
+activate MessageRepository
+
+MessageRepository -> Messages : setMessageState(MessageState.ANSWERED)
+activate Messages
+
+alt setApprovedByAgent(true)
+
+Messages --> Messages : setApprovedByAgent(true)
+
+else  setApprovedByAgent(false)
+
+Messages --> Messages : setApprovedByAgent(false)
+
+end
+
+Messages --> MessageRepository: updateMessageState(message)
+deactivate Messages
+
+MessageRepository --> Controller : updateMessageState(message)
+deactivate MessageRepository
+
+Controller --> System : updateMessageState(message)
+deactivate Controller
+
+System --> Agent : display operation success
+deactivate System
+
+@enduml

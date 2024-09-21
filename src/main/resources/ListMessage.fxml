@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="910.0" prefWidth="1470.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.ListMessageGUI">
+   <children>
+      <AnchorPane prefHeight="60.0" prefWidth="1470.0" style="-fx-background-color: grey; -fx-border-color: black;">
+         <children>
+            <Label layoutX="633.0" layoutY="11.0" text="List Of Messages">
+               <font>
+                  <Font name="Impact" size="30.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="dpStartDate" layoutX="117.0" layoutY="17.0" />
+            <Label layoutX="50.0" layoutY="22.0" text="Start Date:" />
+            <Label layoutX="330.0" layoutY="22.0" text="End Date:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="dpEndDate" layoutX="390.0" layoutY="17.0" style="-fx-background-color: grey;" />
+            <Button fx:id="btFilterSchedules" alignment="CENTER" layoutX="925.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleFilterButtonPressed" style="-fx-background-color: white;" text="Filter Booking Request" AnchorPane.bottomAnchor="15.0" AnchorPane.topAnchor="18.0" />
+            <Button fx:id="btRespond" alignment="CENTER" layoutX="1096.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#onKeyEnterBtRespond" style="-fx-background-color: white;" text="Respond to Booking Request" AnchorPane.bottomAnchor="15.0" AnchorPane.topAnchor="18.0" />
+            <Button fx:id="btReturn" layoutX="1305.0" layoutY="17.0" mnemonicParsing="false" onAction="#onBtReturn" onKeyPressed="#onKeyEnterBtRespond" style="-fx-background-color: white;" text="Return to Agent Menu" AnchorPane.bottomAnchor="15.0" AnchorPane.topAnchor="18.0" />
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tvBookingRequests" layoutX="76.0" layoutY="104.0" onMouseClicked="#clickItem" prefHeight="772.0" prefWidth="856.0">
+         <columns>
+            <TableColumn fx:id="name" prefWidth="62.0" sortable="false" text="Name" />
+            <TableColumn fx:id="phoneNumber" prefWidth="102.0" sortable="false" text="Phone Number" />
+            <TableColumn fx:id="description" prefWidth="456.0" sortable="false" text="Description" />
+            <TableColumn fx:id="initialDate" minWidth="0.0" prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="initialTime" prefWidth="82.0" sortable="false" text="initialTime" />
+            <TableColumn fx:id="endTime" prefWidth="78.0" sortable="false" text="endTime" />
+         </columns>
+      </TableView>
+      <Pagination fx:id="photosPagination" layoutX="1003.0" layoutY="509.0" prefHeight="354.0" prefWidth="383.0" style="-fx-border-color: black;" />
+      <TextArea fx:id="textArea" layoutX="1003.0" layoutY="104.0" prefHeight="351.0" prefWidth="383.0" style="-fx-border-color: black;" />
+      <Label alignment="CENTER" layoutX="437.0" layoutY="70.0" prefHeight="26.0" prefWidth="133.0" text="MESSAGES">
+         <font>
+            <Font name="Impact" size="20.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="1128.0" layoutY="70.0" prefHeight="26.0" prefWidth="133.0" text="ANNOUNCEMENT" textAlignment="CENTER" textOverrun="CLIP">
+         <font>
+            <Font name="Impact" size="20.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="1128.0" layoutY="470.0" prefHeight="26.0" prefWidth="133.0" text="PHOTOS" textAlignment="CENTER" textOverrun="CLIP">
+         <font>
+            <Font name="Impact" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="announcementLabel" alignment="CENTER" layoutX="1128.0" layoutY="70.0" prefHeight="26.0" prefWidth="133.0" text="ANNOUNCEMENT" textAlignment="CENTER" textOverrun="CLIP">
+         <font>
+            <Font name="Impact" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

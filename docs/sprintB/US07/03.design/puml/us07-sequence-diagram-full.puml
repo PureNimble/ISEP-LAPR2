@@ -1,0 +1,141 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "Unregistered User" as UnregisteredUser
+participant "UnregisteredUserUI" as UnregisteredUserUI
+participant "UnregisteredUserController" as UnregisteredUserController
+participant "User\n:User" as User
+participant ":repository" as RepositorySingleton
+participant "repository\n:Repository" as repository
+participant "stateRepository\n:StateRepository" as StateRepository
+participant "Person\n:Person" as Person
+participant "authenticationRepository\n:AuthenticationRepository" as AuthenticationRepository
+
+activate UnregisteredUser
+
+    UnregisteredUser -> UnregisteredUserUI : asks to create an account
+    activate UnregisteredUserUI
+        UnregisteredUserUI -> UnregisteredUserController : getStates()
+            activate UnregisteredUserController
+            UnregisteredUserController -> RepositorySingleton : getInstance()
+            activate RepositorySingleton
+
+                RepositorySingleton --> UnregisteredUserController : repositories
+
+            deactivate RepositorySingleton
+
+            UnregisteredUserController -> repository : getStateRepository()
+
+            activate repository
+
+                repository --> UnregisteredUserController : StateRepository
+
+            deactivate repository
+                UnregisteredUserController -> StateRepository : getStates()
+                    activate StateRepository
+                        StateRepository --> UnregisteredUserController : StatesList
+                    deactivate StateRepository
+                UnregisteredUserController --> UnregisteredUserUI : StatesList
+            deactivate UnregisteredUserController
+        UnregisteredUserUI --> UnregisteredUser : requests data (name, passport card number, tax number,\naddress ((asks to select a state) (not mandatory)), email address and phone number)\nand shows list of states
+        deactivate UnregisteredUserUI
+
+    alt Enters Address/State
+    UnregisteredUser -> UnregisteredUserUI : types all data and selects state
+        activate UnregisteredUserUI
+        UnregisteredUserUI --> UnregisteredUserUI : keepData(name, passport card number, tax number, \nstate, email address, phone number)
+        UnregisteredUserUI --> UnregisteredUserController : getDistrictByDescription(state)
+            activate UnregisteredUserController
+                            UnregisteredUserController -> StateRepository : getDistrictByDescription(state)
+                        activate StateRepository
+                        StateRepository --> UnregisteredUserController : DistrictsList
+                        deactivate StateRepository
+                    UnregisteredUserController --> UnregisteredUserUI : DistrictsList
+                deactivate UnregisteredUserController
+            UnregisteredUserUI --> UnregisteredUser : shows list of districts available for that state and asks to select one
+        deactivate UnregisteredUserUI
+
+    UnregisteredUser -> UnregisteredUserUI : selects district
+        activate UnregisteredUserUI
+            UnregisteredUserUI --> UnregisteredUserUI : keepDistrict(district)
+            UnregisteredUserUI --> UnregisteredUserController : getCityByDescription(district)
+            activate UnregisteredUserController
+                            UnregisteredUserController -> StateRepository : getCityByDescription(district)
+                        activate StateRepository
+                        StateRepository --> UnregisteredUserController : CitiesList
+                        deactivate StateRepository
+                    UnregisteredUserController --> UnregisteredUserUI : CitiesList
+                deactivate UnregisteredUserController
+            UnregisteredUserUI --> UnregisteredUser : shows list of cities available for that district and asks to select one
+        deactivate UnregisteredUserUI
+    UnregisteredUser -> UnregisteredUserUI : selects city
+        activate UnregisteredUserUI
+        UnregisteredUserUI --> UnregisteredUserUI : keepCity(city)
+        UnregisteredUserUI --> UnregisteredUser : asks data
+    deactivate UnregisteredUserUI
+    UnregisteredUser -> UnregisteredUserUI : types necessary data (street and zip code)
+        activate UnregisteredUserUI
+        UnregisteredUserUI --> UnregisteredUserUI : keepAddress(street and zip code)
+        deactivate UnregisteredUserUI 
+
+    else Does nor enter Address/State
+    UnregisteredUser -> UnregisteredUserUI : types requested data except the address/state
+        activate UnregisteredUserUI
+    end
+        UnregisteredUserUI --> UnregisteredUser : shows inserted data and asks for confirmation
+    deactivate UnregisteredUserUI
+
+    UnregisteredUser -> UnregisteredUserUI : confirms data
+    activate UnregisteredUserUI
+
+        UnregisteredUserUI -> UnregisteredUserController : registerPerson(name, passport card number, tax number,\nstate, district, city, street, zip code, email address\nand phone number)
+        activate UnregisteredUserController
+
+        UnregisteredUserController -> Person : registerPerson(name, passport card number, tax number,\nstate, district, city, street, zip code, email address\nand phone number)
+        activate Person
+                Person -> Person : addPerson(Person)
+                activate Person
+                            activate Person
+                                Person -> Person : validatePerson(Person)
+                            deactivate Person
+                deactivate Person
+                Person --> UnregisteredUserController : Person
+            deactivate Person
+        UnregisteredUserController -> RepositorySingleton: getInstance()
+            activate RepositorySingleton
+
+        RepositorySingleton --> UnregisteredUserController : repositories
+        deactivate RepositorySingleton
+
+            UnregisteredUserController -> repository: getAuthenticationRepository()
+            activate repository
+
+            repository--> UnregisteredUserController:authenticationRepository
+            deactivate repository
+
+        UnregisteredUserController -> AuthenticationRepository: getpasswordGenerator()
+        activate AuthenticationRepository
+
+
+    AuthenticationRepository --> UnregisteredUserController: password
+    deactivate AuthenticationRepository
+
+
+    UnregisteredUserController -> AuthenticationRepository: addUser(person and passsword)
+    activate AuthenticationRepository
+
+    AuthenticationRepository --> UnregisteredUserController: User
+    deactivate AuthenticationRepository
+
+    UnregisteredUserController --> UnregisteredUserUI: User
+      deactivate UnregisteredUserController
+        UnregisteredUserUI --> UnregisteredUser : displays operation success
+        deactivate UnregisteredUserUI
+deactivate UnregisteredUser
+
+@enduml

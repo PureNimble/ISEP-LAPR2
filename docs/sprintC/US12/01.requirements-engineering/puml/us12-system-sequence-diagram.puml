@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - US12
+
+autonumber
+
+actor "System Administrator" as Admin
+
+activate Admin
+
+Admin -> System : asks to import information from a legacy system
+activate System
+
+System --> Admin : requests the path of the file to import
+deactivate System
+
+Admin -> System : types the path of the file and submits data
+activate System
+
+System --> Admin : saves the information, show a success message \nand displays operation success
+deactivate System
+
+
+
+
+@enduml

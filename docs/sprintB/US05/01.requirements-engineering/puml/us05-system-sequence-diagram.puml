@@ -1,0 +1,51 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD)
+
+autonumber
+
+actor "System Administrator" as Admin
+participant ":System" as System
+
+activate Admin
+
+    Admin -> System : asks to register a store
+    activate System
+
+        System --> Admin : requests the necessary data and provides a list of states
+    deactivate System
+
+    Admin -> System : types requested data (id, designation/name, \nemail address and phone number) and selects state
+    activate System
+
+        System --> Admin : shows list of districts available for that state and asks to select one
+    deactivate System
+
+    Admin -> System : selects district
+    activate System
+
+        System --> Admin : shows list of cities available for that district and asks to select one
+    deactivate System
+
+    Admin -> System : selects city
+    activate System
+
+        System --> Admin : requests data
+    deactivate System
+
+    Admin -> System : types requested data (street and zip code)
+    activate System
+
+        System --> Admin : shows all inserted data and asks for confirmation
+    deactivate System
+
+    Admin -> System : confirms data
+    activate System
+
+        System --> Admin : displays operation success
+    deactivate System
+
+@enduml

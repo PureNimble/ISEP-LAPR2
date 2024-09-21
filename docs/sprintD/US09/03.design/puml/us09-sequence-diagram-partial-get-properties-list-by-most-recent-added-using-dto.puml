@@ -1,0 +1,83 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US09 - Sequence Diagram Partial (Get Properties List By Most Recent Added Using DTO)
+autonumber
+
+'hide footbox
+participant ":MessageMapper" as MessageMapper
+participant "listOfPropertiesDTO:List<Properties>" as listProperties
+participant "propertiesDto:PropertiesDto" as PropertiesDto
+
+
+activate CTRL
+  -> MessageMapper: toDTO(listOfPropertiesByDate)
+            activate MessageMapper
+
+            group Get Properties List By Most Recent Added Using DTO
+
+            MessageMapper --> listProperties**: create()
+
+            loop
+
+
+            MessageMapper -> listProperties: date = geDate()
+                        activate listProperties
+
+            MessageMapper -[hidden]> listProperties
+            deactivate listProperties
+
+            MessageMapper -> listProperties: property = getProperty()
+            activate listProperties
+
+            MessageMapper -[hidden]> listProperties
+            deactivate listProperties
+
+            MessageMapper -> listProperties: typeOfBusiness = getTypeOfBusiness()
+            activate listProperties
+
+            MessageMapper -[hidden]> listProperties
+            deactivate listProperties
+
+            MessageMapper -> listProperties: propertyType = getPropertyType()
+            activate listProperties
+
+            MessageMapper -[hidden]> listProperties
+            deactivate listProperties
+
+            MessageMapper -> listProperties: business = getBusiness()
+            activate listProperties
+
+            MessageMapper -[hidden]> listProperties
+            deactivate listProperties
+
+            MessageMapper -> listProperties :agent = getAgent()
+            activate listProperties
+
+            MessageMapper -[hidden]> listProperties
+            deactivate listProperties
+
+            MessageMapper -> listProperties: durationOfContract = geDate()
+            activate listProperties
+
+            MessageMapper -[hidden]> listProperties
+            deactivate listProperties
+
+            MessageMapper -> MessageMapper : propertiesDto = toDto(agent,property,typeOfBusiness,propertyType,business,date,durationOfContract)
+            activate MessageMapper
+
+            deactivate MessageMapper
+
+            MessageMapper --> PropertiesDto**: create(...)
+
+            MessageMapper -> listProperties: add(propertieDTO)
+            activate listProperties
+
+            deactivate listProperties
+            end
+end
+             <-- MessageMapper : listOfPropertiesDTO
+            deactivate MessageMapper
+@enduml

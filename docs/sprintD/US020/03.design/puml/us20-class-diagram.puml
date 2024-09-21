@@ -1,0 +1,311 @@
+@startuml
+
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+'skinparam classAttributeIconSize 0
+'left to right direction
+
+title US20 - Class Diagram
+
+class Repositories {
+    -Repositories()
+    +getInstance():Repositories
+    +getAuthenticationRepository()
+    +getUserRepository()
+    +getMessageRepository()
+}
+
+class Message {
+    -Strig name
+    -long phoneNumber
+    -String description
+    -Date initialDate
+    -int initialTime
+    -int endTime
+    -PublishedAnnouncement publishedAnnouncement
+    -MessageState messageState
+    -boolean isApprovedByAgent
+    + Message(String name, int phoneNumberm String description, Date initialDate, \nint initialTime, int endTime, MessageState messageState, boolean isApprovedByAgent)
+    + Message()
+    + getName()
+    + getPhoneNumber()
+    + getDescription()
+    + getInitialDate()
+    + getInitialTime()
+    + getEndTime()
+    + getPublishedAnnouncement()
+    + getMessageState()
+    + isApprovedByAgent()
+}
+
+class MessageMapper {
+    +toDTO(messageList)
+    +toDtoObject(name,phoneNumber, description, initialDate, initialTime, endTime, publishedAnnouncement, messageState, isApprovedByAgent)
+}
+
+class ClientMessageController {
+    +getAuthenticationRepository()
+    +getUserRepository()
+    +getMessageRepository()
+    +getCurrentSessionEmail()
+    +getClient()
+    +sendVisualizedEmail(email, subject, body)
+    +getMessageRequests(client)
+}
+
+class MessageRepository {
+    +getMessageRequests(client)
+}
+
+class AuthenticationRepository {
+    +getCurrentUserSession()
+}
+
+class UserRepository {
+    +getClientEmail(email)
+}
+
+class User {
+    -Password
+}
+
+class Person {
+    -Name
+    -Email
+    -Phone Number
+    -Tax Number
+    -Passport Number
+}
+
+class Client {
+
+}
+
+class MessageDto {
+    -Strig name
+    -long phoneNumber
+    -String description
+    -Date initialDate
+    -int initialTime
+    -int endTime
+    -PublishedAnnouncement publishedAnnouncement
+    -MessageState messageState
+    -boolean isApprovedByAgent
+    +getName()
+    +setName(name)
+    +getPhoneNumber()
+    +setPhoneNumber(phoneNumber)
+    +getDescription()
+    +setDescription(description)
+    +getInitialDate()
+    +setInitialDate(initialDate)
+    +getInitialTime()
+    +setInitialTime(inicialTime)
+    +getEndTime()
+    +setEndTime(endTime)
+    +getPublishedAnnouncement()
+    +setPublishedAnnouncement(publishedAnnouncement)
+    +getMessageState()
+    +setMessageState(messageState)
+    +getIsApprovedByAgent()
+    +setIsApprovedByAgent(approvedByAgent)
+    +toString()
+}
+
+class ClientMessageUI {
+
+}
+
+class Residence {
+    - int numberOfBedrooms
+    - int numberOfBathrooms
+    - int numberOfParkingSpaces
+
+    + Residence(int area, int distanceFromCityCenter,int numberOfBedrooms, int numberOfBathrooms, \nint parkingSpaces, AvailableEquipment availableEquipment, Photos photos, Address address)
+    + getNumberOfBedrooms()
+    + getNumberOfBathrooms()
+    + getParkingSpaces()
+}
+
+class House {
+    - String basement
+    - String inhabitableLoft
+    - String sunExposure
+
+    + House(int area, int distanceFromCityCenter, int numberOfBedrooms, int numberOfBathrooms, \nint parkingSpaces,AvailableEquipment availableEquipment, String basement, String inhabitableLoft, String sunExposure,\nPhotos photos, Address address)
+    + getBasement()
+    + getInhabitableLoft()
+    + getSunExposure()
+}
+
+class SunExposure {
+    - String direction
+
+    + SunExposure(direction)
+}
+
+class AvailableEquipment {
+    - String availableEquipment
+
+    + AvailableEquipment(String availableEquipment)
+    + getAvailableEquipment()
+}
+
+class Address{
+    - String streetName
+    - int zipCode
+    + getCity()
+    + getDistrict()
+    + getState()
+    + Address(state, district, city, street, zipCode)
+}
+
+class District {
+    - String districtName
+
+    + District(String district)
+    + getDistrict()
+    + getCities()
+}
+
+class City{
+    - String city
+
+    + City(String city)
+    + getCityName()
+}
+
+class State{
+    - String state
+
+    + State(String state,List<District> districts)
+    + getState()
+    + getDistricts()
+}
+
+class Photos {
+    - String uri
+
+    + Photos(String url)
+    + getUrl()
+}
+
+class Property {
+    - int distanceFromCityCenter
+    - int area
+
+    + Property(int area, int distanceFromCityCenter, Photos photos, Address address)
+    + getDistanceFromCityCenter()
+    + getArea()
+    + getResidence()
+    + getPhotos()
+    + getAddress()
+}
+
+class Rent {
+    - int durationOfContract
+
+    + Rent(int durationContract)
+    + getFinalComission()
+    + getDurationContract()
+    + calculateTotalPrice()
+}
+
+class PublishedAnnouncement {
+    - Date date
+    - int propertyID
+
+    + PublishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness, Property property, \nPropertyType propertyType, Comission comission, Business business, Employee agent, \nClient client, int propertyID)
+    + getProperty()
+    + getDate()
+    + getState()
+    + getCity()
+    + getClient()
+    + getPropertyType()
+    + getComission()
+    + getBusiness()
+    + getDurationOfContract()
+    + getAgent()
+    + getPropertyID()
+}
+
+class Business {
+    - double requestedPrice
+    - String typeOfBusiness
+
+    + getFinalComission()
+    + calculatePriceWithComission()
+    + getTypeOfBusiness()
+}
+
+enum MessageState {
+    - String UNANSWERED
+    - String ANSWERED
+}
+
+interface EmailService {
+    sendEmail(email, subject, body)
+}
+
+class DEIService {
+    + sendEmail(email, subject, body)
+}
+
+class GmailService {
+    + sendEmail(email, subject, body)
+}
+
+class HotmailService {
+    + sendEmail(email, subject, body)
+}
+
+class YahooService {
+    + sendEmail(email, subject, body)
+}
+
+Repositories -> Repositories:instance
+Client --> Message: responds to a
+Agent --> Message: can see
+Repositories --> MessageRepository: MessageRepository
+Repositories --> AuthenticationRepository: AuthenticationRepository
+Repositories --> UserRepository: UserRepository
+EmailService -- ClientMessageController
+ClientMessageController ..> Repositories : repositories
+ClientMessageController ..> MessageRepository : MessageRepository
+ClientMessageController ..> Message : Message
+ClientMessageController ..> MessageMapper : MessageMapper
+ClientMessageController ..> UserRepository : UserRepository
+ClientMessageController ..> AuthenticationRepository : AuthenticationRepository
+ClientMessageUI ..> ClientMessageController
+MessageMapper ..> MessageDto: MessageDto
+
+Message "*" --- "1" PublishedAnnouncement : has information about <
+Message -right-> MessageState
+PublishedAnnouncement "1" -right- "1" Business : has <
+PublishedAnnouncement "*" --- "*" Property : advertises >
+Property "1" -left- "1..30" Photos : has >
+Property <|-- Residence
+Property "1" -- "1" Address : has >
+Property -right- TypeOfProperty : has >
+Residence "1" -right- "*" AvailableEquipment : contains >
+House "*" -- "1" SunExposure : contains >
+Business "1" -up- "1" Comission : contains >
+Address "1" -left- "*" State : has <
+State "1" -left- "*" District : has <
+District "1" -left- "*" City : has <
+
+Person <|-- User
+User <|-- Client
+User <|-- Employee
+Employee <|-- Agent
+EmailService <|..up DEIService
+EmailService <|..up GmailService
+EmailService <|..up HotmailService
+EmailService <|..up YahooService
+Residence <|-- House
+Business <|-- Rent
+
+@enduml

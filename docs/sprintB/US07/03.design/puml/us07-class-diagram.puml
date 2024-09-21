@@ -1,0 +1,99 @@
+@startuml
+
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+'skinparam classAttributeIconSize 0
+'left to right direction
+
+title US07 - Class Diagram
+
+class State {
+    - String stateName
+    + List<District> districts
+}
+
+class District {
+    - String districtName
+    + List<City> cities
+}
+
+class City {
+    - String cityName
+
+}
+
+class Contacts {
+    -String phoneNumber
+    -String email
+}
+
+class Address {
+    - String streetName
+    - int zipCode
+}
+
+class Repositories {
+    -Repositories()
+    +getInstance():Repositories
+    +getStateRepository()
+}
+
+class StateRepository {
+    +getStates()
+    +getDistrictByDescription(state)
+    +getCityByDescription(district)
+}
+
+class AuthenticationRepository{
+    +doLogin(email,pwd)
+    +doLogout()
+    +getCurrentSession()
+    +addUserRole()
+    +addUserWithRole()
+    +passwordGenerator()
+    -shuffleString(input,random)
+    -randomCharacter(characters,random)
++getUser()
+}
+
+class UnregisteredUserController {
+    + getStates()
+    + getDistrictByDescription(districtDescription, state)
+    + getCityByDescription(cityDescription, district)
+    + registerPerson(name, passport card number, tax number,\nstate, district, city, street, zip code, email address\nand phone number)
+    - getStateRepository()
+}
+
+class Person {
+    - String email
+    - int passportNumber
+    - int taxNumber
+    - String name
+    - Address address
+    - int phoneNumber
+
+    +User(email,passportNumber,taxNumber,name,phoneNumber)
+    +getPassportNumber()
+    +getTaxNumber()
+    +getEmail()
+    +getAdress()
+    +getName()
+    +getPhoneNumber()
+}
+
+Repositories -> Repositories:instance
+Repositories --> StateRepository: stateRepository
+UnregisteredUserController ..> Repositories : repositories
+UnregisteredUserController ..> StateRepository : StateRepository
+UnregisteredUserController ..> AuthenticationRepository : AuthenticationRepository
+UnregisteredUserController ..> Person : Person
+Person "1" -right-> "*"  Address : can have
+State "1" -up- "*" Address: has >
+District "1" -right- "*" City : has >
+State "1" -right- "*" District : has >
+Contacts "1" -up--> "1" Person: has
+
+@enduml

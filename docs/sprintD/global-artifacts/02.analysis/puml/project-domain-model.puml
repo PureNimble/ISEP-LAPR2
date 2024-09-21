@@ -1,0 +1,194 @@
+@startuml
+
+skinparam groupInheritance 2
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam linetype orthogonal
+
+hide circle
+hide methods
+
+title Project Domain Model
+
+class UnregisteredUser {
+    Cookies
+}
+
+class State {
+    State name
+}
+
+class Client {
+}
+
+class Person {
+    Name
+    Passport Card Number
+    Tax Number
+}
+
+class District {
+    District name
+}
+
+class City {
+    City name
+}
+
+class Address {
+    Street
+    Zip Code
+}
+
+class Contacts {
+    Phone Number
+    Email Adress
+}
+
+class Store {
+    ID
+    Designation
+}
+
+class Employee {
+}
+
+class Role {
+    Role
+}
+
+class Photos {
+    URI
+}
+
+class AvailableEquipment {
+    Equipment
+}
+
+class Rent {
+    Duration of contract
+}
+
+class AnnouncementRequest {
+    Initial date
+}
+
+class PublishedAnnouncement {
+    Contract type
+}
+
+class Business {
+    Total Price
+}
+
+class Residence {
+    Number of Bedrooms
+    Number of Bathrooms
+    Number of Parking Spaces
+}
+
+class TypeOfProperty{
+    Type
+}
+
+class Property {
+    Area
+    Photos
+    Distance from the city center
+}
+
+class House {
+    Basement
+    Inhabitable loft
+}
+
+class SunExposure {
+    Direction
+}
+
+class Comission {
+    Value
+}
+
+class Message{
+    Date
+    Initial time
+    End time
+    Description
+}
+
+class Offer {
+Offer Value
+}
+
+class File{
+Name
+Information
+}
+
+class SystemAdministrator{
+}
+
+class StoreNetworkManager {
+
+}
+
+
+Comission "1" --- "1" Business : contains <
+District "1" --- "*" City : has >
+House "1" --- "1" SunExposure : contains >
+Property <|--- Residence
+Property "*" --- "1" Address : has >
+PublishedAnnouncement "1" --- "1" Business : has <
+AnnouncementRequest "1" --- "1" Business : has <
+Property "1" --- "1..30" Photos : has >
+PublishedAnnouncement "*" --- "*" Property: advertises >
+Residence "1" --- "*" AvailableEquipment : contains >
+Residence <|--- House
+State "1" --- "*" District : has >
+State "1" --- "*" Address : has >
+TypeOfProperty "1" --- "1" Property : defines >
+UnregisteredUser "*" --- "*" PublishedAnnouncement: displays >
+Store "1" --- "1" Contacts: has >
+Address "1" --- "1" Client: has <
+Client "1" --- "1" Store: contacts >
+Comission "1" --- "1" Agent: defines <
+Client "1" --- "1" Business: requests >
+Agent "1" --- "1" AnnouncementRequest : reviews >
+AnnouncementRequest "1" --- "1" Property: has a >
+AnnouncementRequest  <|---  PublishedAnnouncement
+PublishedAnnouncement "*" --- "1" Agent: publishes <
+Business <|--- Rent
+Employee --- Agent
+Person <|--- Employee
+Person <|--- Client
+Employee --- StoreNetworkManager
+Employee --- StoreManager
+Employee --- SystemAdministrator
+Store "*" --- "1" Address : located at >
+Employee "1" --- "*" Store : works in a >
+Employee "1" --- "1..4" Role : has a >
+City "1" --- "1" SystemAdministrator: adds <
+District "1" --- "1" SystemAdministrator: adds <
+State "1" --- "1" SystemAdministrator: adds <
+UnregisteredUser "1" --- "1" Client : can register as >
+Person "1" --- "1" Address : can have >
+Person "1" --- "1" Contacts : has >
+SystemAdministrator "1" --- "*" Store: registers >
+'Agent "1" --- "*" AnnouncementRequest:intends to see >
+Message "*" --- "1" PublishedAnnouncement: can have a <
+Client "1" --- "1..*" Message: leaves a >
+Offer "*" --- "1" PublishedAnnouncement : has <
+Client "1" --- "*" Offer : makes >
+Agent "1" --- "*" Offer : accepts/declines >
+File "1..*" --- "1" SystemAdministrator : imported by >
+Agent "1" --- "*" Message : responds >
+StoreManager "*" --- "*" Offer: intends to see >
+Property "1" --- "1" Business: has a <
+StoreManager --- Residence : analyses >
+StoreManager --- PublishedAnnouncement : analyses sold >
+PublishedAnnouncement ---> PublishedAnnouncementState : has >
+StoreNetworkManager "*" --- "1" Store: devides >
+@enduml

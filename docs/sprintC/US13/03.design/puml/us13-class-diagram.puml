@@ -1,0 +1,90 @@
+@startuml
+
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+'skinparam classAttributeIconSize 0
+'left to right direction
+
+title US13 - Class Diagram
+
+class Repositories {
+    -Repositories()
+    +getInstance():Repositories
+    +getStoreRepository()
+    +getEmployeeRepository()
+}
+
+class Store {
+    -int id
+    -String designation
+    +List<Store>
+}
+
+class Employee {
+    +List<Employee>
+}
+
+class StoreEmployeeMapper {
+    +toDTO(StoreList, EmployeeList)
+}
+
+class DisplayStoreController {
+    +getStoreRepository()
+    +getStoresList()
+    +getEmployeeRepository()
+    +getEmployeesList()
+    +toDTO(StoreList, EmployeeList)
+}
+
+class StoreRepository {
+    +getStore(i)
+    +compare(store1, store2)
+}
+
+class EmployeeRepository {
+    +getEmployee(i)
+    +compare(employee1, employee2)
+}
+
+class User {
+    -Password
+}
+
+class Person {
+    -Name
+    -Email
+    -Phone Number
+    -Tax Number
+    -Passport Number
+}
+
+class StoreEmployeeDTO {
+    -int storeId
+    -String storeName
+    -int employeeId
+    -String employeeName
+    -String employeeRole
+}
+
+class DisplayStoreUI {
+
+}
+
+Repositories -> Repositories:instance
+Repositories --> StoreRepository: StoreRepository
+Repositories --> EmployeeRepository: EmployeeRepository
+DisplayStoreController ..> Repositories : repositories
+DisplayStoreController ..> StoreRepository : StoreRepository
+DisplayStoreController ..> EmployeeRepository : EmployeeRepository
+DisplayStoreController ..> Store : Store
+DisplayStoreController ..> Employee : Employee
+DisplayStoreUI ..> DisplayStoreController
+StoreEmployeeDTO ..> Store: store
+StoreEmployeeDTO ..> Employee: employee
+Person <|-- User
+User <|-- Employee
+
+@enduml

@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US012 - Sequence Diagram Partial Get File Reader Repository
+
+autonumber
+participant ":ImportFileController" as CTRL
+participant ":Repositories" as Repository
+
+autonumber 5
+ -> CTRL : importAndSavesInformation(filePath)
+            activate CTRL
+
+CTRL -> CTRL : copyLegacyFile(filePath)
+
+    group Get File Reader Repository
+
+                CTRL -> Repository : getInstance()
+                activate Repository
+
+                    Repository --> CTRL: repositories
+                deactivate Repository
+
+                CTRL -> Repositories : getFileReaderRepository()
+                activate Repositories
+
+                    Repositories --> CTRL: fileReaderRepository
+                deactivate Repositories
+end
+
+CTRL ->  : createFileCopy(fileInformation)
+
+
+
+@enduml

@@ -1,0 +1,198 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "Agent" as agent
+participant ":OfferDecisionUI" as ui
+participant ":OfferDecisionController" as controller
+participant ":Repositories" as singleton
+participant "repositories\n:Repositories" as repositories
+participant "Property\n:Property" as property
+participant "propertyRepository\n:PropertyRepository" as propertyrepository
+participant "Offer\n:Offer" as offer
+participant "offerRepository\n:OfferRepository" as offerrepository
+participant ":OfferMapper" as mapper
+participant "PropertyList\n:List<Property>" as propertylist
+participant "OfferList\n:List<OfferList>" as offerlist
+participant "JointListDTO\n:List<JointListDTO>" as jointlist
+
+
+activate agent
+
+
+agent -> ui : asks for a list of real estate purchase orders for every property
+activate ui
+
+        create controller
+        ui -> controller: Create
+        ui -> controller: getOffersList()
+
+        activate controller
+
+        controller -> singleton : getInstance()
+        activate singleton
+
+                singleton --> controller : repository
+
+            deactivate singleton
+
+            controller -> repositories : getPropertyRepository()
+
+            activate repositories
+
+                repositories --> controller : PropertyRepository
+
+            deactivate repositories
+
+                controller -> property : getPropertiesList()
+                activate property
+
+                create propertylist
+                property --> propertylist** : create()
+
+                    loop for each property
+                    
+                        property -> propertyrepository : getProperty(i)
+                        activate propertyrepository
+                        propertyrepository --> property : Property
+                        deactivate propertyrepository
+
+                        opt if property not sold
+
+                                property --> property : compare(property1Date, property2Date)
+
+                                property -> propertylist : add(property)
+                                activate propertylist
+                                deactivate propertylist
+
+                        end
+ 
+                    end
+
+                property --> controller : PropertyList
+
+                deactivate property
+        
+                controller -> repositories : getOfferRepository()
+                    activate repositories
+
+                        repositories --> controller : OfferRepository
+                    deactivate repositories
+
+                controller -> offer : getOffersList()
+                activate offer
+
+                create offerlist
+                offer --> offerlist** : create()
+
+                loop for each offer
+
+                        offer -> offerrepository : getOffer(property)
+                        activate offerrepository
+                        offerrepository --> offer : Offer
+                        deactivate offerrepository
+                        opt if offer not declined
+
+                                offer --> offer : compare(offer1Amount, offer2Amount)
+                                offer -> offerlist : add(offer)
+                                activate offerlist
+                                deactivate offerlist
+
+                        end
+
+                    end
+
+                offer --> controller : OfferList
+                deactivate offer
+
+                controller -> mapper : toDTO(PropertyList, OfferList)
+                activate mapper
+
+                create jointlist
+                mapper --> jointlist** : create()
+
+
+                loop for each property object
+                    
+                    mapper -> propertylist : getProperty(i)
+                    activate propertylist
+                    propertylist --> mapper : property
+                    deactivate propertylist
+
+                    mapper --> mapper : storeDTO = toDTO(property)
+
+                    mapper -> jointlist : add(storeDTO)
+                    activate jointlist
+                    deactivate jointlist
+
+                    loop for each offer object
+
+                        mapper -> offerlist : getOffer(property)
+                        activate offerlist
+                        offerlist --> mapper : offer
+                        deactivate offerlist
+                        mapper --> mapper : offerDTO = toDTO(offer)
+                        mapper -> jointlist : add(offerDTO)
+                        activate jointlist
+                        deactivate jointlist
+
+                    end
+ 
+                end
+
+                mapper --> controller : JointList
+                deactivate mapper
+
+                controller --> ui : JointList
+                deactivate controller
+
+        deactivate controller
+
+ui --> agent : shows the list of purchase orders (Property details, client's email, offer date and offer value) and asks what offer does the agent want to choose
+deactivate ui
+
+
+agent -> ui : chooses the offer
+activate ui
+
+
+ui --> ui : keepOffer(offer)
+
+
+
+ui --> agent : asks if the agent wants to accept or decline the offer
+deactivate ui
+
+
+agent -> ui : accepts or declines the offer
+activate ui
+
+
+ui -> controller : sendOfferStatus(offer, status)
+activate controller
+controller -> offerrepository : 
+activate offerrepository
+offerrepository -> offer: sendOfferStatus(offer, status)
+activate offer
+        alt if status == accepted
+                loop for every offer
+                        alt if it is the offer that was accepted
+                                offer --> offer : changeStatusToAccepted()
+                        else if it is any other offer
+                                        offer --> offer : changeStatusToDeclined()
+                        end
+                end
+        else if status == declined
+                offer --> offer : changeStatusToAccepted()
+        end
+deactivate offer
+deactivate controller
+ui --> agent : displays operation success  
+deactivate ui
+
+deactivate agent
+
+@enduml

@@ -1,0 +1,357 @@
+ @startuml
+ 'skinparam monochrome true
+ skinparam packageStyle rectangle
+ skinparam shadowing false
+ skinparam linetype polyline
+ 'skinparam linetype orto
+ 'skinparam classAttributeIconSize 0
+ 'left to right direction
+
+ title US015 - Class Diagram
+
+
+class ListMessageController {
+    + ListMessageController(messageRepository, \nauthenticationRepository, userRepository)
+    + getMessageRequestsForPeriod(beginDate, endDate)
+    + sortMessageRequests()
+    + getMessagesByAscendingDate()
+    + toDtoMessagesByAscendingDate()
+    + toDtoMessageRequestsForPeriod
+    - getMessageRepository()
+    - getAuthenticationRepository()
+    - getUserRepository()
+
+}
+
+class Address {
+-String street
+-int zipcode
+
++Address(String street, int zipcode,\nDistrict district, City city, \nState state)
++getStreet()
++getZipcode()
++toString()
+}
+
+class ListMessageUI {
++ run()
+-parseDate(String dateString)
+}
+
+class Repositories {
+    - Repositories()
+    + getInstance() : Repositories
+    + getMessageRepository()
+    + getAuthenticationRepository()
+    + getEmployeeRepository()
+
+}
+
+class MessageRepository {
++add(Message message)
++getMessages()
+-validateMessage(Message message)
+-checkIfTimeOverlaps(Message message1,\n Message message2)
+}
+
+class Message {
+    - String name
+    - int phoneNumber
+    - Date initialDate
+    - int initialTime
+    - int endTime
+    - String description
+
+    + Message(String name, int phoneNumber, String description, \nDate initialDate, int initialTime, int endTime, \nPublishedAnnouncement publishedAnnouncement)
+    + Message()
+    + getName()
+    + getPhoneNumber()
+    + getDescription()
+    + getInitialDate()
+    + getInitialTime()
+    + getEndTime()
+    + getPublishedAnnouncement()
+    +toString()
+    }
+
+
+class AutheticationRepository{
++doLogin(email,pwd)
++doLogout()
++getCurrentSession()
++addUserRole()
++addUserWithRole()
++passwordGenerator()
+-shuffleString(input,random)
+-randomCharacter(characters,random)
+}
+
+class EmployeeRepository{
++add(Employee employee)
++validateEmployee(Employee employee)
++ getEmployees()
++getEmployeeByEmail(String email)
++getEmployeesAllphabeticallySorted()
+}
+
+
+class Person{
+- String email
+- int passportNumber
+- int taxNumber
+- String name
+- Adress adress
+- Long phoneNumber
+
++User(email,passportNumber,taxNumber,\nname,phoneNumber)
++getPassportNumber()
++getTaxNumber()
++getEmail()
++getAdress()
++getName()
++getPhoneNumber()
+}
+
+class Agent{
+}
+
+
+class Residence {
+    -int numberOfBedrooms
+    -int numberOfBathrooms
+    -int numberOfParkingSpaces
+
+    +Residence(int area, int distanceFromCityCenter,\n int numberOfBedrooms, int numberOfBathrooms,\n int parkingSpaces, \nAvailableEquipment availableEquipment,\n Photos photos, Address address)
+    +getNumberOfBedrooms()
+    +getNumberOfBathrooms()
+    +getParkingSpaces()
+}
+
+class House {
+    -String basement
+    -String inhabitableLoft
+    -String sunExposure
+
+    +House(int area, int distanceFromCityCenter, int numberOfBedrooms,\n int numberOfBathrooms, int parkingSpaces,\nAvailableEquipment availableEquipment, String basement,\n String inhabitableLoft, String sunExposure,\nPhotos photos, Address address)
+    +getBasement()
+    +getInhabitableLoft()
+    +getSunExposure()
+}
+
+class SunExposure {
+    -String direction
+
+    +SunExposure(direction)
+}
+
+class AvailableEquipment {
+    -String availableEquipment
+
+    +AvailableEquipment(String availableEquipment)
+    +getAvailableEquipment()
+}
+
+class District{
+- String districtName
+
+    +District(String district)
+    +getDistrict()
+    +getCities()
+}
+
+class City{
+- String city
+
+    +City(String city)
+    +getCityName()
+}
+
+class State{
+    -String state
+
+    +State(String state,List<District> districts)
+    +getState()
+    +getDistricts()
+}
+
+class Photos {
+- String uri
+
++Photos(String url)
++getUrl()
+}
+
+class Property {
+    -int distanceFromCityCenter
+    -int area
+
+    +Property(int area, int distanceFromCityCenter,\nPhotos photos, Address address)
+    +getDistanceFromCityCenter()
+    +getArea()
+    +getResidence()
+    +getPhotos()
+    +getAddress()
+
+}
+
+class Rent {
+    - int durationOfContract
+
+    +Rent(int durationContract)
+    +getFinalComission()
+    +getDurationContract()
+    +calculateTotalPrice()
+}
+
+class PublishedAnnouncement {
+    -Date date
+
+    +PublishedAnnouncement(Date date, TypeOfBusiness\ntypeOfBusiness, Property property, PropertyType propertyType,\nComission comission, Business business, Employee agent,\nClient client)
+    +getProperty()
+    +getDate()
+    +getState()
+    +getCity()
+    +getClient()
+    +getPropertyType()
+    +getComission()
+    +getBusiness()
+    +getDurationOfContract()
+    +getAgent()
+}
+
+class Employee{
+-Role role
+
++Employee(email,name,store,\nphoneNumber,role,adress,taxNumber,\npassportNumber)
++getRole()
+}
+
+
+class Business {
+    - double requestedPrice
+    - String typeOfBusiness
+
+    +getFinalComission()
+    +calculatePriceWithComission()
+    +getTypeOfBusiness()
+}
+
+class Role{
+-String role
++Role(role)
+}
+
+class MessageMapper {
+    + toDto(messageList)
+    + toDtoObject(String name, long phoneNumber,\nString description, Date initialDate, \nint initialTime, int endTime, \nPublishedAnnouncement publishedAnnouncement)
+}
+
+class MessageDto{
+-String name
+-long phoneNumber
+-String description
+-Date initialDate
+-int initialTime
+-int endTime
+-PublishedAnnouncement publishedAnnouncement
+
++MessageDto(String name, long phoneNumber,\n String description, Date initialDate, \nint initialTime, int endTime, \nPublishedAnnouncement publishedAnnouncement)
++getName()
++ getPhoneNumber()
+    + getDescription()
+    + getInitialDate()
+    + getInitialTime()
+    + getEndTime()
+    + getPublishedAnnouncement()
+    +toString()
+}
+
+
+class Client{
+Client(String email, int passportNumber,\nint taxNumber, String name, int phoneNumber)
+}
+
+
+interface SortAlgorithm{
+ List<T> sort(List<T> arrayToSort)
+}
+
+class BubbleSort{
+-List<Message> arrayToSort
+
++BubbleSort(List<Message> arrayToSort)
++getArrayToSort()
++getArrayAfterSorting()
++List<T> sort(List<T> arrayToSort)
+}
+
+class Comission {
+ Value
+ }
+
+
+class MergeSort{
+-List<Message> arrayToSort
+
++MergeSort(List<Message> arrayToSort)
++getArrayToSort()
++getArrayAfterSorting()
++divideArrayElements(int indexStart, int indexEnd)
++mergeArrayElements(int indexStart, int indexMiddle, \nint indexEnd)
++List<T> sort(List<T> arrayToSort)
+}
+
+
+
+ListMessageUI .right..> ListMessageController
+
+ListMessageController .> Repositories : repositories
+Repositories ---> Repositories :instance
+Repositories ---> EmployeeRepository : employee
+Repositories ---> MessageRepository : message
+Repositories ---> AutheticationRepository : authentication
+
+ListMessageController ...> EmployeeRepository : employee
+ListMessageController ...> MessageRepository : message
+ListMessageController ...> AutheticationRepository : authentication
+
+MessageRepository -down-> Message
+EmployeeRepository -down-> Employee
+
+
+ Residence <|-down- House
+ Property <|-down- Residence
+ Property "1" -up "1..30" Photos: has >
+ SunExposure "1" -up- "*" House: contains <
+ AvailableEquipment "*" -left- "1" Residence: contains <
+ PublishedAnnouncement "*" --- "*" Property: advertises >
+PublishedAnnouncement "1" --- "1" Business: has a <
+  Business <|--- Rent
+  Message "*" --- "1" PublishedAnnouncement: can have a <
+    Agent "1" --- "*" PublishedAnnouncement: publishes an >
+    Employee "*" -right-- "1" Role: has a >
+    Comission "1" -- "1" Business : contains <
+
+
+State "*"-left- "1" Address: has a  <
+City "*"-left- "1" District: has a  <
+District "*"-left- "1" State: has a  <
+Property "1" -right- "1" Address: has an >
+Client "1"-right-"*" Message : sends a >
+
+
+
+ Agent "1" --- "1" Message: wants to see a list of >
+ Person <|-- Employee
+ Employee <|-- Agent
+ Person <|-- Client
+
+
+ListMessageController "*"-up--"1" SortAlgorithm: makes use of >
+SortAlgorithm <|.. BubbleSort
+SortAlgorithm <|.. MergeSort
+
+ListMessageController ...> MessageMapper
+MessageMapper ...> MessageDto
+
+@enduml

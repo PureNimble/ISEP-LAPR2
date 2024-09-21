@@ -1,0 +1,86 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant ":PublishAnnouncementRequestController" as PublishAnnouncementRequestController
+participant ":AnnouncementRequestMapper" as AnnouncementRequestMapper
+participant "listAnnouncementRequestDto:List<AnnouncementRequestDto>" as listAnnouncementRequestDto
+participant "listAnnouncementRequest:List<AnnouncementRequest>" as listAnnouncementRequest
+participant "announcementRequestDto:AnnouncementRequestDto" as AnnouncementRequestDto
+
+autonumber 19
+
+activate PublishAnnouncementRequestController
+
+PublishAnnouncementRequestController -> AnnouncementRequestMapper: toDto(announcementsRequestListByAgent)
+activate AnnouncementRequestMapper
+
+Group Get AnnouncementRequest List Using DTO
+
+AnnouncementRequestMapper --> listAnnouncementRequestDto**: create()
+
+loop
+
+AnnouncementRequestMapper -> listAnnouncementRequest :agent = getAgent()
+activate listAnnouncementRequest
+
+AnnouncementRequestMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+AnnouncementRequestMapper -> listAnnouncementRequest: property = getProperty()
+activate listAnnouncementRequest
+
+AnnouncementRequestMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+AnnouncementRequestMapper -> listAnnouncementRequest: typeOfBusiness = getTypeOfBusiness()
+activate listAnnouncementRequest
+
+AnnouncementRequestMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+AnnouncementRequestMapper -> listAnnouncementRequest: propertyType = getPropertyType()
+activate listAnnouncementRequest
+
+AnnouncementRequestMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+AnnouncementRequestMapper -> listAnnouncementRequest: business = getBusiness()
+activate listAnnouncementRequest
+
+AnnouncementRequestMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+AnnouncementRequestMapper -> listAnnouncementRequest: date = geDate()
+activate listAnnouncementRequest
+
+AnnouncementRequestMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+
+AnnouncementRequestMapper -> listAnnouncementRequest: durationOfContract = geDate()
+activate listAnnouncementRequest
+
+deactivate listAnnouncementRequest
+
+AnnouncementRequestMapper -> listAnnouncementRequest: status = getStatus()
+activate listAnnouncementRequest
+
+AnnouncementRequestMapper -[hidden]> listAnnouncementRequest
+deactivate listAnnouncementRequest
+
+AnnouncementRequestMapper -> AnnouncementRequestMapper : announcementsRequestDto = toDto(agent,property,typeOfBusiness,propertyType,business,date,durationOfContract)
+activate AnnouncementRequestMapper
+
+deactivate AnnouncementRequestMapper
+
+AnnouncementRequestMapper --> AnnouncementRequestDto**: create(...)
+
+AnnouncementRequestMapper -> listAnnouncementRequestDto: add(announcementRequestDto)
+activate listAnnouncementRequestDto
+
+deactivate listAnnouncementRequestDto
+end
+end
+AnnouncementRequestMapper --> PublishAnnouncementRequestController: listAnnouncementRequestDto
+
+@enduml

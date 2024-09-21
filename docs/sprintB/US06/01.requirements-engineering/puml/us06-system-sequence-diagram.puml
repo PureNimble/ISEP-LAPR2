@@ -1,0 +1,45 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD)
+
+autonumber
+
+actor "System Administrator" as Admin
+participant ":System" as System
+
+activate Admin
+
+    Admin -> System : asks to register a new location
+    activate System
+
+        System --> Admin : requests data (state)
+    deactivate System
+
+    Admin -> System : types requested data
+    activate System
+
+        System --> Admin : requests data (district associated to the state inserted)
+    deactivate System
+
+    Admin -> System : types requested data
+    activate System
+
+        System --> Admin : requests data (city associated to the district inserted)
+    deactivate System
+
+    Admin -> System : types requested data
+    activate System
+
+        System --> Admin : requests to confirm all data inserted
+    deactivate System
+
+    Admin -> System : confirms
+    activate System
+
+        System --> Admin : displays operation success
+    deactivate System
+
+@enduml

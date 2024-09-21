@@ -1,0 +1,120 @@
+@startuml
+title US11 - SD partial
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype ortho
+skinparam maxmessagesize 150
+skinparam sequenceParticipant underline
+
+autonumber
+
+actor "Agent" as agent
+participant ":OfferDecisionUI" as ui
+participant ":OfferDecisionController" as controller
+activate agent
+
+
+agent -> ui : asks for a list of real estate purchase orders for every property
+activate ui
+
+        create controller
+        ui -> controller: Create
+        ui -> controller: getOffersList()
+
+        activate controller
+                ref over controller
+
+                    us11_sequence_diagram_partial_getPublishedAnnouncementList
+
+                end ref
+
+                ref over controller
+
+                    us11_sequence_diagram_partial_getOfferList
+
+                end ref
+
+                ref over controller
+
+                    us11_sequence_diagram_partial_toDTO
+
+                end ref
+                controller --> ui : announcementOffersDTOList
+                deactivate controller
+
+        deactivate controller
+
+ui --> agent : shows the list of purchase orders (Property details, client's email, offer date and offer value) and asks what offer does the agent want to choose
+deactivate ui
+
+
+agent -> ui : chooses the offer
+activate ui
+
+
+ui --> ui : keepOffer(offer)
+
+
+ui --> agent : asks if the agent wants to accept or decline the offer
+deactivate ui
+
+alt accepts the offer
+        agent -> ui : accepts the offer
+        activate ui
+        ui -> controller : declineOtherOffers(offer, offersList)
+        activate controller
+        ref over controller
+
+                    us11_sequence_diagram_partial_declineOtherOffers
+
+                end ref
+        deactivate controller
+        ui -> controller : changeAnnouncementState(offer.getPublishedAnnouncement())
+        activate controller
+        ref over controller
+
+                    us11_sequence_diagram_partial_changeAnnouncementState
+
+                end ref
+        deactivate controller
+
+        ui -> controller : storeDecrement(offer.getPublishedAnnouncement().getStore())
+        activate controller
+        ref over controller
+
+                    us11_sequence_diagram_partial_storeDecrement
+
+                end ref
+        deactivate controller
+
+else rejects the offer
+
+        ui -> controller : declineOffer(offer)
+        activate controller
+        ref over controller
+
+                    us11_sequence_diagram_partial_declineOffers
+
+                end ref
+        deactivate controller
+
+
+end
+
+ui -> controller : sendVisualizedEmail(email, subject, body)
+        activate controller
+        ref over controller
+
+                    us11_sequence_diagram_partial_sendVisualizedEmail
+
+                end ref
+        controller --> ui : operation Success
+        ui --> agent : displays operation success  
+        deactivate ui
+        deactivate controller
+        deactivate agent
+
+
+
+@enduml

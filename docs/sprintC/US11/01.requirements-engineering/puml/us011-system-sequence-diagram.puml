@@ -1,0 +1,33 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US011 - System Sequence Diagram (SSD)
+
+autonumber
+
+actor "Agent" as agent
+participant ":System" as sys
+
+activate agent
+
+
+agent -> sys : asks for a list of real estate purchase orders for every property
+activate sys
+sys --> agent : shows the list of purchase orders (Property details, client's email, offer date and offer value) and asks what offer does the agent want to choose
+deactivate sys
+
+agent -> sys : chooses the offer
+activate sys
+sys --> agent : asks if the agent wants to accept or decline the offer
+deactivate sys
+
+agent -> sys : accepts or declines the offer
+activate sys
+sys --> agent : displays operation success  
+deactivate sys
+
+deactivate agent
+@enduml

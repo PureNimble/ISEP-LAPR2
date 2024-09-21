@@ -1,0 +1,41 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD)
+
+autonumber
+
+actor "Unregistered user" as User
+participant ":System" as System
+
+opt Optimal Case
+
+activate User
+
+    User -> System : asks to display a list of properties to filter the results
+    activate System
+
+    System --> User : request data [business (buying, renting), \nproperty (house, apartment, land), number of rooms]
+    deactivate System
+
+    User -> System : types requested data
+    activate System
+
+    System --> User : shows listed properties and asks to sort it by price, city and/or by state.
+    deactivate System
+
+    User -> System : selects sorting criteria
+    activate System
+
+    System --> User : shows selected properties by selected criteria
+    deactivate System
+
+    User -> System : submits data
+    activate System
+
+    System --> User : displays operation success
+    deactivate System
+
+@enduml

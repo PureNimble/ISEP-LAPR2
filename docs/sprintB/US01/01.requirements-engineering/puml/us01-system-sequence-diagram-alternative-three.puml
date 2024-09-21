@@ -1,0 +1,45 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - Doesn't select a filtering
+
+autonumber
+
+actor "Unregistered user" as User
+participant ":System" as System
+
+activate User
+
+    User -> System : asks to display a list of properties
+        activate System
+
+    System --> User : displays a list of properties from the most recent uploaded to the oldest
+        deactivate System
+
+    User -> System : asks to filter the list of properties
+        activate System
+
+    System --> User : displays the options to filter [type of business (buying or renting), \ntype of property (house, apartment or land) and the number of rooms]
+        deactivate System
+
+    User -> System : doesn't select any option to filter the list of properties
+        activate System
+
+    System --> User : displays the filtered list of properties
+        deactivate System
+
+    User -> System : asks to order the filtered list of properties
+        deactivate System
+
+    System --> User : displays the options to order (price, city or state) and (ascending or descending)
+        deactivate System
+
+    User -> System : selects the options to order the filtered list of properties
+        activate System
+
+    System --> User : display the "filtered" list of properties with the ordering method selected
+        deactivate System
+
+@enduml

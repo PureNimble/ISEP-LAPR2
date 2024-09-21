@@ -1,0 +1,53 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US09 - Sequence Diagram Partial (Get Client)
+
+autonumber 3
+
+participant ":SendMessageController" as CTRL
+participant "repositories\n:Repositories" as Repository2
+participant "appSession\n:ApplicationSession" as app
+participant "appSession\n:ApplicationSession" as App
+participant "currentSession\n:UserSession" as User
+participant "clientRepository\n:ClientRepository" as ClientRepository
+
+
+ -> CTRL : getListOfProperties()
+            activate CTRL
+
+group  Get Client By Email
+
+ CTRL -> CTRL: getClientFromSession
+
+            CTRL -> app: getInstance()
+            activate app
+
+            app --> CTRL:appSession
+            deactivate app
+
+            CTRL -> App :getCurrentSession()
+            activate App
+
+            App --> CTRL:currentSession
+            deactivate App
+
+            CTRL -> User :email = getUserEmail()
+            activate User
+
+            User --> CTRL:email
+            deactivate User
+
+            CTRL ->ClientRepository:getClientByEmail()
+            activate ClientRepository
+
+            ClientRepository --> CTRL:clientByEmail
+            deactivate ClientRepository
+end
+
+             <-- CTRL:listOfPropertiesDTO
+
+
+@enduml

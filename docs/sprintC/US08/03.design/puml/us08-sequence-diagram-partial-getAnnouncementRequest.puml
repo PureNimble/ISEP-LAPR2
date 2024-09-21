@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+participant ":PublishAnnouncementRequestController" as PublishAnnouncementRequestController
+participant "announcementRequestRepository\n:AnnouncementRequestRepository" as AnnouncementRequestRepository
+
+autonumber 56
+
+activate PublishAnnouncementRequestController
+
+PublishAnnouncementRequestController -> PublishAnnouncementRequestController:getAnnouncementRequestDtoByDescription(announcementRequestDescription)
+activate PublishAnnouncementRequestController
+
+Group Get Announcement Request By Description
+
+activate PublishAnnouncementRequestController
+
+PublishAnnouncementRequestController -> AnnouncementRequestRepository :getAnnouncementRequestDtoByDescription(announcementRequestDescription)
+activate AnnouncementRequestRepository
+
+AnnouncementRequestRepository --> PublishAnnouncementRequestController:announcementRequest
+deactivate AnnouncementRequestRepository
+end
+
+AnnouncementRequestRepository --> PublishAnnouncementRequestController:announcementRequest
+deactivate AnnouncementRequestRepository
+@enduml

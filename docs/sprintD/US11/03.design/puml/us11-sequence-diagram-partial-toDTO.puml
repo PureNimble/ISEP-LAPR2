@@ -1,0 +1,72 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+participant ":OfferDecisionController" as controller
+participant ":OfferMapper" as mapper
+participant "PublishedAnnouncementList\n:List<PublishedAnnouncement>" as announcementlist
+participant "OfferList\n:List<OfferList>" as offerlist
+participant "offerDto:OfferDto" as dto
+participant "OfferDTO\n:List<OfferDTO>" as offerdto
+participant "announcementOfferDto:AnnouncementOfferDto" as AnnouncementOfferDto
+participant "AnnouncementOfferDTO\n:List<AnnouncementOfferDTO>" as dtolist
+
+
+activate controller
+                controller -> mapper : toDTO(PublishedAnnouncementList, OfferList)
+                activate mapper
+
+                create dtolist
+                mapper --> offerdto**: create()
+                mapper --> dtolist** : create()
+
+
+                loop for each published announcement object
+                    
+                    mapper -> announcementlist : getPublishedAnnouncement(i)
+                    activate announcementlist
+                    announcementlist --> mapper : publishedAnnouncement
+                    deactivate announcementlist
+
+                    loop for each offer object
+
+                        opt if publishAnnouncement equals to offer.getPublishedAnnouncement()
+                                deactivate offerlist
+                                mapper -> offerlist : name = offer.getName()
+                                activate offerlist
+                                deactivate offerlist
+                                mapper -> offerlist : client = offer.getClient()
+                                activate offerlist
+                                deactivate offerlist
+                                mapper -> offerlist : orderAmount = offer.getOrderAmount()
+                                activate offerlist
+                                deactivate offerlist
+                                mapper -> offerlist : offerState = offer.getOfferState()
+                                activate offerlist
+                                deactivate offerlist
+                                mapper -> mapper : offerDto = toOfferDtoObject(name, client, orderAmount, offerState)
+                                mapper --> dto** : create()
+                                mapper -> offerdto : add(offerDto)
+                                activate offerdto
+                                deactivate offerdto
+                        end
+                        
+
+                    end
+
+                    mapper --> mapper : announcementOffersDto = toDtoObject(publishedAnnouncement, offersListToDTO)
+                    mapper --> AnnouncementOfferDto** : create(...)
+                    mapper -> dtolist : add(announcementOffersDto)
+                    activate dtolist
+                    deactivate dtolist
+ 
+                end
+
+                mapper --> controller : announcementOffersDTOList
+                deactivate mapper
+        deactivate controller
+
+@enduml

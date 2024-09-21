@@ -1,0 +1,320 @@
+@startuml
+
+class PublishAnnouncementRequestUI
+
+class Adress
+
+class AnnouncementRequestMapper
+
+class PublishAnnouncementRequestController
+
+class Person
+
+class Repositories
+
+class Employee
+
+class Role
+
+class AuthenticationRepository
+
+class EmployeeRepository
+
+class State
+
+class City
+
+class District
+
+class AnnouncementRequestDto
+
+class AnnouncementRequestDto{
+-Date date
+-TypeOfBusiness typeOfBusiness
+-Property property
+-PropertyType propertyType
+-int durationOfContract
+-Employee agent
+-String status
++toString()
+}
+
+class AnnouncementRequestMapper{
++List<AnnouncementRequestDto> toDto (List<AnnnouncementRequest> list)
++AnnouncementRequestDto toDtoObject(status, agent, property, typeOfBusiness, propertyType, business, date,durationOfContract)
++getAnnouncementRequestDtoByDescription(announcementRequestDescription)
+}
+
+
+class Person{
+- String email
+- int passportNumber
+- int taxNumber
+- String name
+- Adress adress
+- int phoneNumber
+
++User(email,passportNumber,taxNumber,name,phoneNumber)
++getPassportNumber()
++getTaxNumber()
++getEmail()
++getAdress()
++getName()
++getPhoneNumber()
+
+}
+
+class EmployeeRepository{
++add(employee)
++getEmployees()
++getEmployeeeByEmail(email)
+}
+
+class AuthenticationRepository{
++doLogin(email,pwd)
++doLogout()
++getCurrentSession()
++addUserRole()
++addUserWithRole()
++passwordGenerator()
+-shuffleString(input,random)
+-randomCharacter(characters,random)
+}
+
+class ComissionRepository{
++getComissionByDescription(comissionDescription)
++getComission()
++add(comission)
+
+}
+
+class PublishedAnnouncementRepository{
++add(publishedAnnouncement)
++publishedAnnouncement(date,typeOfBusiness,property,propertyType,comission,business,durationOfContract)
++publishedAnnouncementRequest(comission,announcementRequest)
++addPublishedAnnouncement(publishedAnnouncement)
++getPublishedAnnouncemens()
+}
+
+
+class State{
+ - String stateName
+
+    +getState()
+    +getDistricts()
+    +toString()
+
+}
+
+class Comission {
+    -Double Value
+}
+
+
+class District{
+- String districtName
+
+
+    +getDistrictName()
+    +getCities()
+    +toString()
+}
+
+class City{
+- String city
+
+    +getCityName()
+}
+
+
+class Property {
+    - int Area
+    -Photos Photos
+    - int Distance from the city center
+}
+
+class Adress{
+ -String streetName
+    -int zipCode
+
+    +verifyZipCode()
+    +getCity()
+    +getDistrict()
+    +getState()
+    +Address(state, district, city, street, zipCode)
+}
+
+class Role{
+-String role
++Role(role)
+}
+
+
+class Employee{
+-Store store
+-Role role
++Employee(email,name,store,phoneNumber,role,adress,taxNumber,passportNumber)
++getStore()
++getRole()
+}
+
+
+class Residence {
+    -int Number of Bedrooms
+    -int Number of Bathrooms
+    -int Number of Parking Spaces
+}
+
+class House {
+    -String Basement
+    -String Inhabitable loft
+}
+
+class SunExposure {
+    -String Direction
+}
+
+class AvailableEquipment {
+    -String Equipment
+}
+
+class AnnouncementRequest{
+-Date date
+-String status
+}
+
+
+class PublishAnnouncementRequestUI{
+}
+
+class TypeOfProperty{
+   -String type
+}
+
+class Photos {
+    -String URI
+}
+
+class AnnouncementRequestRepository{
++add(announcementRequest)
++announcementRequest(date,typeOfBusiness,property,propertyType,business,durationOfContract)
++addAnnouncementRequest(announcementRequest)
++getAnnouncementRequestByDescription(announcementRequestDescription)
++getAnnouncementRequestByMostRecent()
++getAnnouncementRequest()
++rejectAnnouncementRequest(announcementRequestDto)
+}
+
+
+
+class PublishAnnouncementRequestController{
++createPublishAnnouncementRequestController(employeeRepository,announcementRequestRepository,publishedAnnouncementRepository,comissionRepository,authenticationRepository)
++getEmployees()
++getAnnouncementRequestByMostRecent()
++getComissions()
++getCurrentSessionEmail()
++createPublishedAnnouncementRequestController(announcementRequestDescription,comissionDescription)
++getComissionByDescription(String comissionDescription)
++getAnnouncementRequestByDescription(int announcementRequestDescription)
++getEmployeeeByEmail()
++toDto(agent)
++rejectAnnouncementRequest(announcementRequestDtoDescription)
++getPublishedAnnouncements()
+-getAuthenticationRepository()
+-getPublishedAnnouncementRepository()
+-getAnnouncementRequestRepository()
+-getComissionRepository()
+-getEmployeeRepository()
+-getAnnouncementRequestMapper()
+
+}
+
+class Repositories{
+-Repositories()
++getInstance():Repositories
++getEmployeeRepository()
++getComissionRepository()
++getPublishedAnnouncementRepository()
++getAuthenticationRepository()
++getAnnouncementRequestRepository()
++getStoreRepository()
++getRoleRepository()
++getStateRepository()
++getClientRepository()
++getPropertyTypeRepository()
++getTypeOfBusinessRepository()
++getMessageRepository()
++getOfferRepository()
++serialize()
++deserialize()
+}
+
+
+PublishAnnouncementRequestUI .> PublishAnnouncementRequestController
+
+PublishAnnouncementRequestController ...> AnnouncementRequestMapper
+
+PublishAnnouncementRequestController ..> AnnouncementRequestRepository: announcementRequestRepository
+
+PublishAnnouncementRequestController ..> ComissionRepository: comissionRepository
+
+PublishAnnouncementRequestController ...> EmployeeRepository : employeeRepository
+
+PublishAnnouncementRequestController ...> AuthenticationRepository : authenticationRepository
+
+PublishAnnouncementRequestController ...> PublishedAnnouncementRepository: publishedAnnouncementRepository
+
+Repositories -> Repositories:instance
+
+Repositories ------> PublishedAnnouncementRepository: publishedAnnouncementRepository
+
+Repositories ----> AnnouncementRequestRepository: announcementRequestRepository
+
+Repositories -----> ComissionRepository :comissionRepository
+
+Repositories -----> EmployeeRepository: employeeRepository
+
+Repositories ----> AuthenticationRepository: authenticationRepository
+
+PublishAnnouncementRequestController .>  Repositories : repositories
+
+ComissionRepository -----> "*" Comission
+
+AnnouncementRequestMapper ........> AnnouncementRequest
+
+AnnouncementRequestMapper .....> AnnouncementRequestDto
+
+AnnouncementRequestRepository ----> "*" AnnouncementRequest
+
+Employee "1" -left> "*" Role : role
+
+Adress "1" -left- "1" State
+
+State "1" -left- "*" District
+
+District "1" -left- "*" City
+Person <|-- Employee
+
+EmployeeRepository ----> "*" Employee
+
+Employee "1" -right "1" Comission: defines >
+
+Employee "1" - "*" AnnouncementRequest:intends to see >
+
+Adress "1" -right-- "1" Property: has <
+
+AnnouncementRequest "*" -> "1..30" Photos: has >
+
+TypeOfProperty "1" -- Property:defines\n\n\n\n\n\n\n
+
+AnnouncementRequest "1" -- Property: has >
+Property <|-- Residence
+Residence <|-- House
+
+Residence -- AvailableEquipment : contains
+House --- SunExposure:contains
+
+
+
+
+@enduml

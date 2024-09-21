@@ -1,0 +1,134 @@
+ @startuml
+
+title US019 - Class Diagram
+
+
+
+class DivideStoreUI{
+}
+
+
+class Repositories{
+-Repositories()
++getInstance():Repositories
++getEmployeeRepository()
++getComissionRepository()
++getPublishedAnnouncementRepository()
++getAuthenticationRepository()
++getAnnouncementRequestRepository()
++getStoreRepository()
++getRoleRepository()
++getStateRepository()
++getClientRepository()
++getPropertyTypeRepository()
++getTypeOfBusinessRepository()
++getMessageRepository()
++getOfferRepository()
++serialize()
++deserialize()
+}
+
+
+class DivideStoreController {
+    + DivideStoreController(storeRepository)
+    + findPartition()
+    - getStoreRepository()
+
+}
+
+
+class Person{
+- String email
+- int passportNumber
+- int taxNumber
+- String name
+- Adress adress
+- int phoneNumber
+
++User(email,passportNumber,taxNumber,name,phoneNumber)
++getPassportNumber()
++getTaxNumber()
++getEmail()
++getAdress()
++getName()
++getPhoneNumber()
+}
+
+
+class Adress{
+ -String streetName
+    -int zipCode
+    +getCity()
+    +getDistrict()
+    +getState()
+    +Adress(state, district, city, street, zipCode)
+}
+
+class State{
+ - String stateName
+
+    +getState()
+    +getDistricts()
+    +toString()
+
+}
+
+class District{
+- String districtName
+
+
+    +getDistrictName()
+    +getCities()
+    +toString()
+}
+
+class City{
+- String city
+
+    +getCityName()
+}
+
+class Store{
+-String name
+-String email
+-String phoneNumber
+-Adress adress
+-addEmployee(employee)
+-validateEmployee(employee)
++Store(name,adress,contact)
++createEmployee(name,citizen´s card number,tax number ,adress,email adress,telephone number,store, role)
+}
+
+class StoreRepository {
+   +findPartition()
+   +createStoreByFileReading()
+   +getStoreByDescription()
+   +getStoresByMostAvailableListings()
+   +getStoresProperty()
+}
+
+StoreRepository ----> Store
+
+
+DivideStoreController .> StoreRepository
+
+Repositories -----> StoreRepository: storeRepository
+
+
+DivideStoreUI .> DivideStoreController
+
+DivideStoreController .> Repositories: repositories
+
+Person <|---- Employee
+
+
+Person "1" --- "1" Adress: has <
+State "1" -right-- "*" District: is in <
+District "1" -right-- "*" City: is in <
+Adress "*" -right-- "1" State: is in <
+
+Adress "1" ----- "1" Store : has <
+
+Employee"*" - "*" Store: wants to divide >
+
+@enduml

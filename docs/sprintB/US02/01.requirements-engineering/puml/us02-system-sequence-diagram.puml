@@ -1,0 +1,91 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD)
+
+ autonumber
+actor "Agent" as Agent
+participant ":System" as System
+
+activate Agent
+
+    Agent -> System : asks to create an annoucement to publish
+        activate System
+
+    System --> Agent : requests data
+        deactivate System
+
+    Agent -> System : types requested data [area in m^2, state, district, city, street, zip code and distance from city center]
+        activate System
+
+    opt house, apartment
+        autonumber 4
+        Agent -> System : types requested data [number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning)]
+
+        opt house
+            autonumber 5
+            Agent -> System : types requested data [the existence of a basement and/or inhabitable loft, sun exposure \n(North, South, East, West)]
+        end
+    end
+
+    System ---> Agent : saves all data and asks for photos of the property
+        deactivate System
+
+    loop Sends photos (from 1 up to 30 pictures)
+
+        Agent -> System : sends photos of the property
+            activate System
+        end
+
+
+
+
+    System ---> Agent : saves the photos and asks for the type of business and neeeded data
+        deactivate System
+
+    alt sale
+
+        autonumber 7
+
+        Agent -> System : types the requested data [Requested price]
+            activate System
+
+        else lease
+
+            Agent -> System : types the requested data [Requested fee and contract duration]
+
+    end
+'
+'    System --> Agent : save all data and requests the owner personal information
+'        deactivate System
+'
+'    Agent --> System : types the requested data [name, tax number, phone number, email, state, district, city, street and zip code]
+'        activate System
+
+    System --> Agent : save all data and requests the comission type and needed data
+        deactivate System
+
+    alt percentage
+
+    Agent -> System : inserts the percentage comission
+        activate System
+
+    else value
+
+        Agent -> System : inserts the comission value
+
+    end
+
+    System --> Agent : publishes the annoucement
+        deactivate System
+
+    Agent -> System : submits data
+        activate System
+
+    System --> Agent : displays operation success
+        deactivate System
+
+ @enduml

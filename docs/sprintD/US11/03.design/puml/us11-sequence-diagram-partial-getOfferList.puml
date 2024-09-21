@@ -1,0 +1,47 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+participant ":OfferDecisionController" as controller
+participant ":Repositories" as singleton
+participant "repositories\n:Repositories" as repositories
+participant "Offer\n:Offer" as offer
+participant "offerRepository\n:OfferRepository" as offerrepository
+participant "OfferList\n:List<OfferList>" as offerlist
+
+activate controller
+controller -> repositories : getOfferRepository()
+                    activate repositories
+
+                        repositories --> controller : OfferRepository
+                    deactivate repositories
+
+                controller -> offer : getOffersList()
+                activate offer
+
+                create offerlist
+                offer --> offerlist** : create()
+
+                loop for each offer
+
+                        offer -> offerrepository : getOffer(property)
+                        activate offerrepository
+                        offerrepository --> offer : Offer
+                        deactivate offerrepository
+                        opt if offer not declined
+
+                                offer --> offer : compare(offer1Amount, offer2Amount)
+                                offer -> offerlist : add(offer)
+                                activate offerlist
+                                deactivate offerlist
+
+                        end
+
+                    end
+
+                offer --> controller : OfferList
+                deactivate offer
+
+@enduml

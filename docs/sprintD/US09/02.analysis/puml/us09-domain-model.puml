@@ -1,0 +1,149 @@
+@startuml
+
+skinparam groupInheritance 2
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+'skinparam linetype ortho
+'left to right direction
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+title US09 - Domain Model
+
+class Address {
+    Street
+    Zip Code
+}
+
+class Person{
+Name
+Email
+Phone Number
+Tax Number
+Passport Number
+}
+
+class Employee{
+}
+class Comission {
+Value
+}
+'/
+
+class ComissionPercentage {
+Percentage Value
+}
+
+class City {
+    City name
+}
+
+class District {
+    District name
+}
+
+class State {
+    State name
+}
+
+State "1" -down- "*" District: has >
+District "1" -down- "*" City: has >
+Address "*" -down- "1" State: has <
+
+
+class Client {
+
+}
+
+
+class Residence {
+    Number of Bedrooms
+    Number of Bathrooms
+    Number of Parking Spaces
+}
+
+class Property {
+    Area
+    Distance from the city center
+}
+
+class TypeOfProperty{
+    Type
+}
+
+class Photos {
+    URI
+}
+
+class House {
+    Basement
+    Inhabitable loft
+}
+
+class SunExposure {
+    Direction
+}
+
+class AvailableEquipment {
+    Equipment
+}
+
+Residence <|-down- House
+Property <|-down- Residence
+Property "1" -left-- "1..30" Photos: has >
+SunExposure "1" -up- "*" House: contains <
+Address "1" -up- "1" Property: has <
+AvailableEquipment "*" -up- "1" Residence: contains <
+TypeOfProperty "1" -down-- "1" Property: defines >
+
+
+class Rent {
+    Duration of contract
+}
+
+class Business {
+    Requested price
+}
+
+class PublishedAnnouncement {
+    Contract type
+}
+
+
+PublishedAnnouncement "*" --- "*" Property: advertises >
+PublishedAnnouncement "1" --- "1" Business: has a <
+Business <|--- Rent
+
+class Message{
+    Date
+    Initial time
+    End time
+    Description
+}
+
+class Agent{
+}
+
+
+
+Message "*" --- "1" PublishedAnnouncement: can have a <
+Client "1" --- "1..*" Message: leaves a >
+Agent "1" --- "1" Message: receives a >
+Agent "1" --- "*" PublishedAnnouncement: publishes an >
+
+Person <|-- Employee
+Employee -- Agent
+Person <|-- Client
+
+
+Comission "1" -- "1" Business : contains <
+ComissionPercentage  --|> Comission
+
+
+
+
+
+
+@enduml

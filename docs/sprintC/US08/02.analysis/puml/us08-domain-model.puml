@@ -1,0 +1,113 @@
+@startuml
+
+skinparam groupInheritance 2
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+class Employee{
+}
+
+class Person{
+Name
+Email
+Phone Number
+Tax Number
+Passport Number
+}
+
+class Agent{
+}
+
+class AnnouncementRequest{
+date
+}
+
+
+class Residence {
+    Number of Bedrooms
+    Number of Bathrooms
+    Number of Parking Spaces
+}
+
+class Property {
+    Area
+    Photos
+    Distance from the city center
+}
+
+class TypeOfProperty{
+    Type
+}
+
+class Photos {
+    URI
+}
+
+class House {
+    Basement
+    Inhabitable loft
+}
+
+class SunExposure {
+    Direction
+}
+
+class AvailableEquipment {
+    Equipment
+}
+
+class City {
+    City name
+}
+
+class District {
+    District name
+}
+
+class State {
+    State name
+}
+
+class Address {
+    Street
+    Zip Code
+}
+
+class Business {
+    Total Price
+}
+
+class Comission {
+    Value
+}
+
+
+
+Person <|-- Employee
+Employee -- Agent
+
+Agent "*" - "*" AnnouncementRequest:intends to see >
+
+AnnouncementRequest "1" -- "1"Property: has >
+TypeOfProperty "1" -- "1" Property:defines\n\n\n\n\n\n\n
+Property <|-- Residence
+Residence <|-- House
+AnnouncementRequest "*" - "1..30" Photos: has >
+Residence "1" -- "*" AvailableEquipment : contains
+House --- SunExposure:contains
+
+Address "1" -right-- "1" Property: has <
+State "1" -left-- "*" District: is in <
+District "1" -left-- "*" City: is in <
+Address "*" -left-- "1" State: is in <
+
+Business "1" --- "1" AnnouncementRequest: has <
+
+Agent "1" -left "1" Comission: defines >
+
+
+@enduml

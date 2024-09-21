@@ -1,0 +1,34 @@
+@startuml
+
+participant ":ListDealsController" as ListDealsController
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "offerRepository\nOfferRepository" as OfferRepository
+
+autonumber  26
+
+Group Get Deals By Most Recent
+
+activate ListDealsController
+
+                ListDealsController -> RepositorySingleton : getInstance()
+                activate RepositorySingleton
+
+                    RepositorySingleton --> ListDealsController: repositories
+                deactivate RepositorySingleton
+
+                ListDealsController -> PLAT : getOfferRepository()
+                activate PLAT
+
+                    PLAT --> ListDealsController: offerRepository
+                deactivate PLAT
+
+                ListDealsController -> OfferRepository : getDealsByMostRecent()
+                activate OfferRepository
+
+                    OfferRepository --> ListDealsController : offersListMade
+                deactivate OfferRepository
+
+end
+
+@enduml

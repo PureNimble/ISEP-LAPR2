@@ -1,0 +1,113 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US010 - Sequence Diagram Split
+
+autonumber
+
+actor "Client" as Client
+participant ":PlaceOfferUI" as System
+participant ":PlaceOfferController" as Controller
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as Repositories
+participant ":ApplicationSession" as app
+participant "appSession\n:ApplicationSession" as APP
+participant "currentSession\n:UserSession" as User
+participant "userRepository\n:UserRepository" as UserRepository
+participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as PublishedAnnouncementRepository
+participant "offerRepository\n:OfferRepository" as OfferRepository
+participant ":XMapper" as XMapper
+participant "announcementListDTO:List<AnnouncementDto>" as ListPublishAnnouncement
+participant "announcementDto:AnnouncementDto" as AnnouncementDto
+participant "Offer" as Offer
+participant "offerDto:OfferDTO" as offerDto
+
+activate Client
+
+Client -> System : asks to place an offer on a property
+activate System
+
+System -> Controller** : create
+
+System -> Controller : getListOfProperties()
+activate Controller
+
+
+    ref over Controller
+
+    Get Client Email
+
+    end
+
+
+    ref over Controller
+
+    Get List Of Properties
+
+    end
+
+
+    ref over Controller
+
+    Get List Of Announcements Using DTO
+
+    end
+
+
+Controller --> System : listOfPropertiesDTO
+deactivate Controller
+
+System --> Client : shows the list of properties
+deactivate System
+
+Client -> System : selects the desired property
+activate System
+
+System --> Client : request the offer amount
+deactivate System
+
+Client -> System: inserts the offer amount
+activate System
+
+System --> Client: accepts the offer amount and request the client's name
+deactivate System
+
+Client -> System : inserts the name
+activate System
+
+System --> Client : receives the client's information and sends the offer
+deactivate System
+
+Client -> System : submits data
+activate System
+
+System -> Controller : createOffer(propertyDescription, name, orderAmount, client)
+activate Controller
+
+
+    ref over Controller
+
+    Get Property
+
+    end
+
+Controller -> OfferRepository : createOffer(property, name, orderAmount, client)
+activate OfferRepository
+
+    ref over OfferRepository
+
+    Create Offer
+
+    end
+
+OfferRepository --> Controller : offer
+deactivate OfferRepository
+
+Controller --> System : offer
+
+System --> Client : displays operation success
+
+@enduml

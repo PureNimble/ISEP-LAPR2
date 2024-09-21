@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="465px" preserveAspectRatio="none" style="width:1014px;height:465px;background:#FFFFFF;" version="1.1" viewBox="0 0 1014 465" width="1014px" zoomAndPan="magnify"><defs/><g><rect fill="none" height="27.6094" id="_title" style="stroke:none;stroke-width:1.0;" width="158" x="421.25" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="148" x="426.25" y="24.5332">US07 - Domain Model</text><!--MD5=[0884d670a7c179784d4f66b0943e6ab7]
+class UnregisteredUser--><g id="elem_UnregisteredUser"><rect codeLine="12" fill="#F1F1F1" height="53.2188" id="UnregisteredUser" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="116" x="7" y="45.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="110" x="10" y="65.1426">UnregisteredUser</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="122" y1="73.2188" y2="73.2188"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="51" x="13" y="91.752">Cookies</text></g><!--MD5=[c2fe003dc4f4575e3ea9c643120f69d1]
+class Contacts--><g id="elem_Contacts"><rect codeLine="16" fill="#F1F1F1" height="70.8281" id="Contacts" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="106" x="242" y="387.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="56" x="267" y="407.1426">Contacts</text><line style="stroke:#181818;stroke-width:0.5;" x1="243" x2="347" y1="415.2188" y2="415.2188"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="94" x="248" y="433.752">Phone Number</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="90" x="248" y="451.3613">Email Address</text></g><!--MD5=[60d6b92408f98aed8df94d5c6e04aa63]
+class State--><g id="elem_State"><rect codeLine="21" fill="#F1F1F1" height="53.2188" id="State" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="84" x="613" y="177.1094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="33" x="638.5" y="196.6426">State</text><line style="stroke:#181818;stroke-width:0.5;" x1="614" x2="696" y1="204.7188" y2="204.7188"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="72" x="619" y="223.252">State name</text></g><!--MD5=[09ce52be0ee7de43c61b6e2d59bf108b]
+class Person--><g id="elem_Person"><rect codeLine="25" fill="#F1F1F1" height="88.4375" id="Person" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="156" x="217" y="159.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="45" x="272.5" y="179.1426">Person</text><line style="stroke:#181818;stroke-width:0.5;" x1="218" x2="372" y1="187.2188" y2="187.2188"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="36" x="223" y="205.752">Name</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="144" x="223" y="223.3613">Passport Card Number</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="76" x="223" y="240.9707">Tax Number</text></g><!--MD5=[c4d681900983498091bbbc67674786ba]
+class District--><g id="elem_District"><rect codeLine="31" fill="#F1F1F1" height="53.2188" id="District" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="94" x="768" y="177.1094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43" x="793.5" y="196.6426">District</text><line style="stroke:#181818;stroke-width:0.5;" x1="769" x2="861" y1="204.7188" y2="204.7188"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="82" x="774" y="223.252">District name</text></g><!--MD5=[9466097c40aeafc62ec36a0cc4f3c955]
+class City--><g id="elem_City"><rect codeLine="35" fill="#F1F1F1" height="53.2188" id="City" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="75" x="932.5" y="177.1094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="24" x="958" y="196.6426">City</text><line style="stroke:#181818;stroke-width:0.5;" x1="933.5" x2="1006.5" y1="204.7188" y2="204.7188"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="63" x="938.5" y="223.252">City name</text></g><!--MD5=[0f39e4cb6f03951afbf6d14bd2505654]
+class Address--><g id="elem_Address"><rect codeLine="39" fill="#F1F1F1" height="70.8281" id="Address" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="69" x="473.5" y="168.1094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="52" x="482" y="187.6426">Address</text><line style="stroke:#181818;stroke-width:0.5;" x1="474.5" x2="541.5" y1="195.7188" y2="195.7188"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="38" x="479.5" y="214.252">Street</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="57" x="479.5" y="231.8613">Zip Code</text></g><!--MD5=[3fd616f346a44cd59a91eb10b19e157c]
+class User--><g id="elem_User"><rect codeLine="44" fill="#F1F1F1" height="53.2188" id="User" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="73" x="258.5" y="45.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="29" x="280.5" y="65.1426">User</text><line style="stroke:#181818;stroke-width:0.5;" x1="259.5" x2="330.5" y1="73.2188" y2="73.2188"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="61" x="264.5" y="91.752">Password</text></g><!--MD5=[9ffec1f12e482a4d3355a6061d0ac8d5]
+link UnregisteredUser to User--><g id="link_UnregisteredUser_User"><path codeLine="48" d="M123.04,72.1094 C165.49,72.1094 221.8,72.1094 258.21,72.1094 " fill="none" id="UnregisteredUser-User" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#000000" points="150.25,60.2852,141.2049,57.3462,141.2049,63.2241,150.25,60.2852" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="86" x="154.25" y="65.6045">can register as</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="130.9248" y="68.588">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="243.5297" y="68.0922">1</text></g><!--MD5=[9507060b9b8dd58465f9ccdeabbe9f6e]
+link State to District--><g id="link_State_District"><path codeLine="49" d="M697.04,203.6094 C718.8,203.6094 745.43,203.6094 767.88,203.6094 " fill="none" id="State-District" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#000000" points="724.5,191.7852,715.4549,188.8462,715.4549,194.7241,724.5,191.7852" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="21" x="728.5" y="197.1045">has</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="704.8672" y="199.7409">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="754.9718" y="199.8401">*</text></g><!--MD5=[cd1097b4d6b53e13878caf984aed34c4]
+link District to City--><g id="link_District_City"><path codeLine="50" d="M862.35,203.6094 C884.78,203.6094 911.21,203.6094 932.27,203.6094 " fill="none" id="District-City" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#000000" points="889.25,191.7852,880.2049,188.8462,880.2049,194.7241,889.25,191.7852" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="21" x="893.25" y="197.1045">has</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="870.1364" y="199.8897">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="919.6012" y="199.5922">*</text></g><!--MD5=[129972a5e6cdb99fe3ca661a27424b30]
+link Address to State--><g id="link_Address_State"><path codeLine="51" d="M542.84,203.6094 C563.81,203.6094 590.65,203.6094 612.82,203.6094 " fill="none" id="Address-State" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#000000" points="559.75,191.7852,568.7951,194.7241,568.7951,188.8462,559.75,191.7852" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="21" x="573.75" y="197.1045">has</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="550.5414" y="199.5085">*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="597.9688" y="199.7409">1</text></g><!--MD5=[b73c16dcbb300cfcfb8ac7b75475c389]
+link Person to Address--><g id="link_Person_Address"><path codeLine="52" d="M373.1,203.6094 C407.54,203.6094 446.24,203.6094 473.33,203.6094 " fill="none" id="Person-Address" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#000000" points="400.25,191.7852,391.2049,188.8462,391.2049,194.7241,400.25,191.7852" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="51" x="404.25" y="197.1045">can have</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="380.8775" y="200.3379">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="458.4574" y="199.5085">1</text></g><!--MD5=[147c11fe48fb4792b74104135052829a]
+link Person to Contacts--><g id="link_Person_Contacts"><path codeLine="53" d="M295,247.8394 C295,288.8494 295,349.6694 295,387.5494 " fill="none" id="Person-Contacts" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#000000" points="300,322.7852,302.9389,313.7401,297.0611,313.7401,300,322.7852" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="21" x="309" y="323.1045">has</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="287.4422" y="269.6518">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="287.3328" y="376.7908">1</text></g><!--MD5=[da8d81ca05feb257f2f3b5b7736e890b]
+link User to Person--><g id="link_User_Person"><path codeLine="54" d="M295,98.6994 C295,110.4694 295,125.0094 295,139.4494 " fill="none" id="User-to-Person" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="302,139.4794,295,159.4794,288,139.4794,302,139.4794" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[5c9be23aac3c691d3e4c8e852cfce5bd]
+@startuml
+
+title US07 - Domain Model
+
+skinparam groupInheritance 2
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+class UnregisteredUser {
+    Cookies
+}
+
+class Contacts {
+    Phone Number
+    Email Address
+}
+
+class State {
+    State name
+}
+
+class Person {
+    Name
+    Passport Card Number
+    Tax Number
+}
+
+class District {
+    District name
+}
+
+class City {
+    City name
+}
+
+class Address {
+    Street
+    Zip Code
+}
+
+class User {
+    Password
+}
+
+UnregisteredUser "1" -right- - "1" User : can register as >
+State "1" -right- - "*" District: has >
+District "1" -right- - "*" City: has >
+Address "*" -right- - "1" State: has <
+Person "1" -right- - "1" Address : can have >
+Person "1" -down- - "1" Contacts : has >
+Person <|-up- User
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 18:01:30 WEST 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>

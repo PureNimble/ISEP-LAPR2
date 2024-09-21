@@ -1,0 +1,31 @@
+@startuml
+
+left to right direction
+
+ :System Administrator: as admin
+ :Agent: as agent
+ :Unregistered user: as user
+ :Owner: as owner
+ package System {
+   usecase "UC01: Display listed properties" as UC1
+   usecase "UC02: Publish any sale announcement on the system" as UC2
+   usecase "UC03: Add an employee" as UC3
+   usecase "UC04: Sell or rent properties of a company" as UC4
+   usecase "UC05: Register a new store" as UC5
+   usecase "UC06: Specify states, districts, and states in the system" as UC6
+   usecase "UC07: Register in the system to buy, sell or rent properties" as UC7
+ }
+ admin --> UC5
+ admin --> UC3
+ admin --> UC6
+
+ user --> UC1
+ user --> UC7
+
+ agent --> UC2
+
+ owner --> UC4
+
+
+
+@enduml

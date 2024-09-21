@@ -1,0 +1,226 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US09 - Sequence Diagram Full
+
+autonumber
+
+'hide footbox
+actor "Client" as Client
+participant ":SendMessageUI" as UI
+participant ":SendMessageController" as CTRL
+participant ":Repositories" as Repository
+participant "repositories\n:Repositories" as Repository2
+participant "appSession\n:ApplicationSession" as app
+participant "appSession\n:ApplicationSession" as App
+participant "currentSession\n:UserSession" as User
+participant "clientRepository\n:ClientRepository" as ClientRepository
+participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as publish
+participant ":XMapper" as XMapper
+participant "announcementListDto:List<AnnouncementDto>" as ListPublishAnnouncements
+participant "announcementDto:AnnouncementDto" as AnnouncementDto
+participant "messageRepository: \nMessage Repository" as messageRepository
+participant "message:\nMessage" as message
+
+
+autonumber
+
+        activate Client
+
+    Client -> UI: asks to schedule a visit
+        activate UI
+
+        UI -> CTRL** : create
+
+        UI -> CTRL : getListOfProperties()
+            activate CTRL
+
+            CTRL -> CTRL: getClientFromSession
+
+            CTRL -> app: getInstance()
+            activate app
+
+            app --> CTRL:appSession
+            deactivate app
+
+            CTRL -> App :getCurrentSession()
+            activate App
+
+            App --> CTRL:currentSession
+            deactivate App
+
+            CTRL -> User :email = getUserEmail()
+            activate User
+
+            User --> CTRL:email
+            deactivate User
+
+            CTRL ->ClientRepository:getClientByEmail()
+            activate ClientRepository
+
+            ClientRepository --> CTRL:clientByEmail
+            deactivate ClientRepository
+
+
+
+            CTRL -> Repository: getInstance()
+            activate Repository
+
+            Repository --> CTRL: Repository2
+            deactivate Repository
+
+            CTRL -> Repository2: getPublishedAnnouncementRepository()
+            activate Repository2
+
+            Repository2 --> CTRL:PublishedannouncementRepository
+            deactivate Repository2
+
+            CTRL -> publish:getListOfPropertiesByDate(propertyByDate)
+            activate publish
+
+            publish --> CTRL:listOfPropertiesByDate
+            deactivate publish
+
+            CTRL -> XMapper: toDTO(listOfPropertiesByDate)
+            activate XMapper
+
+            XMapper --> ListPublishAnnouncements**: create()
+
+            loop
+
+
+            XMapper -> ListPublishAnnouncements: date = getDate()
+                        activate ListPublishAnnouncements
+
+            XMapper -[hidden]> ListPublishAnnouncements
+            deactivate ListPublishAnnouncements
+
+            XMapper -> ListPublishAnnouncements: property = getProperty()
+            activate ListPublishAnnouncements
+
+            XMapper -[hidden]> ListPublishAnnouncements
+            deactivate ListPublishAnnouncements
+
+            XMapper -> ListPublishAnnouncements: typeOfBusiness = getTypeOfBusiness()
+            activate ListPublishAnnouncements
+
+            XMapper -[hidden]> ListPublishAnnouncements
+            deactivate ListPublishAnnouncements
+
+            XMapper -> ListPublishAnnouncements: propertyType = getPropertyType()
+            activate ListPublishAnnouncements
+
+            XMapper -[hidden]> ListPublishAnnouncements
+            deactivate ListPublishAnnouncements
+
+            XMapper -> ListPublishAnnouncements: business = getBusiness()
+            activate ListPublishAnnouncements
+
+            XMapper -[hidden]> ListPublishAnnouncements
+            deactivate ListPublishAnnouncements
+
+            XMapper -> ListPublishAnnouncements :agent = getAgent()
+            activate ListPublishAnnouncements
+
+            XMapper -[hidden]> ListPublishAnnouncements
+            deactivate ListPublishAnnouncements
+
+            XMapper -> ListPublishAnnouncements: durationOfContract = getDate()
+            activate ListPublishAnnouncements
+
+            XMapper -[hidden]> ListPublishAnnouncements
+            deactivate ListPublishAnnouncements
+
+            XMapper -> XMapper : propertiesDto = toDto(agent,property,typeOfBusiness,propertyType,business,date,durationOfContract)
+            activate XMapper
+
+            deactivate XMapper
+
+            XMapper --> AnnouncementDto**: create(...)
+
+            XMapper -> ListPublishAnnouncements: add(propertieDTO)
+            activate ListPublishAnnouncements
+
+            deactivate ListPublishAnnouncements
+            end
+
+            XMapper --> CTRL: listOfPropertiesDTO
+            deactivate XMapper
+            CTRL --> UI:listOfPropertiesDTO
+            deactivate CTRL
+
+                 UI --> Client : shows a list of properties sorted from the most recent entries to the oldest
+                    deactivate UI
+
+              Client -> UI: selects a property of his interest
+                    activate UI
+
+               UI --> Client: requests the name, phone number and preferred \ndate and time slot (from x hour to y hour) for the property visit
+                    deactivate UI
+
+               Client -> UI: submits the requested data
+                       activate UI
+
+               UI -> CTRL:createMessage(propertyDescription, name, phone number and date and time slot)
+               activate CTRL
+
+               CTRL -> CTRL:getPropertyDtoByDescription(PropertyDescription)
+               activate CTRL
+
+
+               CTRL -> XMapper :getPropertyDtoByDescription()
+               activate XMapper
+
+               XMapper --> CTRL:PropertyDto
+               deactivate XMapper
+
+               CTRL--> CTRL:PropertyDTO
+
+               CTRL -> messageRepository:createMessage(propertyDescription, name, phone number and date and time slot)
+               activate messageRepository
+
+               messageRepository -> message** : createMessage(propertyDescription, name, phone number and date and time slot)
+               activate message
+               message -> publishAnouncementDTO:date = getDate()
+               activate publishAnouncementDTO
+               deactivate publishAnouncementDTO
+               message -> publishAnouncementDTO:typeOfBusiness = getTypeOfBusiness()
+               activate publishAnouncementDTO
+               deactivate publishAnouncementDTO
+               message -> publishAnouncementDTO:property = getProperty()
+               activate publishAnouncementDTO
+               deactivate publishAnouncementDTO
+               message -> publishAnouncementDTO:propertyType = getPropertyType()
+               activate publishAnouncementDTO
+               deactivate publishAnouncementDTO
+               message -> publishAnouncementDTO:business = getBusiness()
+               activate publishAnouncementDTO
+               deactivate publishAnouncementDTO
+               message -> publishAnouncementDTO:durationOfContract = getDurationOfContract()
+               activate publishAnouncementDTO
+               deactivate publishAnouncementDTO
+
+               deactivate message
+                            messageRepository -> messageRepository : addMessage(message)
+                            activate messageRepository
+
+                            messageRepository -> messageRepository : validateMessage(message)
+                             activate messageRepository
+                              messageRepository --> messageRepository
+                              deactivate messageRepository
+                               messageRepository--> messageRepository
+                               deactivate messageRepository
+
+
+               messageRepository --> CTRL:message
+               deactivate messageRepository
+
+               CTRL --> UI:message
+
+
+                       UI --> Client : shows a success message
+                   deactivate UI
+
+@enduml

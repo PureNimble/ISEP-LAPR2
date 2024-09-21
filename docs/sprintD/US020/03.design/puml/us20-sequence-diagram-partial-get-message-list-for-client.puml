@@ -1,0 +1,51 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant ":ClientMessageController" as ClientMessageController
+participant ":repository" as RepositorySingleton
+participant "repository\n:Repository" as repository
+participant "Message\n:Message" as Message
+participant "MessageList\n:List<Message>" as MessageList
+participant "messageRepository\n:MessageRepository" as MessageRepository
+
+    ClientMessageController -> RepositorySingleton : getInstance()
+    activate ClientMessageController
+    activate RepositorySingleton
+
+        RepositorySingleton --> ClientMessageController : repository
+        deactivate RepositorySingleton
+
+    ClientMessageController -> repository : getMessageRepository()
+        activate repository
+
+            repository --> ClientMessageController : MessageRepository
+            deactivate repository
+
+    ClientMessageController -> Message : getMessageList(client)
+        activate Message
+
+    create MessageList
+    Message --> MessageList** : create()
+
+        loop for each Message
+        
+            Message -> MessageRepository : getMessage(i)
+            activate MessageRepository
+            MessageRepository --> Message : Message
+            deactivate MessageRepository
+
+            alt if message is for client
+                Message -> MessageList : add(Message)
+                activate MessageList
+                deactivate MessageList
+            end
+
+        end
+
+    Message --> ClientMessageController : MessageList
+    deactivate Message
+    deactivate ClientMessageController
+
+@enduml

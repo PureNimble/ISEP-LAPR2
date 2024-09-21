@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="491px" preserveAspectRatio="none" style="width:320px;height:491px;background:#FFFFFF;" version="1.1" viewBox="0 0 320 491" width="320px" zoomAndPan="magnify"><defs/><g><rect fill="none" height="27.6094" id="_title" style="stroke:none;stroke-width:1.0;" width="158" x="74.25" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="148" x="79.25" y="24.5332">US06 - Domain Model</text><!--MD5=[9e0344aee5137892075360975b58a39b]
+class SystemAdministrator--><g id="elem_SystemAdministrator"><rect codeLine="12" fill="#F1F1F1" height="35.6094" id="SystemAdministrator" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="135" x="7" y="247.1094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="129" x="10" y="266.6426">SystemAdministrator</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="141" y1="274.7188" y2="274.7188"/></g><!--MD5=[60d6b92408f98aed8df94d5c6e04aa63]
+class State--><g id="elem_State"><rect codeLine="16" fill="#F1F1F1" height="53.2188" id="State" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="84" x="127.5" y="45.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="33" x="153" y="65.1426">State</text><line style="stroke:#181818;stroke-width:0.5;" x1="128.5" x2="210.5" y1="73.2188" y2="73.2188"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="72" x="133.5" y="91.752">State name</text></g><!--MD5=[c4d681900983498091bbbc67674786ba]
+class District--><g id="elem_District"><rect codeLine="20" fill="#F1F1F1" height="53.2188" id="District" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="94" x="219.5" y="238.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43" x="245" y="258.1426">District</text><line style="stroke:#181818;stroke-width:0.5;" x1="220.5" x2="312.5" y1="266.2188" y2="266.2188"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="82" x="225.5" y="284.752">District name</text></g><!--MD5=[9466097c40aeafc62ec36a0cc4f3c955]
+class City--><g id="elem_City"><rect codeLine="24" fill="#F1F1F1" height="53.2188" id="City" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="75" x="132" y="431.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="24" x="157.5" y="451.1426">City</text><line style="stroke:#181818;stroke-width:0.5;" x1="133" x2="206" y1="459.2188" y2="459.2188"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="63" x="138" y="477.752">City name</text></g><!--MD5=[9507060b9b8dd58465f9ccdeabbe9f6e]
+link State to District--><g id="link_State_District"><path codeLine="28" d="M182.58,98.8694 C201.15,135.4194 234.93,201.9594 253.47,238.4494 " fill="none" id="State-District" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#000000" points="228.7641,173.2432,227.2886,163.8477,222.0479,166.5094,228.7641,173.2432" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="21" x="235.5" y="174.1045">has</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="177.7954" y="120.4181">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="244.8787" y="227.9447">*</text></g><!--MD5=[cd1097b4d6b53e13878caf984aed34c4]
+link District to City--><g id="link_District_City"><path codeLine="29" d="M253.42,291.8694 C234.85,328.4194 201.07,394.9594 182.53,431.4494 " fill="none" id="District-City" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#000000" points="224.2359,366.2432,230.9521,359.5094,225.7114,356.8477,224.2359,366.2432" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="21" x="235.5" y="367.1045">has</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="242.5859" y="313.4181">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="179.9651" y="420.9447">*</text></g><!--MD5=[7fa825d4756cc57a3a6ddd3f25d312b3]
+link SystemAdministrator to City--><g id="link_SystemAdministrator_City"><path codeLine="30" d="M83.1,283.3994 C99.86,317.0994 136.99,391.7394 156.67,431.3094 " fill="none" id="SystemAdministrator-City" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#000000" points="132.7267,366.2619,131.3299,356.8545,126.0671,359.4722,132.7267,366.2619" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="28" x="139.5" y="367.1045">adds</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="77.4706" y="304.0597">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="145.8937" y="420.7723">1</text></g><!--MD5=[36f3dc655ca83e4b77e4f5b83a27bbdb]
+link SystemAdministrator to District--><g id="link_SystemAdministrator_District"><path codeLine="31" d="M142.19,265.1094 C167.67,265.1094 196.07,265.1094 219.29,265.1094 " fill="none" id="SystemAdministrator-District" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#000000" points="169.25,253.2852,160.2049,250.3462,160.2049,256.2241,169.25,253.2852" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="28" x="173.25" y="258.6045">adds</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="149.9764" y="261.7701">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="204.525" y="261.3897">1</text></g><!--MD5=[6efaae2e682014ac8bf0cadd724b844a]
+link State to SystemAdministrator--><g id="link_State_SystemAdministrator"><path codeLine="32" d="M156.69,98.8694 C136.99,138.4794 99.78,213.2794 83.04,246.9394 " fill="none" id="State-SystemAdministrator" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#000000" points="132.7268,164.3084,126.0671,171.0981,131.3299,173.7158,132.7268,164.3084" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="28" x="139.5" y="174.1045">adds</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="145.9183" y="120.4181">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="77.6465" y="236.2111">1</text></g><!--MD5=[421ee3ca13c857ce17b4033481e37aa3]
+@startuml
+
+title US06 - Domain Model
+
+skinparam groupInheritance 2
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+class SystemAdministrator {
+
+}
+
+class State {
+    State name
+}
+
+class District {
+    District name
+}
+
+class City {
+    City name
+}
+
+State "1" -down- - "*" District : has >
+District "1" -down- - "*" City : has >
+City "1" -up- - "1" SystemAdministrator: adds <
+District "1" -left- - "1" SystemAdministrator: adds <
+State "1" -down- - "1" SystemAdministrator: adds <
+
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 18:01:30 WEST 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>

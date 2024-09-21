@@ -1,0 +1,25 @@
+@startuml
+
+title Sequence Diagram Partial - Get Property
+
+participant ":PlaceOfferController" as Controller
+participant "publishedAnnouncementRepository\n:PublishedAnnouncementRepository" as PublishedAnnouncementRepository
+
+autonumber 47
+
+activate Controller
+
+Controller -> Controller : getPropertyDTOByDescription(PropertyDescription)
+
+Group Get Property By Description
+
+Controller -> PublishedAnnouncementRepository : getPropertyDTOByDescription()
+activate PublishedAnnouncementRepository
+
+PublishedAnnouncementRepository --> Controller : PropertyDTO
+deactivate PublishedAnnouncementRepository
+
+end
+
+Controller --> Controller : PropertyDTO
+@enduml

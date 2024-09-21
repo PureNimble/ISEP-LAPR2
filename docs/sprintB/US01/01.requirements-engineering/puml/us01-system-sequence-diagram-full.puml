@@ -1,0 +1,70 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - Full
+
+autonumber
+
+actor "Unregistered user" as User
+participant ":System" as System
+
+activate User
+
+    User -> System : asks to display a list of properties
+            activate System
+
+    alt List with Properties
+
+    System --> User : displays a list of properties from the most recent uploaded to the oldest
+            deactivate System
+
+    User -> System : asks to filter the list of properties
+            activate System
+
+    System --> User : displays the options to filter [type of business (buying or renting), \ntype of property (house, apartment or land) and the number of rooms]
+             deactivate System
+
+             alt Selects options to filter
+
+             User -> System : selects the options to filter the list of properties
+                     activate System
+
+             else Doesn't select options to filter
+
+             User -> System : doesn't select any option to filter the list of properties
+
+             end
+
+    System --> User : displays the list of properties
+             deactivate System
+
+    User -> System : asks to order the filtered list of properties
+             activate System
+
+    System --> User : displays the options to order (price, city or state) and (ascending or descending)
+             deactivate System
+
+             alt Select ordering method
+
+             User -> System : selects the options to order the filtered list of properties
+                    activate System
+
+             else Doesn't select a ordering method
+
+             User -> System : doesn't select any ordering method to order the filtered list of properties
+
+             end
+
+    System --> User : display the filtered list of properties with the ordering method selected
+             deactivate System
+
+    else List without Properties
+
+    System --> User : displays a empty list of properties
+            deactivate System
+
+    end
+
+@enduml

@@ -1,0 +1,57 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US019 - Sequence Diagram Full
+
+
+autonumber
+
+actor "Network Manager" as NetworkManager
+participant ":DivideStoresUI" as DivideStoresUI
+participant ":DivideStoresController" as DivideStoresController
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "storeRepository\n:StoreRepository" as StoreRepository
+
+
+activate NetworkManager
+
+    NetworkManager -> DivideStoresUI : asks to divide a set of stores into two subsets
+    activate DivideStoresUI
+
+   DivideStoresUI -> DivideStoresController**:create
+
+
+            DivideStoresUI -> DivideStoresController : getOffersListDeals()
+            activate DivideStoresController
+
+                DivideStoresController -> RepositorySingleton : getInstance()
+                activate RepositorySingleton
+
+                    RepositorySingleton --> DivideStoresController: repositories
+                deactivate RepositorySingleton
+
+                DivideStoresController -> PLAT : getStoreRepository()
+                activate PLAT
+
+                    PLAT --> DivideStoresController: storeRepository
+                deactivate PLAT
+
+                DivideStoresController -> StoreRepository : findPartition()
+                activate StoreRepository
+
+                    StoreRepository --> DivideStoresController : partition
+                deactivate StoreRepository
+
+
+                DivideStoresController --> DivideStoresUI : partition
+
+
+
+
+    DivideStoresUI --> NetworkManager : shows list of the two subsets and the minimum sum difference
+    deactivate DivideStoresUI
+
+@enduml

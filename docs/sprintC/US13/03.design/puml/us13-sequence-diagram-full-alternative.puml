@@ -1,0 +1,96 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "Network Manager" as Manager
+participant ":DisplayEmployeeUI" as DisplayEmployeeUI
+participant ":DisplayEmployeeController" as DisplayEmployeeController
+participant ":repository" as RepositorySingleton
+participant "repository\n:Repository" as repository
+participant "storeRepository\n:StoreRepository" as StoreRepository
+participant "Store\n:Store" as Store
+participant "employeeRepository\n:EmployeeRepository" as EmployeeRepository
+participant "Employee\n:Employee" as Employee
+
+activate Manager
+
+    Manager -> DisplayEmployeeUI : asks to see list of all employees working in every store
+    activate DisplayEmployeeUI
+
+    create DisplayEmployeeController
+    DisplayEmployeeUI --> DisplayEmployeeController** : create
+    
+    DisplayEmployeeUI -> DisplayEmployeeController : getStoreEmployeeList()
+        activate DisplayEmployeeController
+
+    DisplayEmployeeController -> RepositorySingleton : getInstance()
+        activate RepositorySingleton
+
+                RepositorySingleton --> DisplayEmployeeController : repository
+
+            deactivate RepositorySingleton
+
+            DisplayEmployeeController -> repository : getStoreRepository()
+
+            activate repository
+
+                repository --> DisplayEmployeeController : StoreRepository
+
+            deactivate repository
+
+            DisplayEmployeeController -> StoreRepository : getStores()
+                    activate StoreRepository
+
+                    loop for each store
+
+                        StoreRepository -> Store : compare(store1, store2)
+                        activate Store
+
+                        Store --> StoreRepository : comparisonResult
+                        deactivate Store
+
+                    end
+
+                        StoreRepository --> DisplayEmployeeController : StoreListByMostListings
+                    deactivate StoreRepository
+
+                    DisplayEmployeeController -> repository : getEmployeeRepository()
+                    activate repository
+
+                        repository --> DisplayEmployeeController : EmployeeRepository
+                    deactivate repository
+
+                    loop for each store
+
+                        DisplayEmployeeController -> EmployeeRepository : getEmployees(store)
+                        activate EmployeeRepository
+
+                        loop for each employee
+
+                            EmployeeRepository -> Employee : compare(employee1, employee2)
+                            activate Employee
+
+                            Employee --> EmployeeRepository : comparisonResult
+                            deactivate Employee
+
+                        end
+
+                            EmployeeRepository --> DisplayEmployeeController : EmployeeListAlphabeticallySorted
+                        deactivate EmployeeRepository
+                    end
+
+                DisplayEmployeeController --> DisplayEmployeeUI : StoreEmployeeList
+            deactivate DisplayEmployeeController
+
+    DisplayEmployeeUI --> Manager : provides a list of employees (Id, name and role) alphabetically sorted\nand grouped by store (Id, name and number of listings) sorted from \nthe one with more listings to the one with less listings  
+    deactivate DisplayEmployeeUI
+
+    deactivate DisplayEmployeeController
+
+deactivate Manager
+
+@enduml

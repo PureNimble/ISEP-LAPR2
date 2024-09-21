@@ -1,0 +1,42 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - Alternative One
+
+autonumber
+
+actor "Network Manager" as NetworkManager
+participant ":System" as System
+
+activate NetworkManager
+
+    NetworkManager -> System : asks to see list of deals made
+    activate System
+
+        System --> NetworkManager : requests algorithm(bubble sort/selection sort) to use to list the deals
+    deactivate System
+
+    NetworkManager -> System : chooses the algorithm to list the deals made
+        activate System
+
+         System --> NetworkManager : requests sorting criteria(ascending/descending)
+        deactivate System
+
+        NetworkManager -> System : chooses the criteria to sort the deals made
+                activate System
+
+           System --> NetworkManager : shows list deals
+       deactivate System
+
+
+   NetworkManager -> System : submits data
+   activate System
+
+   System --> NetworkManager : displays operation sucess
+   deactivate System
+
+
+
+@enduml

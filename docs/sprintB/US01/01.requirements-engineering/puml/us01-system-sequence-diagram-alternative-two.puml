@@ -1,0 +1,21 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - Empty List of Properties
+
+autonumber
+
+actor "Unregistered user" as User
+participant ":System" as System
+
+activate User
+
+    User -> System : asks to display a list of properties
+        activate System
+
+    System --> User : displays a empty list of properties
+        deactivate System
+
+@enduml

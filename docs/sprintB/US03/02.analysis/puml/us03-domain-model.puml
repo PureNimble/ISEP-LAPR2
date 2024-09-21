@@ -1,0 +1,109 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+title US003 - Domain Model
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+hide empty members
+skinparam groupInheritance 3
+hide circle
+
+class SystemAdministrator
+
+class User
+
+class Employee
+
+class Role
+
+class SystemAdministrator
+
+class Agent
+
+class StoreManager
+
+class StoreNetworkManager
+
+class Store
+
+class Address
+
+class Person
+
+class Person{
+Name
+Email
+Phone Number
+Tax Number
+Passport Number
+}
+
+
+class User{
+Password
+}
+
+class Role {
+Role
+}
+
+class Store {
+Designation
+
+}
+
+class Address {
+Street
+Zip Code
+}
+
+class District{
+Name
+}
+
+class City{
+Name
+}
+
+class State{
+State
+}
+
+class SystemAdministrator {
+}
+
+class Employee {
+
+}
+
+
+
+Person <|-- User
+
+
+User <|-- Employee
+
+Employee <|-- Agent
+Employee <|-- StoreNetworkManager
+Employee <|-- StoreManager
+
+SystemAdministrator "1" --- "*" Employee: registers >
+
+
+Store "*" - "1" Address : located at >
+Employee "1" - "*" Store : works in >
+
+Employee "1" -left "1..4" Role : has >
+
+Store "1" -- "*" StoreNetworkManager : manages <
+
+State "1" -- "*" Address : is in >
+
+District "*" -- "1" State : is in >
+
+City "*" -- "1" District :is in >
+
+
+@enduml

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.DivideStoresGUI">
+   <children>
+      <AnchorPane layoutX="1.0" prefHeight="76.0" prefWidth="700.0" style="-fx-background-color: #296E85;">
+         <children>
+            <Label layoutX="145.0" layoutY="17.0" text="Division Store into two subsets" textFill="WHITE">
+               <font>
+                  <Font name="Impact" size="34.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="116.0" layoutY="124.0" text="Subset 1">
+         <font>
+            <Font name="Impact" size="21.0" />
+         </font></Label>
+      <Label layoutX="498.0" layoutY="126.0" text="Subset 2">
+         <font>
+            <Font name="Impact" size="20.0" />
+         </font></Label>
+      <AnchorPane layoutX="337.0" layoutY="117.0" prefHeight="383.0" prefWidth="18.0" style="-fx-background-color: black;" />
+      <Label fx:id="minimumDifference" layoutX="235.0" layoutY="82.0" prefHeight="28.0" prefWidth="230.0" text="Minimum difference = ">
+         <font>
+            <Font name="Impact" size="24.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="textAreaSubset1" layoutX="14.0" layoutY="152.0" prefHeight="323.0" prefWidth="306.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextArea>
+      <TextArea fx:id="textAreaSubset2" layoutX="384.0" layoutY="152.0" prefHeight="323.0" prefWidth="294.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextArea>
+   </children>
+</AnchorPane>

@@ -1,0 +1,20 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant ":PublishController" as CTRL
+participant "sendSms:\nSendSms" as sms
+
+
+activate CTRL
+                CTRL -> sms : sendSms.createFile(String.valueOf(publishedAnnouncement.get().getClient().getPhoneNumber()));
+                activate sms
+                CTRL -> sms :  sendSms.writeFile(String.valueOf(publishedAnnouncement.get().getClient().getPhoneNumber()), toWriteFile);
+                sms --> sms : createFile (String fileName)
+                sms --> sms : writeFile (String fileName, String textToWrite)
+                sms --> CTRL : true
+            deactivate sms
+deactivate CTRL
+
+@enduml

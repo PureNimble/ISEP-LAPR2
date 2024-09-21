@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="515px" preserveAspectRatio="none" style="width:666px;height:515px;background:#FFFFFF;" version="1.1" viewBox="0 0 666 515" width="666px" zoomAndPan="magnify"><defs/><g><rect fill="none" height="27.6094" id="_title" style="stroke:none;stroke-width:1.0;" width="238" x="213" y="10"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="228" x="218" y="29.5332">System Sequence Diagram (SSD)</text><rect fill="#FFFFFF" height="292.8672" style="stroke:#181818;stroke-width:1.0;" width="10" x="51" y="131.2188"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="623" y="153.5703"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="623" y="214.2734"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="623" y="274.9766"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="623" y="384.7344"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="56" x2="56" y1="121.2188" y2="433.0859"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="628" x2="628" y1="121.2188" y2="433.0859"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="96" x="5" y="118.1426">Property owner</text><ellipse cx="56" cy="52.1094" fill="#E3E3E3" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M56,60.1094 L56,87.1094 M43,68.1094 L69,68.1094 M56,87.1094 L43,102.1094 M56,87.1094 L69,102.1094 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="96" x="5" y="446.6191">Property owner</text><ellipse cx="56" cy="458.1953" fill="#E3E3E3" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M56,466.1953 L56,493.1953 M43,474.1953 L69,474.1953 M56,493.1953 L43,508.1953 M56,493.1953 L69,508.1953 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><rect fill="#E3E3E3" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="64" x="596" y="88.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="50" x="603" y="110.1426">:System</text><rect fill="#E3E3E3" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="64" x="596" y="432.0859"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="50" x="603" y="453.6191">:System</text><rect fill="#FFFFFF" height="292.8672" style="stroke:#181818;stroke-width:1.0;" width="10" x="51" y="131.2188"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="623" y="153.5703"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="623" y="214.2734"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="623" y="274.9766"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="623" y="384.7344"/><polygon fill="#181818" points="611,149.5703,621,153.5703,611,157.5703,615,153.5703" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="61" x2="617" y1="153.5703" y2="153.5703"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="68" y="148.7139">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="117" x="79" y="148.7139">chooses the agency</text><polygon fill="#181818" points="72,179.9219,62,183.9219,72,187.9219,68,183.9219" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="66" x2="627" y1="183.9219" y2="183.9219"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="78" y="179.0654">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="218" x="89" y="179.0654">gives the chosen agency to the owner</text><polygon fill="#181818" points="611,210.2734,621,214.2734,611,218.2734,615,214.2734" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="61" x2="617" y1="214.2734" y2="214.2734"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="68" y="209.417">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="177" x="79" y="209.417">chooses the responsible agent</text><polygon fill="#181818" points="72,240.625,62,244.625,72,248.625,68,244.625" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="66" x2="627" y1="244.625" y2="244.625"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="78" y="239.7686">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="208" x="89" y="239.7686">gives the chosen agent to the owner</text><polygon fill="#181818" points="611,270.9766,621,274.9766,611,278.9766,615,274.9766" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="61" x2="617" y1="274.9766" y2="274.9766"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="68" y="270.1201">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="228" x="79" y="270.1201">contacts agent to sell or rent a property</text><polygon fill="#181818" points="72,301.3281,62,305.3281,72,309.3281,68,305.3281" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="66" x2="627" y1="305.3281" y2="305.3281"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="78" y="300.4717">6</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="79" x="89" y="300.4717">requests data</text><polygon fill="#181818" points="611,380.7344,621,384.7344,611,388.7344,615,384.7344" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="61" x2="617" y1="384.7344" y2="384.7344"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="68" y="355.3506">7</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="451" x="79" y="330.8232">types requested data (area in m^2, location, photos, distance from city center,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="528" x="79" y="347.1748">the requested price, number of bedrooms, number of bathrooms, number of parking spaces,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="337" x="79" y="363.5264">available equipment (central heating and/or airconditioning,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="381" x="79" y="379.8779">the existence of a basement and/or inhabitable loft, sun exposure)</text><polygon fill="#181818" points="72,411.0859,62,415.0859,72,419.0859,68,415.0859" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="66" x2="627" y1="415.0859" y2="415.0859"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="78" y="410.2295">8</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="158" x="89" y="410.2295">displays operation success</text><!--MD5=[6acb9467ccc0ea3d71ecde8a73c0cd83]
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD)
+
+autonumber
+
+actor "Property owner" as Owner
+participant ":System" as sys
+
+activate Owner
+
+    Owner -> sys : chooses the agency
+    activate sys
+
+    sys -> Owner : gives the chosen agency to the owner
+    deactivate sys
+
+    Owner -> sys : chooses the responsible agent
+    activate sys
+
+    sys -> Owner : gives the chosen agent to the owner
+    deactivate sys
+
+    Owner -> sys : contacts agent to sell or rent a property
+    activate sys
+
+    sys - -> Owner : requests data
+    deactivate sys
+
+    Owner -> sys :  types requested data (area in m^2, location, photos, distance from city center, \nthe requested price, number of bedrooms, number of bathrooms, number of parking spaces, \navailable equipment (central heating and/or airconditioning, \nthe existence of a basement and/or inhabitable loft, sun exposure)
+    activate sys
+
+    sys - -> Owner : displays operation success
+    deactivate sys
+
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 18:01:30 WEST 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>

@@ -1,0 +1,26 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+participant ":OfferDecisionController" as controller
+participant ":Repositories" as singleton
+participant "repositories\n:Repositories" as repositories
+participant "storeRepository\n:StoreRepository" as storerep
+participant "Store\n:Store" as store
+
+activate controller
+        controller -> storerep : storeDecrement(Store store)
+        activate storerep
+        storerep --> store : decrementAvailableListing(Store store)
+        activate store
+                loop for every store in storesList
+                        opt if it is equal to the store sent through the parameters
+                                store --> store : stores.setAvailableListing(stores.getAvailableListing() - 1)        
+                        end
+                end
+        deactivate store
+        deactivate storerep
+        deactivate controller
+@enduml

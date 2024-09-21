@@ -1,0 +1,62 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US09 - Sequence Diagram Partial (Create Message)
+
+autonumber 49
+
+'hide footbox
+
+
+participant "messageRepository: \nMessage Repository" as messageRepository
+participant "message:\nMessage" as Message
+
+                -> messageRepository:createMessage(propertyDescription, name, phone number and date and time slot)
+               activate messageRepository
+
+group  Create Message
+
+               messageRepository -> Message** : createMessage(propertyDescription, name, phone number and date and time slot)
+               activate Message
+               Message -> publishAnouncementDTO:date = getDate()
+               activate publishAnouncementDTO
+               deactivate publishAnouncementDTO
+               Message -> publishAnouncementDTO:typeOfBusiness = getTypeOfBusiness()
+               activate publishAnouncementDTO
+               deactivate publishAnouncementDTO
+               Message -> publishAnouncementDTO:property = getProperty()
+               activate publishAnouncementDTO
+               deactivate publishAnouncementDTO
+               Message -> publishAnouncementDTO:propertyType = getPropertyType()
+               activate publishAnouncementDTO
+               deactivate publishAnouncementDTO
+               Message -> publishAnouncementDTO:business = getBusiness()
+               activate publishAnouncementDTO
+               deactivate publishAnouncementDTO
+               Message -> publishAnouncementDTO:durationOfContract = getDurationOfContract()
+               activate publishAnouncementDTO
+               deactivate publishAnouncementDTO
+
+               deactivate Message
+                            messageRepository -> messageRepository : addMessage(message)
+                            activate messageRepository
+
+                            messageRepository -> messageRepository : validateMessage(message)
+                             activate messageRepository
+                              messageRepository --> messageRepository
+                              deactivate messageRepository
+                               messageRepository--> messageRepository
+                               deactivate messageRepository
+end
+
+                <-- messageRepository:message
+               deactivate messageRepository
+
+
+
+
+@enduml

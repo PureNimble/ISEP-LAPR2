@@ -1,0 +1,224 @@
+@startuml
+
+title US001 - Class Diagram
+
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+
+'skinparam linetype orto
+'skinparam monochrome true
+'left to right direction
+
+
+
+
+class Address {
+    - String streetName
+    - int zipCode
+    '- String CityName
+    '- String StateName
+
+    +verifyZipCode()
+    +getCity()
+    +getDistrict()
+    +getState()
+    +Address(state, district, city, street, zipCode)
+}
+
+/'class AvailableEquipment {
+    - String typeOfEquipment
+
+    +AvailableEquipment(typeOfEquipment)
+}
+'/
+
+
+class Business {
+    '- double requestedPrice : 0
+     - String typeOfBusiness
+     - double price
+
+    '+getFinalComission()
+    '+calculatePriceWithComission()
+     +getPrice()
+}
+
+
+
+class City {
+    - String cityName
+
+    +getCityName()
+}
+
+interface Comparator {
+    + compare(announcement1, announcement2
+}
+
+
+/'class Comission {
+    - double percentage : 0
+    - double staticValue : 0
+
+    + calculateFinalComission()
+}
+'/
+
+
+class DisplayPropertiesController {
+    + DisplayPropertiesController(PublishedAnnouncementRepository)
+    + getPublishedAnnouncement()
+    + displayAnnouncements(type of business, type of property, number of rooms)
+    + sortPropertiesByPrice()
+    + sortPropertiesByCityName()
+    + sortPropertiesByStateName()
+}
+
+class DisplayPropertiesUI {
+
+}
+
+
+class District {
+    - String districtName
+    - List <City> cities
+
+    +getDistrictName()
+    +getCities()
+    +toString()
+}
+
+
+
+/'class House {
+    - Boolean existenceOfBasement : false
+    - Boolean existenceOfInhabitableLoft : false
+
+    +House(existenceOfBasement, existenceOfInhabitableLoft)
+}
+'/
+
+
+/'
+class Photos {
+    - String URI
+}
+'/
+
+class Property {
+    - double area
+    - int distanceFromTheCityCenter
+    '- float price
+     - String typeOfProperty
+
+    + Property(area, distanceFromTheCityCenter)
+     +getAddress()
+}
+
+class PublishedAnnouncement {
+    - String initialDate
+    - String finalDate
+
+    + getBusiness()
+    + getProperty()
+    + compare(announcement1, announcement2)
+}
+
+class PublishedAnnouncementRepository {
+    - ArrayList<PublishedAnnouncement> publishedannouncements
+    + getPublishedAnnouncement(type of property, type of business, number of rooms)
+    + getPublishedAnnouncement()
+    + sortPropertiesByAscendingPrice()
+    + sortPropertiesByDescendingPrice()
+    + sortPropertiesByAscendingCityName()
+    + sortPropertiesByDescendingCityName()
+    + sortPropertiesByAscendingStateName()
+    + sortPropertiesByDescendingStateName()
+
+}
+
+
+/'
+class Rent {
+    - int durationOfContract: 0
+
+    + getFinalComission()
+    + calculateTotalPrice()
+}
+'/
+
+
+class Repositories {
+    - Repositories()
+    + getInstance():Repositories
+    + getPublishedAnnouncementRepository()
+}
+
+/'class Residence {
+    - int numberOfBedrooms : 0
+    - int numberOfBathrooms : 0
+    - int numberOfParkingSpaces : 0
+
+    + Residence(numberOfBedrooms, numberOfBathrooms, numberOfParkingSpaces)
+}
+'/
+
+
+class State {
+    - String stateName
+    - List <District> districts
+
+    +getState()
+    +getDistricts()
+    +toString()
+}
+
+
+/'class SunExposure {
+    - String direction
+
+    + SunExposure(direction)
+}
+'/
+
+
+'class UnregisteredUser {
+
+'}
+
+
+'Business <|-- Rent
+
+State "1" --- "*" Address : has >
+'Comission "1" -right- "1" Business : contains <
+
+DisplayPropertiesController .> Repositories : repositories
+DisplayPropertiesController .> PublishedAnnouncementRepository : PublishedAnnouncementRepository
+DisplayPropertiesController .> PublishedAnnouncement : published announcement
+DisplayPropertiesUI .> DisplayPropertiesController
+District "1" --- "*" City : has <
+
+'House "*" --- "1" SunExposure : has <
+
+'Property <|--- Residence
+Property "*" -- "1" Address : has <
+'Property "1" --- "1" Business : has <
+'Property "1" -right- "*" Photos : has >
+PublishedAnnouncement "1" --- "1" Property: advertises >
+PublishedAnnouncementRepository "1" --> "*" PublishedAnnouncement
+PublishedAnnouncement "1" --- "1" Business
+PublishedAnnouncement ---> Comparator : implements
+
+Repositories --> "1" PublishedAnnouncementRepository
+Repositories -> Repositories : instance
+'Residence "*" --- "1" AvailableEquipment : has <
+'Residence <|--- House
+
+State "1" --- "*" District : has <
+
+
+'UnregisteredUser "*" -right- "*" PublishedAnnouncement: displays >
+
+@enduml

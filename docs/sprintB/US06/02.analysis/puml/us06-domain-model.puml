@@ -1,0 +1,35 @@
+@startuml
+
+title US06 - Domain Model
+
+skinparam groupInheritance 2
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+class SystemAdministrator {
+
+}
+
+class State {
+    State name
+}
+
+class District {
+    District name
+}
+
+class City {
+    City name
+}
+
+State "1" -down-- "*" District : has >
+District "1" -down-- "*" City : has >
+City "1" -up-- "1" SystemAdministrator: adds <
+District "1" -left-- "1" SystemAdministrator: adds <
+State "1" -down-- "1" SystemAdministrator: adds <
+
+@enduml

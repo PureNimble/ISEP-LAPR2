@@ -1,0 +1,45 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US010 - System Sequence Diagram - Alternative One - Normal Procedure
+
+autonumber
+
+actor "Client" as Client
+participant ":System" as System
+
+activate Client
+
+Client -> System : asks to place an offer on a property
+activate System
+
+System --> Client : shows the list of properties
+deactivate System
+
+Client -> System : selects the desired property
+activate System
+
+System --> Client : request the offer amount
+deactivate System
+
+Client -> System: inserts the offer amount
+activate System
+
+System --> Client: accepts the offer amount and request the client's name
+deactivate System
+
+Client -> System : inserts the name
+activate System
+
+System --> Client : receives the client's information and sends the offer
+deactivate System
+
+Client -> System : submits data
+activate System
+
+System --> Client : displays operation success
+deactivate System
+@enduml

@@ -1,0 +1,277 @@
+@startuml
+
+title US010 - Class Diagram
+
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+!define arrow2(direction)  [[[#0000FF], [dashed], [direction]]]
+hide empty members
+skinparam linetype ortho
+skinparam ranksep 40
+
+class PlaceOrderUI {
+    + run()
+    + requestChooseProperty()
+    + requestClientName()
+    + requestOffer()
+    + submitData(String name, Client client, Announcement \npublishedAnnouncement, double offer, OfferState offerState)
+}
+
+class PlaceOrderController {
+    + getOfferRepository()
+    + getAuthenticationRepository()
+    + getPublishedAnnouncementRepository()
+    + getUserRepository()
+    + getOffers()
+    + getCurrentSessionEmail()
+    + getClientEmail()
+    + hasPendingOffersByEmail(String email)
+    + List<Offer> getPendingOffersByClientEmail(String email)
+    + Optional<Offer> createNewOfferToAgent (String name, \nClient client, double orderAmount, Announcement \npublishedAnnouncement, OfferState offerState)
+}
+
+class PublishedAnnouncementRepository {
+    + Optional <Announcement> publishedAnnouncement(Date date, \nTypeOfBusiness typeOfBusiness, Property property, PropertyType propertyType, \nComission comission, Business business, int durationOfContract, Employee agent, \nClient client, int propertyID, AnnouncementState state, Store store)
+}
+
+class AuthenticationRepository {
+    + doLogin(email,pwd)
+    + doLogout()
+    + getCurrentUserSession()
+    + addUserRole()
+    + addUserWithRole()
+    + addUserWithRoles()
+    + passwordGenerator()
+    - shuffleString(input,random)
+    - randomCharacter(characters,random)
+}
+
+class OfferRepository {
+    + Optional<Offer> add(Offer offer)
+    + validateOffer(Offer offer)
+    - checkOffer(Offer offer1, Offer offer2)
+    + hasPendingOffersByEmail(String email)
+    + List<Offer> getOffers()
+}
+
+class UserRepository {
+    + Optional<Client> add(Client client)
+    - validateUser(Client client)
+    + List<Client> getUsers()
+    + getClientEmail(String email)
+}
+
+class Repositories {
+    - Repositories()
+    + getInstance():Repositories
+    + getPublishedAnnouncementRepository()
+    + getAuthenticationRepository()
+    + getOfferRepository()
+    + getUserRepository()
+}
+
+class Offer {
+ - String name
+ - Client client
+ - Announcement publishedAnnouncement
+ - double orderAmount
+ - OfferState OfferState
+
+ + Offer Offer(String name, double orderAmount, Announcement \npublishedAnnouncement,OfferState offerState, Client client)
+ + Offer()
+ + getOfferState()
+ + getName()
+ + getOrderAmount()
+ + getPublishedAnnouncement()
+ + getClient()
+}
+
+class Announcement {
+    - String initialDate
+    - String finalDate
+    - String contractType
+
+    + Announcement(initialDate, finalDate, AnnouncementRequest)
+}
+
+class Business {
+    - double requestedPrice
+    - String typeOfBusiness
+
+    + getFinalComission()
+    + calculatePriceWithComission()
+    + getTypeOfBusiness()
+}
+
+class Rent {
+    - int durationOfContract
+
+    + Rent(int durationContract)
+    + getFinalComission()
+    + getDurationContract()
+    + calculateTotalPrice()
+}
+
+class Comission {
+     - double percentage
+     - double staticValue
+
+    + calculateFinalComission()
+}
+
+class State {
+    - String stateName
+
+    + getState()
+    + getDistricts()
+    + toString()
+}
+
+class District {
+    - String districtName
+
+
+    + getDistrictName()
+    + getCities()
+    + toString()
+}
+
+class City {
+    - String cityName
+
+    - getCityName()
+}
+
+class Address {
+    - String streetName
+    - int zipCode
+
+    + verifyZipCode()
+    + getCity()
+    + getDistrict()
+    + getState()
+    + Address(state, district, city, street, zipCode)
+}
+
+class Client {
+    - Client(String email, int passportNumber, int taxNumber, String name, int phoneNumber)
+}
+
+class AvailableEquipment {
+    - String typeOfEquipment
+
+    + AvailableEquipment(String availableEquipment)
+    + getAvailableEquipment()
+    + toString()
+}
+
+class SunExposure {
+    - String direction
+
+    + SunExposure(direction)
+}
+
+class Residence {
+    - int numberOfBedrooms
+    - int numberOfBathrooms
+    - int parkingSpaces
+
+    + Residence(int area, int distanceFromCityCenter, \nint numberOfBedrooms, int numberOfBathrooms, \nint parkingSpaces, AvailableEquipment availableEquipment)
+    + toString()
+}
+
+class House {
+    - String basement
+    - String inhabitableLoft
+    - String sunExposure
+
+    + House(int area, int distanceFromCityCenter, \nint numberOfBedrooms, int numberOfBathrooms, \nint parkingSpaces, AvailableEquipment availableEquipment, \nString basement, String inhabitableLoft, String sunExposure)
+    + toString()
+}
+
+class Photos {
+    - String url
+
+    + Photos(String url)
+    + getUrl()
+}
+
+class Property {
+    - int area
+    - int distanceFromTheCityCenter
+
+    + Property(int area, int distanceFromCityCenter)
+    + toString()
+}
+
+class Person {
+    - String email
+    - int passportNumber
+    - int taxNumber
+    - String name
+    - Adress adress
+    - int phoneNumber
+
+    + User(email,passportNumber,taxNumber,name,phoneNumber)
+    + getPassportNumber()
+    + getTaxNumber()
+    + getEmail()
+    + getAdress()
+    + getName()
+    + getPhoneNumber()
+}
+
+'class Role {
+'    - String role
+'    + Role(role)
+'}
+
+
+PlaceOrderUI ...> PlaceOrderController
+PlaceOrderController ...> Repositories : repositories
+PlaceOrderController ...> PublishedAnnouncementRepository : publishedAnnouncementRepository
+PlaceOrderController ...> AuthenticationRepository : authenticationRepository
+PlaceOrderController ...> OfferRepository : offerRepository
+PlaceOrderController ...> UserRepository : userRepository
+Repositories ---> Repositories : instance
+Repositories ---> PublishedAnnouncementRepository
+Repositories ---> AuthenticationRepository
+Repositories ---> OfferRepository
+Repositories ---> UserRepository
+OfferRepository ---> Offer
+PublishedAnnouncementRepository ---> Announcement
+
+Business <|--- Rent
+Business "1" --- "1" Property : has >
+Business "1" --- "1" Comission : contains >
+
+Comission "*" --- "1" Agent : defines <
+
+Agent "1" --- "*" Offer : receives >
+
+Offer "*" --- "1" Client : sends <
+
+Announcement "1" --- "1" Property : has >
+Announcement "1" --- "1" Business : has >
+
+Property <|--- Residence
+Property "1" --- "1..30" Photos : has >
+Property "1" --- "1" Address : has >
+
+Person <|--- Client
+
+'Client "1" -left> "*" Role : role
+
+Address "1" --- "*" State : has >
+
+State "1" --- "*" District : has >
+
+District "1" --- "*" City : has >
+
+Residence "1" --- "*" AvailableEquipment : contains >
+Residence <|--- House
+
+House "*" --- "1" SunExposure : contains >
+
+@enduml

@@ -1,0 +1,51 @@
+@startuml
+
+title US05 - Domain Model
+
+skinparam groupInheritance 2
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+class SystemAdministrator {
+
+}
+
+class Contacts {
+    Phone Number
+    Email Adress
+}
+
+class Store {
+    ID
+    Designation
+}
+
+class State {
+    State name
+}
+
+class District {
+    District name
+}
+
+class City {
+    City name
+}
+
+class Address {
+    Street
+    Zip Code
+}
+
+Store "1" -up-- "1" Address: is located at >
+Store "1" -right-- "1" Contacts: has >
+SystemAdministrator "1" -right-- "*" Store: registers >
+State "1" -right-- "*" District : has >
+District "1" -right-- "*" City : has >
+Address "*" -right-- "1" State : has <
+
+@enduml

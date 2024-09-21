@@ -1,0 +1,52 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "Network Manager" as Manager
+participant ":DisplayEmployeeUI" as DisplayEmployeeUI
+participant ":DisplayEmployeeController" as DisplayEmployeeController
+
+activate Manager
+
+    Manager -> DisplayEmployeeUI : asks to see list of all employees working in every store
+    activate DisplayEmployeeUI
+
+    create DisplayEmployeeController
+    DisplayEmployeeUI --> DisplayEmployeeController** : create
+    
+    DisplayEmployeeUI -> DisplayEmployeeController : getStoreEmployeeList()
+        activate DisplayEmployeeController
+
+        ref over DisplayEmployeeController
+
+            Get Stores List
+
+        end ref
+
+        ref over DisplayEmployeeController
+
+            Get Employees List
+
+        end ref
+
+        ref over DisplayEmployeeController
+
+            Get DTO
+
+        end ref
+
+        DisplayEmployeeController --> DisplayEmployeeUI : StoreEmployeeList
+        deactivate DisplayEmployeeController
+
+    DisplayEmployeeUI --> Manager : provides a list of employees (Id, name and role) alphabetically sorted\nand grouped by store (Id, name and number of listings) sorted from \nthe one with more listings to the one with less listings  
+    deactivate DisplayEmployeeUI
+
+    deactivate DisplayEmployeeController
+
+deactivate Manager
+
+@enduml

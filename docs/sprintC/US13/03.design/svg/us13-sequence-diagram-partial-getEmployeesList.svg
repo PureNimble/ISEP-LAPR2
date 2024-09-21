@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="507px" preserveAspectRatio="none" style="width:875px;height:507px;background:#FFFFFF;" version="1.1" viewBox="0 0 875 507" width="875px" zoomAndPan="magnify"><defs/><g><rect fill="#FFFFFF" height="370.3828" style="stroke:#181818;stroke-width:1.0;" width="10" x="94" y="65.2188"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="332" y="87.5703"/><rect fill="#FFFFFF" height="287.3281" style="stroke:#181818;stroke-width:1.0;" width="10" x="425" y="148.2734"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="652" y="264.1953"/><rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="795" y="368.25"/><rect fill="none" height="182.7578" style="stroke:#000000;stroke-width:1.5;" width="489" x="380" y="223.4922"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="99" x2="99" y1="55.2188" y2="453.6016"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="243" x2="243" y1="55.2188" y2="453.6016"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="337" x2="337" y1="55.2188" y2="453.6016"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="430" x2="430" y1="55.2188" y2="453.6016"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="657" x2="657" y1="55.2188" y2="453.6016"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="800" x2="800" y1="196.3828" y2="453.6016"/><rect fill="#E3E3E3" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="188" x="5" y="22.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="174" x="12" y="44.1426">:DisplayEmployeeController</text><rect fill="#E3E3E3" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="188" x="5" y="452.6016"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="174" x="12" y="474.1348">:DisplayEmployeeController</text><rect fill="#E3E3E3" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="81" x="203" y="22.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="67" x="210" y="44.1426">:repository</text><rect fill="#E3E3E3" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="81" x="203" y="452.6016"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="67" x="210" y="474.1348">:repository</text><rect fill="#E3E3E3" height="49.2188" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="86" x="294" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="63" x="305.5" y="26.5332">repository</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="72" x="301" y="44.1426">:Repository</text><rect fill="#E3E3E3" height="49.2188" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="86" x="294" y="452.6016"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="63" x="305.5" y="474.1348">repository</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="72" x="301" y="491.7441">:Repository</text><rect fill="#E3E3E3" height="49.2188" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="80" x="390" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62" x="399" y="26.5332">Employee</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="66" x="397" y="44.1426">:Employee</text><rect fill="#E3E3E3" height="49.2188" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="80" x="390" y="452.6016"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62" x="399" y="474.1348">Employee</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="66" x="397" y="491.7441">:Employee</text><rect fill="#E3E3E3" height="49.2188" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="148" x="583" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="129" x="592.5" y="26.5332">employeeRepository</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="134" x="590" y="44.1426">:EmployeeRepository</text><rect fill="#E3E3E3" height="49.2188" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="148" x="583" y="452.6016"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="129" x="592.5" y="474.1348">employeeRepository</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="134" x="590" y="491.7441">:EmployeeRepository</text><rect fill="#E3E3E3" height="49.2188" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="118" x="741" y="452.6016"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="84" x="758" y="474.1348">EmployeeList</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="104" x="748" y="491.7441">:List&lt;Employee&gt;</text><rect fill="#FFFFFF" height="370.3828" style="stroke:#181818;stroke-width:1.0;" width="10" x="94" y="65.2188"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="332" y="87.5703"/><rect fill="#FFFFFF" height="287.3281" style="stroke:#181818;stroke-width:1.0;" width="10" x="425" y="148.2734"/><rect fill="#FFFFFF" height="30.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="652" y="264.1953"/><rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="795" y="368.25"/><polygon fill="#181818" points="320,83.5703,330,87.5703,320,91.5703,324,87.5703" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="104" x2="326" y1="87.5703" y2="87.5703"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="111" y="82.7139">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="146" x="122" y="82.7139">getEmployeeRepository()</text><polygon fill="#181818" points="115,113.9219,105,117.9219,115,121.9219,111,117.9219" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="109" x2="336" y1="117.9219" y2="117.9219"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="121" y="113.0654">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="120" x="132" y="113.0654">EmployeeRepository</text><polygon fill="#181818" points="413,144.2734,423,148.2734,413,152.2734,417,148.2734" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="104" x2="419" y1="148.2734" y2="148.2734"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="111" y="143.417">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="112" x="122" y="143.417">getEmployeesList()</text><polygon fill="#181818" points="729,174.625,739,178.625,729,182.625,733,178.625" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="435" x2="735" y1="178.625" y2="178.625"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="442" y="173.7686">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="44" x="453" y="173.7686">create()</text><rect fill="#E3E3E3" height="49.2188" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="118" x="741" y="156.2734"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="84" x="758" y="177.8066">EmployeeList</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="104" x="748" y="195.416">:List&lt;Employee&gt;</text><path d="M380,223.4922 L453,223.4922 L453,231.8438 L443,241.8438 L380,241.8438 L380,223.4922 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/><rect fill="none" height="182.7578" style="stroke:#000000;stroke-width:1.5;" width="489" x="380" y="223.4922"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="28" x="395" y="237.9873">loop</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="111" x="468" y="236.9111">[for each employee]</text><polygon fill="#181818" points="640,260.1953,650,264.1953,640,268.1953,644,264.1953" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="435" x2="646" y1="264.1953" y2="264.1953"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="442" y="259.3389">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="87" x="453" y="259.3389">getEmployee(i)</text><polygon fill="#181818" points="446,290.5469,436,294.5469,446,298.5469,442,294.5469" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="440" x2="656" y1="294.5469" y2="294.5469"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="452" y="289.6904">6</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="58" x="463" y="289.6904">Employee</text><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="435" x2="477" y1="324.8984" y2="324.8984"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="477" x2="477" y1="324.8984" y2="337.8984"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="436" x2="477" y1="337.8984" y2="337.8984"/><polygon fill="#181818" points="446,333.8984,436,337.8984,446,341.8984,442,337.8984" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="442" y="320.042">7</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="192" x="453" y="320.042">compare(employee1, employee2)</text><polygon fill="#181818" points="783,364.25,793,368.25,783,372.25,787,368.25" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="435" x2="789" y1="368.25" y2="368.25"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="442" y="363.3936">8</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="85" x="453" y="363.3936">add(employee)</text><polygon fill="#181818" points="110,431.6016,100,435.6016,110,439.6016,106,435.6016" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="104" x2="429" y1="435.6016" y2="435.6016"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="116" y="430.7451">9</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="79" x="127" y="430.7451">EmployeeList</text><!--MD5=[fa47d9e8dad82df39e71b48ecd210382]
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+participant ":DisplayEmployeeController" as DisplayEmployeeController
+participant ":repository" as RepositorySingleton
+participant "repository\n:Repository" as repository
+participant "Employee\n:Employee" as Employee
+participant "employeeRepository\n:EmployeeRepository" as EmployeeRepository
+participant "EmployeeList\n:List<Employee>" as EmployeeList
+
+    activate DisplayEmployeeController
+
+                DisplayEmployeeController -> repository : getEmployeeRepository()
+                    activate repository
+
+                        repository - -> DisplayEmployeeController : EmployeeRepository
+                    deactivate repository
+
+                DisplayEmployeeController -> Employee : getEmployeesList()
+                activate Employee
+
+                create EmployeeList
+                Employee - -> EmployeeList** : create()
+
+                    loop for each employee
+
+                        Employee -> EmployeeRepository : getEmployee(i)
+                        activate EmployeeRepository
+                        EmployeeRepository - -> Employee : Employee
+                        deactivate EmployeeRepository
+                        Employee - -> Employee : compare(employee1, employee2)
+                        Employee -> EmployeeList : add(employee)
+                        activate EmployeeList
+                        deactivate EmployeeList
+
+                    end
+
+                Employee - -> DisplayEmployeeController : EmployeeList
+                deactivate Employee
+deactivate DisplayEmployeeController
+@enduml
+
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+participant ":DisplayEmployeeController" as DisplayEmployeeController
+participant ":repository" as RepositorySingleton
+participant "repository\n:Repository" as repository
+participant "Employee\n:Employee" as Employee
+participant "employeeRepository\n:EmployeeRepository" as EmployeeRepository
+participant "EmployeeList\n:List<Employee>" as EmployeeList
+
+    activate DisplayEmployeeController
+
+                DisplayEmployeeController -> repository : getEmployeeRepository()
+                    activate repository
+
+                        repository - -> DisplayEmployeeController : EmployeeRepository
+                    deactivate repository
+
+                DisplayEmployeeController -> Employee : getEmployeesList()
+                activate Employee
+
+                create EmployeeList
+                Employee - -> EmployeeList** : create()
+
+                    loop for each employee
+
+                        Employee -> EmployeeRepository : getEmployee(i)
+                        activate EmployeeRepository
+                        EmployeeRepository - -> Employee : Employee
+                        deactivate EmployeeRepository
+                        Employee - -> Employee : compare(employee1, employee2)
+                        Employee -> EmployeeList : add(employee)
+                        activate EmployeeList
+                        deactivate EmployeeList
+
+                    end
+
+                Employee - -> DisplayEmployeeController : EmployeeList
+                deactivate Employee
+deactivate DisplayEmployeeController
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 18:01:30 WEST 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>

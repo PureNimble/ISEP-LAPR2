@@ -1,0 +1,56 @@
+@startuml
+
+title US07 - Domain Model
+
+skinparam groupInheritance 2
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+class UnregisteredUser {
+    Cookies
+}
+
+class Contacts {
+    Phone Number
+    Email Address
+}
+
+class State {
+    State name
+}
+
+class Person {
+    Name
+    Passport Card Number
+    Tax Number
+}
+
+class District {
+    District name
+}
+
+class City {
+    City name
+}
+
+class Address {
+    Street
+    Zip Code
+}
+
+class User {
+    Password
+}
+
+UnregisteredUser "1" -right-- "1" User : can register as >
+State "1" -right-- "*" District: has >
+District "1" -right-- "*" City: has >
+Address "*" -right-- "1" State: has <
+Person "1" -right-- "1" Address : can have >
+Person "1" -down-- "1" Contacts : has >
+Person <|-up- User
+@enduml

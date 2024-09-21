@@ -1,0 +1,94 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US012 - Sequence Diagram Split
+
+autonumber
+
+'hide footbox
+actor "System Administrator" as Admin
+participant ":ReadFileUI" as UI
+participant ":ImportFileController" as CTRL
+participant ":Repositories" as Repository
+participant "repositories\n:Repositories" as Repositories
+
+
+activate Admin
+
+        Admin -> UI : asks to import information from a legacy system
+
+        activate UI
+
+        UI -> CTRL** : create
+
+
+
+            UI --> Admin : requests the path of the file to import
+        deactivate UI
+
+    Admin -> UI : types the path of the file and submits data
+    activate UI
+
+            UI -> CTRL : importAndSavesInformation(filePath)
+            activate CTRL
+
+             ref over CTRL
+
+               Get File Reader Repository
+
+'                CTRL -> CTRL : copyLegacyFile(filePath)
+'
+'
+'                CTRL -> Repository : getInstance()
+'                activate Repository
+'
+'                    Repository --> CTRL: repositories
+'                deactivate Repository
+'
+'                CTRL -> Repositories : getFileReaderRepository()
+'                activate Repositories
+'
+'                    Repositories --> CTRL: fileReaderRepository
+'                deactivate Repositories
+
+end
+
+autonumber 11
+
+CTRL -> FileReaderRepository : createFileCopy(fileInformation)
+                                activate FileReaderRepository
+
+                ref over FileReaderRepository
+
+                                Create File Copy
+
+                                end
+
+
+'                                FileReaderRepository -> FileReaderClass** : createFileCopy(fileInformation)
+'
+'                                FileReaderRepository -> FileReaderRepository : addFileCopy(fileInformation)
+'                                activate FileReaderRepository
+'
+'                                FileReaderRepository -> FileReaderRepository : validateFileCopy(fileInformation)
+'                                activate FileReaderRepository
+'
+
+'                                deactivate FileReaderRepository
+'                                deactivate FileReaderRepository
+
+autonumber 15
+
+FileReaderRepository --> CTRL : FileCopy
+                                deactivate FileReaderRepository
+                CTRL --> UI : FileCopy
+            deactivate CTRL
+
+        UI --> Admin : shows a success message and displays operation success
+    deactivate UI
+
+deactivate Admin
+
+@enduml

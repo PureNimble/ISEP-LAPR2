@@ -1,0 +1,130 @@
+@startuml
+!define arrow2(direction)  [[[#0000FF], [dashed], [direction]]]
+hide empty members
+skinparam linetype ortho
+skinparam ranksep 40
+
+class OfferDecisionUI {
+  +getOffersList(): List<AnnouncementOfferDTO>
+  +keepOffer(offer: Offer)
+  +acceptOffer(offer: Offer)
+  +declineOffer(offer: Offer)
+  +sendVisualizedEmail(email: String, subject: String, body: String)
+}
+
+class OfferDecisionController {
+  -repositories: Repositories
+  +getOffersList(): List<AnnouncementOfferDTO>
+  +declineOtherOffers(offer: Offer, offersList: List<Offer>)
+  +changeAnnouncementState(publishedAnnouncement: PublishedAnnouncement)
+  +storeDecrement(store: Store)
+}
+
+class Repositories {
+  +getPublishedAnnouncementRepository(): PublishedAnnouncementRepository
+  +getOfferRepository(): OfferRepository
+  +getStoreRepository(): StoreRepository
+}
+
+class PublishedAnnouncement {
+  +getPublishedAnnouncements(): List<PublishedAnnouncement>
+  +compare(date1: Date, date2: Date): int
+  +changeAnnouncementState(publishedAnnouncement: PublishedAnnouncement)
+}
+
+class Offer {
+  +getOffer(property: Property): Offer
+  +compare(amount1: int, amount2: int): int
+  +setOfferState(offerState: OfferState)
+}
+
+class Store {
+  +decrementAvailableListing(): void
+}
+
+class PublishedAnnouncementRepository {
+  +getPublishedAnnouncement(index: int): PublishedAnnouncement
+}
+
+class OfferRepository {
+  +getOffer(property: Property): Offer
+  +declineOtherOffers(offer: Offer, offersList: List<Offer>)
+  +declineOffer(offer: Offer)
+}
+
+class StoreRepository {
+  +storeDecrement(store: Store): void
+}
+
+class AnnouncementOfferMapper {
+  +toDTO(publishedAnnouncementList: List<PublishedAnnouncement>, offerList: List<Offer>): List<AnnouncementOfferDTO>
+}
+
+interface EmailService {
+  +sendEmail(email: String, subject: String, body: String): void
+}
+
+class DEIService {
+  +sendEmail(email: String, subject: String, body: String): void
+}
+
+class GmailService {
+  +sendEmail(email: String, subject: String, body: String): void
+}
+
+class HotmailService {
+  +sendEmail(email: String, subject: String, body: String): void
+}
+
+class YahooService {
+  +sendEmail(email: String, subject: String, body: String): void
+}
+
+class AnnouncementOfferDTO {
+  +create(publishedAnnouncement: PublishedAnnouncement, offersListToDTO: List<OfferDTO>): AnnouncementOfferDTO
+}
+
+class OfferDTO {
+  +create(name: String, client: String, orderAmount: int, offerState: OfferState): OfferDTO
+}
+
+enum OfferState {
+  accepted
+  rejected
+  pending
+}
+
+enum PublishedAnnouncementState {
+  available
+  sold
+}
+
+OfferDecisionUI --> OfferDecisionController
+OfferDecisionController ..> Repositories
+
+OfferDecisionController ..> OfferRepository
+OfferDecisionController ...........> PublishedAnnouncementRepository
+OfferDecisionController ..> StoreRepository
+OfferDecisionController --right> AnnouncementOfferMapper
+
+AnnouncementOfferMapper --right> OfferDTO
+AnnouncementOfferMapper --> AnnouncementOfferDTO
+
+PublishedAnnouncement --> PublishedAnnouncementState
+Offer --> OfferState
+OfferRepository --> Offer
+StoreRepository --> Store
+PublishedAnnouncementRepository --> PublishedAnnouncement
+
+EmailService <|..up DEIService
+EmailService <|..up GmailService
+EmailService <|..up HotmailService
+EmailService <|..up YahooService
+
+OfferDecisionController --up> EmailService
+
+Repositories ..> PublishedAnnouncementRepository : PublishedAnnouncementRepository
+Repositories ..> OfferRepository : OfferRepository
+Repositories ..> StoreRepository : StoreRepository
+
+@enduml

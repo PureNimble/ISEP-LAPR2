@@ -1,0 +1,51 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD)
+
+autonumber
+
+actor "Agent" as Agent
+participant ":System" as System
+
+activate Agent
+
+    Agent -> System : asks to see the list of property announcement request
+    activate System
+
+     System --> Agent : shows list of announcement request responsible for that agent and asks to select one
+        deactivate System
+
+            Agent -> System : selects one announcement request
+            activate System
+
+alt Accepts Announcement Request
+System --> Agent:shows the comissions available
+deactivate System
+
+Agent -> System:select the respective comission
+deactivate System
+end
+alt reject Announcement Request
+System --> Agent:requests data(messageJustification)
+deactivate System
+
+Agent -> System:types request data
+activate System
+end
+
+System --> Agent: shows the infomation of and asks for confirmation
+deactivate System
+
+
+ Agent -> System : submits data
+    activate System
+
+        System --> Agent : displays operation success
+    deactivate System
+
+
+
+@enduml

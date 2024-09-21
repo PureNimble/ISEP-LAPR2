@@ -1,0 +1,85 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+title US003 - Domain Model
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+hide empty members
+skinparam groupInheritance 3
+hide circle
+
+class Contacts
+
+class SystemAdministrator
+
+class Employee
+
+class Role
+
+class SystemAdministrator
+
+class Agent
+
+class StoreManager
+
+class StoreNetworkManager
+
+class Store
+
+class Address
+
+class Role {
+Role
+}
+
+class Store {
+Designation
+
+}
+
+class Address {
+Street
+Zip Code
+City
+Country
+State
+}
+
+class SystemAdministrator {
+}
+
+class Employee {
+Name
+ID
+Number
+Tax Number
+}
+
+class Contacts {
+Phone number
+Email adress
+}
+
+SystemAdministrator "1" - "*" Store : registers >
+
+Store "*" -- "1" Address : located at >
+
+Store "1" - "*" Employee : works in <
+
+SystemAdministrator "1" - "*" Employee : registers >
+
+Employee "1" - "1" Role : has >
+
+Employee <|--  StoreNetworkManager
+
+Employee <|--  StoreManager
+
+Employee <|-- Agent
+
+StoreNetworkManager "1" - "*" Store : manages >
+
+Store "1" -- "1" Contacts: has >
+
+@enduml

@@ -1,0 +1,112 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "System Admininistrator" as Admin
+participant ":RegisterStoreUI" as RegisterStoreUI
+participant ":RegisterStoreController" as RegisterStoreController
+participant ":repository" as RepositorySingleton
+participant "repository\n:Repository" as repository
+participant "stateRepository\n:StateRepository" as StateRepository
+participant "Store\n:Store" as Store
+
+activate Admin
+
+    Admin -> RegisterStoreUI : asks to register a store
+
+        activate RegisterStoreUI
+            create RegisterStoreController
+            RegisterStoreUI --> RegisterStoreController** : create
+            RegisterStoreUI -> RegisterStoreController : getStates()
+            activate RegisterStoreController
+            RegisterStoreController -> RepositorySingleton : getInstance()
+            activate RepositorySingleton
+
+                RepositorySingleton --> RegisterStoreController : repository
+
+            deactivate RepositorySingleton
+
+            RegisterStoreController -> repository : getStateRepository()
+
+            activate repository
+
+                repository --> RegisterStoreController : StateRepository
+
+            deactivate repository
+                RegisterStoreController -> StateRepository : getStates()
+                    activate StateRepository
+                        StateRepository --> RegisterStoreController : StatesList
+                    deactivate StateRepository
+                RegisterStoreController --> RegisterStoreUI : StatesList
+            deactivate RegisterStoreController
+            RegisterStoreUI --> Admin : requests the necessary data and provides a list of states
+        deactivate RegisterStoreUI
+
+    Admin -> RegisterStoreUI : types requested data (id, designation/name, \nemail address and phone number) and selects state
+        activate RegisterStoreUI
+        RegisterStoreUI --> RegisterStoreUI : keepData(id, designation/name, state, \nemail address and phone number)
+            RegisterStoreUI -> RegisterStoreController : getDistrictByDescription(state)
+                activate RegisterStoreController
+                            RegisterStoreController -> StateRepository : getDistrictByDescription(state)
+                        activate StateRepository
+                        StateRepository --> RegisterStoreController : DistrictsList
+                        deactivate StateRepository
+                    RegisterStoreController --> RegisterStoreUI : DistrictsList
+                deactivate RegisterStoreController
+            RegisterStoreUI --> Admin : shows list of districts available for that state and asks to select one
+        deactivate RegisterStoreUI
+
+    Admin -> RegisterStoreUI : selects district
+        activate RegisterStoreUI
+        RegisterStoreUI --> RegisterStoreUI : keepDistrict(district)
+        RegisterStoreUI -> RegisterStoreController : getCityByDescription(district)
+            activate RegisterStoreController
+                        RegisterStoreController -> StateRepository : getCityByDescription(district)
+                        activate StateRepository
+
+                        StateRepository --> RegisterStoreController : CitiesList
+                        deactivate StateRepository
+                    RegisterStoreController --> RegisterStoreUI : CitiesList
+            deactivate RegisterStoreController
+            RegisterStoreUI --> Admin : shows list of cities available for that district and asks to select one
+        deactivate RegisterStoreUI
+    Admin -> RegisterStoreUI : selects city
+        activate RegisterStoreUI
+        RegisterStoreUI --> RegisterStoreUI : keepCity(city)
+        RegisterStoreUI --> Admin : requests data
+    deactivate RegisterStoreUI
+    Admin -> RegisterStoreUI : types requested data (street and zip code)
+        activate RegisterStoreUI
+        RegisterStoreUI --> RegisterStoreUI : keepData(street and zip code)
+    
+        RegisterStoreUI --> Admin : shows all inserted data and asks for confirmation
+    deactivate RegisterStoreUI
+
+    Admin -> RegisterStoreUI : confirms data
+    activate RegisterStoreUI
+
+        RegisterStoreUI -> RegisterStoreController : registerStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
+        activate RegisterStoreController
+
+            RegisterStoreController -> Store : registerStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
+
+            activate Store
+
+               Store -> Store : addStore(store)
+                activate Store
+                        Store -> Store : validateStore(id, designation/name, state, district, city, \nstreet, zip code, email address and phone number)
+                deactivate Store
+                    Store --> RegisterStoreController : Store
+            deactivate Store
+        RegisterStoreController --> RegisterStoreUI : store
+        deactivate RegisterStoreController
+        RegisterStoreUI --> Admin : displays operation success
+    deactivate RegisterStoreUI
+
+deactivate Admin
+
+@enduml

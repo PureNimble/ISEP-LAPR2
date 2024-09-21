@@ -1,0 +1,47 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+
+
+'hide footbox
+
+participant ":PublishController" as CTRL
+participant ":Repositories" as Repository
+participant "repositories\n:Repositories" as Repository2
+participant "userIdentityRepository:\n User Identity Repository" as UserIdentity
+
+
+autonumber 5
+-> CTRL : getUserInformation()
+
+    activate CTRL
+        group Get User Information
+
+        CTRL -> Repository : getInstance()
+        activate Repository
+
+        Repository --> CTRL : repositories
+        deactivate Repository
+
+        CTRL -> Repository2 : getUserInformationRepository()
+        activate Repository2
+
+        Repository2 --> CTRL : UserInformationRepository
+        deactivate Repository2
+
+        CTRL -> UserRepository : getUserInformation()
+
+        activate UserRepository
+
+        UserRepository --> CTRL : User Information
+
+        deactivate UserRepository
+
+end
+<-- CTRL : User Information
+deactivate CTRL
+
+
+@enduml

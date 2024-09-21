@@ -1,0 +1,249 @@
+@startuml
+
+'left to right direction
+class Employee{
+-Store store
+-List<Role> role
++Employee(email,name,store,phoneNumber,role,adress,taxNumber,passportNumber)
++getStore()
++getRole()
+}
+
+class Person{
+- String email
+- int passportNumber
+- int taxNumber
+- String name
+- Adress adress
+- int phoneNumber
+
++User(email,passportNumber,taxNumber,name,phoneNumber)
++getPassportNumber()
++getTaxNumber()
++getEmail()
++getAdress()
++getName()
++getPhoneNumber()
+}
+
+
+class Offer{
+- Client client
+ - PublishedAnnouncement publishedAnnouncement
+ - double orderAmount
+
+ + Offer (Client client, PublishedAnnouncement \npublishedAnnouncement, double orderAmount)
+ + Offer()
+ + getOrderAmount()
+ + getPublishedAnnouncement()
+ + getClient()
+
+}
+
+enum  OfferState {
+-String Accepted
+-String Pending
+-String Rejected
+}
+
+
+class Adress{
+ -String streetName
+    -int zipCode
+    +getCity()
+    +getDistrict()
+    +getState()
+    +Adress(state, district, city, street, zipCode)
+}
+
+class Residence {
+    -int numberofBedrooms
+    -int numberofBathrooms
+    -int numberofParking Spaces
+}
+
+class House {
+    -String basement
+    -String inhabitableloft
+}
+
+class SunExposure {
+    -String direction
+}
+
+class AvailableEquipment {
+    -String equipment
+}
+
+
+class Business {
+-String totalPrice
+}
+
+
+class District{
+- String districtName
+
+
+    +getDistrictName()
+    +getCities()
+    +toString()
+}
+
+class City{
+- String city
+
+    +getCityName()
+}
+
+
+class Comission {
+    -Double value
+}
+
+
+
+
+class Photos {
+- String uRI
+}
+
+class Property {
+    - int area
+    -Photos photos
+    - int distance from the city center
+}
+
+class PublishedAnnouncement {
+    - Date date;
+    - TypeOfBusiness typeOfBusiness;
+    - Property property;
+    - PropertyType propertyType;
+    - Comission comission;
+    - Business business;
+    - int durationOfContract;
+    - Employee agent;
+    - Client client;
+    - int propertyID;
+    - Store store;
+}
+
+enum AnnouncementState{
+-String available
+-String sold
+}
+
+class State{
+ - String stateName
+
+    +getState()
+    +getDistricts()
+    +toString()
+
+}
+
+
+
+class TypeOfProperty {
+-String type
+}
+
+class OfferMapper {
+    + toDto(offerList)
+    + toDtoObject(offer)
+}
+
+class OfferRepository {
+    + getOrganizationByEmployeeEmail(email)
+}
+
+class Repositories{
+-Repositories()
++getInstance():Repositories
++getEmployeeRepository()
++getComissionRepository()
++getPublishedAnnouncementRepository()
++getAuthenticationRepository()
++getAnnouncementRequestRepository()
++getStoreRepository()
++getRoleRepository()
++getStateRepository()
++getClientRepository()
++getPropertyTypeRepository()
++getTypeOfBusinessRepository()
++getMessageRepository()
++getOfferRepository()
++serialize()
++deserialize()
+}
+
+class ListDealsController {
+    + ListDealsController(offerRepository)
+    + getDealsByAscendingAreaBubbleSort()
+    + getDealsByDescendingAreaBubbleSort()
+    + getDealsByAscendingAreaSortSelection()
+    + getDealsByDescendingAreaSortSelection()
+    + toDtoDescendingAreaBubbleSort()
+    + toDtoAscendingAreaBubbleSort()
+    + toDtoDescendingAreaSortSelection()
+    + toDtoAscendingAreaSortSelection()
+    + toDtoOffersMostRecent()
+    - getOfferRepository()
+}
+
+class ListDealsUI {
+}
+
+class OfferDto{
+-String name
+-String orderAmount
+-String publishedAnnouncement
+-String offerState
+}
+
+
+Person <|-- Employee
+
+
+Employee "*" - "*" Offer: intends to see >
+Offer "*" -- "1" PublishedAnnouncement: has >
+PublishedAnnouncement -- Property
+TypeOfProperty -- Property : has <
+Property <|-- Residence
+Photos "1..30" -- "1" Property : has <
+Residence <|-- House
+Residence "1" -- "*" AvailableEquipment : contains >
+House "1" -- "*" SunExposure: contains >
+PublishedAnnouncement "1" - "1" Comission :has >
+Business "1" -- "1" PublishedAnnouncement : has <
+
+Adress "1" -right-- "1" Property: has <
+State "1" -left-- "*" District: is in <
+District "1" -left-- "*" City: is in <
+Adress "*" -left-- "1" State: is in <
+
+
+ListDealsUI .> ListDealsController
+
+ListDealsController .> Repositories : repositories
+
+Repositories --> Repositories:instance
+
+ListDealsController ..> OfferMapper
+
+OfferMapper ...> OfferDto
+
+Repositories --> OfferRepository : offerRepository
+
+ListDealsController ..> OfferRepository
+
+OfferRepository -----> Offer
+
+
+PublishedAnnouncement - AnnouncementState
+
+Offer --> OfferState
+
+
+
+@enduml

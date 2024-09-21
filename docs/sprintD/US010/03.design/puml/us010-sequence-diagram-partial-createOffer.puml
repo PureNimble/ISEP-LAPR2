@@ -1,0 +1,53 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US010 - Sequence Diagram Partial - Create Offer
+
+participant "offerRepository\n:OfferRepository" as OfferRepository
+participant "Offer" as Offer
+participant "offerDto:OfferDTO" as offerDto
+
+autonumber 50
+
+activate OfferRepository
+
+OfferRepository -> Offer** : createOffer(property, name, orderAmount, client)
+activate Offer
+
+Offer -> offerDto : name = getName()
+activate offerDto
+deactivate offerDto
+
+Offer -> offerDto : client = getClient()
+activate offerDto
+deactivate offerDto
+
+Offer -> offerDto : orderAmount = getOrderAmount()
+activate offerDto
+deactivate offerDto
+
+Offer -> offerDto : publishedAnnouncement = getPublishedAnnouncement()
+activate offerDto
+deactivate offerDto
+
+Offer -> offerDto : offerState = getOfferState()
+activate offerDto
+deactivate offerDto
+
+deactivate Offer
+
+
+
+OfferRepository -> OfferRepository : addOffer(offer)
+
+OfferRepository -> OfferRepository : validateOffer(offer)
+
+OfferRepository --> OfferRepository
+
+OfferRepository --> OfferRepository
+
+
+@enduml

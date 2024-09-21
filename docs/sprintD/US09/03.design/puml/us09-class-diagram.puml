@@ -1,0 +1,308 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+'skinparam classAttributeIconSize 0
+'left to right direction
+
+title US09 - Class Diagram
+
+
+class SendMessageUI
+
+class SendMessageController {
+    + sendMessageController ()
+    + getMessage ()
+    + createNewMessageToAgent ()
+  }
+
+SendMessageUI .> SendMessageController
+
+class Repositories {
+-Repositories()
+
++getInstance():Repositories
++getPublishedAnnouncementRepository()
++getMessageRepository()
+'+getUserRepository()
+
+}
+
+class ListOfPropertiesMapper{
++List<PropertiesDTO> toDTO (List<Properties> list)
++ListOfPropertiesDTO toDTO(Published Announcement listOfProperties)
++getPropertyDTOByDescription(PropertyDescription)
+}
+
+
+class PublishedAnnouncementRepository {
++publishedAnnouncement(Date date, TypeOfBusiness typeOfBusiness,\nProperty property, PropertyType propertyType, \nComission comission, Business business, \nint durationOfContract, Employee agent, \nClient client, int propertyID, \nAnnouncementState state, Store store)
+}
+
+
+class MessageRepository {
++add(Message message)
++getMessages()
+-validateMessage(Message message)
+-checkIfTimeOverlaps(Message message1, Message message2)
+}
+
+class Message {
+    - String name
+    - int phoneNumber
+    - Date initialDate
+    - int initialTime
+    - int endTime
+    - String description
+
+    + Message(String name, int phoneNumber, String description, \nDate initialDate, int initialTime, int endTime, \nPublishedAnnouncement publishedAnnouncement)
+    + Message()
+    + getName()
+    + getPhoneNumber()
+    + getDescription()
+    + getInitialDate()
+    + getInitialTime()
+    + getEndTime()
+    + getPublishedAnnouncement()
+
+}
+
+
+
+class Property {
+    - int area
+    - int distanceFromTheCityCenter
+
+    +Property(int area, int distanceFromCityCenter)
+    +toString()
+}
+
+class Photos{
+    - String url
+
+    +Photos(String url)
+    + getUrl()
+}
+
+class House {
+    - String basement
+    - String inhabitableLoft
+    - String sunExposure
+
+    + House(int area, int distanceFromCityCenter, int numberOfBedrooms, \nint numberOfBathrooms, int parkingSpaces, AvailableEquipment availableEquipment, \nString basement, String inhabitableLoft, String sunExposure)
+    + toString()
+}
+
+class Residence {
+ - int numberOfBedrooms
+ - int numberOfBathrooms
+ - int parkingSpaces
+
+    + Residence(int area, int distanceFromCityCenter, int numberOfBedrooms,\n int numberOfBathrooms, int parkingSpaces, \nAvailableEquipment availableEquipment)
+    + toString()
+}
+
+class SunExposure {
+    - String direction
+
+    +SunExposure(direction)
+}
+
+class AvailableEquipment {
+    - String typeOfEquipment
+
+    +AvailableEquipment(String availableEquipment)
+    +getAvailableEquipment()
+    + toString()
+}
+
+class Client{
+Client(String email, int passportNumber, int taxNumber, String name, int phoneNumber)
+}
+
+class AutheticationRepository{
++doLogin(email,pwd)
++doLogout()
++getCurrentSession()
++addUserRole()
++addUserWithRole()
++passwordGenerator()
+-shuffleString(input,random)
+-randomCharacter(characters,random)
+}
+
+
+class Address {
+    -String streetName
+    -int zipCode
+
+    +verifyZipCode()
+    +getCity()
+    +getDistrict()
+    +getState()
+    +Address(state, district, city, street, zipCode)
+}
+
+
+
+class City {
+     - String cityName
+
+    -getCityName()
+}
+
+class District{
+- String districtName
+
+
+    +getDistrictName()
+    +getCities()
+    +toString()
+}
+
+class State{
+  - String stateName
+
+     +getState()
+     +getDistricts()
+     +toString()
+}
+
+
+
+class Comission{
+     - double percentage
+     - double staticValue
+
+    + calculateFinalComission()
+}
+
+
+class Rent {
+    - int durationOfContract
+
+    +Rent(int durationContract)
+    +getFinalComission()
+    +getDurationContract()
+    +calculateTotalPrice()
+}
+
+class Person {
+    - String email
+    - int passportNumber
+    - int taxNumber
+    - String name
+    - Adress adress
+    - int phoneNumber
+
+    + User(email,passportNumber,taxNumber,name,phoneNumber)
+    + getPassportNumber()
+    + getTaxNumber()
+    + getEmail()
+    + getAdress()
+    + getName()
+    + getPhoneNumber()
+}
+
+
+class Announcement {
+    - String initialDate
+    - String finalDate
+    - String contractType
+
+    +PublishedAnnouncement(initialDate, finalDate, AnnouncementRequest)
+}
+
+class Business {
+    - double requestedPrice
+    -String typeOfBusiness
+
+    +getFinalComission()
+    +calculatePriceWithComission()
+    +getTypeOfBusiness()
+}
+
+class Repositories
+{
+    + getPublishedAnnouncementRepository()
+}
+
+class Employee{
+-Role role
++Employee(email,name,store,phoneNumber,role,adress,taxNumber,passportNumber)
++getRole()
+}
+
+class Role{
+-String role
++Role(role)
+}
+
+class PropertiesDTO{
+-Date date
+-TypeOfBusiness typeOfBusiness
+-Property property
+-PropertyType propertyType
+-int durationOfContract
+-Employee agent
++toString()
+}
+
+
+
+
+
+SendMessageController .> Repositories : repositories
+Repositories ---> Repositories :instance
+Repositories ---> PublishedAnnouncementRepository : announcement
+Repositories ---> MessageRepository : message
+Repositories ---> AutheticationRepository : authentication
+
+SendMessageController ...> PublishedAnnouncementRepository : announcement
+SendMessageController ...> MessageRepository : message
+SendMessageController ...> AutheticationRepository : authentication
+SendMessageController ...> ListOfPropertiesMapper
+
+ListOfPropertiesMapper....> PropertiesDTO
+
+MessageRepository -down-> Message
+Agent "1" -- "*" Message : recives a >
+Message "1" -right- "*" PublishedAnnouncementRepository: has a <
+
+
+
+
+Residence <|-down-- House
+Property <|-down-- Residence
+Property "1" -- "1..30" Photos: has >
+SunExposure "1" --right- "*" House: contains <
+AvailableEquipment "*" -left- "1" Residence: contains <
+
+
+
+State "*"-right- "1" Address: has a  <
+City "*"-right- "1" District: has a  <
+District "*"-right- "1" State: has a  <
+Property "1" -left- "1" Address: has an >
+PublishedAnnouncementRepository --> Announcement
+Client "1"-right-"*" Message : sends a >
+
+
+
+Comission "*" --- "1" Agent: defines <
+Comission "1" -- "1" Business: contains <
+
+Announcement "1" --- "1" Business: has >
+Announcement "*" --down- "*" Property: advertises >
+Announcement "*" -up-- "1" Agent: publishes <
+Business <|--- Rent
+
+Person <|-up- Client
+Employee <|-- Agent
+Employee "1" --> "*" Role : has a >
+Person <|-- Employee
+
+
+@enduml

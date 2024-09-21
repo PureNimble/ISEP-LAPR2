@@ -1,0 +1,15 @@
+----------Your announcement Request was declined-----
+
+Date:Sun May 28 22:56:38 WEST 2023
+Type of business:Rent
+Property Type:Land
+Price:2.0
+Area: 2
+DistanceFromCityCenter:2
+
+
+The following Announcement Request was rejected by the following reason/s:
+waddaw
+
+Best regards
+Contact:

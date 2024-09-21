@@ -1,0 +1,27 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+participant ":OfferDecisionController" as controller
+participant ":Repositories" as singleton
+participant "repositories\n:Repositories" as repositories
+participant "offerRepository\n:OfferRepository" as offerrepository
+participant "Offer\n:Offer" as offer
+
+activate controller
+        controller -> offerrepository : declineOtherOffers(Offer offer, List<Offer> offersList)
+                activate offerrepository
+                offerrepository --> offer: declineOtherOffers(Offer offer, List<Offer> offersList)
+                activate offer
+                offer --> offer: offer.setOfferState(OfferState.accepted)
+                loop for every offer in offersList
+                        opt if it is not equal to the offer sent through parameters
+                                offer --> offer : changeStatusToDeclined()
+                        end
+                end
+        deactivate offer
+        deactivate offerrepository
+        deactivate controller
+@enduml

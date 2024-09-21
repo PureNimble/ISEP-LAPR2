@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: #A0A0A0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.ListDealsGUI">
+    <children>
+      <AnchorPane fx:id="announcementAnchorPane" focusTraversable="true" layoutX="321.0" layoutY="111.0" prefHeight="489.0" prefWidth="779.0" style="-fx-background-color: white;" visible="false">
+         <children>
+            <ImageView fitHeight="77.0" fitWidth="115.0" layoutX="578.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@PhotosApp/Ruler%20linear%20icon.jpg" />
+               </image>
+            </ImageView>
+            <Pagination fx:id="photosPagination" pageCount="0" prefHeight="257.0" prefWidth="773.0" visible="false" />
+            <Label fx:id="adressLabel" layoutX="27.0" layoutY="322.0" prefHeight="27.0" prefWidth="487.0" text="Label">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="typeOfBusinessLabel" layoutX="34.0" layoutY="263.0" text="Label">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="priceLabel" layoutX="27.0" layoutY="288.0" prefHeight="40.0" prefWidth="351.0" text="Label">
+               <font>
+                  <Font name="System Bold Italic" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="numberBedroomsIcon" fitHeight="47.0" fitWidth="55.0" layoutX="20.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@PhotosApp/Bedroom%20icon%20in%20Simple%20Small%20Style.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="labelNumberOfBedrooms" layoutX="75.0" layoutY="451.0" text="Label" visible="false">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font></Label>
+            <ImageView fitHeight="27.0" fitWidth="28.0" layoutX="632.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@PhotosApp/Esquadro%20ícones%20gratuitos%20criados%20por%20Pixel%20perfect.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="priceLabel1" layoutX="627.0" layoutY="300.0" prefHeight="0.0" prefWidth="38.0" text="Area">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font></Label>
+            <Label fx:id="labelArea" layoutX="662.0" layoutY="280.0" text="Label" />
+            <ImageView fx:id="numberBathroomsIcon" fitHeight="34.0" fitWidth="49.0" layoutX="133.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@PhotosApp/Bathtub%20free%20vector%20icons%20designed%20by%20Smashicons.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="labelNumberOfBathrooms" layoutX="177.0" layoutY="451.0" text="Label" visible="false">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="parkingSpacesIcon" fitHeight="34.0" fitWidth="35.0" layoutX="230.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@PhotosApp/Garage%20Clipart%20Transparent%20Background,%20Garage%20Line%20Icon%20Vector,%20Line%20Icons,%20Garage%20Icons,%20Garage%20PNG%20Image%20For%20Free%20Download.jpg" />
+               </image>
+            </ImageView>
+            <Label fx:id="labelparkingSpaces" layoutX="277.0" layoutY="451.0" text="Label" visible="false">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="typeOfProperrtyLabel" layoutX="28.0" layoutY="354.0" text="Label">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="dateLabel" layoutX="156.0" layoutY="354.0" prefHeight="17.0" prefWidth="377.0" text="Label">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="SunExposureIcon" fitHeight="40.0" fitWidth="55.0" layoutX="317.0" layoutY="438.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@PhotosApp/Black%20Simple%20Sun%20Icon.jpg" />
+               </image>
+            </ImageView>
+            <Label fx:id="labelSunExposure" layoutX="377.0" layoutY="451.0" text="Label" visible="false" />
+            <ImageView fx:id="basementICon" fitHeight="49.0" fitWidth="55.0" layoutX="422.0" layoutY="433.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@PhotosApp/Down%20Stair%20Vector%20Hd%20PNG%20Images,%20Construction%20Down%20Home%20Stair%20Line%20Icon%20Vector,%20Home%20Icons,%20Line%20Icons,%20Construction%20Icons%20PNG%20Image%20For%20Free%20Download.jpg" />
+               </image></ImageView>
+            <Label fx:id="labelBasement" layoutX="484.0" layoutY="449.0" text="Label" visible="false" />
+            <Label fx:id="agentDescription" layoutX="27.0" layoutY="383.0" prefHeight="19.0" prefWidth="756.0" text="Label">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font></Label>
+            <Label fx:id="clientDescription" layoutX="27.0" layoutY="414.0" prefHeight="19.0" prefWidth="756.0" text="Label">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font></Label>
+            <Label layoutX="546.0" layoutY="335.0" text="Distance from city center">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelDistanceCenter" layoutX="662.0" layoutY="318.0" text="Label" />
+            <AnchorPane layoutX="12.0" layoutY="267.0" prefHeight="17.0" prefWidth="16.0" style="-fx-background-color: green;" />
+            <ImageView fx:id="loftIcon" fitHeight="34.0" fitWidth="41.0" layoutX="512.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@PhotosApp/attic.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="labelLoft" layoutX="563.0" layoutY="450.0" text="Label" visible="false" />
+            <Label fx:id="noPhotos" layoutX="134.0" layoutY="14.0" prefHeight="195.0" prefWidth="626.0" text="           No Photos" visible="false">
+               <font>
+                  <Font name="Impact" size="65.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="40.0" fitWidth="41.0" layoutX="587.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@PhotosApp/Download%20Shopping%20Store%20or%20market%20icon%20vector%20for%20free.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="589.0" layoutY="467.0" prefHeight="17.0" prefWidth="37.0" text="STORE">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="idNameLabelStore" layoutX="627.0" layoutY="442.0" prefHeight="19.0" prefWidth="162.0" text="Label">
+               <font>
+                  <Font name="System Bold Italic" size="11.0" />
+               </font></Label>
+            <Label fx:id="contractDuration" layoutX="378.0" layoutY="300.0" prefHeight="17.0" prefWidth="115.0" text="Duration contract " visible="false">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="64.0" prefWidth="1100.0" style="-fx-background-color: white; -fx-border-width: 6px 0px 6px 0px; -fx-border-color: black;">
+         <children>
+              <Label layoutX="401.0" layoutY="7.0" prefHeight="40.0" prefWidth="345.0" text="    List of deals Made">
+                  <font>
+                      <Font name="Impact" size="37.0" />
+                  </font>
+              </Label>
+            <Label layoutX="14.0" layoutY="30.0" text="Sort By:">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Label>
+              <ChoiceBox fx:id="filterChoice" layoutX="74.0" layoutY="26.0" prefWidth="150.0" style="-fx-border-width: 2px 2px 2px 2px; -fx-border-color: black; -fx-background-color: white;" />
+            <ChoiceBox fx:id="ascendOrDescendChoice" layoutX="234.0" layoutY="26.0" prefWidth="150.0" style="-fx-background-color: white; -fx-border-width: 2px 2px 2px 2px; -fx-border-color: black;" visible="false" />
+         </children>
+      </AnchorPane>
+        <TableView fx:id="table" layoutY="111.0" onMouseClicked="#clickItem" prefHeight="489.0" prefWidth="333.0" style="-fx-background-color: transparent;" stylesheets="@listDealsGUICSS.css">
+            <columns>
+                <TableColumn fx:id="idOffer" prefWidth="57.0" text="ID" />
+                <TableColumn fx:id="orderAmount" minWidth="0.0" prefWidth="94.0" sortable="false" text="Order Amount" />
+            <TableColumn fx:id="clientName" prefWidth="107.0" sortable="false" text="Client" />
+            </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+        </TableView>
+      <Label layoutX="112.0" layoutY="68.0" text="Offers">
+         <font>
+            <Font name="Impact" size="32.0" />
+         </font>
+      </Label>
+      <Label fx:id="announcementLabel" layoutX="594.0" layoutY="64.0" text="Announcement" visible="false">
+         <font>
+            <Font name="Impact" size="39.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="92.0" fitWidth="168.0" pickOnBounds="true" preserveRatio="true" />
+    </children>
+
+</AnchorPane>
